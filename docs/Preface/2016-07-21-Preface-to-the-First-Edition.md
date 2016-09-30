@@ -1,21 +1,15 @@
----
-layout:            post
-title:             "Preface to the First Edition"
-date:              2016-07-21 10:00:00 +0300
-tags:              Statistical Learning
-categories:        Translation
-author:            weiya
----
-
-# Preface to the First Edition
-
 # 第一版序言
+
+原文     | [The Elements of Statistical Learning](../book/The Elements of Statistical Learning.pdf)
+      ---|---
+翻译     | szcf-weiya
+时间     | 2016-07-21
 
 > We are drowning in information and starving for knowledge.
 –Rutherford D. Roger
 
 我们沉浸在信息中并且渴望知识。
-—— 卢瑟福 D.罗杰 
+—— 卢瑟福 D.罗杰
 
 > The field of Statistics is constantly challenged by the problems that science and industry brings to its door. In the early days, these problems often came from agricultural and industrial experiments and were relatively small in scope. With the advent of computers and the information age, statistical problems have exploded both in size and complexity. Challenges in the areas of data storage, organization and searching have led to the new field of “data mining”; statistical and computational problems in biology and medicine have created “bioinformatics.” Vast amounts of data are being generated in many fields, and the statistician’s job is to make sense of it all: to extract important patterns and trends, and understand “what the data says.” We call this learning from data.
 
