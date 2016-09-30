@@ -1,0 +1,6 @@
+*/._.*
+*.DS_Store
+/site
+/build
+*.data
+**/.Archive

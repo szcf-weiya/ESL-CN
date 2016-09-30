@@ -1,0 +1,47 @@
+pages:
+  - 主页: 'index.md'
+  - 目录:
+    - 序言:
+      - 第二版序言: 'Preface/2016-07-20-Preface-to-the-Second-Edition.md'
+      - 第一版序言: 'Preface/2016-07-21-Preface-to-the-First-Edition.md'
+    - 简介:
+      - 导言: '01 Introduction/2016-07-26-Chapter-1-Introduction.md'
+    - 监督学习概要:
+      - 导言: '02 Overview of Supervised Learning/2.1 Introduction.md'
+      - 变量类型和术语: '02 Overview of Supervised Learning/2.2 Variable Types and Terminology.md'
+      - 两种预测的简单方法: '02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction.md'
+      - 统计判别理论: '02 Overview of Supervised Learning/2.4 Statistical Decision Theory.md'
+      - 高纬问题的局部方法: '02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions.md'
+      - 统计模型，监督学习和函数逼近: '02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation.md'
+      - 结构化的回归模型: '02 Overview of Supervised Learning/2.7 Structured Regression Models.md'
+      - 限制性估计的类别: '02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators.md'
+      - 模型选择和偏差-方差的权衡: '02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff.md'
+      - 文献笔记: '02 Overview of Supervised Learning/Bibliographic Notes.md'
+    - 回归的线性方法:
+      - 导言: '03 Linear Methods for Regression/3.1 Introduction.md'
+
+site_name: 'ESL CN'
+
+site_description: 'The Elements of Statistical Learning(ESL) 的中文翻译'
+
+site_url: https://szcf-weiya.github.io/ESL-CN/
+
+repo_url: https://szcf-weiya.github.io/ESL-CN/
+
+markdown_extensions:
+  - admonition
+  - smarty
+  - sane_lists
+  - mdx_math
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML
+  - js/mymathjax.js
+
+extra_css:
+  - css/newsprint.css
+  - css/admonition_fix.css
+
+docs_dir: 'docs'
+
+theme_dir: 'yeti'
