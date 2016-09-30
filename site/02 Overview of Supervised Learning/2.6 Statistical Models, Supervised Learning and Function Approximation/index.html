@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>统计模型，监督学习和函数逼近 - ESL CN</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/newsprint.css" rel="stylesheet">
+        <link href="../../css/admonition_fix.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-80323542-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">ESL CN</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">主页</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">目录 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">序言</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">简介</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../01%20Introduction/2016-07-26-Chapter-1-Introduction/">导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">监督学习概要</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../2.1%20Introduction/">导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.2%20Variable%20Types%20and%20Terminology/">变量类型和术语</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.3%20Two%20Simple%20Approaches%20to%20Prediction/">两种预测的简单方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.4%20Statistical%20Decision%20Theory/">统计判别理论</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.5%20Local%20Methods%20in%20High%20Dimensions/">高纬问题的局部方法</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">统计模型，监督学习和函数逼近</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.7%20Structured%20Regression%20Models/">结构化的回归模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.8%20Classes%20of%20Restricted%20Estimators/">限制性估计的类别</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.9%20Model%20Selection%20and%20the%20Bias-Variance%20Tradeoff/">模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Bibliographic%20Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">回归的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.1%20Introduction/">导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.2%20Linear%20Regression%20Models%20and%20Least%20Squares/">线性回归模型和最小二乘法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.3%20Subset%20Selection/">子集的选择</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../2.5%20Local%20Methods%20in%20High%20Dimensions/">
+                        <i class="fa fa-arrow-left"></i> 上一节
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../2.7%20Structured%20Regression%20Models/">
+                        下一节 <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://szcf-weiya.github.io/ESL-CN/">
+                        
+                        Szcf-Weiya
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#_1">统计模型，监督学习和函数逼近</a></li>
+        
+            <li><a href="#prxy">联合分布$Pr(X,Y)$的统计模型</a></li>
+        
+            <li><a href="#262">2.6.2 监督学习</a></li>
+        
+            <li><a href="#263">2.6.3 函数逼近</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="_1">统计模型，监督学习和函数逼近</h1>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翻译</td>
+<td>szcf-weiya</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>2016-08-01</td>
+</tr>
+</tbody>
+</table>
+<p>我们的目标是寻找函数$f(x)$的一个有用的近似$\hat{f}(x)$,函数$f(x)$蕴含着输入与输出之间的预测关系。在前面统计判别理论的章节的理论准备中，对于定量的响应，我们看到平方误差损失引导我们得到了回归函数$f(X)=E(Y\mid X=x)$。最近邻方法的类别可以看成是对条件期望的直接估计，但是我们可以看到至少在两个方面它们不起作用
+- 如果输入空间的维数高，则最近邻不必离目标点近，而且可能导致大的误差
+- 如果知道存在特殊的结构，可以用来降低估计的偏差与方差。</p>
+<p>我们预先用了关于$f(X)$的其它类别的模型，在很多情形下是为了解决维数问题而特别设计的，现在我们讨论把它们合并进去一个预测问题的框架。</p>
+<h2 id="prxy">联合分布$Pr(X,Y)$的统计模型</h2>
+<blockquote>
+<p>Suppose in fact that our data arose from a statistical model</p>
+</blockquote>
+<p>假设事实上我们的数据是从统计模型</p>
+<p>
+<script type="math/tex; mode=display">
+Y=f(X)+\epsilon\qquad(2.29)
+</script>
+</p>
+<p>中产生的,其中随机误差$\epsilon$有$E(\epsilon)=0$且与$X$独立。注意到这个模型$f(x)=E(Y\mid X=x)$，而且事实上条件分布$Pr(Y\mid X)$只有通过条件均值$f(X)$才依赖于$X$</p>
+<p>可加误差模型是一个对真实情况的有用近似。对于大多数系统输入输出对$(X,Y)$没有一个确定的关系$Y=f(X)$。一般地，存在不可测量的变量对$Y$起作用，包括测量误差。可加模型假设我们可以通过误差$\epsilon$从确定关系中捕捉所有的偏移量。</p>
+<p>对于这些问题一个确定的关系确实存在。许多在机器学习中学习的分类问题都是这个形式，其中，响应表面可以认为是定义在$\mathbf{R}^p$的彩色地图。这些训练数据包括从图$\{x_i,g_i\}$的彩色样本，目标是对每一点着色。这里函数是确定的，并且随机量进入到训练数据的$x$处。现在我们不去追究这个问题，但是会看到这个可以通过合适的基于误差的模型技巧解决。</p>
+<p>在式($\ref{2.29}$)的假设中误差是独立同分布不是严格必要的，但是当我们在EPE准则下对均匀分布的平方误差进行平均时似乎出现在我们脑海后面。对于这样的一个模型，用最小二乘作为模型估计的数据准则变得很自然正如在式($\ref{2.1}$)一样。一些简单的修改可以避免独立性的假设；举个例子，我们有$Var(Y\mid X=x)=\sigma(x)$,并且均值和方差都依赖于$X$。一般地，条件分布$Pr(Y\mid X)$可以以复杂的方式依赖$X$,但是可加误差模型排除了这些。</p>
+<p>至今为止我们集中考虑定量的响应变量。可加误差模型一般不用于定性的输出$G$;这种情形下目标函数$p(X)$是条件密度$Pr(G\mid X)$,这是直接建模的。举个例子，对于两个类别的数据，假设数据来自独立的二元试验总是合理的，特定的一个输出的概率是$p(X)$,另一个为$1-p(X)$。因此，如果$Y$是0-1编码的$G$,然后$E(Y\mid X=x)=p(x)$,但是方差同样依赖$x$:$Var(Y\mid X=x)=p(x)[1-p(x)]$</p>
+<h2 id="262">2.6.2 监督学习</h2>
+<p>在我们推出更多的统计导向的术语之前，从机器学习的观点我们提出函数拟合的范例。为了简化假设误差可加，而且模型为$Y=f(X)+\epsilon$是合理的假设。监督学习试图通过老师(<em>teacher</em>)从样本中来学习$f$。在观测系统中，无论输入还是输出，装配观测值为${\cal T}=(x_i,y_i),i=1,\ldots,N$的训练集(<em>training</em>)。对系统$x_i$的观测输入馈送到人工系统，被称作学习算法（通常是计算机程序），同时针对输入变量产生输出$\hat{f}(x_i)$。学习算法有根据原始输出和产生的输出之间的差异$y_i-\hat{f}(x_i)$可以修改输入和输出的关系$\hat{f}$的特点。这一过程被称作样本学习（<em>learning by example</em>）。完成学习过程的希望是，人工输出与实际输出足够地接近，这样对所有实际可能会出现的输入是有帮助的。</p>
+<h2 id="263">2.6.3 函数逼近</h2>
+<p>上一部分的学习范例已经成为了机器学习领域（类比人类思考）和神经网络（生物类比大脑）领域中监督学习研究的动力。应用数学和统计学的方法已从函数逼近和估计的角度。数据对$\{x_i,y_i\}$被看成是$(p+1)$维欧几里得空间的点。函数$f(X)$的定义域为$p$-维输入子空间，通过一个模型如$y_i=f(x_i)+\epsilon_i$关联这些数据。为了方便，本章中假设定义域为$p$维的欧几里得空间$\mathbf{R}^p$，尽管输入可能是混合类型。给定$\cal T$的表示，目标是对于$\mathbf{R}^p$的某些区域里面的所有$x$得到一个对$f(x)$有用的近似。尽管相比较学习的范例不是那么优美，但把监督学习看成函数逼近的问题可以将欧式空间里面的几何概念以及概率推断中的数学概念应用到问题中。这也是本书的方式。</p>
+<p>我们将要遇到的许多近似都与一系列系数$\theta$有关，可以修改这些系数去适应手头上数据。举个例子，线性模型$f(x)=x^T\beta$有$\theta=\beta$。另外一种有用的近似可以表示为基本线性展开(<em>linear basis expansions</em>)</p>
+<p>
+<script type="math/tex; mode=display">
+f_{\theta}(x)=\sum\limits_{k=1}^{K}h_k(x)\theta_k\qquad (2.30)
+</script>
+</p>
+<p>其中，$h_k$是适合输入向量$x$的一系列函数或转换关系。传统的例子都是多项式或者三角函数，其中$h_k$可能是$x_1^2,x_1x_2^2,cos(x_1)$以及其它。我们也会遇到非线性的情况，比如说普遍的转换为神经网络模型的S型转换关系</p>
+<p>
+<script type="math/tex; mode=display">
+h_k(x)=\dfrac{1}{1+exp(-x^T\beta_k)}\qquad (2.31)
+</script>
+</p>
+<p>当我们处理线性模型，可以用最小二乘来估计$f_{\theta}$中的参数$\theta$，通过最小化下面关于$\theta$的残差平方和得到。
+<script type="math/tex; mode=display">\begin{equation}
+RSS(\theta)=\sum\limits_{i=1}^N(y_i-f_{\theta}(x_i))^2
+\label{2.32}
+\end{equation}</script>
+这似乎也是一个可加性误差模型的合理的准则。就函数逼近而言，我们想象我们的含参函数是$p+1$维空间里面的一个平面，而且我们的观测是它的噪声实现。当$p=2$时是很容易可视化的而且此时垂直坐标为输出$y$,正如在图2.10中显示的那样。噪声是在输出的坐标，所以我们徐照一组参数使得拟合后的曲面尽可能接近观测点，其中近是用$RSS(\theta)$中的垂直平方误差来衡量。</p>
+<p><img alt="" src="../../img/02/fig2.10.png" /></p>
+<p>两个输入的函数的最小二乘拟合。选择$f_{\theta}(x)$的系数使得垂直误差平方和最小。</p>
+<p>对于线性模型我们得到该最小化问题的一个简单的近似形式（<em>closed???</em>）的解决方法。如果基本函数本身没有任何隐藏的参数，这种方法也适用。否则这种解决方法不是需要迭代的方法就是需要数值优化。</p>
+<p>尽管最小二乘一般情况下非常方便，但并不是唯一的准则，而且在一些情形下没有意义。一个更一般的估计准则是极大似然估计(<em>maximum likelihood estimation</em>)。假设我们有一个指标为$\theta$的密度为$Pr_{\theta}(y)$的随机样本$y_i,i=1,\ldots,N$。观测样本的概率的对数值为
+<script type="math/tex; mode=display">\begin{equation}
+L(\theta) = \sum\limits_{i=1}^NlogPr_{\theta}(y_i)
+\end{equation}</script>
+极大似然的原则是假设最合理的$\theta$值是使得观测样本的概率为最大。可加误差模型$Y=f_{\theta}(X)+\epsilon$的最小二乘，其中$\epsilon \sim N(0,\sigma^2)$,是等价于使用下面条件概率的极大似然
+<script type="math/tex; mode=display">\begin{equation}
+Pr(Y\mid X,\theta) = N(f_{\theta}(X),\sigma^2)
+\end{equation}</script>
+所以尽管正态的附加假设似乎更加限制，但结果是一样的。数据的对数概率值是
+<script type="math/tex; mode=display">\begin{equation}
+L(\theta)=-\dfrac{N}{2}log(2\pi)-Nlog\sigma-\dfrac{1}{2\sigma^2}\sum\limits_{i=1}^{N}(y_i-f_{\theta}(x_i))^2
+\end{equation}</script>
+涉及$\theta$的项是最后一项，是$RSS(\theta)$乘以一个非负标量乘子。</p>
+<p>一个更有趣的例子是对于定性输出$G$的回归函数$Pr(G\mid X)$的多项式概率。假设我们有一个模型，给定$X$，每一类的条件概率为$Pr(G={\cal G}\mid X=x)=p_{k,\theta}(x),k=1,\ldots,K$，指标是参数向量$\theta$。然后对数概率（也被称作互熵）为
+<script type="math/tex; mode=display">\begin{equation}
+L(\theta)=\sum\limits_{i=1}^Nlogp_{g_i,\theta}(x_i)
+\end{equation}</script>
+当最大化时对应的$\theta$与在可能性情境中的数据一致。</p>
+
+<div id="disqus_thread"></div>
+<script>
+    (function() {
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//learnopengl-cn.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>请启用JavaScript以浏览<a href="https://disqus.com/?ref_noscript" rel="nofollow">Disqus评论。</a></noscript></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Powered by <a href="http://www.mkdocs.org/">MkDocs</a> and <a href="http://bootswatch.com/yeti/">Yeti</a></center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script src="../../js/mymathjax.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            请在下面输入你要搜索的文本（仅支持英文）：
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
