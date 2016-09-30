@@ -1,6 +1,6 @@
 */._.*
 *.DS_Store
-/site/*
+site/*
 /build
 *.data
 **/.Archive
