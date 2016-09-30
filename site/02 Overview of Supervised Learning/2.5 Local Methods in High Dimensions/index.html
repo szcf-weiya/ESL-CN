@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>高纬问题的局部方法 - ESL CN</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/newsprint.css" rel="stylesheet">
+        <link href="../../css/admonition_fix.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-80323542-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">ESL CN</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">主页</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">目录 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">序言</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">简介</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../01%20Introduction/2016-07-26-Chapter-1-Introduction/">导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">监督学习概要</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../2.1%20Introduction/">导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.2%20Variable%20Types%20and%20Terminology/">变量类型和术语</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.3%20Two%20Simple%20Approaches%20to%20Prediction/">两种预测的简单方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.4%20Statistical%20Decision%20Theory/">统计判别理论</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">高纬问题的局部方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.6%20Statistical%20Models%2C%20Supervised%20Learning%20and%20Function%20Approximation/">统计模型，监督学习和函数逼近</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.7%20Structured%20Regression%20Models/">结构化的回归模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.8%20Classes%20of%20Restricted%20Estimators/">限制性估计的类别</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.9%20Model%20Selection%20and%20the%20Bias-Variance%20Tradeoff/">模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Bibliographic%20Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">回归的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.1%20Introduction/">导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.2%20Linear%20Regression%20Models%20and%20Least%20Squares/">线性回归模型和最小二乘法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.3%20Subset%20Selection/">子集的选择</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../2.4%20Statistical%20Decision%20Theory/">
+                        <i class="fa fa-arrow-left"></i> 上一节
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../2.6%20Statistical%20Models%2C%20Supervised%20Learning%20and%20Function%20Approximation/">
+                        下一节 <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://szcf-weiya.github.io/ESL-CN/">
+                        
+                        Szcf-Weiya
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#_1">高纬问题的局部方法</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="_1">高纬问题的局部方法</h1>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th><a href="../../The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翻译</td>
+<td>szcf-weiya</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>2016-08-01</td>
+</tr>
+</tbody>
+</table>
+<p>至今为止我们已经仔细讨论了两个关于预测的学习方法：稳定但是有偏差的线性模型和不稳定但显然偏差较小的$k$-最近邻估计。当有充分大的训练数据，我们似乎总会选择$k$-最近邻平均来近似理论上的最优条件期望，因为我们能够找到一个相当大的离$x$近的观测构成的邻域并且平均里面的观测值。在高纬情形下这种方法以及我们的直觉没有用，而且这种现象通常被称作维数的诅咒(Bellman,1961)。关于这个问题有很多的证明，我们将要仔细讨论一些。</p>
+<p>正如图2.6显示的那样，我们考虑输入在$p$维单位超立方体均匀分布的最近邻过程。假设我们在某个目标点发出超立方体的邻域捕获观测值的一个小部分$r$。因为这个邻域对应单位体积的小部分$r$,边长的期望值为$e_p(r)=r^{1/p}$。在10维空间下$e_{10}(0.01)=0.63$,$e_{10}(0.1)=0.80$,而每个输入的全部范围为1.0。所以选取$1\%$或$10\%$的数据去形成局部均值，我们必须在每个输入变量上覆盖到$63\%$或者$80\%$。这样的邻域不再是局部的。显著地降低$r$并没有作用，因为我们选取去平均的观测值越少，我们拟合的方差也会越大。</p>
+<p><img alt="" src="../../img/02/fig2.6.png" /></p>
+<p>图2.6:一个输入为均匀分布数据的单位立方体的子立方体邻域很好地展现了维数的灾难。右边的图显示了不同维数$p$下，为了捕捉一小部分的数据$r$，子立方体的所需要的边长。在10维的情况下，为了捕捉$10\%$的数据，我们需要包括每个坐标取值范围的$80\%$。</p>
+<p>高纬下的稀疏取样的另外一个后果是所有的样本点离样本的某一边很近。考虑在$p$维以原点为中心的单位球中均匀分布的$N$个数据点。假设我们考虑原点处的最近邻估计。距离原点最近的数据点距离的中位数由下式给出</p>
+<p>
+<script type="math/tex; mode=display">
+d(p,N)=(1-(\frac{1}{2})^{1/N})^{1/p}
+</script>
+</p>
+<p>距离原点最近的数据点的距离的均值表达式更加复杂。当$N=500,p=10,d(p,N)\approx 0.52$,比到边界的距离的一半还要大。因此大部分的数据点离样本空间的边界比其他任何的数据点更近。这里产生问题的原因是对于训练样本中靠近的边的预测更加困难。一定要从样本点的邻域外推而不是在中间插入。</p>
+<p>另外一个证明这个灾难是取样密度是跟$N^{1/p}$成比例，其中$p$为输入空间的维数，$N$为样本的规模。因此，如果$N_1=100$表示对于单输入问题的大密度取样，然后$N_{10}=100^{10}$是10个输入时取样密度同上面相同时所需要的样本规模大小。因此在高纬空间中所有可行的训练样本在输入空间中很稀少。</p>
+<p>让我们构造另一个均匀分布的例子。假设我们有从$[-1,1]^p$中均匀产生的1000个训练样本$x_i$。假设没有任何测量错误，$X$和$Y$之间真正的关系是</p>
+<p>
+<script type="math/tex; mode=display">
+Y = f(X) = e^{−8\mid \mid X\mid \mid ^2},
+</script>
+</p>
+<p>我们采用1-最近邻规则去预测测试点$x_0=0$的值$y_0$。记训练集为${\cal{T}}$。对于我们的过程，可以通过平均所有的大小为1000的样本来计算在$x_0$处的预测偏差的期望值。因为这个问题是确定性的，下面是估计$f(0)$的均方误差MSE</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+MSE(x_0)&=E_{\cal{T}}[f(x_0)-\hat{y}_0]^2\notag\\
+&=E_{\cal{T}}[\hat{y}_0-E_{\cal{T}}(\hat{y}_0)]^2\notag\\
+&=Var_{\cal{T}}(\hat{y}_0)+Bias^2(\hat{y}_0)\qquad (2.25)
+\end{align*}
+</script>
+</p>
+<p>图2.7显示了这一安排。我们已经把MSE分解成两个部分，随着我们继续讨论，会越来越熟悉这两个部分，这两部分分别是方差和偏差平方。这一分解总是可行的的而且经常有用，并且这一分解被称为偏差-方差分解(<em>bias-variance decomposition</em>)。除非最近邻在0处，这一样本中$\hat{y}_0$会比$f(0)$小，而且平均估计会向下偏差。方差是因为1-最近邻取样的方差。在低维度以及$N=1000$情况下，最近邻非常接近0，于是偏差和方差都会非常小。当维数增大，最近邻有从目标点远离的趋势，而且都会带来偏差跟方差。$p=10$时，超过$99\%$的样本的最近邻距离原点大于0.5。因此，当$p$增长时，估计值多半有趋势趋于0，因此MSE保持在1.0附近，偏差也是如此，方差开始下降（这个例子的加工品）。</p>
+<p><img alt="" src="../../img/02/fig2.7.png" /></p>
+<p>图2.7：一个模拟的例子，证明维数的灾难以及其在MSE，偏差和方差的影响。输入的特征在$[-1,1]^p,p=1,\ldots,10$上均匀分布。左上角显示了在$\mathbf{R}$上的目标函数（无噪声）：$f(X)=e^{-8\mid \mid X\mid \mid ^2}$，而且展示了1-最近邻在估计$f(0)$时的误差。训练点用蓝色的记号表示。右上角显示了为什么1-最近邻的半径随着维数$p$的增加而增加。左下角显示了1-最近邻的平均半径。右下角显示了MSE,偏差平方和方差关于维数$p$的函数曲线。</p>
+<p><img alt="" src="../../img/02/fig2.8.png" /></p>
+<p>图2.8：同图2.7一样的配置的模拟例子。函数除了一个维数外都为常数，该维数下$F(X)=\frac{1}{2}(X_1+1)^3$。方差占主导地位。</p>
+<p>尽管这是一个非常不自然的例子，类型的情形发生的更一般。多变量的函数复杂度随着维数呈指数增长，而且如果我们希望以在低维中以相同的精度来估计高纬中的函数，我们将会需要呈指数增长规模的训练集。在这个例子中，函数是所有$p$个变量参与的复杂交互。</p>
+<p>另一方面假设我们知道$Y$与$X$之间的关系为线性的</p>
+<p>
+<script type="math/tex; mode=display">
+Y = X^T\beta + \varepsilon\qquad(2.26)
+</script>
+</p>
+<p>其中$\varepsilon \sim N(0,\sigma^2)$,而且我们用最小二乘对训练数据进行拟合模型。对于任意测试点$x_0$,我们有$\hat{y}<em>0=x_0^T\hat{\beta}$,可以写成$\hat{y}_0=x_0^T\beta+\sum</em>{i=1}^N\ell_i(x_0)\epsilon_i$,其中$\ell_i{x_0}$是${\mathbf{X(X^TX)}}^{-1}x_0$的第$i$个元素。因为在这个模型下，最小二乘估计是无偏的，我们发现</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+EPE(x_0) &= E_{y_0\mid x_0}E_{{\cal T}}(y_0-\hat{y}_0)^2\notag\\
+&={\color{red} {E_{y_0\mid x_0}E_{\cal T}(x_0^T\beta+\varepsilon-\hat{y}_0)^2}}\notag\\
+&={\color{red} {E_{y_0\mid x_0}E_{\cal T}[(x_0^T\beta-\hat{y}_0)^2+2\varepsilon (x_0^T\beta-\hat{y}_0)+\varepsilon ^2]}}\notag\\
+&={\color{red} {E_{y_0\mid x_0}\varepsilon ^2+E_{\cal T}(x_0^T\beta-\hat{y}_0)^2\qquad\qquad \because E_{y_0\mid x_0}\varepsilon = 0}}\notag\\
+&=Var(y_0\mid x_0)+E_{\cal T}[\hat{y}_0-E_{\cal T}\hat{y}_0]^2+[E_{\cal T}\hat{y}_0-x_0^T\beta]^2\notag\\
+&=Var(y_0\mid x_0)+Var_{\cal T}(\hat{y}_0)+Bias^2(\hat{y}_0)\notag\\
+&=\sigma^2+E_{\cal T}x_0^T(\mathbf{X^TX})^{-1}x_0\sigma^2+0^2\qquad\qquad\qquad (2.27)
+\end{align}
+</script>
+</p>
+<p>因为我们的目标不是确定的，所以在预测误差中带来了一个附加的方差$\sigma^2$。没有偏差，而且方差依赖于$x_0$。如果$N$较大且$\cal{T}$随机选取，并且假设$E(X)=0$,则$\mathbf{X}^T\mathbf{X}\longrightarrow NCov(X)$,并且</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+E_{x_0}EPE(x_0)&\sim E_{x_0}x_0^TCov(X)^{-1}x_0\sigma^2/N+\sigma^2\notag\\
+&=trace[Cov(X)^{-1}Cov(x_0)]\sigma^2/N+\sigma^2\notag\\
+&=\sigma^2(p/N)+\sigma^2\qquad\qquad\qquad(2.28)
+\end{align*}
+</script>
+</p>
+<p>我们可以看到EPE的期望作为$p$的函数线性增长，斜率为$\sigma^2/N$。如果$N$大且/或$\sigma^2$小，方差的增长可以忽略（在确定情形下为0）。通过在拟合的模型的类别上插入一些强的限制，我们避免了维数的灾难。一些技巧细节在式(2.27)和(2.28)中，这也是源自练习2.5。</p>
+<p>图2.9在两种情形下比较1-最近邻和最小二乘法，两种情形下形式均为$Y=f(X)+\epsilon$,$X$和前面一样都是均匀分布的，而且$\epsilon\sim N(0,1)$。样本规模为$N=500$。对于红色的曲线，$f(X)$在第一个坐标下为线性的，对于绿色曲线，如图2.8中的立方。图中显示了相对于最小二乘而言，1-最近邻的相对$EPE$值。线性情况下大概是从2开始。在这个情况下最小二乘是无偏的，而且上述讨论的EPE略高于$\sigma^2=1$。1-最近邻的EPE总是大于2，因为这种情形下$\hat{f}_0$至少是$\sigma^2$，而且随着维数增长比率增加，因为随着维数增加最近邻会远离目标点。对于立方体的情形，最小二乘是有偏的，使比率变得缓和。显然我们可以构造最小二乘的偏差主导方差的例子，然后1-最近邻就会变成胜利者。</p>
+<p><img alt="" src="../../img/02/fig2.9.png" /></p>
+<p>通过依赖严格的假设，线性模型没有偏差而且方差几乎可以忽略，然后1-最近邻的误差就会相当的大。然而，如果假设是错误的，所有的东西都不复存在，而1-最近邻将占主导地位。我们将会看到介于严格的线性模型和非常灵活的1-最近邻模型之间的模型谱，每个都有它们各自的假设和偏差，这些假设已经具体提到过，通过在很大程度上借鉴这些假设来避免高纬下函数复杂度呈指数增长。</p>
+<p>在我们更加细致地探究下去之前，我们在统计模型的概念上进行详细说明，并且看一下他们怎么适应预测的框架。</p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//weiya.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//weiya.disqus.com/count.js" async></script></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Powered by <a href="http://www.mkdocs.org/">MkDocs</a> and <a href="http://bootswatch.com/yeti/">Yeti</a></center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script src="../../js/mymathjax.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            请在下面输入你要搜索的文本（仅支持英文）：
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
