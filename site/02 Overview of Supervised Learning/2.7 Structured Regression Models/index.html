@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/02 Overview of Supervised Learning/2.7 Structured Regression Models/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>结构化的回归模型 - ESL CN</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/newsprint.css" rel="stylesheet">
+        <link href="../../css/admonition_fix.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-80323542-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">ESL CN</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">主页</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">目录 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">序言</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">简介</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../01%20Introduction/2016-07-26-Chapter-1-Introduction/">导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">监督学习概要</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../2.1%20Introduction/">导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.2%20Variable%20Types%20and%20Terminology/">变量类型和术语</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.3%20Two%20Simple%20Approaches%20to%20Prediction/">两种预测的简单方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.4%20Statistical%20Decision%20Theory/">统计判别理论</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.5%20Local%20Methods%20in%20High%20Dimensions/">高纬问题的局部方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.6%20Statistical%20Models%2C%20Supervised%20Learning%20and%20Function%20Approximation/">统计模型，监督学习和函数逼近</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">结构化的回归模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.8%20Classes%20of%20Restricted%20Estimators/">限制性估计的类别</a>
+</li>
+
+        
+            
+<li >
+    <a href="../2.9%20Model%20Selection%20and%20the%20Bias-Variance%20Tradeoff/">模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Bibliographic%20Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">回归的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.1%20Introduction/">导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.2%20Linear%20Regression%20Models%20and%20Least%20Squares/">线性回归模型和最小二乘法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03%20Linear%20Methods%20for%20Regression/3.3%20Subset%20Selection/">子集的选择</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../2.6%20Statistical%20Models%2C%20Supervised%20Learning%20and%20Function%20Approximation/">
+                        <i class="fa fa-arrow-left"></i> 上一节
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../2.8%20Classes%20of%20Restricted%20Estimators/">
+                        下一节 <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://szcf-weiya.github.io/ESL-CN/">
+                        
+                        Szcf-Weiya
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#_1">结构化的回归模型</a></li>
+        
+            <li><a href="#_2">问题的困难度</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="_1">结构化的回归模型</h1>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翻译</td>
+<td>szcf-weiya</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>2016-08-01</td>
+</tr>
+</tbody>
+</table>
+<p>尽管最近邻和其它局部的方法都是直接关注在某一点估计函数，在高纬遇到困难。甚至在低维下有很多结构化的充分利用数据的方式的情形这些方法也不合适。这个部分介绍了结构化方式的类别。在我们讨论之前，我们更深入地讨论这些类别的需要。</p>
+<h2 id="_2">问题的困难度</h2>
+<p>对任意函数$f$,考虑RSS准则
+<script type="math/tex; mode=display">\begin{equation}
+RSS(f)=\sum\limits_{i=1}^{N}(y_i-f(x_i))^2
+\label{2.37}
+\end{equation}</script>
+对式(\ref{2.37})最小化导致许多解决方法:任意过所有训练点$(x_i,y_i)$的函数$\hat{f}$是一个解。选择的任意特定的解可能是一个在与训练点不同的测试点不是良好的预测。如果在每个$x_i$值有多个观测对$x_i,y_{i\ell},\ell =1,\ldots,N_i$，风险会被限制。在这种情形下，解通过每个$x_i$对应的所有$y_{i\ell}$的平均值，见练习2.6。这种情形类似我们已经在统计判别理论章节中的已经访问的点；当然，(2.37)$是$p18中式(2.11)的有限样本的版本。如果样本规模$N$充分大使得重复是保证和密集排列的，这些解决方案可能都倾向于限制条件期望。</p>
+<p>为了得到有限$N$的有用结果，我们必须限制满足条件的式($\ref{2.37}$)的解到一个小的解的集合。怎样决定限制条件的本质是基于数据之外的一些考虑。这些限制条件经常通过$f_0$的参数表示，或者在学习方法本身里面构建，有隐式也有显式。这些限制的解决方案的类别是本书讨论的重点。一件事应该变得清晰。任何插入到$f$上的限制条件导致式($\ref{2.37}$)的唯一解并不能消除解的多样性带来的模棱两可。有无数种导致唯一解可能的限制条件，所以模棱两可简单地被转换为限制条件的选择。</p>
+<p>一般地，大多数学习方法插入的限制条件可以用一种或其他的限制条件的复杂度来描述。这通常也意味着在输入空间的小邻域的一些规则的行为。这就是，对于在某种度量下充分互相接近的所有输入点$x$，$\hat{f}$展现了一些特殊的结构比如说接近常值，线性或者低次的多项式。然后估计是通过平均或者在邻域多项式拟合得到。</p>
+<p>限制的强度由邻域的大小所支配。邻域的规模越大，限制越强，而且解对特定限制的选择也很敏感。举个例子，在无限个邻域内局部常值拟合根本不是限制；在一个比较大的邻域内进行局部线性拟合几乎是全局线性模型，而且限制性是非常强的。</p>
+<p>限制的本质取决于采用的度量。一些像核方法、局部回归和基于树的方法，直接明确了度量以及邻域的规模。至今为止讨论的最近邻方法是基于函数局部为常值的假设；距离目标输入$x_0$越近，函数值不会改变太多，而且可以平均输出得到的$\hat{f}(x_0)$也会很接近。其它像样条、神经网络以及基于函数的方法隐性定义了邻域的局部行为。在5.4.1我们将要讨论等价核(<em>equivalent kernel</em>)的概念（见书p157的图5.8），描述了任意输出的线性方法的局部依赖。这些在很多情形下的等价核恰恰像上面讨论过的显式定义的系数核——在目标点达到巅峰然后从该点光滑下降。</p>
+<p>现在必须澄清一个事实。任何在等方性的邻域中试图产生局部不同的函数会在高纬中遇到问题——再一次是维数的灾难。相反地，所有克服维数问题的方法在测量邻域时有一个对应的——经常是隐式的或者适应的——度量，该度量基本要求是不允许邻域在各个方向都同时小。</p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//weiya.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//weiya.disqus.com/count.js" async></script></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Powered by <a href="http://www.mkdocs.org/">MkDocs</a> and <a href="http://bootswatch.com/yeti/">Yeti</a></center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script src="../../js/mymathjax.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            请在下面输入你要搜索的文本（仅支持英文）：
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
