@@ -29,7 +29,7 @@ site_description: 'The Elements of Statistical Learning(ESL) 的中文翻译'
 
 site_url: https://szcf-weiya.github.io/ESL-CN/
 
-repo_url: https://szcf-weiya.github.io/ESL-CN/
+repo_url: https://szcf-weiya.github.io
 
 markdown_extensions:
   - admonition
