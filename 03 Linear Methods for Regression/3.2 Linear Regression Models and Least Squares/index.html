@@ -329,7 +329,7 @@ RSS(\beta)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)\qquad (3.3
 \hat{y}=\mathbf{X}\hat{\beta}=\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\qquad (3.7)
 </script>
 </p>
-<p>其中，$\hat{y}_i=\hat{f}(x_i)$。在式(3.7)中出现的矩阵$\mathbf{H=X(X^TX)^{-1}X^T}$</p>
+<p>其中，$\hat y_i=\hat f(x_i)$。在式(3.7)中出现的矩阵$\mathbf{H=X(X^TX)^{-1}X^T}$</p>
 <p>图3.2展示了在$R^N$中最小二乘估计的的不同几何表示。我们记$\mathbf{X}$的列向量为$\mathbf(x_0,x_1,\ldots,x_p)$,其中$x_0 \equiv 1$。下文中第一列认为是跟其它的是一样的。这些向量张成了$R^N$的子空间，也被称作$\mathbf{X}$的列空间。我们通过选择$\hat{\beta}$来最小化$RSS(\beta)=\lVert(\mathbf{y}-\mathbf{X}\beta)\rVert^2$，则残差向量$\mathbf{y-\hat{y}}$正交于子空间。(3.5)式描述了这种正交，然后估计的结果$\hat{y}$因此是$\mathbf{y}$在子空间的正交投影。帽子矩阵$\mathbf{H}$计算正交投影，因此也被称作投影矩阵。</p>
 <p>可能会出现$\mathbf{X}$的列不是线性独立的，则$\mathbf{X}$不是满秩的。举个例子，如果两个输入是完全相关的，（比如，$x_2=3x_1$）。则矩阵$\mathbf{X^TX}$是奇异的，并且最小二乘的系数$\hat{\beta}$不是唯一的。然而，拟合值$\mathbf{\hat{y}}=\mathbf{X}\hat{\beta}$仍然是$\mathbf{y}$在列空间$\mathbf{X}$的投影；对于$\mathbf{X}$的列向量有多种方式表达这种投射。当一个或多个定性输入用一种冗余的方式编码时经常出现非满秩的情形。通过重编码或去除$\mathbf{X}$中冗余的列这些自然的方式去分解不是唯一的表达式。大多数回归软件包监测这些冗余并且用一些策略自动实现去除。秩缺失在信号和图像分析中经常发生，输入的个数$p$可以超出训练的情形$N$。在这种情形下，这种特征经常通过滤波或由正则化控制的拟合来降低。（5.2.3节和第18章）</p>
 <p>截至目前我们已经对数据的真实分布做了很少的假设。为了约束$\hat{\beta}$的取样特点，我们现在假设观测值$y_i$不相关，且有固定的方差$\sigma^2$，并且$x_i$是给定的（非随机）。最小二乘法的参数估计的方差-协方差阵可以很容易从式(3.6)得到
@@ -537,8 +537,9 @@ r_i &= y_i -x_i\hat{\beta}
 \hat{\beta}_p=\dfrac{\langle \mathbf{z}_p,\mathbf{y} \rangle}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}\qquad (3.28)
 </script>
 </p>
-<p>对第二步中的残差进行重排列，我们可以看到每个$\mathbf{x}<em>j​$是$\mathbf{z}_k,k\le j​$的线性组合。因为$\mathbf{z}_j​$是正交的，它们形成了$\mathbf{X}​$列空间的基，从而得到最小二乘在子空间上投影为$\hat{\mathbf{y}}​$。因为$\mathbf{z}_p​$仅与$\mathbf{x}_p​$有关(系数为1)，我们可以看到系数(3.28)确实是$\mathbf{y}​$在$\mathbf{x}_p​$上多重回归的系数。这一重要结果揭示了在多重回归中相关输入的影响。注意到通过对$\mathbf{x}_j​$重排列，任何其中一个都有可能是最后一个，然后得到一个类似的结果。因此一般来说，我们已经展示了多重回归的第$j​$个系数是$\mathbf{y}​$在$\mathbf{x}</em>{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$的单变量回归，$\mathbf{x}<em>{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$是$\mathbf{x}_j​$在$\mathbf{x}_0,\mathbf{x}_1,&hellip;,\mathbf{x}</em>{j-1},\mathbf{j+1},&hellip;,\mathbf{x}_p​$回归后的残差向量：
-<em>多重回归系数$\hat{\beta}<em>j​$表示$\mathbf{x}_j​$经过$\mathbf{x}_0,\mathbf{x}_1,\ldots,\mathbf{x}</em>{j-1},\mathbf{x}_{j+1},\ldots,\mathbf{x}_p​$调整后$\mathbf{x}_j​$对$\mathbf{y}​$多余的贡献</em></p>
+<p>对第二步中的残差进行重排列，我们可以看到每个$\mathbf x_j​$是$\mathbf z_k,k\le j​$的线性组合。因为$\mathbf z_j​$是正交的，它们形成了$\mathbf{X}​$列空间的基，从而得到最小二乘在子空间上投影为$\hat{\mathbf{y}}​$。因为$\mathbf z_p​$仅与$\mathbf x_p​$有关(系数为1)，我们可以看到系数(3.28)确实是$\mathbf{y}​$在$\mathbf x_p​$上多重回归的系数。这一重要结果揭示了在多重回归中相关输入的影响。注意到通过对$\mathbf x_j​$重排列，任何其中一个都有可能是最后一个，然后得到一个类似的结果。因此一般来说，我们已经展示了多重回归的第$j​$个系数是$\mathbf{y}​$在$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$的单变量回归，$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$是$\mathbf{x}_j​$</p>
+<p>在$\mathbf x_0,\mathbf x_1,&hellip;,\mathbf x_{j-1},\mathbf{j+1},&hellip;,\mathbf{x}_p​$回归后的残差向量：
+<em>多重回归系数$\hat\beta_j​$表示$\mathbf x_j​$经过$\mathbf{x}<em>0,\mathbf{x}_1,\ldots,\mathbf{x}</em>{j-1},\mathbf{x}_{j+1},\ldots,\mathbf{x}_p​$调整后$\mathbf{x}_j​$对$\mathbf{y}​$多余的贡献</em></p>
 <p>如果$\mathbf{x}_p$与某些$\mathbf{x}_k$高度相关，残差向量$\mathbf{z}_p$会近似等于0，而且由(3.28)得到的系数$\hat{\beta}_p$会非常不稳定。在相关集对于所有的变量都是正确的。在这些情形下我们可能得到所有的Z分数（表3.2所示）都很小——集中的任何一个都可以删掉——然而我们不可能删掉所有。由（3.28）我们也得到估计方差（3.8）的另一种方法
 <script type="math/tex; mode=display">
 Var(\hat{\beta}_p)=\dfrac{\sigma^2}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}=\dfrac{\sigma^2}{\Vert\mathbf{z}_p\Vert ^2}\qquad (3.29)
