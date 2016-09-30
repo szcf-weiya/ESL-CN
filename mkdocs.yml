@@ -19,6 +19,9 @@ pages:
       - 文献笔记: '02 Overview of Supervised Learning/Bibliographic Notes.md'
     - 回归的线性方法:
       - 导言: '03 Linear Methods for Regression/3.1 Introduction.md'
+      - 线性回归模型和最小二乘法: '03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares.md'
+      - 子集的选择: '03 Linear Methods for Regression/3.3 Subset Selection.md'
+      #- 收缩的方法: '03 Linear Methods for Regression/3.4 Shrinkage Methods.md'
 
 site_name: 'ESL CN'
 
