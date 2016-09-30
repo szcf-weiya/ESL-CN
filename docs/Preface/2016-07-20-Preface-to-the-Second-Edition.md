@@ -18,9 +18,8 @@
 > We have added four new chapters and updated some of the existing chapters. Because many readers are familiar with the layout of the first edition, we have tried to change it as little as possible. Here is a summary of the main changes:
 
 我们增加了四个新的章节，并且更新了一些已经存在的章节。因为很多读者熟悉第一版书的布局，我们尽可能地做出很小的改变。下面是对主要改变的概要：
-<figure>
-   <img src="../img/00/preface_1.png" />
-</figure>
+
+![](../img/00/preface_1.png)
 
 - 第一章：导言
 - 第二章：监督学习的综述
