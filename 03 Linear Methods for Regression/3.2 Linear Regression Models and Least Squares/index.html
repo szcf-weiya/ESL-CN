@@ -346,18 +346,12 @@ Var(\hat{\beta})=(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\qquad (3.8)
 \hat{\sigma^2}=\frac{1}{N-p-1}\sum\limits_{i=1}^N(y_i-\hat{y}_i)^2
 </script>
 </p>
-<blockquote>
-<p>The $N − p − 1$ rather than $N$ in the denominator makes $\hat{\sigma}^2$ an unbiased estimate of $\sigma^2$: $E(\hat{\sigma^2}) = \sigma^2$.</p>
-</blockquote>
 <p>分母是$N-p-1$而不是$N$,因为此时的分母使得$\hat{\sigma}^2$为无偏估计:$E(\hat{\sigma}^2)=\sigma^2$</p>
-<blockquote>
-<p>To draw inferences about the parameters and the model, additional assumptions are needed. We now assume that (3.1) is the correct model for the mean; that is, the conditional expectation of $Y$ is linear in $X_1, . . . , X_p$. We also assume that the deviations of $Y$ around its expectation are additive and Gaussian. Hence</p>
-</blockquote>
 <p>为了对参数和模型进行推断，需要一些额外的假设。我们现在假设式$(3.1)$是均值的正确模型；则$Y$的条件期望关于$X_1,X_2,\ldots,X_p$是线性的。我们也假设$Y$与其期望的偏差是可加的和高斯的。因此
 <script type="math/tex; mode=display">
 \begin{align}
-Y&=E(Y\mid X_1,\ldots,X_p)+\epsilon\\
-&=\beta_0+\sum\limits_{j=1}^pX_j\beta_j+\epsilon\qquad (3.9)
+Y&=E(Y\mid X_1,\ldots,X_p)+\varepsilon\\
+&=\beta_0+\sum\limits_{j=1}^pX_j\beta_j+\varepsilon\qquad (3.9)
 \end{align}
 </script>
 </p>
@@ -369,10 +363,10 @@ Y&=E(Y\mid X_1,\ldots,X_p)+\epsilon\\
 </p>
 <p>这是一个有上述均值向量和方差-协方差矩阵的多变量正态分布。同时有
 <script type="math/tex; mode=display">
-(N-p-1)\hat{\sigma^2}\sim \sigma^2\chi^2_{N-p-1}\qquad (3.11)
+(N-p-1)\hat \sigma^2\sim \sigma^2\chi^2_{N-p-1}\qquad (3.11)
 </script>
 </p>
-<p>是一个自由度为$N-p-1$的卡方分布。另外，$\hat{\beta}​$和$\hat{\sigma^2}​$是统计独立的。我们利用这些分布性质得到假设检验以及对于参数$\beta_j​$的置信区间</p>
+<p>是一个自由度为$N-p-1$的卡方分布。另外，$\hat{\beta}$和$\hat\sigma^2$是统计独立的。我们利用这些分布性质得到假设检验以及对于参数$\beta_j$的置信区间</p>
 <p><img alt="" src="../../img/03/fig3.3.png" />
 图3.3 $t_{30}$,$t_{100}$以及标准正态三种分布的尾概率$Pr(|Z|&gt;z)$。图中显示了在$p=0.05$和0.01水平下检验显著性的合适分位数。当$N$大于100时$t$分布与标准正态分布之间的差异很小。</p>
 <p>为了检验系数$\beta_j$的这一假设，我们构造标准化因数或者Z-分数。
@@ -409,7 +403,7 @@ z^{1-0.05}&=1.645,etc.
 C_{\beta} = \{\beta \mid (\hat{\beta}-\beta\mathbf\bf{X^TX}(\hat{\beta}-\beta)\le \hat{\sigma}^2\chi^{2^{(1-\alpha)}}_{p+1} \}
 </script>
 </p>
-<p>其中，$\chi^{2^{(1-\alpha)}}<em>{\ell}$是$\ell$个自由度的卡方分布的$1-\alpha$的分位数：举个例子，$\chi^{2^{(1-0.05)}}_5=11.1,\chi^{2^{(1-0.1)}}_5=9.2$。这个关于$\beta$的置信集导出关于真函数$f(x)=x^T\beta$对应的置信集，记作${x^T\beta\mid \beta \in C</em>{\beta}}$（练习3.2；并见5.2.2节中函数置信集<a href="../置信集？？">^confidence bands</a>的例子图5.4）</p>
+<p>其中，$\chi^{2^{(1-\alpha)}}<em>\ell$是$\ell$个自由度的卡方分布的$1-\alpha$的分位数：举个例子，$\chi^{2^{(1-0.05)}}_5=11.1,\chi^{2^{(1-0.1)}}_5=9.2$。这个关于$\beta$的置信集导出关于真函数$f(x)=x^T\beta$对应的置信集，记作${x^T\beta\mid \beta \in C</em>\beta}$（练习3.2；并见5.2.2节中函数置信集<a href="../置信集？？">^confidence bands</a>的例子图5.4）</p>
 <h2 id="_2">例子：前列腺癌</h2>
 <p>这个例子的数据来自1989年Stamey等人的研究。他们检验即将接受彻底前列腺切除术男性的前列腺特定抗原水平和一系列临床措施之间的相关性。变量是癌体积的对数值（lcavol）、前列腺重量的对数值（lweight）、良性前列腺增生数量（lbph）、精囊浸润（svi）、包膜浸透的对数值（lcp）、Gleason得分（gleason）、Gleason得分为4或5的比例（pgg45）。表3.1中给出的预测变量的相关性矩阵显示了很多强的相关性。第1章的图1.1（第3页）是散点图矩阵，显示了变量间的每一对图像。我们看到svi是二进制变量，gleason是有序分类变量。举个例子，我们看到lcavol和lcp都与响应变量lpsa有强的相关性。我们需要拟合联合的影响去解开预测变量和响应变量之间的关系。</p>
 <p><img alt="" src="../../img/03/tab3.1.png" /></p>
