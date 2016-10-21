@@ -205,6 +205,24 @@
 </li>
 
         
+            
+<li >
+    <a href="../3.5%20Methods%20Using%20Derived%20Input%20Directions/">3.5 运用派生输入方向的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../3.6%20A%20Comparison%20of%20the%20Selection%20and%20Shrinkage%20Methods/">3.6 选择和收缩方法的比较</a>
+</li>
+
+        
+            
+<li >
+    <a href="../3.7%20Multiple%20Outcome%20Shrinkage%20and%20Selection/">3.7 多重输出的收缩和选择</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -510,13 +528,12 @@ r_i &= y_i -x_i\hat{\beta}
 </p>
 <p>[^inner product]: The inner-product notation is suggestive of generalizations of linear regression to different metric spaces, as well as to probability spaces. 内积表示是线性回归模型一般化到不同度量空间（包括概率空间）建议的方式。</p>
 <p>正如我们所看到的，这个简单的单变量回归提供了多重线性回归的框架（building block）。进一步假设输入$\mathbf{x}_1,\mathbf{x_2,\ldots,x_p}$（数据矩阵$\mathbf{X}$的列）是正交的；也就是对于所有的$j\neq k$有$\langle x_j,x_k\rangle=0$。于是很容易得到多重最小二乘估计$\hat{\beta}_j$等于$\langle \mathbf{x}_j,\mathbf{y}\rangle/\langle\mathbf{x}_j,\mathbf{x}_j\rangle $——单变量估计。换句话说，当输入变量为正交的，它们对模型中其它的参数估计没有影响。</p>
-<blockquote>
-<p>正交输入变量经常发生于平衡的、设定好的实验（强制了正交），但是对于实验数据几乎不会发生。因此为了后面实施这一想法我们将要对它们进行正交化。进一步假设我们有一个截距和单输入$\bf{x}$。则$\bf{x}$的最小二乘系数有如下形式
+<p>正交输入变量经常发生于平衡的、设定好的实验（强制了正交），但是对于实验数据几乎不会发生。因此为了后面实施这一想法我们将要对它们进行正交化。进一步假设我们有一个截距和单输入$\bf{x}$。则$\bf{x}$的最小二乘系数有如下形式</p>
+<p>
 <script type="math/tex; mode=display">
 \hat{\beta}_1=\dfrac{\langle \mathbf{x}-\bar{x}\mathbf{1},\mathbf{y}\rangle}{\langle \mathbf{x}-\bar{x}\mathbf{1},\mathbf{x}-\bar{x}\mathbf{1}\rangle}\qquad (3.27)
 </script>
 </p>
-</blockquote>
 <p>其中，$\bar{x}=\sum_ix_i/N$,且$N$维单位向量$\mathbf{1}=x_0$。我们可以将式（3.27）的估计看成简单回归（3.26）的两次应用。这些步骤是：
 1. 在$\bf{1}$上回归$\bf{x}$产生残差$\mathbf{z}=\mathbf{x}-\bar{x}\mathbf{1}$;
 2. 在残差$\bf{z}$上回归$\bf{y}$得到系数$\hat{\beta}_1$
