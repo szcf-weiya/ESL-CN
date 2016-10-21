@@ -22,6 +22,10 @@ pages:
       - 3.2 线性回归模型和最小二乘法: '03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares.md'
       - 3.3 子集的选择: '03 Linear Methods for Regression/3.3 Subset Selection.md'
       - 3.4 收缩的方法: '03 Linear Methods for Regression/3.4 Shrinkage Methods.md'
+      - 3.5 运用派生输入方向的方法: '03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions.md'
+      - 3.6 选择和收缩方法的比较: '03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods.md'
+      - 3.7 多重输出的收缩和选择: '03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection.md'
+      #- 3.8 Lasso和相关路径算法的补充: '03 Linear Methods for Regression/3.8 More on the Lasso and Related Path Algorithms.md'
 
 site_name: 'ESL CN'
 
