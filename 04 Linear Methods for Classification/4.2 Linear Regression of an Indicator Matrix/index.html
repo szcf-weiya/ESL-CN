@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>2.8 限制性估计的类别 - ESL CN</title>
+	<title>4.2 指示矩阵的线性回归 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -114,61 +114,61 @@
         
             
 <li >
-    <a href="../2.1 Introduction/">2.1 导言</a>
+    <a href="../../02 Overview of Supervised Learning/2.1 Introduction/">2.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
+    <a href="../../02 Overview of Supervised Learning/2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
 </li>
 
         
             
 <li >
-    <a href="../2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
+    <a href="../../02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
 </li>
 
         
             
 <li >
-    <a href="../2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
+    <a href="../../02 Overview of Supervised Learning/2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
 </li>
 
         
             
 <li >
-    <a href="../2.5 Local Methods in High Dimensions/">2.5 高纬问题的局部方法</a>
+    <a href="../../02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions/">2.5 高纬问题的局部方法</a>
 </li>
 
         
             
 <li >
-    <a href="../2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
+    <a href="../../02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
 </li>
 
         
             
 <li >
-    <a href="../2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">2.8 限制性估计的类别</a>
+    <a href="../../02 Overview of Supervised Learning/2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
 </li>
 
         
             
 <li >
-    <a href="../2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+    <a href="../../02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
 </li>
 
         
             
 <li >
-    <a href="../Bibliographic Notes/">文献笔记</a>
+    <a href="../../02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/Bibliographic Notes/">文献笔记</a>
 </li>
 
         
@@ -234,13 +234,13 @@
         
             
 <li >
-    <a href="../../04 Linear Methods for Classification/4.1 Introduction/">4.1 导言</a>
+    <a href="../4.1 Introduction/">4.1 导言</a>
 </li>
 
         
             
-<li >
-    <a href="../../04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/">4.2 指示矩阵的线性回归</a>
+<li class="active">
+    <a href="./">4.2 指示矩阵的线性回归</a>
 </li>
 
         
@@ -262,12 +262,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../2.7 Structured Regression Models/">
+                    <a rel="next" href="../4.1 Introduction/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
-                <li >
-                    <a rel="prev" href="../2.9 Model Selection and the Bias-Variance Tradeoff/">
+                <li class="disabled">
+                    <a rel="prev" >
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -288,20 +288,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">限制性估计的类别</a></li>
-        
-            <li><a href="#_2">粗糙惩罚和贝叶斯方法</a></li>
-        
-            <li><a href="#_3">核方法和局部回归</a></li>
-        
-            <li><a href="#_4">基函数和字典方法</a></li>
+        <li class="main active"><a href="#42">4.2 指示矩阵的线性回归</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">限制性估计的类别</h1>
+<h1 id="42">4.2 指示矩阵的线性回归</h1>
 <table>
 <thead>
 <tr>
@@ -316,69 +310,51 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-08-01</td>
+<td>2016-12-06</td>
 </tr>
 </tbody>
 </table>
-<p>非参回归方法的多样性和学习方法的多种类别取决于插入的限制条件的本质。这些类别不是截然不同的，而且确实一些方法变成了几种不同的方法。这里我们进行一个简短的概要，因为详细的描述将在后面章节中给出。每个类都有与之对应的一个或多个参数，有时恰当地称之为光滑化参数，这些参数控制着局部邻域的有效规模。这里我们描述三个大的类别</p>
-<h2 id="_2">粗糙惩罚和贝叶斯方法</h2>
-<p>这是由显式的惩罚$RSS(f)$和粗糙惩罚控制的函数类
-<script type="math/tex; mode=display">\begin{equation}
-PRSS(f;\lambda)=RSS(f)+\lambda J(f)
-\end{equation}</script>
-对于在输入空间的小邻域变换太快的函数$f$，用户选择的函数$J(f)$会变大。举个例子，著名的关于一维输入的三次光滑样条(<em>cubic smoothing spline</em>)的是惩罚最小二乘的准则的解。
-<script type="math/tex; mode=display">\begin{equation}
-PRSS(f;\lambda)=\sum\limits_{i=1}^N(y_i-f(x_i))^2+\lambda \int [f''(x)]^2dx
-\label{2.39}
-\end{equation}</script>
-这里的粗糙惩罚控制了$f$的二阶微分大的值，而且惩罚的数量由$\lambda \ge 0$来支配。$\lambda=0$表示没有惩罚，任意插值函数都可以实现，尽管$\lambda=\infty$仅仅当关于$x$的函数为线性才允许。</p>
-<p>预测函数$J$可以在任意维数下构造函数，而且一些特殊的版本可以用来插入特殊的结构。举个例子，可加性惩罚$J(f)=\sum_{j=1}^pJ(f_j)$与可加性函数$f(X)=\sum_{j=1}^pf_j(X_j)$联合使用去构造可加的光滑坐标函数的模型。类似地，投射追踪回归(<em>regression pursuit regression</em>)模型有$f(X)=\sum_{m=1}^Mg_m(\alpha_m^TX)$，其中$\alpha_m$为适应地选择的方向，函数$g_m$的每一个有对应的粗糙惩罚。</p>
-<p>惩罚函数，或者说正则(<em>regularization</em>)方法,表达了我们最初的信仰——我们寻找的函数类型展现了一个确定的光滑行为的类型，而且确实可以套进贝叶斯的模型中。惩罚$J$对应先验概率，$PRSS(f;\lambda)$为后验分布，最小化$PRSS(f;\lambda)$意味着寻找后验模式。我们将在第5章中讨论粗糙惩罚方法并在第8章中讨论贝叶斯范式。</p>
-<h2 id="_3">核方法和局部回归</h2>
-<p>这些方法被认为是通过确定局部邻域的本质来显式提供回归函数的估计或条件期望，并且属于局部拟合得很好的规则函数类。局部邻域由核函数(<em>kernel function</em>)$K_{\lambda}(x_0,x)$来确定，核函数对$x_0$附近的区域$x$赋予系数（见p192的图6.1），举个例子，高斯核有一个基于高斯密度函数的系数函数
-<script type="math/tex; mode=display">\begin{equation}
-K_{\lambda}(x_0,x)=\frac{1}{\lambda}exp[-\frac{\mid \mid x-x_0\mid \mid ^2}{2\lambda}]
-\end{equation}</script>
-并且赋予那些到$x_0$的欧氏距离平方呈指数衰减的点系数。系数$\lambda$对应高斯密度的方差，并且控制着邻域的宽度。核估计的最简单形式是Nadaraya-Watson的系数平均
-<script type="math/tex; mode=display">\begin{equation}
-\hat{f}(x_0)=\dfrac{\sum_{i=1}{N}K_{\lambda}(x_0,x_i)y_i}{\sum_{i=1}^NK_{\lambda}(x_0,x_i)}
-\label{2.41}
-\end{equation}</script>
-一般地，我们可以定义$f(x_0)$的局部回归估计$f_{\hat{\theta}}(x_0)$，其中$\hat{\theta}$使下式最小化
-<script type="math/tex; mode=display">\begin{equation}
-RSS(f_{\theta},x_0)=\sum\limits_{i=1}^NK_{\lambda}(x_0,x_i)(y_i-f_{\theta}(x_i))^2
-\label{2.42}
-\end{equation}</script>
-并且$f_{\theta}$为含参函数，比如低阶的多项式。有如下例子：
-- 常值函数$f_{\theta}(x)=\theta_0$，结果在上面式$\eqref{2.41}$中的Nadaraya-Watson估计。
-- $f_{\theta}(x)=\theta_0+\theta_1x$给出最受欢迎的局部线性回归模型</p>
-<p>最近邻方法可以看成是某个更加依赖数据的度量的核方法。确实，$k$-最近邻的度量为
-<script type="math/tex; mode=display">\begin{equation}
-K_k(x,x_0)=I(\mid \mid x-x_0\mid \mid \le \mid \mid x_{(k)}-x_0\mid \mid )
-\end{equation}</script>
-其中$x_{(k)}$是训练观测值中离$x_0$的距离排名第$k$个的观测，而且$I(S)$是集合$S$的指标函数。</p>
-<p>为了避免维数的灾难，这些方法在高纬情形下要做修正。将在第6章讨论不同的改编。</p>
-<h2 id="_4">基函数和字典方法</h2>
-<p>这个方法的类别包括熟悉的线性和多项式展开式，但是最重要的有多种多样的更灵活的模型。这些关于$f$的模型是基本函数的线性展开
-<script type="math/tex; mode=display">\begin{equation}
-f_{\theta}(x)  = \sum\limits_{m=1}^M\theta_mh_m(x)
-\label{2.43}
-\end{equation}</script>
-其中每个$h_m$是输入$x$的函数，并且其中的线性项与参数$\theta$的行为有关。这个类别包括很多不同的方法。一些情形下基函数的顺序是规定的，如关于$x$的阶为$M$的多项式基函数。</p>
-<p>对于一维$x$,阶为$K$的多项式样条可以通过$M$个样条基函数的合理顺序来表示，反过来由$M-K$个结点（<em>knots</em>）来确定。在结点中间产生阶为$K$的分段多项式函数，并且在每个结点处由$K-1$阶连续函数来连接。考虑线性样条的例子，或者分段线性函数。一个直观满足条件的基包含函数$b_1(x)=1,b_2(x)=x,b_{m+2}(x)=(x-t_m)<em>{+},m=1,\ldots,M-2$,其中$t_m$为第$m$个结点，并且$z</em>{+}$表示正值部分。样条基的张量积可以用于维数大于一的输入（见5.2节，第9章的CRAT和MARS模型）。系数$\theta$可以是多项式的阶之和，或者是样条情形中的结点。</p>
-<p>放射基函数(<em>Radial basis functions</em>)是在质心处对称的$p$维核，
-<script type="math/tex; mode=display">\begin{equation}
-f_{\theta}(x)=\sum\limits_{m=1}^MK_{\lambda_m}(\mu_m,x)\theta_m
-\end{equation}</script>
-举个例子，高斯核$K_{\lambda}(\mu,x)=e^{-\mid \mid x-\mu\mid \mid ^2/2\lambda}$是受欢迎的。</p>
-<p>放射基函数有质心$\mu_m$和尺寸$\lambda_m$，必须要确定这两个值。样条基函数有结点。一般地，我们也想要这些数据去支配它们。把它们作为系数将回归问题从径直的线性问题转换为困难的组合非线性问题。在实际中，贪心算法或两步过程是经常使用的捷径。6.7节中描述了这些方式。</p>
-<p>单层的向前反馈的有线性输出系数的神经网络模型可以认为是一种改编的基函数方法。模型有如下形式
-<script type="math/tex; mode=display">\begin{equation}
-f_{\theta}(x)=\sum\limits_{m=1}^M\beta_m\sigma(\alpha_m^Tx+b_m)
-\label{2.46}
-\end{equation}</script>
-其中，$\sigma(x)=1/(1+e^{-x})$被称作活跃(<em>activation</em>)函数。作为投射追踪模型，方向$\alpha_m$以及偏差项$b_m$必须要确定，而且他们的估计是计算的食物。将在第11章给出细节。</p>
-<p>这些选择的自适应基函数的方法也被称作字典方法，其中有可用的无限集合或者包含可选的基函数的字典$\cal D$，而且通过应用其它的搜索机构来建立模型。</p>
+<p>这里每个类别型响应变量通过一个指示变量来编码。因此$\cal G$ 有$K$个类别，因此有$K$个指示变量$Y_k,k=1,\ldots,K$，若$G=k,Y_k=1$,否则$Y_k=0$。用向量$Y=(Y_1,\ldots,Y_K)$来表示它们, 加上以及$N$个训练实例组成了$N\times K$的指示变量响应矩阵（indicator response matrix）$\mathbf Y$。$\mathbf Y$其中的元素由0和1组成，每一行只含有一个1.我们对于$\mathbf Y$的每一列同时用线性回归模型做拟合，拟合值由下式给出</p>
+<p>
+<script type="math/tex; mode=display">
+\mathbf{ \hat Y = {X(X^TX)^{-1}X^TY}} \qquad (4.3)
+</script>
+</p>
+<p>第三章给出了线性回归的更多细节。注意到我们对于每个预测变量的列$\mathbf y_k$都有一个系数向量，因此有一个$(p+1)\times K$的系数矩阵$\mathbf{\hat B=(X^TX)^{-1}X^TY}$.这里$\mathbf X$是有$p+1$列的模型矩阵，它对应$p$个输入，以及一个截距项1.</p>
+<p>一个输入为$x$的观测按下列步骤进行分类。
+- 计算输出的拟合值$\hat f(x)=[(1,x)\mathbf{\hat B}]^T$，这是一个K维向量。
+- 确定最大的组分从而进行分类
+<script type="math/tex; mode=display">
+\hat G(x)=argmax_{k\in\cal G}\hat f_k(x)\qquad (4.4)
+</script>
+</p>
+<p>这种方式的理论根据是什么？更加正式的理由是把回归看成条件期望的估计。对于随机变量$Y_k$，$E(Y_k\mid X=x)=Pr(G=k\mid X=x)$, 则每个随机变量$Y_k$的条件期望似乎是一个明智的选择。真实问题是，条件期望的近似除了线性回归模型还可以达到什么程度？或者说，$\hat f_k(x)$是否是后验概率$Pr(G=k\mid X=x)$的合理估计，更重要地，这是否有影响？</p>
+<p>可以很直接地证明对于任意$x$,只要在模型中有截距（即$\mathbf X$的元素为1的列）,$\sum_{k\in\cal G}\hat f_k(x)=1$。然而，$\hat f_k(x)$可以为负数或者比1大，而且事实上确实是这样。这是线性回归的结果（<strong>怎么理解rigid nature</strong>），特别是我们在训练数据之外做预测。这些变化不能保证这个方法起作用，事实上在许多问题上它给出和用于分类的标准的线性方法类似的结果。如果我们允许在输入的基展开$h(X)$上做线性回归，这个方法可以导致概率的一致估计。当训练集的规模$N$变大时，我们逐步加入更多的基元素使得在这些基函数的线性回归达到条件期望。我们将在第5章中讨论。</p>
+<p>一个更简单的看法是对每个类别构造目标$t_k$，其中$t_k$是$K\times K$单位矩阵的第$k$列。我们的预测问题是对一个观测尝试并且再生出合适的目标。和之前的编码一样，第$i$个观测的响应向量$y_i$（$\mathbf Y$的第$i$行）当$g_i=k$时，$y_i=t_k.$我们可能通过最小二乘法来拟合线性模型
+<script type="math/tex; mode=display">
+\underset{B}{min}\sum\limits_{i=1}^N\Vert y_i-[(1,x_i)\mathbf B]^T\Vert^2\qquad(4.5)
+</script>
+这个准则是从它们目标得出的拟合向量的欧几里得距离平方的和。一个新的观测通过计算它们的拟合向量$\hat f(x)$从而把它分到最近的目标集：
+<script type="math/tex; mode=display">
+\hat G(x)=\underset{k}{argmin}\Vert \hat f(x)-t_k\Vert^2\qquad (4.6)
+</script>
+这恰好与之前的方式相同：</p>
+<ul>
+<li>平方和准则恰巧是多重响应变量线性回归的准则，仅仅有细微的不同。因为二范数自身也是一个平方和，其组成成份可以分解然后重排列成对于每个元素的分离的线性模型。注意到这仅仅是可能的，因为在模型中没有办法将不同的响应变量结合在一起。</li>
+<li>最近目标分类准则（4.6）可以很简单地发现它与（4.4）的最大拟合成分准则是一样的，但是需要要求拟合值的和为1.</li>
+</ul>
+<p><img alt="" src="../../img/04/fig4.2.png" /></p>
+<p>图4.2：这些数据来自$R^2$的三个类别而且很简单地通过线性判别边界分开。右图显示了通过线性判别分析找到的边界。左图显示了通过对指示响应变量的线性回归找到的边界。中间的类别完全被掩盖掉了（不是主导成分）。</p>
+<p>当类别的数目$K\ge 3$时候回归方法有个很严重的问题，特别是当$K$很大时很常见。由于回归模型的刚性性质，类别可以被其他的掩盖掉（masked）。图4.2显示了当$K=3$时的一个极端情形。这三个类别可以用线性判别边界完美地分离开，然而线性回归完全失去了中间这一类。</p>
+<p>在图4.3中我们将数据投影到连接着三个形心的直线上（这种情况下在垂直方向上没有信息），我们已经包含并且对三个响应变量进行了编码$Y_1,Y_2$和$Y_3$.包含三条回归直线（左图），而且我们看到这条直线对应中间的类别是水平的而且它的拟合值都不显著！因此，类别2的观测值要么被分到类别1要么是类别3.右图采用二次回归而不是线性回归。对于这个简单的例子二次而不是线性拟合（至少对于中间的类别）会解决这个问题。然而，可以看到如果有四个而不是三个类别像这样成线性二次不会充分下降，而且三次也同样需要。一个松弛但是一般的规则是如果排列着$K\ge 3$个类别，则可能需要$K-1$阶多项式解决这个问题。同样注意到这些是通过形心派生的方向上的多项式，可以有任意的原点。所以在$p$维输入空间中，一般需要$K-1$阶、$O(p^{K-1})$的多项式和交叉积来解决这种极坏的情形。</p>
+<p><img alt="" src="../../img/04/fig4.3.png" /></p>
+<p>图4.3. $R$中对于含三个类别的问题的线性回归发生掩盖的影响。在坐标轴上的rug plot指示了每个观测值的位置以及类别关系。在每个面板上的三条曲线是根据三个类别的指示变量回归的拟合；举个例子，对于蓝色的类别，对于蓝色的观测值$y_{blue}=1$，对于绿色和黄色的观测值为0.拟合分别是线性的和二次的。每张图像的上方都是训练误差率。对于此问题，Bayes误差率为0.025，这也是LDA的误差率。</p>
+<blockquote>
+<p><strong>weiya 注：</strong></p>
+<p>rug plot</p>
+<p>在R语言中 rug 是在坐标轴上标出元素出现的频数。出现一次，就会画一个小竖杠。从rug的疏密可以看出变量是什么地方出现的次数多，什么地方出现的次数少。</p>
+</blockquote>
+<p>这个例子是很极端的，但是对于大$K$和小$p$这些掩盖很自然地会发生。作为一个更现实的图示，图4.4是对于元音识别问题将训练数据投射到含有有用信息的二维子空间上。在$p=10$维空间中有$K=11$个类别。这是一个很复杂的分类问题，并且最好的方法在测试集上达到40%的误差。这里的要点在表4.1中有总结；线性回归误差率为67%，而与其很相关的线性判别分析误差率为56%。在这种情形下掩盖产生了破坏。而本章中所有其他方法也都是基于关于$x$的线性函数，它们以这种方式使用赖避免掩盖问题。</p>
 
 <div id="disqus_thread"></div>
 <script>
