@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/04 Linear Methods for Classification/4.3 Linear Discriminant Analysis/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>4.3 线性判别分析 - ESL CN</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/newsprint.css" rel="stylesheet">
+        <link href="../../css/admonition_fix.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-85046550-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">ESL CN</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">主页</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">目录 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">序言</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">1 简介</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../01 Introduction/2016-07-26-Chapter-1-Introduction/">1.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">2 监督学习概要</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.1 Introduction/">2.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions/">2.5 高纬问题的局部方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/Bibliographic Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">3 回归的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.1 Introduction/">3.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.3 Subset Selection/">3.3 子集的选择</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.4 Shrinkage Methods/">3.4 收缩的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">3.7 多重输出的收缩和选择</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">4 分类的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../4.1 Introduction/">4.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../4.2 Linear Regression of an Indicator Matrix/">4.2 指示矩阵的线性回归</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">4.3 线性判别分析</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../4.2 Linear Regression of an Indicator Matrix/">
+                        <i class="fa fa-arrow-left"></i> 上一节
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        下一节 <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://szcf-weiya.github.io">
+                        
+                        Szcf-Weiya
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#43">4.3 线性判别分析</a></li>
+        
+            <li><a href="#431">4.3.1 正则化判别分析</a></li>
+        
+            <li><a href="#432-lda">4.3.2 LDA的计算</a></li>
+        
+            <li><a href="#433">4.3.3 降维线性判别分析</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="43">4.3 线性判别分析</h1>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翻译</td>
+<td>szcf-weiya</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>2016-12-09:2016-12-10</td>
+</tr>
+</tbody>
+</table>
+<p>分类的判别理论（2.4节）告诉我们我们需要知道的是对于最优分类的类别的后验概率$Pr(G\mid X)$.假设$f_k(x)$是类别$G=k$中$X$的类别条件密度，并令$\pi_k$为类别$k$的先验概率，满足$\sum_{k=1}^K\pi_k=1$.简单地应用一下贝叶斯定理得到
+<script type="math/tex; mode=display">
+Pr(G=k\mid X=x)=\dfrac{f_k(x)\pi_k}{\sum_{\ell=1}^Kf_{\ell}(x)\pi_\ell}\qquad (4.7)
+</script>
+我们看到对于判别的能力，有$f_k(x)$几乎等价于有概率$Pr(G=k\mid X=x)$.</p>
+<p>许多技巧是基于模型的类别密度函数：</p>
+<ul>
+<li>线性和二次判别分析采用高斯密度</li>
+<li>对于非线性判别边界需要更加灵活的混合的高斯密度（6.8节）</li>
+<li>对于每一类密度的一般非参数密度估计允许最大的灵活性（6.6.2节）</li>
+<li>朴素贝叶斯模型是之前情形的变种，而且假设每个类密度是边缘密度的乘积，这也就是，他们假设输入在每一类中都是条件独立的（6.6.3节）</li>
+</ul>
+<p>假设我们对于每一类用多元高斯分布来建模
+<script type="math/tex; mode=display">
+f_k(x)=\frac{1}{(2\pi)^{p/2}\vert \Sigma_k\vert^{1/2}}e^{-\frac{1}{2}(x-\mu_k)^T\Sigma^{-1}_k(x-\mu_k)} \qquad (4.8)
+</script>
+线性判别分析LDA产生于当我们假设有相同的协方差矩阵$\Sigma_k=\Sigma\;\forall k.$在比较两个类别$k$以及$\ell$时，观察log-ratio是很充分的，而且我们可以看到
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+log\frac{Pr(G=k\mid X=x)}{Pr(G=\ell\mid X=x)}&=log\frac{f_k(x)}{f_\ell(x)}+log\frac{\pi_k}{\pi_\ell}\\
+&=log\frac{\pi_k}{\pi_\ell}-\frac{1}{2}(\mu_k+\mu_\ell)^T\Sigma^{-1}(\mu_k-\mu_\ell)+x^T\Sigma^{-1}(\mu_k-\mu_\ell)
+\end{array}\qquad(4.9)
+</script>
+</p>
+<blockquote>
+<p><strong>weiya注：</strong>
+<script type="math/tex; mode=display">
+a'Da-b'Db=(a+b)'D(a-b)
+</script>
+</p>
+</blockquote>
+<p>这是个关于$x$的线性等式。等协方差矩阵时消除了正规化因子，以及指数中的二次项。这个线性的log-odds函数表明类别$k$和类别$\ell$的判别边界为——$Pr(G=k\mid X=x)=Pr(G=\ell\mid X=x)$的集合——关于$x$是线性的，在$p$维超平面内。这对于任意类别对也是成立的，所以所有的判别边界都是线性的。如果我们把$R^p$分成不同区域，记为类别1，类别2等等，这些区域会被超平面所分离。图4.5（左图）显示了有三个类别且$p=2$的假想的例子。这里数据是从3个协方差矩阵相等的高斯分布中产生的。我们已经在图像中包含了对应95%概率密度的等高图，以及三个类别的形心。注意到判别边界不是连接两个形心的垂直平分线。如果协方差矩阵$\Sigma$是$\sigma^2\mathbf I$,且类别的先验概率相等。从(4.9)我们可以看出线性判别函数为
+<script type="math/tex; mode=display">
+\delta_k(x)=x^T\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k+log\pi_k\qquad (4.10)
+</script>
+这是判别规则的等价描述，$G(x)=argmax_k \delta_k(x).$</p>
+<p><img alt="" src="../../img/04/fig4.5.png" /></p>
+<blockquote>
+<p>图4.5. 左图显示了三个高斯分布，有相同的协方差和不同的均值。图中画出了在包含每个类别95%可能性的等高线。两两类别之间的贝叶斯判别边界用虚线显示，并且贝叶斯判别边界将所有的三个类别分隔开用实线表示出来（前者的一个子集）。右图我们看到有来自每个高斯分布的30个样本点以及画出了拟合后的LDA判别边界。</p>
+</blockquote>
+<p>实际应用中我们不知道高斯分布的参数，我们需要用我们的训练数据去估计它们：</p>
+<ul>
+<li>$\hat \pi_k=N_k/N$,其中$N_k$是第$k$类观测值</li>
+<li>$\hat\mu_k=\sum_{g_i=k}x_i/N_k$</li>
+<li>$\hat\Sigma=\sum_{k=1}^K\sum_{g_i=k}(x_i-\hat\mu_k)(x_i-\hat\mu_k)^T/(N-K)$</li>
+</ul>
+<p>图4.5（右图）显示了基于从3个高斯分布中取出的大小为30的样本集，p103的图4.1是另外一个例子，但是这里类别不是高斯。</p>
+<p>两个类别的情况下在线性判别分析和线性最小二乘之间有一个简单的对应，如（4.5）所示。如果满足下面条件则LDA分类规则分给第二类
+<script type="math/tex; mode=display">
+x^T\hat\Sigma^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\Sigma^{-1}\hat\mu_2-\frac{1}{2}\hat\mu_1^T\hat\Sigma^{-1}\hat\mu_1+log(N_1/N)-log(N_2/N)\qquad (4.11)
+</script>
+否则则分为第一类。假设我们将两个类别编码为+1和-1。可以简单地证明得出最小二乘的系数向量与（4.11）式给出的LDA方向成比例。（练习4.2）.[实际上，这种对应关系对于任意的编码都会有，见练习4.2].然而除了$N_1=N_2$的情形，截距不同因此得到的判别边界不一样。</p>
+<p>因为通过最小二乘得到的LDA方向不需要对特征做高斯分布的假设，它的应用可以不局限于高斯分布的数据。然而，（4.11）式给出的特定的截距和分离点确实需要高斯分布的数据。因此对于给定的数据集凭经验地选择分割点最小化训练误差是有意义的。这也是我们在实际中发现效果很好，但是在理论中没有提到的原因。</p>
+<p>多于两个类别的情形时，LDA与类别指示矩阵的线性回归不是一样的，而且它避免了跟方法有关的掩藏问题（Hastie et al., 1994）. 回归与LDA之间的对应可以通过在12.5节中讨论的最优评分来建立。</p>
+<p>回到一般的判别问题（4.8），如果$\Sigma_k$没有假设相等，则（4.9）中方便的抵消不会发生；特别地关于$x$的平方项保留了下来。于是我们得到了平方判别函数QDA
+<script type="math/tex; mode=display">
+\delta_k(x)=-\frac{1}{2}log\vert\Sigma_k\vert-\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)+log\pi_k\qquad (4.12)
+</script>
+每个类别对$k$和$\ell$的判别边界由二次等式来描述${x:\delta_k(x)=\delta_\ell(x)}$.</p>
+<p>图4.6显示了一个例子（p103中的图4.1），这三个类别都是混合高斯分布（6.8节），并且判别边界由关于$x$的二次函数近似给出。这里我们描述两种拟合这些判别边界的方式。右图使用这里描述的QDA，而左图是在增广的五维二次多项式空间中使用LDA。两者之间的差别很小，QDA是最好的方式，LDA方法是更方便的替换。</p>
+<p><img alt="" src="../../img/04/fig4.6.png" /></p>
+<blockquote>
+<p>图4.6. 拟合二次边界的两种方法。左图显示了图4.1的二次判别边界（在五维空间$X_1,X_2,X_1X_2,X_1^2,X_2^2$中运用LDA得到）。右图显示了通过QDA寻找到的二次判别边界。两者差别很小，通常也是这种情况。</p>
+</blockquote>
+<p>QDA的估计类似LDA的估计，除了协方差矩阵必须要按每一类来估计。当$p$很大这意味着系数有戏剧性的增长。因为ie判别边界是系数密度的函数，参数的个数必须要考虑。对于LDA，似乎有$(K-1)\times(p+1)$个参数，因为我们仅仅需要判别函数之间的不同$\delta_k(x)-\delta_K(x)$，其中$K$是一些预先选好的类别（这里我们已经选了最后一类），每个不同需要$p+1$个参数。对于QDA类似地，我们会有$(K-1)\times {p(p+3)/2+1}$个参数。LDA和QDA在非常大以及离散的数据集的分类上面表现得很好。举个例子，在STATLOG项目中（Michie et al. 1994）LDA在22个数据集的7个分类方法中的表现排前三名，QDA在四个数据集中排前三名，对于10个数据集其中的一对排前三名。两种方法都被广泛运用，整本书投入到LDA上。在各种外来方法风靡一时的今天，我们总是会有两种简单的方法可以使用。为什么LDA和QDA有那么好的效果？原因不可能是数据近似服从高斯分布，对于LDA协方差矩阵也不可能近似相等。很可能的一个原因是数据仅仅可以支持简单的判别边界比如线性和二次，通过高斯模型给出的估计是稳定的，这是一个偏差与方差之间的权衡——我们可以忍受线性判别边界的偏差因为ie它可以通过比其它方法更低的方差来估计。这个论点对于QDA更是不可想象，因为它自身由许多的参数，尽管或许比非参估计的参数要少。</p>
+<p><img alt="" src="../../img/04/fig4.7.png" /></p>
+<blockquote>
+<p>图4.7. 对元音数据应用一系列$\alpha\in[0,1]$的正则化判别分析的测试和训练误差。测试数据的最优点发生在$\alpha=0.9$附近，离二次判别分析很相近。</p>
+</blockquote>
+<h2 id="431">4.3.1 正则化判别分析</h2>
+<p>Friedman(1989)提出LDA和QDA之间的一个权衡，使得QDA的协方差阵向LDA中的共同协方差阵收缩。这些方法非常类似岭回归。正则化协方差矩阵有如下形式
+<script type="math/tex; mode=display">
+\hat\Sigma_k(\alpha)=\alpha\hat\Sigma_k+(1-\alpha)\hat\Sigma\qquad (4.13)
+</script>
+其中，$\hat\Sigma$是像LDA中使用的联合协方差矩阵。这里$\alpha\in[0,1]$使得在LDA和QDA之间达到一个连续，而且需要指定。实际中，$\alpha$可以基于在验证数据的表现上进行选择，或者通过交叉验证。</p>
+<p>图4.7显示了将RDA运用到元音数据的结果。训练和测试误差都随着$\alpha$的增大获得了改善，尽管在$\alpha=0.9$后测试误差急剧上升。训练和测试误差最大的区别部分因为在小数量的个体上有很多重复观测，在训练和测试集上是不同的。</p>
+<p>类似的修改使得$\hat\Sigma$向着标量协方差收缩
+<script type="math/tex; mode=display">
+\hat\Sigma(\gamma)=\gamma\hat\Sigma+(1-\gamma)\hat\sigma^2I\qquad (4.14)
+</script>
+对于$\gamma\in[0,1]$.用$\hat\Sigma(\gamma)$替换掉(4.13)的$\hat\Sigma$导出了一个更加一般的协方差阵族$\hat\Sigma(\alpha,\gamma)$,这是由一对参数来表示的。</p>
+<p>在12章，我们将讨论LDA的另一种正则化版本，当数据来自数字化的相似的信号和图像时更加地合适。在这些情形下特征是高维的且相关的，LDA系数可以通过正则化在原始信号域变得光滑和稀疏。这导出了更好的一般化并且对于这些系数有着简单的解释。在第18章中我们也处理非常高维的问题，举个例子如微阵列研究中基因表达测量的特征。这里方法集中在(4.14)中$\gamma=0$的情形，以及其它LDA的正则化版本。</p>
+<h2 id="432-lda">4.3.2 LDA的计算</h2>
+<p>作为下一主题的介绍，我们简单地岔开去讨论LDA的计算特别是QDA。这些计算可以通过对角化$\hat\Sigma$或$\hat\Sigma_k$来简化。对于后者，假设我们对每一个计算特征值分解$\hat\Sigma_k=U_kD_kU_k^T$，其中$U_k$是$p\times p$的对角矩阵，$D_k$是正的特征值$d_{k\ell}$组成的对角矩阵。则$\delta_k(x)$(4.12)的组成成分是</p>
+<ul>
+<li>$(x-\hat\mu_k)^T\hat\Sigma_k^{-1}(x-\hat\mu_k)=[U_k^T(x-\hat\mu_k)]^TD_k^{-1}[U_k^T(x-\hat\mu_k)]$</li>
+<li>$log\vert \hat\Sigma_k\vert=\sum_{\ell}logd_{k\ell}$</li>
+</ul>
+<p>按照上面列出的计算步骤，LDA分类器可以通过下面的步骤来实现</p>
+<ul>
+<li>对数据关于协方差矩阵$\hat\Sigma$球面化：$X^<em>\leftarrow D^{-\frac{1}{2}}U^TX$,其中$\hat\Sigma=UDU^T$.$X^</em>$的共同协方差矩阵可能不一样。</li>
+<li>在变换后的空间里面分到最近的类别形心，对类别先验概率$\pi_k$的影响取模。</li>
+</ul>
+<h2 id="433">4.3.3 降维线性判别分析</h2>
+<p>至此我们已经讨论了限制为高斯分类器中的LDA。它受欢迎的部分原因是因为额外的限制使得我们可以看到数据再低维空间中的投影。</p>
+<p>在$p$维输入空间的$K$形心位于维数小于$K-1$的超平面，如果$p$比$K$大很多，维数上会有显著的降低。更多地，在确定最近的形心，我们可以忽略到子空间的垂直距离，因为它们对每个类的作用同样大。因此我们可能仅仅将数据$X^*$投射到形心张成的子空间$H_{K-1}$，并且这里做了距离的比较。因此在LDA中存在一个基础维数的降低，换句话说就是，我们仅仅需要考虑在维数至多为$K-1$的子空间的数据。如果$K=3$，举个例子，这允许我们可以在二维图中观察数据，对类别进行颜色编码。这样做我们不会丢失任何LDA分类需要的信息。</p>
+<p>如果$K&gt;3$？我们可能在某种意义下要求一个最优的$L&lt;K-1$维子空间$H_L\subset H_{K-1}$。Fisher定义的最优意思是投影形心关于方差尽可能地分散。这意味着形心的主成分空间（主成分在3.5.1节中有简短的描述，在14.5.1节中将详细讨论）。图4.4显示了对于元音数据的一个最优的二维子空间。这里有11个类别，每个不同的元音发音，在一个10维的输入空间中。形心在这种情形下要求全空间，因为$K-1=p$，但是我们已经展示了一个最优的二维子空间。维数是排序好的，所以我们可以按照顺序计算额外的维数。图4.8显示了4个额外的坐标对，也被称作典则（canonical）或者判别（discriminant）变量。总结一下，寻找LDA的最优子空间序列涉及以下步骤：</p>
+<ul>
+<li>计算类别形心$M$的$K\times p$矩阵以及共同协方差矩阵$W$(对于组内协方差)</li>
+<li>使用$W$特征值分解计算$M^*=MW^{-\frac{1}{2}}$</li>
+<li>计算了$B^<em>$，$M^</em>$的协方差矩阵（$B$是组间协方差），特征值分解$B^<em>=V^</em>D_B{V^<em>}^T$.$V^</em>$的列$v_\ell^*$从第一个到最后一个依次定义了最优子空间的坐标。</li>
+</ul>
+<p>结合所有由$Z_\ell=v_\ell^TX$给出的第$\ell$个判别变量，其中$v_\ell=W^{-\frac{1}{2}}v_\ell^*$.</p>
+<p>Fisher通过不同的方式得到这个分解，完全没有引用高斯分布。他提出下面的问题：</p>
+<p><em>寻找线性组合$Z=a^TX$使得组间方差相对于组内方差最大化</em></p>
+<p>再一次，组间方差是$Z$的均值的方差，而组内方差是关于均值的联合方差。图4.9显示了为什么这个准则是有意义的。尽管联合形心的方向能将均值尽可能分离开（比如，使得组间方差最大化），但是由于协方差的本性在投影类别上由很大重叠。也考虑协方差，可以找到最小化重叠的方向。</p>
+<p><img alt="" src="../../img/04/fig4.8.png" /></p>
+<blockquote>
+<p>图4.8. 在成对典则变量上的四个投影。注意到当典则变量的秩增大，形心变得更不发散。右下角的图像看起来像是叠加上去的，类别也更加难以确定。</p>
+</blockquote>
+<p><img alt="" src="../../img/04/fig4.9.png" /></p>
+<blockquote>
+<p>图4.9. 尽管连接形心的直线定义了最大形心分散的方向，但是由于协方差（左图）投影数据会发生重叠。判别边界的方向使得高斯数据的重叠最小（右图）。</p>
+</blockquote>
+<p>$Z$的组间方差为$a^TBa$,而组内方差为$a^TWa$，$W$是很早定义的，$B$是类别形心矩阵$M$的协方差矩阵。注意到$B+W=T$，其中$T$是$X$的总协方差矩阵，忽略掉了类别信息。</p>
+<p>$Fisher$问题因此等价于最大化Rayleigh quotient,
+<script type="math/tex; mode=display">
+\underset{a}{max}\;\dfrac{a^TBa}{a^TWa}\qquad (4.15)
+</script>
+或者等价地，
+<script type="math/tex; mode=display">
+\underset{a}{max}\;a^TBa \; s.t.\; a^TWa=1\qquad (4.16)
+</script>
+这是一个一般化的特征值问题，$a$是由$W^{-1}B$的最大特征值给出。不难证明（练习4.1）最优$a_1$等于上面定义的$v_1$。类似地，可以找到下一个方向$a_2$，在$W$中与$a_1$正交，使得$a_2^TBa_2/a_2^TWa_2$最大化；解为$a_2=v_2$，其余类似。$a_\ell$被称作判别坐标，不会与判别函数相混淆。他们同样被称作典则变量（canonical variables），因为这些结果的一个变形是通过在预测变量矩阵$X$上对指示响应矩阵$Y$进行典则相关分析得到的。这一点将在12.5节继续讨论。</p>
+<p>总结一下至今为止的发展：</p>
+<ul>
+<li>有相同的协方差矩阵的高斯分类导出线性判别边界。分类可以通过对数据关于$W$球面化得到，并且划分到球空间的最近形心内（模$log\pi_k$）</li>
+<li>因为只计算了到形心的相对距离，所以可以把数据局限于在球空间的形心张成的子空间。</li>
+<li>子空间可以进一步分解为关于形心分离的最优子空间。这个分解与Fisher的分解相同。</li>
+</ul>
+<p>降维后的子空间可以看成是数据降维（为了观察）的一个工具。它们是否可以应用到分类上面以及它的基本原理是什么？很明显它们可以应用到分类上面，正如我们在最初的变形中一样；我们可以简单地把到形心的距离计算限制到选定的子空间中。可以证明这是有着额外限制条件——高斯形心位于$R^p$的$L$维子空间中——的高斯分类器。通过极大似然法拟合这样一个模型，然后运用贝叶斯定理构造后验概率，恰巧是上面描述的分类准则。（练习4.8）</p>
+<p>高斯分类器在距离计算时要求$log\pi_k$的矫正因子。使用矫正因子的理由可以在图4.9中看出。错分类率是基于两个密度计算的重叠部分的面积。如果$\pi_k$是相等的（图中隐含了），则最优的分离点是在投射均值之间。如果$\pi_k$不相等，朝着最小类别移动分类点会改善错误率。正如之前提到的两个类别，可以通过使用LDA（或者其他任何方法）导出线性规则，然后选择分类点去最小化训练集上的误判率。</p>
+<p>作为一个展现降维限制优点的例子，我们回到元音数据。这里有11个类别10个变量，因此10个分类器可能的维数。我们可以在每个层次空间计算训练和测试误差；图4.10显示了这个结果。图4.11显示了基于二维LDA的解的分类器的判别边界。</p>
+<p><img alt="" src="../../img/04/fig4.10.png" /></p>
+<blockquote>
+<p>图4.10. 对于元音数据，训练和测试误差作为判别边界的维数的函数的图象。这种情况下最优的误差率是维数等于2的情况。图4.11显示了这个空间的判别边界。</p>
+</blockquote>
+<p>Fisher降秩判别分析和指示响应矩阵之间存在着紧密的联系。结果是LDA意味着伴随着$\hat Y^TY$的特征值分解。在两个类的情形下，有一个单判别变量，它与在$\hat Y$的任意列乘上一个标量相等。这些联系将在第12章中讨论。一个相关的事实是先将原始的预测变量$X$转换为$\hat Y$，然后用$\hat Y$做LDA与在原空间中做LDA是相等的（练习4.3）.</p>
+<p><img alt="" src="../../img/04/fig4.11.png" /></p>
+<blockquote>
+<p>图4.11. 对于元音训练数据，由前两个典则变量张成的二维子空间中的判别边界。注意到在任何高维子空间下，判别边界是高维仿射平面，而且不可以表示成直线。</p>
+</blockquote>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//weiya.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//weiya.disqus.com/count.js" async></script></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Powered by <a href="http://www.mkdocs.org/">MkDocs</a> and <a href="http://bootswatch.com/yeti/">Yeti</a></center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../js/MathJax/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script src="../../js/mymathjax.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            请在下面输入你要搜索的文本（仅支持英文）：
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
