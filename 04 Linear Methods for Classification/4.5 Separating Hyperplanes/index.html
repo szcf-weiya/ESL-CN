@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/04 Linear Methods for Classification/4.1 Introduction/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/04 Linear Methods for Classification/4.5 Separating Hyperplanes/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>4.1 导言 - ESL CN</title>
+	<title>4.5 分离超平面 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -233,8 +233,8 @@
     <ul class="dropdown-menu">
         
             
-<li class="active">
-    <a href="./">4.1 导言</a>
+<li >
+    <a href="../4.1 Introduction/">4.1 导言</a>
 </li>
 
         
@@ -257,8 +257,8 @@
 
         
             
-<li >
-    <a href="../4.5 Separating Hyperplanes/">4.5 分离超平面</a>
+<li class="active">
+    <a href="./">4.5 分离超平面</a>
 </li>
 
         
@@ -280,12 +280,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../../03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">
+                    <a rel="next" href="../4.4 Logistic Regression/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
-                <li >
-                    <a rel="prev" href="../4.2 Linear Regression of an Indicator Matrix/">
+                <li class="disabled">
+                    <a rel="prev" >
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -306,14 +306,18 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#41">4.1 导言</a></li>
+        <li class="main active"><a href="#45">4.5 分离超平面</a></li>
+        
+            <li><a href="#451-rosenblatt">4.5.1 Rosenblatt的感知器学习算法</a></li>
+        
+            <li><a href="#452">4.5.2 最优分离超平面</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="41">4.1 导言</h1>
+<h1 id="45">4.5 分离超平面</h1>
 <table>
 <thead>
 <tr>
@@ -328,30 +332,132 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-12-06</td>
+<td>2016-12-15:2016-12-15</td>
 </tr>
 </tbody>
 </table>
-<p>在这章我们重新回到分类问题并且集中在分类的线性方法上。因为我们的预测变量$G(x)$是在离散集$\cal G$中取值，我们总是可以把输入空间分成一些区域的集合，这些区域根据分类来打上标签。我们在第2章看到这些区域的边界依赖于预测函数，边界会变得粗糙或者光滑。对于这些过程的一个很重要的类，这些判别边界（decision boundaries）都是线性的；这也是我们说的分类的线性方法。</p>
-<p>线性判别边界可以通过许多不同的方式找到。在第二章中，我们根据类别指示变量拟合线性回归模型，根据最大的拟合来分类。假设有$K$个类别，为了方便记为$1,2,\ldots,K$,第$k$个响应预测变量的拟合好的线性模型为$\hat f_k(x)=\hat\beta_{k0}+\hat\beta_k^Tx$.第$k$类和第$l$类的判别边界是满足$\hat f_k(x)=\hat f_\ell(x)$的点的集合，也就是集合${x:(\hat\beta_{k0}-\hat\beta_{\ell 0})+(\hat\beta_k-\hat\beta_\ell)^Tx=0}$,这是一个仿射集或者超平面（<strong>作者注：严格来说，超平面需要通过原点，而仿射集不需要。我们有时忽略它们之间的区别并且一般指超平面</strong>）。对于任意两个类别这也是正确的，输入空间被分段超平面判别边界分成了常值分类的区域。回归方法是对每个类别建立判别函数$\delta_k(x)$方法中的一个，然后将$x$分到有最大值的判别函数上。建立后验概率$Pr(G=k\mid X=x)$也是属于这种类别。说的更清楚点，只要$\delta_k(x)$或者$Pr(G=k\mid X=x)$关于$x$是线性的，则判别边界将也是线性的。</p>
-<p>实际上，我们所有的要求是$\delta_k$或者$Pr(G=k\mid X=x)$的一些单调变换关于判别边界是线性的。举个例子，如果这里有两个类，一个关于后验概率很流行的模型是
+<p>我们已经看到线性判别分析和逻辑斯蒂回归都很相似地估计线性判别边界但是有点不同的地方。这章的剩下部分我们来描述一下分离超平面分类器。这些过程构造线性判别边界试图把数据尽可能分到不同的类别中去。它们可以看成是将在12章讨论的支持向量机的基础。这节的数学层次比前面的章节更高一点。</p>
+<p>图4.14显示了$R^2$空间的两个类别的20个数据点。这些点可以被线性边界分离开。图中的蓝色线条是无穷个可能分离超平面中的两个。黄色的线条表示该问题的最小二乘解，通过在$X$上对-1/1的响应变量$Y$回归得到（带有截距）；该直线由下式给出
+<script type="math/tex; mode=display">
+\{x:\hat\beta_0+\hat\beta_1x_1+\hat\beta_2x_2=0\}\qquad (4.39)
+</script>
+<img alt="" src="../../img/04/fig4.14.png" /></p>
+<blockquote>
+<p>图4.14. 被超平面分离开的两个类别的小例子。橘黄色的线条是最小二乘的解，误判了训练集中的一个点。图中也显示了通过不同初始值运用感知器学习算法得到的分离超平面。</p>
+</blockquote>
+<p>最小二乘解并不能很好地把点分离开，而且有一个误判。这与通过LDA找到地边界相同，由于在两个类别的情况下LDA与线性回归是等价的。（4.3节和练习4.2）</p>
+<p>（4.39）的分类器计算得到输入特征的线性组合并且返回符号，在1950s末期（Rosenblatt,1958）称之为感知器（perceptrons）。感知器是1980s和1990s神经网络模型的基础。</p>
+<p>在我们继续之前，我们稍微岔开去回顾一些向量代数的知识。图4.15描述了由等式$f(x)=\beta_0+\beta^Tx=0$定义的超平面或仿射集$L$;因为我们是在$R^2$空间中所以这是一条直线。这里我们列出一些性质：
+1. 对于在$L$中的两点$x_1$和$x_2$,$\beta^T(x_1-x_2)=0$，因此$L$表面的法向量为$\beta^*=\beta/\Vert\beta\Vert$
+2. 对于$L$的任意点，$\beta^Tx_0=-\beta_0$
+3. $x$到$L$的符号距离为
 <script type="math/tex; mode=display">
 \begin{array}{ll}
-Pr(G=1\mid X=x)&=\dfrac{exp(\beta_0+\beta^Tx)}{1+exp(\beta_0+\beta^Tx)}\\
-Pr(G=2\mid X=x)&=\dfrac{1}{1+exp(\beta_0+\beta^Tx)}
+{\beta^*}^T(x-x_0)&=\frac{1}{\Vert\beta\Vert}(\beta^Tx+\beta_0)\\
+&=\frac{1}{\Vert f'(x)\Vert}f(x)\qquad (4.40)
 \end{array}
-\qquad \qquad(4.1)
+</script>
+因此$f(x)$与$x$到由$f(x)=0$定义的超平面符号距离成比例。</p>
+<p><img alt="" src="../../img/04/fig4.15.png" /></p>
+<blockquote>
+<p>图4.15. 超平面（仿射集）的线性代数</p>
+</blockquote>
+<h2 id="451-rosenblatt">4.5.1 Rosenblatt的感知器学习算法</h2>
+<p>感知器学习算法试图通过最小化误分类的点到判别边界距离来寻找分离超平面。如果响应变量$y_i=1$是误分类的，则$x_i^T\beta+\beta_0&lt;0$，对于误分类的响应变量$y_i=-1$是反过来的。目标是最小化
+<script type="math/tex; mode=display">
+D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\qquad (4.41)
+</script>
+其中$\cal M$是误分类点的指标集。该值是非负的且与误分类的点到由$\beta^Tx+\beta_0=0$定义的判别边界的距离成比例。梯度（假设$\cal M$固定）由下式给出
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\dfrac{\partial D(\beta,\beta_0)}{\partial \beta}&=-\sum\limits_{i\in \cal M}y_ix_i\qquad (4.42)\\
+\dfrac{\partial D(\beta,\beta_0)}{\partial \beta_0}&=-\sum\limits_{i\in \cal M}y_i\qquad (4.43)
+\end{array}
+</script>
+这个算法实际上应用了随机梯度下降（stochastic gradient descent）来最小化分段线性准则。这意味着与其计算经过一步之后每个观测值的梯度贡献之和，不如当每个观测被访问之后采取新的一步。因此误分类的观测值会以某种次序被访问，而且参数$\beta$通过下式更新
+<script type="math/tex; mode=display">
+\left(\begin{array}{}\beta\\\beta_0\end{array}\right)\leftarrow
+\left(\begin{array}{}\beta\\\beta_0\end{array}\right)+
+\rho\left(\begin{array}{}y_ix_i\\y_i\end{array}\right)
+\qquad (4.44)
 </script>
 </p>
-<p>这里单调变换是logit变换：$log[p/(1-p)]$，事实上我们看到
+<p>这里$\beta$是学习速率，不失一般性这种情形下取1.如果类别是线性可分的，则可以证明在有限步后该算法收缩到一个分离超平面（练习4.6）.图4.14显示了对一个简单问题的两个解，每个都是从不同的随机猜测开始的。</p>
+<p>该算法有以下一些问题，由1996年Ripley总结：</p>
+<ul>
+<li>当数据是线性可分时，有许多解，且解基于初始值的设定。</li>
+<li>“有限”步可以非常大。差异越小，需要花的时间就越久。</li>
+<li>当数据不是线性可分时，算法不会收敛，而且会形成循环。循环可以很长因此不容易检测。</li>
+</ul>
+<p>第二个问题经常通过不在原空间中寻找超平面而被忽略，而在一个通过构造在原空间中变量的基函数变换得到的增广空间中。这类似于在多项式回归问题中为了将残差降为0而使得阶数特别大。完美的分离不总是可以达到：举个例子，如果来自两个类别的观测值有一个共同输入。这或许也不是需要的，因为得到的模型很可能是过拟合从而不能很好地进行推广。我们将在下一节的结束回到这个问题的讨论。</p>
+<p>对于第一个问题的优雅解决方式是对分离超平面加上额外的约束条件。</p>
+<h2 id="452">4.5.2 最优分离超平面</h2>
+<p>最优分离超平面将两个类别分离开且使得超平面到每一个类别最近点的距离最大（Vapnik, 1996）.这样不仅得到分离超平面问题的唯一解，而且通过使得在训练集上两个类别的边缘最大，这使得在测试集上有更好的分类表现。</p>
+<p>我们需要一般化准则（4.41）。考虑下面的优化问题
 <script type="math/tex; mode=display">
-log\dfrac{Pr(G=1\mid X=x)}{Pr(G=2\mid X=x)}=\beta_0+\beta^Tx\qquad\qquad (4.2)
+\begin{array}{}
+\underset{\beta,\beta_0,\Vert\beta\Vert=1}{max}\; M\\
+s.t.\; y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N
+\end{array}
+\qquad (4.45)
 </script>
-判别边界是<em>log-odds</em>等于0的点的几何，这是由${x\mid\beta_0+\beta^Tx=0}$定义的超平面。我们讨论两种非常流行但是不同的方法，都是线性的log-odds或者logits：线性判别分析和线性logistic回归。尽管他们推导不相同，但是他们关键的区别在于线性函数根据训练数据拟合的方式。</p>
-<p>一个清晰地在类别之间建立边界的更加直接的方法便是线性的。对于在$p$维输入空间的两个类别的问题，这意味着把超平面作为判别边界来界定——换句话说，一个正态向量和一个分隔点。我们将清楚地看到两种方法都是寻找“分隔超平面”。第一个是Rosenblatt(1958)的感知器（<em>perceptron</em>）模型，它由一个从训练数据中寻找分离超平面的算法，如果存在超平面的话。第二个方法要归功于Vapnik(1996)，寻找一个最优分离超平面如果超平面存在的话，不存在的话则寻找一个超平面使得训练数据中的重叠最小。我们这里处理离散的情形，非离散的情形将推到第12章讨论。</p>
-<p>尽管整个章节都在谈论线性判别边界，考虑一般倾向也是可以的。举个例子，我们可以将我们的变量集$X_1,X_2,\ldots,X_p$ 通过加上他们的交叉积$X_1^2,X_2^2,\ldots,X_1X_2,\ldots,$ 因此加入了$p(p+1)/2$ 个额外的变量。在增广空间的线性函数投影到原空间的线性函数——因此从线性判别边界转换为二次判别边界。图4.1描述了这一想法。数据集是一样的，左边在二维空间中用线性判别函数，而右边图在增广的五维空间中用线性判别函数。这种方式可以跟任意基变换$h(X)$一起使用，其中$h:R^p\rightarrow R^q,q&gt;p$,这将在后面章节中讨论。</p>
-<p><img alt="" src="../../img/04/fig4.1.png" /></p>
-<p>图4.1：左图显示了三个类别的一些数据，以及通过线性判别分析得到的线性判别边界。右图显示了二次判别边界。这是通过在五维空间$X_1,X_2,X_1X_2,X_1^2,X_2^2$找到线性边界得到。这个空间里面的线性不等式是原空间的二次不等式。</p>
+这一系列条件保证了所有点到由$\beta$和$\beta_0$定义的判别边界的符号距离至少为$M$，我们寻找最大的$M$和相关的参数。我们可以通过把条件替换为下面的形式来摆脱$\Vert\beta\Vert=1$的限制
+<script type="math/tex; mode=display">
+\frac{1}{\Vert\beta\Vert}y_i(x_i^T\beta+\beta_0)\ge M\qquad (4.46)
+</script>
+(重新定义了$\beta_0$)或者等价于
+<script type="math/tex; mode=display">
+y_i(x_i^T\beta+\beta_0)\ge M\Vert\beta\Vert\qquad (4.47)
+</script>
+因为对于任意满足这些不等式的$\beta$和$\beta_0$，任意正的放缩因子同样满足它们，我们可以任意令$\Vert\beta\Vert=1/M$.因此（4.45）等价于
+<script type="math/tex; mode=display">
+\begin{array}{}
+\underset{\beta,\beta_0}{min}\;\frac{1}{2}\Vert\beta\Vert^2\\
+s.t.\; y_i(x_i^T\beta+\beta_0)\ge \; i=1,\ldots,N 
+\end{array}
+\qquad (4.48)
+</script>
+由于(4.40),上面的约束条件定义了一个判别边界周围厚度为$1/\Vert\beta\Vert$的平板或者空白。因此我恶魔年选择$\beta$和$\beta_0$最大化厚度。这是一个凸优化问题（线性不等约束的二次准则）。Lagrange（原问题）函数关于$\beta$和$\beta_0$进行最小化是
+<script type="math/tex; mode=display">
+L_P=\frac{1}{2}\Vert\beta\Vert^2-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-1]\qquad (4.49)
+</script>
+令微分为0，则有
+<script type="math/tex; mode=display">
+\beta=\sum\limits_{i=1}^N\alpha_iy_ix_i\qquad (4.50)
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+0=\sum\limits_{i=1}^N\alpha_iy_i\qquad (4.51)
+</script>
+</p>
+<p>替换掉（4.49）中的这些项我们得到被称作Wolfe的对偶问题
+<script type="math/tex; mode=display">
+L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{k=1}^N\alpha_i\alpha_ky_iy_kx_i^Tx_k\\
+\qquad\qquad \qquad \qquad \qquad s.t. \; \alpha_i\ge 0\qquad \qquad(4.52)
+</script>
+通过在正象限内最大化$L_D$得到解，这是一个简单的凸优化问题，可以使用标准的软件来求解。另外解必须满足KKT（Karush-Kuhn-Tucker）条件,它包括（4.50），（4.51），（4.52）以及
+<script type="math/tex; mode=display">
+\alpha_i[y_i(x_i^T\beta+\beta_0)-1]=0\;\forall i.\qquad (4.53)
+</script>
+从这些我们看到</p>
+<ul>
+<li>如果$\alpha_i\gt 0$,则$y_i(x_i^T+\beta_0)=1$,或者换句话说，$x_i$在平板的边界上；</li>
+<li>如果$y_i(x_i^T\beta+\beta_0)&gt;1$,$x_i$不在平板的边界上，而且$\alpha_i=0$</li>
+</ul>
+<p>从(4.50)我们可以看到解向量$\beta$定义为关于支撑点$x_i$的线性组合——这些点通过$\alpha_i&gt;0$定义在平板的边界上。图4.16显示了我们小例子的最优分离超平面；这里有三个支撑点。同样地，$\beta_0$通过对任意支撑点求解（4.53）得到。</p>
+<p><img alt="" src="../../img/04/fig4.16.png" /></p>
+<blockquote>
+<p>图4.16. 和图4.14同样的数据。阴影区域描绘了分离两个类别的最大边缘空白。这里有三个支撑点；它们位于边缘空白的边界上，最优分离超平面（蓝色线条）平分了平板。这张图里面的边界是通过逻辑斯蒂回归得到的（红色线条），它与最优分离超平面非常接近（见12.3.3节）</p>
+</blockquote>
+<p>最优分离超平面得到函数$\hat f(x)=x^T\hat\beta+\hat\beta_0$来对新的观测分类
+<script type="math/tex; mode=display">
+\hat G(x)=sign \hat f(x)\qquad (4.54)
+</script>
+尽管没有训练观测点落在空白边缘处（由构造可知），但这对于测试观测点不一定正确。直觉是训练数据上大的边缘空白会导致在训练数据集上良好的分离。</p>
+<p>关于支撑点的描述似乎表明解更加关注考虑的点，而且对于模型错误更加稳健。而另一方面，LDA的解取决于所有数据点，即便点远离判别边界。然而，注意到这些支撑点也需要用到所有数据点。当然，如果类别真的服从高斯分布，LDA是最优的，分离超平面会在关注类别边界数据（噪声）上付出代价。</p>
+<p>图4.16中还画出了该问题的通过极大似然法得到的逻辑斯蒂回归的解。这种情形下两个解都是很相似的。当存在分离超平面，逻辑斯蒂回归总是能找到它，因为这种情况下概率的对数值总能达到0（练习4.5）.逻辑斯蒂回归的解与分离超平面的解有其它的定性上的特点。系数向量通过在输入特征上零均值线性响应向量的加权最小二乘拟合来定义，对于离判别边界更近的点系数更大。</p>
+<p>当数据不可分时，该问题没有可行解，需要一种另外的构造。再一次我们可以利用基变换来扩大空间，但是这个可能导致通过过拟合进行人工分离。在第12章中我们将要讨论更加吸引人的方法，被称为支持向量机，它允许重叠，但是最小化了某种度量下的重叠。</p>
 
 <div id="disqus_thread"></div>
 <script>
