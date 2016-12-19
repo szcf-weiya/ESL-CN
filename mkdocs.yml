@@ -39,7 +39,9 @@ pages:
     #- 9 增广模型，树，以及相关方法:
     #- 10 加速和增长树:
     #- 11 神经网络:
-    #- 12 支持向量机和灵活的判别方法:
+    - 12 支持向量机和灵活的判别方法:
+      - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
+      - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md' 
     #- 13 原型方法和最近邻:
     #- 14 非监督学习:
     #- 15 随机森林:
