@@ -384,7 +384,7 @@
 <blockquote>
 <p>weiya注：这里说的是，在没有对参数大小进行限制前，会存在一对相关性强的变量，当它们系数取值符号相反，但绝对值差不多大，会大大增加方差，这也就是高方差的体现，但其实它们的合作用效果为近似为0,所以考虑引进对参数大小的惩罚。</p>
 </blockquote>
-<p>对输入按比例进行缩放或放大时，岭回归的解不相等，因此求解（3.41）前我们需要对输入进行正规标准化。另外，注意到惩罚项不包含截距$\beta_0$。对截距的惩罚会使得过程依赖于$\mathbf{Y}$的初始选择；也就是，对每个$y_i$加上常数$c$不会简单地导致预测会偏离同样的量$c$。可以证明（练习3.5）经过中心化输入的再参量化，每个$x_{ij}$用$x_{ij}-\bar{x}<em>j$来替换，(3.41)的解可以分成两部分。我们用$\bar{y}=\frac{1}{N}\sum_1^Ny_i$来估计$\beta_0$。剩余的参数利用中心化的$x</em>{ij}$通过无截距的岭回归来估计。今后我们假设中心化已经完成，则输入矩阵$\mathbf{X}$有$p$（不是$p+1$）列。</p>
+<p>对输入按比例进行缩放或放大时，岭回归的解不相等，因此求解（3.41）前我们需要对输入进行正规标准化。另外，注意到惩罚项不包含截距$\beta_0$。对截距的惩罚会使得过程依赖于$\mathbf{Y}$的初始选择；也就是，对每个$y_i$加上常数$c$不会简单地导致预测会偏离同样的量$c$。可以证明（练习3.5）经过中心化输入的再参量化，每个$x_{ij}$用$x_{ij}-\bar x_j$来替换，(3.41)的解可以分成两部分。我们用$\bar y=\frac{1}{N}\sum_1^Ny_i$来估计$\beta_0$。剩余的参数利用中心化的$x_{ij}$通过无截距的岭回归来估计。今后我们假设中心化已经完成，则输入矩阵$\mathbf X$有$p$（不是$p+1$）列。</p>
 <p>将(3.41)的准则写成矩阵形式</p>
 <p>
 <script type="math/tex; mode=display">
@@ -618,13 +618,13 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\\
 <li>按这种方式继续直到所有的$p$个预测变量加入到模型中。经过$min(N-1, p)$步，我们达到了全最小二乘的解。</li>
 </ol>
 <hr />
-<p>假设$\cal A_k$是第$k$步开始时的变量活跃集，$\beta_{\cal A_k}$为这一步中变量的系数向量；其中有$k-1$个非零值，刚刚进入的变量系数值为0.如果当前残差为$\mathbf{r}<em>k=\mathbf{y}-\mathbf{X}</em>{{\cal A}<em>k}\beta</em>{{\cal A}_k}$,则当前步的方向为</p>
+<p>假设$\cal A_k$是第$k$步开始时的变量活跃集，$\beta_{\cal A_k}$为这一步中变量的系数向量；其中有$k-1$个非零值，刚刚进入的变量系数值为0.如果当前残差为$\mathbf r_k=\mathbf y-\mathbf X_{\cal A_k}\beta_{\cal A_k}$,则当前步的方向为</p>
 <p>
 <script type="math/tex; mode=display">
 \delta_k=(\mathbf X^T_{ \cal A_k}\mathbf X_{\cal A_k})^{-1}\mathbf X^T_{\cal A_k}\mathbf r_k \qquad (3.55)
 </script>
 </p>
-<p>系数然后迭代为 $\beta_{{\cal A}<em>k} (\alpha) = \beta</em>{{\cal A}<em>k} + \alpha · \delta_k$.练习3.23证明这种方式下选择的方向满足断言：保证相关系数结合和递减（tied and decreasing）。如果该步的开始拟合向量为$\hat{\mathbf{f}}_k$,则迭代为$\hat{\mathbf{f}}_k(\alpha)=\mathbf{f}_k+\alpha\cdot\mathbf{u}_k$,其中$\mathbf{u}_k=\mathbf{X}</em>{{\cal A}_k}\delta_k$是新的拟合方向。“最小角”由该过程的几何解释得到；$\mathbf{u}_k$使得活跃集${\cal A}_k$中的预测变量间的角度最小（练习3.24）。图3.14使用模拟数据显示了相关系数的绝对值下降以及每一步LAR算法的加入行列。</p>
+<p>系数然后迭代为 $\beta_{\cal A_k} (\alpha) = \beta_{\cal A_k} + \alpha · \delta_k$.练习3.23证明这种方式下选择的方向满足断言：保证相关系数结合和递减（tied and decreasing）。如果该步的开始拟合向量为$\hat{\mathbf f}<em>k$,则迭代为$\hat{\mathbf f}_k(\alpha)=\mathbf f_k+\alpha\cdot\mathbf u_k$,其中$\mathbf u_k=\mathbf X</em>{\cal A_k}\delta_k$是新的拟合方向。“最小角”由该过程的几何解释得到；$\mathbf u_k$使得活跃集${\cal A}_k$中的预测变量间的角度最小（练习3.24）。图3.14使用模拟数据显示了相关系数的绝对值下降以及每一步LAR算法的加入行列。</p>
 <p><img alt="" src="../../img/03/fig3.14.png" /></p>
 <blockquote>
 <p>图3.14：通过6个预测变量的拟合数据集，每一步LAR过程中的相关性绝对值的变化。图像上方的标签表示在每一步哪些变量加进了活跃集。步长是用单位$L_1$弧长来测量的。</p>
