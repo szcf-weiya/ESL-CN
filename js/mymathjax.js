@@ -5,7 +5,5 @@ tex2jax: {
   processEscapes:true
 },
 TeX: {
-  entensions: ["color.js"],
-  equationNumbers: { autoNumber: "AMS" }
-}
+  entensions: ["color.js"]}
 })

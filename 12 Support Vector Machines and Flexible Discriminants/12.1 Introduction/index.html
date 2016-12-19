@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>3.7 多重输出的收缩和选择 - ESL CN</title>
+	<title>12.1 导言 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -183,43 +183,43 @@
         
             
 <li >
-    <a href="../3.1 Introduction/">3.1 导言</a>
+    <a href="../../03 Linear Methods for Regression/3.1 Introduction/">3.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
+    <a href="../../03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.3 Subset Selection/">3.3 子集的选择</a>
+    <a href="../../03 Linear Methods for Regression/3.3 Subset Selection/">3.3 子集的选择</a>
 </li>
 
         
             
 <li >
-    <a href="../3.4 Shrinkage Methods/">3.4 收缩的方法</a>
+    <a href="../../03 Linear Methods for Regression/3.4 Shrinkage Methods/">3.4 收缩的方法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
+    <a href="../../03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
+    <a href="../../03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
 </li>
 
         
             
-<li class="active">
-    <a href="./">3.7 多重输出的收缩和选择</a>
+<li >
+    <a href="../../03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">3.7 多重输出的收缩和选择</a>
 </li>
 
         
@@ -272,14 +272,14 @@
     <ul class="dropdown-menu">
         
             
-<li >
-    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
+<li class="active">
+    <a href="./">12.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
+    <a href="../12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
 </li>
 
         
@@ -301,12 +301,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../3.6 A Comparison of the Selection and Shrinkage Methods/">
+                    <a rel="next" href="../../04 Linear Methods for Classification/4.5 Separating Hyperplanes/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../04 Linear Methods for Classification/4.1 Introduction/">
+                    <a rel="prev" href="../12.2 The Support Vector Classifier/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -327,14 +327,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#37">3.7 多重输出的收缩和选择</a></li>
+        <li class="main active"><a href="#121">12.1 导言</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="37">3.7 多重输出的收缩和选择</h1>
+<h1 id="121">12.1 导言</h1>
 <table>
 <thead>
 <tr>
@@ -349,14 +349,11 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-10-21:2016-10-21</td>
+<td>2016-12-09</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p><strong>weiya 注：</strong>
-原书提示本部分较难，而且跳过去不影响后面的阅读，所有我选择暂时将本部分跳过。</p>
-</blockquote>
+<p>在这章我们将要描述用于分类的线性判别边界的一般化。当两个类别是线性可分时我们在第四章中介绍了最优分离超平面.这里我们我们介绍不可分的情形，当类别有冲突时。这些技巧会被归结为支持向量机，通过在大的、转置的特征空间中构造线性边界得到非线性边界。第二套方法一般化了Fisher的线性判别分析（LDA）。一般化包括可变的判别分析(flexible discriminant analysis)，它以一种很类似于支持向量机的方式帮助构造非线性边界，以及对含有大量相关的特征的信号和图像数据分类而进行的含惩罚项的判别分析(penalized discriminant analysis)，以及对于无规则类别的混合判别分析(mixture discriminant analysis)。</p>
 
 <div id="disqus_thread"></div>
 <script>

@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>3.7 多重输出的收缩和选择 - ESL CN</title>
+	<title>12.2 支持向量分类器 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -183,43 +183,43 @@
         
             
 <li >
-    <a href="../3.1 Introduction/">3.1 导言</a>
+    <a href="../../03 Linear Methods for Regression/3.1 Introduction/">3.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
+    <a href="../../03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.3 Subset Selection/">3.3 子集的选择</a>
+    <a href="../../03 Linear Methods for Regression/3.3 Subset Selection/">3.3 子集的选择</a>
 </li>
 
         
             
 <li >
-    <a href="../3.4 Shrinkage Methods/">3.4 收缩的方法</a>
+    <a href="../../03 Linear Methods for Regression/3.4 Shrinkage Methods/">3.4 收缩的方法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
+    <a href="../../03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
+    <a href="../../03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
 </li>
 
         
             
-<li class="active">
-    <a href="./">3.7 多重输出的收缩和选择</a>
+<li >
+    <a href="../../03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">3.7 多重输出的收缩和选择</a>
 </li>
 
         
@@ -273,13 +273,13 @@
         
             
 <li >
-    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
+    <a href="../12.1 Introduction/">12.1 导言</a>
 </li>
 
         
             
-<li >
-    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
+<li class="active">
+    <a href="./">12.2 支持向量分类器</a>
 </li>
 
         
@@ -301,12 +301,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../3.6 A Comparison of the Selection and Shrinkage Methods/">
+                    <a rel="next" href="../12.1 Introduction/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
-                <li >
-                    <a rel="prev" href="../../04 Linear Methods for Classification/4.1 Introduction/">
+                <li class="disabled">
+                    <a rel="prev" >
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -327,14 +327,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#37">3.7 多重输出的收缩和选择</a></li>
+        <li class="main active"><a href="#122">12.2 支持向量分类器</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="37">3.7 多重输出的收缩和选择</h1>
+<h1 id="122">12.2 支持向量分类器</h1>
 <table>
 <thead>
 <tr>
@@ -349,14 +349,55 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-10-21:2016-10-21</td>
+<td>2016-12-09</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p><strong>weiya 注：</strong>
-原书提示本部分较难，而且跳过去不影响后面的阅读，所有我选择暂时将本部分跳过。</p>
-</blockquote>
+<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面。我们复习这个并且推广到不可分的情形下（类别可能不会被线性边界分离）。</p>
+<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in {-1,1}$.定义超平面
+<script type="math/tex; mode=display">
+\{x:f(x)=x^T\beta+\beta_0=0\}\qquad (12.1)
+</script>
+其中$\beta$是单位向量$\Vert \beta\Vert=1$.由$f(x)$导出的分类准则为
+<script type="math/tex; mode=display">
+G(x)=sign[x^T\beta+\beta_0]\qquad (12.2)
+</script>
+超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$,满足$y_if(x_i)&gt;0,\forall i$.因此我们可以找到超平面在类别1和-1的训练点之间创造最大的空白（图12.1）。优化问题是
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\underset{\beta,\beta_0,\Vert \beta\Vert=1}{max}\; M\\
+s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
+\end{array}
+\qquad (12.3)
+</script>
+</p>
+<p>图中的条纹宽度为$M$是分离超平面到另一边的距离，因此总共宽度为$2M$。这称为边缘空白（margin）。</p>
+<p>我们已经证明了这个问题可以更方便地写成
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+&\underset{\beta,\beta_0}{min}\;\Vert\beta\Vert\\
+s.t.&\; y_i(x_i^T\beta+\beta_0)\ge 1,\; i=1,\ldots,N
+\end{array}
+\qquad (12.4)
+</script>
+我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$.表达式（12.4）是对于稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解将在4.5.2节中讨论。</p>
+<p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$,但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$.有两种自然的方式去修改（12.3）中的约束：
+<script type="math/tex; mode=display">
+y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\qquad (12.5)
+</script>
+或者
+<script type="math/tex; mode=display">
+y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\qquad (12.6)
+</script>
+$\forall i,\xi_i\ge 0,\sum_{i=1}^N\xi_i\le constant$. 这两个选择导出不同的解。第一个选择似乎更加自然，因为它衡量了到边缘空白的实际距离；第二个选择衡量了相对距离，它会随着边缘空白$M$的改变而改变。然而，第一个选择是一个非凸的优化问题，而第二个是凸的；因此（12.6）推出标准的支持向量分类器，我们从这里开始使用它。</p>
+<p>这是想法的形成过程。约束条件$y_i(x_i^T\beta+\beta_0)\ge M(1-\xi_i)$中的$\xi_i$与经过$f(x_i)=x_i^T\beta+\beta_0$预测得到的错误分类总数成比例。因此通过约束$\sum\xi_i$,我们约束了错误预测总数的比例。当$\xi_i&gt;1$则为错误分类，所以在$K$的水平下约束$\sum\xi_i$表示限制训练集中错分类个数小于$K$.</p>
+<p>类似4.5.2节中的（4.48），我们可以去掉在$\beta$上的约束，定义$M=1/\Vert\beta\Vert$，然后将（12.4）写成下面的等价形式
+<script type="math/tex; mode=display">
+min\;\Vert\beta\Vert\qquad s.t.\;\left\{\begin{array}{ll}y_i(x_i^T\beta+\beta_0\ge1-\xi)\;\forall i,\\
+\xi_i\ge 0,\sum\xi_i\le constant.\end{array}\right.\qquad (12.7)
+</script>
+这是非分离情形下支持向量分类器定义的通常方式。然而我们会对约束$y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i$中的固定常数1感到误解，更喜欢使用(12.6)式。图12.1的右图说明了重叠的情形。</p>
+<p>从准则（12.7）可以看出，在类别里面的点不会对边界的形成有太大的影响。这似乎是个很吸引人的性质，这与线性判别边界（4.3节）不同。LDA中，判别边界是由类别的分布的协方差和重心来决定。我们将在12.3.3节看到逻辑斯蒂回归在这点上很像。</p>
 
 <div id="disqus_thread"></div>
 <script>
