@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>12.2 支持向量分类器 - ESL CN</title>
+	<title>8.6 MCMC向后采样 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -318,37 +318,37 @@
         
             
 <li >
-    <a href="../../08 Model Inference and Averaging/8.1 Introduction/">8.1 导言</a>
+    <a href="../8.1 Introduction/">8.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods/">8.2 自助法和最大似然法</a>
+    <a href="../8.2 The Bootstrap and Maximum Likelihood Methods/">8.2 自助法和最大似然法</a>
 </li>
 
         
             
 <li >
-    <a href="../../08 Model Inference and Averaging/8.3 Bayesian Methods/">8.3 贝叶斯方法</a>
+    <a href="../8.3 Bayesian Methods/">8.3 贝叶斯方法</a>
 </li>
 
         
             
 <li >
-    <a href="../../08 Model Inference and Averaging/8.4 Relationship Between the Bootstrap and Bayesian Inference/">8.4 自助法和贝叶斯推断之间的关系</a>
+    <a href="../8.4 Relationship Between the Bootstrap and Bayesian Inference/">8.4 自助法和贝叶斯推断之间的关系</a>
 </li>
 
         
             
 <li >
-    <a href="../../08 Model Inference and Averaging/8.5 The EM Algorithm/">8.5 EM算法</a>
+    <a href="../8.5 The EM Algorithm/">8.5 EM算法</a>
 </li>
 
         
             
-<li >
-    <a href="../../08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior/">8.6 MCMC向后采样</a>
+<li class="active">
+    <a href="./">8.6 MCMC向后采样</a>
 </li>
 
         
@@ -393,13 +393,13 @@
         
             
 <li >
-    <a href="../12.1 Introduction/">12.1 导言</a>
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
 </li>
 
         
             
-<li class="active">
-    <a href="./">12.2 支持向量分类器</a>
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
 </li>
 
         
@@ -451,12 +451,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../12.1 Introduction/">
+                    <a rel="next" href="../8.5 The EM Algorithm/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/">
+                    <a rel="prev" href="../../09 Additive Models, Trees, and Related Methods/9.0 Introduction/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -477,18 +477,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#122">12.2 支持向量分类器</a></li>
-        
-            <li><a href="#1221">12.2.1 计算支持向量分类器</a></li>
-        
-            <li><a href="#1222">12.2.2 混合例子（继续）</a></li>
+        <li class="main active"><a href="#mcmc">MCMC从后采样</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="122">12.2 支持向量分类器</h1>
+<h1 id="mcmc">MCMC从后采样</h1>
 <table>
 <thead>
 <tr>
@@ -503,115 +499,29 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-12-19:2016-12-20</td>
+<td>2017-02-03</td>
 </tr>
 </tbody>
 </table>
-<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面。我们复习这个并且推广到不可分的情形下（类别可能不会被线性边界分离）。</p>
-<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in {-1,1}$.定义超平面
+<p>已经定义了一个贝叶斯模型，有人便想要从得到的后验分布中采样来对参数进行推断。除了简单的模型，这通常是一个困难的计算问题。这部分我们讨论马尔科夫蒙特卡洛法来后采样。我们将要看到吉布斯采样（一个MCMC过程）与EM算法非常相关：主要的区别在于它从条件分布中采样而非对他们最大化。</p>
+<p>首先考虑下面的抽象问题。我们有随机变量$U_1,U_2,\ldots,U_K$，而且希望从他们的联合分布中采样。假设这很难实现，但是从条件分布$Pr(U_j\mid U_1,U_2,\ldots,U_{j-1},U_{j+1},\ldots,U_K),j=1,\ldots,K$中模拟是非常简单的。吉布斯采样过程也可以从他们的每个分布来模拟，而且当这个过程稳定下来，吉布斯采样从需要的联合分布中提供了一个样本。这个过程在算法8.3中定义。</p>
+<p><img alt="" src="../../img/08/alg8.3.png" /></p>
+<p>在正规化条件下可以证明这一过程最终稳定，得到的随机变量实际上是从$U_1,U_2,\ldots,U_K$联合分布中取的一个样本。尽管对于不同的$t$,样本$(U_1^{(t)},U_2^{(t)},\ldots,U_K^{(t)})$显然不独立。更正式地，吉布斯采样得到一个马尔科夫链，该马尔科夫链的平稳分布是真正的联合分布，因此称之为“马尔科夫链蒙特卡洛法”。在这个过程下真实的联合分布是平稳的并不奇怪，因为连续的步骤使得$U_k$的边缘分布不变。</p>
+<p>注意到我们不需要知道条件密度的显式形式，但是仅仅需要能够从中取样。经过这一过程达到平稳性，任意变量的子集的边缘密度可以通过应用样本值得到的密度估计来近似。然而，如果条件密度$Pr(U_k\mid U_\ell,\ell\neq k)$的显式形式是知道的，则$U_k$的边缘密度的一个良好估计可以从下式得到（练习8.3）：
 <script type="math/tex; mode=display">
-\{x:f(x)=x^T\beta+\beta_0=0\}\qquad (12.1)
+\widehat{Pr}_{U_k}(u)=\frac{1}{(M-m+1)}\sum\limits_{t=m}^MPr(u\mid U_\ell^{(t)},\ell\neq k)\qquad (8.50)
 </script>
-其中$\beta$是单位向量$\Vert \beta\Vert=1$.由$f(x)$导出的分类准则为
-<script type="math/tex; mode=display">
-G(x)=sign[x^T\beta+\beta_0]\qquad (12.2)
-</script>
-超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$,满足$y_if(x_i)&gt;0,\forall i$.因此我们可以找到超平面在类别1和-1的训练点之间创造最大的空白（图12.1）。优化问题是
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\underset{\beta,\beta_0,\Vert \beta\Vert=1}{max}\; M\\
-s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
-\end{array}
-\qquad (12.3)
-</script>
-</p>
-<p><img alt="" src="../../img/12/fig12.1.png" /></p>
+这里我们对序列的$M-m+1$个成员平均，以在达到平稳之前允许初始的“老化”期。</p>
+<p>现在回到贝叶斯推断，我们的目标是在给定数据$\mathbf Z$情况下，从参数的联合后验分布中采样。如果从每个参数的条件分布（在给定其他参数和$\mathbf Z$）中取样很简单，则吉布斯取样会很有帮助。接下来详细讨论一个高斯分布混合问题的例子。</p>
+<p>在指数族模型中从后验吉布斯采样与EM算法有着紧密的联系。关键在于将EM过程的潜在数据$\mathbf Z^m$看成是吉布斯采样的另一个参数。为了让高斯混合问题中这一点更明确，我们取参数为$(\theta,\mathbf Z^m)$.为了简便，我们固定方差$\sigma_1^2,\sigma^2_2$以及最大似然时的混合比例$\pi$，使得$\theta$中未知的参数仅仅是均值$\mu_1$和$\mu_2$.此混合问题的吉布斯采样在算法8.4中给出。我们看到第2(a)和2(b)步与EM过程中的E和M一样，除了这里我们是取样而非最大化。在第2(a)步，不是计算最大似然的责任（responsibilities）$\gamma_i=E(\Delta_i\mid \theta,\mathbf Z)$,吉布斯采样过程从$Pr(\Delta_i\mid \theta,\mathbf Z)$的分布中模拟潜在数据$\Delta_i$.在第2(b)步，不是计算后验$Pr(\mu_1,\mu_2,\Delta\mid \mathbf Z)$的最大值，而是从条件分布$Pr(\mu_1,\mu_2\mid \Delta,\mathbf Z)$中模拟。</p>
+<p><img alt="" src="../../img/08/alg8.4.png" /></p>
+<p>图8.8显示了吉布斯抽样的200个迭代，左图显示了均值参数$\mu_1$(小)和$\mu_2$(大)，右图是类别2的观测的占比$\sum_i\Delta_i/N$。在每个情形下画出了在最大似然估计值$\hat\mu_1,\hat\mu_2$和$\sum_i\hat\gamma_i/N$的虚线。值似乎很快就稳定下来，而且在最大似然值附近均匀地分布。</p>
+<p><img alt="" src="../../img/08/fig8.8.png" /></p>
 <blockquote>
-<p>图12.1. 支持向量分类器。左图显示了可分情形。判别边界是实线，而虚线确定了边缘空白（阴影部分）的最大宽度为$2M=2/\Vert\beta\Vert$。右图中显示了不可分（重叠）情形。标记为$\xi_j^<em>$的点是在边缘空白错误的一边，且$\xi_j^</em>=M\xi_j$；在正确一侧的点有$\xi_j^<em>=0.$ 最大化空白边界是要满足总代价$\sum\xi_i\le constant$.因此，$\sum\xi_j^</em>$是在空白边界中点的距离综合。</p>
+<p>图8.8. 混合的例子。（左图：）从吉布斯采样中得到的两个均值参数的200个值；在最大似然估计的$\hat\mu_1,\hat\mu_2$画了水平直线。（右图：）对于200次吉布斯采样迭代中的每个迭代，$\Delta_i=1$的占比；在$\sum_i\hat\gamma_i/N$画了水平直线。</p>
 </blockquote>
-<p>图中的条纹宽度为$M$是分离超平面到另一边的距离，因此总共宽度为$2M$。这称为边缘空白（margin）。</p>
-<p>我们已经证明了这个问题可以更方便地写成
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-&\underset{\beta,\beta_0}{min}\;\Vert\beta\Vert\\
-s.t.&\; y_i(x_i^T\beta+\beta_0)\ge 1,\; i=1,\ldots,N
-\end{array}
-\qquad (12.4)
-</script>
-我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$.表达式（12.4）是对于稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解将在4.5.2节中讨论。</p>
-<p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$,但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$.有两种自然的方式去修改（12.3）中的约束：
-<script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\qquad (12.5)
-</script>
-或者
-<script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\qquad (12.6)
-</script>
-$\forall i,\xi_i\ge 0,\sum_{i=1}^N\xi_i\le constant$. 这两个选择导出不同的解。第一个选择似乎更加自然，因为它衡量了到边缘空白的实际距离；第二个选择衡量了相对距离，它会随着边缘空白$M$的改变而改变。然而，第一个选择是一个非凸的优化问题，而第二个是凸的；因此（12.6）推出标准的支持向量分类器，我们从这里开始使用它。</p>
-<p>这是想法的形成过程。约束条件$y_i(x_i^T\beta+\beta_0)\ge M(1-\xi_i)$中的$\xi_i$与经过$f(x_i)=x_i^T\beta+\beta_0$预测得到的错误分类总数成比例。因此通过约束$\sum\xi_i$,我们约束了错误预测总数的比例。当$\xi_i&gt;1$则为错误分类，所以在$K$的水平下约束$\sum\xi_i$表示限制训练集中错分类个数小于$K$.</p>
-<p>类似4.5.2节中的（4.48），我们可以去掉在$\beta$上的约束，定义$M=1/\Vert\beta\Vert$，然后将（12.4）写成下面的等价形式
-<script type="math/tex; mode=display">
-min\;\Vert\beta\Vert\qquad s.t.\;\left\{\begin{array}{ll}y_i(x_i^T\beta+\beta_0\ge1-\xi)\;\forall i,\\
-\xi_i\ge 0,\sum\xi_i\le constant.\end{array}\right.\qquad (12.7)
-</script>
-这是非分离情形下支持向量分类器定义的通常方式。然而我们会对约束$y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i$中的固定常数1感到误解，更喜欢使用(12.6)式。图12.1的右图说明了重叠的情形。</p>
-<p>从准则（12.7）可以看出，在类别里面的点不会对边界的形成有太大的影响。这似乎是个很吸引人的性质，这与线性判别边界（4.3节）不同。LDA中，判别边界是由类别的分布的协方差和重心来决定。我们将在12.3.3节看到逻辑斯蒂回归在这点上很像。</p>
-<h2 id="1221">12.2.1 计算支持向量分类器</h2>
-<p>问题（12.7）是带有线性不等值约束的二次问题，因此这是一个凸优化问题。我们描述一种采用Lagrange乘子的二次编程解法。将式（12.7）重新表达成下面的等价形式是很方便的
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\underset{\beta,\beta_0}{min}&\;\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i\\
-s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
-\end{array}
-\qquad (12.8)
-</script>
-其中“代价”参数$C$替换（12.7）中的常数；可分情况下对应$C=\infty$</p>
-<p>Lagrange函数(原问题)为
-<script type="math/tex; mode=display">
-L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\qquad (12.9)
-</script>
-我们需要关于$\beta,\beta_0$和$\xi_i$求最小值。令对应的微分为0，我们有
-<script type="math/tex; mode=display">
-\begin{align}
-\beta&=\sum\limits_{i=1}^N\alpha_iy_ix_i\qquad (12.10)\\
-0&= \sum\limits_{i=1}^N\alpha_iy_i\qquad (12.11)\\
-\alpha_i&=C-\mu_i,\;\forall i,\qquad (12.12)
-\end{align}
-</script>
-同样有正值约束$\alpha_i,\mu_i,\xi_i\ge 0\;\forall i.$ 把（12.10）-(12.12）代入（12.9），我们得到Lagrangian（Wolfe）对偶目标函数
-<script type="math/tex; mode=display">
-L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\qquad (12.13)
-</script>
-它给出了目标函数（12.8）对于任意可行解的一个下界。我们在满足$0\le \alpha_i\le C$和$\sum_{i=1}^N\alpha_iy_i=0$的条件下最大化$L_D$.再加上（12.10）-（12.12）条件，Karush-Kuhn-Tucker条件包含下列约束
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]&=0\qquad (12.14)\\
-\mu_i\xi_i&=0\qquad (12.15)\\
-y_i(x_i^T\beta+\beta_0)-(1-\xi_i)\ge 0\qquad (12.16)
-\end{array}
-</script>
-对于$i=1,\ldots,N.$结合（12.10）-(12.16)我们得到原问题和对偶问题的唯一解</p>
-<p>对于（12.10）我们看到$\beta$的解有如下形式
-<script type="math/tex; mode=display">
-\hat\beta=\sum\limits_{i=1}^N\hat\alpha_iy_ix_i\qquad (12.17)
-</script>
-非负系数$\hat\alpha_i$只对严格满足约束（12.16）的观测成立（由于（12.14））。这些观测称之为称之为支持向量，因为$\hat\beta$用他们单独表示。在这些支持点中，一些会在空白边缘的边处（$\hat\xi_i=0$）,因此从式（12.15），式（12.12）可以由$0&lt;\hat\alpha_i<C$来表示；剩余部分（$\hat\xi_i>0$）有$\hat\alpha_i=C$.从（12.14）我们可以看到任一边缘点（$0&lt;\hat\alpha_i,\hat\xi_i=0$）可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值。</p>
-<p>最大化对偶问题（12.13）是比原问题（12.9）更简单的凸优化编程问题，而且可以用标准的方法进行求解（举个例子，1981年Murray等人）</p>
-<p>给定解$\hat\beta_0$和$\beta$，判别函数可以写成
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\hat G(x)&=sign[\hat f(x)]\\
-&=sign[x^T\hat\beta+\hat\beta_0]\qquad (12.18)
-\end{array}
-</script>
-这个过程的调整参数是代价参数$C$.</p>
-<h2 id="1222">12.2.2 混合例子（继续）</h2>
-<p>图12.2显示了21页图2.5混合例子对于两个不同代价参数$C$的支持向量边界，这里有两个重叠的类别。这些分类器的表现很相似。在边界的错误一侧是支持向量。另外，在判别边界附近正确一侧的点也是支持向量。$C=0.01$时的边缘空白比$C=10,000$时的大。因此大的$C$值更加注意（正确分类）靠近判别边界的点，而较小的$C$涉及离判别边界更远的点。任意一种方式，错分类的点都被赋予了权重，不管离多远。在这个例子中这个过程对$C$的取值不敏感，因为判别边界的刚性。</p>
-<p>最优的$C$可以通过交叉验证来确定，如第7章中讨论的那样。有趣的是，舍一交叉验证误差可以通过数据中支持向量的点的比例来约束。原因是当舍去的不是支持向量的时候不会改变解。因此这些观测点在原始边界中分对的点在交叉验证中也是分对的。然而，边界趋向于很高，而且一般不适用于选择$C$(在我们的例子中分别是62\%和85\%)。</p>
-<p><img alt="" src="../../img/12/fig12.2.png" /></p>
-<blockquote>
-<p>图12.2 对于两个不同$C$值，有两个重叠类别的混合数据例子的线性支持向量边界。虚线表示边缘空白，其中$f(x)=\pm 1$。支持点（$\alpha_i&gt;0$）是在它们边缘的错误一边的点。黑色实心点是恰巧落在空白边界上（$\xi_i=0,\alpha_i&gt;0$）的点。在上面一张图中，$62\%$的观测点都是支持点，而下面的图$85\%$的点都是。紫色虚线是贝叶斯判别边界。</p>
-</blockquote>
+<p>上面的混合模型被简化了，是为了清楚地看到吉布斯采样和EM算法的关联。更实际点，可以在方差$\sigma^2_1,\sigma^2_2$和混合比例上添加先验分布，而且包含从它们在其他参数条件下的后验分布中进行独立的吉布斯采样。也可以对均值参数结合恰当的（无信息）先验。这些先验决不能不合适因为这会导致退化的后验（所有的混合系数都在一个组分上）。</p>
+<p>吉布斯采样是最近发展的一系列从后验分布中采样过程中的一个。它运用某个参数在给定其它参数情况下的条件采样，然后当问题的结构使得采样很容易进行是非常有用的。其它的方法不要求这样的结构，举个例子如Metropolis–Hastings算法。这些和其它计算的贝叶斯方法已经应用到复杂的学习算法中，比如高斯过程模型和神经网络。细节可以在本章后面的文献笔记中的参考文献中找到。</p>
 
 <div id="disqus_thread"></div>
 <script>
