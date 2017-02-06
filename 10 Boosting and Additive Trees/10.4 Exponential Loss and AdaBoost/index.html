@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/Preface/2016-07-20-Preface-to-the-Second-Edition/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>第二版序言 - ESL CN</title>
+	<title>10.4 指数损失和AdaBoost - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -77,14 +77,14 @@
     <ul class="dropdown-menu">
         
             
-<li class="active">
-    <a href="./">第二版序言</a>
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
 </li>
 
         
             
 <li >
-    <a href="../2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
 </li>
 
         
@@ -396,37 +396,37 @@
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">10.1 增强方法</a>
+    <a href="../10.1 Boosting Methods/">10.1 增强方法</a>
 </li>
 
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+    <a href="../10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
 </li>
 
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+    <a href="../10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">10.4 指数损失和AdaBoost</a>
 </li>
 
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
+    <a href="../10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
 </li>
 
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
+    <a href="../10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
 </li>
 
         
@@ -514,12 +514,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../..">
+                    <a rel="next" href="../10.3 Forward Stagewise Additive Modeling/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../2016-07-21-Preface-to-the-First-Edition/">
+                    <a rel="prev" href="../10.5 Why Exponential Loss/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -540,14 +540,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">第二版序言</a></li>
+        <li class="main active"><a href="#adaboost">指数损失和AdaBoost</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">第二版序言</h1>
+<h1 id="adaboost">指数损失和AdaBoost</h1>
 <table>
 <thead>
 <tr>
@@ -562,96 +562,65 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-07-20</td>
+<td>2017-02-06</td>
 </tr>
 </tbody>
 </table>
+<p>我们现在证明AdaBoost.M1算法（算法10.1）等价于使用下列损失函数的向前逐步加法建模
+<script type="math/tex; mode=display">
+L(y,f(x))=exp(-yf(x))\qquad (10.8)
+</script>
+这个准则的合理性将在下一节中讨论</p>
+<p><img alt="" src="../../img/10/alg10.1.png" /></p>
+<p><img alt="" src="../../img/10/alg10.2.png" /></p>
+<p>对于AdaBoost基函数为单个分类器$G_m(x)\in {-1,1}$。采用指数损失函数，需要在每一步求解下面优化问题得到需要加入到模型的分类器$G_m$和对应的系数$\beta_m$.
+<script type="math/tex; mode=display">
+(\beta_m,G_m)=\mathrm{arg}\;\underset{\beta,G}{\mathrm {min}}\sum\limits_{i=1}^Nexp[-y_i(f_{m-1}(x_i)+\beta G(x_i))]
+</script>
+上式可以写成
+<script type="math/tex; mode=display">
+(\beta_m,G_m)=\mathrm{arg}\;\underset{G}{\mathrm{min}}\sum\limits_{i=1}^Nw_i^{(m)}exp(-\beta y_iG(x_i))\qquad (10.10)
+</script>
+其中，$w^{(m)}<em>i=exp(-y_if</em>{m-1}(x))$.因为每个$w^{(m)}<em>i$既不依赖$\beta$也不依赖$G(x)$,可以看成是应用到每个观测上的权重。权重取决于$f</em>{m-1}(x_i)$,因此个体的权重值随着迭代次数$m$而变化。</p>
+<p>（10.9）式的解可以通过两步得到。首先，对于任意$\beta&gt;0$,（10.9）式$G_m(x)$的解为
+<script type="math/tex; mode=display">
+G_m=\mathrm{arg}\;\underset{G}{\mathrm{min}}\sum\limits_{i=1}^Nw_i^{(m)}I(y_i\neq G(x_i))\qquad (10.10)
+</script>
+这是使得在预测$y$时加权误差率最小化的分类器。这个可以通过将（10.9）的准则表达成下式看出来
+<script type="math/tex; mode=display">
+e^{-\beta}\sum\limits_{y_i=G(x_i)}w_i^{(m)}+e^\beta\sum\limits_{y_i\neq G(x_i)}w_i^{(m)}
+</script>
+反过来这个也可以写成
+<script type="math/tex; mode=display">
+(e^{\beta}-e^{-\beta})\sum\limits_{i=1}^Nw_i^{(m)}I(y_i\neq G(x_i)) + e^{-\beta}\sum\limits_{i=1}^Nw_i^{(m)}\qquad (10.11)
+</script>
+将$G_m$代入到（10.9）求解$\beta$得到
+<script type="math/tex; mode=display">
+\beta_m=\frac{1}{2}\mathrm{log}\frac{1-err_m}{err_m}\qquad （10.12）
+</script>
+其中$err_m$为最小化的加权误差率
+<script type="math/tex; mode=display">
+err_m=\frac{\sum_{i=1}^N w_i^{(m)}I(y_i\neq G_m(x_i))}{\sum_{i=1}^Nw_i^{(m)}}\qquad (10.13)
+</script>
+于是近似更新为
+<script type="math/tex; mode=display">
+f_m(x)=f_{m-1}(x)+\beta_mG_m(x)
+</script>
+导致下一次迭代的权重为
+<script type="math/tex; mode=display">
+w_i^{(m+1)}=w_i^{(m)}\cdot e^{-\beta_my_iG_m(x_i)}\qquad (10.14)
+</script>
+使用$-y_iG_m(x_i)=2\cdot I(y_i\neq G_m(x_i))-1$的事实，（10.14）式变成
+<script type="math/tex; mode=display">
+w_i^{(m+1)}=w_i^{(m)}\cdot e^{\alpha_mI(y_i\neq G_m(x_i))}\cdot e^{-\beta_m}\qquad (10.15)
+</script>
+其中$\alpha_m=2\beta_m$在AdaBoost.M1算法（算法10.1）中第2(c)行定义的常数.（10.15）式的因子$e^{-\beta_m}$对所有的权重都乘以同样的值，所以没有影响。因此（10.15）等价于算法10.1中的第2(d)行。</p>
+<p>我们可以把AdaBoost.M1算法的第2(a)行看成近似求解（10.11）最小化问题的方法，从而得到（10.10）式。因此我们将AdaBoost.M1总结为通过向前逐步加法建模方式来最小化指数损失函数。</p>
+<p>图10.3显示了图10.2中的模拟数据问题（10.2）的训练集误分类错误率和平均指数损失。训练集误分类错误率在大概250次迭代时下降为0且保持不变。但是指数损失保持下降。注意到在图10.2中测试集误分类误差率在250次迭代之后继续改善。显然AdaBoost不在优化训练集的误分类误差；指数损失对与估计类别概率的变化更加敏感。</p>
+<p><img alt="" src="../../img/10/fig10.3.png" /></p>
 <blockquote>
-<p>In God we trust, all others bring data.
-–William Edwards Deming (1900-1993)</p>
+<p>图10.3. stump的增强的模拟数据：训练集上的误分类误差率，以及平均指数损失：$(1/N)\sum_{i=1}^Nexp(-y_if(x_i))$.经过大约250次迭代之后，误分类误差率为0，而指数损失继续下降。</p>
 </blockquote>
-<p>我们相信上帝，所有的其他都带来数据。
-——威廉·爱德华兹·戴明（1900-1993）</p>
-<blockquote>
-<p>We have been gratified by the popularity of the first edition of <em>The Elements of Statistical Learning</em>. This, along with the fast pace of research in the statistical learning field, motivated us to update our book with a second edition.</p>
-</blockquote>
-<p>第一版《统计学习的基础》的欢迎程度让我们很满足。随着统计学习领域的迅速发展，激励我们出版第二版来更新我们的书。</p>
-<blockquote>
-<p>We have added four new chapters and updated some of the existing chapters. Because many readers are familiar with the layout of the first edition, we have tried to change it as little as possible. Here is a summary of the main changes:</p>
-</blockquote>
-<p>我们增加了四个新的章节，并且更新了一些已经存在的章节。因为很多读者熟悉第一版书的布局，我们尽可能地做出很小的改变。下面是对主要改变的概要：</p>
-<p><img alt="" src="../../img/00/preface_1.png" /></p>
-<ul>
-<li>第一章：导言</li>
-<li>第二章：监督学习的综述</li>
-<li>第三章：回归的线性方法（<strong>新：</strong>LAR算法和lasso的一般化）</li>
-<li>第四章：分类的线性方法（<strong>新：</strong>逻辑斯蒂回归的lasso轨迹）</li>
-<li>第五章：基本的扩展和正则化（<strong>新：</strong>RKHS的补充说明）<strong>RKHS（再生核希尔伯特空间）</strong></li>
-<li>第六章：核光滑方法</li>
-<li>第七章：模型评估与选择（<strong>新：</strong>交叉验证的长处与陷阱）</li>
-<li>第八章：模型推论与平均</li>
-<li>第九章：补充的模型、树以及相关的方法</li>
-<li>第十章：Boosting和Additive Trees（<strong>新：</strong>生态学的新例子，一些材料分到了16章）</li>
-<li>第十一章：神经网络（<strong>新：</strong>贝叶斯神经网络和2003年神经信息处理系统进展大会(NIPS)的挑战）</li>
-<li>第十二章：支持向量机和灵活的判别式（<strong>新：</strong>SVM分类器的路径算法）</li>
-<li>第十三章：原型方法和邻近算法</li>
-<li>第十四章：非监督学习（<strong>新：</strong>谱聚类，核PCA，离散PCA，非负矩阵分解原型分析，非线性降维，谷歌pagerank算法，ICA的一个直接方法）</li>
-<li>第十五章：随机森林</li>
-<li>第十六章：实例学习</li>
-<li>第十七章：无向图模型</li>
-<li>第十八章：高纬问题</li>
-</ul>
-<p><strong>Some further notes:</strong></p>
-<blockquote>
-<p>Our first edition was unfriendly to colorblind readers; in particular, we tended to favor red/green contrasts which are particularly troublesome. We have changed the color palette in this edition to a large extent, replacing the above with an orange/blue contrast.</p>
-</blockquote>
-<ul>
-<li>我们的第一版对色盲读者不是很友好，特别地，过去我们倾向于偏爱红绿对比，但是红绿对比很讨厌。我们已经在这一版中大程度地改变了色板，用橘黄色和蓝色对比代替了红绿对比。</li>
-</ul>
-<blockquote>
-<p>We have changed the name of Chapter 6 from “Kernel Methods” to “Kernel Smoothing Methods”, to avoid confusion with the machinelearning kernel method that is discussed in the context of support vector machines (Chapter 11) and more generally in Chapters 5 and 14.</p>
-</blockquote>
-<ul>
-<li>我们已经将第六章的标题名从“核方法”改为“核光滑方法”，为了避免与在第十一章中讨论的支持向量机混淆，而且在第五章和第十四章更一般。</li>
-</ul>
-<blockquote>
-<p>In the first edition, the discussion of error-rate estimation in Chapter 7 was sloppy, as we did not clearly differentiate the notions of conditional error rates (conditional on the training set) and unconditional rates. We have fixed this in the new edition.</p>
-</blockquote>
-<ul>
-<li>在第一版中，在第七章中对误差阶的估计太草率，因为我们没有清晰地区分条件误差阶（训练集上的条件）和非条件误差阶。我们在这一版中修正了这个问题。</li>
-</ul>
-<blockquote>
-<p>Chapters 15 and 16 follow naturally from Chapter 10, and the chapters are probably best read in that order.</p>
-</blockquote>
-<ul>
-<li>第十五和第十六章自然地承接第十章，而且这个顺序或许更好地阅读。</li>
-</ul>
-<blockquote>
-<p>In Chapter 17, we have not attempted a comprehensive treatment of graphical models, and discuss only undirected models and some new methods for their estimation. Due to a lack of space, we have specifically omitted coverage of directed graphical models.</p>
-</blockquote>
-<ul>
-<li>十七章中，我们不试图讨论一个广泛的图的模型，而只是讨论无向图和一些对他们估计的新方法。限于篇幅，我们特别地忽略掉有向图模型的讨论。</li>
-</ul>
-<blockquote>
-<p>Chapter 18 explores the “p  N” problem, which is learning in high dimensional feature spaces. These problems arise in many areas, including genomic and proteomic studies, and document classification.</p>
-</blockquote>
-<ul>
-<li>第十八章中探讨了“p&gt;&gt;N”的问题，是高纬特征空间的学习问题。很多领域都产生这些问题，包括基因和蛋白质方面的研究，以及文本分类。</li>
-</ul>
-<blockquote>
-<p>We thank the many readers who have found the (too numerous) errors in the first edition. We apologize for those and have done our best to avoid errors in this new edition. We thank Mark Segal, Bala Rajaratnam, and Larry Wasserman for comments on some of the new chapters, and many Stanford graduate and post-doctoral students who offered comments, in particular Mohammed AlQuraishi, John Boik, Holger Hoefling, Arian Maleki, Donal McMahon, Saharon Rosset, Babak Shababa, Daniela Witten, Ji Zhu and Hui Zou. We thank John Kimmel for his patience in guiding us through this new edition. RT dedicates this edition to the memory of Anna McPhee.</p>
-<p>Trevor Hastie
-Robert Tibshirani
-Jerome Friedman
-Stanford, California
-August 2008</p>
-</blockquote>
-<p>我们感谢在第一版中发现错误的众多读者。我们向你们道歉并且争取在这一版中避免错误。我们对在新的章节提出意见的Mark Segal, Bala Rajaratnam, 和Larry Wasserman 表示感谢，还有许多提出意见的斯坦福的毕业生和博士后表示感谢，特别是Mohammed AlQuraishi, John Boik, Holger Hoefling, Arian Maleki, Donal McMahon, Saharon Rosset, Babak Shababa, Daniela Witten, Ji Zhu and Hui Zou. 我们感谢John Kimmel在整个第二版中引导我们的耐心。同时也将这一版纪念Anna McPhee。</p>
-<p>Trevor Hastie
-Robert Tibshirani
-Jerome Friedman
-Stanford, California
-August 2008</p>
 
 <div id="disqus_thread"></div>
 <script>

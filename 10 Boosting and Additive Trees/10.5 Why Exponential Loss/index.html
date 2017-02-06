@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/Preface/2016-07-20-Preface-to-the-Second-Edition/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/10 Boosting and Additive Trees/10.5 Why Exponential Loss/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>第二版序言 - ESL CN</title>
+	<title>10.5 为什么是指数损失 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -77,14 +77,14 @@
     <ul class="dropdown-menu">
         
             
-<li class="active">
-    <a href="./">第二版序言</a>
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
 </li>
 
         
             
 <li >
-    <a href="../2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
 </li>
 
         
@@ -396,37 +396,37 @@
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">10.1 增强方法</a>
+    <a href="../10.1 Boosting Methods/">10.1 增强方法</a>
 </li>
 
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+    <a href="../10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
 </li>
 
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+    <a href="../10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
 </li>
 
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
+    <a href="../10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">10.5 为什么是指数损失</a>
 </li>
 
         
             
 <li >
-    <a href="../../10 Boosting and Additive Trees/10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
+    <a href="../10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
 </li>
 
         
@@ -514,12 +514,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../..">
+                    <a rel="next" href="../10.4 Exponential Loss and AdaBoost/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../2016-07-21-Preface-to-the-First-Edition/">
+                    <a rel="prev" href="../10.6 Loss Functions and Robustness/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -540,14 +540,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">第二版序言</a></li>
+        <li class="main active"><a href="#_1">为什么是指数损失？</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">第二版序言</h1>
+<h1 id="_1">为什么是指数损失？</h1>
 <table>
 <thead>
 <tr>
@@ -562,96 +562,46 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-07-20</td>
+<td>2017-02-06</td>
 </tr>
 </tbody>
 </table>
+<p>AdaBoost.M1算法最初是从一个非常不一样的角度出发得到的，而不是上一节中提出的。它与基于指数损失的向前逐步加性建模的等价性仅在其提出后五年后才被发现。通过研究指数损失函数准则的性质，可以深入了解这个过程并且找出可能改善的方式。</p>
+<p>在加性模型中指数损失的主要吸引点在于计算上的方便；它导出简单的模块化重加权的AdaBoost算法。然而，调查它的统计性质也是我们关注的。它估计什么，估计有多么好？第一个问题可以通过寻找总体最小化来回答。</p>
+<p>可以很简单地证明（Friedman等人，2000）
+<script type="math/tex; mode=display">
+f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{1}{2}\mathrm{log}\frac{Pr(Y=1\mid X)}{Pr(Y=-1\mid X)}\qquad (10.16)
+</script>
+或者等价地，
+<script type="math/tex; mode=display">
+Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
+</script>
+因此，由AdaBoost得到的加性展开是估计二分之一的$P(Y=1\mid x)$比率。这证明使用它的符号作为（10.1）的分类规则是合理的。</p>
+<p>另外一个有着同样的总体最小化的损失准则为负二项分布或者偏差（也称为交叉熵），将$f$解释为logit变换。令
+<script type="math/tex; mode=display">
+p(x)=Pr(Y=1\mid x)=\frac{e^{f(x)}}{e^{-f(x)}+e^{f(x)}}=\frac{1}{1+e^{-2f(x)}}\qquad (10.17)
+</script>
+并且定义$Y&rsquo;=(Y+1)/2\in {0,1}$.则二项对数概率损失函数为
+<script type="math/tex; mode=display">
+l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
+</script>
+或者等价地，偏差为
+<script type="math/tex; mode=display">
+-l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\qquad (10.18)
+</script>
+</p>
 <blockquote>
-<p>In God we trust, all others bring data.
-–William Edwards Deming (1900-1993)</p>
+<p>weiya注：
+<script type="math/tex; mode=display">
+l(Y,p(x))=Yf(x)-f(x)-log(1+e^{-2Yf(x)})
+</script>
+又
+<script type="math/tex; mode=display">
+Y=1
+</script>
+</p>
 </blockquote>
-<p>我们相信上帝，所有的其他都带来数据。
-——威廉·爱德华兹·戴明（1900-1993）</p>
-<blockquote>
-<p>We have been gratified by the popularity of the first edition of <em>The Elements of Statistical Learning</em>. This, along with the fast pace of research in the statistical learning field, motivated us to update our book with a second edition.</p>
-</blockquote>
-<p>第一版《统计学习的基础》的欢迎程度让我们很满足。随着统计学习领域的迅速发展，激励我们出版第二版来更新我们的书。</p>
-<blockquote>
-<p>We have added four new chapters and updated some of the existing chapters. Because many readers are familiar with the layout of the first edition, we have tried to change it as little as possible. Here is a summary of the main changes:</p>
-</blockquote>
-<p>我们增加了四个新的章节，并且更新了一些已经存在的章节。因为很多读者熟悉第一版书的布局，我们尽可能地做出很小的改变。下面是对主要改变的概要：</p>
-<p><img alt="" src="../../img/00/preface_1.png" /></p>
-<ul>
-<li>第一章：导言</li>
-<li>第二章：监督学习的综述</li>
-<li>第三章：回归的线性方法（<strong>新：</strong>LAR算法和lasso的一般化）</li>
-<li>第四章：分类的线性方法（<strong>新：</strong>逻辑斯蒂回归的lasso轨迹）</li>
-<li>第五章：基本的扩展和正则化（<strong>新：</strong>RKHS的补充说明）<strong>RKHS（再生核希尔伯特空间）</strong></li>
-<li>第六章：核光滑方法</li>
-<li>第七章：模型评估与选择（<strong>新：</strong>交叉验证的长处与陷阱）</li>
-<li>第八章：模型推论与平均</li>
-<li>第九章：补充的模型、树以及相关的方法</li>
-<li>第十章：Boosting和Additive Trees（<strong>新：</strong>生态学的新例子，一些材料分到了16章）</li>
-<li>第十一章：神经网络（<strong>新：</strong>贝叶斯神经网络和2003年神经信息处理系统进展大会(NIPS)的挑战）</li>
-<li>第十二章：支持向量机和灵活的判别式（<strong>新：</strong>SVM分类器的路径算法）</li>
-<li>第十三章：原型方法和邻近算法</li>
-<li>第十四章：非监督学习（<strong>新：</strong>谱聚类，核PCA，离散PCA，非负矩阵分解原型分析，非线性降维，谷歌pagerank算法，ICA的一个直接方法）</li>
-<li>第十五章：随机森林</li>
-<li>第十六章：实例学习</li>
-<li>第十七章：无向图模型</li>
-<li>第十八章：高纬问题</li>
-</ul>
-<p><strong>Some further notes:</strong></p>
-<blockquote>
-<p>Our first edition was unfriendly to colorblind readers; in particular, we tended to favor red/green contrasts which are particularly troublesome. We have changed the color palette in this edition to a large extent, replacing the above with an orange/blue contrast.</p>
-</blockquote>
-<ul>
-<li>我们的第一版对色盲读者不是很友好，特别地，过去我们倾向于偏爱红绿对比，但是红绿对比很讨厌。我们已经在这一版中大程度地改变了色板，用橘黄色和蓝色对比代替了红绿对比。</li>
-</ul>
-<blockquote>
-<p>We have changed the name of Chapter 6 from “Kernel Methods” to “Kernel Smoothing Methods”, to avoid confusion with the machinelearning kernel method that is discussed in the context of support vector machines (Chapter 11) and more generally in Chapters 5 and 14.</p>
-</blockquote>
-<ul>
-<li>我们已经将第六章的标题名从“核方法”改为“核光滑方法”，为了避免与在第十一章中讨论的支持向量机混淆，而且在第五章和第十四章更一般。</li>
-</ul>
-<blockquote>
-<p>In the first edition, the discussion of error-rate estimation in Chapter 7 was sloppy, as we did not clearly differentiate the notions of conditional error rates (conditional on the training set) and unconditional rates. We have fixed this in the new edition.</p>
-</blockquote>
-<ul>
-<li>在第一版中，在第七章中对误差阶的估计太草率，因为我们没有清晰地区分条件误差阶（训练集上的条件）和非条件误差阶。我们在这一版中修正了这个问题。</li>
-</ul>
-<blockquote>
-<p>Chapters 15 and 16 follow naturally from Chapter 10, and the chapters are probably best read in that order.</p>
-</blockquote>
-<ul>
-<li>第十五和第十六章自然地承接第十章，而且这个顺序或许更好地阅读。</li>
-</ul>
-<blockquote>
-<p>In Chapter 17, we have not attempted a comprehensive treatment of graphical models, and discuss only undirected models and some new methods for their estimation. Due to a lack of space, we have specifically omitted coverage of directed graphical models.</p>
-</blockquote>
-<ul>
-<li>十七章中，我们不试图讨论一个广泛的图的模型，而只是讨论无向图和一些对他们估计的新方法。限于篇幅，我们特别地忽略掉有向图模型的讨论。</li>
-</ul>
-<blockquote>
-<p>Chapter 18 explores the “p  N” problem, which is learning in high dimensional feature spaces. These problems arise in many areas, including genomic and proteomic studies, and document classification.</p>
-</blockquote>
-<ul>
-<li>第十八章中探讨了“p&gt;&gt;N”的问题，是高纬特征空间的学习问题。很多领域都产生这些问题，包括基因和蛋白质方面的研究，以及文本分类。</li>
-</ul>
-<blockquote>
-<p>We thank the many readers who have found the (too numerous) errors in the first edition. We apologize for those and have done our best to avoid errors in this new edition. We thank Mark Segal, Bala Rajaratnam, and Larry Wasserman for comments on some of the new chapters, and many Stanford graduate and post-doctoral students who offered comments, in particular Mohammed AlQuraishi, John Boik, Holger Hoefling, Arian Maleki, Donal McMahon, Saharon Rosset, Babak Shababa, Daniela Witten, Ji Zhu and Hui Zou. We thank John Kimmel for his patience in guiding us through this new edition. RT dedicates this edition to the memory of Anna McPhee.</p>
-<p>Trevor Hastie
-Robert Tibshirani
-Jerome Friedman
-Stanford, California
-August 2008</p>
-</blockquote>
-<p>我们感谢在第一版中发现错误的众多读者。我们向你们道歉并且争取在这一版中避免错误。我们对在新的章节提出意见的Mark Segal, Bala Rajaratnam, 和Larry Wasserman 表示感谢，还有许多提出意见的斯坦福的毕业生和博士后表示感谢，特别是Mohammed AlQuraishi, John Boik, Holger Hoefling, Arian Maleki, Donal McMahon, Saharon Rosset, Babak Shababa, Daniela Witten, Ji Zhu and Hui Zou. 我们感谢John Kimmel在整个第二版中引导我们的耐心。同时也将这一版纪念Anna McPhee。</p>
-<p>Trevor Hastie
-Robert Tibshirani
-Jerome Friedman
-Stanford, California
-August 2008</p>
+<p>因为对数概率的总体最大在真实概率$p(x)=Pr(Y=1\mid x)$处，我们从（10.17）看到偏差$E_{Y\mid x}[-l(Y,f(x))]$和$E_{Y\mid x}[e^{-Yf(x)}]$的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到$e^{-Yf}$本身不是一个合适的对数概率，因为它不是一个二项随机变量$Y\in {-1,1}$的任何概率密度函数的对数。</p>
 
 <div id="disqus_thread"></div>
 <script>
