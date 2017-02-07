@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/11 Neural Networks/11.4 Fitting Neural Networks/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>12.2 支持向量分类器 - ESL CN</title>
+	<title>11.4 拟合神经网络 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -441,31 +441,31 @@
         
             
 <li >
-    <a href="../../11 Neural Networks/11.1 Introduction/">11.1 导言</a>
+    <a href="../11.1 Introduction/">11.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../11 Neural Networks/11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
+    <a href="../11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
 </li>
 
         
             
 <li >
-    <a href="../../11 Neural Networks/11.3 Neural Networks/">11.3 神经网络</a>
+    <a href="../11.3 Neural Networks/">11.3 神经网络</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">11.4 拟合神经网络</a>
 </li>
 
         
             
 <li >
-    <a href="../../11 Neural Networks/11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../11 Neural Networks/11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
+    <a href="../11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
 </li>
 
         
@@ -480,13 +480,13 @@
         
             
 <li >
-    <a href="../12.1 Introduction/">12.1 导言</a>
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
 </li>
 
         
             
-<li class="active">
-    <a href="./">12.2 支持向量分类器</a>
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
 </li>
 
         
@@ -538,12 +538,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../12.1 Introduction/">
+                    <a rel="next" href="../11.3 Neural Networks/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/">
+                    <a rel="prev" href="../11.5 Some Issues in Training Neural Networks/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -564,18 +564,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#122">12.2 支持向量分类器</a></li>
-        
-            <li><a href="#1221">12.2.1 计算支持向量分类器</a></li>
-        
-            <li><a href="#1222">12.2.2 混合例子（继续）</a></li>
+        <li class="main active"><a href="#_1">拟合神经网络</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="122">12.2 支持向量分类器</h1>
+<h1 id="_1">拟合神经网络</h1>
 <table>
 <thead>
 <tr>
@@ -590,115 +586,71 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-12-19:2016-12-20</td>
+<td>2017-02-07</td>
 </tr>
 </tbody>
 </table>
-<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面。我们复习这个并且推广到不可分的情形下（类别可能不会被线性边界分离）。</p>
-<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in {-1,1}$.定义超平面
-<script type="math/tex; mode=display">
-\{x:f(x)=x^T\beta+\beta_0=0\}\qquad (12.1)
-</script>
-其中$\beta$是单位向量$\Vert \beta\Vert=1$.由$f(x)$导出的分类准则为
-<script type="math/tex; mode=display">
-G(x)=sign[x^T\beta+\beta_0]\qquad (12.2)
-</script>
-超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$,满足$y_if(x_i)&gt;0,\forall i$.因此我们可以找到超平面在类别1和-1的训练点之间创造最大的空白（图12.1）。优化问题是
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\underset{\beta,\beta_0,\Vert \beta\Vert=1}{max}\; M\\
-s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
-\end{array}
-\qquad (12.3)
-</script>
-</p>
-<p><img alt="" src="../../img/12/fig12.1.png" /></p>
-<blockquote>
-<p>图12.1. 支持向量分类器。左图显示了可分情形。判别边界是实线，而虚线确定了边缘空白（阴影部分）的最大宽度为$2M=2/\Vert\beta\Vert$。右图中显示了不可分（重叠）情形。标记为$\xi_j^<em>$的点是在边缘空白错误的一边，且$\xi_j^</em>=M\xi_j$；在正确一侧的点有$\xi_j^<em>=0.$ 最大化空白边界是要满足总代价$\sum\xi_i\le constant$.因此，$\sum\xi_j^</em>$是在空白边界中点的距离综合。</p>
-</blockquote>
-<p>图中的条纹宽度为$M$是分离超平面到另一边的距离，因此总共宽度为$2M$。这称为边缘空白（margin）。</p>
-<p>我们已经证明了这个问题可以更方便地写成
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-&\underset{\beta,\beta_0}{min}\;\Vert\beta\Vert\\
-s.t.&\; y_i(x_i^T\beta+\beta_0)\ge 1,\; i=1,\ldots,N
-\end{array}
-\qquad (12.4)
-</script>
-我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$.表达式（12.4）是对于稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解将在4.5.2节中讨论。</p>
-<p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$,但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$.有两种自然的方式去修改（12.3）中的约束：
-<script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\qquad (12.5)
-</script>
-或者
-<script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\qquad (12.6)
-</script>
-$\forall i,\xi_i\ge 0,\sum_{i=1}^N\xi_i\le constant$. 这两个选择导出不同的解。第一个选择似乎更加自然，因为它衡量了到边缘空白的实际距离；第二个选择衡量了相对距离，它会随着边缘空白$M$的改变而改变。然而，第一个选择是一个非凸的优化问题，而第二个是凸的；因此（12.6）推出标准的支持向量分类器，我们从这里开始使用它。</p>
-<p>这是想法的形成过程。约束条件$y_i(x_i^T\beta+\beta_0)\ge M(1-\xi_i)$中的$\xi_i$与经过$f(x_i)=x_i^T\beta+\beta_0$预测得到的错误分类总数成比例。因此通过约束$\sum\xi_i$,我们约束了错误预测总数的比例。当$\xi_i&gt;1$则为错误分类，所以在$K$的水平下约束$\sum\xi_i$表示限制训练集中错分类个数小于$K$.</p>
-<p>类似4.5.2节中的（4.48），我们可以去掉在$\beta$上的约束，定义$M=1/\Vert\beta\Vert$，然后将（12.4）写成下面的等价形式
-<script type="math/tex; mode=display">
-min\;\Vert\beta\Vert\qquad s.t.\;\left\{\begin{array}{ll}y_i(x_i^T\beta+\beta_0\ge1-\xi)\;\forall i,\\
-\xi_i\ge 0,\sum\xi_i\le constant.\end{array}\right.\qquad (12.7)
-</script>
-这是非分离情形下支持向量分类器定义的通常方式。然而我们会对约束$y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i$中的固定常数1感到误解，更喜欢使用(12.6)式。图12.1的右图说明了重叠的情形。</p>
-<p>从准则（12.7）可以看出，在类别里面的点不会对边界的形成有太大的影响。这似乎是个很吸引人的性质，这与线性判别边界（4.3节）不同。LDA中，判别边界是由类别的分布的协方差和重心来决定。我们将在12.3.3节看到逻辑斯蒂回归在这点上很像。</p>
-<h2 id="1221">12.2.1 计算支持向量分类器</h2>
-<p>问题（12.7）是带有线性不等值约束的二次问题，因此这是一个凸优化问题。我们描述一种采用Lagrange乘子的二次编程解法。将式（12.7）重新表达成下面的等价形式是很方便的
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\underset{\beta,\beta_0}{min}&\;\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i\\
-s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
-\end{array}
-\qquad (12.8)
-</script>
-其中“代价”参数$C$替换（12.7）中的常数；可分情况下对应$C=\infty$</p>
-<p>Lagrange函数(原问题)为
-<script type="math/tex; mode=display">
-L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\qquad (12.9)
-</script>
-我们需要关于$\beta,\beta_0$和$\xi_i$求最小值。令对应的微分为0，我们有
+<p>神经网络模型有未知的参数，通常称为权重，而且我们寻找它们的值使得模型很好地拟合训练数据。我们将参数的整个集合记为$\theta$，包含
 <script type="math/tex; mode=display">
 \begin{align}
-\beta&=\sum\limits_{i=1}^N\alpha_iy_ix_i\qquad (12.10)\\
-0&= \sum\limits_{i=1}^N\alpha_iy_i\qquad (12.11)\\
-\alpha_i&=C-\mu_i,\;\forall i,\qquad (12.12)
+\{\alpha_{0m},\alpha_m;m=1,2,\ldots,M\}\;&M(p+1)\text{个权重}\\
+\{\beta_{0k},\beta_k;k=1,2,\ldots,K\}\;&K(M+1)\text{个权重}
+\end{align}
+\qquad (11.8)
+</script>
+对于回归，我们采用误差平方和作为我们衡量拟合（误差函数）的效果
+<script type="math/tex; mode=display">
+R(\theta)=\sum\limits_{k=1}^K\sum\limits_{i=1}^N(y_k-f_k(x_i))^2\qquad (11.9)
+</script>
+对于分类，我们可以采用平方误差或者交叉熵（偏差）：
+<script type="math/tex; mode=display">
+R(\theta)=-\sum\limits_{i=1}^N\sum\limits_{k=1}^Ky_{ik}\mathrm{log}f_k(x_i)\qquad (11.10)
+</script>
+以及对于的分类器$G(x)=\mathrm{arg\; max}_kf_k(x)$.有了softmax激活函数和交叉熵误差函数，神经网络模型实际上是关于隐藏层的线性逻辑斯蒂回归模型，而且所有的参数通过极大似然来估计。</p>
+<p>一般地，我们不想要$R(\theta)$的全局最小值，因为可能会是一个过拟合解。相反，需要一些正则化：这个可以通过惩罚项来之间实现，或者提前终止来间接实现。下一节中将给出详细的细节。</p>
+<p>最小化$R(\theta)$的一般方法是通过梯度下降，在这种情形下称作向后传播。因为模型的组成成分，运用微分的链式法则可以很简单地得到梯度。这个可以通过对网络向前或向后遍历计算得到，仅跟踪每个单元的局部量。</p>
+<p>这里是对于平方误差损失的向后传播的细节。由(11.5)式令$z_{mi}=\sigma(\alpha_{0m}+\alpha_m^Tx_i)$，并令$z_i=(z_{1i},z_{2i},\ldots,z_{Mi}).$则我们有
+<script type="math/tex; mode=display">
+\begin{align}
+R(\theta)&\equiv\sum\limits_{i=1}^NR_i\\
+&=\sum\limits_{i=1}^N\sum\limits_{k=1}^K(y_{ik}-f_k(x_i))^2\qquad (11.11)
 \end{align}
 </script>
-同样有正值约束$\alpha_i,\mu_i,\xi_i\ge 0\;\forall i.$ 把（12.10）-(12.12）代入（12.9），我们得到Lagrangian（Wolfe）对偶目标函数
+微分为
 <script type="math/tex; mode=display">
-L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\qquad (12.13)
+\begin{align}
+\frac{\partial R_i}{\partial \beta_{km}}&=-2(y_{ik}-f_k(x_i))\\
+\frac{\partial R_i}{\partial \alpha_{m\ell}}&=-\sum\limits_{k=1}^K2(y_{ik}-f_k(x_i))g'_k(\beta_k^Tz_i)\sigma'(\alpha_m^Tx_i)x_{i\ell}
+\end{align}
+\qquad (11.12)
 </script>
-它给出了目标函数（12.8）对于任意可行解的一个下界。我们在满足$0\le \alpha_i\le C$和$\sum_{i=1}^N\alpha_iy_i=0$的条件下最大化$L_D$.再加上（12.10）-（12.12）条件，Karush-Kuhn-Tucker条件包含下列约束
+给定这些微分，梯度下降在第(r+1)步迭代更新为
 <script type="math/tex; mode=display">
-\begin{array}{ll}
-\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]&=0\qquad (12.14)\\
-\mu_i\xi_i&=0\qquad (12.15)\\
-y_i(x_i^T\beta+\beta_0)-(1-\xi_i)\ge 0\qquad (12.16)
-\end{array}
+\begin{align}
+\beta_{km}^{(r+1)}&=\beta_{km}^{(r)}-\gamma_r\sum\limits_{i=1}^N\frac{\partial R_i}{\partial \beta_{km}^{(r)}}\\
+\alpha_{m\ell}^{(r+1)}&=\alpha_{m\ell}^{(r)}-\gamma_r\sum\limits_{i=1}^N\frac{\partial R_i}{\partial\alpha_{m\ell}^{(r)}}
+\end{align}
+\qquad (11.13)
 </script>
-对于$i=1,\ldots,N.$结合（12.10）-(12.16)我们得到原问题和对偶问题的唯一解</p>
-<p>对于（12.10）我们看到$\beta$的解有如下形式
+其中$\gamma_r$为学习速度，将在下面讨论。</p>
+<p>现在将（11.12）式写成
 <script type="math/tex; mode=display">
-\hat\beta=\sum\limits_{i=1}^N\hat\alpha_iy_ix_i\qquad (12.17)
+\begin{align}
+\frac{\partial R_i}{\partial \beta_{km}}&=\delta_{ki}z_{mi}\\
+\frac{\partial R_i}{\partial \alpha_{m\ell}}&=s_{mi}x_{i\ell}
+\end{align}
+\qquad (11.14)
 </script>
-非负系数$\hat\alpha_i$只对严格满足约束（12.16）的观测成立（由于（12.14））。这些观测称之为称之为支持向量，因为$\hat\beta$用他们单独表示。在这些支持点中，一些会在空白边缘的边处（$\hat\xi_i=0$）,因此从式（12.15），式（12.12）可以由$0&lt;\hat\alpha_i<C$来表示；剩余部分（$\hat\xi_i>0$）有$\hat\alpha_i=C$.从（12.14）我们可以看到任一边缘点（$0&lt;\hat\alpha_i,\hat\xi_i=0$）可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值。</p>
-<p>最大化对偶问题（12.13）是比原问题（12.9）更简单的凸优化编程问题，而且可以用标准的方法进行求解（举个例子，1981年Murray等人）</p>
-<p>给定解$\hat\beta_0$和$\beta$，判别函数可以写成
+$\delta_{ki}$和$s_{mi}$的值分别为当前模型在输出和隐藏层单元的误差。从它们的定义来看，它们满足
 <script type="math/tex; mode=display">
-\begin{array}{ll}
-\hat G(x)&=sign[\hat f(x)]\\
-&=sign[x^T\hat\beta+\hat\beta_0]\qquad (12.18)
-\end{array}
+s_{mi}=\sigma'(\alpha_m^Tx_i)\sum\limits_{k=1}^K\beta_{km}\delta_{ki}\qquad (11.15)
 </script>
-这个过程的调整参数是代价参数$C$.</p>
-<h2 id="1222">12.2.2 混合例子（继续）</h2>
-<p>图12.2显示了21页图2.5混合例子对于两个不同代价参数$C$的支持向量边界，这里有两个重叠的类别。这些分类器的表现很相似。在边界的错误一侧是支持向量。另外，在判别边界附近正确一侧的点也是支持向量。$C=0.01$时的边缘空白比$C=10,000$时的大。因此大的$C$值更加注意（正确分类）靠近判别边界的点，而较小的$C$涉及离判别边界更远的点。任意一种方式，错分类的点都被赋予了权重，不管离多远。在这个例子中这个过程对$C$的取值不敏感，因为判别边界的刚性。</p>
-<p>最优的$C$可以通过交叉验证来确定，如第7章中讨论的那样。有趣的是，舍一交叉验证误差可以通过数据中支持向量的点的比例来约束。原因是当舍去的不是支持向量的时候不会改变解。因此这些观测点在原始边界中分对的点在交叉验证中也是分对的。然而，边界趋向于很高，而且一般不适用于选择$C$(在我们的例子中分别是62\%和85\%)。</p>
-<p><img alt="" src="../../img/12/fig12.2.png" /></p>
-<blockquote>
-<p>图12.2 对于两个不同$C$值，有两个重叠类别的混合数据例子的线性支持向量边界。虚线表示边缘空白，其中$f(x)=\pm 1$。支持点（$\alpha_i&gt;0$）是在它们边缘的错误一边的点。黑色实心点是恰巧落在空白边界上（$\xi_i=0,\alpha_i&gt;0$）的点。在上面一张图中，$62\%$的观测点都是支持点，而下面的图$85\%$的点都是。紫色虚线是贝叶斯判别边界。</p>
-</blockquote>
+上式称为向后传播等式。用这个等式，（11.13）的更新可以通过双通（two-pass）算法来实现。在forward pass，固定当前权重，预测值$\hat f_k(x_i)$通过（11.5）式计算。在backward pass，计算当前误差$\delta_{ki}$，接着向后传播通过(11.15)式给出误差$s_{mi}$.则两个误差都用来计算（11.13）、（11.14）中更新的梯度。</p>
+<p>这个two-pass过程称作向后传播。也被称为delta rule(Widrow和Hoff，1960)。交叉熵计算的组分与平方误差函数和有同样的形式，并且在练习11.3中被导出来。</p>
+<p>向后传播的优点在于简单，局部自然。在向后传播算法中，每个隐藏层单元仅仅向（从）有其联系的单元传递（接收）信息。因此可以在并行架构的计算机上高效地实现。</p>
+<p>（11.13）式的更新是一种batch learning，参数更新为所有训练情形的和。学习也可以online地进行——每次处理一个观测，每个训练情形过后更新梯度，然后对训练情形重复多次。在这种情形下，（11.13）式的和可以替换成a single summand.训练时期（training epoch）指的是一次扫描整个训练集。在线（online）训练允许网络处理非常大的训练集，而且当新观测加入时更新权重。</p>
+<p>batch learning的学习速率$\gamma_r$经常取为常数，而且可以通过在每次更新时运用线搜索最小化误差函数来优化。在线学习$\gamma_r$当$r\rightarrow \infty$时下降减为0.这个学习是随机近似（stochastic approximation）的形式（Robbins and Munro,1951）;如果$\gamma_r\rightarrow \infty,\sum_r\gamma_r=\infty,$且$\sum_r\gamma_r^2&lt;\infty$,（举个例子，$\gamma_r=1/r$便满足条件）则在这个领域内的结果保证收敛。</p>
+<p>向后传播可以非常慢，而且因为这个原因经常不选择这个方法。像牛顿法的二阶技巧在这里不是很好，因为$R$的二阶微分矩阵（Hessian阵）可以变得非常大。更好的拟合方式包括共轭梯度法以及变量度量方法。它们避免直接计算二阶微分矩阵但仍然提供很快的收敛性。</p>
 
 <div id="disqus_thread"></div>
 <script>

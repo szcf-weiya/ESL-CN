@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/11 Neural Networks/11.2 Projection Pursuit Regression/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>12.2 支持向量分类器 - ESL CN</title>
+	<title>11.2 投影寻踪回归 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -441,31 +441,31 @@
         
             
 <li >
-    <a href="../../11 Neural Networks/11.1 Introduction/">11.1 导言</a>
+    <a href="../11.1 Introduction/">11.1 导言</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">11.2 投影寻踪回归</a>
 </li>
 
         
             
 <li >
-    <a href="../../11 Neural Networks/11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
+    <a href="../11.3 Neural Networks/">11.3 神经网络</a>
 </li>
 
         
             
 <li >
-    <a href="../../11 Neural Networks/11.3 Neural Networks/">11.3 神经网络</a>
+    <a href="../11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
 </li>
 
         
             
 <li >
-    <a href="../../11 Neural Networks/11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../11 Neural Networks/11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
+    <a href="../11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
 </li>
 
         
@@ -480,13 +480,13 @@
         
             
 <li >
-    <a href="../12.1 Introduction/">12.1 导言</a>
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
 </li>
 
         
             
-<li class="active">
-    <a href="./">12.2 支持向量分类器</a>
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
 </li>
 
         
@@ -538,12 +538,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../12.1 Introduction/">
+                    <a rel="next" href="../11.1 Introduction/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/">
+                    <a rel="prev" href="../11.3 Neural Networks/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -564,18 +564,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#122">12.2 支持向量分类器</a></li>
-        
-            <li><a href="#1221">12.2.1 计算支持向量分类器</a></li>
-        
-            <li><a href="#1222">12.2.2 混合例子（继续）</a></li>
+        <li class="main active"><a href="#_1">投影寻踪回归</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="122">12.2 支持向量分类器</h1>
+<h1 id="_1">投影寻踪回归</h1>
 <table>
 <thead>
 <tr>
@@ -590,115 +586,46 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-12-19:2016-12-20</td>
+<td>2017-02-07</td>
 </tr>
 </tbody>
 </table>
-<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面。我们复习这个并且推广到不可分的情形下（类别可能不会被线性边界分离）。</p>
-<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in {-1,1}$.定义超平面
+<p>在我们一般监督学习问题中，假设我们有$p$个组分的输入向量$X$，以及目标变量$Y$.令$w_m,m=1,2,\ldots, M$为未知参数的$p$维单位向量。投影寻踪回归（PPR）模型有如下形式
 <script type="math/tex; mode=display">
-\{x:f(x)=x^T\beta+\beta_0=0\}\qquad (12.1)
+f(X)=\sum\limits_{m=1}^Mg_m(w_m^TX)\qquad (11.1)
 </script>
-其中$\beta$是单位向量$\Vert \beta\Vert=1$.由$f(x)$导出的分类准则为
-<script type="math/tex; mode=display">
-G(x)=sign[x^T\beta+\beta_0]\qquad (12.2)
-</script>
-超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$,满足$y_if(x_i)&gt;0,\forall i$.因此我们可以找到超平面在类别1和-1的训练点之间创造最大的空白（图12.1）。优化问题是
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\underset{\beta,\beta_0,\Vert \beta\Vert=1}{max}\; M\\
-s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
-\end{array}
-\qquad (12.3)
-</script>
-</p>
-<p><img alt="" src="../../img/12/fig12.1.png" /></p>
+这是一个加性模型，但是是关于导出特征$V_m=w_m^TX$，而不是关于输入本身。函数$g_m$未定，而是用一些灵活的光滑化方法来估计及$w_m$的方向（见下）。</p>
+<p>函数$g_m(w_m^TX)$称为$R^p$中的岭函数。仅仅在由向量$w_m$定义的方向上不同。标量变量$V_m=w_m^TX$是$X$在单位向量$w_m$上的向量，我们寻找$w_m$使得模型拟合得好，因此称为“投影寻踪”。图11.1显示了岭函数的一些例子。左边的例子$w=(1/\sqrt{2})(1,1)^T$,所以函数仅仅在$X_1+X_2$方向上不同。在右边的例子中，$w=(1,0)$</p>
+<p><img alt="" src="../../img/11/fig11.1.png" /></p>
 <blockquote>
-<p>图12.1. 支持向量分类器。左图显示了可分情形。判别边界是实线，而虚线确定了边缘空白（阴影部分）的最大宽度为$2M=2/\Vert\beta\Vert$。右图中显示了不可分（重叠）情形。标记为$\xi_j^<em>$的点是在边缘空白错误的一边，且$\xi_j^</em>=M\xi_j$；在正确一侧的点有$\xi_j^<em>=0.$ 最大化空白边界是要满足总代价$\sum\xi_i\le constant$.因此，$\sum\xi_j^</em>$是在空白边界中点的距离综合。</p>
+<p>图11.1. 2个岭回归的透视图。（左图：）$g(V)=1/[1+exp(-5(V-0.5))]$其中$V=(X_1+X_2)/\sqrt{2}$.（右图：）$g(V)=(V+0.1)sin(1/(V/3+0.1))$,其中$V=X_1$.</p>
 </blockquote>
-<p>图中的条纹宽度为$M$是分离超平面到另一边的距离，因此总共宽度为$2M$。这称为边缘空白（margin）。</p>
-<p>我们已经证明了这个问题可以更方便地写成
+<p>（11.1）的PPR模型是非常一般的，因为形成线性组合的非线性函数的操作得到相当多的模型类型。举个例子，积$X_1\cdot X_2$可以写成$[(X_1+X_2)^2-(X_1-X_2)^2]/4$，高阶的乘积也可以类似地表示。</p>
+<p>实际上，如果取任意大的$M$,合适地选择$g_m$，PPR模型可以很好地近似$R^p$中任意连续的函数。这样的模型类别称为通用近似（universal approximator）。然而这种一般性需要付出代价。拟合模型的解释性通常很困难，因为每个都以复杂多位面的方式进入模型中。结果造成PPR模型对于预测非常有用，但是对于产生一个很好理解数据的模型不是很有用。$M=1$模型是个例外，也是计量经济学中的单指标模型。这比线性回归模型更加一般，也提供了一个类似的解释。</p>
+<p>给定训练点$(x_i,y_i),i=1,2,\ldots,N$怎么拟合PPR模型？我们在函数$g_m$和方向向量$w_m,m=1,2,\ldots,M$上寻找误差函数的近似最小值
 <script type="math/tex; mode=display">
-\begin{array}{ll}
-&\underset{\beta,\beta_0}{min}\;\Vert\beta\Vert\\
-s.t.&\; y_i(x_i^T\beta+\beta_0)\ge 1,\; i=1,\ldots,N
-\end{array}
-\qquad (12.4)
+\sum\limits_{i=1}^N[y_i-\sum\limits_{m=1}^Mg_m(w_m^Tx_i)]^2\qquad (11.2)
 </script>
-我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$.表达式（12.4）是对于稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解将在4.5.2节中讨论。</p>
-<p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$,但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$.有两种自然的方式去修改（12.3）中的约束：
+正如在其他光滑问题中一样，我们需要在$g_m$上加上显式或隐式的限制来避免过拟合解。</p>
+<p>仅仅考虑一项（$M=1$，并且去掉下标）。给定方向向量$w$，我们得到导出变量$v_i=w^Tx_i$.接着我们有一个一维光滑问题，而且我们可以应用任意散点图光滑器，比如光滑样条来得到$g$的一个估计。</p>
+<p>另一方面，给定$g$，我们想要关于$w$最小化（11.2）.高斯-牛顿搜索可以很方便地实现这个任务。这是一个拟牛顿法，丢掉了Hessian阵中关于$g$二阶微分的项。可以很简单地按照下面导出。令$w_{old}$为$w$的当前估计。我们写成
 <script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\qquad (12.5)
+g(w^Tx_i)\approx g(w_{old}^Tx_i)+g'(w_{old}^Tx_i)(w-w_{old})^Tx_i\qquad (11.3)
 </script>
-或者
+得到
 <script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\qquad (12.6)
+\sum\limits_{i=1}^N[y_i-g(w^Tx_i)]^2\approx \sum\limits_{i=1}^Ng'(w_{old}^Tx_i)^2[(w_{old}^ Tx_i+\frac{y_i-g(w_{old}^Tx_i)}{g'(w^T_{old}x_i)})-w^Tx_i]^2\quad (11.4)
 </script>
-$\forall i,\xi_i\ge 0,\sum_{i=1}^N\xi_i\le constant$. 这两个选择导出不同的解。第一个选择似乎更加自然，因为它衡量了到边缘空白的实际距离；第二个选择衡量了相对距离，它会随着边缘空白$M$的改变而改变。然而，第一个选择是一个非凸的优化问题，而第二个是凸的；因此（12.6）推出标准的支持向量分类器，我们从这里开始使用它。</p>
-<p>这是想法的形成过程。约束条件$y_i(x_i^T\beta+\beta_0)\ge M(1-\xi_i)$中的$\xi_i$与经过$f(x_i)=x_i^T\beta+\beta_0$预测得到的错误分类总数成比例。因此通过约束$\sum\xi_i$,我们约束了错误预测总数的比例。当$\xi_i&gt;1$则为错误分类，所以在$K$的水平下约束$\sum\xi_i$表示限制训练集中错分类个数小于$K$.</p>
-<p>类似4.5.2节中的（4.48），我们可以去掉在$\beta$上的约束，定义$M=1/\Vert\beta\Vert$，然后将（12.4）写成下面的等价形式
-<script type="math/tex; mode=display">
-min\;\Vert\beta\Vert\qquad s.t.\;\left\{\begin{array}{ll}y_i(x_i^T\beta+\beta_0\ge1-\xi)\;\forall i,\\
-\xi_i\ge 0,\sum\xi_i\le constant.\end{array}\right.\qquad (12.7)
-</script>
-这是非分离情形下支持向量分类器定义的通常方式。然而我们会对约束$y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i$中的固定常数1感到误解，更喜欢使用(12.6)式。图12.1的右图说明了重叠的情形。</p>
-<p>从准则（12.7）可以看出，在类别里面的点不会对边界的形成有太大的影响。这似乎是个很吸引人的性质，这与线性判别边界（4.3节）不同。LDA中，判别边界是由类别的分布的协方差和重心来决定。我们将在12.3.3节看到逻辑斯蒂回归在这点上很像。</p>
-<h2 id="1221">12.2.1 计算支持向量分类器</h2>
-<p>问题（12.7）是带有线性不等值约束的二次问题，因此这是一个凸优化问题。我们描述一种采用Lagrange乘子的二次编程解法。将式（12.7）重新表达成下面的等价形式是很方便的
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\underset{\beta,\beta_0}{min}&\;\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i\\
-s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
-\end{array}
-\qquad (12.8)
-</script>
-其中“代价”参数$C$替换（12.7）中的常数；可分情况下对应$C=\infty$</p>
-<p>Lagrange函数(原问题)为
-<script type="math/tex; mode=display">
-L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\qquad (12.9)
-</script>
-我们需要关于$\beta,\beta_0$和$\xi_i$求最小值。令对应的微分为0，我们有
-<script type="math/tex; mode=display">
-\begin{align}
-\beta&=\sum\limits_{i=1}^N\alpha_iy_ix_i\qquad (12.10)\\
-0&= \sum\limits_{i=1}^N\alpha_iy_i\qquad (12.11)\\
-\alpha_i&=C-\mu_i,\;\forall i,\qquad (12.12)
-\end{align}
-</script>
-同样有正值约束$\alpha_i,\mu_i,\xi_i\ge 0\;\forall i.$ 把（12.10）-(12.12）代入（12.9），我们得到Lagrangian（Wolfe）对偶目标函数
-<script type="math/tex; mode=display">
-L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\qquad (12.13)
-</script>
-它给出了目标函数（12.8）对于任意可行解的一个下界。我们在满足$0\le \alpha_i\le C$和$\sum_{i=1}^N\alpha_iy_i=0$的条件下最大化$L_D$.再加上（12.10）-（12.12）条件，Karush-Kuhn-Tucker条件包含下列约束
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]&=0\qquad (12.14)\\
-\mu_i\xi_i&=0\qquad (12.15)\\
-y_i(x_i^T\beta+\beta_0)-(1-\xi_i)\ge 0\qquad (12.16)
-\end{array}
-</script>
-对于$i=1,\ldots,N.$结合（12.10）-(12.16)我们得到原问题和对偶问题的唯一解</p>
-<p>对于（12.10）我们看到$\beta$的解有如下形式
-<script type="math/tex; mode=display">
-\hat\beta=\sum\limits_{i=1}^N\hat\alpha_iy_ix_i\qquad (12.17)
-</script>
-非负系数$\hat\alpha_i$只对严格满足约束（12.16）的观测成立（由于（12.14））。这些观测称之为称之为支持向量，因为$\hat\beta$用他们单独表示。在这些支持点中，一些会在空白边缘的边处（$\hat\xi_i=0$）,因此从式（12.15），式（12.12）可以由$0&lt;\hat\alpha_i<C$来表示；剩余部分（$\hat\xi_i>0$）有$\hat\alpha_i=C$.从（12.14）我们可以看到任一边缘点（$0&lt;\hat\alpha_i,\hat\xi_i=0$）可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值。</p>
-<p>最大化对偶问题（12.13）是比原问题（12.9）更简单的凸优化编程问题，而且可以用标准的方法进行求解（举个例子，1981年Murray等人）</p>
-<p>给定解$\hat\beta_0$和$\beta$，判别函数可以写成
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\hat G(x)&=sign[\hat f(x)]\\
-&=sign[x^T\hat\beta+\hat\beta_0]\qquad (12.18)
-\end{array}
-</script>
-这个过程的调整参数是代价参数$C$.</p>
-<h2 id="1222">12.2.2 混合例子（继续）</h2>
-<p>图12.2显示了21页图2.5混合例子对于两个不同代价参数$C$的支持向量边界，这里有两个重叠的类别。这些分类器的表现很相似。在边界的错误一侧是支持向量。另外，在判别边界附近正确一侧的点也是支持向量。$C=0.01$时的边缘空白比$C=10,000$时的大。因此大的$C$值更加注意（正确分类）靠近判别边界的点，而较小的$C$涉及离判别边界更远的点。任意一种方式，错分类的点都被赋予了权重，不管离多远。在这个例子中这个过程对$C$的取值不敏感，因为判别边界的刚性。</p>
-<p>最优的$C$可以通过交叉验证来确定，如第7章中讨论的那样。有趣的是，舍一交叉验证误差可以通过数据中支持向量的点的比例来约束。原因是当舍去的不是支持向量的时候不会改变解。因此这些观测点在原始边界中分对的点在交叉验证中也是分对的。然而，边界趋向于很高，而且一般不适用于选择$C$(在我们的例子中分别是62\%和85\%)。</p>
-<p><img alt="" src="../../img/12/fig12.2.png" /></p>
-<blockquote>
-<p>图12.2 对于两个不同$C$值，有两个重叠类别的混合数据例子的线性支持向量边界。虚线表示边缘空白，其中$f(x)=\pm 1$。支持点（$\alpha_i&gt;0$）是在它们边缘的错误一边的点。黑色实心点是恰巧落在空白边界上（$\xi_i=0,\alpha_i&gt;0$）的点。在上面一张图中，$62\%$的观测点都是支持点，而下面的图$85\%$的点都是。紫色虚线是贝叶斯判别边界。</p>
-</blockquote>
+为了最小化右边的项，我们在输入$x_i$对目标$w_{old}^Tx_i+(y_i-g(w_{old}^Tx_i))/g&rsquo;(w_{old}^Tx_i)$进行最小二乘回归，没有系数$g&rsquo;(w_{old}^Tx_i)^2$并且没有截距（偏差）项。这样得到更新后的系数向量$w_{new}$.</p>
+<p>对$g$和$w$的估计的这两步一直迭代直到收敛。在PPR模型中不止一项时，以一种向前逐步的方式来建立模型，在每一步加入$(w_m,g_m)$.</p>
+<p>这里是一系列实现的细节。</p>
+<ul>
+<li>尽管原则上可以使用任意光滑的方法，但如果某方法提供微分则更加方便。局部回归和光滑样条是很方便的。</li>
+<li>每一步之后，上一步得到的$g_m$可以运用第9章描述的backfitting过程来重新调节。尽管这会导致最终有更少的项，但是否提高预测表现不是很清楚。</li>
+<li>通常$w_m$没有被重新调整（部分是为了避免过度的计算），尽管原则上它们也可以被调整。</li>
+<li>项数$M$通常被估计为向前逐步策略的一部分。当下一项不再明显地改善模型的拟合则停止模型的建立过程。交叉验证可以用来确定$M$.</li>
+</ul>
+<p>有许多的应用中可以用到投影寻踪的想法，比如密度估计（Friedman等人，1984；Friedman，1987）。特别地，见14.7节中关于ICA的讨论以及它与探索型投影寻踪的关系。然而，投影寻踪回归模型在统计领域并没有被广泛地使用，或许是因为在它的提出时间（1981），计算上的需求超出大多数已有计算机的能力。但是它确实代表着重要的智力进步，它是一个在神经网络领域的转世中发展起来的，神经网络是本章接下来的内容。</p>
 
 <div id="disqus_thread"></div>
 <script>
