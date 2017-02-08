@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/02 Overview of Supervised Learning/2.4 Statistical Decision Theory/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>2.4 统计判别理论 - ESL CN</title>
+	<title>5.2 分段多项式和样条 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -114,61 +114,61 @@
         
             
 <li >
-    <a href="../2.1 Introduction/">2.1 导言</a>
+    <a href="../../02 Overview of Supervised Learning/2.1 Introduction/">2.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
+    <a href="../../02 Overview of Supervised Learning/2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
 </li>
 
         
             
 <li >
-    <a href="../2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">2.4 统计判别理论</a>
+    <a href="../../02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
 </li>
 
         
             
 <li >
-    <a href="../2.5 Local Methods in High Dimensions/">2.5 高维问题的局部方法</a>
+    <a href="../../02 Overview of Supervised Learning/2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
 </li>
 
         
             
 <li >
-    <a href="../2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
+    <a href="../../02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions/">2.5 高维问题的局部方法</a>
 </li>
 
         
             
 <li >
-    <a href="../2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
+    <a href="../../02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
 </li>
 
         
             
 <li >
-    <a href="../2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
+    <a href="../../02 Overview of Supervised Learning/2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
 </li>
 
         
             
 <li >
-    <a href="../2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+    <a href="../../02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
 </li>
 
         
             
 <li >
-    <a href="../Bibliographic Notes/">文献笔记</a>
+    <a href="../../02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/Bibliographic Notes/">文献笔记</a>
 </li>
 
         
@@ -273,13 +273,13 @@
         
             
 <li >
-    <a href="../../05 Basis Expansions and Regularization/5.1 Introduction/">5.1 导言</a>
+    <a href="../5.1 Introduction/">5.1 导言</a>
 </li>
 
         
             
-<li >
-    <a href="../../05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines/">5.2 分段多项式和样条</a>
+<li class="active">
+    <a href="./">5.2 分段多项式和样条</a>
 </li>
 
         
@@ -550,12 +550,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../2.3 Two Simple Approaches to Prediction/">
+                    <a rel="next" href="../5.1 Introduction/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../2.5 Local Methods in High Dimensions/">
+                    <a rel="prev" href="../../06 Kernel Smoothing Methods/6.1 Introduction/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -576,19 +576,23 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#24">2.4 统计判别理论</a></li>
+        <li class="main active"><a href="#_1">分段多项式和样条</a></li>
+        
+            <li><a href="#_2">自然三次样条</a></li>
+        
+            <li><a href="#_3">例子：南非心脏病（继续）</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="24">2.4 统计判别理论</h1>
+<h1 id="_1">分段多项式和样条</h1>
 <table>
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -598,118 +602,74 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-08-01</td>
+<td>2017-02-08</td>
 </tr>
 </tbody>
 </table>
-<p>在这一部分我们讨论一小部分理论，这些理论提供构建模型的一个框架，比如我们目前为止所有非正式讨论的模型。我们首先考虑定量输出时的情形，而且从随机变量和概率空间的角度来考虑。记$X\in {\mathbf{R}}^p$为实值随机输入向量，$Y\in \bf{R}$为实值随机输出变量，联合概率分布为$Pr(X,Y)$。给定输入$X$,我们寻找一个函数$f(X)$来预测$Y$。这个理论需要一个损失函数(<em>loss function</em>)$L(Y,f(X))$用来惩罚预测中的错误，到目前为止最常用并且最方便的是平方误差损失(<em>squared error loss</em>):$L(Y,f(X))=(Y-f(X))^2$。这导致了我们寻找$f$的一个标准——预测（平方）误差的期望</p>
-<p>
+<p>直到5.7节我们都假设$X$为一维向量。分段多项式函数$f(X)$通过将$X$的定义域分成连续的区间，然后在每个区间内用单独的多项式来表示$f$。图5.1显示了两个简单的分段多项式。第一个是分段常值，含有三个基函数：
 <script type="math/tex; mode=display">
-\begin{align*}
-EPE(f)&=E(Y-f(X))^2\qquad\qquad\qquad(2.9)\\
-&=\int[y-f(x)]^2Pr(dx,dy)\qquad(2.10)
-\end{align*}
+h_1(X)=I(X<\xi_1),\;h_2(X)=I(\xi_1\le X\le \xi_2),\;h_3(X)=I(\xi_2\le X)
+</script>
+因为这些在不连续区域为正值，模型$f(X)=\sum_{m=1}^3\beta_mh_m(X)$等价于$\hat\beta_m=\overline{Y}_m$,即为$Y$在第$m$个区域的均值。</p>
+<p><img alt="" src="../../img/05/fig5.1.png" /></p>
+<blockquote>
+<p>图5.1. 上面图显示了对一些人造数据的分段常值函数拟合。垂直虚线表示两个结点$\xi_1$和$\xi_2$.蓝色曲线表示真正的函数，数据是通过函数加上高斯噪声产生的。下面板的图显示了对同样数据的分段线性函数拟合——上面板的图没有限制，而下面板的图限制为在结点处连续——右上图没有限制，而左下图限制为在结点处连续。右下图显示了分段线性的基函数，$h_3(X)=(X-\xi_1)_+$,它在$\xi_1$处连续。黑色点表示样本取值$h_3(x_i),i=1,2,\ldots,N$</p>
+</blockquote>
+<p>右上图显示了分段线性拟合。需要三个额外的基函数：$h_{m+3}=h_m(X)X,m=1,2,3$.除了特殊的情形，我们一般更想要第三个面板的图，也是分段线性，但在间隔点上连续。这些连续性的约束导致在参数上的线性约束；举个例子，$f(\xi_1^-)=f(\xi_1^+)$意味着$\beta_1+\xi_1\beta_4=\beta_2+\xi_1\beta_5$.在这种情形下，因为存在两个约束，我们期望得到两个参数，而抛弃4个自由参数。</p>
+<p>这种情形下更直接的方式是将约束结合起来的基函数：
+<script type="math/tex; mode=display">
+h_1(X)=1,\;h_2(X)=X,\;h_3(X)=(X-\xi_1)_+,\;h_4(X)=(X-\xi_2)_+
+</script>
+其中$t_+$记为正的部分。函数$h_3$的图象如图5.1显示。我们经常偏好光滑函数，这个可以通过增加局部多项式的阶数实现。图5.2显示了一系列对同样数据进行的分段3次多项式拟合，增加了结点处的连续性的阶数。右下图的函数是连续的，且在结点处的一阶微分和二阶微分均连续。这称为三次样条。再加一阶的连续性可以导致全局三次多项式。不难证明（练习5.1）下面的基函数表示结点为$\xi_1$和$\xi_2$的三次样条。
+<script type="math/tex; mode=display">
+\begin{align}
+h_1(X)=1,\;h_3(X)=X^2,\;&h_5(X)=(X-\xi_1)_+^3\\
+h_2(X)=X,\;h_4(X)=X^3,\;&h_6(X)=(X-\xi_2)_+^3
+\end{align}
+\qquad (5.3)
+</script>
+这里6个基函数对应6维函数的线性空间。快速地确定参数个数：（3个区域）$\times$ (每个区域4个参数)-（2个结点）$\times$（每个结点3个限制）=6.</p>
+<p><img alt="" src="../../img/05/fig5.2.png" /></p>
+<blockquote>
+<p>图5.2. 一系列分段3次多项式拟合，增加了连续性的阶数。</p>
+</blockquote>
+<p>更一般地，结点为$\xi_j,j=1,\ldots,K$的阶数为$M$的样条是阶数为$M$的分段多项式，而且有连续的$M-2$阶微分。三次样条的$M=4$。实际上图5.1的分段常数函数是阶数为1的样条，而连续的分段线性函数是阶数为2的样条。同样地，截断（truncated-power）基的集合是
+<script type="math/tex; mode=display">
+\begin{align}
+h_j(X)&=X^{j-1},j=1,\ldots,M\\
+h_{M+\ell}(X)&=(X-\xi_\ell)_+^{M-1},\ell=1,\ldots,K
+\end{align}
 </script>
 </p>
-<p>在$X$的<strong>条件</strong>下，我们可以把EPE写成</p>
-<p>
+<p>声称三次样条是使得人眼看不出结点不连续的最低阶样条。需要选择样条的阶数，结点的个数以及它们的位置。参量化样条族的一种简单方式是通过基函数或者自由度，而且用观测$x_i$来确定结点的位置。举个例子，R语言中的表达式bs(x,df=7)产生在x中$N$个观测点取值的三次样条基函数，其中有$7-3=4$个内结点，内结点在x的（20,40,60和80）分位数处。（含四个结点的三次样条是8个维度的。bs()函数默认忽略基函数里面的常数项，因为这样的项一般包含在模型的其它项里面。）然而，也可以更明确地指出，bs(x, degree=1, knots=c(0.2,0.4,0.6))产生有三个内结点的线性样条的基，并且返回一个$N\times 4$的矩阵。</p>
+<p>因为特定阶数以及结点序列的样条函数的空间是向量空间，所以表示它们有许多等价的基底（就像普通多项式一样。）尽管truncated power基在概念上很简单，但是数值计算时不是很吸引人：大的数值的power可以导致非常严重的舍入问题。在本章附录中描述的B样条的基即使在结点数$K$很大时也有很高的计算效率。</p>
+<h2 id="_2">自然三次样条</h2>
+<p>我们知道对数据的多项式拟合的行为在边界处有不稳定的趋势，而且外推法可以很危险。这些问题被样条进一步恶化。边界结点之外的多项式拟合的表现比该区域对应的全局多项式拟合更野蛮。这个可以通过最小二乘拟合的样条函数的逐点方差方便地总结出来（更多细节见下一节的计算这些方差的例子）。图5.3比较了不同模型的逐点方差。在边界处的方差爆炸是显而易见的，对于三次样条这必要会更糟糕。</p>
+<p>自然三次样条添加额外的限制，换句话说在边界结点之外的线性函数。这样减少了4个自由度（两个边界区域分别两个限制条件），这四个自由度可以通过在内部区域取更多的结点花费掉。图5.3用方差表示了这种权衡。在边界附近需要在偏差上付出代价，但是假设边界附近（不管怎样，我们的信息很少）为线性函数通常是合理的考虑。</p>
+<p>含$K$个结点的自然三次样条用$K$基函数来表示。可以从三次样条的出发，通过强加上边界限制导出降维的基。举个例子，从5.2节描述的truncated power序列基出发，我们得到（练习5.4）：
 <script type="math/tex; mode=display">
-EPE(f) = E_XE_{Y\mid X}([Y-f(X)]^2\mid X)\qquad(2.11)
+N_1(X)=1,\;N_2(X)=X,\; N_{k+2}(X)=d_k(X)-d_{K-1}(X),\qquad (5.4)
 </script>
-</p>
-<p>而且满足使EPE逐点最小：</p>
-<p>
+其中，
 <script type="math/tex; mode=display">
-f(x) = argmin_cE_{Y\mid X}([Y-c]^2\mid X=x)\qquad (2.12)
+d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\qquad (5.5)
 </script>
-</p>
-<p>解为</p>
-<p>
+可以看到当$X\ge \xi_K$时每个基函数的二阶微分和三阶微分均为0.</p>
+<h2 id="_3">例子：南非心脏病（继续）</h2>
+<p>在4.4.2节我们对南非心脏病数据进行了线性逻辑斯蒂回归拟合。这里我们以采用自然样条的函数来探索非线性。模型的函数有如下形式：
 <script type="math/tex; mode=display">
-f(x) = E(Y\mid X=x)\qquad (2.13)
+\mathrm{logit}[Pr(chd\mid X)]=\theta_0+h_1(X_1)^T\theta_1+h_2(X_2)^T\theta_2+\cdots+h_p(X_p)^T\theta_p\qquad (5.6)
 </script>
-</p>
-<p>是条件期望，也被称作回归（<em>regression</em>）函数。因此，$Y$的最优预测是在任意点$X=x$是条件均值，此处的最优是用平均平方误差来衡量的。
-<strong>注：</strong>此处条件是指对联合概率密度分解$Pr(X, Y ) = Pr(Y \mid X)Pr(X)$，其中$Pr(Y \mid X) = Pr(Y, X)/Pr(X)$，因此分解成了双变量的积分</p>
-<p>最近邻方法试图直接利用训练数据完成任务。在每一点处，我们可能需要在输入$x_i=x$附近的所有$y_i$的均值。因为在任一点$x$,一般至多有一个观测值，我们决定有</p>
-<p>
-<script type="math/tex; mode=display">
-\hat{f}(x)=Ave(y_i\mid x_i\in N_k(x))
-</script>
-</p>
-<p>其中“Ave”表示平均，$N_k(x)$是集$\cal{T}$中离$x$最近的$k$个点的邻域。这里有两个近似
-- 期望近似为样本数据的平均
-- 在每一点的条件是在对于某个目标点的“闭”区域的松弛。</p>
-<p>
-<script type="math/tex; mode=display">
-\hat{f}(x)=Ave(y_i\mid x_i\in N_k(x))\qquad(2.14)
-</script>
-</p>
-<p>对于规模为$N$的大规模训练数据，邻域中的点更可能接近$x$，而且当$k$越大，平均值会更加稳定。事实上，在联合概率分布$Pr(X,Y)$温和的正则条件下，可以证明当$N,k \longrightarrow \infty$使得$k/N \longrightarrow 0$，$\hat{f}(x) \longrightarrow E(Y \mid X = x)$。根据这个，为什么看得更远，因为似乎我们有个一般的近似量吗？我们经常没有非常大的样本。如果线性或者其它更多结构化的模型是合适的，那么我们经常可以得到比$k$-最近邻更稳定的估计，尽管这些知识必须也要从数据中学习。然而还有其它的问题，有时是致命的。在下一个部分我们看到当维数$p$变大，$k$-最近邻的度量大小也随之变大。所以最近邻代替条件会让我们非常失望。收敛仍然保持，但是当维数增长后收敛阶(<em>rate</em>)变小。</p>
-<p>线性回归怎样适应这个框架？最简单的解释是假设回归函数$f(x)$近似线性</p>
-<p>
-<script type="math/tex; mode=display">
-f(x)\approx x^T\beta\qquad (2.15)
-</script>
-</p>
-<p>这是个基本模型的方式——对于明确回归函数的模型。将$f(x)$的线性模型插入EPE(2.9)然后微分可以理论上解出$\beta$
-<script type="math/tex; mode=display">
-\beta = [E(XX^T)]^{-1}E(XY)\qquad(2.16)
-</script>
-</p>
-<p>注意到我们在$X$上没有条件；而是已经用了我们对函数关系的理解汇合$X$的值（<em>pool over values of X</em>）。最小二乘的解(2.16)相当于对训练数据平均替换式(2.16)中的期望。</p>
-<p>所以$k$-最邻近和最小二乘都是以对由平均得到的条件期望近似而结束。但是它们在模型上显著不同。
-- 最小二乘假设$f(x)$是某个整体线性函数的良好近似。
-- $k$-最近邻假设$f(x)$是局部常值函数的良好近似。</p>
-<p>尽管后者似乎更容易被接受，但我们已经看到我们需要为这种灵活性付出代价。</p>
-<p>很多这本书中描述的技巧都是基于基本模型的，尽管比严格的线性模型更加的灵活。举个例子，可加性模型假设</p>
-<p>
-<script type="math/tex; mode=display">
-f(X) = \sum\limits_{j=1}^{p}f_j(X_j)\qquad(2.17)
-</script>
-</p>
-<p>这保留着线性模型的可加性，但是每个并列的函数$f_j$是任意的。结果是可加模型的最优估计是对于每个并列的函数同时（<em>simultaneously</em>）用$k$-最邻近去近似单变量(<em>univariate</em>)的条件期望。因此在可加性的情况下，通过加上某些（通常不现实）的模型假设在高纬中估计条件期望的问题被扫除了。</p>
-<p>是否为(2.11)的标准而高兴？如果我们用$L_1$损失函数$E\mid Y-f(X)\mid $来替换$L_2$损失函数会怎么样。这种情况下解是条件中位数，
-<script type="math/tex; mode=display">
-\hat{f}(x) = median(Y \mid X = x)\qquad (2.18)
-</script>
-</p>
-<p>条件中位数是另一种定位的方式，而且它的估计比条件均值更加鲁棒。$L_1$标准的导数不连续，阻碍了它们的广泛应用。其它更多抵抗的损失函数会在后面章节中介绍，但是平方误差是分析方便而且是最受欢迎的。</p>
-<p>当输出为类变量$G$时，我们应该怎样处理？同样的范例在这里也是可行的，除了我们需要一个不同的损失函数来惩罚预测错误。预测值$\hat{G}$在$\cal G$中取值，$\cal G$是可能的类别的集合。我们的损失函数可以用$K\times K$的矩阵$\mathbf{L}$来表示，其中$K=card({\cal G})$。矩阵$\mathbf{L}$对角元为0且其它地方值非负，其中$L(k,\ell)$为把属于${\cal G}<em>k$的类分到${\cal G}</em>{\ell}$的代价。大多数情况下我们用0-1(<em>zero-one</em>)损失函数，其中所有的错误分类都被要求一个单位的惩罚。预测错误的期望为</p>
-<p>
-<script type="math/tex; mode=display">
-EPE = E[L(G,\hat{G}(X))]\qquad (2.19)
-</script>
-</p>
-<p>关于联合分布$Pr(G,X)$，期望再一次起作用。再一次考虑条件分布，我们可以写出如下的EPE</p>
-<p>
-<script type="math/tex; mode=display">
-EPE = E_X\sum\limits_{k=1}^KL[{\cal{G}}_k,\hat{G}(X)]Pr({\cal{G}}_k\mid X)\qquad(2.20)
-</script>
-</p>
-<p>再一次满足逐点最小化:</p>
-<p>
-<script type="math/tex; mode=display">
-\hat{G}(x) = argmin_{g\in \cal{G}}\sum\limits_{k=1}^KL({\cal{G}}_k,g)Pr({\cal G}_k\mid X = x)\qquad(2.21)
-</script>
-</p>
-<p>结合0-1损失函数上式简化为</p>
-<p>
-<script type="math/tex; mode=display">
-\hat{G}(x) = argmin_{g\in \cal{G}}[1 − Pr(g\mid X = x)]\qquad(2.22)
-</script>
-</p>
-<p>或者简单地</p>
-<p>
-<script type="math/tex; mode=display">
-\hat{G}(X) = {\cal{G}}_k \text{ if } Pr({\cal{G}}_k\mid X = x) = \underset{g\in{\cal{G}}}{max } Pr(g\mid X = x)\qquad (2.23)
-</script>
-</p>
-<p>合理的解决方法被称作贝叶斯分类（<em>Bayes classifier</em>)，利用条件（离散）分布$Pr(G\mid X)$分到最合适的类别。对于我们模拟的例子图2.5显示了最优的贝叶斯判别边界。贝叶斯分类的误差阶被称作贝叶斯阶(<em>Bayes rate</em>)。</p>
-<p><img alt="" src="../../img/02/fig2.5.png" /></p>
-<p>图2.5：在图2.1，2.2，和2.3中模拟的例子的最优贝叶斯判别边界。因为每个类别的产生密度已知，则判别边界可以准确地计算出来。</p>
-<p>再一次我们看到$k$-最近邻分类直接近似这个解决方法——在最近邻内占绝大多数恰好意味着这个，除了某一点的条件概率松弛为该点的邻域内的条件概率，而且概率是通过训练样本的比例来估计的。</p>
-<p>假设两个类别的问题，我们采用虚拟变量的方法而且通过二进制变量$Y$编码得到$G$，然后进行平方误差损失估计。当${\cal{G}}_1$对应$Y=1$,有$\hat{f}(X)=E(Y\mid X)=Pr(G={\cal{G}}_1\mid X)$。同样对于$K$ 个类别的问题$E(Y_k\mid X)=Pr(G={\cal{G}}_k\mid X)$。这显示了我们虚拟变量回归的过程，然后根据最大的拟合值来分类，这是表示贝叶斯分类的另一种方式。尽管这个理论是确定的，在实现中问题也会随着采用的回归模型不同而出现。举个例子，当采用线性回归模型，$\hat{f}(X)$不必要为正值，而且我们可能会怀疑用这个作为概率的一个估计。我们将在第四章中讨论构建模型$Pr(G\mid X)$的各种不同的方式。</p>
+其中每个$\theta_i$都是乘以对应自然样条基函数$h_j$的系数向量。</p>
+<p>我们在模型中对每一项采用4个自然样条基。举个例子，$X_1$代表sbp，$h_1(X_1)$是包含四个基函数的基。这实际上表明有三个而非两个内结点（在sbp的均匀分位数结点处取值），加上在数据端点的两个边界结点，因为我们把$h_j$的常数项提取出来了。</p>
+<blockquote>
+<p>weiya注：</p>
+<p>因为把常数项单独提出来，所以原本应该为5个基函数。对于自然三次样条来说，$K$个基函数表示含有$K$个结点。</p>
+<p>因为三次样条$M=4$，$K$为结点个数（含边界点）</p>
+<p>$M+K=4+$基函数个数</p>
+<p>则$K$个基函数表示含有$K$个结点。</p>
+<p>这里，总共5个结点，除去边界点，则还剩3个内结点。</p>
+</blockquote>
 
 <div id="disqus_thread"></div>
 <script>
