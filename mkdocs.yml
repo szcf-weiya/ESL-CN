@@ -32,19 +32,47 @@ pages:
       - 4.3 线性判别分析: '04 Linear Methods for Classification/4.3 Linear Discriminant Analysis.md'
       - 4.4 逻辑斯蒂回归: '04 Linear Methods for Classification/4.4 Logistic Regression.md'
       - 4.5 分离超平面: '04 Linear Methods for Classification/4.5 Separating Hyperplanes.md'
-    #- 5 基本展开和正规化:
-    #- 6 核光滑方法:
-    #- 7 模型评估及选择:
-    #- 8 模型推断和平均:
-    #- 9 增广模型，树，以及相关方法:
-    #- 10 加速和增长树:
-    #- 11 神经网络:
+    - 5 基展开和正规化:
+      - 5.1 导言: '05 Basis Expansions and Regularization/5.1 Introduction.md'
+    - 6 核光滑方法:
+      - 6.1 导言: '06 Kernel Smoothing Methods/6.1 Introduction.md'
+    - 7 模型评估及选择:
+      - 7.1 导言: '07 Model Assessment and Selection/7.1 Introduction.md'
+    - 8 模型推断和平均:
+      - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
+      - 8.2 自助法和最大似然法: '08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods.md'
+      - 8.3 贝叶斯方法: '08 Model Inference and Averaging/8.3 Bayesian Methods.md'
+      - 8.4 自助法和贝叶斯推断之间的关系: '08 Model Inference and Averaging/8.4 Relationship Between the Bootstrap and Bayesian Inference.md'
+      - 8.5 EM算法: '08 Model Inference and Averaging/8.5 The EM Algorithm.md'
+      - 8.6 MCMC向后采样: '08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior.md'
+      - 8.7 袋装法: '08 Model Inference and Averaging/8.7 Bagging.md'
+    - 9 增广模型，树，以及相关方法:
+      - 9.0 导言: '09 Additive Models, Trees, and Related Methods/9.0 Introduction.md'
+      - 9.1 广义加性模型: '09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models.md'
+      - 9.2 基于树的方法: '09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods.md'
+    - 10 增强和加性树:
+      - 10.1 增强方法: '10 Boosting and Additive Trees/10.1 Boosting Methods.md'
+      - 10.2 对加性模型的增强拟合:  '10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model.md'
+      - 10.3 向前逐步加性建模: '10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling.md'
+      - 10.4 指数损失和AdaBoost: '10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost.md'
+      - 10.5 为什么是指数损失: '10 Boosting and Additive Trees/10.5 Why Exponential Loss.md'
+      - 10.6 损失函数和鲁棒性: '10 Boosting and Additive Trees/10.6 Loss Functions and Robustness.md'
+
+    - 11 神经网络:
+      - 11.1 导言: '11 Neural Networks/11.1 Introduction.md'
+      - 11.2 投影寻踪回归: '11 Neural Networks/11.2 Projection Pursuit Regression.md'
+      - 11.3 神经网络: '11 Neural Networks/11.3 Neural Networks.md'
+      - 11.4 拟合神经网络: '11 Neural Networks/11.4 Fitting Neural Networks.md'
+      - 11.5 训练神经网络的一些问题: '11 Neural Networks/11.5 Some Issues in Training Neural Networks.md'
+      - 11.6 模拟数据的例子: '11 Neural Networks/11.6 Example of Simulated Data.md'
     - 12 支持向量机和灵活的判别方法:
       - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
       - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md' 
-    #- 13 原型方法和最近邻:
+    - 13 原型方法和最近邻:
+      - 13.1 导言: '13 Prototype Methods and Nearest-Neighbors/13.1 Introduction.md'
     #- 14 非监督学习:
-    #- 15 随机森林:
+    - 15 随机森林:
+      - 15.1 导言: '15 Random Forests/15.1 Introduction.md'
     #- 16 整体学习:
     #- 17 无向图模型:
     #- 18 高维问题
