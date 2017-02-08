@@ -34,6 +34,7 @@ pages:
       - 4.5 分离超平面: '04 Linear Methods for Classification/4.5 Separating Hyperplanes.md'
     - 5 基展开和正规化:
       - 5.1 导言: '05 Basis Expansions and Regularization/5.1 Introduction.md'
+      - 5.2 分段多项式和样条: '05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines.md'
     - 6 核光滑方法:
       - 6.1 导言: '06 Kernel Smoothing Methods/6.1 Introduction.md'
     - 7 模型评估及选择:
