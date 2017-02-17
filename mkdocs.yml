@@ -35,10 +35,13 @@ pages:
     - 5 基展开和正规化:
       - 5.1 导言: '05 Basis Expansions and Regularization/5.1 Introduction.md'
       - 5.2 分段多项式和样条: '05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines.md'
+      - 5.3 滤波和特征提取: '05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction.md'
+      - 5.4 光滑样条: '05 Basis Expansions and Regularization/5.4 Smoothing Splines.md'
     - 6 核光滑方法:
       - 6.1 导言: '06 Kernel Smoothing Methods/6.1 Introduction.md'
     - 7 模型评估及选择:
       - 7.1 导言: '07 Model Assessment and Selection/7.1 Introduction.md'
+      #- 7.10 交叉验证: '07 Model Assessment and Selection/7.10 Cross-Validation.md'
     - 8 模型推断和平均:
       - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
       - 8.2 自助法和最大似然法: '08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods.md'
