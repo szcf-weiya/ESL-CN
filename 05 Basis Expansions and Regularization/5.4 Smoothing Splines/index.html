@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/10 Boosting and Additive Trees/10.5 Why Exponential Loss/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/05 Basis Expansions and Regularization/5.4 Smoothing Splines/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>10.5 为什么是指数损失 - ESL CN</title>
+	<title>5.4 光滑样条 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -273,25 +273,25 @@
         
             
 <li >
-    <a href="../../05 Basis Expansions and Regularization/5.1 Introduction/">5.1 导言</a>
+    <a href="../5.1 Introduction/">5.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines/">5.2 分段多项式和样条</a>
+    <a href="../5.2 Piecewise Polynomials and Splines/">5.2 分段多项式和样条</a>
 </li>
 
         
             
 <li >
-    <a href="../../05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction/">5.3 滤波和特征提取</a>
+    <a href="../5.3 Filtering and Feature Extraction/">5.3 滤波和特征提取</a>
 </li>
 
         
             
-<li >
-    <a href="../../05 Basis Expansions and Regularization/5.4 Smoothing Splines/">5.4 光滑样条</a>
+<li class="active">
+    <a href="./">5.4 光滑样条</a>
 </li>
 
         
@@ -414,37 +414,37 @@
         
             
 <li >
-    <a href="../10.1 Boosting Methods/">10.1 增强方法</a>
+    <a href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">10.1 增强方法</a>
 </li>
 
         
             
 <li >
-    <a href="../10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+    <a href="../../10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
 </li>
 
         
             
 <li >
-    <a href="../10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+    <a href="../../10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
 </li>
 
         
             
 <li >
-    <a href="../10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">10.5 为什么是指数损失</a>
+    <a href="../../10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
 </li>
 
         
             
 <li >
-    <a href="../10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
+    <a href="../../10 Boosting and Additive Trees/10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
 </li>
 
         
@@ -562,12 +562,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../10.4 Exponential Loss and AdaBoost/">
+                    <a rel="next" href="../5.3 Filtering and Feature Extraction/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../10.6 Loss Functions and Robustness/">
+                    <a rel="prev" href="../../06 Kernel Smoothing Methods/6.1 Introduction/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -588,14 +588,16 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">为什么是指数损失？</a></li>
+        <li class="main active"><a href="#_1">光滑样条</a></li>
+        
+            <li><a href="#_2">自由度和光滑矩阵</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">为什么是指数损失？</h1>
+<h1 id="_1">光滑样条</h1>
 <table>
 <thead>
 <tr>
@@ -610,46 +612,143 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-06</td>
+<td>2017-02-16</td>
 </tr>
 </tbody>
 </table>
-<p>AdaBoost.M1算法最初是从一个非常不一样的角度出发得到的，而不是上一节中提出的。它与基于指数损失的向前逐步加性建模的等价性仅在其提出后五年后才被发现。通过研究指数损失函数准则的性质，可以深入了解这个过程并且找出可能改善的方式。</p>
-<p>在加性模型中指数损失的主要吸引点在于计算上的方便；它导出简单的模块化重加权的AdaBoost算法。然而，调查它的统计性质也是我们关注的。它估计什么，估计有多么好？第一个问题可以通过寻找总体最小化来回答。</p>
-<p>可以很简单地证明（Friedman等人，2000）
+<p>这里我们讨论样条基方法来完全避免通过使用最大结点集合造成的结点选择的问题。拟合的复杂度由正则化来控制。考虑下面的问题：在所有有二阶连续微分的函数$f(x)$中，找到一个使得惩罚残差平方和最小</p>
+<p>
 <script type="math/tex; mode=display">
-f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{1}{2}\mathrm{log}\frac{Pr(Y=1\mid X)}{Pr(Y=-1\mid X)}\qquad (10.16)
-</script>
-或者等价地，
-<script type="math/tex; mode=display">
-Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
-</script>
-因此，由AdaBoost得到的加性展开是估计二分之一的$P(Y=1\mid x)$比率。这证明使用它的符号作为（10.1）的分类规则是合理的。</p>
-<p>另外一个有着同样的总体最小化的损失准则为负二项分布或者偏差（也称为交叉熵），将$f$解释为logit变换。令
-<script type="math/tex; mode=display">
-p(x)=Pr(Y=1\mid x)=\frac{e^{f(x)}}{e^{-f(x)}+e^{f(x)}}=\frac{1}{1+e^{-2f(x)}}\qquad (10.17)
-</script>
-并且定义$Y&rsquo;=(Y+1)/2\in {0,1}$.则二项对数概率损失函数为
-<script type="math/tex; mode=display">
-l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
-</script>
-或者等价地，偏差为
-<script type="math/tex; mode=display">
--l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\qquad (10.18)
+RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\qquad (5.9)
 </script>
 </p>
+<p>其中$\lambda$是固定的光滑参数。第一项衡量和数据的近似程度，第二项对函数的曲率进行惩罚，且$\lambda$建立了而两者之间的一个平衡。两个特别的例子是：</p>
+<ul>
+<li>$\lambda=0$： $f$ 可以是任意对数据插值的函数</li>
+<li>$\lambda=\infty$： $f$ 简单的最小而成拟合，因为不容忍任何的二次微分。</li>
+</ul>
+<p>这从非常粗糙变到非常光滑，而且希望$\lambda\in(0,\infty)$在非常粗糙与非常光滑之间表示一个对我们感兴趣的函数类。</p>
+<div class="admonition warning">
+<p class="admonition-title">weiya 注</p>
+<p>对于$y=f(x)$曲线的曲率定义为
+<script type="math/tex; mode=display">
+\kappa = \frac{\vert y''\vert}{(1+y'^2)^{3/2}}
+</script>
+但这里为什么只用二阶导。</p>
+</div>
+<p>准则（5.9）定义在无限维函数空间上——实际上，是二阶导有定义的Sobolev函数空间。值得注意的是，可以证明（5.9）有一个显式的有限维的唯一一个最小值点，是一个结点在唯一的$x_i,i=1,2,\ldots,N$处的自然三次样条。（练习5.7）。表面上看，这个函数族仍然是过参量化，因为有$N$个结点，这意味着$N$个自由度。然而，惩罚项转换为对样条系数的惩罚，使得某些向着线性拟合收缩。</p>
+<p>因为解为自然样条，所以我们可以写成</p>
+<p>
+<script type="math/tex; mode=display">
+f(x)=\sum\limits_{j=1}^NN_j(x)\theta_j\qquad (5.10)
+</script>
+</p>
+<p>其中$N_j(x)$是表示自然样条族的$N$维基函数集（5.2.1节和练习5.4）。准则因此退化成</p>
+<p>
+<script type="math/tex; mode=display">
+RSS(\theta,\lambda)=(\mathbf y-\mathbf N\theta)^T(\mathbf y-\mathbf N\theta)+\lambda\theta^T\Omega_N\theta\qquad (5.11)
+</script>
+</p>
+<p>其中${\mathbf N}<em>{ij}=N_j(x_i)$以及${\Omega_N}</em>{jk}=\int N_j&rsquo;&lsquo;(t)N_k&rsquo;&lsquo;(t)dt$.可以看到解为</p>
+<p>
+<script type="math/tex; mode=display">
+\hat\theta = (\mathbf N^T\mathbf+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\qquad (5.12)
+</script>
+</p>
+<p>是广义岭回归。拟合后的光滑样条由下式给出</p>
+<p>
+<script type="math/tex; mode=display">
+\hat f(x) = \sum\limits_{j=1}^NN_j(x)\hat\theta_j\qquad (5.13)
+</script>
+</p>
+<p>光滑样条的有效计算技巧将在本章的附录中讨论。</p>
+<p>图5.6显示了对青少年骨矿物质密度（BMD）部分数据的光滑样条拟合。响应变量为在连续两次检查时脊髓的BMD的相对改变，一般相隔一年。数据点的颜色由性别来编码，得到两个独立的拟合曲线。简单的总结加强了数据中的证据，女性增长相对于男性要早两年。两种情形下光滑参数$\lambda$近似为0.00022；它的选择将在下一节中讨论。</p>
+<p><img alt="" src="../../img/05/fig5.6.png" /></p>
 <blockquote>
-<p>weiya注：
+<p>图5.6. 响应变量是青少年中脊髓的骨矿物质密度的相对改变，将它看成是年龄的函数。对男性和女性分别进行光滑样条拟合，其中$\lambda\approx 0.00022$。这个选择对应12个自由度。</p>
+</blockquote>
+<h2 id="_2">自由度和光滑矩阵</h2>
+<p>我们还没有指出光滑样条的$\lambda$是怎么选取的。本章的后面我们描述使用如交叉验证的技巧的自动化方法。在这部分中我们讨论预先确定光滑总量的直观方式。</p>
+<p>预先选择$\lambda$的光滑样条是线性光滑的一个例子（如在线性算子中一样）。这是因为（5.12）的估计参数是$y_i$的线性组合。记$\hat{\mathbf f}$ 为$N$维在训练预测变量$x_i$处的拟合值 $\hat f(x_i)$向量。则</p>
+<p>
 <script type="math/tex; mode=display">
-l(Y,p(x))=Yf(x)-f(x)-log(1+e^{-2Yf(x)})
-</script>
-又
-<script type="math/tex; mode=display">
-Y=1
+\begin{align}
+\hat{\mathbf f} &= \mathbf N(\mathbf N^T\mathbf N + \lambda\mathbf \Omega_N)^{-1}\mathbf N^T\mathbf y\\\
+                &= \mathbf S_\lambda\mathbf y\qquad\qquad\qquad\qquad (5.14)
+\end{align}
 </script>
 </p>
+<p>再一次拟合关于$\mathbf y$是线性的，并且有限线性算子$\mathbf S_\lambda$称作光滑矩阵。这种线性的结果是从$\mathbf y$得到$\hat {\mathbf f}$的方法不依赖$\mathbf y$本身；$\mathbf S_\lambda$仅仅依赖于$x_i$和$\lambda$.</p>
+<p>线性算子在更传统的最小二乘拟合中也是熟悉的。假设$\mathbf B_\xi$是 $M$ 个三次样条基函数在$N$个训练点$x_i$处取值的 $N\times M$矩阵，结点序列为$\xi$，并且$M&lt;&lt;N$.则拟合样条值向量由下式给出</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat{\mathbf f} &= \mathbf{B_\xi(B_\xi^TB_\xi)^{-1}B_\xi^Ty}\\\
+&= \mathbf {H_\xi y}\qquad\qquad\qquad\qquad (5.15)
+\end{align}
+</script>
+</p>
+<p>这里线性算子$\mathbf H_\xi$是投影算子，在统计中也称作帽子矩阵。$\mathbf H_\xi$和 $\mathbf S_\lambda$之间有许多重要的相似性和不同：</p>
+<ul>
+<li>都是对称、半正定矩阵。</li>
+<li>$\mathbf{H_\xi H_\xi=H_\xi}$（幂等矩阵），而$\mathbf S_\lambda S_\lambda $，表示右边项比左边项多一个半正定矩阵。这是$S_\lambda$收缩本质的结果，我们将在下面进一步讨论。</li>
+<li>$\mathbf H_\xi$秩为$M$，而$\mathbf S_\lambda$秩为$N$.</li>
+</ul>
+<p>表达式$M=\mathrm{trace}(\mathbf H_\xi)$给出了投影空间的维度，也是基函数的个数，因此是在拟合中涉及的参数个数。类似地，我们定义光滑样条的有效自由度（effective degrees of freedom）为</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{df}_\lambda = \mathrm{trace}(\mathrm{S}_\lambda)\qquad (5.16)
+</script>
+</p>
+<p>$\mathbf S_\lambda$的对角元之和。这个非常有用的定义允许我们以更加直观的方式对光滑样条进行参量化，而且许多其他的光滑器确实也是这样的，以一种一致的方式。举个例子，在图5.6中我们对每条曲线确定$\mathrm{df}<em>\lambda=12$，对应的$\lambda\approx 0.00022$是通过数值求解$\mathrm{trace}(\mathbf S</em>\lambda)=12$得到的。许多理论都支持自由度的定义，这里我们介绍部分。</p>
+<p>因为$\mathbf S_\lambda$是对称的（而且半正定），所以存在实特征值分解。在我们处理之前，将$\mathbf S_\lambda$重新写成Reinsch形式是方便的</p>
+<p>
+<script type="math/tex; mode=display">
+\mathbf S_\lambda=(\mathbf I+\lambda \mathbf K)^{-1}\qquad (5.17)
+</script>
+</p>
+<p>其中$\mathbf K$不依赖于$\lambda$（练习5.9）.因为$\hat{\mathbf f}=\mathbf S_\lambda y$是下式的解</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\mathbf f}{\mathrm{min}}(\mathbf{y-f})^T(\mathbf{y-f})+\lambda \mathbf{f^TKf}\qquad (5.18)
+</script>
+</p>
+<p>$\mathbf K$也称作惩罚矩阵，而且$\mathbf K$的二次型形式有根据平方（分割）的第二差的加权和的表示。$\mathbf S_\lambda$的特征值分解为</p>
+<p>
+<script type="math/tex; mode=display">
+\mathbf S_\lambda = \sum\limits_{k=1}^N\rho_k(\lambda)\mathbf u_ku_k^T\qquad (5.19)
+</script>
+</p>
+<p>其中，</p>
+<p>
+<script type="math/tex; mode=display">
+\rho_k(\lambda)=\frac{1}{1+\lambda d_k}\qquad (5.20)
+</script>
+</p>
+<p>且$d_k$是 $\mathbf K$对应的特征值。图5.7（上）显示了对部分空气污染数据（128个观测）应用三次光滑样条的结果。给出了两个拟合：对应大的惩罚 $\lambda$的更光滑的拟合以及一个对应小的惩罚的更粗糙的拟合。下图表示了对应光滑矩阵的特征值（左下图）和部分特征向量（右下图）。</p>
+<p><img alt="" src="../../img/05/fig5.7.png" /></p>
+<blockquote>
+<p>图5.7. （上：）ozone concentration与Daggot pressure gradient光滑样条拟合的对比。两个拟合对应不同的光滑参数值，选择它们达到5和11的有效自由度，有效自由度由$df_\lambda =trace(\mathbf S_\lambda)$定义。（左下：）两个光滑样条矩阵的前25个特征值。前两个特征值恰好为1，且所有都$\ge 0$.（右下：）光滑样条矩阵的第3到第6个矩阵。在每个情形下，$\mathbf u_k$作出关于$x$的图象，而且因此被视为$x$的函数。图象的横轴的须表示数据点出现的位置。阻尼函数表示这些函数的光滑版本（采用5个自由度的光滑器）。</p>
 </blockquote>
-<p>因为对数概率的总体最大在真实概率$p(x)=Pr(Y=1\mid x)$处，我们从（10.17）看到偏差$E_{Y\mid x}[-l(Y,f(x))]$和$E_{Y\mid x}[e^{-Yf(x)}]$的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到$e^{-Yf}$本身不是一个合适的对数概率，因为它不是一个二项随机变量$Y\in {-1,1}$的任何概率密度函数的对数。</p>
+<p>特征表示的一些亮点如下：</p>
+<ul>
+<li>特征向量不会受$\lambda$变化的影响，因此由$\lambda$索引的整个光滑样条族（对于特定的序列$\mathbf x$）有相同的特征向量。</li>
+<li>$\mathbf {S_\lambda y}=\sum_{k=1}^N \mathbf u_k\rho_k(\lambda)\langle \mathbf{u_k,y}\rangle$， 因此光滑样条通过对$\mathbf y$关于（全部）基${\mathbf u_k}$ 分解进行操作，并且通过$\rho_k(\lambda)$来不同程度地收缩贡献。这与基于回归的方法相反，其中组分要么不变，要么收缩为0——这也就是，类似上面的投影矩阵$\mathbf_\xi$有$M$个特征值等于1，剩余特征值等于0。基于这个原因光滑样条被称作收缩（shrinking）光滑器，而回归样条被称作投影（projection）光滑器（见80页的图3.17）</li>
+<li>按$\rho_k(\lambda)$下降排列的$\mathbf u_k$序列的复杂度似乎在增加。确实，它们有多项式增加复杂度的穿过0（zero-crossing）的行为。因为$\mathbf S_\lambda \mathbf u_k=\rho_k(\lambda)\mathbf u_k$，我们看到每个特征向量本身是怎样通过光滑样条来收缩：复杂度越大，收缩也就越大。如果$\mathbf X$定义域为周期的，则$\mathbf u_k$是在不同频率下是正弦和余弦的。</li>
+<li>前两个特征值总是1，它们对应关于$x$的2维函数特征空间（练习5.11），它们从不收缩。</li>
+<li>特征值$\rho_k(\lambda)=1/(1+\lambda d_k)$是惩罚矩阵$\mathbf K$的特征值$d_k$的反函数，通过$\lambda$来调节；$\lambda$控制$\rho_k(\lambda)$下降为0的速率。$d_1=d_2=0$又一次表明线性函数没有被惩罚。</li>
+<li>可以通过基向量$\mathbf u_k$（Demmler-Reinsch基）来重参量化光滑样条。在这种情形下，光滑样条求解
+<script type="math/tex; mode=display">
+\underset{\mathbf\theta}{\mathrm{min}}\Vert \mathbf{y-U\theta}\Vert^2+\lambda \mathbf{\theta^TD\theta}\qquad (5.21)
+</script>
+其中$\mathbf U$列为$\mathbf u_k$，且$\mathbf D$为元素为$d_k$的对角矩阵。</li>
+<li>$df_\lambda = trace(\mathbf S_\lambda)=\sum_{k=1}^N\rho_k(\lambda)$.对于投影光滑器，所有的特征值为1，每个特征值对应投影子空间的一个维度。</li>
+</ul>
+<p>图5.8 描述了一个光滑样条矩阵，行按$x$排序。这种表示的带表明光滑样条是局部拟合方法，很像第6章的局部加权回归过程。右图详细显示了所选的$\mathbf S$的行，我们称为等价核。当$\lambda\rightarrow 0, df_\lambda\rightarrow N$，且$\mathbf S_\lambda\rightarrow \mathbf I$，$\mathbf I$为$N$维单位矩阵。当$\lambda\rightarrow \infty,df_\lambda\rightarrow 2,$且 $\mathbf S_\lambda\rightarrow \mathbf H$， $\mathbf H$为在$\mathbf x$上线性回归的帽子矩阵。</p>
+<p><img alt="" src="../../img/05/fig5.8.png" /></p>
+<blockquote>
+<p>光滑样条的光滑矩阵近似带状，表明局部支撑的等价核。左图将$\mathbf S$的元素表示成图象。右图详细显示了所指出的行的等价核或者加权函数。</p>
+</blockquote>
 
 <div id="disqus_thread"></div>
 <script>

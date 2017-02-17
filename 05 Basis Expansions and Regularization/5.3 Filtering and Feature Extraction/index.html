@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/10 Boosting and Additive Trees/10.5 Why Exponential Loss/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>10.5 为什么是指数损失 - ESL CN</title>
+	<title>5.3 滤波和特征提取 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -273,25 +273,25 @@
         
             
 <li >
-    <a href="../../05 Basis Expansions and Regularization/5.1 Introduction/">5.1 导言</a>
+    <a href="../5.1 Introduction/">5.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines/">5.2 分段多项式和样条</a>
+    <a href="../5.2 Piecewise Polynomials and Splines/">5.2 分段多项式和样条</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">5.3 滤波和特征提取</a>
 </li>
 
         
             
 <li >
-    <a href="../../05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction/">5.3 滤波和特征提取</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../05 Basis Expansions and Regularization/5.4 Smoothing Splines/">5.4 光滑样条</a>
+    <a href="../5.4 Smoothing Splines/">5.4 光滑样条</a>
 </li>
 
         
@@ -414,37 +414,37 @@
         
             
 <li >
-    <a href="../10.1 Boosting Methods/">10.1 增强方法</a>
+    <a href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">10.1 增强方法</a>
 </li>
 
         
             
 <li >
-    <a href="../10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+    <a href="../../10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
 </li>
 
         
             
 <li >
-    <a href="../10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+    <a href="../../10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
 </li>
 
         
             
 <li >
-    <a href="../10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">10.5 为什么是指数损失</a>
+    <a href="../../10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
 </li>
 
         
             
 <li >
-    <a href="../10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
+    <a href="../../10 Boosting and Additive Trees/10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
 </li>
 
         
@@ -562,12 +562,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../10.4 Exponential Loss and AdaBoost/">
+                    <a rel="next" href="../5.2 Piecewise Polynomials and Splines/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../10.6 Loss Functions and Robustness/">
+                    <a rel="prev" href="../5.4 Smoothing Splines/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -588,14 +588,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">为什么是指数损失？</a></li>
+        <li class="main active"><a href="#_1">过滤和特征提取</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">为什么是指数损失？</h1>
+<h1 id="_1">过滤和特征提取</h1>
 <table>
 <thead>
 <tr>
@@ -610,46 +610,13 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-06</td>
+<td>2017-02-16</td>
 </tr>
 </tbody>
 </table>
-<p>AdaBoost.M1算法最初是从一个非常不一样的角度出发得到的，而不是上一节中提出的。它与基于指数损失的向前逐步加性建模的等价性仅在其提出后五年后才被发现。通过研究指数损失函数准则的性质，可以深入了解这个过程并且找出可能改善的方式。</p>
-<p>在加性模型中指数损失的主要吸引点在于计算上的方便；它导出简单的模块化重加权的AdaBoost算法。然而，调查它的统计性质也是我们关注的。它估计什么，估计有多么好？第一个问题可以通过寻找总体最小化来回答。</p>
-<p>可以很简单地证明（Friedman等人，2000）
-<script type="math/tex; mode=display">
-f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{1}{2}\mathrm{log}\frac{Pr(Y=1\mid X)}{Pr(Y=-1\mid X)}\qquad (10.16)
-</script>
-或者等价地，
-<script type="math/tex; mode=display">
-Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
-</script>
-因此，由AdaBoost得到的加性展开是估计二分之一的$P(Y=1\mid x)$比率。这证明使用它的符号作为（10.1）的分类规则是合理的。</p>
-<p>另外一个有着同样的总体最小化的损失准则为负二项分布或者偏差（也称为交叉熵），将$f$解释为logit变换。令
-<script type="math/tex; mode=display">
-p(x)=Pr(Y=1\mid x)=\frac{e^{f(x)}}{e^{-f(x)}+e^{f(x)}}=\frac{1}{1+e^{-2f(x)}}\qquad (10.17)
-</script>
-并且定义$Y&rsquo;=(Y+1)/2\in {0,1}$.则二项对数概率损失函数为
-<script type="math/tex; mode=display">
-l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
-</script>
-或者等价地，偏差为
-<script type="math/tex; mode=display">
--l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\qquad (10.18)
-</script>
-</p>
-<blockquote>
-<p>weiya注：
-<script type="math/tex; mode=display">
-l(Y,p(x))=Yf(x)-f(x)-log(1+e^{-2Yf(x)})
-</script>
-又
-<script type="math/tex; mode=display">
-Y=1
-</script>
-</p>
-</blockquote>
-<p>因为对数概率的总体最大在真实概率$p(x)=Pr(Y=1\mid x)$处，我们从（10.17）看到偏差$E_{Y\mid x}[-l(Y,f(x))]$和$E_{Y\mid x}[e^{-Yf(x)}]$的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到$e^{-Yf}$本身不是一个合适的对数概率，因为它不是一个二项随机变量$Y\in {-1,1}$的任何概率密度函数的对数。</p>
+<p>在上一个例子中，我们构造了一个$p\times M$的基矩阵$\mathbf H$，然后将我们的特征转换为新特征$x^*=\mathbf H^Tx$。这些过滤后的特征接着作为一个学习过程的输入：在上一个例子中，这是线性逻辑斯蒂回归。</p>
+<p>高维特征的预处理是非常普遍的而且对于改善学习算法的效果是很有效的。预处理也不需要像上面一样是线性的，而是可以是一般的（非线性）函数$x^<em>=g(x)$.派生特征$x^</em>$可以接着作为任意（线性或非线性）学习过程的输入。</p>
+<p>举个例子，对于信号或者图像识别，很流行的方式是首先通过小波变换$x^<em>=\mathbf H^Tx$对原始特征进行转换（5.9节），接着将特征$x^</em>$作为神经网络的输入（第11章）。小波在捕捉离散跳跃或边时是有效的，神经网络是构造这些特征的非线性函数来预测目标变量的强有力工具。通过运用专业知识来构造合适的特征，经常可以改进仅仅具有原始特征的学习方法。</p>
 
 <div id="disqus_thread"></div>
 <script>
