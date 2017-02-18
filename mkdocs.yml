@@ -41,6 +41,8 @@ pages:
       - 6.1 导言: '06 Kernel Smoothing Methods/6.1 Introduction.md'
     - 7 模型评估及选择:
       - 7.1 导言: '07 Model Assessment and Selection/7.1 Introduction.md'
+      - 7.2 偏差，方差和模型复杂度: '07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity.md'
+      - 7.3 偏差-方差分解: '07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition.md'
       - 7.10 交叉验证: '07 Model Assessment and Selection/7.10 Cross-Validation.md'
     - 8 模型推断和平均:
       - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
