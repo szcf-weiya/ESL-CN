@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/10 Boosting and Additive Trees/10.1 Boosting Methods/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>10.1 增强方法 - ESL CN</title>
+	<title>7.4 测试误差率的乐观 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -321,31 +321,31 @@
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.1 Introduction/">7.1 导言</a>
+    <a href="../7.1 Introduction/">7.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
+    <a href="../7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
+    <a href="../7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">7.4 测试误差率的乐观</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate/">7.4 测试误差率的乐观</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../07 Model Assessment and Selection/7.10 Cross-Validation/">7.10 交叉验证</a>
+    <a href="../7.10 Cross-Validation/">7.10 交叉验证</a>
 </li>
 
         
@@ -437,38 +437,38 @@
     <ul class="dropdown-menu">
         
             
-<li class="active">
-    <a href="./">10.1 增强方法</a>
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">10.1 增强方法</a>
 </li>
 
         
             
 <li >
-    <a href="../10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+    <a href="../../10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
 </li>
 
         
             
 <li >
-    <a href="../10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+    <a href="../../10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
 </li>
 
         
             
 <li >
-    <a href="../10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
+    <a href="../../10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
 </li>
 
         
             
 <li >
-    <a href="../10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
+    <a href="../../10 Boosting and Additive Trees/10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
 </li>
 
         
             
 <li >
-    <a href="../10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
+    <a href="../../10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
 </li>
 
         
@@ -586,12 +586,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../../09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods/">
+                    <a rel="next" href="../7.3 The Bias-Variance Decomposition/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../10.2 Boosting Fits an Additive Model/">
+                    <a rel="prev" href="../7.10 Cross-Validation/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -612,16 +612,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#boosting">boosting方法</a></li>
-        
-            <li><a href="#_1">本章概要</a></li>
+        <li class="main active"><a href="#_1">训练误差率的乐观</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="boosting">boosting方法</h1>
+<h1 id="_1">训练误差率的乐观</h1>
 <table>
 <thead>
 <tr>
@@ -636,56 +634,82 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-06</td>
+<td>2017-02-18:2017-02-18</td>
 </tr>
 </tbody>
 </table>
-<p>boosting是在最近20年内提出的最有力的学习方法。最初是为了分类问题而设计的，但是将在这章中看到，它也可以很好地扩展到回归问题上。boosting的动机是集合许多弱学习的结果得到有力的“committee”。从这点看boosting以bagging和其他的基于committee的方式（8.8节）相似。然而，我们应该看到这种联系最多是表面上的，boosting在根本上存在不同。</p>
-<p>我们首先描述最流行的boosting算法，因为Freund和Schapire（1997）称为“AdaBoost.M1”。考虑两个类别的问题，输入变量编码为$Y\in{-1,1}$.给定预报向量$X$，分类器$G(X)$在二值${-1,1}$中取一个值得到一个预测。在训练样本上的误差率是
+<div class="admonition note">
+<p class="admonition-title">weiya 注</p>
+<p>标题中的乐观（optimism）是本节定义的一个量$op$。</p>
+</div>
+<p>讨论误差率的估计可能令人困惑，因为我们必须弄清楚哪些量是固定的哪些量是随机的。在我们继续之前，我们需要一些定义，详细阐述第7.2节的内容。给出训练集$\cal T={(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)}$，模型$\hat f$的推广误差为</p>
+<p>
 <script type="math/tex; mode=display">
-\overline{err}=\frac{1}{N}\sum\limits_{i=1}^NI(y_i\neq G(x_i))
+\mathrm{Err}_{\cal T} = E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid \cal T]\qquad (7.15)
 </script>
-在未来预测的期望误差率为$E_{XY}I(Y\neq G(X))$</p>
-<p>弱分类器是误差率仅仅比随机猜测要好一点的分类器。boosting的目的是依次对反复修改的数据引用弱分类器算法，因此得到弱分类器序列$G_m(x),m=1,2,\ldots,M$ 根据它们得到的预测再通过一个加权来得到最终的预测
+</p>
+<p>注意到在表达式（7.15）中训练集$\cal T$是固定的。点$(X^0,Y^0)$是新的测试点，从数据的联合分布$F$中取的。对数据集平均得到期望误差</p>
+<p>
 <script type="math/tex; mode=display">
-G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\qquad (10.1)
+\mathrm{Err} = \mathrm E_{\cal T}\mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid \cal T]\qquad (7.16)
 </script>
-这里$\alpha_1,\alpha_2,\ldots,\alpha_M$通过boosting算法进行计算，而且对每个单独的$G_m(x)$的贡献度赋予权重。它们的作用是在给序列中更精确的分类器更大的影响。图10.1显示了AdaBoost过程的概要图。</p>
-<p><img alt="" src="../../img/10/fig10.1.png" /></p>
-<blockquote>
-<p>图10.1. AdaBoost的概要图。分类器在加权的数据集上进行训练，接着结合起来产生最终的预测。</p>
-</blockquote>
-<p>在每步boosting的数据修改包括对每个训练观测$(x_i,y_i),i=1,2,\ldots,N$赋予权重$w_1,w_2,\ldots,w_N$.初始化所有的权重设为$w_i=1/N$,使得第一步以通常的方式对数据进行训练分类器。对每个连续的迭代$m=2,3,\ldots,M$，观测的权重进行个别地修改，然后分类算法重新应用到加权观测值上。在第$m$步，上一步中被分类器$G_{m-1}(x)$的误分类的观测值增大了权重，而正确分类的观测值权重降低了。因此当迭代继续，很难正确分类的观测受到越来越大的影响。每个相继的分类器因此被强制集中在上一步误分类的训练数据上。</p>
-<p>算法10.1显示了AdaBoost.M1算法的详细细节。当前的分类器$G_m(x)$由第2(a)行的加权观测值得到。在第2(b)行计算加权误差率。第2(c)行计算赋予$G_m(x)$的权重$\alpha_m$来得到最终的分类器$G(x)$(第3行)。每个观测的个体权重在第2(d)行进行更新。在导出序列中下一个分类器$G_{m+1}(x)$时，被分类器$G(x)$错误分类的观测值的权重被因子$exp(\alpha_m)$进行缩放以提高它们的相对影响。</p>
-<p><img alt="" src="../../img/10/alg10.1.png" /></p>
-<p>在Firedman等人（2000）的工作中，AdaBoost.M1算法也称作“离散 AdaBoost”，因为基分类器$G_m(x)$返回一个离散的类别标签。如果基分类器返回实值预测（如映射到[-1,1]的概率），AdaBoost可以合适地修改（见Firedman等人（2000）的“Real AdaBoost”）</p>
-<p>AdaBoost显著提高非常弱的分类器的效果的能力展现在图10.2中。特征$X_1,\ldots,X_{10}$是标准独立高斯分布，决定性的目标$Y$定义如下
+</p>
+<p>它更适合于统计分析。正如之前提到的，事实证明大部分方法能够有效估计期望误差而非$E_{\cal T}$；这一点详见7.12节。</p>
+<p>现在一般地，训练误差</p>
+<p>
 <script type="math/tex; mode=display">
-Y=
-\left\{
-\begin{array}{ll}
-1&\text{if } \sum_{j=1}^{10}X_j^2>\chi_{10}^2(0.5)\\
--1 & \text{otherwise}
-\end{array}
-\right.
-\qquad (10.2)
+\overline{err} = \frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f(x_i))\qquad (7.17)
 </script>
-这里$\chi_{10}^2(0.5)=9.34$是自由度为10的卡方随机变量的中位数（10个标准的高斯分布的平方和）。有2000个训练情形，每个类别大概有1000个情形，以及10000个册书观测值。这里的若观测其仅仅是一个“stump”：两个终止结点的分类树。仅仅对训练数据应用分类器得到非常差的测试集误差率（45.8%），与50%的随机猜测相比。然而，当boosting迭代不断进行误差率稳定下降，直到400次迭代之后达到5.8%。因此，对这一简单的非常弱的分类器进行boosting将其预测误差率降低几乎四分之一。它也比单个的大规模分类树（误差率为24.7%）表现得好。自从它的提出，有很多理论来解释AdaBoost能成功得到正确分类器。很多工作集中在用分类树作为“基本学习”G(x)，改善经常是非常显著的。事实上，Breiman(NIPS Workshop，1996)将树的AdaBoost作为“实际上最好的现成分类器”。这对于数据挖掘方面的应用尤其如此，本章的后面将更全面地讨论。</p>
-<p><img alt="" src="../../img/10/fig10.2.png" /></p>
-<blockquote>
-<p>图10.2. （10.2）的模拟数据：对stumps进行boosting的测试误差率作为迭代次数的函数。图中也显示了单个stump和244个结点的分类树的测试误差率。</p>
-</blockquote>
-<h2 id="_1">本章概要</h2>
-<p>下面是本章的概要：</p>
-<ul>
-<li>我们展示AdaBoost对基学习器拟合加性模型，优化一个新的指数损失函数。这个损失函数与（负）二项分布对数概率（见10.2-10.4节）非常相似</li>
-<li>指数损失函数的受欢迎的最小化证明是类别概率odds的对数（10.5节）</li>
-<li>我们描述对于回归与分类的损失函数比平方误差或者指数损失更加稳定（10.6节）</li>
-<li>有人认为决策树是boosting用于数据挖掘应用理想的基础学习者。（10.7和10.9节）</li>
-<li>我们发展一类梯度增强模型（GBMs）,用于提升具有任何损失函数的树。（10.10节）</li>
-<li>强调“慢学习”的重要性，并且通过对每个新加进模型的项进行收缩而实现（10.12节），以及随机化（10.12.2节）。</li>
-<li>描述拟合模型的解释工具（10.13节）</li>
-</ul>
+</p>
+<p>会比真实误差$\mathrm{Err}<em>{\cal T}$，因为同样的数据被用来拟合方法并且评估误差（见练习2.9）。拟合方法一般适应于训练数据，因此显式或训练误差$\overline{err}$是过度乐观估计的推广误差$\mathrm {Err}</em>{\cal T}$。</p>
+<p>部分差异是因为取值点的选取。值$\mathrm {Err}_{\cal T}$可以看成是样本外（extra-sample）误差，因为测试输入向量不需要与训练输入向量一致。当我们去关注样本内（in-sample）误差，可以很简单地理解$\overline{err}$乐观估计的本质</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{Err}_{in}=\frac{1}{N}\sum\limits_{i=1}^N\mathrm E_{Y^0}[L(Y_i^0,\hat f(x_i))\mid \cal T]\qquad (7.18)
+</script>
+</p>
+<p>$Y^0$表示我们在每个训练点$x_i,i=1,2,\ldots,N$处观测$N$个新响应变量的值。我们定义$\mathrm{Err}_{in}$与训练误差$\overline{err}$的差为乐观（optimism）：</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm {op}\equiv \mathrm{Err}_{in}-\overline{err}\qquad (7.19)
+</script>
+</p>
+<p>一般情形下这是正的，因为$\overline{err}$经常是预测误差的向下有偏估计。最后，平均乐观是在训练集上乐观的期望</p>
+<p>
+<script type="math/tex; mode=display">
+\omega \equiv E_{\mathbf y}(\mathrm{op})\qquad (7.20)
+</script>
+</p>
+<p>这里训练集中的预测变量是固定的，期望在对训练集的输出值上的；因此我们已经用记号$E_{\mathbf y}$而不是$E_{\cal T}$。我们通常仅仅估计期望误差$\omega$而不是op，同样的方式我们可以估计期望误差Err而不是条件误差$\mathrm {Err}_{\cal T}$。</p>
+<p>对于平方误差，0-1，以及其他损失函数，可以很一般地证明</p>
+<p>
+<script type="math/tex; mode=display">
+w=\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad (7.21)
+</script>
+</p>
+<p>其中Cov表示协方差。因此$\overline{err}$低估真实误差的程度取决于$y_i$影响它本身估计的程度。数据越难拟合，$Cov(\hat y_i,y_i)$将越大，因此增大了乐观。练习7.4证明了平方损失函数时的结果，其中$\hat y_i$为根据回归拟合好的值。对于0-1损失，$\hat y_i\in{0,1}$是在$x_i$处的分类，另外对于熵损失，$\hat y_i\in[0,1]$是在$x_i$处类别1的拟合概率。</p>
+<p>总结一下，我们有重要的关系式</p>
+<p>
+<script type="math/tex; mode=display">
+E_{\mathbf y}(Err_{in})=E_{\mathbf y}(\overline{err})+\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad (7.22)
+</script>
+</p>
+<p>如果$\hat y_i$通过含$d$个输入或者基函数的线性拟合得到，上面表达式可以简化。例如，</p>
+<p>
+<script type="math/tex; mode=display">
+\sum\limits_{i=1}^NCov(\hat y_i,y_i) = d\sigma_{\varepsilon}^2\qquad (7.23
+</script>
+</p>
+<p>对于可加误差模型$Y=f(X)+\varepsilon$，因此</p>
+<p>
+<script type="math/tex; mode=display">
+E_{\mathbf y}(Err_{in})=E_{\mathbf y}(\overline{err})+2\cdot\frac{d}{N}\sigma_\varepsilon^2\qquad (7.24)
+</script>
+</p>
+<p>表达式（7.23）是在7.6节定义的有效参数个数（effective number of parameters）的基础。乐观随着我们使用的输入或基函数的个数$d$线性增长，但是当训练样本大小增大时会降低。（7.24）的其它版本对其它误差模型也近似成立，比如二进制数据和熵损失。</p>
+<p>估计预测误差的一种明显方法是先估计乐观然后加到训练误差$\overline{err}$上。下一节将要描述的方法——$C_p$，AIC，BIC以及其它方法——都是以这种方式起作用，对于估计关于参数是线性的特殊估计类而言。</p>
+<p>相反地，将在本章后面描述的交叉验证以及自助法是对样本外（extra-sample）误差Err直接估计的方法。这些一般工具可以用于任意损失函数以及非线性自适应拟合技巧。</p>
+<p>样本内误差通常不是直接感兴趣的，因为特征的未来值不可能与它们训练集值一致。但是为了模型直接的比较，样本内误差是很方便的，并且经常导致有效地模型选择。原因在于误差的相对（而不是绝对）大小是重要的。</p>
 
 <div id="disqus_thread"></div>
 <script>
