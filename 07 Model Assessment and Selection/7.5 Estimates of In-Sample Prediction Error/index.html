@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>8.6 MCMC向后采样 - ESL CN</title>
+	<title>7.5 样本内预测误差的估计 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -321,43 +321,43 @@
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.1 Introduction/">7.1 导言</a>
+    <a href="../7.1 Introduction/">7.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
+    <a href="../7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
+    <a href="../7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate/">7.4 测试误差率的乐观</a>
+    <a href="../7.4 Optimism of the Training Error Rate/">7.4 测试误差率的乐观</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">7.5 样本内预测误差的估计</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error/">7.5 样本内预测误差的估计</a>
+    <a href="../7.6 The Effective Number of Parameters/">7.6 参数的有效个数</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.6 The Effective Number of Parameters/">7.6 参数的有效个数</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../07 Model Assessment and Selection/7.10 Cross-Validation/">7.10 交叉验证</a>
+    <a href="../7.10 Cross-Validation/">7.10 交叉验证</a>
 </li>
 
         
@@ -372,43 +372,43 @@
         
             
 <li >
-    <a href="../8.1 Introduction/">8.1 导言</a>
+    <a href="../../08 Model Inference and Averaging/8.1 Introduction/">8.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../8.2 The Bootstrap and Maximum Likelihood Methods/">8.2 自助法和最大似然法</a>
+    <a href="../../08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods/">8.2 自助法和最大似然法</a>
 </li>
 
         
             
 <li >
-    <a href="../8.3 Bayesian Methods/">8.3 贝叶斯方法</a>
+    <a href="../../08 Model Inference and Averaging/8.3 Bayesian Methods/">8.3 贝叶斯方法</a>
 </li>
 
         
             
 <li >
-    <a href="../8.4 Relationship Between the Bootstrap and Bayesian Inference/">8.4 自助法和贝叶斯推断之间的关系</a>
+    <a href="../../08 Model Inference and Averaging/8.4 Relationship Between the Bootstrap and Bayesian Inference/">8.4 自助法和贝叶斯推断之间的关系</a>
 </li>
 
         
             
 <li >
-    <a href="../8.5 The EM Algorithm/">8.5 EM算法</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">8.6 MCMC向后采样</a>
+    <a href="../../08 Model Inference and Averaging/8.5 The EM Algorithm/">8.5 EM算法</a>
 </li>
 
         
             
 <li >
-    <a href="../8.7 Bagging/">8.7 袋装法</a>
+    <a href="../../08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior/">8.6 MCMC向后采样</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.7 Bagging/">8.7 袋装法</a>
 </li>
 
         
@@ -598,12 +598,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../8.5 The EM Algorithm/">
+                    <a rel="next" href="../7.4 Optimism of the Training Error Rate/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../8.7 Bagging/">
+                    <a rel="prev" href="../7.6 The Effective Number of Parameters/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -624,14 +624,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mcmc">MCMC从后采样</a></li>
+        <li class="main active"><a href="#_1">样本内误差的估计</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="mcmc">MCMC从后采样</h1>
+<h1 id="_1">样本内误差的估计</h1>
 <table>
 <thead>
 <tr>
@@ -646,29 +646,51 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-03</td>
+<td>2017-02-18:2017-02-18</td>
 </tr>
 </tbody>
 </table>
-<p>已经定义了一个贝叶斯模型，有人便想要从得到的后验分布中采样来对参数进行推断。除了简单的模型，这通常是一个困难的计算问题。这部分我们讨论马尔科夫蒙特卡洛法来后采样。我们将要看到吉布斯采样（一个MCMC过程）与EM算法非常相关：主要的区别在于它从条件分布中采样而非对他们最大化。</p>
-<p>首先考虑下面的抽象问题。我们有随机变量$U_1,U_2,\ldots,U_K$，而且希望从他们的联合分布中采样。假设这很难实现，但是从条件分布$Pr(U_j\mid U_1,U_2,\ldots,U_{j-1},U_{j+1},\ldots,U_K),j=1,\ldots,K$中模拟是非常简单的。吉布斯采样过程也可以从他们的每个分布来模拟，而且当这个过程稳定下来，吉布斯采样从需要的联合分布中提供了一个样本。这个过程在算法8.3中定义。</p>
-<p><img alt="" src="../../img/08/alg8.3.png" /></p>
-<p>在正规化条件下可以证明这一过程最终稳定，得到的随机变量实际上是从$U_1,U_2,\ldots,U_K$联合分布中取的一个样本。尽管对于不同的$t$,样本$(U_1^{(t)},U_2^{(t)},\ldots,U_K^{(t)})$显然不独立。更正式地，吉布斯采样得到一个马尔科夫链，该马尔科夫链的平稳分布是真正的联合分布，因此称之为“马尔科夫链蒙特卡洛法”。在这个过程下真实的联合分布是平稳的并不奇怪，因为连续的步骤使得$U_k$的边缘分布不变。</p>
-<p>注意到我们不需要知道条件密度的显式形式，但是仅仅需要能够从中取样。经过这一过程达到平稳性，任意变量的子集的边缘密度可以通过应用样本值得到的密度估计来近似。然而，如果条件密度$Pr(U_k\mid U_\ell,\ell\neq k)$的显式形式是知道的，则$U_k$的边缘密度的一个良好估计可以从下式得到（练习8.3）：
+<p>样本内误差估计的一般形式为</p>
+<p>
 <script type="math/tex; mode=display">
-\widehat{Pr}_{U_k}(u)=\frac{1}{(M-m+1)}\sum\limits_{t=m}^MPr(u\mid U_\ell^{(t)},\ell\neq k)\qquad (8.50)
+\widehat{Err_{in}}=\overline{err}+\hat\omega\qquad (7.25)
 </script>
-这里我们对序列的$M-m+1$个成员平均，以在达到平稳之前允许初始的“老化”期。</p>
-<p>现在回到贝叶斯推断，我们的目标是在给定数据$\mathbf Z$情况下，从参数的联合后验分布中采样。如果从每个参数的条件分布（在给定其他参数和$\mathbf Z$）中取样很简单，则吉布斯取样会很有帮助。接下来详细讨论一个高斯分布混合问题的例子。</p>
-<p>在指数族模型中从后验吉布斯采样与EM算法有着紧密的联系。关键在于将EM过程的潜在数据$\mathbf Z^m$看成是吉布斯采样的另一个参数。为了让高斯混合问题中这一点更明确，我们取参数为$(\theta,\mathbf Z^m)$.为了简便，我们固定方差$\sigma_1^2,\sigma^2_2$以及最大似然时的混合比例$\pi$，使得$\theta$中未知的参数仅仅是均值$\mu_1$和$\mu_2$.此混合问题的吉布斯采样在算法8.4中给出。我们看到第2(a)和2(b)步与EM过程中的E和M一样，除了这里我们是取样而非最大化。在第2(a)步，不是计算最大似然的责任（responsibilities）$\gamma_i=E(\Delta_i\mid \theta,\mathbf Z)$,吉布斯采样过程从$Pr(\Delta_i\mid \theta,\mathbf Z)$的分布中模拟潜在数据$\Delta_i$.在第2(b)步，不是计算后验$Pr(\mu_1,\mu_2,\Delta\mid \mathbf Z)$的最大值，而是从条件分布$Pr(\mu_1,\mu_2\mid \Delta,\mathbf Z)$中模拟。</p>
-<p><img alt="" src="../../img/08/alg8.4.png" /></p>
-<p>图8.8显示了吉布斯抽样的200个迭代，左图显示了均值参数$\mu_1$(小)和$\mu_2$(大)，右图是类别2的观测的占比$\sum_i\Delta_i/N$。在每个情形下画出了在最大似然估计值$\hat\mu_1,\hat\mu_2$和$\sum_i\hat\gamma_i/N$的虚线。值似乎很快就稳定下来，而且在最大似然值附近均匀地分布。</p>
-<p><img alt="" src="../../img/08/fig8.8.png" /></p>
+</p>
+<p>其中$\hat\omega$是平均乐观的估计。</p>
+<p>当在平方误差损失下拟合$d$个参数后是可以应用式（7.24）的，利用表达式（7.24）导出被称作$C_p$的统计量
+<script type="math/tex; mode=display">
+C_p=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon\qquad (7.26)
+</script>
+这里$\hat\sigma_\varepsilon^2$是噪声方差的估计，由低偏差模型的均方误差得到。使用这个准则，我们用一个与使用的基函数个数成比例的因子来调节训练误差。</p>
+<p>当采用对数似然损失函数时，Akaike信息准则（Akaike information criterion）是类似的但使用更一般的$Err_{in}$的估计。它依赖于与（7.24）类似的关系式，在$N\rightarrow \infty$渐进地成立：
+<script type="math/tex; mode=display">
+-2\cdot E[\mathrm{log}Pr_{\hat \theta}(Y)]\approx -\frac{2}{N}\cdot E[\mathrm{loglik}]+2\cdot\frac{d}{N}\qquad (7.27)
+</script>
+这里$Pr_{\theta}(Y)$是$Y$密度函数族（包含“真正的”密度），$\hat\theta$是$\theta$的极大似然估计，并且“loglik”是最大化的对数似然
+<script type="math/tex; mode=display">
+loglik=\sum\limits_{i=1}^N\mathrm{log }Pr_{\hat\theta}(y_i)\qquad (7.28)
+</script>
+举个例子，对于逻辑斯蒂回归模型，采用二项对数似然，我们有
+<script type="math/tex; mode=display">
+AIC=-\frac{2}{N}\cdot loglik+2\cdot \frac{d}N\qquad (7.29)
+</script>
+对于高斯模型（假设方差$\sigma_\varepsilon^2=\hat\sigma_\varepsilon^2$已知），AIC统计量等于$C_p$，因此我们称它们一起称为AIC。</p>
+<p>采用AIC来进行模型选择，我们在考虑的模型中选择具有最小的AIC的模型。对于非线性或者其他复杂模型，我们需要将$d$换成其它衡量模型复杂度的量。我们将在7.6节讨论这点。</p>
+<p>给定有调整参数$\alpha$编号的一系列模型，用$\overline{err}(\alpha)$和$d(\alpha)$记为每个模型的训练误差和参数的个数。接着对于模型序列我们定义
+<script type="math/tex; mode=display">
+AIC(\alpha)=\overline{err}(\alpha)+2\cdot\frac{d(\alpha)}{N}\hat\sigma_\varepsilon^2\qquad (7.30)
+</script>
+函数$AIC(\alpha)$给出了测试误差曲线的一个估计，而且我们找到最小化它的调整参数$\hat \alpha$。我们最终选择的模型是$f_{\hat\alpha}(x)$。注意到如果我们基函数是自适应地选择，（7.23）不再成立。举个例子，如果我们总共有$p$个输入，选择含有$d&lt;p$个输入的最优线性拟合模型，乐观将会超过$(2d/N)\sigma_\varepsilon^2$。换句话说，通过选择含有$d$个输入的最优拟合模型，有效参数的个数将会超过$d$。</p>
+<p>图7.4显示了将AIC用于148页上5.2.3节的音素识别的例子的效果。输入向量是口语元音的对数周期图，在256个均匀间隔的频率上取值。采用线性逻辑斯蒂回归模型来预测音素的类别，参数函数为$\beta(f)=\sum_{m=1}^Mh_m(f)\theta_m$，是$M$样条基函数的展开。对于给定的$M$，自然三次样条应用到$h_m$上，在频率范围内均匀选取结点（因此$d(\alpha)=d(M)=M$）。使用AIC来选择基函数的个数会近似最小化损失函数为熵损失和0-1损失时的$Err(M)$。</p>
+<p><img alt="" src="../../img/07/fig7.4.png" /></p>
 <blockquote>
-<p>图8.8. 混合的例子。（左图：）从吉布斯采样中得到的两个均值参数的200个值；在最大似然估计的$\hat\mu_1,\hat\mu_2$画了水平直线。（右图：）对于200次吉布斯采样迭代中的每个迭代，$\Delta_i=1$的占比；在$\sum_i\hat\gamma_i/N$画了水平直线。</p>
+<p>图7.4.对5.2.3节的音素识别的例子应用AIC来做模型选择。逻辑斯蒂回归参数函数$\beta(f)=\sum_{m=1}^Mh_m(f)\theta_m$建模成$M$样条基函数的展开。在左图中我们看到采用对数似然损失时用来估计$Err_{in}$的AIC统计量。也画出了基于独立的测试样本的$Err$估计。除了极端过参数化的情形（N=1000个参数时含有M=256个参数）都估计得很好。右图是在0-1损失下重复左图的工作。尽管这里AIC准则严格上不能应用，但是在这种情形下估计也是合理的。</p>
 </blockquote>
-<p>上面的混合模型被简化了，是为了清楚地看到吉布斯采样和EM算法的关联。更实际点，可以在方差$\sigma^2_1,\sigma^2_2$和混合比例上添加先验分布，而且包含从它们在其他参数条件下的后验分布中进行独立的吉布斯采样。也可以对均值参数结合恰当的（无信息）先验。这些先验决不能不合适因为这会导致退化的后验（所有的混合系数都在一个组分上）。</p>
-<p>吉布斯采样是最近发展的一系列从后验分布中采样过程中的一个。它运用某个参数在给定其它参数情况下的条件采样，然后当问题的结构使得采样很容易进行是非常有用的。其它的方法不要求这样的结构，举个例子如Metropolis–Hastings算法。这些和其它计算的贝叶斯方法已经应用到复杂的学习算法中，比如高斯过程模型和神经网络。细节可以在本章后面的文献笔记中的参考文献中找到。</p>
+<p>下式这一简单的法则
+<script type="math/tex; mode=display">
+2/N\sum\limits_{i=1}^N\mathrm{Cov}(\hat y_i,y_i)=(2d/N)\sigma_\varepsilon^2
+</script>
+对于含有加性误差的线性模型在平方误差损失下是精确成立的，在对数似然损失下是近似成立的。特别地，这个法则一般地对于0-1损失是不成立的（Efron，1996），尽管许多作者仍然在这种情形下使用它（图7.4的右图）</p>
 
 <div id="disqus_thread"></div>
 <script>
