@@ -44,6 +44,8 @@ pages:
       - 7.2 偏差，方差和模型复杂度: '07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity.md'
       - 7.3 偏差-方差分解: '07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition.md'
       - 7.4 测试误差率的乐观: '07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate.md'
+      - 7.5 样本内预测误差的估计: '07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error.md'
+      - 7.6 参数的有效个数: '07 Model Assessment and Selection/7.6 The Effective Number of Parameters.md'
       - 7.10 交叉验证: '07 Model Assessment and Selection/7.10 Cross-Validation.md'
     - 8 模型推断和平均:
       - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
