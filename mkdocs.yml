@@ -46,6 +46,8 @@ pages:
       - 7.4 测试误差率的乐观: '07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate.md'
       - 7.5 样本内预测误差的估计: '07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error.md'
       - 7.6 参数的有效个数: '07 Model Assessment and Selection/7.6 The Effective Number of Parameters.md'
+      - 7.7 贝叶斯方法和BIC: '07 Model Assessment and Selection/7.7 The Bayesian Approach and BIC.md'
+      - 7.8 最小描述长度: '07 Model Assessment and Selection/7.8 Minimum Description Length.md'
       - 7.10 交叉验证: '07 Model Assessment and Selection/7.10 Cross-Validation.md'
     - 8 模型推断和平均:
       - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
