@@ -48,7 +48,9 @@ pages:
       - 7.6 参数的有效个数: '07 Model Assessment and Selection/7.6 The Effective Number of Parameters.md'
       - 7.7 贝叶斯方法和BIC: '07 Model Assessment and Selection/7.7 The Bayesian Approach and BIC.md'
       - 7.8 最小描述长度: '07 Model Assessment and Selection/7.8 Minimum Description Length.md'
+      - 7.9 VC维: '07 Model Assessment and Selection/7.9 Vapnik-Chervonenkis Dimension.md' 
       - 7.10 交叉验证: '07 Model Assessment and Selection/7.10 Cross-Validation.md'
+      - 7.11 自助法: '07 Model Assessment and Selection/7.11 Bootstrap Methods.md'
     - 8 模型推断和平均:
       - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
       - 8.2 自助法和最大似然法: '08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods.md'
