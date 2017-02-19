@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/11 Neural Networks/11.6 Example of Simulated Data/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/07 Model Assessment and Selection/7.8 Minimum Description Length/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>11.6 模拟数据的例子 - ESL CN</title>
+	<title>7.8 最小描述长度 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -321,55 +321,55 @@
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.1 Introduction/">7.1 导言</a>
+    <a href="../7.1 Introduction/">7.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
+    <a href="../7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
+    <a href="../7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate/">7.4 测试误差率的乐观</a>
+    <a href="../7.4 Optimism of the Training Error Rate/">7.4 测试误差率的乐观</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error/">7.5 样本内预测误差的估计</a>
+    <a href="../7.5 Estimates of In-Sample Prediction Error/">7.5 样本内预测误差的估计</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.6 The Effective Number of Parameters/">7.6 参数的有效个数</a>
+    <a href="../7.6 The Effective Number of Parameters/">7.6 参数的有效个数</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.7 The Bayesian Approach and BIC/">7.7 贝叶斯方法和BIC</a>
+    <a href="../7.7 The Bayesian Approach and BIC/">7.7 贝叶斯方法和BIC</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">7.8 最小描述长度</a>
 </li>
 
         
             
 <li >
-    <a href="../../07 Model Assessment and Selection/7.8 Minimum Description Length/">7.8 最小描述长度</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../07 Model Assessment and Selection/7.10 Cross-Validation/">7.10 交叉验证</a>
+    <a href="../7.10 Cross-Validation/">7.10 交叉验证</a>
 </li>
 
         
@@ -507,37 +507,37 @@
         
             
 <li >
-    <a href="../11.1 Introduction/">11.1 导言</a>
+    <a href="../../11 Neural Networks/11.1 Introduction/">11.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
+    <a href="../../11 Neural Networks/11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
 </li>
 
         
             
 <li >
-    <a href="../11.3 Neural Networks/">11.3 神经网络</a>
+    <a href="../../11 Neural Networks/11.3 Neural Networks/">11.3 神经网络</a>
 </li>
 
         
             
 <li >
-    <a href="../11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
+    <a href="../../11 Neural Networks/11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
 </li>
 
         
             
 <li >
-    <a href="../11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
+    <a href="../../11 Neural Networks/11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
 </li>
 
         
             
-<li class="active">
-    <a href="./">11.6 模拟数据的例子</a>
+<li >
+    <a href="../../11 Neural Networks/11.6 Example of Simulated Data/">11.6 模拟数据的例子</a>
 </li>
 
         
@@ -610,12 +610,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../11.5 Some Issues in Training Neural Networks/">
+                    <a rel="next" href="../7.7 The Bayesian Approach and BIC/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">
+                    <a rel="prev" href="../7.10 Cross-Validation/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -636,14 +636,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">例子：模拟数据</a></li>
+        <li class="main active"><a href="#_1">最小描述长度</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">例子：模拟数据</h1>
+<h1 id="_1">最小描述长度</h1>
 <table>
 <thead>
 <tr>
@@ -658,39 +658,49 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-07</td>
+<td>2017-02-19:2017-02-19</td>
 </tr>
 </tbody>
 </table>
-<p>我们从两个加性误差模型$Y=f(X)+\varepsilon$中产生数据：
+<p>最小描述长度（MDL）方法正式地给出与BIC一样的选择准则，但是它是从最优编码角度出发的。我们首先回忆数据压缩的编码理论，接着将其应用到模型选择中。</p>
+<p>我们将我们的数据$z$看成是我们想要编码并且发给其他人（接受者）的信息。我们将我们的模型看成是对数据编码的一种方式，然后选择最简模型，也就是传输的最短编码。</p>
+<p>首先假设我们可能想要传送的信息为$z_1,z_2,\ldots,z_m$。我们的编码采用长度为$A$的有限字母表：举个例子，我们可能采用长度为$A=2$的二进制编码${0,1}$。这里是4个可能信息以及二值编码的例子：</p>
+<p><img alt="" src="../../img/07/pic3.png" /></p>
+<p>编码也被称作瞬时前缀码：没有编码是其它的前缀，并且接受者（知道所有可能编码的人）当信息完全发送后知道精确的信息。我们将我们的讨论限制在瞬时前缀码上。</p>
+<p>可以采用（7.42）的编码或者交换编码，举个例子，对于$z_1,z_2,z_3,z_4$编码为$110,10,111,0$。我们怎么决定采用哪一个？这取决于我们发送每条信息的次数。举个例子，如果我们发送$z_1$最多，对$z_1$采用最短编码$0$是有意义的。采用这种策略——最频繁的信息采用最短的编码——平均信息长度将会缩短。</p>
+<p>一般地，如果以概率$Pr(z_i),z_i=1,2,\ldots,4$来发送信息，归功于Shannon的著名定理说我们应该采用长度为$l_i=-\mathrm{log}_2 Pr(z_i)$的编码，并且平均信息长度满足</p>
+<p>
 <script type="math/tex; mode=display">
-\begin{align}
-\text{Sum of sigmoids: }& Y=\sigma(a_1^TX)+\sigma(a_2^TX)+\varepsilon_1\\
-\text{Radial: }&Y=\prod\limits_{m=1}^{10}\phi(X_m)+\varepsilon_2
-\end{align}
+E(length) \ge -\sum Pr(z_i)log_2(Pr(z_i))\qquad (7.43)
 </script>
-这里$X^T=(X_1,X_2,\ldots,X_p)$，每个$X_j$是标准高斯变量，第一个模型中$p=2$，第二个模型中$p=10$.</p>
-<p>对于sigmoid模型，$a_1=(3,3),a_2=(3,-3)$;对于径向模型，$\phi(t)=(1/2\pi)^{1/2}exp(-t^2/2)$.$\varepsilon_1$和$\varepsilon_2$都是高斯误差，选择方差使得两个模型的信噪比都为4.
+</p>
+<p>上面的右侧项也被称作$Pr(z_i)$分布的熵。当$p_i=A^{-l_i}$时上面不等式等号成立。在我们例子中，如果$Pr(z_i)=1/2,1/4,1/8,1/8$，则（7.42）的编码是最优的而且达到了熵的下界。</p>
+<p>一般地下界不能达到，但是像Huffman编码模型的过程可以接近下界。注意到对于无限的信息集合，熵换成$-int Pr(z)log_2Pr(z)dz$.</p>
+<p>从这个结果我们得到以下结论：</p>
+<blockquote>
+<p>为了传送概率密度函数为$Pr(z)$的随机变量$z$，我们需要$-log_2Pr(z)$位信息。</p>
+</blockquote>
+<p>从现在开始我们将记号$log_2Pr(z)$换成$log Pr(z)=log_e Pr(z)$；这是很方便的，而且仅仅引入了不重要的常数因子。</p>
+<p>现在我们将这个问题的结果应用到模型选择。我们有参数为$\theta$的模型$M$，以及包含输入和输出的数据$\mathbf{Z=(X,y)}$。令在模型条件下的输出的（条件）概率为$Pr(\mathbf y\mid\theta,M,\mathbf M)$，假设接受者知道所有的输入，而且我们希望传送输出值。传送输出要求的信息长度为</p>
+<p>
 <script type="math/tex; mode=display">
-\frac{Var(E(Y\mid X))}{Var(Y-E(Y\mid X))}=\frac{Var(f(X))}{Var(\varepsilon)}\qquad (11.18)
+length = -log Pr(\mathbf y\mid \theta,M,\mathbf X)-log Pr(\theta\mid M)\qquad (7.44)
 </script>
-我们取大小为100的训练集和大小为10000的测试集。我们采用权重系数衰减和不同的隐藏单元来拟合神经网络，然后记录10个随机初始权重系数值情形下的平均测试误差$E_{Test}(Y-\hat f(X))^2$。虽然只产生了一个训练集，但是结果对于“平均”的训练集是典型的。测试误差显示在图11.6中。注意到0个隐藏层单元指的是线性最小二乘回归。神经网络对于sigmoid函数之和的模型拟合效果很好，而且当有两个神经元时效果最好，非常接近贝叶斯误差率。（回忆一下，回归的平方误差的贝叶斯误差率是误差的方差；这张图中是测试误差相对于贝叶斯误差的比例）然而，注意到更多的隐藏层单元，很快便出现了过拟合，而且有些权重系数的初始值比线性模型（0个隐藏单元）拟合得还差。即便是2个隐藏单元的情形，10个权重系数的初始值中有两个的结果不好于线性模型，证实了多重初始值的重要性。</p>
-<p><img alt="" src="../../img/11/fig11.6.png" /></p>
-<blockquote>
-<p>图11.6 模拟数据例子的测试误差相对于贝叶斯误差（水平虚线）的箱线图。左图的真实函数是两个sigmoid函数之和，右图是径向函数。对于具有所指示单元数目的单个隐藏层神经网络，显示10个不同起始权重的测量误差。</p>
-</blockquote>
-<p>在某种程度上径向函数对于神经网络是最困难的，因为它是球对称且没有偏好的方向。我们可以从图11.6的右图中看出在这种情形下缺失效果很差，测试误差远远超出贝叶斯误差（注意与左图不同的垂直刻度）。事实上，因为常值拟合（比如样本均值）的相对误差率达到5（当SNR为4），我们看到神经网络比均值表现得越来越差。</p>
-<p>这个例子中我们采用一个固定的系数衰减参数0.0005，表现一个温和的正则化。图11.6的左图的结果表明在更多隐藏单元的情形下需要更多的正则化。</p>
-<p><img alt="" src="../../img/11/fig11.7.png" /></p>
-<blockquote>
-<p>图11.7. 模拟数据例子的测试误差相对于贝叶斯误差的箱线图。真实函数是两个sigmoid函数之和。对于具有所指示单元数目的单个隐藏层神经网络，显示10个不同起始权重的测量误差。两个图分别表示无系数衰减（左边）和强误差衰减$\lambda=0.1$(右图)</p>
-</blockquote>
-<p>图11.7中，我们对两sigmoids和的模型重复实验，左边图没有系数衰减，右边图为更强的系数衰减($\lambda=0.1$).没有系数衰减时，越多的隐藏单元，过拟合变得越严重。系数衰减值$\lambda=0.1$在所有隐藏神经元个数的情形下都能得到好结果，当隐藏单元的个数增加并不表现出过拟合的现象。最后，图11.8显示了含10个隐藏单元神经网络的测试误差随着不同衰减参数的变化。值为0.1时近似是最优的。</p>
-<p><img alt="" src="../../img/11/fig11.8.png" /></p>
-<blockquote>
-<p>图11.8. 对于模拟数据例子的测试误差的箱线图。真实函数为两个sigmoid函数之和。对于具有所指示单元数目的单个隐藏层神经网络，显示10个不同起始权重的测量误差。</p>
-</blockquote>
-<p>总的来说，有两个自由参数需要选择：权重衰减参数$\lambda$和隐藏层的数目$M$。作为一个学习的策略，可以在对应的最小约束模型下固定任一个参数，来确保模型足够丰富，并且运用交叉验证来选择另一个参数。这里最少约束值为0权重衰减和10个隐藏层单元。将图11.7的左图与图11.8相比，我们可以看到测试误差对于系数衰减更不敏感，因此此参数的交叉验证会更好。</p>
+</p>
+<p>给定输入的目标值的对数似然。第二项是传递模型参数$\theta$的平均编码长度，而第一项是传递模型与真实目标值之间差异的平均编码长度。举个例子假设我们有单目标$y\sim N(\theta,\sigma^2)$，参数为$\theta\sim N(0,1)$，并且没有输入（为了简单）。则模型长度为</p>
+<p>
+<script type="math/tex; mode=display">
+length = constant + log\sigma + \frac{(y-\theta)^2}{\sigma^2} + \frac{\theta^2}{2}\qquad (7.45)
+</script>
+</p>
+<p>注意到$\sigma$越小，平均信息长度越短，因为$y$更集中在$\theta$附近。</p>
+<p>MDL准则说我们应该选择最小化（7.44）的模型。我们将（7.44）看成（负）对数后验分布，因此最小化描述长度等价于最大化后验概率。因此，作为近似对数后验概率导出的BIC准则，也可以看成是通过最小描述长度来（近似）模型选择的工具。</p>
+<p>注意到我们忽略随机变量$z$编码的精确性。我们不可能使用有限的编码长度对连续变量进行精确地编码。然而，如果我们用容忍度$\delta z$来对$z$编码，需要的信息长度区间$[z,z+\delta z]$的概率的对数，如果$\delta z$很小，可以用$\delta zPr(z)$来近似。因为$\mathrm {log}\delta z\mathrm{Pr}(z)=\mathrm{log} + \mathrm{log}\;\mathrm{Pr}(z)$，这意味着我们可以仅仅忽略掉常数$\mathrm{log}\;\delta z$，并且使用$\mathrm{log\; Pr}(z)$来作为我们信息长度的衡量，就像我们上面做的那样。</p>
+<p>用于模型选择的MDL的上述观点表明我们选择有最大后验概率的模型。然而，许多贝叶斯学家会通过从后验分布中取样来做推断。</p>
+<div class="admonition notes">
+<p class="admonition-title">weiya 注</p>
+<p>最后的转折是什么意思！？</p>
+</div>
 
 <div id="disqus_thread"></div>
 <script>
