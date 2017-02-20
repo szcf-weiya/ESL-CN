@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/14 Unsupervised Learning/14.1 Introduction/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>14.1 导言 - ESL CN</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/newsprint.css" rel="stylesheet">
+        <link href="../../css/admonition_fix.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-85046550-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">ESL CN</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">主页</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">目录 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">序言</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">1 简介</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../01 Introduction/2016-07-26-Chapter-1-Introduction/">1.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">2 监督学习概要</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.1 Introduction/">2.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions/">2.5 高维问题的局部方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/Bibliographic Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">3 回归的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.1 Introduction/">3.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.3 Subset Selection/">3.3 子集的选择</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.4 Shrinkage Methods/">3.4 收缩的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">3.7 多重输出的收缩和选择</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">4 分类的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.1 Introduction/">4.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/">4.2 指示矩阵的线性回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.3 Linear Discriminant Analysis/">4.3 线性判别分析</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.4 Logistic Regression/">4.4 逻辑斯蒂回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.5 Separating Hyperplanes/">4.5 分离超平面</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">5 基展开和正规化</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.1 Introduction/">5.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines/">5.2 分段多项式和样条</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction/">5.3 滤波和特征提取</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.4 Smoothing Splines/">5.4 光滑样条</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">6 核光滑方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../06 Kernel Smoothing Methods/6.1 Introduction/">6.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">7 模型评估及选择</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.1 Introduction/">7.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate/">7.4 测试误差率的乐观</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error/">7.5 样本内预测误差的估计</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.6 The Effective Number of Parameters/">7.6 参数的有效个数</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.7 The Bayesian Approach and BIC/">7.7 贝叶斯方法和BIC</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.8 Minimum Description Length/">7.8 最小描述长度</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.9 Vapnik-Chervonenkis Dimension/">7.9 VC维</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.10 Cross-Validation/">7.10 交叉验证</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.11 Bootstrap Methods/">7.11 自助法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.12 Conditional or Expected Test Error/">7.12 条件测试误差或期望测试误差</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/Bibliographic Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">8 模型推断和平均</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.1 Introduction/">8.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods/">8.2 自助法和最大似然法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.3 Bayesian Methods/">8.3 贝叶斯方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.4 Relationship Between the Bootstrap and Bayesian Inference/">8.4 自助法和贝叶斯推断之间的关系</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.5 The EM Algorithm/">8.5 EM算法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior/">8.6 MCMC向后采样</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.7 Bagging/">8.7 袋装法</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">9 增广模型，树，以及相关方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.0 Introduction/">9.0 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models/">9.1 广义加性模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods/">9.2 基于树的方法</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">10 增强和加性树</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">10.1 增强方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">11 神经网络</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.1 Introduction/">11.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.3 Neural Networks/">11.3 神经网络</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.6 Example of Simulated Data/">11.6 模拟数据的例子</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">12 支持向量机和灵活的判别方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">13 原型方法和最近邻</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/">13.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">14 非监督学习</a>
+    <ul class="dropdown-menu">
+        
+            
+<li class="active">
+    <a href="./">14.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">15 随机森林</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../15 Random Forests/15.1 Introduction/">15.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/">
+                        <i class="fa fa-arrow-left"></i> 上一节
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../../15 Random Forests/15.1 Introduction/">
+                        下一节 <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://szcf-weiya.github.io">
+                        
+                        Szcf-Weiya
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#_1">导言</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="_1">导言</h1>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翻译</td>
+<td>szcf-weiya</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>2017-02-20:2017-02-20</td>
+</tr>
+</tbody>
+</table>
+<p>前面的章节我们考虑了对于给出输入或预测变量$X^T=(X_1,\ldots,X_p)$来预测一个或多个输出或响应变量$Y=(Y_1,\ldots,Y_m)$的值。用$x_i^T=(x_{i1},\ldots,x_{ip})$记第$i$个训练情形的输入，令$y_i$是一个响应变量的测量值。预测是基于已经求解的训练样本$(x_1,y_1),\ldots,(x_N,y_N)$，其中所有变量的联合分布值是知道的。这称为监督学习（supervised learning）或者“有老师指导的学习”。在这个比喻下，“学生”表示在训练样本中每个$x_i$的一个回答$\hat y_i$，监督或者“老师”要么（不仅）提供正确的答案，要么（并且）给出该学生回答的误差。这通常用一些损失函数来表示$L(y,\hat y)$，举个例子，$L(y,\hat y)=(y-\hat y)^2$.</p>
+<p>如果我们假设$(X,Y)$是用某联合概率密度$Pr(X,Y)$表示的随机变量，则监督学习可以正式表达成估计密度的问题，我们关心的是确定条件密度$Pr(Y\mid X)$的性质。通常我们感兴趣的性质是在每个$x$处最小化期望误差的“位置”参数$\mu$，
+<script type="math/tex; mode=display">
+\mu(x)=\underset{\theta}{\mathrm{argmin}}E_{Y\mid X}L(Y,\theta)\qquad (14.1)
+</script>
+加上条件有
+<script type="math/tex; mode=display">
+Pr(X,Y)=Pr(Y\mid X)\cdot Pr(X)
+</script>
+其中$Pr(X)$是仅仅关于$X$的边缘密度。在监督学习中，一般不直接关心$Pr(X)$。主要感兴趣的是条件密度的性质$Pr(Y\mid X)$。因为$Y$经常是低维（通常为1），并且只有它的位置$\mu(x)$是感兴趣的，问题大大简化了。正如在前面章节讨论的那样，在各种不同情形下都有许多方式成功进行监督学习。</p>
+<p>这章中我们讨论非监督学习（unsupervised learning）或者“无老师指导的学习”。这种情形下我们只有联合密度为$Pr(X)$的$p$维随机向量的$N$个观测的集合$(x_1,x_2,\ldots,x_N)$。我们的目标是在没有监督或者老师提供正确答案或者每个观测的错误成都的情况下，直接推断该密度分布的性质。$X$的维度有时比监督学习中的高很多，而且我们关心的性质经常比简单的位置估计复杂得多。这些因素在某种程度上被以下事实所缓解：$X$表示所考虑的所有变量。其中一点是我们不需要在其它变量的值改变的情况下$Pr(X)$的性质怎么改变。</p>
+<p>在低维问题中（$p\le 3$）,有各种有效的非参方法来在所有$X$值处直接估计密度$Pr(X)$本身，并且可视化表示（比如，Silverman, 1986）。由于维度灾难，这些方法在高维中会失败。必须满足于估计相当粗糙的全局模型，例如高斯混合或者表征$Pr(X)$的各种简单描述性统计。</p>
+<p>一般地，这些描述性统计量试图表征$X$，或者这些值的集合，其中$Pr(X)$比较大。例如，主成分、多维缩放、自组织地图，以及主曲线都尝试识别表示高数据密度的$X$空间内的低维流形（manifold）。这提供了这些变量之间的关联信息，以及它们是否可以看成更小的包含“潜（latent）”变量的集合的函数的信息。聚类分析试图寻找$X$空间中包含$Pr(X)$模型的多重凸区域。这可以判断$Pr(X)$是否可以表示成简单密度的混合，这些简单密度表示唯一的观测类型或者类别。混合模型有类似的目标。关联规则试图构造简单的描述（联合规则）来描述在非常高维的二值数据这一特情形中的高密度区域。</p>
+<div class="admonition notes">
+<p class="admonition-title">weiya 注</p>
+<p>流形（manifold）：数学上，流形是一个拓扑空间，在每一点附近局部地近似欧式空间。更精确地，$n$维流形的每个点与维度为$n$的欧式空间同态的邻域。</p>
+</div>
+<p>监督学习中，有一个明确的成功或不成功的量度，因此可用于判断特定情况下的充分性，并比较不同方法在各种情况下的有效性。缺乏成功直接通过在联合分布$Pr(X,Y)$的期望损失来衡量。这个可以用各种方式来衡量，包括交叉验证。在非监督学习中，没有这些直接衡量成功的量度。从大部分非监督学习的算法的输出中得到的推断的有效性是很难确定的。必须诉诸于启发式参数，不仅用于激励算法，在监督学习也经常使用，而且为了评价结果的质量。这种不舒服的情况导致提出的方法大量增加，因为效率是观点问题，不能直接加以证实。</p>
+<p>在这章中，我们提出这些在实际中广泛使用的非监督学习技巧，以及另外一些作者认同的方法。</p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//weiya.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//weiya.disqus.com/count.js" async></script></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Powered by <a href="http://www.mkdocs.org/">MkDocs</a> and <a href="http://bootswatch.com/yeti/">Yeti</a></center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../js/MathJax/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script src="../../js/mymathjax.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            请在下面输入你要搜索的文本（仅支持英文）：
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
