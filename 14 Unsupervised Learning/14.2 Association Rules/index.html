@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/14 Unsupervised Learning/14.2 Association Rules/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>14.2 关联规则 - ESL CN</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/newsprint.css" rel="stylesheet">
+        <link href="../../css/admonition_fix.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-85046550-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">ESL CN</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">主页</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">目录 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">序言</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">1 简介</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../01 Introduction/2016-07-26-Chapter-1-Introduction/">1.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">2 监督学习概要</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.1 Introduction/">2.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions/">2.5 高维问题的局部方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/Bibliographic Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">3 回归的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.1 Introduction/">3.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.3 Subset Selection/">3.3 子集的选择</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.4 Shrinkage Methods/">3.4 收缩的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">3.7 多重输出的收缩和选择</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">4 分类的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.1 Introduction/">4.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/">4.2 指示矩阵的线性回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.3 Linear Discriminant Analysis/">4.3 线性判别分析</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.4 Logistic Regression/">4.4 逻辑斯蒂回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.5 Separating Hyperplanes/">4.5 分离超平面</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">5 基展开和正规化</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.1 Introduction/">5.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines/">5.2 分段多项式和样条</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction/">5.3 滤波和特征提取</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.4 Smoothing Splines/">5.4 光滑样条</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">6 核光滑方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../06 Kernel Smoothing Methods/6.1 Introduction/">6.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">7 模型评估及选择</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.1 Introduction/">7.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate/">7.4 测试误差率的乐观</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error/">7.5 样本内预测误差的估计</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.6 The Effective Number of Parameters/">7.6 参数的有效个数</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.7 The Bayesian Approach and BIC/">7.7 贝叶斯方法和BIC</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.8 Minimum Description Length/">7.8 最小描述长度</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.9 Vapnik-Chervonenkis Dimension/">7.9 VC维</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.10 Cross-Validation/">7.10 交叉验证</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.11 Bootstrap Methods/">7.11 自助法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.12 Conditional or Expected Test Error/">7.12 条件测试误差或期望测试误差</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/Bibliographic Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">8 模型推断和平均</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.1 Introduction/">8.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods/">8.2 自助法和最大似然法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.3 Bayesian Methods/">8.3 贝叶斯方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.4 Relationship Between the Bootstrap and Bayesian Inference/">8.4 自助法和贝叶斯推断之间的关系</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.5 The EM Algorithm/">8.5 EM算法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior/">8.6 MCMC向后采样</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.7 Bagging/">8.7 袋装法</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">9 增广模型，树，以及相关方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.0 Introduction/">9.0 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models/">9.1 广义加性模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods/">9.2 基于树的方法</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">10 增强和加性树</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">10.1 增强方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">11 神经网络</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.1 Introduction/">11.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.3 Neural Networks/">11.3 神经网络</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.6 Example of Simulated Data/">11.6 模拟数据的例子</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">12 支持向量机和灵活的判别方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">13 原型方法和最近邻</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/">13.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">14 非监督学习</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../14.1 Introduction/">14.1 导言</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">14.2 关联规则</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">15 随机森林</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../15 Random Forests/15.1 Introduction/">15.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../14.1 Introduction/">
+                        <i class="fa fa-arrow-left"></i> 上一节
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../../15 Random Forests/15.1 Introduction/">
+                        下一节 <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://szcf-weiya.github.io">
+                        
+                        Szcf-Weiya
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#_1">关联规则</a></li>
+        
+            <li><a href="#_2">市场篮子分析</a></li>
+        
+            <li><a href="#apriori">Apriori 算法</a></li>
+        
+            <li><a href="#_3">例子：市场篮子分析</a></li>
+        
+            <li><a href="#_4">非监督作为监督学习</a></li>
+        
+            <li><a href="#_5">广义关联规则</a></li>
+        
+            <li><a href="#_6">监督学习方法的选择</a></li>
+        
+            <li><a href="#_7">例子：市场篮子分析（继续）</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="_1">关联规则</h1>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翻译</td>
+<td>szcf-weiya</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>2017-02-20:2017-02-20</td>
+</tr>
+</tbody>
+</table>
+<p>关联规则分析已经成为挖掘贸易数据的受欢迎的工具。目标是寻找变量$X=(X_1,X_2,\ldots,X_p)$在数据中出现最频繁的联合值。大部分应用在二值数据$X_j\in{0,1}$中，也称作“市场篮子”分析。这种情形下观测为销售交易，比如出现在商店收银台的东西。变量表示所有在商店中出售的东西。对于观测$i$，每个变量赋两个值中的一个；如果第$j$个物品作为该次交易购买东西的一部分则$x_{ij}=1$，而如果没有购买则$x_{ij}=0$。这些频繁有联合值的变量表示物品经常被一起购买。这个信息对于货架、跨营销的促销活动、商品目录的设计，以及基于购买模式的消费者划分都是很有用的。</p>
+<p>更一般地，关联分析的基本目标是寻找特征向量$X$的原始$X$值$v_1,\ldots,v_L$ 的集合，使得概率密度 $Pr(v_l)$在这些值上的取值相对大。在一般框架下，这个问题可以看成是“模式寻找（mode finding）”或者“碰撞狩猎（bump hunting）”。如所阐释的，这个问题是不可能的困难。每个$Pr(v_l)$的自然估计是观测$X=v_l$时的分数。对于涉及多于少量变量的问题，每个变量可以假定多余少量的值，对于其中$X=v_l$的观测值的数目用于可靠估计几乎总是太小。</p>
+<p>进行第一次简化来修改目标。与其寻找$Pr(x)$很大的$x$值（values），不如在$X$空间中寻找相对它们大小和支撑集的大概率部分的区域（regions）。令$\cal S_j$表示第$j$个变量的所有可能值的集合（支撑集），并且令$s_j\subseteq\cal S_j$为这些值的子集。修改后的目标可以叙述成试图寻找变量值的子集$s_1,\ldots,s_p$来使得每个变量的概率同时相对地大，假设每个子集中都有一个值，则也就是使得
+<script type="math/tex; mode=display">
+Pr\Big[\bigcap_{j=1}^p(X_j\in s_j)\Big]\qquad (14.2)
+</script>
+相对大。子集的交$\cap_{j=1}^p(X_j\in s_j)$称作联合规则（conjunctive rule）。对于定性变量子集$s_j$为邻接区间；对于类别型变量子集是明确界定的。注意到如果子集实际上是整个集合$s_j=\cal S_j$，经常是这种情形，变量$X_j$被称为没有出现在规则（14.2）中。</p>
+<h2 id="_2">市场篮子分析</h2>
+<p>求解（14.2）的一般方法将在14.2.5节讨论。这在许多应用中是很有用的。然而，它们对于非常多（$p\approx 10^4,N\approx 10^8$）的交易数据是不可行的，市场篮子分析经常应用到这些数据上。对（14.2）的进一步简化是需要的。首先，只考虑了两种类型的子集；$s_j$要么包含$X_j$的单个值$s_j=v_{0j}$，或者$X_j$的整个值的集合，$s_j=\cal S_j$。这将（14.2）简化为寻找元素为整数的子集$\cal J\subset{1,\ldots,p}$，以及对应的值$v_{0j},j\in\cal J$，使得</p>
+<p>
+<script type="math/tex; mode=display">
+Pr\Big[\bigcap_{j\in \cal J}(X_j=v_{0j})\Big]\qquad (14.3)
+</script>
+</p>
+<p>相对大。图14.1阐释了这个假设。</p>
+<p><img alt="" src="../../img/14/fig14.1.png" /></p>
+<blockquote>
+<p>图14.1. 对应规则的简化。这里有两个输入$X_1$和$X_2$，分别取4和6个不同的值。红色方块表示高密度的区域。为了简化计算，我们假设导出的子集要么对应输入的单个值，要么对应所有值。有了这个假设，我们可以找到图中中间或者右边的模式，而不是左边的模式。</p>
+</blockquote>
+<p>可以应用虚拟变量（dummy variables）的技巧将（14.3）转换为只涉及二值变量的问题。这里我们假设支撑集 $\cal S_j$ 对于每个变量 $X_j$ 都是有限的。具体地，构造新的变量集$Z_1,\ldots,Z_K$，对于由每个原始变量$X_1,X_2,\ldots,X_p$可获得的值$v_{lj}$中的每一个，创建一个这样的变量。虚拟变量的数目$K$为
+<script type="math/tex; mode=display">
+K=\sum\limits_{j=1}^p\vert \cal S_j\vert\qquad 
+</script>
+其中$\vert \cal S_j\vert$为从$X_j$得到的唯一值的个数。</p>
+<div class="admonition notes">
+<p class="admonition-title">weiya 注</p>
+<p>每个$v_{lj}$（可看成是$p$维列向量）都有一个虚拟变量$Z_{\ell}$。
+<img alt="" src="../../img/14/pho14.1.png" /></p>
+</div>
+<p>如果与其相关联的变量取$Z_k$对应的值，则每个虚拟变量被赋值为$Z_k=1$，否则$Z_k=0$（<strong>weiya注：</strong>见上面注中的图片）。 这将（14.3）转换为寻找整数集${\cal K}\subset{1,\ldots,K}$使得下式的值大。
+<script type="math/tex; mode=display">
+Pr\Big[\bigcap_{k\in\cal K}(Z_k=1)\Big]=Pr\Big[\prod\limits_{k\in\cal K}Z_k=1\Big]\qquad (14.4)
+</script>
+这是标准的市场篮子问题的组成。集合$\cal K$称为“项目集（items set）”。在项目集中的变量$Z_k$的个数称为“大小（size）”（注意到这个大小不大于$p$）。（14.4）的估计值取在数据集中式（14.4）中关联为真的观测的分数：
+<script type="math/tex; mode=display">
+\widehat{Pr}\Big[\prod\limits_{k\in\cal K}(Z_k=1)\Big]=\frac{1}{N}\sum\limits_{i=1}^N\prod_{k\in\cal K}z_{ik}\qquad (14.5)
+</script>
+这里$z_{ik}$为$Z_k$的第$i$种情形的值。这（式(14.5)??）称作项目集$\cal K$的“支持（support）”或“流行（prevalence）”$T(\cal K)$。$\prod_{k\in\cal k}z_{ik}=1$的观测$i$称作“包含（contain）”项目集$\cal K$中。</p>
+<p>在关联规则挖掘中确定支撑的下界$t$，并且寻找所有可以由变量$Z_1,\ldots,Z_k$组成的项目集$\cal K_l$，并且支撑集大于$t$，也就是
+<script type="math/tex; mode=display">
+\{{\cal K_l}\mid T({\cal K_l})>t\}\qquad (14.6)
+</script>
+</p>
+<h2 id="apriori">Apriori 算法</h2>
+<p>如果调整阈值$t$使得式（14.6）仅由所有$2^K$个可能项集合的一小部分组成，则可以通过用于非常大的数据库的可行计算来获得该问题（14.6）的解。“Apriori”算法（Argawal等人，1995）探究维数灾难的一些方面来用数据的小部分传递求解（14.6）。具体地，对于给定的支撑阈值$t$:</p>
+<ul>
+<li>${{\cal K}\mid T(\cal K)&gt;t }$的基数相对小。</li>
+<li>任意项目集$\cal L$包含$\cal K$中项的子集必须有比$\cal K$大的支撑或者相等的支撑，${\cal L\subseteq K}\Rightarrow T({\cal L})\ge T({\cal K})$</li>
+</ul>
+<p>第一次传递数据计算所有单项目集合的支撑。舍弃那些支撑小于阈值的项目集。第二次传递数据计算所有可以由第一次传递中保留下来的单项目集合组成对的大小为2的项目集合的支撑。换句话说，为了产生所有大小为$\cal K=m$的频繁项目集，我们仅仅需要考虑那些候选项目，那些候选项目使得所有大小为$m-1$的祖先项目得到的大小为$m$的项目集是频繁的。舍弃那些支撑小于阈值的大小为2的项目集。每个后继的传递数据只考虑了那些可以通过结合上一次传递数据存留的项目集与第一次传递数据保留下的项目集得到的项目集。数据传递过程一直进行下去，直到来自上一次传递的所有候选规则的支撑都小于指定阈值。（？？？一定会小？？）Apriori算法仅仅要求对每个$\vert\cal K\vert$的值的一侧数据传递，这是很重要的，因为我们假设数据不能放在计算机的主存中。如果数据是充分稀疏（或者如果阈值$t$充分高），则在合理次数之后终止过程，甚至对于非常大的数据集也是如此。</p>
+<p>许多额外的技巧可以作为这个策略的一部分来提高速度和收敛（Agrawal等人，1995）。Apriori算法标志数据挖掘技术的主要进步。</p>
+<p>通过Apriori算法返回的每个高支撑的数据集$\cal K$（14.6）被放到“关联规则”的集合中。项目$Z_k,k\in\cal K$被分成两个分离的子集，$A\cup B=\cal K$，并且写成
+<script type="math/tex; mode=display">
+A\Rightarrow B\qquad (14.7)
+</script>
+第一项子集$A$被称作“先行者”，第二个子集$B$被称为“后果”。关联规则定义为有一些性质，基于在数据库中先行项目集和后果项目集的流行程度。规则$T(A\Rightarrow B)$的“支撑”是在先行项目集和后果项目集的并中的观测的分数，恰恰是引出它们的项目集$\cal K$的支撑。可以看成在随机选择的市场篮子中同时观测项目集$Pr(A\; and\; B)$的概率的估计（14.5）。该规则的“置信度（confidence）”或“可预测性（predictability）”$C(A\Rightarrow B)$是它的支撑除以先行者的支撑
+<script type="math/tex; mode=display">
+C(A\Rightarrow B)=\frac{T(A\Rightarrow B)}{T(A)}\qquad (14.8)
+</script>
+可以看成是$Pr(B\mid A)$的估计。记号$Pr(A)$是在篮子中出现项目集$A$的概率，是$Pr(\prod_{k\in A}Z_k=1)$的缩写。“期望置信度”定义为后果的支撑$T(B)$，是没有条件的概率$Pr(B)$的估计。最后，规则的“lift”定义为置信度除以期望置信度
+<script type="math/tex; mode=display">
+L(A\mid B)=\frac{C(A\Rightarrow B)}{T(B)}
+</script>
+这是关联衡量$Pr(A\; and\; B)/Pr(A)Pr(B)$的估计。</p>
+<p>举个例子，假设项目集为${\cal K}={\text{peanut butter, jelly, bread}}$，并且考虑规则${\text{peanut butter, jelly}}\Rightarrow {\text{bread}}$。0.03的支撑值表示peanut butter，jelly和bread同时出现在3%的市场篮子中。这个规则的0.82置信度表示当购买了peanut butter和jelly，82%的情形下也会购买bread。如果bread在43%的市场篮子中，则规则${\text{peanut butter, jelly}\Rightarrow \text{bread}}$的lift为1.95。</p>
+<p>这个分析的目标是得到支撑和置信度（14.8）都高的关联规则（14.7）。Apriori算法返回由支撑阈值$t$（14.6）定义的所有高支撑的项目集。设定置信度阈值$c$，报告所有可以从这些项目集（14.6）中组成的置信度大于$c$的规则，也就是
+<script type="math/tex; mode=display">
+\{A\Rightarrow B\mid C(A\Rightarrow B)>c\}\qquad (14.9)
+</script>
+对于大小为$\vert\cal K\vert$的项目集$\cal K$，有$2^{\vert{\cal K}\vert-1}-1$条形式为$A\Rightarrow ({\cal K}-A),A\subset \cal K$的规则（？？？？？？？？？？）。</p>
+<div class="admonition notes">
+<p class="admonition-title">weiya 注</p>
+</div>
+<p>
+<script type="math/tex; mode=display">
+\frac{1}{2}(2^{\vert\cal K\vert}-2)=2^{\vert{\cal K}-1\vert}-1
+</script>
+Agrawal等人（1995）提出Apriori算法的一个变体，它可以从由项目集（14.6）构造的所有可能的规则中快速确定哪些规则会在置信阈值（14.9）下存留下来。</p>
+<p>整个分析的输出是满足下面约束的关联规则（14.7）的集合。
+<script type="math/tex; mode=display">
+T(A\Rightarrow B)>t\qquad and\qquad C(A\Rightarrow B)>c
+</script>
+这些一般保存在数据库中，可以被用户查询到。一般的查询请求可能是按照置信度，lift或者支撑的大小顺序排列规则。更具体地，可能会要查询在antecedent中含特定的项目或在consequent中含特定的项目的条件下的list。举个例子，一条查询请求可能如下：</p>
+<blockquote>
+<p>显示ice skates为consequent，置信度大于80%且支撑大于2%的所有交易。</p>
+</blockquote>
+<p>这可以提供能够预测ice skates销量的项（antecedent）的信息。关注特定的结果（consequent）便将问题转换成了监督学习的框架。</p>
+<p>关联规则成为了在市场篮子是相关的设定下用于分析非常大的交易数据库的流行工具。这是当数据可以转换成多维邻接表的形式时。输出是以容易理解并且解释的关联规则（14.4）的形式展现的。Apriori算法允许分析可以用到大的数据库中，更大的数据库适用于其他类型的分析。关联规则是数据挖掘最大的成功之一。</p>
+<p>除了对我们可以应用的数据有限制外，关联规则还有其它的限制。计算可行性的关键是支撑阈值（14.6）。项目集的解的个数，它们的大小，以及对数据需要传递的次数随着下界的下降指数型增长。因此，不会发现有高置信度或者lift，但是低支撑的规则。举个例子，比如$\text{vodka}\Rightarrow \text{caviar}$的高置信度规则将不会找到，因为后果（consequent）caviar的低销售量。</p>
+<h2 id="_3">例子：市场篮子分析</h2>
+<p>我们将在适中的人口统计数据库中说明Apriori算法的使用。数据集包含$N=9409$分问卷，由旧金山湾区（San Francisco Bay Area）的购物商场里的消费者填写的（Impact Resources, Inc., Columbus OH, 1987）。这里我们采用前14个与人口统计有关的问题的回答来说明。可见数据中包含顺序型和（无序）类别变量，后者中的许多具有多个值。并且有许多缺失数据。</p>
+<p>我们采用Apriori算法的免费软件实现，这归功于Christian Borgelt。（见<a href="http://www.borgelt.net/">http://fuzzy.cs.uni-magdeburg.de/~borgelt</a>）。除去缺失数据的观测，每个顺序型预测变量在中值处分开并且用两个虚拟变量来编码；每个含有$k$个类别的类别型预测变量用$k$个虚拟变量编码。得到$6876\times 50$阶矩阵，6876为观测个数，50为虚拟变量个数。</p>
+<p>这个算法总共找到6288条关联规则，涉及$\le 5$个预测变量，支撑至少为10%。理解这个大的规则集合本身是具有挑战的数据分析工作。我们这里将不会试图解决，但仅仅在图14.2中说明每个虚拟变量在数据中的相对频率（上）和在关联规则中的相对频率（下）。流行的类别趋向于在规则中频繁出现，例如，排第一的类别是language（English）。然而，其他的像职业（occupation）则表示不足（under-represented）,除了第一和第五个水平。</p>
+<p><img alt="" src="../../img/14/fig14.2.png" /></p>
+<blockquote>
+<p>图14.2. 市场篮子分析：每个虚拟变量（对输入类别编码）在数据中的相对频率（上），以及在由Apriori算法找到的关联规则中的相对频率（下）</p>
+</blockquote>
+<p>下面是通过Apriori算法找出的关联规则的三个例子：</p>
+<ul>
+<li>关联规则1：25%的支撑，99.7%的置信度，1.03的lift</li>
+</ul>
+<p><img alt="" src="../../img/14/ar1.png" /></p>
+<ul>
+<li>关联规则2：13.4%的支撑，80.8%的置信度，2.13的lift</li>
+</ul>
+<p><img alt="" src="../../img/14/ar2.png" /></p>
+<ul>
+<li>关联规则3：26.5%的支撑，82.8%的置信度，2.15的lift</li>
+</ul>
+<p><img alt="" src="../../img/14/ar3.png" /></p>
+<p>我们根据第一和第三条规则的高支撑选择它们。第二条规则是有高收入的consequent的关联规则，并且可以用来试图挑出高收入的个体。</p>
+<p>正如上面叙述的，我们对每个输入预测变量构造虚拟变量，举个例子，根据收入低于和高于中位数得到 $Z_1=I(\text{income}&lt;\$40,000)$和$Z_2=I(\text{income}\ge \$40,000)$。如果我们仅仅对寻找与高收入类别的关联感兴趣，我们可能会包含$Z_2$但不包含$Z_1$。实际市场篮子问题中经常是这种情形，我们感兴趣的是找到与现存的相对罕见项的关联，而不是跟它缺失有关的关联。</p>
+<h2 id="_4">非监督作为监督学习</h2>
+<p>这里我们讨论将密度估计问题转化为某监督函数近似的技巧。这形成了将在下一节描述的广义关联规则的基础。</p>
+<p>令$g(x)$为需要估计的未知数据概率密度，且$g_0(x)$为用作参考的确定的概率密度函数。举个例子，$g_0(x)$可能是在变量定义域上的均匀概率密度。其他的概率在下面讨论。假定数据集$x_1,x_2,\ldots,x_N$是从$g(x)$中抽取的独立同分布的样本。大小为$N_0$的样本可以通过蒙特卡洛法从$g_0(x)$中抽取。混合这两个数据集，并且对从$g(x)$抽取的样本赋权$w=N_0/(N+N_0)$，对从$g_0(x)$中抽取的样本赋权$w_0=N/(N+N_0)$，得到从混合密度$(g(x)+g(x_0))/2$中抽取的随机样本。如果对从$g(x)$中抽取的样本赋值为$Y=1$，对从$g_0(x)$中抽取的样本赋值为$Y=0$，则
+<script type="math/tex; mode=display">
+\begin{align}
+\mu(x)=E(Y|x)&=\frac{g(x)}{g(x)+g_0(x)}\\
+&=\frac{g(x)/g_0(x)}{1+g(x)/g_0(x)}\qquad (14.10)
+\end{align}
+</script>
+可以通过将下面的混合样本作为训练数据采用监督学习的方法来估计
+<script type="math/tex; mode=display">
+(y_1,x_1),(y_2,x_2),\ldots,(y_{N+N_0},x_{N+N_0})\qquad (14.11)
+</script>
+估计的结果$\hat \mu(x)$可以反解得$g(x)$的估计
+<script type="math/tex; mode=display">
+\hat g(x)=g_0(x)\frac{\hat \mu(x)}{1-\hat\mu(x)}\qquad (14.12)
+</script>
+</p>
+<p>广义逻辑斯蒂回归（4.4节）在非常适用于这个应用，因为下面的对数odd是直接估计的
+<script type="math/tex; mode=display">
+f(x)=log\frac{g(x)}{g_0(x)}\qquad (14.13)
+</script>
+此时我们有
+<script type="math/tex; mode=display">
+\hat g(x)=g_0(x)e^{\hat f(x)}\qquad (14.14)
+</script>
+图14.3显示了一个例子。我们在左边图中产生大小为200的训练集。右边显示了在图中长方形区域内均匀产生的参考点（蓝色）。训练样本被标号为1，而参考样本被标号为0，并且采用逻辑斯蒂回归模型对数据进行拟合，逻辑斯蒂回归模型使用自然样条的张量积（5.2.1节）。$\mu(x)$的概率等高线显示在右图中；它们也是密度估计$\hat g(x)$的等高线，因为$\hat g(x)=\hat\mu(x)/(1-\hat\mu(x))$是单调函数。等高线大致捕捉了数据的密度。</p>
+<p><img alt="" src="../../img/14/fig14.3.png" /> </p>
+<blockquote>
+<p>图14.3. 通过分类的密度估计。（左）200个数据点的训练集。（右）加上在矩形区域内均匀产生200个参考数据点的训练集。训练样本标记为类别1，参考数据点为类别0，对数据用半参逻辑斯蒂回归模型进行拟合。图中显示了$\hat g(x)$的等高线。</p>
+</blockquote>
+<p>原则上任意参考点都可以作为（14.14）的$g_0(x)$。实际中估计$\hat g(x)$的准确性非常依赖于特定的选择。好的选择会取决于数据密度$g(x)$和用来估计（14.10）和（14.13）的过程。如果目标是正确性，应该选择$g_0(x)$使得最终函数$\mu(x)$和$f(x)$可以简单地被使用的方法来近似。然而，准确性不总是主要目标。$\mu(x)$和$f(x)$是概率比率$g(x)/g_0(x)$的单调函数。它们可以看成是提供关于数据密度$g(x)$与$g_0(x)$偏离的信息的“相反”统计量。因此，在数据分析设定中，$g_0(x)$的选择是由偏离的类型决定的，在手头上特定问题的情况下似乎是最有趣的。举个例子，如果均匀的偏离是我们感兴趣的，$g_0(x)$可能是在变量值域上的均匀密度函数。如果偏离联合正态的偏离是我们感兴趣的，$g_0(x)$一个好的选择是与原数据相同的均值向量和协方差均值。与独立的偏离可以通过用
+<script type="math/tex; mode=display">
+g_0(x)=\prod\limits_{j=1}^pg_j(x_j)\qquad (14.15)
+</script>
+来研究。其中$g_j(x_j)$为$X_j$（$X$的第$j$个坐标）的边缘密度。通过对每个变量的数据应用不同的随机排列，独立密度（14.15）的样本可以很简单地从数据本身产生。</p>
+<p>正如上面讨论的那样，非监督学习关注于揭示数据密度$g(x)$的性质。每个技巧关注与特定的性质或者性质的集合。尽管这种将问题转换为监督学习的方式看起来在一段时间内成为统计民俗学的一部分，但它似乎有太大的影响，尽管它有将已经研究透彻的监督学习方法应用到非监督学习的潜力。其中一个原因可能是这个问题必须用通过蒙特卡洛技巧产生的模拟数据来扩大。因为数据集的大小至少同数据样本大小一样大$N_0\ge N$，这个估计过程的计算和内存上的要求至少双倍。另外，实质上的计算可能要求产生蒙特卡洛本身。尽管在过去这是一个限制，但是这增加的计算需求不值得成为一个负担，因为增加的资源也变成了可能。我们将在下一节说明在非监督学习中监督学习方法的使用。</p>
+<h2 id="_5">广义关联规则</h2>
+<p>在数据空间中寻找高密度区域的更一般问题（14.2）可以通过使用上面描述的监督学习的方法来解决。尽管不能应用对市场篮子分析可行的大数据库，但可以从适当大小的数据集中得到有用的信息。问题（14.2）可以用公式叙述为，寻找整数子集$\cal J\subset{1,2,\ldots,p}$和与对应的变量$X_j$对应的子集$s_j,j\in \cal J$使得下式的值大。
+<script type="math/tex; mode=display">
+\widehat{Pr}\Big(\bigcap_{j\in\cal J}(X_j\in s_j)\Big) = \frac{1}{N}\sum\limits_{i=1}^NI\Big(\bigcap_{j\in\cal J}(x_{ij}\in s_j)\Big)\qquad (14.16)
+</script>
+根据关联规则的数据，${(X_j\in s_j)}_{i\in \cal J}$将被称为“广义”项目集。对应定量变量的子集$s_j$取为在它们值域中的邻接区间，对于类别型变量的子集可以涉及不止一个单值。这种方法的这条“野心的（ambitious）”性质妨碍了对所有广义项目集的全面搜索，来寻找式（14.16）大于特定最小值的支撑。必须用到启发式搜索算法，而且最希望有个寻找这样广义项目集的集合。</p>
+<p>市场篮子分析（14.5）和广义公式（14.16）都隐式地引用均匀概率分布。如果所有的联合数据值$(x_1,x_2,\ldots,x_N)$都是均匀分布的，则寻找比期望更频繁的项目集。这有助于寻找单个边缘要素$(X_j\in s_j)$是频繁的项目集，也就是，下面的值大。
+<script type="math/tex; mode=display">
+\frac{1}{N}I(x_{ij}\in s_j)\qquad (14.17)
+</script>
+</p>
+<p>频繁子集（14.17）的联合在高支撑的项目集（14.16）中趋向于比不频繁子集的联合更经常出现。这也就是为什么尽管高关联（lift）的规则$\text{vodka}\Rightarrow\text{caviar}$不可能被发现；没有一项含有高的边缘支撑，所以它们的联合支撑特别地小。引用均匀分布可以得出高频率项目集，其组成部分之间具有低关联性，以支配最高支撑项目集合的集合。</p>
+<p>高频率子集$s_j$形成为最频繁的$X_j$值的分离。采用变量边缘数据密度的积（14.15）作为参考分布除去了在已发现项目集中单个变量的高频值的偏好。这是因为不管单个变量值的频率分布，如果变量中没有关联（完全独立），密度比率$g(x)/g_0(x)$是均匀的。像$\text{vodka}\Rightarrow \text{caviar}$的规则会有机会进行合并。然而，怎样将参考分布而不是均匀分布纳入进Apriori算法中是不清晰的。正如在14.2.4节中解释的那样，给定原始数据集，从积密度（14.15）中产生样本是直接的。</p>
+<p>选择完参考分布后，并且根据它抽取样本，如（14.11），则有关于二值输出变量$Y\in{0,1}$的监督学习问题。目标是利用这些数据去寻找区域
+<script type="math/tex; mode=display">
+R=\bigcup_{j\in \cal J}(X_j\in s_j)\qquad (14.18)
+</script>
+使得目标函数$\mu(x)=E(Y\mid x)$相对地大。另外，可能希望要求这些区域的数据支撑
+<script type="math/tex; mode=display">
+T(R)=\int_{x\in R}g(x)dx\qquad (14.19)
+</script>
+不要太小。</p>
+<h2 id="_6">监督学习方法的选择</h2>
+<p>区域（14.18）由联合规则定义。因此在这种情形下学习这些规则的监督学习方法会是最合适的。CART决策树的终止结点由形式为（14.18）的规则精确定义。对混合数据（14.11）应用CART会得到决策树，决策树试图对目标（14.10）用分离的区域集的在整个数据空间来建模。每个区域由形式为（14.18）中的一条规则而定义。这些有较高$y$平均值
+<script type="math/tex; mode=display">
+\bar y_t=\text{ave}(y_i\mid x_i\in t)
+</script>
+是高支撑广义项目集（14.16）的候选者。实际的（数据）支撑由下式给出
+<script type="math/tex; mode=display">
+T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
+</script>
+其中$N_t$是由终止结点表示的区域中（混合）观测的个数。通过检查得到的决策树，可能会发现相对高支撑的感兴趣的项目集。这些可以分化出在搜寻高置信度和/或lift的广义关联规则中的antecedent和consequent。</p>
+<p>这个目的的另外一个自然学习的方法是在第9.3节描述的病人规则诱导法（PRIM），它也产生了形为（14.18）的精确规则，但是它是特别为寻找高支撑区域来在其中最大化目标（14.10）的平均值而设计的，而不是试图用在整个数据空间中建立目标函数的模型。它也提供了在支撑/平均目标值之间权衡的控制。</p>
+<p>练习14.3提出一个问题，当我们从边缘分布的积中产生随机数据时，这些方法中的任一一个的问题。</p>
+<h2 id="_7">例子：市场篮子分析（继续）</h2>
+<p>我们在表14.1的人口统计数据的基础上说明PRIM的用法。</p>
+<p><img alt="" src="../../img/14/tab14.1.png" /></p>
+<p>从PRIM分析中合并后的高支撑的广义项目集中的三个如下：</p>
+<p>项目集1：支撑=24%</p>
+<p><img alt="" src="../../img/14/is1.png" /></p>
+<p>项目集2：支撑=24%</p>
+<p><img alt="" src="../../img/14/is2.png" /></p>
+<p>项目集3：支撑=15%</p>
+<p><img alt="" src="../../img/14/is3.png" /></p>
+<p>从这些项目集中以大于95%的置信度（14.8）导出广义关联规则如下：</p>
+<p>关联规则1：支撑25%，置信度99.7%，以及lift 1.35
+<img alt="" src="../../img/14/p500ar1.png" />
+关联规则2：支撑25%，置信度98.7%，以及lift 1.97
+<img alt="" src="../../img/14/p500ar2.png" />
+关联规则3：支撑25%，置信度95.9%，以及lift 2.61
+<img alt="" src="../../img/14/p500ar3.png" />
+关联规则4：支撑15%，置信度95.4%，以及lift 1.50
+<img alt="" src="../../img/14/p501ar4.png" /></p>
+<p>这些特殊的规则中没有太大的惊奇。其中的大部分符合直观。在其他缺少先验信息的情形下，期望之外的结果有更大的可能来合并。这些结果缺失说明了广义关联规则可以提供的信息种类，以及监督学习方法，与规则导出方法，比如CART或PRIM，可以揭示在它们成分中保持该高关联的项目集。</p>
+<p>这些广义关联规则与之前通过Apriori算法找出的规则相比怎么样呢？因为Apriori过程给出了成千上万条规则，很难去比较它们。然而，可以对一些一般的点进行比较。Apriori算法是穷举的——它找出所有支撑大于特定值的所有规则。相反地，PRIM是贪婪算法，并且不保证给出“最优”的规则集。另一方面，Apriori算法仅仅可以处理虚拟变量，也因此不能找到上面的一些规则。举个例子，因为type of home 是类别型输入，对于每一层有一个虚拟变量，Apriori不能找到涉及集合$\text{type of home}\neq apartment$的规则。为了找到这个集合，我们必须对apartment和其他home的类别变量用虚拟变量编码。一般地对所有潜在的有兴趣的比较进行预先编码是不可行的。</p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//weiya.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//weiya.disqus.com/count.js" async></script></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Powered by <a href="http://www.mkdocs.org/">MkDocs</a> and <a href="http://bootswatch.com/yeti/">Yeti</a></center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../js/MathJax/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script src="../../js/mymathjax.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            请在下面输入你要搜索的文本（仅支持英文）：
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
