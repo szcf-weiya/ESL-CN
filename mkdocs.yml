@@ -87,6 +87,7 @@ pages:
       - 13.1 导言: '13 Prototype Methods and Nearest-Neighbors/13.1 Introduction.md'
     - 14 非监督学习:
       - 14.1 导言: '14 Unsupervised Learning/14.1 Introduction.md'
+      - 14.2 关联规则: '14 Unsupervised Learning/14.2 Association Rules.md'
     - 15 随机森林:
       - 15.1 导言: '15 Random Forests/15.1 Introduction.md'
     #- 16 整体学习:
