@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/14 Unsupervised Learning/14.3 Cluster Analysis/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>14.3 聚类分析 - ESL CN</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/newsprint.css" rel="stylesheet">
+        <link href="../../css/admonition_fix.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-85046550-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">ESL CN</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">主页</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">目录 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">序言</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/">第二版序言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/">第一版序言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">1 简介</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../01 Introduction/2016-07-26-Chapter-1-Introduction/">1.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">2 监督学习概要</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.1 Introduction/">2.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions/">2.5 高维问题的局部方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/Bibliographic Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">3 回归的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.1 Introduction/">3.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.3 Subset Selection/">3.3 子集的选择</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.4 Shrinkage Methods/">3.4 收缩的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">3.7 多重输出的收缩和选择</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">4 分类的线性方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.1 Introduction/">4.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/">4.2 指示矩阵的线性回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.3 Linear Discriminant Analysis/">4.3 线性判别分析</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.4 Logistic Regression/">4.4 逻辑斯蒂回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04 Linear Methods for Classification/4.5 Separating Hyperplanes/">4.5 分离超平面</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">5 基展开和正规化</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.1 Introduction/">5.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines/">5.2 分段多项式和样条</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction/">5.3 滤波和特征提取</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../05 Basis Expansions and Regularization/5.4 Smoothing Splines/">5.4 光滑样条</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">6 核光滑方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../06 Kernel Smoothing Methods/6.1 Introduction/">6.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">7 模型评估及选择</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.1 Introduction/">7.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity/">7.2 偏差，方差和模型复杂度</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition/">7.3 偏差-方差分解</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate/">7.4 测试误差率的乐观</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error/">7.5 样本内预测误差的估计</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.6 The Effective Number of Parameters/">7.6 参数的有效个数</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.7 The Bayesian Approach and BIC/">7.7 贝叶斯方法和BIC</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.8 Minimum Description Length/">7.8 最小描述长度</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.9 Vapnik-Chervonenkis Dimension/">7.9 VC维</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.10 Cross-Validation/">7.10 交叉验证</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.11 Bootstrap Methods/">7.11 自助法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/7.12 Conditional or Expected Test Error/">7.12 条件测试误差或期望测试误差</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../07 Model Assessment and Selection/Bibliographic Notes/">文献笔记</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">8 模型推断和平均</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.1 Introduction/">8.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods/">8.2 自助法和最大似然法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.3 Bayesian Methods/">8.3 贝叶斯方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.4 Relationship Between the Bootstrap and Bayesian Inference/">8.4 自助法和贝叶斯推断之间的关系</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.5 The EM Algorithm/">8.5 EM算法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior/">8.6 MCMC向后采样</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../08 Model Inference and Averaging/8.7 Bagging/">8.7 袋装法</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">9 增广模型，树，以及相关方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.0 Introduction/">9.0 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models/">9.1 广义加性模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods/">9.2 基于树的方法</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">10 增强和加性树</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">10.1 增强方法</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/">10.3 向前逐步加性建模</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/">10.4 指数损失和AdaBoost</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.5 Why Exponential Loss/">10.5 为什么是指数损失</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/">10.6 损失函数和鲁棒性</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">11 神经网络</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.1 Introduction/">11.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.3 Neural Networks/">11.3 神经网络</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.6 Example of Simulated Data/">11.6 模拟数据的例子</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">12 支持向量机和灵活的判别方法</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">13 原型方法和最近邻</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/">13.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">14 非监督学习</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../14.1 Introduction/">14.1 导言</a>
+</li>
+
+        
+            
+<li >
+    <a href="../14.2 Association Rules/">14.2 关联规则</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">14.3 聚类分析</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                        
+  <li class="dropdown-submenu">
+    <a tabindex="-1" class="nav-title">15 随机森林</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../15 Random Forests/15.1 Introduction/">15.1 导言</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> 搜索
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../14.2 Association Rules/">
+                        <i class="fa fa-arrow-left"></i> 上一节
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../../15 Random Forests/15.1 Introduction/">
+                        下一节 <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://szcf-weiya.github.io">
+                        
+                        Szcf-Weiya
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#_1">聚类分析</a></li>
+        
+            <li><a href="#_2">接近矩阵</a></li>
+        
+            <li><a href="#_3">基于属性的不相似性</a></li>
+        
+            <li><a href="#_7">物体不相似性</a></li>
+        
+            <li><a href="#_8">聚类算法</a></li>
+        
+            <li><a href="#_9">组合算法</a></li>
+        
+            <li><a href="#k-means">K-means</a></li>
+        
+            <li><a href="#soft-k-means">高斯混合作为Soft K-means聚类</a></li>
+        
+            <li><a href="#_10">例子：人类肿瘤微阵列数据</a></li>
+        
+            <li><a href="#_11">向量量化</a></li>
+        
+            <li><a href="#k-medoids">K-medoids</a></li>
+        
+            <li><a href="#_12">实际问题</a></li>
+        
+            <li><a href="#_13">系统聚类</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="_1">聚类分析</h1>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翻译</td>
+<td>szcf-weiya</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>2017-02-22:2017-02-23</td>
+</tr>
+</tbody>
+</table>
+<p>聚类分析，也称作数据分离，有各种不同的目标。所有的都与将物品集分成子集或者“簇”有关，其中每一类中的物品间与其他类中的物品相比更加接近。物品可以用一系列测量来描述，或者通过与其他物品的关系。另外，目标有时是将类排列成自然分层的形式。这涉及到逐次将类别本身分类使得在每一层次，同一类中的簇与其他类中的簇相比更相似。</p>
+<p>聚类分析也用来构造描述型统计量来确定数据是否包含不同的资料，每个类表示有着本质不同性质的物品。后一目标需要评估被分到特定簇中的物品间的差异程度。</p>
+<p>聚类分析的这些目标的中心是将要聚类的单个物品间相似（或不相似）的程度。聚类方法试图基于应用在物品上的相似性定义来将其分类。这仅仅来自值得考虑的主题。这个情形与在预测问题中的损失或花费函数的确定某种成都上相似（监督学习）。与不确定的预测有关的花费取决于数据之外的考虑。</p>
+<p>图14.4 显示了通过流行的K-means算法将一些模拟数据聚成三类。这种情况下其中的两个类不是很好地分离开，所以“分割（segmentation）”比“聚类（clustering）”能将部分过程描述得更精确。K-means聚类以猜三个聚类中心为开始。然后交替进行下面的步骤直到收敛：</p>
+<ul>
+<li>对于每个数据点，确定（欧式空间）中最近的聚类中心。</li>
+<li>每个聚类中心用与其最近的所有数据点的平均坐标来替换。</li>
+</ul>
+<p><img alt="" src="../../img/14/fig14.4.png" /></p>
+<blockquote>
+<p>图14.4. 平面上的模拟数据，用K-means聚类算法聚成三类（分别用橘黄色，蓝色和绿色）。</p>
+</blockquote>
+<p>我们将在后面更详细地描述K-means，包括怎样选取类别数目的问题（例子中是三个）。K-means聚类是从上到下（top-down）的过程，而其他我们描述的分类方式是从下往上（bottom）的过程。所有聚类技巧的根本是两个物品之间距离或者相似性的衡量的选择。我们在描述各种不同的聚类算法之前首先讨论距离的衡量。</p>
+<h2 id="_2">接近矩阵</h2>
+<p>有时是数据是直接用物品对之间的接近（相似或亲近）来表示的。这些可以是相似性或者不相似性（不同或者缺乏亲和）。举个例子，在社会科学实验中，参与者被要求去判断特定的物品与另一个之间的差异程度。不相似性接着可以通过平均这些判断来计算。这种类型的数据可以表示成$N\times N$的矩阵$\mathbf D$，其中$N$为物品数目的个数，并且每个元素$d_{ii&rsquo;}$记录了第$i$个和第$i&rsquo;$个物品之间的接近。这个矩阵接着作为分类算法的输入。</p>
+<p>大部分算法假定一个非负的不相似性矩阵，对角元素为0：$d_{ii}=0,i=1,2,\ldots,N$。如果原始数据以相似性表示的，则某合适的非负单调下降函数可以用来将它们转换为不相似性。另外，大部分算法假定对称的不相似性矩阵，所以如果原始矩阵$\mathbf D$不是对称的，则必须用$(\mathbf{D+D^T})/2$来替换。在严格意义下主观判断的差异是很少的距离（distances），因为三角不等式$d_{ii&rsquo;}\le d_{ik}+d_{i&rsquo;k}$对于所有的$k\in{1,\ldots,N}$不满足。因此，一些假定距离的算法不能用这些数据。</p>
+<h2 id="_3">基于属性的不相似性</h2>
+<p>大部分情形下我们在变量$j=1,\ldots,p$（也称为属性）上对$i=1,2,\ldots,N$有测量$x_{ij}$。因为大多数流行的聚类算法将不相似性矩阵作为输入，我们首先必须构造两个观测之间的成对不相似性。在大部分一般情形下，我们在第$j$个属性的值中定义不相似性$d_j(x_{ij},x_{i&rsquo;j})$，并且接着定义
+<script type="math/tex; mode=display">
+D(x_i,x_{i'})=\sum\limits_{j=1}^pd_j(x_{ij},x_{i'j})\qquad (14.20)
+</script>
+作为第$i$和$i&rsquo;$样品的不相似性。至今为止最普遍的选择是平方距离
+<script type="math/tex; mode=display">
+d_j(x_{ij},d_{i'j})=(x_{ij}-x_{i'j})^2\qquad (14.21)
+</script>
+然而，其它的情形也是可能的，而且可以导出潜在的不同的结果。对于非定量的属性（如类别型数据），平方距离可能不是合适的。另外的，对属性赋予不同的权重而不是像在（14.20）中给相等的权重有时候是需要的。</p>
+<p>我们第一次讨论关于属性类别的替代方案。</p>
+<h3 id="_4">定量变量</h3>
+<p>这种类型的变量或属性的衡量用连续实值来表示。定义它们间的“误差”为关于它们绝对差异的单调增加的函数
+<script type="math/tex; mode=display">
+d(x_i,x_{i'})=l(\vert x_i-x_{i'}\vert)
+</script>
+除了平方误差损失$(x_i-x_{i&rsquo;})^2$，普遍的选择是单位（绝对误差）。前者在大的差异上相比较小差异更加关注。另外，分类可以基于相关系数
+<script type="math/tex; mode=display">
+\rho(x_i,x_{i'})=\frac{\sum_j(x_{ij}-\bar x_i)(x_{i'j}-\bar x_{i'})}{\sqrt{\sum_j(x_{ij}-\bar x_i)^2\sum_j(x_{i'j}-\bar x_{i'})^2}}\qquad (14.22)
+</script>
+其中$\bar x_i=\sum_jx_{ij}/p$。注意到这是在变量上平均，不是在观测上。如果输入是首先标准化的，则$\sum_j(x_{ij}-x_{i&rsquo;j})^2\propto 2(1-\rho(x_i,x_{i&rsquo;}))$。因此基于协方差（相似性）的分类与基于平方距离（不相似性）是等价的。</p>
+<h3 id="_5">有序变量</h3>
+<p>这种类型的变量经常表示成邻接整数，而且实现值也看成有序集。例子如学业成绩(A,B,C,D,F)，偏好程度（can&rsquo;t stand, dislike, OK, like, terrific）。排名数据是一类特别的有序数据。有序变量的误差衡量一般通过将它们$M$个原始值以规定的原始数据的顺序替换为下面的
+<script type="math/tex; mode=display">
+\frac{i-1/2}{M},i=1,\ldots,M\qquad (14.23)
+</script>
+来定义。于是它们接着可以看成这个水平下的定量变量。</p>
+<h3 id="_6">类别变量</h3>
+<p>无序的类别（也称作名义）变量成对数据的差异程度必须明确地表示出来。如果变量假设有$M$个不同的值，可以排列成对称的$M\times M$矩阵，元素$L_{rr&rsquo;}=L_{r&rsquo;r},L_{rr}=0,L_{rr&rsquo;}\ge 0$。最普遍的选择对于所有$r\neq r&rsquo;$是$L_{rr&rsquo;}=1$，而不同的损失可以用来比其他错误更强调某些错误。</p>
+<h2 id="_7">物体不相似性</h2>
+<p>接着我们定义将$p$个单属性不相似性$d_j(x_{ij},d_{i&rsquo;j}),j=1,2,\ldots,p$结合成一个单独的衡量整个不相似性的$D(x_i,x_{i&rsquo;})$，$D(x_i,x_{i&rsquo;})$是两个有着各种属性值的物品或观测$(x_i,x_{i&rsquo;})$之间的不相似性。这几乎总是通过加权平均（凸组合）的方式
+<script type="math/tex; mode=display">
+D(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot d_j(x_{ij},x_{i'j});\; \sum\limits_{j=1}^p=1\qquad (14.24)
+</script>
+这里$w_j$是为了确定物体间整个不相似性对第$j$个属性赋值的权重，权重表示了这个变量的相对影响。这个选择应该基于主题考虑。</p>
+<p>重要的是意识到，对每个变量的设定相同的权重$w_j$（如，$w_j=1\;\forall j$）不一定对所有变量有相同的影响。第$j$个属性在物品不相似性$D(x_i,x_{i&rsquo;})$（14.24）上的影响取决于对数据集中观测的所有数据对的物体不相似性的平均$\bar D$的相对贡献
+<script type="math/tex; mode=display">
+\bar D=\frac{1}{N^2}\sum_{i=1}^N\sum\limits_{i'=1}^ND(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot \bar d_j
+</script>
+其中，
+<script type="math/tex; mode=display">
+\bar d_j=\frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nd_j(x_{ij},x_{i'j})\qquad (14.25)
+</script>
+是第$j$个属性的平均不相似性。因此，第$j$个变量的相对影响为$w_j\cdot \bar d_j$，并且设定$w_j\sim 1/\bar d_j$会让所有的属性在表征物体间整个不相似性中有相等的影响。举个例子，$p$个定量变量和对每个坐标使用的平方误差距离，接着（14.24）成为以定量变量为坐标轴的$R^p$空间中成对点的（加权）欧氏距离
+<script type="math/tex; mode=display">
+D_I(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot (x_{ij}-x_{i'j})^2\qquad (14.26)
+</script>
+</p>
+<p>这种情形下（14.25）变成
+<script type="math/tex; mode=display">
+\bar d_j=\frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N(x_{ij}-x_{x'j})^2=2\cdot var_j\qquad (14.27)
+</script>
+其中$var_j$为$Var(X_j)$的样本估计。因此，每个这样变量的相对重要性与其在数据集上的方差成比例。一般地，对所有属性设定$w_j=1/\bar d_j$会导致它们中的每一个在成对物体$(x_i,x_{i&rsquo;})$上的整体不相似性上有相等的影响。尽管这看起来或许合理，并且通常推荐这样做，但是会产生严重的不良后果。如果目标是将数据分割成相似物体的类，所有的属性或许不会对物体之间的不相似性的（与问题独立）概念贡献不相等。一些属性值的差异可能会在问题领域的情况下反映更大的真实物体不相似性。</p>
+<p>如果目标是发现数据的自然分类，一些属性或许比其他属性表现出更多的分类趋势。更相关的变量在分离类别时在定义物体不相似性是赋予更高的影响。这种情况下给所有属性相等的影响会趋于隐藏掉这个类别，使得分类算法不能发现它们。图14.5展示了一个例子。</p>
+<p><img alt="" src="../../img/14/fig14.5.png" /></p>
+<blockquote>
+<p>图14.5. 模拟数据：左图对原始数据应用K-means（K=2）分类。两种颜色表示类别的成员。右图，聚类之前对特征进行第一次标准化。这等价于使用特征权重$1/[2\cdot var(X_j)]$。标准化模糊了两个能完美分离的类。注意到每张图的横纵坐标使用相同的单位长度。</p>
+</blockquote>
+<p>尽管选择单个属性不相似性$d_j(x_{ij},d_{x_{i&rsquo;j}})$和它们的权重$w_j$的简单的通用方法会舒适，但是在每个单个问题中，没有替代仔细思考的方式。确定一个合适的不相似性的度量远比选择聚类算法来得重要。这个问题的方面在聚类领域比算法本身强调得少，因为它取决于特定的域知识，并且不适合一般性的研究。</p>
+<p>最后，观测值经常在一个或多个属性中有缺失值。将缺失值合并到不相似性的计算（14.24）中的最普遍方法是在计算观测$x_i$和$x_{i&rsquo;}$之间的不相似性时，省略掉至少有一个缺失值的观测对$x_{ij},x_{i&rsquo;j}$。这个方法在两个观测都没有共同测量值的情况中是不适用的。这种情况下，两个观测都会从分析中删掉。或者，可以使用每个属性未缺失值的平均值或中位数来插补缺失值。对于类别型变量，如果两个物体在相同变量上具有缺失值的情况下将两个对象视为相似是合理的，则可以将缺失值仅仅考虑成另外一类的值。</p>
+<h2 id="_8">聚类算法</h2>
+<p>聚类分析的目标是将观测进行分类使得分到同一类中的成对非相似性趋向于比在不同类中小。聚类算法可以分成三种不同的类别：组合算法，混合模型，以及模式寻找。</p>
+<p>组合算法（combinatorial algorithms）直接对观测数据进行处理，而不直接引用潜在的概率模型。混合模型（mixture modeling）假设数据是从某概率密度函数对应的总体中独立同分布的样本。密度函数表征为某参数化模型，模型为各组分密度函数的混合；每个组分密度表示其中的一类。这个模型接着利用极大似然或者对应的贝叶斯方式来拟合。模式寻找（mode seeker）（bump hunters）采用非参数透视，试图直接估计不同的概率密度函数的模式。与每个分别的模式最近的观测定义单个类别。</p>
+<p>混合模型在6.8节中有讨论。在9.3和14.2.5节中讨论的PRIM算法是模式寻找或“bump hunters”的例子。我们接下来讨论组合算法。</p>
+<h2 id="_9">组合算法</h2>
+<p>最受欢迎的聚类算法不考虑描述数据的概率模型而直接将每个观测划分为一类或一簇。每个观测用整数$i\in{1,\cdots,N}$来唯一标号。假定预先确定的类别个数$K&lt;N$，并且每个编号为$k\in{1,\ldots,K}$。每个观测仅仅分配到一个类中。这些分配可以表示为多对一映射，或者编码器$k=C(i)$，将第$i$个观测分配到第$k$个类。基于每个观测对的不相似性$d(x_i,x_{i&rsquo;})$来寻找特定的编码器${C^*(i}$来实现要求的目标（细节在下面）。一般地，编码器$C(i)$通过给出每个观测$i$的值（类别分配）来显示描述。因此，过程的“参数”是$N$个观测中每个的类别分配。调整这些来最小化表征聚类目标没有达到的程度的“损失”函数。</p>
+<p>一种方式是之间确定数学上的损失函数并且试图通过一些组合优化算法来最小化。因为目标是将近的点分到同一类，一个自然的损失（或“能量”）函数会是
+<script type="math/tex; mode=display">
+W(C)=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}d(x_i,x_{i'})\qquad (14.28)
+</script>
+这个准则表征了分配到同一类的观测区域与另一个近的程度。有时也被称作“类间”散点，因为
+<script type="math/tex; mode=display">
+T=\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nd_{ii'}=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\Big(\sum\limits_{C(i')=k}d_{ii'}+\sum\limits_{C(i')\neq k}d_{ii'}\Big)
+</script>
+或者
+<script type="math/tex; mode=display">
+T=W(C)+B(C)
+</script>
+其中$d_{ii&rsquo;}=d(x_i,x_{i&rsquo;})$。$T$是总点散，给定数据后为常数，与类别分配是独立的。下面的$B(C)$值是类间点散。
+<script type="math/tex; mode=display">
+B(C)=\frac{1}{2}\sum\limits_{k=1}\sum\limits_{C(i)=k}\sum\limits_{C(i')\neq k}d_{ii'}\qquad (14.29)
+</script>
+当观测分到远离的不同类中时这个值趋向于大。因此有
+<script type="math/tex; mode=display">
+W(C)=T-B(C)
+</script>
+并且最小化$W(C)$等价于最大化$B(C)$</p>
+<p>通过组合优化的聚类分析原则上是直接的。简单地在$N$个点分到$K$个类中的所有可能分配上最小化$W$或等价地最大化$B$。不幸的是，这种穷举法的优化仅仅在非常小的数据集中才适用。不同的分配个数为（Jain和Dubes，1988）
+<script type="math/tex; mode=display">
+S(N,K)=\frac{1}{K!}\sum\limits_{k=1}^K(-1)^{K-k}\binom{K}{k}k^N\qquad (14.30)
+</script>
+举个例子，$S(10,4)=34,105$是可行的。但是$S(N,K)$随着变量值的增大迅速增大。$S(19,4)\simeq 10^{10}$,并且大多数聚类问题涉及比$N=19$更大的数据集。基于这个原因，实用的聚类算法只能验证所有可能编码$k=C(i)$情形的非常小的一部分。目标是识别处可能包含最优解的小的子集，或者至少好的次优的划分。</p>
+<p>这些可行的策略是基于迭代贪婪下降。确定初始划分。每一步迭代，以某种方式来改变类别划分，这种方式使得某准则的值比上一步的值有所改善的。这种类别的聚类算法区别于在每一步迭代修改类别分配的方式。当这种方式不能提供改善，算法以当前的分配为其解而终止。因为在任一步的迭代中的类别分配是对上一步类别分配的扰动，只有所有可能分配（14.30）的非常小的一部分被检查。然而，这些算法收敛到局部最优，与全局最优相比可能是高度次优的。</p>
+<h2 id="k-means">K-means</h2>
+<p>K-means算法是最流行的迭代下降聚类方法之一。是为了所有变量都为定量的情形，且选择下式的平方欧式距离作为其不相似性的度量
+<script type="math/tex; mode=display">
+d(x_i,x_{i'})=\sum\limits_{j=1}^p(x_{ij}-x_{i'j})^2=\Vert x_i-x_{i'}\Vert^2
+</script>
+注意到加权欧式距离可以通过重新定义$x_{ij}$来实现（练习14.1）</p>
+<p>类间点散（14.28）可以写成
+<script type="math/tex; mode=display">
+\begin{align}
+W(C)&=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}\Vert x_i-x_{i'}\Vert^2\\
+&=\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2\qquad \qquad (14.31)
+\end{align}
+</script>
+其中$\bar x_k=(\bar x_{1k},\ldots,\bar x_{pk})$是与第$k$个类的均值向量，并且$N_k=\sum_{i=1}^NI(C(i)=k)$。因此，该准则通过以某种方式将$N$个观测分配到$K$个类中来最小化该准则，该方式为在每个类中使得观测与类别中心（用该类中的点定义）的不相似性的平均最小化。</p>
+<p>求解下列问题的迭代下降算法
+<script type="math/tex; mode=display">
+C^*=\underset{C}{min}\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
+</script>
+可以通过注意到任意观测集$S$有下式而得到。
+<script type="math/tex; mode=display">
+\bar x_S=\underset{m}{\text{argmin}}\;\sum\limits_{i\in S}\Vert x_i-m\Vert^2\qquad (14.32)
+</script>
+因此我们可以通过求解扩大的优化问题而得到$C^*$
+<script type="math/tex; mode=display">
+\underset{C,\{m_k\}_1^K}{min}\;\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-m_k\Vert^2\qquad (14.33)
+</script>
+这个可以通过算法14.1给出的交替优化过程得以最小化。</p>
+<p><img alt="" src="../../img/14/alg14.1.png" /></p>
+<p>每个步骤1和步骤2都降低准则（14.33）的值，所以收敛性是保证的。然而，结果可能会表现处次优局部最小值。Hartigan和Wong（1979）的算法走得更远，并且保证了单个的一个观测从一个类转换到另一个类不会降低目标值。另外，应该用许多初始值的许多随机选择来开始算法，然后选择有最小目标函数的解。</p>
+<p>图14.6显示了图14.4的模拟数据的一些K-means迭代。重心用O来描述。直线显示了点的划分，每个部分都是离重心最近的点的集合。这个划分也称为Voronoi曲面细分。20次迭代之后收敛。</p>
+<p><img alt="" src="../../img/14/fig14.6.png" /></p>
+<blockquote>
+<p>图14.6. 对于图14.4的模拟数据的K-means聚类算法的逐次迭代</p>
+</blockquote>
+<h2 id="soft-k-means">高斯混合作为Soft K-means聚类</h2>
+<p>K-means 聚类算法与估计特定的高斯混合模型的EM算法有关。（6.8节和8.5.1节）EM算法的步骤E对每个数据点基于在每个混合部分中的相对密度来赋予“responsibilities”，而步骤M基于当前的responsibilities重新计算各组分的密度参数。假设明确了我们有$K$个混合组分，每个是有着标量协方差矩阵$\sigma^2\mathbf I$的高斯密度。则在每个混合组分的相对密度是关于数据点到混合中心欧氏距离的单调函数。因此在这一步中EM是K-means聚类的soft，使得点以概率（而不是确定性的）分配到聚类中心。因为方差$\sigma\rightarrow 0$，这些概率变成0和1，两种方法也就一致。细节在练习14.2中给出。图14.7说明了实线上两个聚类的结果。</p>
+<p><img alt="" src="../../img/14/fig14.7.png" /></p>
+<blockquote>
+<p>图14.7. (左：)实线为两个高斯密度$g_0(x)$和$g_1(x)$（蓝色和橘黄色），以及$x=0.5$处的单个数据点（绿色圆点）。带颜色的方块画在$x=-1.0$和$x=1.0$处，每个密度的均值。（右：）对于数据点来说，相对密度$g_0(x)/(g_0(x)+g_1(x))$和$g_1(x)/(g_0(x)+g_1(x))$称作每个聚类的“responsibilities”。上面一排的两张图，高斯标准误差为$\sigma=1.0$在下面的两张图中$\sigma=0.2$。EM算法用这些responsibilities来对每个数据点做“soft”分配到两个簇中。当$\sigma$相对大，responsibilities可以接近0.5，（右上图中为0.36和0.64）。当$\sigma\rightarrow 0$时，responsibilities接近1，表示聚类中心离目标点很近，0代表是其它的聚类。“hard”版本的分配如右下图所示。</p>
+</blockquote>
+<h2 id="_10">例子：人类肿瘤微阵列数据</h2>
+<p>我们对第１章描述的人类肿瘤微阵列数据应用Ｋ-means聚类。这是一个高维聚类的例子。数据为$6830\times 64$的实值矩阵，每个表示基因（行）和样本（列）的表达测量值。这里我们对样本进行聚类，每个都是长度为6830的向量，对应6830个基因的表达值。每个样本有像breast(乳腺癌)，melanoma等标签；聚类时，我们不会用这些标签，但是会验证哪个标签落入到哪个簇中。</p>
+<p>我们对从1到10的$K$应用K-means聚类，而且对每次聚类计算总类间平方和，如图14.8所示。一般地我们在平方和曲线中寻找一个结点来定位最优簇的个数（见14.3.11）.这里没有显然的指示：为了说明我们选择$K=3$给出如表14.2所示的三个类。</p>
+<p><img alt="" src="../../img/14/fig14.8.png" /></p>
+<blockquote>
+<p>图14.8. 对人类种类微阵列数据应用K-means聚类的总簇间平方和。</p>
+</blockquote>
+<p><img alt="" src="../../img/14/tab14.2.png" /></p>
+<blockquote>
+<p>表14.2. 人类肿瘤数据：每种类型的癌症在由K-means聚类得到的三个类中的个数</p>
+</blockquote>
+<p>我们看到这个过程在聚集同样类型的癌症是很成功的。事实上，在第2类中的两个乳腺癌后来发现是误诊的，而是转移的黑素瘤。然而，K-means聚类在这个应用中有缺点。其中一个是，它没有给出癌症中物体的线性顺序：我们仅仅以字母顺序列出来。第二，当聚类的数目$K$改变，簇中的成员以任意方式变化。也就是，如4个类，这些类不需要嵌套在上面的三个类中。基于这个原因，系统聚类可能在这个应用中更好。</p>
+<h2 id="_11">向量量化</h2>
+<p>K-means聚类算法表示在图像和信号压缩的明显无关的区域中的关键工具，特别在向量量化（vector quantization）或者VQ（Gersho和Gray，1992）中。图14.9（本例由Maya Gupta准备）的左图像是著名的统计学家Sir Ronald Fisher的电子相片。它包含$1024\times 1024$个像素，每个像素是从0到255的灰度值，因此每个像素需要8位的存储。整张图像占据1M的存储空间。中间图像是左边图像的VQ压缩版本，需要0.239的存储（质量上有一些损失）。右图压缩得更厉害，仅需要0.0625的存储空间（质量上有较大的损失）。</p>
+<p><img alt="" src="../../img/14/fig14.9.png" /></p>
+<blockquote>
+<p>图14.9. Sir Ronald A.Fisher(1890-1962)是现代统计学的创始人之一，极大似然法，充分性和许多其他基本概念都是归功于他。左边的图像是1024$\times$1024的灰度图像，每个像素为8位。中间图像是$2\times 2$VQ块的结果，采用200个编码向量，达到1.9bits/pixel的压缩率。右图像仅采用4个编码向量，压缩率为0.50bits/pixel。</p>
+</blockquote>
+<p>这里的VQ版本实现过程是首先将图像分成小块，这里是$2\times 2$的小块的像素。$512\times 512$个4数目的块被视为$R^4$中的向量。在这个空间内运用K-means聚类算法（这种情形下也称为Lloyd算法）。图14.9的中间图像采用$K=200$，而右边图像采用$K=4$。$512\times 512$个像素块中的每一个用它最近的类别中心近似，称为codeword。聚类过程称为编码（encoding），中心的集合称为码本（codebook）。</p>
+<p>为了表示近似的图像，我们需要提供对每个块用码本中唯一的量来近似它的空间。每一块需要$log_2(K)$位空间。我们也需要提供码本本身的存储空间，是一个$K\times4$的实值（一般忽略不计）。总的来说，压缩图像的空间为原图像的$log_2(K)/(4\cdot 8)$倍（$K=200$时为0.239，$K=4$时为0.063）。通常表示成单位为bits/pixel的比率：$log_2(K)/4$，分别是1.91和0.50。从重心构造出近似的图像的过程称为解码（decoding）。</p>
+<p>为什么我们期望VQ会有效果？原因是日常的图像比如照片，许多块看起来一样。这种情形下许多几乎是纯白的块，类似的不同阴影的纯灰度块。这些仅仅需要一个块来表示它们，以及指向这个快的多个指针。</p>
+<p>我们描述的是被称作损失压缩，因为我们的图像是原图的退化版本。这种退化或者失真（distortion）通常用均值平方误差来衡量。这种情形下，$K=200$时$D=0.89$，$K=4$时$D=16.95$。更一般地，比率/失真曲线会用来衡量这种权衡。也可以使用块聚类来实现小损失（lossless）的压缩，并且仍然利用重复的模式。如果需要对原图像进行小损失的压缩，最好的选择是4.48bits/pixel。</p>
+<p>我们在上面断言，码本中确定$K$个码字中的每一个需要$log_2(K)$位空间。这采用了固定长度编码，如果一些码字在图像中比其他的出现更频繁，这是无效的。采用Shannon编码理论，我们知道一般地可变长度的编码会更好，并且比率会变成$-\sum_{k=1}^Kp_\ell log_2(p_\ell)/4$。分子中的项是图像中codeword的分布$p_\ell$的熵。采用可变长度编码我们的比例会分别降至1.42和0.39。最后，已经发展出很多VQ的推广：举个例子，树结构的VQ以自上而下，2-均值算法来寻找重心，如第14.3.12节所述。这允许压缩的逐步加细。更多细节或许可以在Gersho 和Gray(1992)的工作中找到。</p>
+<h2 id="k-medoids">K-medoids</h2>
+<p>TODO</p>
+<h2 id="_12">实际问题</h2>
+<p>TODO</p>
+<h2 id="_13">系统聚类</h2>
+<p>TODO</p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//weiya.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//weiya.disqus.com/count.js" async></script></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Powered by <a href="http://www.mkdocs.org/">MkDocs</a> and <a href="http://bootswatch.com/yeti/">Yeti</a></center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../js/MathJax/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script src="../../js/mymathjax.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">搜索</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            请在下面输入你要搜索的文本（仅支持英文）：
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
