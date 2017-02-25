@@ -94,6 +94,8 @@ pages:
     #- 16 整体学习:
     - 17 无向图模型:
       - 17.1 导言: '17 Undirected Graphical Models/17.1 Introduction.md'
+      - 17.2 马尔科夫图及其性质: '17 Undirected Graphical Models/17.2 Markov Graphs and Their Properties.md'
+      - 17.3 连续变量的无向图模型: '17 Undirected Graphical Models/17.3 Undirected Graphical Models for Continuous Variables.md'
     #- 18 高维问题
 
 site_name: 'ESL CN'
@@ -103,6 +105,8 @@ site_description: 'The Elements of Statistical Learning(ESL) 的中文翻译'
 site_url: https://szcf-weiya.github.io/ESL-CN/
 
 repo_url: https://szcf-weiya.github.io
+
+copyright: 'Copyright &copy; 2016-2017 weiya'
 
 markdown_extensions:
   - admonition
