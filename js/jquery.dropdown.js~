@@ -57,7 +57,7 @@ $(function(){
     
     // Add down arrow only to menu items with submenus
     $(".dropdown > li:has('ul')").each(function() {
-        $(this).find("a:first").append("<img src='./yeti/img/down-arrow.png' />");
+        $(this).find("a:first").append("<img src='images/down-arrow.png' />");
     });
     
     
