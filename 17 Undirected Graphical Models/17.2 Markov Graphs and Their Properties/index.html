@@ -670,6 +670,18 @@
 </li>
 
         
+            
+<li >
+    <a href="../17.4 Undirected Graphical Models for Discrete Variables/">17.4 离散变量的无向图模型</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Bibliographic Notes/">文献笔记</a>
+</li>
+
+        
     </ul>
   </li>
 
@@ -773,7 +785,15 @@ f(x)=\frac{1}{Z}\prod\limits_{C\in\cal C}\psi_C(x_C)\qquad (17.3)
 <script type="math/tex; mode=display">
 Z=\sum\limits_{x\in \cal X}\prod\limits_{C\in \cal C}\psi_C(x_C)\qquad (17.4)
 </script>
-是标准化常数，也称作分割（partition）函数。另外，式（17.3）表明图的独立性由乘积中的团。这个结果对于有着正分布的马尔科夫网络$\cal G$成立。也称作Hammersley-Clifford 定理（Hammersley和Clifford,1971;Clifford,1990）。</p>
+是标准化常数，也称作分割（partition）函数。另外，式（17.3）表明图的独立性由乘积中的团定义。这个结果对于有着正分布的马尔科夫网络$\cal G$成立。也称作Hammersley-Cliffodinyrd 定理（Hammersley和Clifford,1971;Clifford,1990）。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注</p>
+<p>给出取值为$x_i$的随机变量$X_i$的集合，势函数(potential function)为$H(x_1,x_2,\ldots)$，分割函数(partition function)定义如下
+<script type="math/tex; mode=display">
+Z(\beta)=\sum\limits_{x_i}exp(-\beta H(x_1,x_2,\ldots))
+</script>
+</p>
+</div>
 <p>很多图的估计和计算的方法手机将图分解成最大团。相关的相纸在单个团中进行计算，接着更加整个图进行累加。一个突出的例子是根据联合分布计算边缘和低阶概率的join tree(或junction tree)算法。可以在Pearl（1986），Lauritzen和Spiegelhalter（1988），Pearl（1988），Shenoy和Shafer（1988），Jensen等人（1990），或者Koller和Friedman（2007）的工作中找到具体细节。</p>
 <p>图模型不总是唯一确定联合概率分布的高阶依赖结构。考虑图17.3的3结点完全图。它可以表示下面任一分布的依赖性结构
 <script type="math/tex; mode=display">
