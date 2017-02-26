@@ -3,9 +3,9 @@
     <a href="{{ nav_item.url }}">{{ nav_item.title }}</a>
 </li>
 {% else %}
-  <li class="dropdown-submenu">
+  <li class="dropdown-submenu scrollable-menu">
     <a tabindex="-1" class="nav-title">{{ nav_item.title }}</a>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu scrollable-menu">
         {% for nav_item in nav_item.children %}
             {% include "nav-sub.html" %}
         {% endfor %}
