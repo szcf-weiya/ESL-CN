@@ -1,9 +1,9 @@
 pages:
   - 主页: 'index.md'
-  - 序言:
-    - 第二版序言: 'Preface/2016-07-20-Preface-to-the-Second-Edition.md'
-    - 第一版序言: 'Preface/2016-07-21-Preface-to-the-First-Edition.md'
-  - 预备章节:
+  - 目录:
+    - 序言:
+      - 第二版序言: 'Preface/2016-07-20-Preface-to-the-Second-Edition.md'
+      - 第一版序言: 'Preface/2016-07-21-Preface-to-the-First-Edition.md'
     - 1 简介:
       - 1.1 导言: '01 Introduction/2016-07-26-Chapter-1-Introduction.md'
     - 2 监督学习概要:
@@ -32,15 +32,15 @@ pages:
       - 4.3 线性判别分析: '04 Linear Methods for Classification/4.3 Linear Discriminant Analysis.md'
       - 4.4 逻辑斯蒂回归: '04 Linear Methods for Classification/4.4 Logistic Regression.md'
       - 4.5 分离超平面: '04 Linear Methods for Classification/4.5 Separating Hyperplanes.md'
-  - 高维问题:
     - 5 基展开和正规化:
       - 5.1 导言: '05 Basis Expansions and Regularization/5.1 Introduction.md'
       - 5.2 分段多项式和样条: '05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines.md'
       - 5.3 滤波和特征提取: '05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction.md'
       - 5.4 光滑样条: '05 Basis Expansions and Regularization/5.4 Smoothing Splines.md'
     - 6 核光滑方法:
-      - 6.1 导言: '06 Kernel Smoothing Methods/6.1 Introduction.md'
-  - 中心概念:
+      - 6.0 导言: '06 Kernel Smoothing Methods/6.0 Introduction.md'
+      - 6.1 一维核光滑器: '06 Kernel Smoothing Methods/6.1 One-Dimensional Kernel Smoothers.md'
+      - 6.2 选择核的宽度: '06 Kernel Smoothing Methods/6.2 Selecting the Width of the Kernel.md'
     - 7 模型评估及选择:
       - 7.1 导言: '07 Model Assessment and Selection/7.1 Introduction.md'
       - 7.2 偏差，方差和模型复杂度: '07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity.md'
@@ -63,7 +63,6 @@ pages:
       - 8.5 EM算法: '08 Model Inference and Averaging/8.5 The EM Algorithm.md'
       - 8.6 MCMC向后采样: '08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior.md'
       - 8.7 袋装法: '08 Model Inference and Averaging/8.7 Bagging.md'
-  - 结构化方法:
     - 9 增广模型，树，以及相关方法:
       - 9.0 导言: '09 Additive Models, Trees, and Related Methods/9.0 Introduction.md'
       - 9.1 广义加性模型: '09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models.md'
@@ -88,12 +87,10 @@ pages:
       - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md' 
     - 13 原型方法和最近邻:
       - 13.1 导言: '13 Prototype Methods and Nearest-Neighbors/13.1 Introduction.md'
-  - 非监督学习:
     - 14 非监督学习:
       - 14.1 导言: '14 Unsupervised Learning/14.1 Introduction.md'
       - 14.2 关联规则: '14 Unsupervised Learning/14.2 Association Rules.md'
       - 14.3 聚类分析: '14 Unsupervised Learning/14.3 Cluster Analysis.md'
-  - 新技术:
     - 15 随机森林:
       - 15.1 导言: '15 Random Forests/15.1 Introduction.md'
     #- 16 整体学习:
