@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文翻译">
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/02 Overview of Supervised Learning/2.2 Variable Types and Terminology/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/06 Kernel Smoothing Methods/6.4 Structured Local Regression Models in R^p/">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>2.2 变量类型和术语 - ESL CN</title>
+	<title>6.4 $R^p$中的结构化局部回归模型 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -122,61 +122,61 @@
         
             
 <li >
-    <a href="../2.1 Introduction/">2.1 导言</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">2.2 变量类型和术语</a>
+    <a href="../../02 Overview of Supervised Learning/2.1 Introduction/">2.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
+    <a href="../../02 Overview of Supervised Learning/2.2 Variable Types and Terminology/">2.2 变量类型和术语</a>
 </li>
 
         
             
 <li >
-    <a href="../2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
+    <a href="../../02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction/">2.3 两种预测的简单方法</a>
 </li>
 
         
             
 <li >
-    <a href="../2.5 Local Methods in High Dimensions/">2.5 高维问题的局部方法</a>
+    <a href="../../02 Overview of Supervised Learning/2.4 Statistical Decision Theory/">2.4 统计判别理论</a>
 </li>
 
         
             
 <li >
-    <a href="../2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
+    <a href="../../02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions/">2.5 高维问题的局部方法</a>
 </li>
 
         
             
 <li >
-    <a href="../2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
+    <a href="../../02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/">2.6 统计模型，监督学习和函数逼近</a>
 </li>
 
         
             
 <li >
-    <a href="../2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
+    <a href="../../02 Overview of Supervised Learning/2.7 Structured Regression Models/">2.7 结构化的回归模型</a>
 </li>
 
         
             
 <li >
-    <a href="../2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+    <a href="../../02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators/">2.8 限制性估计的类别</a>
 </li>
 
         
             
 <li >
-    <a href="../Bibliographic Notes/">文献笔记</a>
+    <a href="../../02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff/">2.9 模型选择和偏差-方差的权衡</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../02 Overview of Supervised Learning/Bibliographic Notes/">文献笔记</a>
 </li>
 
         
@@ -314,31 +314,31 @@
         
             
 <li >
-    <a href="../../06 Kernel Smoothing Methods/6.0 Introduction/">6.0 导言</a>
+    <a href="../6.0 Introduction/">6.0 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../06 Kernel Smoothing Methods/6.1 One-Dimensional Kernel Smoothers/">6.1 一维核光滑器</a>
+    <a href="../6.1 One-Dimensional Kernel Smoothers/">6.1 一维核光滑器</a>
 </li>
 
         
             
 <li >
-    <a href="../../06 Kernel Smoothing Methods/6.2 Selecting the Width of the Kernel/">6.2 选择核的宽度</a>
+    <a href="../6.2 Selecting the Width of the Kernel/">6.2 选择核的宽度</a>
 </li>
 
         
             
 <li >
-    <a href="../../06 Kernel Smoothing Methods/6.3 Local Regression in R^p/">6.3 $R^p$中的局部回归</a>
+    <a href="../6.3 Local Regression in R^p/">6.3 $R^p$中的局部回归</a>
 </li>
 
         
             
-<li >
-    <a href="../../06 Kernel Smoothing Methods/6.4 Structured Local Regression Models in R^p/">6.4 $R^p$中的结构化局部回归模型</a>
+<li class="active">
+    <a href="./">6.4 $R^p$中的结构化局部回归模型</a>
 </li>
 
         
@@ -732,12 +732,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../2.1 Introduction/">
+                    <a rel="next" href="../6.3 Local Regression in R^p/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../2.3 Two Simple Approaches to Prediction/">
+                    <a rel="prev" href="../../07 Model Assessment and Selection/7.1 Introduction/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -758,19 +758,21 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">变量类型和术语</a></li>
+        <li class="main active"><a href="#rp">$R^p$中结构化局部回归</a></li>
+        
+            <li><a href="#_1">结构核</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">变量类型和术语</h1>
+<h1 id="rp">$R^p$中结构化局部回归</h1>
 <table>
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -780,20 +782,46 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-08-01</td>
+<td>2017-03-03：2017-03-03</td>
 </tr>
 </tbody>
 </table>
-<p>这些例子中的输出变量本质都不相同。在预测葡萄糖的例子中，输出变量是定量（<em>quantitative</em>）的测量结果，有些测量结果大于其他的，而且测量结果在数值上相近也意味着结果本质上相近。著名的R.A.Fisher分辨鸢尾花种类例子中，输出变量（鸢尾花的种类）是定性的(<em>qualitative</em>)而且假设取值为有限集合 ${\cal G}=\{Virginica,Setosa,Versicolor\}$ 。在手写数字的例子中，输出变量的取值是10个不同数字之一：${\cal G}=\{0,1,&hellip;,9\}$ 。在这些例子中分类没有明显的顺序，而且事实上经常用描述性标签而不是数字来代替这些分类。定性变量也被称为类别型（<em>categories</em>）或者离散（<em>discrete</em>）型变量，也被称作因子（<em>factors</em>）。</p>
-<p>对于两种类型的输出变量，考虑使用输入变量去预测输出变量是有意义的。给定今天和昨天特定的大气测量结果，我们想要预测明天的臭氧层。给定手写数字的数字化图片中像素的灰度值，我们想要预测该图片是属于哪一个类。</p>
-<p>输出类型的差别导致对预测的命名规定：当我们预测定量的输出时被称为回归（<em>regression</em>），当我们预测定性的输出时被称为分类（<em>classification</em>）。我们将会看到这两个任务有很多的共同点，特别地，两者都可以看成是函数逼近。</p>
-<p>输入变量也有各种各样的测量类型；我们可以有定性的输入变量和定量的输入变量两者中的一些变量。这些也导致了预测中方法类型的不同：一些方法更自然地定义为定量的输入变量，一些方法更自然地定义为定性的输入变量，还有一些是两者都可以的。</p>
-<p>第三种变量类型是有序分类（<em>ordered categorical</em>），如小（<em>small</em>）、中（<em>medium</em>）和大（<em>large</em>），在这些值之间存在顺序，但是没有合适的度量的概念（中与小之间的差异不必和大于中间的差异相等）。这将在第四章中讨论。</p>
-<p>定性的变量常用数字编码来表示。最简单的情形是只有两个分类，比如说“成功”与“失败”，“生存”与“死亡”。这些经常用一位二进制数来表示，比如0或1，或者用-1和1来表示。因为一些显然的原因，这些数字编码有时被称作指标（<em>targets</em>）。当存在超过两个的类别，一些其他的选择是可行的。最有用并且最普遍使用的编码是虚拟变量（<em>dummy variables</em>）。这里有$K$个水平的定性变量被一个$K$位的二进制变量表示，每次只有一个在开启状态。尽管更简洁的编码模式也是可能的，虚拟变量在因子的层次中是对称的。</p>
-<p>我们将经常把输入变量用符号 $X$ 来表示。如果$X$是一个向量，则它的组成部分可以用下标$X_j$来取出。定量的输出变量用$Y$来表示，对于定性的输出变量采用$G$来表示(group的意思)。当指一般的变量，我们使用大写字母$X,Y,G$来表示，对于观测值我们用小写字母来表示；因此$X$的第$i$个观测值记作 $x_i$ （其中，$x_i$要么是标量要么是向量）矩阵经常用粗体的大写字母来表示；举个例子，$N$个$p$维输入向量$x_i,i=1,\cdots,N$可以表示成$N\times p$的矩阵 $\mathbf{X}$ 。一般地，向量不是粗体，除非它们有 $N$ 个组成成分；这个约定区分了包含变量$X_j$的所有观测值的$N$维向量 $\mathbf{x}_j$ 和第 $i$ 个观测值的 $p$ 维向量 $x_i$ 。因为所有的向量都假定为列向量， $\mathbf{X}$ 的第 $i$ 行是 $x_i$ 的转置 $x_i^T$ 。</p>
-<p>现在我们可以不严谨地把学习叙述成如下：给定输入向量$X$，对输出$Y$做出一个很好的估计，记为 $\hat{Y}$ 。如果$Y$取值为$\mathbf{R}$，则 $\hat{Y}$ 取值也是 $\mathbf{R}$ ；同样地，对于类别型输出，$\hat{G}$ 取值为对应 $G$ 取值的集合 $\cal{G}$。</p>
-<p>对于只有两种类别的$G$，一种方式是把二进制编码记为$Y$，然后把它看成是定量的输出变量。预测值 $\hat{Y}$ 一般落在 $[0,1]$ 之间，而且我们可以根据 $\hat{y} &gt; 0.5$ 来赋值给 $\hat{G}$ 。这种方式可以一般化为有 $K$ 个水平的定性的输出变量。</p>
-<p>我们需要数据去构建预测规则，经常是大部分的数据。因此我们假设有一系列可用的测量值 $(x_i,y_i)$ 或 $(x_i,g_i),i=1,\cdots,N$ ，这也称之为训练数据(<em>training data</em>)，将利用这些训练数据去构建我们的预测规则。</p>
+<p>当维度与样本大小的比率不是很好，则局部回归对我们没有太大帮助，除非我们想要对模型做出一些结构化的假设。这本书的很多部分是关于结构化回归和分类模型的。这里我们关注一些与核方法直接相关的方法。</p>
+<h2 id="_1">结构核</h2>
+<p>一种方式是修改核。默认的球面核(6.13)对每个坐标给出了相等的权重，所以一种自然的默认策略是对每个变量标准化得到单位标准误差。更一般的方式是使用半正定矩阵$\mathbf A$来对不同的坐标进行赋权：</p>
+<p>
+<script type="math/tex; mode=display">
+K_{\lambda, A}(x_0,x)=D(\frac{(x-x_0^T\mathbf A(x-x_0))}{\lambda})\qquad (6.14)
+</script>
+</p>
+<p>整个坐标或者方向可以通过在$\mathbf A$上加入合适的限制来降低或者忽略。举个例子，如果$\mathbf A$为对角矩阵，则我们可以通过增加或者减小$A_{jj}$来增大或者减小单个预测变量$X_j$的影响。预测变量很多通常都是高度相关的，比如从相似的数字信号或者图像中得到。预测变量的协方差函数可以用来修改矩阵$\mathbf A$，使得在高频对比中关注更少（练习6.4）。已经提出了多维核参数训练的方法。举个例子，第11章中讨论的投影寻踪回归模型是合适的，其中$\mathbf A$的低阶形式表示$\hat f(X)$的岭回归。关于$\mathbf A$的更一般的模型是累赘的，相反地，我们支持接下来讨论的结构形式的回归函数。</p>
+<h3 id="_2">结构回归函数</h3>
+<p>我们试着在$R^p$中拟合回归函数$E(Y\mid X)=f(X_1,X_2,\ldots,X_p)$，交叉的每一层次潜在地表现出来了。自然考虑到下列形式的方差分析(ANOVA)分解：
+<script type="math/tex; mode=display">
+f(X_1,X_2,\ldots,X_p)=\alpha+\sum\limits_jg_j(X_j)+\sum\limits_{k<\ell}g_{k\ell}(X_k,X_\ell)+\cdots\qquad (6.15)
+</script>
+并且接着介绍消除一些高阶项的结构。可加性模型假设只有主要影响项$f(X)=\alpha+\sum\limits_{j=1}^pg_j(X_j)$，二阶模型会有次数至多为2的交叉项，一次类推。在第9章中，我们描述了对于拟合这样低阶交叉模型的迭代向后拟合算法。在加性模型中，举个例子，如果所有但除了第$k$项是一致的，则我们可以用在$X_k$上的局部回归$Y-\sum_{j\neq k}g_j(X_j)$来估计$g_k$。这个依次对每个函数重复进行，直到收敛。重要的细节是，在每一步，一维局部回归是所有都需要的。同样的思想可以用来拟合低维ANOVA分解。</p>
+<p>这些结构模型的一个重要的特殊情形是可变系数模型(varying coefficient models)类。举个例子，假设我们将$X$中的$p$个预测变量分成集合$(X_1,X_2,\ldots,X_q),q&lt;p$，以及我们集中在向量$Z$中的剩余的变量。接着我们假设条件线性模型</p>
+<p>
+<script type="math/tex; mode=display">
+f(X)=\alpha(Z)+\beta_1(Z)X_1+\cdots+\beta_q(Z)X_q\qquad (6.16)
+</script>
+</p>
+<p>对于给定的$Z$，这是线性模型，但是每个参数可以随着$Z$而改变。很自然地可以通过局部加权最小二乘来捏这个模型：</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\alpha(z_0),\beta(z_0)}{min}\sum\limits_{i=1}^NK_\lambda(z_0,z_i)(y_i-\alpha(z_0)-x_{1i}\beta(z_0)-\cdots - x_{qi}\beta_q(z_0))^2\qquad (6.17)
+</script>
+</p>
+<p>图6.10说明了在人类大动脉测量数据上的想法。一个持续很久（？？）的单元说大动脉会随着age变厚。这里我们将大动脉的diameter建立为age的线性函数，但是允许系数随着gender和depth的变化而变化。我们对男性和女性分别采用局部回归模型。尽管大动脉确实很明显地在大动脉高区域中随着年龄而变粗，这种关系随着到大动脉的距离而减弱。图6.11显示了截距和斜率作为深度的函数。</p>
+<p><img alt="" src="../../img/06/fig6.10.png" /></p>
+<blockquote>
+<p>图6.11. 每张图中aorta diameter建立为age的线性函数模型。这个模型的系数随着gender和到aorta的depth（左边靠近顶端，右边靠近底端）变化。在线性模型中的系数有着明显的趋势。</p>
+</blockquote>
+<p><img alt="" src="../../img/06/fig6.11.png" /></p>
+<blockquote>
+<p>图6.11. 在男性和女性情形下，age作为到aorta的distance的函数的截距和斜率。黄色带状表示一个标准误差。</p>
+</blockquote>
 
 <div id="disqus_thread"></div>
 <script>
