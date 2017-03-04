@@ -1,0 +1,48 @@
+# 核密度估计和分类
+
+| 原文   | [The Elements of Statistical Learning](../book/The Elements of Statistical Learning.pdf) |
+| ---- | ---------------------------------------- |
+| 翻译   | szcf-weiya                               |
+| 时间   | 2017-03-04：2017-03-04                    |
+
+核密度估计是非监督学习过程，在历史上先于核回归。这也很自然地得到非参分类过程的简单族。
+
+## 核密度估计
+假设我们从概率密度$f_X(x)$中取随机样本$x_1,x_2,\ldots,x_N$，并且我们希望估计$x_0$处的$f_X$。为了简化，我们现在假设$X\in R$。与前面一样，一个自然的局部估计有如下形式
+$$
+\hat f_X(x_0)=\frac{#x_i\in \cal N(x_0)}{N\lambda}\qquad (6.21)
+$$
+其中$\cal N(x_0)$为 $x_0$附近的宽度为$\lambda$的小度量邻域。这个估计非常振荡，并且偏向于光滑的Parzen估计
+$$
+\hat f(x_0)=\frac{1}{N\lambda}\sum\limits_{i=1}^NK_\lambda(x_0,x_i)\qquad (6.22)
+$$
+因为它统计离$x_0$近的观测，并且观测的权重系数随着到$x_0$的距离而减小。这种情形下$K_\lambda$受欢迎的选择是高斯核$K_\lambda(x_0,x)=\phi(\vert x-x_0\vert/\lambda)$。图6.13显示了根据CHD群中systolic blood pressure的样本值来拟合高斯核密度。令$\phi_\lambda$为均值为0标准误差为$\lambda$的高斯密度，则(6.22)有如下形式
+$$
+\begin{align}
+\hat f_X(x)& = \frac{1}{N}\sum\limits_{i=1}^N\phi_\lambda(x-x_i)\\
+&=(\hat F\star\phi_\lambda)(x)\qquad\qquad (6.23)
+\end{align}
+$$
+
+样本分布$\hat F$和 $\phi_\lambda$的卷积。分布$\hat F(x)$在每个观测$x_i$处赋予$1/N$的权重，并且是跳跃的；在$\hat f_X(x)$中我们已经对每个观测$x_i$加上独立高斯噪声来光滑$\hat F$.
+
+Parzen密度估计是局部平均的等价，并且与局部回归一起提出了改进[在密度的对数尺度；见Loader(1999)]。我们这里不继续讨论这些。在$R^p$中， 高斯密度的自然泛化意味着在（6.23）中使用高斯积的核，
+
+$$
+\hat f_X(x_0)=\frac{1}{N(2\lambda^2\pi)^{p/2}}\sum\limits_{i=1}^Ne^{-\frac{1}{2}(\Vert x_i-x_0\Vert/\lambda)^2}\qquad (6.24)
+$$
+
+## 核密度分类
+
+利用贝叶斯定理采用直接方式来对分类做非参数密度估计。假设对于$J$个分类的问题，我们对每个类别拟合非参密度估计$\hat f_j(X),j=1,\ldots,J$，并且我们有类别先验概率$\hat \pi_j$的估计（通常是样本比例）。接着
+$$
+\widehat{Pr}(G=j\mid X=x_0)=\frac{\hat \pi_j\hat f_j(x_0)}{\sum_{k=1}^J\hat\pi_k\hat f_k(x_0)}\qquad (6.25)
+$$
+
+图6.14应用这个方法在心脏风险因子研究中估计CHD的患病率，并且应该与图6.12的左图进行比较。主要的差异出现在图6.14中右图的高SBP区域。这个区域中对于两个类别的数据都是稀疏的，并且因为高斯核密度估计采用度量核，所以密度估计在其他区域中是低的并且不好（高方差）。局部逻辑斯蒂回归方法（6.20）采用$k$-NN带宽的三次立方核；这有效地拓宽了这个区域中的核，并且利用局部线性假设来对估计进行光滑（在逻辑斯蒂尺度上）。
+
+![](../img/06/fig6.14.png)
+
+> 左图显示了在CHD和no-CHD群体中systolic blood preesure的两个独立的密度估计，每个都采用高斯核估计。右图显示了用（6.25）估计的CHD的后验概率。
+
+如果分类是最终的目标，则学习单独类的密度
