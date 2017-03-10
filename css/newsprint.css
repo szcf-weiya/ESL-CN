@@ -3,7 +3,7 @@
 @include-when-export url(https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
 
 /* =========== */
-
+/*
 @font-face {
     font-family: 'PT Serif';
     font-style: normal;
@@ -30,7 +30,7 @@
     font-weight: bold;
     src: local('PT Serif'), local('PTSerif-BoldItalic'), url('./newsprint/PT_Serif-Web-BoldItalic.ttf')
 }
-
+*/
 html {
 	font-size: 16px;
 }
