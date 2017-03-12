@@ -71,6 +71,7 @@ pages:
       - 9.0 导言: '09 Additive Models, Trees, and Related Methods/9.0 Introduction.md'
       - 9.1 广义加性模型: '09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models.md'
       - 9.2 基于树的方法: '09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods.md'
+      - 9.3 耐心规则归纳法: '09 Additive Models, Trees, and Related Methods/9.3 PRIM(Bump Hunting).md'
     - 10 增强和加性树:
       - 10.1 增强方法: '10 Boosting and Additive Trees/10.1 Boosting Methods.md'
       - 10.2 对加性模型的增强拟合:  '10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model.md'
