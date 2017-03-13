@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文翻译">
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/09 Additive Models, Trees, and Related Methods/9.7 Computational Considerations/">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>12.1 导言 - ESL CN</title>
+	<title>9.7 计算上的考虑 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -503,55 +503,55 @@
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.0 Introduction/">9.0 导言</a>
+    <a href="../9.0 Introduction/">9.0 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models/">9.1 广义加性模型</a>
+    <a href="../9.1 Generalized Additive Models/">9.1 广义加性模型</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods/">9.2 基于树的方法</a>
+    <a href="../9.2 Tree-Based Methods/">9.2 基于树的方法</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.3 PRIM(Bump Hunting)/">9.3 耐心规则归纳法</a>
+    <a href="../9.3 PRIM(Bump Hunting)/">9.3 耐心规则归纳法</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines)/">9.4 多变量自适应回归样条</a>
+    <a href="../9.4 MARS(Multivariate Adaptive Regression Splines)/">9.4 多变量自适应回归样条</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.5 Hierarchical Mixtures of Experts/">9.5 专家的系统混合</a>
+    <a href="../9.5 Hierarchical Mixtures of Experts/">9.5 专家的系统混合</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.6 Missing Data/">9.6 缺失数据</a>
+    <a href="../9.6 Missing Data/">9.6 缺失数据</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">9.7 计算上的考虑</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.7 Computational Considerations/">9.7 计算上的考虑</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/Bibliographic Notes/">文献笔记</a>
+    <a href="../Bibliographic Notes/">文献笔记</a>
 </li>
 
         
@@ -655,14 +655,14 @@
     <ul class="dropdown-menu scrollable-menu">
         
             
-<li class="active">
-    <a href="./">12.1 导言</a>
+<li >
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.1 Introduction/">12.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
+    <a href="../../12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier/">12.2 支持向量分类器</a>
 </li>
 
         
@@ -780,12 +780,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../../11 Neural Networks/11.6 Example of Simulated Data/">
+                    <a rel="next" href="../9.6 Missing Data/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../12.2 The Support Vector Classifier/">
+                    <a rel="prev" href="../Bibliographic Notes/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -806,14 +806,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#121">12.1 导言</a></li>
+        <li class="main active"><a href="#_1">计算的考虑</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="121">12.1 导言</h1>
+<h1 id="_1">计算的考虑</h1>
 <table>
 <thead>
 <tr>
@@ -828,11 +828,14 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-12-09</td>
+<td>2017-03-13</td>
 </tr>
 </tbody>
 </table>
-<p>在这章我们将要描述用于分类的线性判别边界的一般化。当两个类别是线性可分时我们在第四章中介绍了最优分离超平面.这里我们我们介绍不可分的情形，当类别有冲突时。这些技巧会被归结为支持向量机，通过在大的、转置的特征空间中构造线性边界得到非线性边界。第二套方法一般化了Fisher的线性判别分析（LDA）。一般化包括可变的判别分析(flexible discriminant analysis)，它以一种很类似于支持向量机的方式帮助构造非线性边界，以及对含有大量相关的特征的信号和图像数据分类而进行的含惩罚项的判别分析(penalized discriminant analysis)，以及对于无规则类别的混合判别分析(mixture discriminant analysis)。</p>
+<p>在$N$个观测和$p$个预测变量的情形下，加性模型拟合需要$mp$个一维光滑器或回归方法的应用。backfitting算法的要求的圈数$m$通常小于20，并且经常小于10，而且取决于输入中的相关性大小。举个例子，三次光滑样条下，对于初始的排序需要$NlogN$次操作，以及对样条拟合的$N$操作。因此对于加性模型拟合总共的操作数为$pNlogN+mpN$.</p>
+<p>对每个预测变量的初始排序，树需要$pNlogN$次操作，并且一般地对分割计算需要$pNlogN$次操作。如果分割在预测变量值域附近的边上，这个数目可能增大到$N^2p$.</p>
+<p>MARS需要$Nm^2+pmN$次操作从$p$个预测变量中，往已经存在$m$项的模型中加入基函数。因此建立一个$M$项的模型需要$NM^3+pM^2N$次操作，如果$M$是 $N$中合理的一部分，则可能是相当禁止的。</p>
+<p>HME的每一个组分在每个$M$步一般不需要花费太多来拟合：对于回归需要$Np^2$次，对于$K$个类别的逻辑斯蒂回归需要$Np^2K^2$次。然而，EM算法需要更长时间来收敛，因此较大的HME模型需要相当大的花费去拟合。</p>
 
 <div id="disqus_thread"></div>
 <script>
