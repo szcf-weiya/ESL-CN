@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文翻译">
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/03 Linear Methods for Regression/3.3 Subset Selection/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines)/">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>3.3 子集的选择 - ESL CN</title>
+	<title>9.4 多变量自适应回归样条 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -191,43 +191,43 @@
         
             
 <li >
-    <a href="../3.1 Introduction/">3.1 导言</a>
+    <a href="../../03 Linear Methods for Regression/3.1 Introduction/">3.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">3.3 子集的选择</a>
+    <a href="../../03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares/">3.2 线性回归模型和最小二乘法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.4 Shrinkage Methods/">3.4 收缩的方法</a>
+    <a href="../../03 Linear Methods for Regression/3.3 Subset Selection/">3.3 子集的选择</a>
 </li>
 
         
             
 <li >
-    <a href="../3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
+    <a href="../../03 Linear Methods for Regression/3.4 Shrinkage Methods/">3.4 收缩的方法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
+    <a href="../../03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions/">3.5 运用派生输入方向的方法</a>
 </li>
 
         
             
 <li >
-    <a href="../3.7 Multiple Outcome Shrinkage and Selection/">3.7 多重输出的收缩和选择</a>
+    <a href="../../03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods/">3.6 选择和收缩方法的比较</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection/">3.7 多重输出的收缩和选择</a>
 </li>
 
         
@@ -503,31 +503,31 @@
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.0 Introduction/">9.0 导言</a>
+    <a href="../9.0 Introduction/">9.0 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models/">9.1 广义加性模型</a>
+    <a href="../9.1 Generalized Additive Models/">9.1 广义加性模型</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods/">9.2 基于树的方法</a>
+    <a href="../9.2 Tree-Based Methods/">9.2 基于树的方法</a>
 </li>
 
         
             
 <li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.3 PRIM(Bump Hunting)/">9.3 耐心规则归纳法</a>
+    <a href="../9.3 PRIM(Bump Hunting)/">9.3 耐心规则归纳法</a>
 </li>
 
         
             
-<li >
-    <a href="../../09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines)/">9.4 多变量自适应回归样条</a>
+<li class="active">
+    <a href="./">9.4 多变量自适应回归样条</a>
 </li>
 
         
@@ -756,12 +756,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../3.2 Linear Regression Models and Least Squares/">
+                    <a rel="next" href="../9.3 PRIM(Bump Hunting)/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../3.4 Shrinkage Methods/">
+                    <a rel="prev" href="../../10 Boosting and Additive Trees/10.1 Boosting Methods/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -782,22 +782,20 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">子集的选择</a></li>
+        <li class="main active"><a href="#mars">MARS: 多变量自适应回归样条</a></li>
         
-            <li><a href="#_2">最优集的选择</a></li>
+            <li><a href="#_1">垃圾邮件的例子（继续）</a></li>
         
-            <li><a href="#_3">向前和向后逐步选择</a></li>
+            <li><a href="#_2">例子（模拟数据）</a></li>
         
-            <li><a href="#qstagewise">向前Q[^Stagewise]回归</a></li>
-        
-            <li><a href="#_4">前列腺癌例子（继续）</a></li>
+            <li><a href="#_3">其他的问题</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">子集的选择</h1>
+<h1 id="mars">MARS: 多变量自适应回归样条</h1>
 <table>
 <thead>
 <tr>
@@ -812,56 +810,154 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-08-05</td>
+<td>2017-03-13</td>
 </tr>
 </tbody>
 </table>
-<p>两个原因使得我们经常不满足最小二乘估计（3.6）</p>
-<ul>
-<li>第一个是预测的精确性（prediction accuracy）：最小二乘估计经常有小偏差大方差。预测精确性有时可以通过收缩或者令某些系数为0来提高。通过这些方法我们牺牲一点偏差降低预测值的方差，因此可能提高整个预测的精确性。</li>
-<li>第二个原因是可解释性（interpretation）：有大量的预测变量，我们经常去确定一个小的子集来保持最强的影响。为了得到大的图片，我们愿意牺牲一些小的细节。</li>
-</ul>
-<p>这部分我们描述一些线性回归选择变量子集的方法。在后面的部分中我们讨论控制方差的收缩和混合的方法，以及其它降维的策略。这些都属于一个一般的方向——模型选择（model selection）。模型选择不局限于线性模型；第7章将详细介绍这个主题。</p>
-<p>子集选择我们只保留变量的一个子集，并且除去模型中的剩余部分。最小二乘回归用来预测保留下来的输入的系数。这里有一系列不同的选择子集的策略。</p>
-<h2 id="_2">最优集的选择</h2>
-<p>对于每个$k\in {0,1,2,\ldots,p}$，最优子集回归要找出残差平方和（3.2）最小的规模为$k$的子集。一个有效的算法——leaps and bounds 过程(Furnival and Wilson, 1974)——使得可行的$p$值达到30或40。图3.5展示了前列腺癌例子中所有的子集模型。下界代表通过最优子集方法选择的符合 条件的模型。注意到最优子集规模为2，举个例子，不需要包含规模为1最优子集中的变量（这个例子中所有的子集是嵌套的）。最优子集曲线（图3.5中的红色下边界）必然地下降，所以不能用来选择子集的规模$k$。怎样选择$k$涉及偏差和方差之间的平衡，伴随着更加主观的要求。有一些可能会使用的准则。典型地，我们选择最小的模型使得预测误差期望值的估计最小。</p>
-<p><img alt="" src="../../img/03/fig3.5.png" /></p>
-<p>图3.5：前列腺癌例子中所有可能的子集模型。在每个子集规模下显示了该规模下每个模型的残差平方和。</p>
-<p>本章中我们讨论的许多方法都是相似的，因为它们使用训练数据去得到区别于复杂度和由单参数编码的模型序列。下一节我们采用交叉验证去估计预测误差并选择$k$；AIC准则是一个受欢迎的选择。我们将更多的细节讨论和气体的方法推迟到第7章讨论。</p>
-<h2 id="_3">向前和向后逐步选择</h2>
-<p>与其搜索所有可能的子集（当$p$大于40不可行），我们可以利用它们寻找一个很好的途径。向前逐步选择从截距开始，然后向模型中依次添加最大程度提升拟合效果的预测变量。有许多备选预测变量时需要大量的计算；然而，聪明地更新算法可以由QR分解从当前拟合快速建立下一步的备选预测变量（练习3.9）。类似最优子集回归，向前逐步产生由$k$编码的模型序列，$k$为子集规模，必须确定$k$值。</p>
-<p>向前逐步选择是贪心算法，产生一个嵌套的模型序列。从这点来看与最优子集选择相比似乎是次优的。然而，有许多原因显示向前逐步可能是更好的：</p>
-<ul>
-<li>计算（computational）；对于大的$p$值，我们不能计算最优子集序列，但是我们总是可以计算向前逐步序列（即使$p&gt;&gt;N$）</li>
-<li>统计（statistical）；在每个规模下选择最优子集需要在方差上付出代价；向前逐步是一种有更多约束的搜索，而且将会有更低的方差，但是可能更大的偏差。</li>
-</ul>
+<p>MARS是回归的自适应过程，并且非常适合高维问题（比如，大量的输入）。这可以看成逐步线性回归的推广或者改动CART方法使得改进回归设定中的表现。我们以第一种观点引入MARS，接着与CART联系起来。</p>
+<p>MARS采用形式为$(x-t)<em>+$和 $(t-x)</em>+$的分段线性基函数的展开。“+”表示正的部分，所以
+<script type="math/tex; mode=display">
+(x-t)_+=\left\{
+\begin{array}
+x-t& \text{if }x>t\\
+0&\text{otherwise}
+\end{array}
+\right.
+\text{  and  }
+(t-x)_+=\left\{
+\begin{array}
+t-x& \text{if }x<t\\
+0&\text{otherwise}
+\end{array}
+\right.
+</script>
+作为一个例子，函数$(x-0.5)<em>+$和$(0.5-x)</em>+$显示在图9.9中。</p>
+<p><img alt="" src="../../img/09/fig9.9.png" /></p>
 <blockquote>
-<p>Backward-stepwise selection starts with the full model, and sequentially deletes the predictor that has the least impact on the fit. The candidate for dropping is the variable with the smallest Z-score (Exercise 3.10). Backward selection can only be used when N &gt; p, while forward stepwise can always be used.</p>
+<p>图9.9. MARS采用的基函数$(x-t)<em>+$(实心橘黄色)和$(t-x)</em>+$(蓝色虚线)</p>
 </blockquote>
-<p>向后逐步选择从整个模型开始，并且逐步删掉对拟合影响最低的预测变量。要删掉的候选变量是Z分数最低的变量（练习3.10）。向后只能用于$N&gt;p$时，而向前逐步总是可以使用。</p>
+<p>每个函数是分段线性的，在值$t$处有一个结点。用第五章的术语说它们是线性样条。在下面的讨论中我们将这两个函数称为反射对(reflected pair)。想法是，对于每个输入$X_j$，取结点为每个输入的观测值。因此，基函数集合为
+<script type="math/tex; mode=display">
+{\cal C}=\{(X_j-t)_+,(t-X_j)_+\}_{t\in\{x_{1j},x_{2j},\ldots,x_{Nj}\},j=1,2,\ldots,p}\qquad (9.18)
+</script>
+如果所有的输入值都不同，则总共有$2Np$个基函数。注意到尽管每个基函数仅仅取决于单个的$X_j$，举个例子，$h(X)=(X_j-t)_+$，被看成是整个输入空间$R^p$中的函数。</p>
+<p>建立模型的策略类似向前逐步线性回归，但是不是使用原始输入，我们允许使用从集合$\cal C$的函数和它们的乘积。因此模型有如下形式
+<script type="math/tex; mode=display">
+f(X)=\beta_0+\sum\limits_{m=1}^M\beta_mh_m(X)\qquad (9.19)
+</script>
+其中每个$h_m(X)$是$\cal C$中的函数，或者两个或者更多这样函数的乘积。</p>
+<p>给定$h_m$的选择，系数$\beta_m$通过最小残差平方和来估计，也就是，通过标准线性回归。然而，实际的艺术是函数$h_m(x)$的构造。我们在我们的模型中以常数函数$h_0(X)=1$来开始，集合$\cal C$中的所有函数都是候选函数。这展示在图9.10中。</p>
+<p><img alt="" src="../../img/09/fig9.10.png" /></p>
 <blockquote>
-<p>Figure 3.6 shows the results of a small simulation study to compare
-best-subset regression with the simpler alternatives forward and backward selection. Their performance is very similar, as is often the case. Included in the figure is forward stagewise regression (next section), which takes longer to reach minimum error.</p>
+<p>图9.10. MARS向前建模的过程示意图。左边是已经在模型中的基函数：初始时，是常值函数$h(X)=1$。右图中是所有考虑加进模型的候选基函数。如图9.9中所示有成对分段线性基函数，结点$t$在每个预测变量$X_j$的所有的唯一观测值$x_{ij}$处。在每一步，我们考虑模型中的基函数和候选反射对的所有乘积。乘积使得残差下降最多则被加进当前模型中。我们图示了这个过程的前三步，选择的函数用红色表示。</p>
 </blockquote>
-<p>图3.6展示了一个用于比较最优子集回归和简单的向前向后选择的小型仿真研究的结果。它们的表现非常相似，as is often the case。图中也包含了向前Stagewise回归（下一节），它需要更长时间达到最小误差。</p>
-<p><img alt="" src="../../img/03/fig3.6.png" /></p>
-<p>图3.6 在一个仿真的线性回归问题$Y=X^T\beta+\varepsilon$中四种子集选择的比较。在$p=31$个标准高斯变量有$N=300$个观测，pairwise相关系数都等于0.85。其中10个变量的系数是从$N(0,0.4)$分布中随机选取的，其它为0。噪声$\varepsilon \sim N(0,6.25)$,信噪比为0.64。结果取自50次仿真的平均值。图中展示了每一步系数$\hat{\beta}(k)$估计值与真值$\beta$的均方误差</p>
-<p>在前列腺癌例子中，最优子集、向前和向后选择都给出了完全相同的项的序列。</p>
-<p>一些软件包实现混合的逐步选择策略，在每一步同时考虑向前和向后的移动，燃尽选择两者中最好的一个。举个例子，在R包中step函数使用AIC准则来加权选择，合理考虑到拟合参数的个数；在每一步执行添加或删除来最小化AIC分数。</p>
-<p>其它传统的包中的选择基于$F$统计量，加入“显著性”的项，然后删掉“非显著性”的项。这些不再流行，因为它们没有合理考虑到多重检验的问题。模型搜索后打印出所选择的模型的摘要是很吸引人的，如表3.2所示；然而，标准误差不是有效的，因为它们不考虑搜索的过程。自助法（8.2节）在这些设定下是有用的。</p>
-<p>最后，我们注意到变量经常成群出现（比如用来编码多层次类别型预测变量的虚拟变量）。智能逐步过程（比如R中的step函数）会合理考虑到它们的自由度会一次添加或删除整个群体。</p>
-<h2 id="qstagewise">向前Q[^Stagewise]回归</h2>
-<p>向前Stage回归比向前逐步回归有更多限制。开始类似向前逐步回归，由等于$\bar{y}$的截距开始，位于中心的预测变量系数都初始化为0。每一步算法鉴别出与当前残差最相关的变量。然后计算所选择变量的残差的简单线性回归系数，并且添加到该变量的当前系数。这个过程一直继续直到没有变量与残差有相关性——i.e. 当$N&gt;p$时的最小二乘拟合。</p>
-<p>不同于向前逐步回归，当一项添加到模型中没有其他的变量需要调整。结果是，向前stage可以采取多余$p$步达到最小二乘拟合，当变得无效时删掉historically has been dismissed as being inefficient。结果是这种“慢拟合”pay dividends高纬问题中。我们在3.8.1节看到向前stage和变体which is slowed down even further are quite competitive, especially in very high-dimensional problems.</p>
-<p>向前stage回归包含在图3.6中。在这个例子中花了1000步使得所有相关系数低于$10^{-4}$。对于规模为$k$的子集，我们画出最后一步的误差，此时有$k$个非零系数。尽管catch up with，但需要花更长的时间。</p>
-<h2 id="_4">前列腺癌例子（继续）</h2>
-<p>表3.3展示了一系列不同选择和收缩方法的系数。它们是使用所有子集搜索的最优子集选择，ridge 回归，lasso，主成分回归和最小二偏差。每种方法有一个复杂度参数，并且基于10折交叉验证最小化预测误差来选择模型；7.10节中给出了全部细节。简短地说，交叉验证通过将训练数据随机分成10等份。学习方法为拟合——对于复杂度参数的取值范围——数据的十分之九，然后对于剩下的十分之一的数据计算预测误差。依次对每个十分之一的数据进行上述计算，然后对10个预测误差的估计进行平均。从这里我们可以得到预测误差估计作为复杂度函数的曲线。</p>
-<p><img alt="" src="../../img/03/tab3.3.png" /></p>
-<p>注意到我们已经把这些数据分成了规模为67的训练集和规模为30的测试集。交叉验证应用到训练集，因为选择收缩参数是训练过程的一部分。测试集是用来判断所选择的模型的表现。</p>
-<p>图3.7展示了估计的预测误差曲线。在它们最小值附近的大范围内许多曲线都是非常平坦的。基于由交叉验证计算得到的十个误差估计，每个估计的误差率Included are estimated standard error bands for each estimated error rate, based on the ten error estimates computed by cross-validation. 我们已经使用“一个标准误差”规则——在最小值的一个标准误差范围内我们选取最“吝啬”的模型（p244,7.10节）。这个规则承认权衡曲线估计存在误差这一事实，并且因此采取一个保守的方式。</p>
-<p>最优集的选择决定使用两个预测变量lcvol和lcweight。表格的最后两行给出了测试集上预测误差的平均值（和它的标准误差估计）</p>
-<p><img alt="" src="../../img/03/fig3.7.png" /></p>
-<p>图3.7 不同选择和收缩方法的预测误差的估计值曲线和它们的标准误差。每条曲线绘制成关于该方法对应的复杂度参数的函数。选定水平坐标轴则当我们从左侧移动到右侧模型复杂度增加。预测误差的估计和它们的标准误差由10着交叉验证得到；全部的细节在7.10节给出。在一个标准误差范围内的复杂度最低的模型选定，用粉红色的垂直虚线表示。</p>
+<p>在每一步我们将模型集合$\cal M$中函数$h_m$的与$\cal C$中某个反射对的所有乘积看成是新的基函数。我们往模型$\cal M$中加入如下形式的项，该项使得训练误差有最大下降。
+<script type="math/tex; mode=display">
+\hat\beta_{M+1}h_\ell(X)\cdot (X_j-t)_++\hat\beta_{M+2}h_\ell(X)\cdot(t-X_j)_+,h_\ell\in \cal M
+</script>
+这里$\hat\beta_{M+1}$和$\hat \beta_{M+2}$是由最小二乘估计的系数，和模型中其他的$M+1$个系数一样。接着“胜出”的乘积加入到模型中，这个过程不断继续直到模型集合$\cal M$包含一些预设定的最大数目的项。</p>
+<p>举个例子，在第一步我们考虑往模型中加入形如$\beta_1(X_j-t)<em>++\beta_2(t-X_j)</em>+;t\in{x_{ij}}$的函数，因为乘以常数仅仅得到函数本身。假设最优选择为$\hat\beta_1(X_2-x_{72})<em>++\hat\beta_2(x</em>{72}-X_2)<em>+$。则这个基函数对加入到模型$\cal M$中，并且在下一步我们考虑加入如下形式的乘积对
+<script type="math/tex; mode=display">
+h_m(X)\cdot(X_j-t)_+\text{     and    }h_m(X)\cdot (t-X_j)_+,t\in\{x_{ij}\}
+</script>
+其中对于$h_m$我们有如下选择
+<script type="math/tex; mode=display">
+\begin{align}
+h_0(X)&=1\\
+h_1(X)&=(X_2-x_{72})_+\\
+h_2(X)&=(x_{72}-X_2)_+
+\end{align}
+</script>
+第三个选择得到形如$(X_1-x</em>{51})<em>+\cdot (x</em>{72}-X_2)_+$的函数，如图9.11所示。</p>
+<p><img alt="" src="../../img/09/fig9.11.png" /></p>
+<blockquote>
+<p>图9.11. 函数$h(X_1,X_2)=(X_1-x_{51})<em>+\cdot (x</em>{72}-X_2)_+$，从两个分段线性的MARS基函数相乘得到。</p>
+</blockquote>
+<p>这个过程的最后我们有形如(9.19)的大量模型。这些模型一般对数据过拟合，所以应用向后删除过程。每一步中，删掉的项使得残差平方和增长最小，得到每个大小$\lambda$（项的个数）下的最优模型的估计$\hat f_\lambda$。可以采用交叉验证来估计最优的$\lambda$，但是为了节省计算，MARS过程采用的是广义交叉验证。准则定义为
+<script type="math/tex; mode=display">
+GCV(\lambda)=\frac{\sum_{i=1}^N(y_i-\hat f_\lambda(x_i))^2}{(1-M(\lambda)/N)^2}\qquad (9.20)
+</script>
+$M(\lambda)$是模型中有效参数的个数：这包含模型中项的个数，加上在选择最优结点位置的参数个数。一些数学和拟合结果表明应该为在分段线性回归中选择结点的三个参数付出代价。</p>
+<div class="admonition notes">
+<p class="admonition-title">weiya 注</p>
+<p>7.10节中也有广义交叉验证的讨论。在那里，是针对平方误差损失下的线性拟合而言的。线性拟合方法可以写成</p>
+</div>
+<p>
+<script type="math/tex; mode=display">
+\mathbf{\hat y=Sy}\qquad (7.50)
+</script>
+GCV近似为
+<script type="math/tex; mode=display">
+GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\qquad (7.52)
+</script>
+$trace(\mathbf S)$的值是有效参数个数。</p>
+<p>如果模型中含有$r$个线性独立基函数，并且在向前过程中选择$K$个结点，公式为$M(\lambda)=r+cK$，其中$c=3$。（当模型限定为加性——细节如下——则使用$c=2$的惩罚）。采用这些，我们沿着向后序列选择使得$GCV(\lambda)$最小的模型。</p>
+<p>为什么是这些分段线性函数，为什么是这个特定的模型策略？图9.9中的函数的关键性质是它可以局部计算；在它们的定义域中有一部分为0。当它们乘起来，如图9.11，非零的结果仅仅在特征空间的一小部分，当函数的公共部分为非零。结果是，回归表面非常简约地建立起来，采用局部非零的组分——仅仅是它们需要的地方。这是重要的，因为在高维中应该小心地“花费”参数，因为它们很快就会用完。其它比如多项式的基函数会在任意地方产生非零乘积，并且也不会起作用。</p>
+<p>这种分段线性基函数的第二个重要有点是关于计算的。考虑$\cal M$中的函数和输入$X_j$的 $N$个反射对的乘积。似乎需要拟合$N$个单输入的线性回归模型，每个需要$O(N)$的操作，总共需要$O(N^2)$的操作。然而，我们利用分段线性函数的简单形式。我们首先用最右端结点的反射对。当这个结点每次依次向左移动一个位置，基函数在定义域的左边用0来区分，在右边部分用常数来区分。因此每次移动后我们以$O(1)$的操作更新拟合值。这允许我们仅仅用$O(N)$的操作来尝试每个结点。</p>
+<p>MARS中向前建模的策略是层次性的，因为多重乘积是从已经在模型中的项来建立的。举个例子，仅仅当3重组分中的一个已经在模型中，才会加入4重的乘积。这里的哲学是，高阶交叉项仅仅当其中的低阶项存在才会存在。这个需求不是正确的，但是是合理的假设，并且避免了在可行选择数目指数增长的空间中的搜索。</p>
+<p>在模型的项构造时有一个约束：每个输入在一个乘积中至多可以出现一次。这预防了输入的高阶幂的形成，这在参数空间的边界会有剧烈的增大或下降。这样的幂次可以通过分段线性函数以一种更稳定的方式来近似。</p>
+<p>MARS过程中的一个有用选项是在交叉项的阶数上设置上界。举个例子，可以设置上界为2，允许成对的分段线性函数的乘积，但是不允许3次或更高次的乘积。这个可以帮助最终模型的解释。含有上界得到加性模型。</p>
+<h2 id="_1">垃圾邮件的例子（继续）</h2>
+<p>我们对垃圾邮件的数据应用MARS，本章前面已经分析了这个数据集。为了增强解释性，我们限制MARS到2阶交叉项。尽管目标是两个类别的变量，我们还是采用平方误差损失函数（见9.4.3节）。图9.12显示了模型中测试误差误分类率作为秩（独立基函数的个数）的函数。误差率约为5.5%，这比前面讨论的广义加性模型的误差率(5.3%)稍高一点。GCV选择大小为60的模型，近似是给出最优表现的最小模型。通过MARS找到的主要交叉项涉及输入(ch\$, remove),(ch\$, free)和(hp, CAPTOT)。然而，这些交叉项没有提高广义加性模型中的表现。</p>
+<p><img alt="" src="../../img/09/fig9.12.png" /></p>
+<blockquote>
+<p>垃圾数据：MARS过程的测试误差误分类率，作为模型的秩（独立基函数的个数）的函数。</p>
+</blockquote>
+<h2 id="_2">例子（模拟数据）</h2>
+<p>这里我们在三种不同的情形下验证MARS的表现。$N=100$个观测，预测变量$X_1,X_2,\ldots,X_p$和误差$\varepsilon$有独立标准正态分布。</p>
+<h3 id="1">情形1：</h3>
+<p>数据产生模型为
+<script type="math/tex; mode=display">
+Y=(X_1-1)_++(X_1-1)_+\cdot (X_2-.8)_++0.12\cdot\varepsilon\qquad (9.21)
+</script>
+</p>
+<p>选择噪声标准误差0.12使得信噪比约为5.我们称这个为张量积情形；乘积项给出类似图9.11的表面。</p>
+<h3 id="2">情形2：</h3>
+<p>同情形1，但是总共$p=20$个预测变量，也就是，有18个独立于响应变量的输入。</p>
+<h3 id="3">情形3：</h3>
+<p>有神经网络的结构：
+<script type="math/tex; mode=display">
+\begin{align}
+\ell_1 &= X_1+X_2+X_3+X_4+X_5\\
+\ell_2 &= X_6-X_7+X_8-X_9+X_{10}\\
+\sigma(t) &=1/(1+e^{-t})\\
+Y&=\sigma(\ell_1)+\sigma(\ell_2)+0.12\cdot \varepsilon
+\end{align}
+\qquad (9.22)
+</script>
+</p>
+<p>情形1和2完美地适合MARS，而情形3包含高阶交叉项，可能很难用MARS来近似。我们对每个模型跑了5个模拟，并且记录结果。</p>
+<p>情形1中，MARS一般几乎完美地找到模型。情形2中，找到正确的结构但是找到一些涉及其它预测变量的多余项。</p>
+<p>令$\mu(x)$为 $Y$的真实均值，并且令
+<script type="math/tex; mode=display">
+\begin{align}
+MSE_0&=ave_{x\in Test}(\bar y-\mu(x))^2\\
+MSE& ave_{x\in Test}(\hat f(x)-\mu(x))^2
+\end{align}
+\qquad (9.23)
+</script>
+</p>
+<p>这些表示了常值模型和拟合MARS模型的均方误差，通过对$x$的1000次测试值进行平均来估计。表9.4显示了每个情形中模型误差或者$R^2$的下降比例。</p>
+<p>
+<script type="math/tex; mode=display">
+R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
+</script>
+</p>
+<p>显示的值是五次模拟的均值和标准差。情形2中的因为了加入无用的输入略微降低了MARS的效果；在情形3中表现得很差。</p>
+<h2 id="_3">其他的问题</h2>
+<h3 id="mars_1">MARS用于分类</h3>
+<p>MARS方法和算法可以拓展到处理分类问题。已经提出了几种策略。</p>
+<p>对于两个类别，可以将输出编码为0/1，并且将其看成是回归问题；我们在spam例子中已经这样做了。对于多余两个类别的情形，可以采用4.2节描述的指示响应变量的方法。用0/1来编码$K$个响应类别，接着采用多重响应的MARS回归。对于后者我们对所有的响应变量采用共同的基函数集合。分类使得类别有最大的预测向量的值。然而，这种方法存在潜在的掩盖问题，正如4.2中描述的那样。一般更好的方式是在12.5节讨论的optimal scoring.</p>
+<p>Stone等人（1997）发展了MARS的混合版本PolyMARS，是为了处理分类问题特别设计的。它采用在4.4节描述的多重逻辑斯蒂回归框架。以类似MARS的向前逐步方式来建立模型，但是在每一步多多变量对数似然作二次近似来寻找下一个基函数对。一旦找到，则通过极大似然扩大模型，并且这个过程重复进行。</p>
+<h3 id="marscart">MARS和CART的关系</h3>
+<p>尽管它们看起来相当不同，但是MARS和CART策略实际上有很强的相似性。假设我们进行了MARS过程，并且作出下面改变：</p>
+<ul>
+<li>用阶跃函数$I(x-t&gt;0)$和$I(x-t\le 0)$来替换分段线性基函数。</li>
+<li>当模型中的项与候选项相乘，用交叉性来代替，因此对于后续的交叉项不是可行的。</li>
+</ul>
+<p>有了这些改变，MARS向前过程与CART构造树的算法是一样的。乘上一对反射阶跃函数等价于在阶跃点分割开。第二条限制表明一个结点可能不会被分割成多次，因此得到受欢迎的CART模型的二叉树表示。另一方面，也是这条限制使得CART很难对加性结构进行建模。MARS放弃树结构并且得到捕捉加性影响的能力。</p>
+<h3 id="_4">混合输入</h3>
+<p>MARS可以用一种自然的方式处理混合预测变量——定量和定性变量，这非常像CART。对于一个定性变量，MARS考虑将该定性变量的类别分成两块的所有可能的二叉分割。每个这样的分割产生成对分段常值基函数——关于两个类别集的指示函数。这个基对现在被看成和其他的一样，并且用它和其它已经在模型中的基函数来构造张量积。</p>
 
 <div id="disqus_thread"></div>
 <script>
