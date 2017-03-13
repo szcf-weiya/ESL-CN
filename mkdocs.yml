@@ -72,6 +72,11 @@ pages:
       - 9.1 广义加性模型: '09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models.md'
       - 9.2 基于树的方法: '09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods.md'
       - 9.3 耐心规则归纳法: '09 Additive Models, Trees, and Related Methods/9.3 PRIM(Bump Hunting).md'
+      - 9.4 多变量自适应回归样条: '09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines).md'
+      - 9.5 专家的系统混合: '09 Additive Models, Trees, and Related Methods/9.5 Hierarchical Mixtures of Experts.md'
+      - 9.6 缺失数据: '09 Additive Models, Trees, and Related Methods/9.6 Missing Data.md'
+      - 9.7 计算上的考虑: '09 Additive Models, Trees, and Related Methods/9.7 Computational Considerations.md'
+      - 文献笔记: '09 Additive Models, Trees, and Related Methods/Bibliographic Notes.md'
     - 10 增强和加性树:
       - 10.1 增强方法: '10 Boosting and Additive Trees/10.1 Boosting Methods.md'
       - 10.2 对加性模型的增强拟合:  '10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model.md'
