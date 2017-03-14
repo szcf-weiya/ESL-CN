@@ -823,9 +823,9 @@
     
         <li class="main active"><a href="#em">EM算法</a></li>
         
-            <li><a href="#851">8.5.1 两个组分的混合模型</a></li>
+            <li><a href="#_1">两个组分的混合模型</a></li>
         
-            <li><a href="#852-em">8.5.2 一般情形下的EM算法</a></li>
+            <li><a href="#em_1">一般情形下的EM算法</a></li>
         
             <li><a href="#em-">EM作为一个最大化-最大化的过程</a></li>
         
@@ -854,19 +854,24 @@
 </tbody>
 </table>
 <p>EM算法是简化复杂极大似然问题的一种很受欢迎的工具。我们第一次在一个简单的混合模型中讨论它。</p>
-<h2 id="851">8.5.1 两个组分的混合模型</h2>
+<h2 id="_1">两个组分的混合模型</h2>
 <p>这一节我们描述一个估计密度的简单混合模型，以及对应的求解极大似然估计的EM算法。这与贝叶斯推断中的Gibbs取样方法有着本质的联系。混合模型将在本书其他部分的章节讨论和演示，特别是6.8，12.7和13.2.3节。</p>
-<pre><code>!!! note &quot;weiya注：&quot;
-    Gibbs sampling：
-    假设我们需要从$\mathbf X=(x_1,x_2,\ldots,x_n)$中得到$k$个样本，联合分布为$p(x_1,x_2,\ldots,x_n)$.记第$i$个样本为$\mathbf X^{(i)}=(x_1^{(i)},\ldots,x_n^{(i)})$.我们按下列步骤进行：
-
-    1. 以初始值$X^{(i)}$开始
-
-    2. 需要下一个样本，记为$X^{(i+1)}$.因为$\mathbf X^{(i+1)}=(x_1^{(i+1)},\ldots,x_n^{(i+1)})$是向量，我们需要对向量的每一个组分进行抽样，基于$p(x_j^{(i+1)}\mid x_1^{(i+1)},\ldots,x_{j-1}^{(i+1)},x_{j+1}^{(i)},\ldots,x_n^{(i)})$的分布对$x_j^{(i+1)}$抽样.
-
-    3. 重复上述步骤$k$次。
-</code></pre>
-
+<div class="admonition note">
+<p class="admonition-title">weiya注：</p>
+<p>Gibbs sampling：
+假设我们需要从$\mathbf X=(x_1,x_2,\ldots,x_n)$中得到$k$个样本，联合分布为$p(x_1,x_2,\ldots,x_n)$.记第$i$个样本为$\mathbf X^{(i)}=(x_1^{(i)},\ldots,x_n^{(i)})$.我们按下列步骤进行：</p>
+<ol>
+<li>
+<p>以初始值$X^{(i)}$开始</p>
+</li>
+<li>
+<p>需要下一个样本，记为$X^{(i+1)}$.因为$\mathbf X^{(i+1)}=(x_1^{(i+1)},\ldots,x_n^{(i+1)})$是向量，我们需要对向量的每一个组分进行抽样，基于$p(x_j^{(i+1)}\mid x_1^{(i+1)},\ldots,x_{j-1}^{(i+1)},x_{j+1}^{(i)},\ldots,x_n^{(i)})$的分布对$x_j^{(i+1)}$抽样.</p>
+</li>
+<li>
+<p>重复上述步骤$k$次。</p>
+</li>
+</ol>
+</div>
 <p>图8.5的左图显示了20个在表8.1中的20个假想数据的直方图。</p>
 <p><img alt="" src="../../img/08/fig8.5.png" /></p>
 <blockquote>
@@ -906,11 +911,11 @@ g_Y(y)=(1-\pi)\phi_{\theta_1}(y)+\pi\phi_{\theta_2}(y)\qquad (8.37)
 </p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>假设我们已经知道$\delta_i$的值，$\delta_i=0,i\in \cal I$，且$ \delta_i=1,i\in\cal j$。注意到$p(\delta_i=0)=1-\pi;p(\delta_i=1)=\pi$，则似然函数为
+<p>假设我们已经知道$\Delta_i$的值，$\Delta_i=0,i\in \cal I$，且$ \Delta_i=1,i\in\cal j$。注意到$p(\Delta_i=0)=1-\pi;p(\Delta_i=1)=\pi$，则似然函数为
 <script type="math/tex; mode=display">
-L(\theta,\mathbf{Z,\delta}) = \prod\limits_{i\in \cal I} (1-\delta_i)(1-\pi)\phi_{\theta_1}\prod\limits_{i\in \cal J}\delta_i\pi\phi_{\theta_2}
+L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi_{\theta_1}(y_i)\prod\limits_{i\in \cal J}\Delta_i\pi\phi_{\theta_2}(y_i)
 </script>
-上式$i\in \cal I$部分，乘以$(1-\delta_i)$也就相当于乘以1，同理对于$i\in \cal J$。这样取对数似然便有(8.40)式。</p>
+上式$i\in \cal I$部分，乘以$(1-\Delta_i)$也就相当于乘以1，同理对于$i\in \cal J$。这样取对数似然便有(8.40)式。</p>
 </div>
 <p>而且$\mu_1$和$\sigma_1^2$的极大似然估计为$\triangle_i=0$时样本均值和方差，类似地对于$\mu_2$和$\sigma_2^2$的极大似然估计为$\triangle_i=1$时的样本均值和方差。$\pi$的估计为$\Delta_i=1$的比例。</p>
 <p>因为$\Delta_i$的值实际上是不知道的，我们用一种迭代方式，替换（8.40）中的每个$\Delta_i$，他的期望值
@@ -936,7 +941,7 @@ L(\theta,\mathbf{Z,\delta}) = \prod\limits_{i\in \cal I} (1-\delta_i)(1-\pi)\phi
 \hat\pi=0.546
 </script>
 图8.5的右图显示了从这个过程估计的混合高斯分布的密度（实心红色曲线），以及responsibilities（绿色点曲线）。注意到混合在监督学习中也很有用；在6.7节我们显示了高斯混合模型怎样导出radial基函数的版本。</p>
-<h2 id="852-em">8.5.2 一般情形下的EM算法</h2>
+<h2 id="em_1">一般情形下的EM算法</h2>
 <p>上面的过程是对于特定问题的类别下最大化概率的EM（或者Baum-Welch）算法。这些问题的概率最大化是困难的，但是通过运用潜在数据（未观测）增大样本会变得简单。这也称作数据增广。这里潜在数据是模型成员$\Delta_i$.在其它问题中，潜在数据是理应被观测到的实际数据但是缺失了。</p>
 <p>算法8.2给出了EM算法的一般形式。我们的观测数据是$\mathbf Z$,其对数概率$\ell(\theta;\mathbf Z)$取决于参数$\theta$.潜在数据或者缺失数据为$\mathbf Z^m$,因此完整数据为$\mathbf {T=(Z,Z^m)}$,对数似然函数为$\ell_0(\theta;\mathbf T)$,$\ell_0$基于完整的密度函数。在混合问题中，$(\mathbf{Z,Z^m)=(y,}\Delta)$,且$\ell_0(\theta;\mathbf T)$由（8.40）式给出。</p>
 <p><img alt="" src="../../img/08/alg8.2.png" /></p>
