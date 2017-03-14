@@ -855,17 +855,15 @@
 </table>
 <p>EM算法是简化复杂极大似然问题的一种很受欢迎的工具。我们第一次在一个简单的混合模型中讨论它。</p>
 <h2 id="851">8.5.1 两个组分的混合模型</h2>
-<p>在这部分我们描述一种简单的用作密度估计的混合模型，以及对应的为求解极大似然估计的EM算法。这与贝叶斯推断中的Gibbs取样方法有着本质的联系。混合模型将在本书其他部分的章节讨论和演示，具体的是6.8,12.7和13.2.3节。</p>
-<blockquote>
-<p>weiya注：</p>
-<p>Gibbs sampling：</p>
-<p>假设我们需要从$\mathbf X=(x_1,x_2,\ldots,x_n)$中得到$k$个样本，联合分布为$p(x_1,x_2,\ldots,x_n)$.记第$i$个样本为$\mathbf X^{(i)}=(x_1^{(i)},\ldots,x_n^{(i)})$.我们按下列步骤进行：</p>
-<ol>
-<li>以初始值$X^{(i)}$开始</li>
-<li>需要下一个样本，记为$X^{(i+1)}$.因为$\mathbf X^{(i+1)}=(x_1^{(i+1)},\ldots,x_n^{(i+1)})$是向量，我们需要对向量的每一个组分进行抽样，基于$p(x_j^{(i+1)}\mid x_1^{(i+1)},\ldots,x_{j-1}^{(i+1)},x_{j+1}^{(i)},\ldots,x_n^{(i)})$的分布对$x_j^{(i+1)}$抽样.</li>
-<li>重复上述步骤$k$次。</li>
-</ol>
-</blockquote>
+<p>这一节我们描述一个估计密度的简单混合模型，以及对应的求解极大似然估计的EM算法。这与贝叶斯推断中的Gibbs取样方法有着本质的联系。混合模型将在本书其他部分的章节讨论和演示，特别是6.8，12.7和13.2.3节。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：</p>
+<p>Gibbs sampling：
+假设我们需要从$\mathbf X=(x_1,x_2,\ldots,x_n)$中得到$k$个样本，联合分布为$p(x_1,x_2,\ldots,x_n)$.记第$i$个样本为$\mathbf X^{(i)}=(x_1^{(i)},\ldots,x_n^{(i)})$.我们按下列步骤进行：
+1. 以初始值$X^{(i)}$开始
+2. 需要下一个样本，记为$X^{(i+1)}$.因为$\mathbf X^{(i+1)}=(x_1^{(i+1)},\ldots,x_n^{(i+1)})$是向量，我们需要对向量的每一个组分进行抽样，基于$p(x_j^{(i+1)}\mid x_1^{(i+1)},\ldots,x_{j-1}^{(i+1)},x_{j+1}^{(i)},\ldots,x_n^{(i)})$的分布对$x_j^{(i+1)}$抽样.
+3. 重复上述步骤$k$次。</p>
+</div>
 <p>图8.5的左图显示了20个在表8.1中的20个假想数据的直方图。</p>
 <p><img alt="" src="../../img/08/fig8.5.png" /></p>
 <blockquote>
@@ -895,14 +893,23 @@ g_Y(y)=(1-\pi)\phi_{\theta_1}(y)+\pi\phi_{\theta_2}(y)\qquad (8.37)
 <script type="math/tex; mode=display">
 \ell(\theta;\mathbf Z)=\sum\limits_{i=1}^Nlog[(1-\pi)\phi_{\theta_1}(y_i)+\pi\phi_{\theta_2}(y_i)]\qquad (8.39)
 </script>
-直接对$\ell(\theta;\mathbf Z)$进行最大化在数值上是很困难的，因为求和项在log函数里面。然而，这里有一个更简单的方式。我们考虑一个类似（8.36）中取0或1的潜变量$\triangle_i$：若$\triangle_i=1$则$Y_i$来自模型2，否则模型来自模型1.假设我们已经知道了$\triangle_i$的值。则对数概率为
+直接对$\ell(\theta;\mathbf Z)$进行最大化在数值上是很困难的，因为求和项在log函数里面。然而，这里有一个更简单的方式。我们考虑一个类似（8.36）中取0或1的潜变量$\triangle_i$：若$\triangle_i=1$则 $Y_i$来自模型2，否则来自模型1.假设我们已经知道了$\triangle_i$的值。则对数概率为
 <script type="math/tex; mode=display">
 \begin{align}
 \ell_0(\theta;\bf Z,\bf{\Delta})&=\sum\limits_{i=1}^N[(1-\Delta_i)log\phi_{\theta_1}(y_i)+\triangle_ilog\phi_{\theta_2}(y_i)]\\
 &+\sum\limits_{i=1}^N[(1-\Delta_i)log(1-\pi)+\triangle_ilog\pi]\qquad(8.40)
 \end{align}
 </script>
-而且$\mu_1$和$\sigma_1^2$的极大似然估计为$\triangle_i=0$时样本均值和方差，类似地对于$\mu_2$和$\sigma_2^2$的极大似然估计为$\triangle_i=1$时的样本均值和方差。$\pi$的估计为$\Delta_i=1$的比例。</p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>假设我们已经知道$\delta_i$的值，$\delta_i=0,i\in \cal I$，且$ \delta_i=1,i\in\cal j$。注意到$p(\delta_i=0)=1-\pi;p(\delta_i=1)=\pi$，则似然函数为
+<script type="math/tex; mode=display">
+L(\theta,\mathbf {Z,\delta}) &= \prod\limits_{i\in \cal I} (1-\delta_i)(1-\pi)\phi_{\theta_1}\prod\limits_{i\in \cal J}\delta_i\pi\phi_{\theta_2}
+</script>
+上式$i\in \cal I$部分，乘以$(1-\delta_i)$也就相当于乘以1，同理对于$i\in \cal J$。这样取对数似然便有(8.40)式。</p>
+</div>
+<p>而且$\mu_1$和$\sigma_1^2$的极大似然估计为$\triangle_i=0$时样本均值和方差，类似地对于$\mu_2$和$\sigma_2^2$的极大似然估计为$\triangle_i=1$时的样本均值和方差。$\pi$的估计为$\Delta_i=1$的比例。</p>
 <p>因为$\Delta_i$的值实际上是不知道的，我们用一种迭代方式，替换（8.40）中的每个$\Delta_i$，他的期望值
 <script type="math/tex; mode=display">
 \gamma_i(\theta)=E(\Delta_i\mid\theta,\mathbf Z)=Pr(\Delta_i=1\mid \theta,\mathbf Z)\qquad (8.41)
