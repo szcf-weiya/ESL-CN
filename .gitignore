@@ -4,3 +4,4 @@ site
 /build
 *.data
 **/.Archive
+.Rproj.user
