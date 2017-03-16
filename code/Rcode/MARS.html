@@ -154,7 +154,10 @@ $(document).ready(function () {
 <pre><code>## Loading required package: plotrix</code></pre>
 <pre><code>## Loading required package: TeachingDemos</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(AppliedPredictiveModeling)
-<span class="kw">data</span>(solubility)
+<span class="kw">library</span>(caret)</code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(solubility)
 ## The data objects begin with &quot;sol&quot;:
 <span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&quot;^solT&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;solTestX&quot;       &quot;solTestXtrans&quot;  &quot;solTestY&quot;       &quot;solTrainX&quot;     
@@ -368,6 +371,15 @@ marsFit</code></pre></div>
 ## Importance: NumNonHAtoms, SurfaceArea2, MolWeight, SurfaceArea1, ...
 ## Number of terms at each degree of interaction: 1 39 (additive model)
 ## GCV 0.3873018    RSS 309.672    GRSq 0.9076346    RSq 0.9221793</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Define the candidate models to test</span>
+marsGrid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">.degree =</span> <span class="dv">1</span>:<span class="dv">2</span>, <span class="dt">.nprune =</span> <span class="dv">2</span>:<span class="dv">38</span>)
+<span class="co"># Fix the seed so that the results can be reproduced</span>
+<span class="kw">set.seed</span>(<span class="dv">100</span>)
+marsTuned &lt;-<span class="st"> </span><span class="kw">train</span>(solTrainXtrans, solTrainY, 
+                   <span class="dt">method =</span> <span class="st">&quot;earth&quot;</span>,
+                   <span class="co"># Explicitly declare the candidate models to test</span>
+                   <span class="dt">tuneGrid =</span> marsGrid,
+                   <span class="dt">trControl =</span> <span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;cv&quot;</span>))</code></pre></div>
 
 
 

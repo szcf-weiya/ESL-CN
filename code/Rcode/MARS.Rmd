@@ -11,6 +11,7 @@ I will use earth package to implement the MARS. The data is in the AppliedPredic
 ```{r}
 library(earth)
 library(AppliedPredictiveModeling)
+library(caret)
 data(solubility)
 ## The data objects begin with "sol":
 ls(pattern = "^solT")
