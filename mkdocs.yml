@@ -113,7 +113,7 @@ pages:
     - 18 高维问题:
       - 18.1 当p大于N: '18 High-Dimensional Problems/18.1 When p is Much Bigger than N.md'
       - 18.2 对角线性判别分析和最近收缩重心: '18 High-Dimensional Problems/18.2 Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids.md'
-
+      - 18.3 二次正则的线性分类器: '18 High-Dimensional Problems/18.3 Linear Classifiers with Quadratic Regularization.md'
 site_name: 'ESL CN'
 
 site_description: 'The Elements of Statistical Learning(ESL) 的中文翻译'
