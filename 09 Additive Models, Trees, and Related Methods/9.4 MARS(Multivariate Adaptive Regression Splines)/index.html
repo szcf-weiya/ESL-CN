@@ -866,7 +866,7 @@
 </tbody>
 </table>
 <p>MARS是回归的自适应过程，并且非常适合高维问题（比如，大量的输入）。这可以看成逐步线性回归的推广或者为了提高CART在回归中表现的改进版本。我们以第一种观点引入MARS，接着与CART联系起来。</p>
-<p>MARS采用形式为$(x-t)_+, (t-x)<em>+$的分段线性基函数的展开。“+”表示正的部分，所以
+<p>MARS采用形式为$(x-t)_+$, $(t-x)<em>+$的分段线性基函数的展开。“+”表示正的部分，所以
 <script type="math/tex; mode=display">
 (x-t)_+=\left\{
 \begin{array}
@@ -931,16 +931,11 @@ GCV(\lambda)=\frac{\sum_{i=1}^N(y_i-\hat f_\lambda(x_i))^2}{(1-M(\lambda)/N)^2}\
 $M(\lambda)$是模型中有效参数的个数：这包含模型中项的个数，加上在选择最优结点位置的参数个数。一些数学和拟合结果表明应该为在分段线性回归中选择结点的三个参数付出代价。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注</p>
-<p>7.10节中也有广义交叉验证的讨论。在那里，是针对平方误差损失下的线性拟合而言的。线性拟合方法可以写成</p>
+<p>7.10节中也有广义交叉验证的讨论。在那里，是针对平方误差损失下的线性拟合而言的。线性拟合方法可以写成<script type="math/tex; mode=display">\mathbf{\hat y=Sy}\qquad (7.50)</script>
+</p>
 </div>
-<p>
-<script type="math/tex; mode=display">
-\mathbf{\hat y=Sy}\qquad (7.50)
-</script>
-GCV近似为
-<script type="math/tex; mode=display">
-GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\qquad (7.52)
-</script>
+<p>GCV近似为<script type="math/tex; mode=display">
+GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\qquad (7.52)</script>
 $trace(\mathbf S)$的值是有效参数个数。</p>
 <p>如果模型中含有$r$个线性独立基函数，并且在向前过程中选择$K$个结点，公式为$M(\lambda)=r+cK$，其中$c=3$。（当模型限定为加性——细节如下——则使用$c=2$的惩罚）。采用这些，我们沿着向后序列选择使得$GCV(\lambda)$最小的模型。</p>
 <p>为什么是这些分段线性函数，为什么是这个特定的模型策略？图9.9中的函数的关键性质是它可以局部计算；在它们的定义域中有一部分为0。当它们乘起来，如图9.11，非零的结果仅仅在特征空间的一小部分，当函数的公共部分为非零。结果是，回归表面非常简约地建立起来，采用局部非零的组分——仅仅是它们需要的地方。这是重要的，因为在高维中应该小心地“花费”参数，因为它们很快就会用完。其它比如多项式的基函数会在任意地方产生非零乘积，并且也不会起作用。</p>
