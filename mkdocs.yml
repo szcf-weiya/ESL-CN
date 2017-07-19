@@ -54,7 +54,7 @@ pages:
       - 7.6 参数的有效个数: '07 Model Assessment and Selection/7.6 The Effective Number of Parameters.md'
       - 7.7 贝叶斯方法和BIC: '07 Model Assessment and Selection/7.7 The Bayesian Approach and BIC.md'
       - 7.8 最小描述长度: '07 Model Assessment and Selection/7.8 Minimum Description Length.md'
-      - 7.9 VC维: '07 Model Assessment and Selection/7.9 Vapnik-Chervonenkis Dimension.md' 
+      - 7.9 VC维: '07 Model Assessment and Selection/7.9 Vapnik-Chervonenkis Dimension.md'
       - 7.10 交叉验证: '07 Model Assessment and Selection/7.10 Cross-Validation.md'
       - 7.11 自助法: '07 Model Assessment and Selection/7.11 Bootstrap Methods.md'
       - 7.12 条件测试误差或期望测试误差: '07 Model Assessment and Selection/7.12 Conditional or Expected Test Error.md'
@@ -70,7 +70,7 @@ pages:
     - 9 增广模型，树，以及相关方法:
       - 9.0 导言: '09 Additive Models, Trees, and Related Methods/9.0 Introduction.md'
       - 9.1 广义加性模型: '09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models.md'
-      - 9.2 基于树的方法: '09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods.md'
+      - 9.2 基于树的方法: '09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods(CART).md'
       - 9.3 耐心规则归纳法: '09 Additive Models, Trees, and Related Methods/9.3 PRIM(Bump Hunting).md'
       - 9.4 多变量自适应回归样条: '09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines).md'
       - 9.5 专家的系统混合: '09 Additive Models, Trees, and Related Methods/9.5 Hierarchical Mixtures of Experts.md'
@@ -94,7 +94,7 @@ pages:
       - 11.6 模拟数据的例子: '11 Neural Networks/11.6 Example of Simulated Data.md'
     - 12 支持向量机和灵活的判别方法:
       - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
-      - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md' 
+      - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md'
     - 13 原型方法和最近邻:
       - 13.1 导言: '13 Prototype Methods and Nearest-Neighbors/13.1 Introduction.md'
     - 14 非监督学习:
