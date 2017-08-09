@@ -888,7 +888,7 @@
 <p>这里$x*=(x_1^*,x_2^*,\ldots,x_p^*)^T$是测试观测的表达值的向量，$s_j$为第$j$个基因的混合类间标准误差，并且$\bar x_{kj}=\sum_{i\in C_k}x_{ij}/N_k$是$N_k$个属于类别$k$的基因$j$的平均，其中$C_k$是类别$k$的索引集。我们称$\tilde x_k=(\bar x_{k1},\bar x_{k2},\ldots,\bar x_{kp})^T$为类别$k$的重心。式(18.2)的第一部分是$x^*$到第$k$个类别重心的（负）标准平方距离。第二部分是基于类别先验概率$\pi_k$的矫正，其中$\sum_{k=1}^K\pi_k=1$。分类规则于是为</p>
 <p>
 <script type="math/tex; mode=display">
-C(x^\*)=\ell\text{ if } \delta_{\ell}(x^\*)=max_k\delta_k(x^\*)\qquad (18.3)
+C(x^*)=\ell\text{ if } \delta_{\ell}(x^*)=max_k\delta_k(x^*)\qquad (18.3)
 </script>
 </p>
 <p>我们看到对角LDA分类器经过合适的标准化后等价于最近重心分类器。这也是朴素贝叶斯分类器的一个特殊情形，正如在第6.6.3节中描述的那样。假设每个类别的特征有相同方差的独立高斯分布。</p>
