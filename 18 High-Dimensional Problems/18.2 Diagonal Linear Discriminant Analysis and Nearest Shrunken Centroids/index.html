@@ -847,14 +847,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">对角线性判别分析和最近的收缩重心</a></li>
+        <li class="main active"><a href="#_1">对角线性判别分析和最近收缩重心</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">对角线性判别分析和最近的收缩重心</h1>
+<h1 id="_1">对角线性判别分析和最近收缩重心</h1>
 <table>
 <thead>
 <tr>
@@ -870,6 +870,10 @@
 <tr>
 <td>时间</td>
 <td>2017-03-14:2017-03-14</td>
+</tr>
+<tr>
+<td>校对</td>
+<td>2017-08-09</td>
 </tr>
 </tbody>
 </table>
@@ -899,7 +903,7 @@ d_{kj}=\frac{\bar x_{kj}-\bar x_j}{m_k(s_j+s_0)}\qquad (18.4)
 <p>其中$\bar x_j$是基因$j$的整体均值，$m_k^2=1/N_k-1/N$，且$s_0$是一个小的正值，一般取为$s_j$的中值。这个常值防止$d_{kj}$太大，这个值从接近0的表达式中得到。常值类间方差$\sigma^2$，则分子中差$\bar x_{kj}-\bar x_j$的方差为$m_k^2\sigma^2$，因此便有了如分母中的标准化。如图，我们采用软阈值将$d_{kj}$收缩到0</p>
 <p>
 <script type="math/tex; mode=display">
-d_{kj}'=sign(d_{kj})(\vert d_{kj}\vert-\Delta)\_+\qquad (18.5)
+d_{kj}'=sign(d_{kj})(\vert d_{kj}\vert-\Delta)_+\qquad (18.5)
 </script>
 </p>
 <p>这里$\Delta$是需要确定的参数；我们在例子中采取10折交叉验证（见图18.4的上图）。每个$d_{kj}$减少$\Delta$的绝对值的量，比起如果值小于0则设为0。图18.2显示了软阈值函数；同样的阈值用在第5.9节的小波系数中。另一种方式是采用硬阈值</p>
