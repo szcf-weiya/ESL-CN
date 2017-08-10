@@ -148,6 +148,8 @@ a > code:hover, a > code:focus {
     font-size: 90%;
 }
 
+
+
 /* Show and affix the side nav when space allows it */
 @media (min-width: 992px) {
     .bs-sidebar .nav > .active > ul {
@@ -175,7 +177,24 @@ a > code:hover, a > code:focus {
     /* Widen the fixed sidebar again */
     .bs-sidebar.affix-bottom,
     .bs-sidebar.affix {
-        width: 20%;
+        width: 263px;
+    }
+}
+
+@media (min-width: 1680px) {
+    /* Widen the fixed sidebar again */
+    .bs-sidebar.affix-bottom,
+    .bs-sidebar.affix {
+        width: 400px;
+    }
+}
+
+
+@media (min-width: 1920px) {
+    /* Widen the fixed sidebar again */
+    .bs-sidebar.affix-bottom,
+    .bs-sidebar.affix {
+        width: 460px;
     }
 }
 
