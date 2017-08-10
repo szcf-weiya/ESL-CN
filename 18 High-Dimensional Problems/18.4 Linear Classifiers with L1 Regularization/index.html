@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记">
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/11 Neural Networks/11.2 Projection Pursuit Regression/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/18 High-Dimensional Problems/18.4 Linear Classifiers with L1 Regularization/">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>11.2 投影寻踪回归 - ESL CN</title>
+	<title>18.4 一次正则的线性分类器 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -625,37 +625,37 @@
         
             
 <li >
-    <a href="../11.1 Introduction/">11.1 导言</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">11.2 投影寻踪回归</a>
+    <a href="../../11 Neural Networks/11.1 Introduction/">11.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../11.3 Neural Networks/">11.3 神经网络</a>
+    <a href="../../11 Neural Networks/11.2 Projection Pursuit Regression/">11.2 投影寻踪回归</a>
 </li>
 
         
             
 <li >
-    <a href="../11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
+    <a href="../../11 Neural Networks/11.3 Neural Networks/">11.3 神经网络</a>
 </li>
 
         
             
 <li >
-    <a href="../11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
+    <a href="../../11 Neural Networks/11.4 Fitting Neural Networks/">11.4 拟合神经网络</a>
 </li>
 
         
             
 <li >
-    <a href="../11.6 Example of Simulated Data/">11.6 模拟数据的例子</a>
+    <a href="../../11 Neural Networks/11.5 Some Issues in Training Neural Networks/">11.5 训练神经网络的一些问题</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../11 Neural Networks/11.6 Example of Simulated Data/">11.6 模拟数据的例子</a>
 </li>
 
         
@@ -787,25 +787,25 @@
         
             
 <li >
-    <a href="../../18 High-Dimensional Problems/18.1 When p is Much Bigger than N/">18.1 当p大于N</a>
+    <a href="../18.1 When p is Much Bigger than N/">18.1 当p大于N</a>
 </li>
 
         
             
 <li >
-    <a href="../../18 High-Dimensional Problems/18.2 Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids/">18.2 对角线性判别分析和最近收缩重心</a>
+    <a href="../18.2 Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids/">18.2 对角线性判别分析和最近收缩重心</a>
 </li>
 
         
             
 <li >
-    <a href="../../18 High-Dimensional Problems/18.3 Linear Classifiers with Quadratic Regularization/">18.3 二次正则的线性分类器</a>
+    <a href="../18.3 Linear Classifiers with Quadratic Regularization/">18.3 二次正则的线性分类器</a>
 </li>
 
         
             
-<li >
-    <a href="../../18 High-Dimensional Problems/18.4 Linear Classifiers with L1 Regularization/">18.4 一次正则的线性分类器</a>
+<li class="active">
+    <a href="./">18.4 一次正则的线性分类器</a>
 </li>
 
         
@@ -827,12 +827,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../11.1 Introduction/">
+                    <a rel="next" href="../18.3 Linear Classifiers with Quadratic Regularization/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
-                <li >
-                    <a rel="prev" href="../11.3 Neural Networks/">
+                <li class="disabled">
+                    <a rel="prev" >
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -853,14 +853,18 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">投影寻踪回归</a></li>
+        <li class="main active"><a href="#l_1">$L_1$正则的线性分类器</a></li>
+        
+            <li><a href="#lasso">应用lasso的方法到蛋白质质谱</a></li>
+        
+            <li><a href="#fused-lasso">对于功能型数据的Fused Lasso</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">投影寻踪回归</h1>
+<h1 id="l_1">$L_1$正则的线性分类器</h1>
 <table>
 <thead>
 <tr>
@@ -875,46 +879,57 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-07</td>
+<td>2017-04-27:2017-04-27</td>
 </tr>
 </tbody>
 </table>
-<p>在我们一般监督学习问题中，假设我们有$p$个组分的输入向量$X$，以及目标变量$Y$.令$w_m,m=1,2,\ldots, M$为未知参数的$p$维单位向量。投影寻踪回归（PPR）模型有如下形式
+<p>18.3节的方法使用$L_2$惩罚来对参数进行正则化，正如在岭回归中一样。所有的估计参数是非零的，因此没有应用到特征选择。在这一节我们讨论采用$L_1$惩罚的正则，也因此提供了自动的特征选择。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注<p>特征选择意味着选择变量（特征），在$L_2$正则化中，没有参数的系数为0，也就是没有剔除任何参数，所以说没有用到特征选择；而在$L_1$正则中，存在参数的系数为0，也就是会对特征进行选择。换句话说，特征选择的效果就是取部分的特征，于是那部分的特征所对应的系数为0。</p>
+</p>
+</div>
+<p>回忆3.4.2节的lasso，</p>
+<p>
 <script type="math/tex; mode=display">
-f(X)=\sum\limits_{m=1}^Mg_m(w_m^TX)\qquad (11.1)
+\underset{\beta}{min}\frac{1}{2}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert\qquad (18.18)
 </script>
-这是一个加性模型，但是是关于导出特征$V_m=w_m^TX$，而不是关于输入本身。函数$g_m$未定，而是用一些灵活的光滑化方法来估计及$w_m$的方向（见下）。</p>
-<p>函数$g_m(w_m^TX)$称为$R^p$中的岭函数。仅仅在由向量$w_m$定义的方向上不同。标量变量$V_m=w_m^TX$是$X$在单位向量$w_m$上的向量，我们寻找$w_m$使得模型拟合得好，因此称为“投影寻踪”。图11.1显示了岭函数的一些例子。左边的例子$w=(1/\sqrt{2})(1,1)^T$,所以函数仅仅在$X_1+X_2$方向上不同。在右边的例子中，$w=(1,0)$</p>
-<p><img alt="" src="../../img/11/fig11.1.png" /></p>
+</p>
+<p>我们写成了(3.52)的拉格朗日形式。这里讨论的，使用充分大的调整参数$\lambda$，使用$L_1$惩罚导致部分的解参数$\hat\beta_j$恰恰为0。</p>
+<p>在3.8.1节我们已经讨论了LARS算法，一个计算所有的$\lambda$的lasso解的有效过程。当$p&gt;N$时（正如本章中），当$\lambda$趋于0，lasso恰巧拟合了训练数据。事实上，通过凸对偶，可以证明当$p&gt;N$时，非零参数的个数对于所有$\lambda$至多为$N$（举个例子，Rosset和Zhu在2007年的工作）。因此lasso提供了特征选择的形式。</p>
+<p>lasso回归可以通过对输出编码为$\pm 1$应用到两类别分类问题中，并且对预测变量加上一个截距（通常为0）。对于多余两个的类别，有许多可能的方式，包括在18.3.3节讨论的ova和ovo方法。我们在18.3节中对癌症数据应用ova方法。结果显示在表18.1的第4行中。它的效果是最好的。</p>
+<p>分类问题的更自然的方式是使用lasso惩罚来正则化逻辑斯底回归。文献中已经提出一些实现方法，包括类似LARS(Park和Hastie，2007)的路径算法。因为路径是分段光滑但是非线性，精确的算法比LARS算法更慢，并且当$p$很大时不是很适用。</p>
+<p>Friedman等人(2010)提供了用于拟合$L_1$惩罚的逻辑斯底和多项式回归模型。他们应用18.3.2节中(18.10)中的对称多项式逻辑斯底回归模型，并且最大化带惩罚的对数似然</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\{\beta_{0k},\beta_k\in R^p\}_1^K}{max}[\sum\limits_{i=1}^NlogPr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p\vert\beta_{kj}\vert]\qquad (18.19)
+</script>
+</p>
+<p>这与式子(18.11)相对应。他们的算法通过坐标轮换(cyclical coordinate descent)（3.8.6节），并且利用$p&gt;&gt;N$时解是稀疏的事实，以及$\lambda$邻域的解趋向于非常相似。这个方法用在表18.1的第7行中，通过交叉验证来选取全局调整参数$\lambda$。它的表现与最优方法很相似，除了自动特征选择一起选择了269个基因。类似的方法在Genkin等人(2007)的工作中使用了；尽管它们从贝叶斯角度提出它们的模型，事实上他们计算后验概率，解决了惩罚的最大似然问题。</p>
+<p><img alt="" src="../../images/18/fig18.5.png" /></p>
 <blockquote>
-<p>图11.1. 2个岭回归的透视图。（左图：）$g(V)=1/[1+exp(-5(V-0.5))]$其中$V=(X_1+X_2)/\sqrt{2}$.（右图：）$g(V)=(V+0.1)sin(1/(V/3+0.1))$,其中$V=X_1$.</p>
+<p>白血病数据的正则化逻辑斯底回归路径。左图是lasso路径，右图是$\alpha=0.8$的弹性网路径。在路径的终端（最左端），lasso有19个非零系数，弹性网有39个非零系数。弹性网的平均效应导致比lasso更多的非零系数，但是规模更小。</p>
 </blockquote>
-<p>（11.1）的PPR模型是非常一般的，因为形成线性组合的非线性函数的操作得到相当多的模型类型。举个例子，积$X_1\cdot X_2$可以写成$[(X_1+X_2)^2-(X_1-X_2)^2]/4$，高阶的乘积也可以类似地表示。</p>
-<p>实际上，如果取任意大的$M$,合适地选择$g_m$，PPR模型可以很好地近似$R^p$中任意连续的函数。这样的模型类别称为通用近似（universal approximator）。然而这种一般性需要付出代价。拟合模型的解释性通常很困难，因为每个都以复杂多位面的方式进入模型中。结果造成PPR模型对于预测非常有用，但是对于产生一个很好理解数据的模型不是很有用。$M=1$模型是个例外，也是计量经济学中的单指标模型。这比线性回归模型更加一般，也提供了一个类似的解释。</p>
-<p>给定训练点$(x_i,y_i),i=1,2,\ldots,N$怎么拟合PPR模型？我们在函数$g_m$和方向向量$w_m,m=1,2,\ldots,M$上寻找误差函数的近似最小值
+<p>在基因应用中，变量间通常有强相关关系；基因趋向于在分子通路上起作用。lasso惩罚在某种程度上与不受强相关的变量集的选择的影响（练习3.28）。另一方面，岭惩罚趋向于将相关变量的系数收缩（p99的练习3.29）。弹性网惩罚（Zou和Hastie,2005）是一种妥协的方式，并且有形式</p>
+<p>
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^N[y_i-\sum\limits_{m=1}^Mg_m(w_m^Tx_i)]^2\qquad (11.2)
+\sum\limits_{i=1}^p(\alpha\vert\beta_j\vert+(1-\alpha)\beta_j^2)\qquad (18.20)
 </script>
-正如在其他光滑问题中一样，我们需要在$g_m$上加上显式或隐式的限制来避免过拟合解。</p>
-<p>仅仅考虑一项（$M=1$，并且去掉下标）。给定方向向量$w$，我们得到导出变量$v_i=w^Tx_i$.接着我们有一个一维光滑问题，而且我们可以应用任意散点图光滑器，比如光滑样条来得到$g$的一个估计。</p>
-<p>另一方面，给定$g$，我们想要关于$w$最小化（11.2）.高斯-牛顿搜索可以很方便地实现这个任务。这是一个拟牛顿法，丢掉了Hessian阵中关于$g$二阶微分的项。可以很简单地按照下面导出。令$w_{old}$为$w$的当前估计。我们写成
+</p>
+<p>第二项鼓励高相关的特征进行平均，而第一项促进在平均特征系数中的稀疏解。弹性网惩罚可以用到任何线性模型中，特别是用于回归或分类中。</p>
+<p>因此上述的带弹性网惩罚的多项式问题变成</p>
+<p>
 <script type="math/tex; mode=display">
-g(w^Tx_i)\approx g(w_{old}^Tx_i)+g'(w_{old}^Tx_i)(w-w_{old})^Tx_i\qquad (11.3)
+\underset{\{\beta_{0k,\beta_k\in R^p}\}_1^K}{max}[\sum\limits_{i=1}^NlogPr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p(\alpha\vert\beta_{kj}\vert)+(1-\alpha)\beta_{kj}^2]\qquad (18.21)
 </script>
-得到
-<script type="math/tex; mode=display">
-\sum\limits_{i=1}^N[y_i-g(w^Tx_i)]^2\approx \sum\limits_{i=1}^Ng'(w_{old}^Tx_i)^2[(w_{old}^ Tx_i+\frac{y_i-g(w_{old}^Tx_i)}{g'(w^T_{old}x_i)})-w^Tx_i]^2\quad (11.4)
-</script>
-为了最小化右边的项，我们在输入$x_i$对目标$w_{old}^Tx_i+(y_i-g(w_{old}^Tx_i))/g&rsquo;(w_{old}^Tx_i)$进行最小二乘回归，没有系数$g&rsquo;(w_{old}^Tx_i)^2$并且没有截距（偏差）项。这样得到更新后的系数向量$w_{new}$.</p>
-<p>对$g$和$w$的估计的这两步一直迭代直到收敛。在PPR模型中不止一项时，以一种向前逐步的方式来建立模型，在每一步加入$(w_m,g_m)$.</p>
-<p>这里是一系列实现的细节。</p>
-<ul>
-<li>尽管原则上可以使用任意光滑的方法，但如果某方法提供微分则更加方便。局部回归和光滑样条是很方便的。</li>
-<li>每一步之后，上一步得到的$g_m$可以运用第9章描述的backfitting过程来重新调节。尽管这会导致最终有更少的项，但是否提高预测表现不是很清楚。</li>
-<li>通常$w_m$没有被重新调整（部分是为了避免过度的计算），尽管原则上它们也可以被调整。</li>
-<li>项数$M$通常被估计为向前逐步策略的一部分。当下一项不再明显地改善模型的拟合则停止模型的建立过程。交叉验证可以用来确定$M$.</li>
-</ul>
-<p>有许多的应用中可以用到投影寻踪的想法，比如密度估计（Friedman等人，1984；Friedman，1987）。特别地，见14.7节中关于ICA的讨论以及它与探索型投影寻踪的关系。然而，投影寻踪回归模型在统计领域并没有被广泛地使用，或许是因为在它的提出时间（1981），计算上的需求超出大多数已有计算机的能力。但是它确实代表着重要的智力进步，它是一个在神经网络领域的转世中发展起来的，神经网络是本章接下来的内容。</p>
+</p>
+<p>参数$\alpha$确定了惩罚的混合，并且经常在qualitative grounds上预先选取。当$p&gt;N$时，弹性网得到多于$N$个的非零参数，这是相比于lasso的潜在优点。表18.1的第8行采用这个模型，通过交叉验证选择$\alpha$和 $\lambda$。我们采用0.05到1.0之间的20个$\alpha$值，以及在整个值域的对数尺度下均匀分布的100个$\lambda$值。位于$\alpha\in [0.75,0.80]$
+之间的值给出了最小的CV误差，对于所有的tied solution，$\lambda&lt;0.001$。尽管在所有方法中有最低的测试误差，但是边界分布（？）是小的并且不显著。有趣的是，当CV对每个$\alpha$单独计算，在$\alpha=0.10$时达到最小的测试误差，但是这不是在2维CV中选择的值。</p>
+<p><img alt="" src="../../img/18/18.6.png" /></p>
+<p>TODO</p>
+<h2 id="lasso">应用lasso的方法到蛋白质质谱</h2>
+<p>TODO</p>
+<h2 id="fused-lasso">对于功能型数据的Fused Lasso</h2>
+<p>TODO</p>
 
 <div id="disqus_thread"></div>
 <script>
