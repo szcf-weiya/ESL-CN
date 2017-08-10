@@ -1,6 +1,6 @@
 pages:
   - 主页: 'index.md'
-  - 目录:
+  - 上篇:
     - 序言:
       - 第二版序言: 'Preface/2016-07-20-Preface-to-the-Second-Edition.md'
       - 第一版序言: 'Preface/2016-07-21-Preface-to-the-First-Edition.md'
@@ -45,6 +45,7 @@ pages:
       - 6.4 $R^p$中的结构化局部回归模型: '06 Kernel Smoothing Methods/6.4 Structured Local Regression Models in R^p.md'
       - 6.5 局部似然和其他模型: '06 Kernel Smoothing Methods/6.5 Local Likelihood and Other Models.md'
       - 6.6 核密度估计和分类: '06 Kernel Smoothing Methods/6.6 Kernel Density Estimation and Classification.md'
+  - 中篇:
     - 7 模型评估及选择:
       - 7.1 导言: '07 Model Assessment and Selection/7.1 Introduction.md'
       - 7.2 偏差，方差和模型复杂度: '07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity.md'
@@ -95,6 +96,7 @@ pages:
     - 12 支持向量机和灵活的判别方法:
       - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
       - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md'
+  - 下篇:
     - 13 原型方法和最近邻:
       - 13.1 导言: '13 Prototype Methods and Nearest-Neighbors/13.1 Introduction.md'
     - 14 非监督学习:
