@@ -129,6 +129,8 @@ repo_url: https://szcf-weiya.github.io
 
 copyright: 'Copyright &copy; 2016-2017 weiya'
 
+comment: <a href="{{page.canonical_url}}#disqus_thread">0 Comments</a>
+
 markdown_extensions:
   - admonition
   - smarty
