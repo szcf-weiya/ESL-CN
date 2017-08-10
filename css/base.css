@@ -182,7 +182,8 @@ a > code:hover, a > code:focus {
     /* Widen the fixed sidebar */
     .bs-sidebar.affix,
     .bs-sidebar.affix-bottom {
-        width: 213px;
+        /*width: 213px;*/
+        width: 20%;
     }
     .bs-sidebar.affix {
         position: fixed; /* Undo the static from mobile first approach */
