@@ -3,9 +3,9 @@
     width: 1880px;
   }
 }
-@media (min-width: 1600px) {
+@media (min-width: 1680px) {
   .container{
-    width: 1520px;
+    width: 1600px;
   }
 }
 
