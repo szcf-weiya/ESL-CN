@@ -115,6 +115,7 @@ pages:
       - 18.2 对角线性判别分析和最近收缩重心: '18 High-Dimensional Problems/18.2 Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids.md'
       - 18.3 二次正则的线性分类器: '18 High-Dimensional Problems/18.3 Linear Classifiers with Quadratic Regularization.md'
       - 18.4 一次正则的线性分类器: '18 High-Dimensional Problems/18.4 Linear Classifiers with L1 Regularization.md'
+      - 18.5 当特征不可用时的分类: '18 High-Dimensional Problems/18.5 Classification When Features are Unavailable.md'
 
 site_name: 'ESL CN'
 
