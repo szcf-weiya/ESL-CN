@@ -1,5 +1,9 @@
 # ESL-CN
-The Elements of Statistical Learning (ESL)的中文翻译
+The Elements of Statistical Learning (ESL)的中文翻译及其代码实现。
+
+##　代码实现
+
+1. [EM 算法模拟](ESL-CN/code/EM/em.R)
 
 <!--
 ## 进度
