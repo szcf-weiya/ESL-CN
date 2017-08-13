@@ -1,10 +1,11 @@
 # ESL-CN
 The Elements of Statistical Learning (ESL)的中文翻译及其代码实现。
 
-##　代码实现
+## 代码实现
 
-1. [EM 算法模拟](ESL-CN/code/EM/em.R)
-
+1. [EM 算法模拟](code/EM/em.R)
+2. [朴素贝叶斯进行文本挖掘](code/NaiveBayes)
+3. [CART实现](code/CART)
 <!--
 ## 进度
 更新于2017.03.13
