@@ -120,7 +120,7 @@ pages:
       - 18.5 当特征不可用时的分类: '18 High-Dimensional Problems/18.5 Classification When Features are Unavailable.md'
       - 18.6 有监督的主成分: '18 High-Dimensional Problems/18.6 High-Dimensional Regression.md'
       - 18.7 特征评估和多重检验问题: '18 High-Dimensional Problems/18.7 Feature Assessment and the Multiple-Testing Problem.md'
-      #- 文献笔记: 
+      #- 文献笔记:
 
 site_name: 'ESL CN'
 
@@ -131,8 +131,6 @@ site_url: https://szcf-weiya.github.io/ESL-CN/
 repo_url: https://szcf-weiya.github.io
 
 copyright: 'Copyright &copy; 2016-2017 weiya'
-
-comment: <a href="{{page.canonical_url}}#disqus_thread">0 Comments</a>
 
 markdown_extensions:
   - admonition
