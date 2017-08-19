@@ -105,7 +105,9 @@ pages:
       - 14.3 聚类分析: '14 Unsupervised Learning/14.3 Cluster Analysis.md'
     - 15 随机森林:
       - 15.1 导言: '15 Random Forests/15.1 Introduction.md'
-    #- 16 整体学习:
+    - 16 增强学习:
+      - 16.1 导言: '16 Ensemble Learning/16.1 Introduction.md'
+      - 16.2 增强和正则路径: '16 Ensemble Learning/16.2 Boosting and Regularization Paths.md'
     - 17 无向图模型:
       - 17.1 导言: '17 Undirected Graphical Models/17.1 Introduction.md'
       - 17.2 马尔科夫图及其性质: '17 Undirected Graphical Models/17.2 Markov Graphs and Their Properties.md'
