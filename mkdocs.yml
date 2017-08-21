@@ -25,7 +25,7 @@ pages:
       - 3.5 运用派生输入方向的方法: '03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions.md'
       - 3.6 选择和收缩方法的比较: '03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods.md'
       - 3.7 多重输出的收缩和选择: '03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection.md'
-      #- 3.8 Lasso和相关路径算法的补充: '03 Linear Methods for Regression/3.8 More on the Lasso and Related Path Algorithms.md'
+      - 3.8 Lasso和相关路径算法的补充: '03 Linear Methods for Regression/3.8 More on the Lasso and Related Path Algorithms.md'
     - 4 分类的线性方法:
       - 4.1 导言: '04 Linear Methods for Classification/4.1 Introduction.md'
       - 4.2 指示矩阵的线性回归: '04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix.md'
