@@ -140,10 +140,6 @@ markdown_extensions:
   - sane_lists
   - mdx_math
 
-#extra_javascript:
-#  - js/MathJax/MathJax.js?config=TeX-AMS_CHTML
-#  - js/mymathjax.js
-
 extra_css:
   - css/newsprint.css
   - css/admonition_fix.css
