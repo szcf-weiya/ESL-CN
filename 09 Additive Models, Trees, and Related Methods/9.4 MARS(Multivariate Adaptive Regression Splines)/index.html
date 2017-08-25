@@ -1196,7 +1196,7 @@ summary(scenario3.fit)
 <script type="math/tex; mode=display">
 \begin{align}
 MSE_0&=ave_{x\in Test}(\bar y-\mu(x))^2\\
-MSE& ave_{x\in Test}(\hat f(x)-\mu(x))^2
+MSE&= ave_{x\in Test}(\hat f(x)-\mu(x))^2
 \end{align}
 \qquad (9.23)
 </script>
@@ -1208,6 +1208,46 @@ R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
 </script>
 </p>
 <p>显示的值是五次模拟的均值和标准差。情形2中的因为了加入无用的输入略微降低了MARS的效果；在情形3中表现得很差。</p>
+<p><img alt="" src="../../img/09/tab9.4.png" /></p>
+<p>利用<code>earth</code>包拟合出的MARS模型，编写下面代码进行测试，结果表明，对于情形1和情形2的$R^2$而言，与书中的结果一致；而情形3则相差较多，在我的程序中为负值，也就是表明情形3的MARS还不如利用均值直接估计。</p>
+<pre><code class="r">set.seed(3452)
+m = 1000
+x1.test = rnorm(m, 0, 0.12)
+x2.test = rnorm(m, 0, 0.12)
+x1.test.plus = sapply(x1.test, function(x) ifelse(x&gt;1, x-1, 1-x))
+x2.test.plus = sapply(x2.test, function(x) ifelse(x&gt;0.8, x-0.8, 0.8-x))
+epsilon = rnorm(m, 0, 1)
+mu1 = x1.test.plus + x1.test.plus*x2.test.plus
+y.test = mu1 + 0.12*epsilon
+scenario1.mse0 = mean((mean(y.test)-mu1)^2)
+scenario1.mse = mean((predict(scenario1.fit, data.frame(x1.test, x2.test))-mu1)^2)
+scenario1.r2 = (scenario1.mse0 - scenario1.mse)/scenario1.mse0
+scenario1.r2
+# 0.9611187
+
+## scenario 2
+x.test = matrix(rnorm(m*18,0,0.12), nrow = m)
+x.test = cbind(x1.test, x2.test, x.test)
+colnames(x) = paste0(&quot;x&quot;, 1:20)
+mu2 = mu1
+scenario2.mse0 = mean((mean(y.test)-mu2)^2)
+scenario2.mse = mean((predict(scenario2.fit, x.test)-mu2)^2)
+scenario2.r2 = (scenario2.mse0 - scenario1.mse)/scenario2.mse0
+scenario2.r2
+# 0.9611187
+
+## scenario 3
+l1.test = x.test[,1] + x.test[, 2] + x.test[, 3] + x.test[, 4] + x.test[, 5]
+l2.test = x.test[,6] - x.test[, 7] + x.test[, 8] - x.test[, 9] + x.test[, 10]
+mu3 = sigma(l1.test) + sigma(l2.test)
+y.test = mu3 + 0.12*epsilon
+scenario3.mse0 = mean((mean(y.test)-mu3)^2)
+scenario3.mse = mean((predict(scenario3.fit, x.test[, 1:10])-mu3)^2)
+scenario3.r2 = (scenario3.mse0 - scenario3.mse)/scenario3.mse0
+scenario3.r2
+# -0.9027139
+</code></pre>
+
 <h2 id="_3">其他的问题</h2>
 <h3 id="mars_1">MARS用于分类</h3>
 <p>MARS方法和算法可以拓展到处理分类问题。已经提出了几种策略。</p>
