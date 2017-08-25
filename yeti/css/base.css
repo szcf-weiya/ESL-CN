@@ -246,7 +246,8 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
     border-left-color: #fff;
 }
 
-.emojione {
-    width: 2rem;
-    vertical-align: text-top;
+blockquote img.emojione {
+    display: -webkit-inline-box;
+    width: 1.5rem;
+    vertical-align: text-bottom;
 }
