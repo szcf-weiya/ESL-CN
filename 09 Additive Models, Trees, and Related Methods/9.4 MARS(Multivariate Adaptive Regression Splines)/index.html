@@ -954,24 +954,25 @@
 </tbody>
 </table>
 <p>MARS是回归的自适应过程，非常适合高维问题（比如，存在大量的输入）。可以从两个角度来理解它，首先，它可以看成是逐步线性回归的推广，其次，也可以看成是为了提高CART在回归中的效果而进行的改进。我们从第一种观点引入MARS，接着与CART联系起来。</p>
-<p>MARS采用形式为$(x-t)<em>+, (t-x)</em>+$的分段线性基函数的展开。“+”表示正的部分，所以
+<p>MARS采用形式为$(x-t)_+, (t-x)_+$的分段线性基函数的展开。“+”表示正的部分，所以</p>
+<p>
 <script type="math/tex; mode=display">
 (x-t)_+=\left\{
-\begin{array}
+\begin{array}{ll}
 x-t& \text{if }x>t\\
 0&\text{otherwise}
 \end{array}
 \right.
 \text{  and  }
 (t-x)_+=\left\{
-\begin{array}
+\begin{array}{ll}
 t-x& \text{if }x<t\\
 0&\text{otherwise}
 \end{array}
 \right.
 </script>
 </p>
-<p>举个例子，图9.9显示了函数$(x-0.5)<em>+, (0.5-x)</em>+$的图象。</p>
+<p>举个例子，图9.9显示了函数$(x-0.5)_+, (0.5-x)_+$的图象。</p>
 <p><img alt="" src="../../img/09/fig9.9.png" /></p>
 <blockquote>
 <p>图9.9. MARS采用的基函数$(x-t)_+$(实心橘黄色)和$(t-x)_+$(蓝色虚线)</p>
