@@ -140,6 +140,8 @@ markdown_extensions:
   - mdx_math
   - footnotes
   - meta
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
 
 extra_css:
   - css/newsprint.css
