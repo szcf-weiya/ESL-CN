@@ -1227,14 +1227,13 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\\
 <blockquote>
 <p>图3.15：左图显示了LAR系数作为$L_1$长度的函数在模拟数据上的图象。右图显示了Lasso的图象。它们大概在$L_1$弧长为18之前（深蓝色的系数曲线通过0）都是完全相同的.</p>
 </blockquote>
-<p>通过构造LAR的系数以一种分段线性的方式进行改变。图3.15（左图）显示了LAR系数曲线作为$L_1$弧长[^L1 arc length]的函数曲线。注意到我们不需要走很小的步以及重新检查步骤3的相关系数；应用预测变量的协方差和算法的分段线性性质，我们可以在每一步开始计算出确切的步长（练习3.25）。</p>
+<p>通过构造LAR的系数以一种分段线性的方式进行改变。图3.15（左图）显示了LAR系数曲线作为$L_1$弧长<sup id="fnref:L1 arc length"><a class="footnote-ref" href="#fn:L1 arc length" rel="footnote">1</a></sup>的函数曲线。注意到我们不需要走很小的步以及重新检查步骤3的相关系数；应用预测变量的协方差和算法的分段线性性质，我们可以在每一步开始计算出确切的步长（练习3.25）。</p>
 <p>图3.15的右图展示了对同样数据的lasso系数曲线。几乎与左图相同，当绿色曲线通过0时首次出现不同。对于前列腺癌数据，LAR系数曲线显示与图3.10的lasso曲线相同，该曲线从不经过0。这些观测值导致对LAR算法的一个简单修改，给出了整个lasso路径，它同样也是分段线性的。</p>
 <hr />
 <p><strong>算法 3.2a</strong> 最小角回归：Lasso修正</p>
 <hr />
 <p>4a. 如果一个非零的系数达到0，则从变量的活跃集中删除该变量并且重新计算当前的联合最小二乘方向。</p>
 <hr />
-<p>[^L1 arc length]: 可导曲线$\beta(s), s \in [0,S]$的$L_1$弧长为$TV(\beta,S)=\int_0^S\Vert\dot{\beta}(s)\Vert_1ds$,其中$\dot{\beta}(s)=\partial\beta(s)/\partial s$.对于分段LAR函数曲线，这相当于从这一步到下一步系数的$L_1$范数变化之和。</p>
 <p>LAR(lasso)算法是非常有效的，需要采用类似$p$个变量的最小二乘拟合的相同步骤进行计算。最小角回归总是需要$p$步达到全最小二乘估计。lasso路径可以有超过$p$步，经过这两者经常是非常相似的。经过lasso修正的3.2a的算法3.2是计算任何一个lasso问题的有效方式，特别是当$p&gt;&gt;N$。Osborne等人(2000a)页发现计算lasso的分段线性的路径，他们称之为同伦（homotopy）算法。</p>
 <p>我们已经给出一个为什么这些过程很相似的启发式的论据。尽管LAR算法是用相关性来叙述的，如果输入特征是标准化的，它与内积是等价的并且更简单。假设$\cal A$是算法中某些步的变量活跃集，它们与当前残差$\mathbf y -\mathbf X\beta$的内积的绝对值是结合在一起的。我们可以表达成</p>
 <p>
@@ -1270,6 +1269,14 @@ df(\hat{\mathbf y})=\frac{1}{\sigma^2}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad
 这里$Cov(\hat y_i,y_i)$指的是预测值$\hat y_i$和其对应的输出向量$y_i$之间的协方差。这会导致这样的直观感觉：我们拟合数据越困难，协方差越大从而$df(\hat{\mathbf y})$越大。表达式（3.60）是一个有用的自由度的概念，可以应用到任何模型的预测向量$\hat{\mathbf y}$。其中包括那些对训练数据自适应拟合的模型。这个定义将在7.4-7.6节中进一步讨论。</p>
 <p>现在对于有$k$个固定预测变量的线性回归模型，可以简单地证明$df(\hat{\mathbf y})=k$。同样地，对于岭回归，这一定义导出p68表达式（3.50）的封闭形式（closed-form）：$df(\hat{\mathbf{y}})=tr(\mathbf S_\lambda)$。在这些情况下，（3.60）是很简单的进行赋值因为$\hat{\mathbf{y}}=\mathbf{H}_\lambda\mathbf y$关于$\mathbf y$是线性的。如果我们考虑在大小为$k$的最优子集选择中的定义（3.60），似乎显然有$df(\hat{\mathbf y})$会大于$k$,并且可以通过运用模拟的方法直接地估计$Cov(\hat y_i,y_i)/\sigma^2$来验证。然而估计最优子集选择的$df(\hat{\mathbf y})$没有固定的形式（closed form）</p>
 <p>对于LAR和lasso，会发生很奇怪的事情。这些技巧的自适应方式比最优集选择更加光滑，因此估计自由度会更加地难以驾驭。特别地，可以证明经过$k$步LAR过程，拟合向量的有效自由度恰巧是$k$.对于lasso，（改进的）LAR过程经常需要多余$k$的步骤，因为可以删去预测变量。因此，定义有点不一样；对于lasso，在任一小步$df(\hat{\mathbf y})$近似等于模型中预测变量的个数。然而这种近似在lasso路径中的任何地方都表现得很好，但是对于每个$k$,它在包含$k$个预测变量的序列中最后一个模型表现得最好。关于lasso自由度详细的研究或许可以在Zou等人（2007）的工作中找到。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:L1 arc length">
+<p>可导曲线$\beta(s), s \in [0,S]$的$L_1$弧长为$TV(\beta,S)=\int_0^S\Vert\dot{\beta}(s)\Vert_1ds$,其中$\dot{\beta}(s)=\partial\beta(s)/\partial s$.对于分段LAR函数曲线，这相当于从这一步到下一步系数的$L_1$范数变化之和。&#160;<a class="footnote-backref" href="#fnref:L1 arc length" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 <div id="disqus_thread"></div>
 <script>
