@@ -1044,13 +1044,14 @@ $trace(\mathbf S)$的值是有效参数个数。</p>
 <script type="math/tex; mode=display">
 Y_i\sim h_{\ell}(X)(X_{ij}-t_r), \; r=1,2,\ldots, N; i=1,2,\ldots, N
 </script>
-记$\mathbf X_r = [h_{\ell}(X)(X_{1j}-t_r), h_{\ell}(X)(X_{2j}-t_r),\ldots, h_{\ell}(X)(X_{Nj}-t_r)]&rsquo;$, 不考虑截距的情况下，
+不考虑截距的情况下，记
 <script type="math/tex; mode=display">
 \hat \beta^{(r)} = (\sum\limits_{i=1}^Nh_\ell(X)^2(X_{ij}-t_r)^2)^{-1}(\sum\limits_{i=1}^Nh_\ell(X)(X_{ij}-t_r)Y_i)=W_rZ_r
 </script>
-计算量为$O(N)$（考虑截距时，显然也是$O(N)$的操作）。若首先从最右端的结点开始计算，则
+计算量为$O(N)$（考虑截距时，多了$O(1)$的2阶矩阵的求逆操作，故也是$O(N)$的计算量）。
+若首先从最右端的结点开始计算，则
 <script type="math/tex; mode=display">
-\hat\beta^{(r)} = (W_r+h_\ell^2(X)(X_{r+1,j}-t_r)^2)^{-1}(Z_r+h_\ell(X)(X_{r+1,j}-t_r)Y_{r+1})
+\hat\beta^{(r)} = (W_{r+1}+h_\ell^2(X)(X_{r+1,j}-t_r)^2)^{-1}(Z_{r+1}+h_\ell(X)(X_{r+1,j}-t_r)Y_{r+1})
 </script>
 即仅需要$O(1)$的更新操作，则原来$O(N^2)$($N$个$O(N)$)的操作采用这种更新策略只需要$O(N)$的计算量。</p>
 </p>
