@@ -245,3 +245,8 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
 .dropdown-submenu:hover>a:after {
     border-left-color: #fff;
 }
+
+.emojione {
+    width: 2rem;
+    vertical-align: text-top;
+}
