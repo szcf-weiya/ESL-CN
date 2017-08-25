@@ -138,6 +138,7 @@ markdown_extensions:
   - smarty
   - sane_lists
   - mdx_math
+  - footnotes
 
 extra_css:
   - css/newsprint.css

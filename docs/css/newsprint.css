@@ -57,10 +57,6 @@ html, body {
  	}
 }*/
 
-#write {
-	max-width: 40em;
-}
-
 ol,
 ul {
 	list-style: none;
@@ -307,16 +303,6 @@ hr {
 	color: inherit;
 }
 
-#write pre.md-meta-block {
-	min-height: 1.875rem;
-	color: #555;
-	border: 0px;
-	background: transparent;
-	margin-top: -4px;
-	margin-left: 1em;
-	margin-top: 1em;
-}
-
 .md-image>.md-meta {
 	color: #9B5146;
 }
@@ -329,31 +315,6 @@ hr {
 	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
 }
 
-
-#write>h3.md-focus:before{
-	left: -2.5rem;
-	color:#999;
-	border-color:#999;
-}
-#write>h4.md-focus:before{
-	left: -2.5rem;
-	top: .25rem;
-	color:#999;
-	border-color:#999;
-}
-#write>h5.md-focus:before{
-	left: -2.5rem;
-	top: .0.3125rem;
-	color:#999;
-	border-color:#999;
-}
-#write>h6.md-focus:before{
-	left: -2.5rem;
-	top: 0.3125rem;
-	color:#999;
-	border-color:#999;
-}
-
 .md-toc:focus .md-toc-content{
 	margin-top: 19px;
 }
@@ -364,9 +325,7 @@ hr {
 .md-toc-item {
 	color: #065588;
 }
-#write div.md-toc-tooltip {
-	background-color: #f3f2ee;
-}
+
 
 #outline-dropmenu {
 	background-color: #f3f2ee;
@@ -455,10 +414,6 @@ header, .context-menu, .megamenu-content, footer {
 	background-color: #e8e7df;
 }
 
-#recent-file-panel tbody tr:nth-child(2n-1) {
-    background-color: transparent !important;
-}
-
 .megamenu-menu-panel tbody tr:hover td:nth-child(2) {
     color: inherit;
 }
@@ -467,11 +422,8 @@ header, .context-menu, .megamenu-content, footer {
 	background-color: #D2D1D1;
 }
 
-.typora-sourceview-on #toggle-sourceview-btn,
-.show-word-count #footer-word-count {
-	background: #c7c5c5;
-}
-
-#typora-quick-open {
-    background-color: inherit;
+.footnotes { font-size: .9em; }
+.footnotes hr {
+  width: 50%;
+  margin-left: 0;
 }
