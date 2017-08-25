@@ -1003,10 +1003,10 @@ f(X)=\beta_0+\sum\limits_{m=1}^M\beta_mh_m(X)\qquad (9.19)
 </script>
 </p>
 <p>这里$\hat\beta_{M+1}$和$\hat \beta_{M+2}$是由最小二乘估计的系数，和模型中其他的$M+1$个系数一样。接着使得训练误差有最大下降的乘积被加入到模型中，这个过程不断继续直到模型集合$\cal M$中项的个数达到预设的最大值。</p>
-<p>举个例子，在第一步我们考虑往模型中加入形如$\beta_1(X_j-t)_++\beta_2(t-X_j)_+;t\in\{x_{ij}\}$的函数，因为乘以常数仅仅得到函数本身。假设最优选择为$\hat\beta_1(X_2-x_{72})<em>++\hat\beta_2(x</em>{72}-X_2)_+$。则这个基函数对加入到模型$\cal M$中，并且在下一步我们考虑加入如下形式的乘积对</p>
+<p>举个例子，在第一步我们考虑往模型中加入形如$\beta_1(X_j-t)_++\beta_2(t-X_j)_+;t\in\{x_{ij}\}$的函数，因为乘以常数仅仅得到函数本身。假设最优选择为$\hat\beta_1(X_2-x_{72})_++\hat\beta_2(x_{72}-X_2)_+$。则这个基函数对加入到模型$\cal M$中，并且在下一步我们考虑加入如下形式的乘积对</p>
 <p>
 <script type="math/tex; mode=display">
-h_m(X)\cdot(X_j-t)\_+\text{     and    }h_m(X)\cdot (t-X_j)_+,t\in\{x_{ij}\}
+h_m(X)\cdot(X_j-t)_+\text{     and    }h_m(X)\cdot (t-X_j)_+,t\in\{x_{ij}\}
 </script>
 </p>
 <p>其中对于$h_m$我们有如下选择
