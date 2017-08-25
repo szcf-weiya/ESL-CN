@@ -68,7 +68,8 @@ div.source-links {
 }
 
 div.col-md-9 img {
-    max-width: 100%;
+    /*max-width: 100%;*/
+    width: 90%;
     display: block;
     margin-left: auto;
     margin-right: auto;
