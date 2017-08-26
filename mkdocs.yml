@@ -80,7 +80,7 @@ pages:
       - 文献笔记: '09 Additive Models, Trees, and Related Methods/Bibliographic Notes.md'
     - 10 增强和加性树:
       - 10.1 增强方法: '10 Boosting and Additive Trees/10.1 Boosting Methods.md'
-      - 10.2 对加性模型的增强拟合:  '10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model.md'
+      - 10.2 boosting拟合可加模型:  '10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model.md'
       - 10.3 向前逐步加性建模: '10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling.md'
       - 10.4 指数损失和AdaBoost: '10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost.md'
       - 10.5 为什么是指数损失: '10 Boosting and Additive Trees/10.5 Why Exponential Loss.md'
@@ -140,6 +140,7 @@ markdown_extensions:
   - mdx_math
   - footnotes
   - meta
+  - pymdownx.critic
   - pymdownx.emoji:
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
 
@@ -148,5 +149,4 @@ extra_css:
   - css/admonition_fix.css
 
 docs_dir: 'docs'
-
 theme_dir: 'yeti'
