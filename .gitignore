@@ -5,3 +5,4 @@ site
 *.data
 **/.Archive
 .Rproj.user
+*/.Rhistory
