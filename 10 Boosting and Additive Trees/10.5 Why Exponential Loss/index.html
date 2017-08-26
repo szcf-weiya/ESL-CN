@@ -957,12 +957,16 @@ f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{
 <script type="math/tex; mode=display">
 Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
 </script>
-因此，由AdaBoost得到的加性展开是估计二分之一的$P(Y=1\mid x)$比率。这证明使用它的符号作为（10.1）的分类规则是合理的。</p>
+因此，由AdaBoost得到的加性展开是估计二分之一log的$P(Y=1\mid x)$比率。这证明使用它的符号作为（10.1）的分类规则是合理的。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>此处$f^*(x)$相当于$\sum\alpha_mG_m$，当其大于0，表明$P(Y=1\mid x)&gt;P(Y=-1\mid x)$，所以称使用其符号作为分类规则是合理的。</p>
+</div>
 <p>另外一个有着同样的总体最小化的损失准则为负二项分布或者偏差（也称为交叉熵），将$f$解释为logit变换。令
 <script type="math/tex; mode=display">
 p(x)=Pr(Y=1\mid x)=\frac{e^{f(x)}}{e^{-f(x)}+e^{f(x)}}=\frac{1}{1+e^{-2f(x)}}\qquad (10.17)
 </script>
-并且定义$Y&rsquo;=(Y+1)/2\in {0,1}$.则二项对数概率损失函数为
+并且定义$Y&rsquo;=(Y+1)/2\in \{0,1\}$.则二项对数概率损失函数为
 <script type="math/tex; mode=display">
 l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
 </script>
@@ -983,7 +987,7 @@ Y=1
 </script>
 </p>
 </div>
-<p>因为对数概率的总体最大在真实概率$p(x)=Pr(Y=1\mid x)$处，我们从（10.17）看到偏差$E_{Y\mid x}[-l(Y,f(x))]$和$E_{Y\mid x}[e^{-Yf(x)}]$的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到$e^{-Yf}$本身不是一个合适的对数概率，因为它不是一个二项随机变量$Y\in \{-1,1\}$的任何概率密度函数的对数。</p>
+<p>因为对数概率的总体最大在真实概率$p(x)=Pr(Y=1\mid x)$处，我们从（10.17）看到偏差$E_{Y\mid x}[-l(Y,f(x))]$和$E_{Y\mid x}[e^{-Yf(x)}]$的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到$e^{-Yf}$本身不是一个合适的对数概率，因为它不是一个二项随机变量$Y\in \{-1,1\}$的任意概率密度函数的对数。</p>
 
 <div id="disqus_thread"></div>
 <script>
