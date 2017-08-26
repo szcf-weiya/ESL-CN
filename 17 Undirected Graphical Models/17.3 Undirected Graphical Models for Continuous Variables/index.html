@@ -1057,16 +1057,20 @@ w_{12}&=-\mathbf W_{11}\theta_{12}/\theta_{22}\qquad (17.16)\\
 (采用分块矩阵求逆)。且$w_{22}=s_{22}$，因为（17.13）的$\mathbf\Gamma$对角元为0。</p>
 <p>这导出了在缺失边的约束下，用来估计$\hat{\mathbf W}$和它的逆$\mathbf {\hat\Theta}$的算法17.1中给出的简单迭代过程。</p>
 <p><img alt="" src="../../img/17/alg17.1.png" /></p>
-<p>注意到这个算法使得概念变得有意义。图估计问题不是$p$个独立的回归问题，而是$p$个成对问题。在步骤(b)中使用共同的$\mathbf W$，而不是观测叉积矩阵，以合适的方式将问题结合在一起。奇怪的是，我们不能在这个领域内找到这个过程。然而这与Dempster(1972)的协方差选择过程有关，而且在分割上与Chaudhuri等人（2007）提出的用过协方差图的迭代条件拟合过程很相似。</p>
+<p>注意到这个算法具有概念意义(conceptual sense)。图估计问题不是$p$个独立的回归问题，而是$p$个成对问题。在步骤(b)中使用共同的$\mathbf W$，而不是观测叉积矩阵，以合适的方式将问题结合在一起。奇怪的是，我们不能在这个领域内找到这个过程。然而这与Dempster(1972)的协方差选择过程有关，而且在分割上与Chaudhuri等人（2007）提出的用过协方差图的迭代条件拟合过程很相似。</p>
 <p><img alt="" src="../../img/17/fig17.4.png" /></p>
 <blockquote>
 <p>图17.4. 一个简单的用于说明的图，以及经验协方差阵。</p>
 </blockquote>
 <p>这里是个小例子，选自Whittaker(1990)。假设我们的模型如图17.4描述，实验协方差阵为$\mathbf S$。我们应用算法（17.1）来解决这个问题；举个例子，在步骤（b）对变量1的修改后的回归中，删掉变量3.这个过程很快收敛到解</p>
 <p><img alt="" src="../../img/17/matrix1.png" /></p>
-<p>注意到$\hat{\mathbf\Sigma} ^{-1}$的0元素，对应缺失边（1,3）和（2,4）。也注意到$\hat{\mathbf \Sigma}$中对应的元素是唯一与$\mathbf S$不同的元素。$\mathbf \Sigma$估计是有时称为$\mathbf S$的正定完成。</p>
+<p>注意到$\hat{\mathbf\Sigma} ^{-1}$的0元素，对应缺失边（1,3）和（2,4）。也注意到$\hat{\mathbf \Sigma}$中对应的元素是唯一与$\mathbf S$不同的元素。$\mathbf \Sigma$估计是有时称为$\mathbf S$的正定“完成(completion)”。</p>
 <h2 id="_3">图结构的估计</h2>
 <p>大多数情况下，我们不知道哪些边要从图中省略，因此想试图从数据本身找出。最近几年很多作者提出这个目的的$L_1$(lasso)正则化。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注<p>省略图中的边，有点类似于做变量选择，而lasso正是应对变量选择的“绝世武功”!<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" /></p>
+</p>
+</div>
 <p>Meinshausen 和 Bühlmann (2006)对这个问题采取简单的方式：不是试图完全估计$\mathbf \Sigma$或者$\mathbf \Theta=\mathbf \Sigma^{-1}$，它们仅仅估计$\theta_{ij}$的那个组分是非零的。为了实现这点，它们将每个变量作为响应变量其它的作为预测变量拟合lasso回归。如果变量$i$在变量$j$上的估计系数为非零，或者（并且）$j$变量在$i$上的估计系数为非零，则组分$\theta_{ij}$估计为非零。它们证明这个过程渐进地一致估计了$\mathbf\Theta$的非零元的集合。</p>
 <p>我们可以采取更有系统的含有lasso惩罚的方法，接着上一节的讨论。考虑最大化惩罚的对数似然
 <script type="math/tex; mode=display">
@@ -1099,7 +1103,7 @@ w_{12}&=-\mathbf W_{11}\theta_{12}/\theta_{22}\qquad (17.16)\\
 <script type="math/tex; mode=display">
 \frac{1}{2}(\mathbf y-\mathbf Z\beta)^T(\mathbf y-\mathbf Z\beta)+\lambda\cdot\Vert\beta\Vert_1\qquad (17.24)
 </script>
-[见68页的（3.52）式；这里为了方便加上因子$\frac{1}{2}$]。梯度表达式为
+梯度表达式为
 <script type="math/tex; mode=display">
 \mathbf{Z^TZ}\beta-\mathbf{Z^Ty}+\lambda\cdot \mathrm{Sign}(\beta)=0\qquad (17.25)
 </script>
