@@ -601,7 +601,7 @@
         
             
 <li >
-    <a href="../10.2 Boosting Fits an Additive Model/">10.2 对加性模型的增强拟合</a>
+    <a href="../10.2 Boosting Fits an Additive Model/">10.2 boosting拟合可加模型</a>
 </li>
 
         
@@ -945,9 +945,19 @@
 <td>时间</td>
 <td>2017-02-06</td>
 </tr>
+<tr>
+<td>校对</td>
+<td>2017-08-26</td>
+</tr>
 </tbody>
 </table>
-<p>通过依次向展开式中加入新的基函数且不调整已经加入模型中的参数和系数来向前逐步建立模型，这近似（10.4）的解。在算法10.2中列出了概要。在每次迭代$m$,求解加入到当前展开$f_{m-1}(x)$的基函数$b(x;\gamma_m)$和对应的系数。这得到$f_m(x)$,这一过程重复进行。之前加入的项不做修改。</p>
+<p>通过依次向展开式中加入新的基函数且不调整已经加入模型中的参数和系数来向前逐步建立模型，这能够得到(10.4)的近似解。</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\{\beta_m,\gamma_m\}_1^M}{\mathrm {min}}\;\sum\limits_{i=1}^NL(y_i,\sum\limits_{m=1}^M\beta_mb(x_i;\gamma_m))\qquad (10.4)
+</script>
+</p>
+<p>在下图算法10.2中概述了这一过程。在每次迭代$m$,求解加入到当前展开$f_{m-1}(x)$的基函数$b(x;\gamma_m)$和对应的系数。这得到$f_m(x)$,这一过程重复进行。之前加入的项不做修改。</p>
 <p><img alt="" src="../../img/10/alg10.2.png" /></p>
 <p>对于平方误差损失
 <script type="math/tex; mode=display">

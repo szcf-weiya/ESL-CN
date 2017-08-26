@@ -9,7 +9,7 @@
         <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>10.2 对加性模型的增强拟合 - ESL CN</title>
+	<title>10.2 boosting拟合可加模型 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -601,7 +601,7 @@
         
             
 <li class="active">
-    <a href="./">10.2 对加性模型的增强拟合</a>
+    <a href="./">10.2 boosting拟合可加模型</a>
 </li>
 
         
@@ -921,14 +921,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">增强拟合一个加性模型</a></li>
+        <li class="main active"><a href="#boosting">boosting拟合可加模型</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">增强拟合一个加性模型</h1>
+<h1 id="boosting">boosting拟合可加模型</h1>
 <table>
 <thead>
 <tr>
@@ -945,13 +945,23 @@
 <td>时间</td>
 <td>2017-02-06</td>
 </tr>
+<tr>
+<td>校对</td>
+<td>2017-08-26</td>
+</tr>
 </tbody>
 </table>
-<p>增强的成功真的不是很神秘。关键在于（10.1）式。boosting是一种拟合用一组基本的“基”函数加性展开的方法。这里基函数是单个的分类器$G_m(x)\in {-1,1}$.更一般地，基函数展开式采用下列形式
+<p>boosting的成功真的不是很神秘。关键在于（10.1）式。</p>
+<p>
+<script type="math/tex; mode=display">
+G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\qquad (10.1)
+</script>
+</p>
+<p>boosting是在一组基本的“基”函数集合中拟合加性展开(additive expansions)的方法。这里基函数是单个的分类器$G_m(x)\in {-1,1}$.更一般地，基函数展开式采用下列形式
 <script type="math/tex; mode=display">
 f(x)=\sum\limits_{m=1}^M\beta_mb(x;\gamma_m)\qquad (10.3)
 </script>
-其中$\beta_m,m=1,2,\ldots,M$是展开的系数，$b(x;\gamma)\in R$是普通的关于多元$x$的简单函数，其特征在于一组参数$\gamma$.我们在第5章中详细讨论基的展开。</p>
+其中$\beta_m,m=1,2,\ldots,M$是展开的系数，$b(x;\gamma)\in R$是普通的关于多元变量$x$的简单函数，$\gamma$是其参数。我们在第5章中详细讨论基的展开。</p>
 <p>类似的加性展开是本书介绍的许多学习方法的核心：</p>
 <ul>
 <li>在单层神经网络中（第11章），$b(x;\gamma)=\sigma(\gamma_0+\gamma_1^Tx),$其中$\sigma(t)=1/(1+e^{-t})$是sigmoid函数，并且$\gamma$参量化输入变量的线性组合。</li>
