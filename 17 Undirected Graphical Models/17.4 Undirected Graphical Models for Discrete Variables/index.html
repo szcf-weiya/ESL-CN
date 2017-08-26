@@ -953,11 +953,15 @@
 <td>时间</td>
 <td>2017-02-25:2017-02-26</td>
 </tr>
+<tr>
+<td>时间</td>
+<td>2017-08-27</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
 <p>写在前面</p>
-<p>这一节中我觉得最有应用价值的是RBM，这跟深度学习很相关，在LISA lab, University of Montreal编的那本Deep Learning Tutorial (Release 0.1) 中，有一节就是将如何用RBM做手写数字识别。那段程序大概六个月前就已经接触了，但一直没搞清楚它在干嘛<img alt="😞" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f61e.svg" title=":disappointed:" />。其实，本节最后作者提到的用RBM做手写数字识别中的某一步其实就是那段程序干的事情。事实上，那段程序并没有真正地完成识别问题，仅仅是其中的一步——“采用对比发散训练包含784个可见单元和500个隐藏单元的RBM，来建立图像集的模型”，后续步骤还应该有“将这个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征，并且用上标签数据。” 或许，这导致当时没有理解程序所要完成的目标的原因吧<img alt="😖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f616.svg" title=":confounded:" /></p>
+<p>这一节中我觉得最有应用价值的是RBM，这跟深度学习很相关，在LISA lab, University of Montreal编的那本Deep Learning Tutorial (Release 0.1) 中，有一节就是将如何用RBM做手写数字识别。那段程序大概六个月前就已经接触了，但一直没搞清楚它在干嘛<img alt="😞" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f61e.svg" title=":disappointed:" />。其实，本节最后作者提到的用RBM做手写数字识别中的某一步其实就是那段程序干的事情。事实上，那段程序并没有真正地完成识别问题，仅仅是其中的一步——“采用对比发散训练包含784个可见单元和500个隐藏单元的RBM，来建立图像集的模型”，后续步骤还应该有“将这个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征，并且用上标签数据。” 或许，这导致当时没有理解程序所要完成的目标的原因吧<img alt="😖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f616.svg" title=":confounded:" />  @2017.08.27</p>
 <p>程序可以在<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/rbm">这里</a> 中找到，或者参考<a href="http://deeplearning.net/tutorial/deeplearning.pdf">官方教程</a>。</p>
 <p>另外，在我的<a href="https://stats.hohoweiya.xyz//statisticallearning/2017/08/17/Restricted-Boltzmann-Machines/">英文博客</a>中有RBM的简要总结，欢迎提出宝贵建议<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" /></p>
 </blockquote>
