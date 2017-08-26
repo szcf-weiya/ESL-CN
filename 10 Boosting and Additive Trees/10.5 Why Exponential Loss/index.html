@@ -967,6 +967,11 @@ Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
 p(x)=Pr(Y=1\mid x)=\frac{e^{f(x)}}{e^{-f(x)}+e^{f(x)}}=\frac{1}{1+e^{-2f(x)}}\qquad (10.17)
 </script>
 并且定义$Y&rsquo;=(Y+1)/2\in \{0,1\}$.则二项对数概率损失函数为</p>
+<p>
+<script type="math/tex; mode=display">
+l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p>个人觉得，上式写成
