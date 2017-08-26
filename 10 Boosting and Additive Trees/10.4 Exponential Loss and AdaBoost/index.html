@@ -971,11 +971,16 @@ G_m=\mathrm{arg}\;\underset{G}{\mathrm{min}}\sum\limits_{i=1}^Nw_i^{(m)}I(y_i\ne
 <script type="math/tex; mode=display">
 e^{-\beta}\sum\limits_{y_i=G(x_i)}w_i^{(m)}+e^\beta\sum\limits_{y_i\neq G(x_i)}w_i^{(m)}
 </script>
-反过来这个也可以写成
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>因为此处$G_m(x)\in\{-1,1\}$，则当$y_i=G_i(x)$时，$y_iG_i(x)=1$，否则$y_iG_i(x)=-1$。</p>
+</div>
+<p>进一步，这个也可以写成
 <script type="math/tex; mode=display">
 (e^{\beta}-e^{-\beta})\sum\limits_{i=1}^Nw_i^{(m)}I(y_i\neq G(x_i)) + e^{-\beta}\sum\limits_{i=1}^Nw_i^{(m)}\qquad (10.11)
 </script>
-将$G_m$代入到（10.9）求解$\beta$得到
+将$G_m$代入到（10.9，<span class="critic comment">即求解关于$\beta$的函数的最小值，于是对(10.11)关于$\beta$求导并令导数等于0，</span>可以求解$\beta$
 <script type="math/tex; mode=display">
 \beta_m=\frac{1}{2}\mathrm{log}\frac{1-err_m}{err_m}\qquad （10.12）
 </script>
@@ -983,7 +988,8 @@ e^{-\beta}\sum\limits_{y_i=G(x_i)}w_i^{(m)}+e^\beta\sum\limits_{y_i\neq G(x_i)}w
 <script type="math/tex; mode=display">
 err_m=\frac{\sum_{i=1}^N w_i^{(m)}I(y_i\neq G_m(x_i))}{\sum_{i=1}^Nw_i^{(m)}}\qquad (10.13)
 </script>
-于是近似更新为
+</p>
+<p>于是近似更新为
 <script type="math/tex; mode=display">
 f_m(x)=f_{m-1}(x)+\beta_mG_m(x)
 </script>
