@@ -252,3 +252,45 @@ blockquote img.emojione {
     width: 1.5rem;
     vertical-align: text-bottom;
 }
+
+
+/* pymdownx.critic*/
+.md-typeset .comment.critic,.md-typeset del.critic,.md-typeset ins.critic {
+ margin:0 .25em;
+ padding:.0625em 0;
+ border-radius:.2rem;
+ -webkit-box-decoration-break:clone;
+ box-decoration-break:clone
+}
+.md-typeset del.critic {
+ background-color:#fdd;
+ box-shadow:.25em 0 0 #fdd,-.25em 0 0 #fdd
+}
+.md-typeset ins.critic {
+ background-color:#dfd;
+ box-shadow:.25em 0 0 #dfd,-.25em 0 0 #dfd
+}
+.md-typeset .critic.comment {
+ background-color:hsla(0,0%,93%,.5);
+ color:#37474f;
+ box-shadow:.25em 0 0 hsla(0,0%,93%,.5),-.25em 0 0 hsla(0,0%,93%,.5)
+}
+.md-typeset .critic.comment:before {
+ padding-right:.125em;
+ color:rgba(0,0,0,.26);
+ content:"chat";
+ vertical-align:-.125em
+}
+.md-typeset .critic.block {
+ display:block;
+ margin:1em 0;
+ padding-right:1.6rem;
+ padding-left:1.6rem;
+ box-shadow:none
+}
+.md-typeset .critic.block :first-child {
+ margin-top:.5em
+}
+.md-typeset .critic.block :last-child {
+ margin-bottom:.5em
+}
