@@ -247,6 +247,8 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
     border-left-color: #fff;
 }
 
+/* pymdownx.emojione */
+
 blockquote img.emojione {
     display: -webkit-inline-box;
     width: 1.5rem;
