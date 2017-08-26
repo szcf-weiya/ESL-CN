@@ -986,18 +986,17 @@ l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
 -l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\qquad (10.18)
 </script>
 </p>
-<div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>
-<script type="math/tex; mode=display">
-l(Y,f(x))=Yf(x)-f(x)-log(1+e^{-2Yf(x)})
-</script>
-又
-<script type="math/tex; mode=display">
-Y=1
-</script>
-</p>
-</div>
+<!--
+!!! note "weiya注"
+    $$
+    l(Y,f(x))=Yf(x)-f(x)-log(1+e^{-2Yf(x)})
+    $$
+    又
+    $$
+    Y=1
+    $$
+-->
+
 <p>因为对数概率的总体最大在真实概率$p(x)=Pr(Y=1\mid x)$处，我们从（10.17）看到偏差$E_{Y\mid x}[-l(Y,f(x))]$和$E_{Y\mid x}[e^{-Yf(x)}]$的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到$e^{-Yf}$本身不是一个合适的对数似然函数，因为它不是一个二项随机变量$Y\in \{-1,1\}$的任意概率密度函数的对数。<span class="critic comment">也就是说，不存在一个二项随机变量的密度函数，使得$e^{-Yf}$称为对数似然函数。</span></p>
 
 <div id="disqus_thread"></div>
