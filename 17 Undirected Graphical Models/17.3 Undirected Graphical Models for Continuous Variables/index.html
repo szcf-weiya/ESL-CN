@@ -972,7 +972,7 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 \Big)
 \qquad (17.7)
 </script>
-(17.6)的条件均值与$Y$在$Z$上的总体多重线性回归有完全一样的形式，回归系数为$\beta=\mathbf\Sigma^{-1}_{ZZ}\sigma_{ZY}$[见19页的（2.16）]。如果我们对$\mathbf\Theta$用同样的方式进行分割，因为$\mathbf{\Sigma\Theta=I}$，由分块矩阵的求逆公式有
+(17.6)的条件均值与$Y$在$Z$上的总体多重线性回归有完全一样的形式，回归系数为$\beta=\mathbf\Sigma^{-1}_{ZZ}\sigma_{ZY}$。如果我们对$\mathbf\Theta$用同样的方式进行分割，因为$\mathbf{\Sigma\Theta=I}$，由分块矩阵的求逆公式有
 <script type="math/tex; mode=display">
 \theta_{ZY}=-\theta_{YY}\cdot\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY}\qquad (17.8)
 </script>
@@ -992,11 +992,11 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 <p>因此$\mathbf\Theta$捕捉了所有二阶信息（结构的和定量的），是描述每个顶点在给定剩余点时的条件分布需要的信息，也称为高斯图模型的“自然”参数。</p>
 <p>另外一个（不同）图模型为协方差图（covariance）或者相关网络（relevance network）,如果顶点的对应变量间的协方差（不是偏协方差）为0则用双向边连接这些顶点。这在基因问题中很流行，特别地见Butteet等人（2000）的工作。这些模型的负对数似然是非凸的，使得计算更加有挑战（Chaudhuri等人，2007）。</p>
 <h2 id="_2">图结构已知时参数的估计</h2>
-<p>给定$X$的一些实现，我们想要估计无向图的参数，该无向图近似了它们的联合分布。首先假设图是完全的（全连通）。我们假设有$N$个多维正态实现$x_i,i=1,\ldots,N$，均值为$\mu$，协方差为$\mathbf \Sigma$。令
+<p>给定$X$的一些观测值，我们想要估计无向图的参数，该无向图近似了它们的联合分布。首先假设图是完全的（全连通）。我们假设有$N$个多维正态观测值$x_i,i=1,\ldots,N$，均值为$\mu$，协方差为$\mathbf \Sigma$。令
 <script type="math/tex; mode=display">
 \mathbf S = \frac{1}{N}\sum\limits_{i=1}^N(x_i-\bar x)(x_i-\bar x)^T\qquad (17.10)
 </script>
-为实验的协方差矩阵，$\bar x$为样本均值向量。忽略掉常数，数据的对数似然可以写成
+为观测值的协方差矩阵，$\bar x$为样本均值向量。忽略掉常数，其对数似然可以写成
 <script type="math/tex; mode=display">
 \ell(\mathbf \Theta)=\mathrm{log \;det}\mathbf\Theta-\mathrm{trace}(\mathbf{S\Theta})\qquad (17.11)
 </script>
@@ -1044,11 +1044,12 @@ w_{12}&=-\mathbf W_{11}\theta_{12}/\theta_{22}\qquad (17.16)\\
 \mathbf W_{11}\beta-s_{12}-\gamma_{12}=0\qquad (17.18)
 </script>
 这些可以解释成$X_p$在其他预测变量上的约束回归的$p-1$个估计等式，除了观测均值的叉积矩阵$\mathbf S_{11}$用$\mathbf W_{11}$替换，模型的当前协方差估计。</p>
-<p>我们可以通过简单的子集回归来求解（17.18）。假设$\gamma_{12}$中有$p-q$个非零元——比如，$p-q$条边约束为0。这$p-q$行没有包含任何信息，而且可以移除掉。更进一步，我们可以通过移除$p-q$个0元素将$\beta$退化成$\beta^<em>$，得到退化的$p\times p$的等式系统
+<p>我们可以通过简单的子集回归来求解（17.18）。假设$\gamma_{12}$中有$p-q$个非零元——比如，$p-q$条边约束为0。这$p-q$行没有包含任何信息，而且可以移除掉。更进一步，我们可以通过移除$p-q$个0元素将$\beta$退化成$\beta^*$，得到退化的$p\times p$的等式系统
 <script type="math/tex; mode=display">
 \mathbf  W^*_{11}\beta^*-s_{12}^*=0\qquad (17.19)
 </script>
-解为$\hat\beta^</em>=\mathbf {W_{11}^<em>}^{-1}s_{12}^</em>$。在加上$p-q$个0元得到$\hat\beta$。</p>
+</p>
+<p>解为$\hat\beta^*=\mathbf {W_{11}^*}^{-1}s_{12}^*$。在加上$p-q$个0元得到$\hat\beta$。</p>
 <p>尽管从(17.16)似乎看出我们仅仅将元素$\theta_{12}$乘以缩放因子$1/\theta_{22}$，可以很简单地证明
 <script type="math/tex; mode=display">
 \frac{1}{\theta_{22}}=w_{22}-w_{12}^T\beta\qquad (17.20)
