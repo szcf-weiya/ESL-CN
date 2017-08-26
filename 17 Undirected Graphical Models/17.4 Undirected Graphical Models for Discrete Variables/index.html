@@ -955,6 +955,12 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>写在前面</p>
+<p>这一节中我觉得最有应用价值的是RBM，这跟深度学习很相关，在LISA lab, University of Montreal编的那本Deep Learning Tutorial (Release 0.1) 中，有一节就是将如何用RBM做手写数字识别。那段程序大概六个月前就已经接触了，但一直没搞清楚它在干嘛<img alt="😞" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f61e.svg" title=":disappointed:" />。其实，本节最后作者提到的用RBM做手写数字识别中的某一步其实就是那段程序干的事情。事实上，那段程序并没有真正地完成识别问题，仅仅是其中的一步——“采用对比发散训练包含784个可见单元和500个隐藏单元的RBM，来建立图像集的模型”，后续步骤还应该有“将这个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征，并且用上标签数据。” 或许，这导致当时没有理解程序所要完成的目标的原因吧<img alt="😖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f616.svg" title=":confounded:" /></p>
+<p>程序可以在<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/rbm">这里</a> 中找到，或者参考<a href="http://deeplearning.net/tutorial/deeplearning.pdf">官方教程</a>。</p>
+<p>另外，在我的<a href="https://stats.hohoweiya.xyz//statisticallearning/2017/08/17/Restricted-Boltzmann-Machines/">英文博客</a>中有RBM的简要总结，欢迎提出宝贵建议<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" /></p>
+</blockquote>
 <p>离散变量的无向马尔科夫网络是很流行的，而且特别地，二值变量的成对马尔科夫网络更普遍。在统计力学领域有时称为Ising模型，在机器学习领域称为玻尔兹曼机(Boltzmann machines)，其中顶点称为“结点(nodes)”或“单元(units)”，而且是取两个值的。</p>
 <p>另外，每个结点处的值可以被观测到(visible)或者观测不到(hidden)。结点通常以层来组织，类似神经网络。玻尔兹曼机对于非监督学习和监督学习都是很有用的，特别对有结构化输入数据，比如图像，但是也受到计算上的限制。图17.6显示了一个约束的玻尔兹曼机（后面讨论），其中一些变量是隐藏的，而且只有一些结点对是相连的。我们所有$p$个结点都是可见的简单情形，并且边的对$(j,k)$取自$E$。</p>
 <p>用$X_j$标记结点$j$的二值变量，它们联合分布的Ising模型由下式给出
@@ -1078,7 +1084,7 @@ E_{\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})=
 截图自<a href="http://deeplearning.net/tutorial/">http://deeplearning.net/tutorial/</a></p>
 </p>
 </div>
-<p>我们现在给出说明RBM用法的一个例子。采用对比发散(CD)，训练RBM来识别MNIST数据集中的手写字体是可能的（LeCun等人，1998）。2000个隐藏单元，784个表示二值像素强度的单元，以及表示标签的10-way multinomial（weiya注：取值为0-9）可见单元，RBM可以在测试集值达到1.9%的错误率。这比支持向量机达到的1.4%略高一点，与通过向后传播训练的神经网络得到的误差率相当。然而，用500个从图像中得到的不含任何标签信息的特征来替换784个像素强度，RBM的误差率会降至1.25%。首先，采用对比发散训练使用784个可见单元和500个隐藏单元的RBM，来建立图像集的模型。然后第一个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征。这种以贪婪、逐层的方式来学习特征的细节及证明在Hinton等人（2006）中给出。图17.7给出了以这种方式学习的复合模型的一个表示，也显示了一些它能够应付的变形的字体的例子。</p>
+<p>我们现在给出说明RBM用法的一个例子。采用对比发散(CD)，训练RBM来识别MNIST数据集中的手写字体是可能的（LeCun等人，1998）。2000个隐藏单元，784个表示二值像素强度的单元，以及表示标签的10-way multinomial（weiya注：取值为0-9）可见单元，RBM可以在测试集值达到1.9%的错误率。这比支持向量机达到的1.4%略高一点，与通过向后传播训练的神经网络得到的误差率相当。然而，用500个从图像中得到的不含任何标签信息的特征来替换784个像素强度，RBM的误差率会降至1.25%。首先，采用对比发散训练包含784个可见单元和500个隐藏单元的RBM，来建立图像集的模型。然后第一个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征。这种以贪婪、逐层的方式来学习特征的细节及证明在Hinton等人（2006）中给出。图17.7给出了以这种方式学习的复合模型的一个表示，也显示了一些它能够应付的变形的字体的例子。</p>
 <p><img alt="" src="../../img/17/fig17.7.png" /></p>
 <blockquote>
 <p>图17.7 约束玻尔兹曼机处理手写字体数字的例子。网络用左边的原理图来描述。右边显示了一些该模型分类正确的难的测试图像。</p>
