@@ -31,8 +31,9 @@ function train!(model::Adaboost, X::Matrix, y::Vector)
                     end
                     err += w[sample_ind] * (y[sample_ind] != pred)
                 end
+                err = err / sum(w)
                 if err > 0.5
-                    err = 1 - 0.5
+                    err = 1 - err
                     polarity_ = -1
                 end
 
@@ -44,7 +45,6 @@ function train!(model::Adaboost, X::Matrix, y::Vector)
                 end
             end
         end
-
         alpha = 1/2 * log((1.000001-err_max)/(err_max+0.000001))
 
         for j = 1:n_sample
@@ -133,6 +133,7 @@ function test_Adaboost()
     return hcat(m, res)
 end
 
+res = test_Adaboost()
 f = open("res.txt", "w")
 for i = 1:size(res, 1)
     @printf(f, "%f,%f\n", res[i,1], res[i, 2])

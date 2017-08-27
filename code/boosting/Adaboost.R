@@ -51,7 +51,7 @@ AdaBoost <- function(x, y, m = 10)
       }
       if (err > 0.5)
       {
-        err = 1 - 0.5
+        err = 1 - err
         flag.tmp = -1
       }
       if (err < tol)
@@ -128,13 +128,14 @@ testAdaBoost <- function()
   test.x = test.data$x
   test.y = test.data$y
   
-  m = seq(0, 400, by = 20)
+  m = seq(1, 400, by = 20)
   err = numeric(length(m))
   for (i in 1:length(m))
   {
     model = AdaBoost(x, y, m = m[i])
     res = table(test.y, predict(model, test.x))
     err[i] = (res[1, 2] + res[2, 1])/length(test.y)
+    cat(sprintf("epoch = %d, err = %f", i, err[i]))
   }
   return(err)
 }
