@@ -1054,7 +1054,7 @@ g_{im}=\Big[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \Big]_{f(x_i)=f_{m-1
 <p>也就是，用最小二乘对负梯度值(10.35)进行拟合。如10.9节提到的，对于最小二乘决策树生长(induction)存在快速算法。尽快(10.37)的解$\hat R_{jm}$会与求解(10.29)得到的$R_{jm}$不同，但一般而言它们已经足够近似来实现同样的目的。在任何情形下，向前逐步boosting过程，自上而下决策树生长(induction)，都是近似过程。当构造完树(10.37)，对应的每个区域的常数值由(10.30)给出。</p>
 <p>表10.2总结了通常使用的损失函数的梯度。对于平方误差损失，负梯度恰恰是普通的残差$-g_{im}=y_i-f_{m-1}(x_i)$，所以(10.37)等价于标准的最小二乘boosting。在绝对值损失下，负梯度为残差的符号，所以在每次迭代，(10.37)利用最小二乘对当前的残差的符号进行拟合。对于Huber M-回归，负梯度是这两者的综合（详见表10.2）。</p>
 <p><img alt="" src="../../img/10/tab10.2.png" /></p>
-<p>对于分类，损失函数是多项偏差</p>
+<p>对于分类，损失函数是多项式偏差</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -1072,12 +1072,30 @@ L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
 \end{align}
 </script>
 </p>
-<p>其中$p_k(x)$由(10.21)给出。尽管在每次迭代时，构造$K$个独立的树，但是它们通过式(10.21)关联起来。对于二值分类($K=2$)，仅仅需要一棵树。</p>
+<p>其中$p_k(x)$由(10.21)给出。尽管在每次迭代时，构造$K$个独立的树，但是它们通过式(10.21)关联起来。</p>
 <p>
 <script type="math/tex; mode=display">
 p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\qquad (10.21)
 </script>
 </p>
+<p>对于二值分类($K=2$)，仅仅需要一棵树。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>对于二值分类，多项式偏差简单化为logit损失函数
+考虑
+<script type="math/tex; mode=display">
+z = logit(p) = log\frac{p}{1-p}
+</script>
+我们有$p=\frac{1}{1+e^{-z}}$，则二项分布似然函数为
+<script type="math/tex; mode=display">
+f=p^y(1-p)^{1-y},\; y=0,1
+</script>
+其负对数似然为
+<script type="math/tex; mode=display">
+L(p, y) = -log(f)=-(y\mathrm{log}p+(1-y)\mathrm{log}(1-p))
+</script>
+也称为logit损失函数。</p>
+</div>
 <h2 id="boosting_2">梯度boosting的实现</h2>
 <p><img alt="" src="../../img/10/alg10.3.png" /></p>
 <p>上图中的算法10.3展示了用于回归的树的梯度boosting的通用算法。特定的算法可以通过插入不同的损失准则$L(y, f(x))$得到。算法第一行初始化为最优的常数模型，也就是单终止结点的树。第2(a)行的负梯度计算的组分被称为广义残差或伪残差，$r$。通常使用的损失函数的梯度已经总结在表10.2中。用于分类的算法是类似的。第2(a)-(d)行在第$m$次迭代重复$K$次，每次对每个类采用(10.38)计算负梯度。第3行的结果是$K$个不同的树的展开$f_{kM}(x), k=1,2,\ldots, K$。这通过(10.21)得到概率或者像(10.20)一样做分类。两个基本的调整参数为迭代次数$M$和每个组分树的大小$J_m,m=1,2\ldots,M$.</p>
