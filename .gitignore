@@ -6,3 +6,4 @@ site
 **/.Archive
 .Rproj.user
 */.Rhistory
+.ipynb_checkpoints/
