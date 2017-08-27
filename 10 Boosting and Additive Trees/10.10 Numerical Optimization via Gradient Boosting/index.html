@@ -977,27 +977,27 @@
 </tr>
 </tbody>
 </table>
-<p>采用任意可导损失准则的(10.29)的快速近似算法可以类别数值模拟导出。</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\Theta_m = \text{arg }\underset{\Thtea_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
+\hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
 </script>
 </p>
+<p>采用任意可导损失准则的(10.29)的快速近似算法可以类比数值模拟导出。</p>
 <p>在训练数据上用$f(x)$来预测$y$的损失为</p>
 <p>
 <script type="math/tex; mode=display">
 L(f) = \sum\limits_{i=1}^NL(y_i, f(x_i))\qquad (10.33)
 </script>
 </p>
-<p>目标是最小化关于$f$的函数$L(f)$，其中$f(x)$限定为树(10.28)的和。
+<p>目标是最小化关于$f$的函数$L(f)$，其中$f(x)$限定为树的和，即
 <script type="math/tex; mode=display">
 f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
 </script>
 </p>
-<p>忽略这个限定，最小化(10.33)可以看出数值优化</p>
+<p>忽略这个限定，最小化(10.33)可以看成数值优化</p>
 <p>
 <script type="math/tex; mode=display">
-\hat \mathbf f = \text{arg }\underset{\mathbf f}{min}L(\mathbf f)\qquad (10.34)
+\hat{\mathbf f} = \text{arg }\underset{\mathbf f}{min}L(\mathbf f)\qquad (10.34)
 </script>
 </p>
 <p>其中参数$\mathf f\in R^N$ 是在$N$个数据点$x_i$的近似函数值$f(x_i)$：</p>
