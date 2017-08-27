@@ -1094,7 +1094,12 @@ f=p^y(1-p)^{1-y},\; y=0,1
 <script type="math/tex; mode=display">
 L(p, y) = -log(f)=-(y\mathrm{log}p+(1-y)\mathrm{log}(1-p))
 </script>
-也称为logit损失函数。</p>
+也称为logit损失函数。
+logit损失函数的梯度为
+<script type="math/tex; mode=display">
+\frac{y-p}{p(1-p)}
+</script>
+</p>
 </div>
 <h2 id="boosting_2">梯度boosting的实现</h2>
 <p><img alt="" src="../../img/10/alg10.3.png" /></p>
