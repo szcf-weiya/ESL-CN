@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记">
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/15 Random Forests/15.1 Introduction/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>15.1 导言 - ESL CN</title>
+	<title>13.4 自适应的最近邻方法 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -739,37 +739,37 @@
         
             
 <li >
-    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/">13.1 导言</a>
+    <a href="../13.1 Introduction/">13.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.2 Prototype Methods/">13.2 原型方法</a>
+    <a href="../13.2 Prototype Methods/">13.2 原型方法</a>
 </li>
 
         
             
 <li >
-    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.3 k-Nearest-Neighbor Classifiers/">13.3 k最近邻分类器</a>
+    <a href="../13.3 k-Nearest-Neighbor Classifiers/">13.3 k最近邻分类器</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">13.4 自适应的最近邻方法</a>
 </li>
 
         
             
 <li >
-    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/">13.4 自适应的最近邻方法</a>
+    <a href="../13.5 Computational Considerations/">13.5 计算上的考虑</a>
 </li>
 
         
             
 <li >
-    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.5 Computational Considerations/">13.5 计算上的考虑</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../13 Prototype Methods and Nearest-Neighbors/Bibliographic Notes/">文献笔记</a>
+    <a href="../Bibliographic Notes/">文献笔记</a>
 </li>
 
         
@@ -810,20 +810,20 @@
     <ul class="dropdown-menu scrollable-menu">
         
             
-<li class="active">
-    <a href="./">15.1 导言</a>
+<li >
+    <a href="../../15 Random Forests/15.1 Introduction/">15.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../15.2 Definition of Random Forests/">15.2 随机森林的定义</a>
+    <a href="../../15 Random Forests/15.2 Definition of Random Forests/">15.2 随机森林的定义</a>
 </li>
 
         
             
 <li >
-    <a href="../15.3 Details of Random Forests/">15.3 随机森林的细节</a>
+    <a href="../../15 Random Forests/15.3 Details of Random Forests/">15.3 随机森林的细节</a>
 </li>
 
         
@@ -958,15 +958,15 @@
                 </li>
               -->
                 <li>
-                  <a href="https://szcf-weiya.github.io/ESL-CN/15 Random Forests/15.1 Introduction/#disqus_thread">0 Comments</a>
+                  <a href="https://szcf-weiya.github.io/ESL-CN/13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/#disqus_thread">0 Comments</a>
                 </li>
                 <li >
-                    <a rel="next" href="../../14 Unsupervised Learning/14.3 Cluster Analysis/">
+                    <a rel="next" href="../13.3 k-Nearest-Neighbor Classifiers/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../15.2 Definition of Random Forests/">
+                    <a rel="prev" href="../13.5 Computational Considerations/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -987,14 +987,18 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">导言</a></li>
+        <li class="main active"><a href="#134">13.4 自适应最近邻方法</a></li>
+        
+            <li><a href="#_1">例子</a></li>
+        
+            <li><a href="#_2">最近邻的全局维度降低</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">导言</h1>
+<h1 id="134">13.4 自适应最近邻方法</h1>
 <table>
 <thead>
 <tr>
@@ -1009,13 +1013,26 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-01-28</td>
+<td>2017-08-29</td>
 </tr>
 </tbody>
 </table>
-<p>8.7节中的bagging或者bootstrap aggregation是为了降低估计的预测函数方差的技巧。bagging似乎对于高方差、低偏差的过程表现得特别好，比如树。对于回归， 我们简单地对训练数据的bootstrap版本的进行多次同样的回归树，然后取结果的平均。对于分类，树的每个committee对预测的类别进行投票。</p>
-<p>第10章中的boosting一开始也是作为committee的方法提出来的，尽管不像bagging，weak learners的committee随着时间不断进化，并且成员投出带有权重的票。boosting似乎在大部分问题上占主导地位，而且成为更好的选择。</p>
-<p>随机森林（Breiman，2011）是bagging的本质修改版本，而且建了一个de-correlated树的集合，然后进行平均。在许多问题上，随机森林的表现与boosting的表现很相似，而且更加简单地进行训练和调参。结果，随机森林很流行，而且可以通过各种包来实现。</p>
+<p>当在高维特征空间中做最近邻分类时，最近邻的点可以非常远，导致出偏差，并且降低了分类的效果。</p>
+<p>为了定量化这一点，考虑在单位立方体$[-\frac{1}{2},\frac{1}{2}]^p$中均匀分布的数据点。令$R$为中心在原点的1-最近邻的半径。则</p>
+<p>
+<script type="math/tex; mode=display">
+\text{median(R)} = v_p^{-frac{1}{p}}(1-\frac{1}{2}^{1/N})^{1/p}\qquad (13.7)
+</script>
+</p>
+<p>其中$v_pr^p$是在$p$维空间半径为$r$的球的体积。图13.12显示了不同的训练样本大小和维度下半径的中位数。我们看到半径的中位数很快达到0.5，也就是到立方体的边的距离。</p>
+<p><img alt="" src="../../img/13/fig13.12.png" /></p>
+<p>这个问题我们可以怎么做呢？考虑图13.13的两个类别的情形。</p>
+<p><img alt="" src="../../img/13/fig13.12.png" /></p>
+<p>图中有两个特征，并且用圆形区域画出了查询点的最近邻。最近邻分类的隐含假设是类别概率在邻域内近似为常值，也因此简单的平均会得到不错的估计。然而，在这个例子中，只变化了水平方向上的类别概率。如果知道这些，我们将邻居拉伸为长方形区域。这会降低估计的偏差，同时方差不变。</p>
+<p>一般地，这导致了对最近邻分类中使用的度量的自适应更新，所以得到的邻域在类别不会改变太多的方向上进行了拉伸。在高维特征空间中，类别概率可能仅仅在一个低纬度的子空间中有所改变，因此自适应度量是很重要的优点。</p>
+<p>TODO</p>
+<h2 id="_1">例子</h2>
+<h2 id="_2">最近邻的全局维度降低</h2>
 
 <div id="disqus_thread"></div>
 <script>
@@ -1025,8 +1042,8 @@
  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
 
 var disqus_config = function () {
-    this.page.url = "https://szcf-weiya.github.io/ESL-CN/15 Random Forests/15.1 Introduction/";  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = "https://szcf-weiya.github.io/ESL-CN/15 Random Forests/15.1 Introduction/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.url = "https://szcf-weiya.github.io/ESL-CN/13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/";  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "https://szcf-weiya.github.io/ESL-CN/13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
