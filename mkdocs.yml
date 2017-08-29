@@ -134,6 +134,7 @@ pages:
       - 18.5 当特征不可用时的分类: '18 High-Dimensional Problems/18.5 Classification When Features are Unavailable.md'
       - 18.6 有监督的主成分: '18 High-Dimensional Problems/18.6 High-Dimensional Regression.md'
       - 18.7 特征评估和多重检验问题: '18 High-Dimensional Problems/18.7 Feature Assessment and the Multiple-Testing Problem.md'
+      - 文献笔记: '18 High-Dimensional Problems/Bioliographic Notes.md'
 
 site_name: 'ESL CN'
 
