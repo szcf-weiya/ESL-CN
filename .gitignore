@@ -5,5 +5,5 @@ site
 *.data
 **/.Archive
 .Rproj.user
-*/.Rhistory
+.Rhistory
 .ipynb_checkpoints/
