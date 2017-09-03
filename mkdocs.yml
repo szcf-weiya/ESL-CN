@@ -144,6 +144,14 @@ site_url: https://szcf-weiya.github.io/ESL-CN/
 
 repo_url: https://szcf-weiya.github.io
 
+url_en: https://stats.hohoweiya.xyz
+
+url_cn: https://blog.hohoweiya.xyz
+
+website_en: 英文博客
+
+website_cn: 中文随笔
+
 copyright: 'Copyright &copy; 2016-2017 weiya'
 
 markdown_extensions:
