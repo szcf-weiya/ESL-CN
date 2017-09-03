@@ -113,6 +113,7 @@ pages:
       - 14.1 导言: '14 Unsupervised Learning/14.1 Introduction.md'
       - 14.2 关联规则: '14 Unsupervised Learning/14.2 Association Rules.md'
       - 14.3 聚类分析: '14 Unsupervised Learning/14.3 Cluster Analysis.md'
+      - 14.4 '14 Unsupervised Learning/14.3 Cluster Analysis.md'
     - 15 随机森林:
       - 15.1 导言: '15 Random Forests/15.1 Introduction.md'
       - 15.2 随机森林的定义: '15 Random Forests/15.2 Definition of Random Forests.md'
