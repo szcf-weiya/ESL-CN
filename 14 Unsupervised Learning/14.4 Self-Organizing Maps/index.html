@@ -1023,15 +1023,7 @@
     
         <li class="main active"><a href="#_1">自组织图</a></li>
         
-            <li><a href="#initialize">initialize</a></li>
-        
-            <li><a href="#find-the-closest-prototype-to-x-in-euclidean-distance-in-rp">find the closest prototype to x in Euclidean distance in R^p</a></li>
-        
-            <li><a href="#calculate-the-distance-of-vector-to-a-matrix">calculate the distance of vector to a matrix</a></li>
-        
-            <li><a href="#initial-configuration">initial configuration</a></li>
-        
-            <li><a href="#_4">例子：文件组织与检索</a></li>
+            <li><a href="#_2">例子：文件组织与检索</a></li>
         
     
     </ul>
@@ -1076,104 +1068,20 @@ m_k\leftarrow m_k + \alpha h(\Vert \ell_j-\ell_k\Vert)(x_i-m_k)\qquad (14.47)
 其中邻居函数(neighborhood function)$h$会给距离$\ell_j$更近的$\ell_k$更多的权重。</p>
 <p>如果我们取足够小的距离$r$使得每个邻域只包含一个点，则丢失了原型之间的空间联系。在这种情形下，可以证明SOM算法是K均值聚类的online版本，并且最后用K均值对找到的局部最小值进行标准化。因为SOM是K均值聚类的约束版本，则检查约束在任意给定的问题中约束是否合理是很重要的。可以计算这两种方法的重构误差$\Vert x-m_j\Vert^2$，这需要对观测进行求和，于是就可以判断合理性。</p>
 <p>举个例子来说明，我们在三维空间中半径为1的半球体的表面附近生成90个数据点。数据点在各自的类中——红、绿和蓝——落在(0,1,0),(0,0,1)以及(1,0,0)附近。数据点显示在图14.15中了。</p>
-<p>可以利用如下R代码生成数据</p>
-<pre><code class="r">## center at (0, 0, 1)
-theta1 = runif(30, -pi/8, pi/8)
-phi1 = runif(30, 0, 2*pi)
-x1 = sin(theta1)*cos(phi1) + rnorm(30, 0, 0.6)
-y1 = sin(theta1)*sin(phi1) + rnorm(30, 0, 0.6)
-z1 = cos(theta1) + rnorm(30, 0, 0.6)
-
-## center at (1, 0, 0)
-theta2 = runif(30, pi/2-pi/4, pi/2+pi/4)
-phi2 = runif(30, -pi/4, pi/4)
-x2 = sin(theta2)*cos(phi2) + rnorm(30, 0, 0.6)
-y2 = sin(theta2)*sin(phi2) + rnorm(30, 0, 0.6)
-z2 = cos(theta2) + rnorm(30, 0, 0.6)
-
-## center at (0, 1, 0)
-theta3 = runif(30, pi/2-pi/4, pi/2 + pi/4)
-phi3 = runif(30, pi/2-pi/4, pi/2+pi/4)
-x3 = sin(theta3)*cos(phi3) + rnorm(30, 0, 0.6)
-y3 = sin(theta3)*sin(phi3) + rnorm(30, 0, 0.6)
-z3 = cos(theta3) + rnorm(30, 0, 0.6)
-</code></pre>
-
 <p><img alt="" src="../../img/14/fig14.15.png" /></p>
 <p>根据我们的设定，红色的簇比绿色和蓝色的簇更加紧凑（生成数据的细节将在练习14.5中给出。）使用了$5\times 5$的原型网格，初识网格大小为$R=2$；这意味着接近1/3的原型初始化时落在各自的邻域内。我们对数据集中的90个观测总共进行了40次的pass，并且让$r$和$\alpha$在3600次迭代中线性降低。</p>
 <p><img alt="" src="../../img/14/fig14.16.png" /></p>
 <p>在图14.16中原型用圆圈来表示，映射到每个原型的数据点随机画在对于的圆圈中。左图显示了初始的配置，而右图显示了最终的结果。这个算法能够成功地将类别分开，然而，红色类别的分离表明流形在自身有折叠（图14.17)。因为没有使用二维的距离，没有什么迹象表明SOM投射中关于红色簇比其它的簇更紧。</p>
+<p><img alt="" src="../../img/14/fig14.17.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
-<p>可以通过以下代码实现简单版本的SOM算法
-```r</p>
-<h2 id="_2"></h2>
-<h2 id="initialize">initialize</h2>
-<h2 id="_3"></h2>
-<p>q1 = q2 = 5 # K = 25
-x = c(x1, x2, x3)
-y = c(y1, y2, y3)
-z = c(z1, z2, z3)
-data = data.frame(x, y, z)
-idx = sample(90, 25)
-coor = data[idx, ]
-coor.grid = expand.grid(1:5, 1:5)</p>
-<h2 id="find-the-closest-prototype-to-x-in-euclidean-distance-in-rp">find the closest prototype to x in Euclidean distance in R^p</h2>
-<p>classify &lt;- function(x, prototype)
-{
-  d = apply(prototype, 1, function(y) sum((x-y)^2))
-  return(as.numeric(which.min(d)))
-}</p>
-<h2 id="calculate-the-distance-of-vector-to-a-matrix">calculate the distance of vector to a matrix</h2>
-<p>distance &lt;- function(x, m)
-{
-  res = apply(m, 1, function(y) sqrt(sum((x-y)^2)))
-  return(as.numeric(res))
-}
-plot.som &lt;- function(data, coor, iter)
-{
-  res = apply(data, 1, function(x) classify(x, coor))
-  res = res - 0.001 ## avoid divisible
-  res.x = floor(res/5)
-  res.y = res - res.x*5
-  res.x = res.x + 1 + runif(90, -0.3, 0.3) # avoid overlap
-  res.y = res.y + runif(90, -0.3, 0.3)
-  plot(res.x[1:30],  res.y[1:30], col = &ldquo;red&rdquo;, pch = 16, xlim = c(0.5, 5.5), ylim = c(0.5, 5.5), pty=&rdquo;s&rdquo;, xlab = NA, ylab = NA, main = paste0(&ldquo;iteration &ldquo;, iter))
-  points(res.x[31:60], res.y[31:60], col = &ldquo;green&rdquo;, pch = 16)
-  points(res.x[61:90], res.y[61:90], col = &ldquo;blue&rdquo;, pch = 16)
-  xy = expand.grid(1:5, 1:5)
-  symbols(xy[,1], xy[,2], circles = rep(0.45, nrow(xy)), add = T, inches = F)
-}</p>
-<h2 id="initial-configuration">initial configuration</h2>
-<p>png(&ldquo;iter_0.png&rdquo;)
-plot.som(data, coor, 0)
-dev.off()</p>
-<p>R = 2
-niter = 40
-for (iter in 1:niter)
-{
-  alpha = -1/niter<em>iter + 1
-  r = -1/niter</em>iter + 2
-  for (i in 1:90)
-  {
-    xi = data[i, ]
-    mj.idx = classify(xi, coor)
-    mj = coor.grid[mj.idx, ]
-    mk.idx = which(distance(mj, coor.grid) &lt;= r)
-    mk = coor.grid[mk.idx, ]
-    xi.m = matrix(rep(1, length(mk.idx),nrow = length(mk.idx))) %<em>% as.matrix(xi)
-    coor[mk.idx, ]= coor[mk.idx, ] + alpha</em>(xi.m - coor[mk.idx, ])
-  }
-  if (iter - 10*floor(iter/10) == 0)
-  {
-    png(paste0(&ldquo;iter_&rdquo;, iter, &ldquo;.png&rdquo;))
-    plot.som(data, coor, iter)
-    dev.off()
-  }
-}
-```</p>
+<p><a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/SOM">这里</a>有我自己实现该模拟的R代码，画出类似14.16的图如下
+<img alt="" src="https://github.com/szcf-weiya/ESL-CN/tree/master/code/SOM/iter_0.png" />
+<img alt="" src="https://github.com/szcf-weiya/ESL-CN/tree/master/code/SOM/iter_10.png" />
+<img alt="" src="https://github.com/szcf-weiya/ESL-CN/tree/master/code/SOM/iter_20.png" />
+<img alt="" src="https://github.com/szcf-weiya/ESL-CN/tree/master/code/SOM/iter_30.png" />
+<img alt="" src="https://github.com/szcf-weiya/ESL-CN/tree/master/code/SOM/iter_40.png" /></p>
 </div>
-<p><img alt="" src="../../img/14/fig14.17.png" /></p>
 <p>图14.18显示了重构误差，重构误差等于每个数据点距其原型的距离的平方的和。为了比较，我进行了有25个重心的K均值聚类，并且在图中用水平线表面其重构误差。我们可以看到SOM显著降低了误差，接近了K均值解的水平。这表明SOM使用的二维约束对于特定的数据集是合理的。</p>
 <p>在SOM的批量处理版本中，通过下式来更新$m_j$</p>
 <p>
@@ -1182,7 +1090,7 @@ m_j=\frac{\sum w_kx_k}{\sum w_k}\qquad (14.48)
 </script>
 </p>
 <p>上式是对$m_j$的映射的邻居$m_k$的点$x_k$进行求和。权重函数可能是长方形的，也就是，$m_k$的邻居都等于1，或者像之前一样随着距离$\Vert \ell_k-\ell_j\Vert$光滑下降。如果邻域选得足够小，使得它仅仅包含$m_k$，在长方形权重下，这退化为前面描述的$K$均值聚类。可以看成是主曲线和主曲面（将在14.5节中讨论）的离散版本。</p>
-<h2 id="_4">例子：文件组织与检索</h2>
+<h2 id="_2">例子：文件组织与检索</h2>
 <p>文件检索随着互联网以及Web的快速发展变得越来越重要，SOMs被证明是组织和索引大型的语料库的有用方法。这个例子取自WEBSOM的主页http://websom.hut.fi/ (Kohonen等人2000的工作)。图14.19展现了对12088篇新闻组<code>comp.ai.neural-nets</code>的文章进行SOM拟合的结果。标签是通过WEBSOM软件自动产生的，并且提供了结点的主要内容的指南。</p>
 <p><img alt="" src="../../img/14/fig14.19.png" /></p>
 <p>在像这样的应用中，文件需要预处理得到特征向量。构造了term-document的矩阵，其中每一行表示单篇的文章。每一行的值为预先定义的项的相对频率。这些项可以是一大套字典条目（50,000个单词），或者是更大的双字母组(单词对)的集合，或者是这些的子集。</p>
