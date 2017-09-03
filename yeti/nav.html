@@ -63,6 +63,7 @@
 
 
                 {% if config.repo_url %}
+                <!--
                 <li>
                     <a href="{{ config.repo_url }}">
                         {% if config.repo_name == 'GitHub' %}
@@ -73,11 +74,15 @@
                         {{ config.repo_name }}
                     </a>
                 </li>
+              -->
                 <li>
-                  <a class="navbar-brand" href="{{ config.url_en }}">{{ config.website_en }}</a>
+                  <a href="{{ config.repo_url }}"><i class="fa fa-github" aria-hidden="true"></i> {{ config.repo_name }}</a>
                 </li>
                 <li>
-                  <a class="navbar-brand" href="{{ config.url_cn }}">{{ config.website_cn }}</a>
+                  <a href="{{ config.url_en }}"><i class="fa fa-rss" aria-hidden="true"></i> {{ config.website_en }}</a>
+                </li>
+                <li>
+                  <a href="{{ config.url_cn }}"><i class="fa fa-pencil" aria-hidden="true"></i> {{ config.website_cn }}</a>
                 </li>
                 {% endif %}
             </ul>
