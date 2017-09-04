@@ -1,6 +1,6 @@
 # 文献笔记
 
-1. 关于聚类的有很多书，包括Hartigan (1975)， Gordon (1999) 和 Kaufman and Rousseeuw (1990)。
+1. 关于聚类的有很多书，包括Hartigan (1975)[^1]， Gordon (1999)[^2] 和 Kaufman and Rousseeuw (1990)。
 2. $K$均值聚类至少可以追溯至Lloyd (1957), Forgy (1965), Jancey (1966) 和 MacQueen (1967)。
 3. 在工程上的应用，特别是利用向量量化的图象压缩，可以在Gersho and Gray (1992)中找到。
 4. $k$中心过程在Kaufman and Rousseeuw (1990)中有讨论。
@@ -16,3 +16,6 @@
 13. Luxborg归功于Donath and Hoffman(1973)，以及Fiedler (1973)在该主题上更早的工作。
 14. 独立分量分析由Comon (1994)提出，Bell and Sejnowski (1995)继续后面的发展；14.7节是基于Hyvärinen and Oja (2000)。
 15. 投影寻踪由Friedman and Tukey (1974)提出，并在Huber (1985)有详细讨论。动态投影寻踪算法在GGobi中有实现。
+
+[^1]: Hartigan, J. A. (1975). Clustering Algorithms, Wiley, New York.
+[^2]: Gordon, A. (1999). Classification (2nd edition), Chapman and Hall/CRC Press, London.
