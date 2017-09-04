@@ -119,6 +119,8 @@ pages:
       - 14.7 独立分量分析和探索投射寻踪: '14 Unsupervised Learning/14.7 Independent Component Analysis and Exploratory Projection Pursuit.md'
       - 14.8 多维缩放: '14 Unsupervised Learning/14.8 Multidimensional Scaling.md'
       - 14.9 非线性降维和局部多维缩放: '14 Unsupervised Learning/14.9 Nonlinear Dimension Reduction and Local Multidimensional Scaling.md'
+      - 14.10 谷歌的PageRank算法: '14 Unsupervised Learning/14.10 The Google PageRank Algorithm.md'
+      - 文献笔记: '14 Unsupervised Learning/Bibliographic Notes.md'
 
     - 15 随机森林:
       - 15.1 导言: '15 Random Forests/15.1 Introduction.md'
