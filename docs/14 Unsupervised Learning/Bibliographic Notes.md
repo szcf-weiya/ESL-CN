@@ -1,5 +1,11 @@
 # 文献笔记
 
+| 原文   | [The Elements of Statistical Learning](../book/The Elements of Statistical Learning.pdf) |
+| ---- | ---------------------------------------- |
+| 翻译   | szcf-weiya                               |
+| 时间   | 2017-09-04                   |
+
+
 1. 关于聚类的有很多书，包括Hartigan (1975)[^1]， Gordon (1999)[^2] 和 Kaufman and Rousseeuw (1990)[^3]。
 2. $K$均值聚类至少可以追溯至Lloyd (1957)[^4], Forgy (1965)[^5], Jancey (1966)[^6] 和 MacQueen (1967)[^7]。
 3. 在工程上的应用，特别是利用向量量化的图象压缩，可以在Gersho and Gray (1992)[^8]中找到。
