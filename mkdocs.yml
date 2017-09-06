@@ -89,6 +89,7 @@ pages:
       - 10.8 垃圾邮件的例子: '10 Boosting and Additive Trees/10.8 Spam Data.md'
       - 10.9 boosting树: '10 Boosting and Additive Trees/10.9 Boosting Trees.md'
       - 10.10 利用梯度boosting的数值优化: '10 Boosting and Additive Trees/10.10 Numerical Optimization via Gradient Boosting.md'
+      - 文献笔记: '10 Boosting and Additive Trees/Bibliographic Notes.md'
 
 
     - 11 神经网络:
