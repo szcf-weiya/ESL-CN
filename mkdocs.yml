@@ -60,6 +60,7 @@ pages:
       - 7.11 自助法: '07 Model Assessment and Selection/7.11 Bootstrap Methods.md'
       - 7.12 条件测试误差或期望测试误差: '07 Model Assessment and Selection/7.12 Conditional or Expected Test Error.md'
       - 文献笔记: '07 Model Assessment and Selection/Bibliographic Notes.md'
+      
     - 8 模型推断和平均:
       - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
       - 8.2 自助法和最大似然法: '08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods.md'
@@ -69,7 +70,7 @@ pages:
       - 8.6 MCMC向后采样: '08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior.md'
       - 8.7 袋装法: '08 Model Inference and Averaging/8.7 Bagging.md'
       - 文献笔记: '08 Model Inference and Averaging/Bibliographic Notes.md'
-      
+
     - 9 增广模型，树，以及相关方法:
       - 9.0 导言: '09 Additive Models, Trees, and Related Methods/9.0 Introduction.md'
       - 9.1 广义加性模型: '09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models.md'
