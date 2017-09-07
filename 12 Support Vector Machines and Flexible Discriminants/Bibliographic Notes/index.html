@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记">
         
-        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/">
+        <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes/">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>4.2 指示矩阵的线性回归 - ESL CN</title>
+	<title>文献笔记 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -90,7 +90,7 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">上篇 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -263,31 +263,31 @@
         
             
 <li >
-    <a href="../4.1%20Introduction/">4.1 导言</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">4.2 指示矩阵的线性回归</a>
+    <a href="../../04%20Linear%20Methods%20for%20Classification/4.1%20Introduction/">4.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../4.3%20Linear%20Discriminant%20Analysis/">4.3 线性判别分析</a>
+    <a href="../../04%20Linear%20Methods%20for%20Classification/4.2%20Linear%20Regression%20of%20an%20Indicator%20Matrix/">4.2 指示矩阵的线性回归</a>
 </li>
 
         
             
 <li >
-    <a href="../4.4%20Logistic%20Regression/">4.4 逻辑斯蒂回归</a>
+    <a href="../../04%20Linear%20Methods%20for%20Classification/4.3%20Linear%20Discriminant%20Analysis/">4.3 线性判别分析</a>
 </li>
 
         
             
 <li >
-    <a href="../4.5%20Separating%20Hyperplanes/">4.5 分离超平面</a>
+    <a href="../../04%20Linear%20Methods%20for%20Classification/4.4%20Logistic%20Regression/">4.4 逻辑斯蒂回归</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../04%20Linear%20Methods%20for%20Classification/4.5%20Separating%20Hyperplanes/">4.5 分离超平面</a>
 </li>
 
         
@@ -384,7 +384,7 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">中篇 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -722,19 +722,19 @@
         
             
 <li >
-    <a href="../../12%20Support%20Vector%20Machines%20and%20Flexible%20Discriminants/12.1%20Introduction/">12.1 导言</a>
+    <a href="../12.1%20Introduction/">12.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../12%20Support%20Vector%20Machines%20and%20Flexible%20Discriminants/12.2%20The%20Support%20Vector%20Classifier/">12.2 支持向量分类器</a>
+    <a href="../12.2%20The%20Support%20Vector%20Classifier/">12.2 支持向量分类器</a>
 </li>
 
         
             
-<li >
-    <a href="../../12%20Support%20Vector%20Machines%20and%20Flexible%20Discriminants/Bibliographic%20Notes/">文献笔记</a>
+<li class="active">
+    <a href="./">文献笔记</a>
 </li>
 
         
@@ -1037,15 +1037,15 @@
                 </li>
               -->
                 <li>
-                  <a href="https://szcf-weiya.github.io/ESL-CN/04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/#disqus_thread">0 Comments</a>
+                  <a href="https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes/#disqus_thread">0 Comments</a>
                 </li>
                 <li >
-                    <a rel="next" href="../4.1%20Introduction/">
+                    <a rel="next" href="../12.2%20The%20Support%20Vector%20Classifier/">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../4.3%20Linear%20Discriminant%20Analysis/">
+                    <a rel="prev" href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -1081,14 +1081,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">指示矩阵的线性回归</a></li>
+        <li class="main active"><a href="#_1">文献笔记</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">指示矩阵的线性回归</h1>
+<h1 id="_1">文献笔记</h1>
 <table>
 <thead>
 <tr>
@@ -1103,58 +1103,64 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-12-06</td>
+<td>2017-09-06</td>
 </tr>
 </tbody>
 </table>
-<p>这里每个类别型响应变量通过一个指示变量来编码。因此如果$\cal G$ 有$K$个类别，则有$K$个指示变量$Y_k,k=1,\ldots,K$，若$G=k,Y_k=1$,否则$Y_k=0$。用向量$Y=(Y_1,\ldots,Y_K)$来表示它们, 加上以及$N$个训练实例组成了$N\times K$的指示变量响应矩阵（indicator response matrix）$\mathbf Y$。 $\mathbf Y$其中的元素由0和1组成，每一行只含有一个1.我们对于$\mathbf Y$的每一列同时用线性回归模型做拟合，拟合值由下式给出</p>
-<p>
-<script type="math/tex; mode=display">
-\mathbf{ \hat Y = {X(X^TX)^{-1}X^TY}} \qquad (4.3)
-</script>
-</p>
-<p>第三章给出了线性回归的更多细节。注意到我们对于每个预测变量的列$\mathbf y_k$都有一个系数向量，因此有一个$(p+1)\times K$的系数矩阵$\mathbf{\hat B=(X^TX)^{-1}X^TY}$.这里$\mathbf X$是有$p+1$列的模型矩阵，它对应$p$个输入，以及一个截距项1.</p>
-<p>一个输入为$x$的观测按下列步骤进行分类。</p>
-<ul>
-<li>计算输出的拟合值$\hat f(x)=[(1,x)\mathbf{\hat B}]^T$，这是一个K维向量。</li>
-<li>确定最大的组分从而进行分类</li>
-</ul>
-<p>
-<script type="math/tex; mode=display">
-\hat G(x)=argmax_{k\in\cal G}\hat f_k(x)\qquad (4.4)
-</script>
-</p>
-<p>这种方式的理论根据是什么？更加正式的理由是把回归看成条件期望的估计。对于随机变量$Y_k$， $E(Y_k\mid X=x)=Pr(G=k\mid X=x)$, 则每个随机变量 $Y_k$的条件期望似乎是一个明智的选择。真实问题是，条件期望的近似除了线性回归模型还可以达到什么程度？或者说，$\hat f_k(x)$是否是后验概率$Pr(G=k\mid X=x)$的合理估计，更重要地，这是否有影响？</p>
-<p>可以很直接地证明对于任意$x$,只要在模型中有截距（即$\mathbf X$的元素为1的列）,$\sum_{k\in\cal G}\hat f_k(x)=1$。然而，$\hat f_k(x)$可以为负数或者比1大，而且事实上确实是这样。这是线性回归的结果（<strong>怎么理解rigid nature</strong>），特别是我们在训练数据之外做预测。这些变化不能保证这个方法起作用，事实上在许多问题上它给出和用于分类的标准的线性方法类似的结果。如果我们允许在输入的基展开$h(X)$上做线性回归，这个方法可以导致概率的一致估计。当训练集的规模$N$变大时，我们逐步加入更多的基元素使得在这些基函数的线性回归达到条件期望。我们将在第5章中讨论。</p>
-<p>一个更简单的看法是对每个类别构造目标$t_k$，其中$t_k$是$K\times K$单位矩阵的第$k$列。我们的预测问题是对一个观测尝试并且再生出合适的目标。和之前的编码一样，第$i$个观测的响应向量$y_i$（$\mathbf Y$的第$i$行）当$g_i=k$时，$y_i=t_k.$我们可能通过最小二乘法来拟合线性模型
-<script type="math/tex; mode=display">
-\underset{B}{min}\sum\limits_{i=1}^N\Vert y_i-[(1,x_i)\mathbf B]^T\Vert^2\qquad(4.5)
-</script>
-这个准则是从它们目标得出的拟合向量的欧几里得距离平方的和。一个新的观测通过计算它们的拟合向量$\hat f(x)$从而把它分到最近的目标集：
-<script type="math/tex; mode=display">
-\hat G(x)=\underset{k}{argmin}\Vert \hat f(x)-t_k\Vert^2\qquad (4.6)
-</script>
-这恰好与之前的方式相同：</p>
-<ul>
-<li>平方和准则恰巧是多重响应变量线性回归的准则，仅仅有细微的不同。因为二范数自身也是一个平方和，其组成成份可以分解然后重排列成对于每个元素的分离的线性模型。注意到这仅仅是可能的，因为在模型中没有办法将不同的响应变量结合在一起。</li>
-<li>最近目标分类准则（4.6）可以很简单地发现它与（4.4）的最大拟合成分准则是一样的，但是需要要求拟合值的和为1.</li>
-</ul>
-<p><img alt="" src="../../img/04/fig4.2.png" /></p>
-<p>图4.2：这些数据来自$R^2$的三个类别而且很简单地通过线性判别边界分开。右图显示了通过线性判别分析找到的边界。左图显示了通过对指示响应变量的线性回归找到的边界。中间的类别完全被掩盖掉了（不是主导成分）。</p>
-<p>当类别的数目$K\ge 3$时候回归方法有个很严重的问题，特别是当$K$很大时很常见。由于回归模型的刚性性质，类别可以被其他的掩盖掉（masked）。图4.2显示了当$K=3$时的一个极端情形。这三个类别可以用线性判别边界完美地分离开，然而线性回归完全失去了中间这一类。</p>
-<p>在图4.3中我们将数据投影到连接着三个形心的直线上（这种情况下在垂直方向上没有信息），我们已经包含并且对三个响应变量进行了编码$Y_1,Y_2$和$Y_3$.包含三条回归直线（左图），而且我们看到这条直线对应中间的类别是水平的而且它的拟合值都不显著！因此，类别2的观测值要么被分到类别1要么是类别3.右图采用二次回归而不是线性回归。对于这个简单的例子二次而不是线性拟合（至少对于中间的类别）会解决这个问题。然而，可以看到如果有四个而不是三个类别像这样成线性二次不会充分下降，而且三次也同样需要。一个松弛但是一般的规则是如果排列着$K\ge 3$个类别，则可能需要$K-1$阶多项式解决这个问题。同样注意到这些是通过形心派生的方向上的多项式，可以有任意的原点。所以在$p$维输入空间中，一般需要$K-1$阶、$O(p^{K-1})$的多项式和交叉积来解决这种极坏的情形。</p>
-<p><img alt="" src="../../img/04/fig4.3.png" /></p>
-<p>图4.3. $R$中对于含三个类别的问题的线性回归发生掩盖的影响。在坐标轴上的rug plot指示了每个观测值的位置以及类别关系。在每个面板上的三条曲线是根据三个类别的指示变量回归的拟合；举个例子，对于蓝色的类别，对于蓝色的观测值$y_{blue}=1$，对于绿色和黄色的观测值为0.拟合分别是线性的和二次的。每张图像的上方都是训练误差率。对于此问题，Bayes误差率为0.025，这也是LDA的误差率。</p>
-<blockquote>
-<p><strong>weiya 注：</strong></p>
-<p>rug plot</p>
-<p>在R语言中 rug 是在坐标轴上标出元素出现的频数。出现一次，就会画一个小竖杠。从rug的疏密可以看出变量是什么地方出现的次数多，什么地方出现的次数少。</p>
-</blockquote>
-<p>这个例子是很极端的，但是对于大$K$和小$p$这些掩盖很自然地会发生。作为一个更现实的图示，图4.4是对于元音识别问题将训练数据投射到含有有用信息的二维子空间上。在$p=10$维空间中有$K=11$个类别。这是一个很复杂的分类问题，并且最好的方法在测试集上达到40%的误差。这里的要点在表4.1中有总结；线性回归误差率为67%，而与其很相关的线性判别分析误差率为56%。在这种情形下掩盖产生了破坏。而本章中所有其他方法也都是基于关于$x$的线性函数，它们以这种方式使用赖避免掩盖问题。</p>
-<p><img alt="" src="../../img/04/fig4.4.png" /></p>
-<p>图4.4. 元音训练数据的二维图。这里有11个类别，$X\in R^{10}$，这是关于一个LDA模型最好的观察（4.3.3节）。颜色深的圆圈是每个类的投影均值向量，这些类的重叠度是很高的。</p>
-<p><img alt="" src="../../img/04/tab4.1.png" /></p>
-<p>表4.1. 在元音数据上运用一系列不同的线性方法得到的训练和测试误差率。在10维空间内有11个类，其中3个维度可以解释90%的方差（通过主成分分析）。我们看到线性回归被掩盖破坏了，测试误差比训练误差提高了10%。</p>
+<p>支持向量机背后的理论归功于Vapnik并且在Vapnik (1996)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>中进行了描述。有关SVM的新兴文献、由Alex Smola 和 Bernhard Scholkopf创造并维护的在线文献，可以在下面的网站中找到</p>
+<p>http://www.kernel-machines.org/</p>
+<p>我们的处理是基于Wahba et al. (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>和Evgeniou et al. (2000)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>,以及Burges (Burges, 1998)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>的教程。</p>
+<p>线性判别分析归功于Fisher (1936)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 和 Rao (1973)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>。其与最优得分的联系至少可以追溯到Breiman and Ihaka (1984)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>，以及Fisher (1936)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>中的一种简单形式。其与对应分析(Greenacre, 1984)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>有很强的关联。灵活的、带惩罚的以及混合判别分析的描述是取自Hastie et al. (1994)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>, Hastie et al. (1995)<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup> 以及 Hastie and Tibshirani (1996b)<sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup>, Hastie et al. (1998)<sup id="fnref:13"><a class="footnote-ref" href="#fn:13" rel="footnote">13</a></sup>对这三者进行了总结；也可以参见Ripley (1996)<sup id="fnref:14"><a class="footnote-ref" href="#fn:14" rel="footnote">14</a></sup>。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Vapnik, V. (1996). The Nature of Statistical Learning Theory, Springer,
+New York.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Wahba, G., Lin, Y. and Zhang, H. (2000). GACV for support vector machines, in A. Smola, P. Bartlett, B. Sch¨olkopf and D. Schuurmans (eds), Advances in Large Margin Classifiers, MIT Press, Cambridge, MA., pp. 297–311.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Evgeniou, T., Pontil, M. and Poggio, T. (2000). Regularization networks and support vector machines, Advances in Computational Mathematics 13(1): 1–50.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Burges, C. (1998). A tutorial on support vector machines for pattern recognition, Knowledge Discovery and Data Mining 2(2): 121–167.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Fisher, R. A. (1936). The use of multiple measurements in taxonomic problems, Eugen. 7: 179–188.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Rao, C. R. (1973). Linear Statistical Inference and Its Applications, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Breiman, L. and Ihaka, R. (1984). Nonlinear discriminant analysis via
+scaling and ACE, Technical report, University of California, Berkeley.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Fisher, R. A. (1936). The use of multiple measurements in taxonomic
+problems, Eugen. 7: 179–188.&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Greenacre, M. (1984). Theory and Applications of Correspondence Analysis, Academic Press, New York.&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Hastie, T., Tibshirani, R. and Buja, A. (1994). Flexible discriminant analysis by optimal scoring, Journal of the American Statistical Association 89: 1255–1270.&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Hastie, T., Buja, A. and Tibshirani, R. (1995). Penalized discriminant analysis, Annals of Statistics 23: 73–102.&#160;<a class="footnote-backref" href="#fnref:11" rev="footnote" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>Hastie, T. and Tibshirani, R. (1996b). Discriminant analysis by Gaussian mixtures, Journal of the Royal Statistical Society Series B. 58: 155–176.&#160;<a class="footnote-backref" href="#fnref:12" rev="footnote" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>Hastie, T. and Tibshirani, R. (1998). Classification by pairwise coupling, Annals of Statistics 26(2): 451–471.&#160;<a class="footnote-backref" href="#fnref:13" rev="footnote" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>Ripley, B. D. (1996). Pattern Recognition and Neural Networks, Cambridge University Press.&#160;<a class="footnote-backref" href="#fnref:14" rev="footnote" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 <div id="disqus_thread"></div>
 <script>
@@ -1164,8 +1170,8 @@
  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
 
 var disqus_config = function () {
-    this.page.url = "https://szcf-weiya.github.io/ESL-CN/04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/";  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = "https://szcf-weiya.github.io/ESL-CN/04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.url = "https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes/";  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "https://szcf-weiya.github.io/ESL-CN/12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes/"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
