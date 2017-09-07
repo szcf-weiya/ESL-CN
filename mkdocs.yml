@@ -101,6 +101,7 @@ pages:
       - 11.4 拟合神经网络: '11 Neural Networks/11.4 Fitting Neural Networks.md'
       - 11.5 训练神经网络的一些问题: '11 Neural Networks/11.5 Some Issues in Training Neural Networks.md'
       - 11.6 模拟数据的例子: '11 Neural Networks/11.6 Example of Simulated Data.md'
+      - 文献笔记: '11 Neural Networks\Bibliographic Notes.md'
     - 12 支持向量机和灵活的判别方法:
       - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
       - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md'
