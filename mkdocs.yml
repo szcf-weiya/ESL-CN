@@ -60,7 +60,7 @@ pages:
       - 7.11 自助法: '07 Model Assessment and Selection/7.11 Bootstrap Methods.md'
       - 7.12 条件测试误差或期望测试误差: '07 Model Assessment and Selection/7.12 Conditional or Expected Test Error.md'
       - 文献笔记: '07 Model Assessment and Selection/Bibliographic Notes.md'
-      
+
     - 8 模型推断和平均:
       - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
       - 8.2 自助法和最大似然法: '08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods.md'
@@ -93,7 +93,6 @@ pages:
       - 10.9 boosting树: '10 Boosting and Additive Trees/10.9 Boosting Trees.md'
       - 10.10 利用梯度boosting的数值优化: '10 Boosting and Additive Trees/10.10 Numerical Optimization via Gradient Boosting.md'
       - 文献笔记: '10 Boosting and Additive Trees/Bibliographic Notes.md'
-
 
     - 11 神经网络:
       - 11.1 导言: '11 Neural Networks/11.1 Introduction.md'
