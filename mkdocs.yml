@@ -81,6 +81,7 @@ pages:
       - 9.6 缺失数据: '09 Additive Models, Trees, and Related Methods/9.6 Missing Data.md'
       - 9.7 计算上的考虑: '09 Additive Models, Trees, and Related Methods/9.7 Computational Considerations.md'
       - 文献笔记: '09 Additive Models, Trees, and Related Methods/Bibliographic Notes.md'
+
     - 10 增强和加性树:
       - 10.1 增强方法: '10 Boosting and Additive Trees/10.1 Boosting Methods.md'
       - 10.2 boosting拟合可加模型:  '10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model.md'
@@ -114,6 +115,7 @@ pages:
       - 13.4 自适应的最近邻方法: '13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods.md'
       - 13.5 计算上的考虑: '13 Prototype Methods and Nearest-Neighbors/13.5 Computational Considerations.md'
       - 文献笔记: '13 Prototype Methods and Nearest-Neighbors/Bibliographic Notes.md'
+
     - 14 非监督学习:
       - 14.1 导言: '14 Unsupervised Learning/14.1 Introduction.md'
       - 14.2 关联规则: '14 Unsupervised Learning/14.2 Association Rules.md'
@@ -132,15 +134,18 @@ pages:
       - 15.2 随机森林的定义: '15 Random Forests/15.2 Definition of Random Forests.md'
       - 15.3 随机森林的细节: '15 Random Forests/15.3 Details of Random Forests.md'
       - 文献笔记: '15 Random Forests/Bibliographic Notes.md'
+
     - 16 增强学习:
       - 16.1 导言: '16 Ensemble Learning/16.1 Introduction.md'
       - 16.2 增强和正则路径: '16 Ensemble Learning/16.2 Boosting and Regularization Paths.md'
+
     - 17 无向图模型:
       - 17.1 导言: '17 Undirected Graphical Models/17.1 Introduction.md'
       - 17.2 马尔科夫图及其性质: '17 Undirected Graphical Models/17.2 Markov Graphs and Their Properties.md'
       - 17.3 连续变量的无向图模型: '17 Undirected Graphical Models/17.3 Undirected Graphical Models for Continuous Variables.md'
       - 17.4 离散变量的无向图模型: '17 Undirected Graphical Models/17.4 Undirected Graphical Models for Discrete Variables.md'
       - 文献笔记: '17 Undirected Graphical Models/Bibliographic Notes.md'
+
     - 18 高维问题:
       - 18.1 当p大于N: '18 High-Dimensional Problems/18.1 When p is Much Bigger than N.md'
       - 18.2 对角线性判别分析和最近收缩重心: '18 High-Dimensional Problems/18.2 Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids.md'
