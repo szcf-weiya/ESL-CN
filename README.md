@@ -11,9 +11,10 @@ The Elements of Statistical Learning (ESL)的中文翻译及其代码实现。
 6. [RBM](code/rbm)，或者可以查看 [Jupyter Notebook](http://nbviewer.jupyter.org/github/szcf-weiya/ESL-CN/blob/master/code/rbm/RBM.ipynb)
 
 ## 文献统计
-|--|--|--|--|--|--|
-|chap| AOS   | JASA  |  JRSS | BKA| percentage|
-|18 | 1| 3 |4| 0| 8/21|
+| Chap | AOS  | JASA | JRSS | BKA  | percentage |
+| ---- | ---- | ---- | ---- | ---- | ---------- |
+| 18   | 1    | 3    | 4    | 0    | 8/21       |
+| ---- | ---- | ---- | ---- | ---- | ----       |
 
 <!--
 ## 进度
