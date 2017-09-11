@@ -1160,7 +1160,7 @@
 <p>其中$\mathbf W$是$N\times r$，$\mathbf H$是$r\times p, r\le max(N,p)$的。我们假设$x_{ij}, w_{ik}, h_{kj}\ge 0$。</p>
 <p>通过最大化下式来确定$\mathbf W$ 和$\mathbf H$
 <script type="math/tex; mode=display">
-L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\limits_{j=1}^p[x_{ij}log(\mathbf {WH}_{ij}-（\mathbf{WH})_{ij})]\qquad (14.73)
+L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}log(\mathbf {WH}_{ij}-（\mathbf{WH})_{ij})]\qquad (14.73)
 </script>
 </p>
 <p>这是某模型的对数似然，模型中$x_{ij}$服从均值为$(\mathbf{WH}_{ij})$的Poisson分布——这个模型对于非负数据是合理的。</p>
