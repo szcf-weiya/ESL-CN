@@ -1261,7 +1261,7 @@ Cov(e)=diag(\sigma_1^2,\cdots,\sigma^2_n)
 有<strong>加权最小二乘估计(WLSE)</strong></p>
 </div>
 <p>​</p>
-<p>等式（6.8）给出了局部线性回归估计的显式表达，式（6.9）强调了估计关于$y_i$为线性的（$l_i(x_0)$不涉及$\mathbf y$）。这些权重$l_i(x_0)$结合了核$K_\lambda(x_0,\cdot)$和最小二乘估计，并且有时称作相等核（equivalent kernel）。图6.4说明了局部线性回归在相等核上的影响。从历史上看，Nadaraya–Watson中的偏差和其他局部平均核方法通过修改这个核而改正过来。这些修改基于理论仅仅的均方误差的考虑。局部线性回归自动地修改核将偏差矫正正好为一阶，这是被称为自动核作品(automatic kernel carpentry)的现象。考虑下面$E\hat f(x_0)$的展开，采用局部回归的线性和真实函数$f$在$x_0$处的展开，
+<p>等式（6.8）给出了局部线性回归估计的显式表达，式（6.9）强调了估计关于$y_i$为线性的（$l_i(x_0)$不涉及$\mathbf y$）。这些权重$l_i(x_0)$结合了核$K_\lambda(x_0,\cdot)$和最小二乘估计，并且有时称作相等核（equivalent kernel）。图6.4说明了局部线性回归在相等核上的影响。从历史上看，Nadaraya–Watson和其他局部平均核方法中的偏差是通过修改这个核进行矫正的。这些修改基于理论仅仅的均方误差的考虑。局部线性回归自动地修改核将偏差矫正正好为一阶，这是被称为自动核作品(automatic kernel carpentry)的现象。考虑下面$E\hat f(x_0)$的展开，采用局部回归的线性和真实函数$f$在$x_0$处的展开，
   <script type="math/tex; mode=display">
   \begin{align}
   E\hat f(x_0)&=\sum\limits_{i=1}^Nl_i(x_0)f(x_i)\\
@@ -1274,7 +1274,7 @@ Cov(e)=diag(\sigma_1^2,\cdots,\sigma^2_n)
 <p>图6.4. 绿色点显示了局部回归的相等核。这是$\hat f(x_0)=\sum_{i=1}^Nl_i(x_0)y_i$中的系数，是关于对应$x_i$的图像。为了展示的目的，这些已经进行了缩放，因为实际上它们相加等于1。因为黄色阴影区域是Nadaraya–Watson局部平均的（缩放的）相等核，所以我们看到局部回归是怎样自动修改权重核来纠正由于光滑窗口的不对称窗口的偏差。</p>
 </blockquote>
 <p>## 局部多项式回归</p>
-<p>为什么在局部线性拟合处停下？我们可以拟合任意阶$d$的局部多项式拟合，
+<p>为什么止步于局部线性拟合处？其实我们可以拟合任意阶$d$的局部多项式拟合，
   <script type="math/tex; mode=display">
   \underset{\alpha(x_0),\beta_j(x_0),j=1,\ldots,d}{min}\sum\limits_{i=1}^NK_\lambda(x_0,x_i)\Big[y_i-\alpha(x_0)-\sum\limits_{j=1}^d\beta_j(x_0)x_i^j\Big]\qquad (6.11)
   </script>
@@ -1293,7 +1293,7 @@ Cov(e)=diag(\sigma_1^2,\cdots,\sigma^2_n)
 <blockquote>
 <p>图6.6. 对于度量窗口宽度（$\lambda=0.2$）的三次立方核方差函数$\Vert l(x)\Vert^2$，局部常值，线性和方差回归的方差函数$\Vert l(x)\Vert^2$。</p>
 </blockquote>
-<p>尽管这对修补可能会有帮助，在边界处采用局部线性拟合然后在内部采用局部二次拟合，但是我们不推荐这种策略。通常这个应用规定了拟合的阶数。举个例子，如果我们对向外推断感兴趣，则我们对边界更感兴趣，并且局部线性拟合或许更可靠。</p>
+<p>尽管这对修补可能会有帮助，在边界处采用局部线性拟合然后在内部采用局部二次拟合，但是我们不推荐这种策略。通常这个应用规定了拟合的阶数。举个例子，如果我们关心向外推断(extrapolation)，则我们对边界更感兴趣，并且局部线性拟合或许更可靠。</p>
 
 <div id="disqus_thread"></div>
 <script>
