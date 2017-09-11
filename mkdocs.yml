@@ -26,20 +26,20 @@ pages:
       - 3.6 选择和收缩方法的比较: '03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods.md'
       - 3.7 多重输出的收缩和选择: '03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection.md'
       - 3.8 Lasso和相关路径算法的补充: '03 Linear Methods for Regression/3.8 More on the Lasso and Related Path Algorithms.md'
-      - 文献笔记: '03 Linear Methods for Regression\Bibliographic Notes.md'
+      - 文献笔记: '03 Linear Methods for Regression/Bibliographic Notes.md'
     - 4 分类的线性方法:
       - 4.1 导言: '04 Linear Methods for Classification/4.1 Introduction.md'
       - 4.2 指示矩阵的线性回归: '04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix.md'
       - 4.3 线性判别分析: '04 Linear Methods for Classification/4.3 Linear Discriminant Analysis.md'
       - 4.4 逻辑斯蒂回归: '04 Linear Methods for Classification/4.4 Logistic Regression.md'
       - 4.5 分离超平面: '04 Linear Methods for Classification/4.5 Separating Hyperplanes.md'
-      - 文献笔记: '04 Linear Methods for Classification\Bibliographic Notes.md'
+      - 文献笔记: '04 Linear Methods for Classification/Bibliographic Notes.md'
     - 5 基展开和正规化:
       - 5.1 导言: '05 Basis Expansions and Regularization/5.1 Introduction.md'
       - 5.2 分段多项式和样条: '05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines.md'
       - 5.3 滤波和特征提取: '05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction.md'
       - 5.4 光滑样条: '05 Basis Expansions and Regularization/5.4 Smoothing Splines.md'
-      - 文献笔记: '05 Basis Expansions and Regularization\Bibliographic Notes.md'
+      - 文献笔记: '05 Basis Expansions and Regularization/Bibliographic Notes.md'
     - 6 核光滑方法:
       - 6.0 导言: '06 Kernel Smoothing Methods/6.0 Introduction.md'
       - 6.1 一维核光滑器: '06 Kernel Smoothing Methods/6.1 One-Dimensional Kernel Smoothers.md'
@@ -48,8 +48,8 @@ pages:
       - 6.4 $R^p$中的结构化局部回归模型: '06 Kernel Smoothing Methods/6.4 Structured Local Regression Models in R^p.md'
       - 6.5 局部似然和其他模型: '06 Kernel Smoothing Methods/6.5 Local Likelihood and Other Models.md'
       - 6.6 核密度估计和分类: '06 Kernel Smoothing Methods/6.6 Kernel Density Estimation and Classification.md'
-      - 6.7 径向基函数和核: '06 Kernel Smoothing Methods\6.7 Radial Basis Functions and Kernels.md'
-      - 文献笔记: '06 Kernel Smoothing Methods\Bibliographic Notes.md'
+      - 6.7 径向基函数和核: '06 Kernel Smoothing Methods/6.7 Radial Basis Functions and Kernels.md'
+      - 文献笔记: '06 Kernel Smoothing Methods/Bibliographic Notes.md'
   - 中篇:
     - 7 模型评估及选择:
       - 7.1 导言: '07 Model Assessment and Selection/7.1 Introduction.md'
@@ -107,12 +107,12 @@ pages:
       - 11.4 拟合神经网络: '11 Neural Networks/11.4 Fitting Neural Networks.md'
       - 11.5 训练神经网络的一些问题: '11 Neural Networks/11.5 Some Issues in Training Neural Networks.md'
       - 11.6 模拟数据的例子: '11 Neural Networks/11.6 Example of Simulated Data.md'
-      - 文献笔记: '11 Neural Networks\Bibliographic Notes.md'
+      - 文献笔记: '11 Neural Networks/Bibliographic Notes.md'
 
     - 12 支持向量机和灵活的判别方法:
       - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
       - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md'
-      - 文献笔记: '12 Support Vector Machines and Flexible Discriminants\Bibliographic Notes.md'
+      - 文献笔记: '12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes.md'
 
   - 下篇:
     - 13 原型方法和最近邻:
@@ -145,7 +145,7 @@ pages:
     - 16 增强学习:
       - 16.1 导言: '16 Ensemble Learning/16.1 Introduction.md'
       - 16.2 增强和正则路径: '16 Ensemble Learning/16.2 Boosting and Regularization Paths.md'
-      - 文献笔记: '16 Ensemble Learning\Bibliographic Notes.md'
+      - 文献笔记: '16 Ensemble Learning/Bibliographic Notes.md'
 
     - 17 无向图模型:
       - 17.1 导言: '17 Undirected Graphical Models/17.1 Introduction.md'
