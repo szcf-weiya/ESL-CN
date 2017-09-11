@@ -1151,7 +1151,7 @@
 </tr>
 </tbody>
 </table>
-<p>非负矩阵分解(Lee和Seung,1999)是最近提出来的一个用来替代主成分分析的方法，这个方法中数据以及成分假定为非负的。这对于建立非负数据的模型很有用，比如图象数据。</p>
+<p>非负矩阵分解(Lee and Seung,1999)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>是最近提出来的一个用来替代主成分分析的方法，这个方法中数据以及成分假定为非负的。这对于建立非负数据的模型很有用，比如图象数据。</p>
 <p>$N\times p$数据矩阵$\mathbf X$由下式近似
 <script type="math/tex; mode=display">
 \mathbf X \approx \mathbf W\mathbf H\qquad (14.72)
@@ -1164,7 +1164,7 @@ L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\limits_{j=1}^p[x_{ij}log(\mathbf {WH
 </script>
 </p>
 <p>这是某模型的对数似然，模型中$x_{ij}$服从均值为$(\mathbf{WH}_{ij})$的Poisson分布——这个模型对于非负数据是合理的。</p>
-<p>下面的替代算法(Lee and Seung, 2001)收敛到$L(\mathbf W, \mathbf H)$的局部最大值：</p>
+<p>下面的替代算法(Lee and Seung, 2001)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>收敛到$L(\mathbf W, \mathbf H)$的局部最大值：</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{arry}{ll}
@@ -1177,6 +1177,17 @@ h_{kj}&\leftarrow h_{kj}\frac{\sum_{j=1}^pw_{ik}x_{ij}/(\mathbf{WH}_{ij})}{\sum_
 <p>TODO</p>
 <h2 id="_2">典型分析</h2>
 <p>TODO</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Lee, D. and Seung, H. (1999). Learning the parts of objects by non-negative matrix factorization, Nature 401: 788.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Lee, D. and Seung, H. (2001). Algorithms for non-negative matrix factorization, Advances in Neural Information Processing Systems, (NIPS 2001), Vol. 13, Morgan Kaufman, Denver., pp. 556–562.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 <div id="disqus_thread"></div>
 <script>
