@@ -1175,10 +1175,10 @@
 </li>
 </ol>
 </div>
-<p>图8.5的左图显示了20个在表8.1中的20个假想数据的直方图。</p>
+<p>图8.5的左图显示了20个在表8.1中的20个模拟数据的直方图。</p>
 <p><img alt="" src="../../img/08/fig8.5.png" /></p>
 <blockquote>
-<p>图8.5. 混合的例子。（左图：）数据的直方图。（右图：）高斯密度的最大似然拟合（红色实线）和观测值$y$的左边成分的解释度（绿色点线）作为$y$的函数。</p>
+<p>图8.5. 混合模型的例子。（左图：）数据的直方图。（右图：）高斯密度的最大似然拟合（红色实线）和观测值$y$的左边成分的解释度（绿色点线）作为$y$的函数。</p>
 </blockquote>
 <p><img alt="" src="../../img/08/tab8.1.png" /></p>
 <blockquote>
@@ -1189,10 +1189,10 @@
 \begin{align}
 Y_1&\sim N(\mu_1,\sigma^2_1)\\
 Y_2&\sim N(\mu_2,\sigma_2^2)\qquad \qquad \qquad\qquad(8.36)\\
-Y&=(1-\triangle)\cdot Y_1 + \triangle\cdot Y_2
+Y&=(1-\Delta)\cdot Y_1 + \Delta\cdot Y_2
 \end{align}
 </script>
-其中$\triangle\in {0,1}$,且$Pr(\triangle =1)=\pi$. 产生过程是很显然的：以概率$\pi$产生$\triangle\in{0,1}$,然后根据输出结果，分配给$Y_1$或$Y_2$.令$\phi_{\theta}(x)$记为参数为$\theta=(\mu,\sigma^2)$的正态分布。则$Y$的密度为
+其中$\Delta\in {0,1}$,且$Pr(\Delta =1)=\pi$. 产生过程是很显然的：以概率$\pi$产生$\Delta\in\{0,1\}$,然后根据输出结果，分配给$Y_1$或$Y_2$.令$\phi_{\theta}(x)$记为参数为$\theta=(\mu,\sigma^2)$的正态分布。则$Y$的密度为
 <script type="math/tex; mode=display">
 g_Y(y)=(1-\pi)\phi_{\theta_1}(y)+\pi\phi_{\theta_2}(y)\qquad (8.37)
 </script>
@@ -1204,11 +1204,11 @@ g_Y(y)=(1-\pi)\phi_{\theta_1}(y)+\pi\phi_{\theta_2}(y)\qquad (8.37)
 <script type="math/tex; mode=display">
 \ell(\theta;\mathbf Z)=\sum\limits_{i=1}^Nlog[(1-\pi)\phi_{\theta_1}(y_i)+\pi\phi_{\theta_2}(y_i)]\qquad (8.39)
 </script>
-直接对$\ell(\theta;\mathbf Z)$进行最大化在数值上是很困难的，因为求和项在log函数里面。然而，这里有一个更简单的方式。我们考虑一个类似（8.36）中取0或1的潜变量$\triangle_i$：若$\triangle_i=1$则 $Y_i$来自模型2，否则来自模型1.假设我们已经知道了$\triangle_i$的值。则对数概率为
+直接对$\ell(\theta;\mathbf Z)$进行最大化在数值上是很困难的，因为求和项在log函数里面。然而，这里有一个更简单的方式。我们考虑一个类似（8.36）中取0或1的潜变量$\Delta_i$：若$\Delta_i=1$则 $Y_i$来自模型2，否则来自模型1.假设我们已经知道了$\Delta_i$的值。则对数概率为
 <script type="math/tex; mode=display">
 \begin{align}
-\ell_0(\theta;\bf Z,\bf{\Delta})&=\sum\limits_{i=1}^N[(1-\Delta_i)log\phi_{\theta_1}(y_i)+\triangle_ilog\phi_{\theta_2}(y_i)]\\
-&+\sum\limits_{i=1}^N[(1-\Delta_i)log(1-\pi)+\triangle_ilog\pi]\qquad(8.40)
+\ell_0(\theta;\bf Z,\bf{\Delta})&=\sum\limits_{i=1}^N[(1-\Delta_i)log\phi_{\theta_1}(y_i)+\Delta_ilog\phi_{\theta_2}(y_i)]\\
+&+\sum\limits_{i=1}^N[(1-\Delta_i)log(1-\pi)+\Delta_ilog\pi]\qquad(8.40)
 \end{align}
 </script>
 </p>
@@ -1220,14 +1220,14 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 </script>
 上式$i\in \cal I$部分，乘以$(1-\Delta_i)$也就相当于乘以1，同理对于$i\in \cal J$。这样取对数似然便有(8.40)式。</p>
 </div>
-<p>而且$\mu_1$和$\sigma_1^2$的极大似然估计为$\triangle_i=0$时样本均值和方差，类似地对于$\mu_2$和$\sigma_2^2$的极大似然估计为$\triangle_i=1$时的样本均值和方差。$\pi$的估计为$\Delta_i=1$的比例。</p>
-<p>因为$\Delta_i$的值实际上是不知道的，我们用一种迭代方式，替换（8.40）中的每个$\Delta_i$，他的期望值
+<p>而且$\mu_1$和$\sigma_1^2$的极大似然估计为$\Delta_i=0$时样本均值和方差，类似地对于$\mu_2$和$\sigma_2^2$的极大似然估计为$\Delta_i=1$时的样本均值和方差。$\pi$的估计为$\Delta_i=1$的比例。</p>
+<p>因为$\Delta_i$的值实际上是不知道的，我们用一种迭代方式，替换（8.40）中的每个$\Delta_i$，它的期望值
 <script type="math/tex; mode=display">
 \gamma_i(\theta)=E(\Delta_i\mid\theta,\mathbf Z)=Pr(\Delta_i=1\mid \theta,\mathbf Z)\qquad (8.41)
 </script>
 也称为模型2对于每个观测$i$的责任（responsibility）。我们用一种称作EM算法（算法8.1中给出）的过程来求解这个特殊的高斯混合模型。在期望（expectation）这一步，我们对每一个模型的每一个观测做一个软赋值：根据每个模型下训练集点的相对密度，参数的当前估计用来给responsibilities赋值。在最大化（maximization）那一步，加权极大似然估计中使用的responsibilities用来更新参数估计。</p>
-<p>构造初始的$\hat\mu_1$和$\hat\mu_2$的一种很好的方式便是简单地随机选择$y_i$中的两个。$\hat\sigma^2_1$和$\hat\sigma^2_2$都等于整体的样本方差$\sum_{i=1}^N(y_i-\hat y)^2/N$.最大比例的$\hat\pi$可以从0.5开始。</p>
-<p>注意到实际中概率的最大值发生在当我们固定一个数据点，换句话说，对于一些$i$令$\hat\mu_1=y_i$,$\hat\sigma^2_1=0$.这给出了无限大的概率，但是这不是一个有用的解。因此实际上我们寻找概率的一个良好的局部最大值，满足$\hat\sigma^2_1,\hat\sigma^2_2&gt;0$。进一步，可以有多个局部最大值满足$\hat\sigma^2_1,\hat\sigma^2_2&gt;0$.在我们例子中，我们用一系列不同的初始参数值来运行EM算法，所有的都满足$\hat\sigma^2_k&gt;0.5$,然后选择是的概率最大的那个。图8.6显示了在最大化对数概率的EM算法的过程。表8.2显示了在给定迭代次数的EM过程下$\hat\pi=\sum_i\hat\gamma_i/N$是类别2中观测值比例的极大似然估计。</p>
+<p>构造初始的$\hat\mu_1$和$\hat\mu_2$的一种很好的方式便是简单地随机选择$y_i$中的两个值。$\hat\sigma^2_1$和$\hat\sigma^2_2$都等于整体的样本方差$\sum_{i=1}^N(y_i-\hat y)^2/N$.最大比例的$\hat\pi$可以从0.5开始。</p>
+<p>注意到实际中概率的最大值发生在当我们固定一个数据点，换句话说，对于一些$i$令$\hat\mu_1=y_i$,$\hat\sigma^2_1=0$.这给出了无限大的概率，但是这不是一个有用的解。因此实际上我们寻找概率的一个良好的局部最大值，满足$\hat\sigma^2_1,\hat\sigma^2_2&gt;0$。进一步，可以有多个局部最大值满足$\hat\sigma^2_1,\hat\sigma^2_2&gt;0$.在我们例子中，我们用一系列不同的初始参数值来运行EM算法，所有的都满足$\hat\sigma^2_k&gt;0.5$,然后选择使得概率最大的那个。图8.6显示了在最大化对数概率的EM算法的过程。表8.2显示了在给定迭代次数的EM过程下$\hat\pi=\sum_i\hat\gamma_i/N$是类别2中观测值比例的极大似然估计。</p>
 <p><img alt="" src="../../img/08/alg8.1.png" /></p>
 <p><img alt="" src="../../img/08/tab8.2.png" /></p>
 <blockquote>
@@ -1244,9 +1244,10 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 \hat\pi=0.546
 </script>
 图8.5的右图显示了从这个过程估计的混合高斯分布的密度（实心红色曲线），以及responsibilities（绿色点曲线）。注意到混合在监督学习中也很有用；在6.7节我们显示了高斯混合模型怎样导出radial基函数的版本。</p>
-<p>该例子的R代码实现如下所示：</p>
-<script src="https://gist.github.com/szcf-weiya/e39b49a931f4622488f1ee5827be5f60.js"></script>
-
+<div class="admonition note">
+<p class="admonition-title">weiya注<p>自己实现了上述的模拟过程，具体R代码在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">这里</a></p>
+</p>
+</div>
 <h2 id="em_1">一般情形下的EM算法</h2>
 <p>上面的过程是对于特定问题的类别下最大化概率的EM（或者Baum-Welch）算法。这些问题的概率最大化是困难的，但是通过运用潜在数据（未观测）增大样本会变得简单。这也称作数据增广。这里潜在数据是模型成员$\Delta_i$.在其它问题中，潜在数据是理应被观测到的实际数据但是缺失了。</p>
 <p>算法8.2给出了EM算法的一般形式。我们的观测数据是$\mathbf Z$,其对数概率$\ell(\theta;\mathbf Z)$取决于参数$\theta$.潜在数据或者缺失数据为$\mathbf Z^m$,因此完整数据为$\mathbf {T=(Z,Z^m)}$,对数似然函数为$\ell_0(\theta;\mathbf T)$,$\ell_0$基于完整的密度函数。在混合问题中，$(\mathbf{Z,Z^m)=(y,}\Delta)$,且$\ell_0(\theta;\mathbf T)$由（8.40）式给出。</p>
