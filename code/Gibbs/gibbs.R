@@ -48,3 +48,7 @@ while(TRUE)
   if (t > 200)
     break
 }
+
+## res
+## sometimes good, while sometimes bad.
+## In addition, sometimes mu1 and mu2 are inverted.
