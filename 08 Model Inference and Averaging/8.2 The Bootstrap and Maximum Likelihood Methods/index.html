@@ -1203,13 +1203,13 @@ Y&=\mu(X)+\varepsilon\; \varepsilon\sim N(0,\sigma^2)\\
 <script type="math/tex; mode=display">
 y_i^*=\hat\mu(x_i)+\varepsilon_i^*;\qquad \varepsilon_i^*\sim N(0,\hat\sigma^2);\qquad i=1,2,\ldots,N\qquad (8.6)
 </script>
-这一过程重复$B$次，这里$B=200$.得到的自助法数据集形式为$(x_1,y_1^*),\ldots,(x_N,y_N^<em>)$,而且我们可以重新对每一个计算B-样条光滑。这种方法得到的置信域实际上等于当自助法样本数趋于无穷时右上图的最小二乘置信域。由自助法样本$\mathbf y^</em>$的函数估计由$\hat\mu^<em>(x)=h(x)^T\mathbf{(H^TH)^{-1}H^Ty^</em>}$给出，而且服从分布
+这一过程重复$B$次，这里$B=200$.得到的自助法数据集形式为$(x_1,y_1^*),\ldots,(x_N,y_N^*)$,而且我们可以重新对每一个计算B-样条光滑。这种方法得到的置信域实际上等于当自助法样本数趋于无穷时右上图的最小二乘置信域。由自助法样本$\mathbf y^<em>$的函数估计由$\hat\mu^</em>(x)=h(x)^T\mathbf{(H^TH)^{-1}H^Ty^*}$给出，而且服从分布
 <script type="math/tex; mode=display">
 \hat\mu^*(x)\sim N(\hat \mu(x), h(x)^T\mathbf{(H^TH)^{-1}}h(x)\hat\sigma^2)\qquad (8.7)
 </script>
 注意到该分布的均值是最小二乘估计，标准误差和近似公式（8.4）相同。</p>
 <h2 id="_3">最大似然推断</h2>
-<p>结果证明在前面的例子中参数自助法和最小二乘是一致的因为模型（8.5）有可加的高斯误差。一般地，参数自助法跟最小二乘不一致，但跟最大似然一致，我们现在再检查一下。</p>
+<p>结果证明在前面的例子中参数自助法和最小二乘是一致的因为模型（8.5）有可加的高斯误差。一般地，参数自助法跟最小二乘不一致，但跟最大似然一致，我们现在再检验一下。</p>
 <p>首先确定我们观测值的概率密度或者概率质量函数
 <script type="math/tex; mode=display">
 z_i\sim g_\theta(z)\qquad (8.8)
