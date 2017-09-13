@@ -1195,15 +1195,15 @@
 <p>实际上最小二乘估计（8.2）和（8.3），自助法和最大似然法有着很紧密的联系。进一步假设模型误差为高斯分布，
 <script type="math/tex; mode=display">
 \begin{align}
-Y&=\mu(X)+\varepsilon;\varepsilon;\; \varepsilon\sim N(0,\sigma^2)\\
+Y&=\mu(X)+\varepsilon\; \varepsilon\sim N(0,\sigma^2)\\
 \mu(X)&=\sum\limits_{j=1}^7\beta_jh_j(x).\qquad\qquad\qquad\qquad (8.5)
 \end{align}
 </script>
-上面描述的自助法，通过从训练集总有放回地采样，称作非参自助法。这实际上意味着这个方法是与模型无关的，因为它使用原始数据来得到新的数据集，而不是一个特定的含参数的模型。考虑到自助法的方差，则称为参数自助法，通过对预测值加上高斯噪声模拟新的响应：
+上面描述的自助法，通过从训练集中有放回地采样，称作非参自助法(nonparametric bootstrap)。这实际上意味着这个方法是与模型无关的，因为它使用原始数据来得到新的数据集，而不是一个特定的含参数的模型。考虑到自助法的方差，则称为参数自助法(parametric bootstrap)，通过对预测值加上高斯噪声模拟新的响应：
 <script type="math/tex; mode=display">
 y_i^*=\hat\mu(x_i)+\varepsilon_i^*;\qquad \varepsilon_i^*\sim N(0,\hat\sigma^2);\qquad i=1,2,\ldots,N\qquad (8.6)
 </script>
-这一过程重复$B$次，这里$B=200$.得到的自助法数据集形式为$(x_1,y_1^<em>),\ldots,(x_N,y_N^</em>)$,而且我们可以重新对每一个计算B-样条光滑。这种方法得到的置信域实际上等于当自助法样本数趋于无穷时右上图的最小二乘置信域。由自助法样本$\mathbf y^<em>$的函数估计由$\hat\mu^</em>(x)=h(x)^T\mathbf{(H^TH)^{-1}H^Ty^*}$给出，而且服从分布
+这一过程重复$B$次，这里$B=200$.得到的自助法数据集形式为$(x_1,y_1^*),\ldots,(x_N,y_N^<em>)$,而且我们可以重新对每一个计算B-样条光滑。这种方法得到的置信域实际上等于当自助法样本数趋于无穷时右上图的最小二乘置信域。由自助法样本$\mathbf y^</em>$的函数估计由$\hat\mu^<em>(x)=h(x)^T\mathbf{(H^TH)^{-1}H^Ty^</em>}$给出，而且服从分布
 <script type="math/tex; mode=display">
 \hat\mu^*(x)\sim N(\hat \mu(x), h(x)^T\mathbf{(H^TH)^{-1}}h(x)\hat\sigma^2)\qquad (8.7)
 </script>
