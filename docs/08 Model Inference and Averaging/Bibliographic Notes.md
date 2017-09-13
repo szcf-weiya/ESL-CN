@@ -1,4 +1,4 @@
-# Bagging
+# 文献笔记
 
 | 原文   | [The Elements of Statistical Learning](../book/The Elements of Statistical Learning.pdf) |
 | ---- | ---------------------------------------- |
@@ -9,3 +9,18 @@
 
 [^1]: Cox, D. and Hinkley, D. (1974). Theoretical Statistics, Chapman and Hall, London.
 [^2]: Silvey, S. (1975). Statistical Inference, Chapman and Hall, London.
+[^3]: Efron, B. (1979). Bootstrap methods: another look at the jackknife, Annals of Statistics 7: 1–26.
+[^4]: Efron, B. and Tibshirani, R. (1993). An Introduction to the Bootstrap, Chapman and Hall, London.
+[^5]: Hall, P. (1992). The Bootstrap and Edgeworth Expansion, Springer, New York.
+[^6]: Gelman, A., Carlin, J., Stern, H. and Rubin, D. (1995). Bayesian Data Analysis, CRC Press, Boca Raton, FL.
+[^7]: Geman, S. and Geman, D. (1984). Stochastic relaxation, Gibbs distributions and the Bayesian restoration of images, IEEE Transactions on Pattern Analysis and Machine Intelligence 6: 721–741.
+[^8]: Gelfand, A. and Smith, A. (1990). Sampling based approaches to calculating marginal densities, Journal of the American Statistical Association 85: 398–409.
+[^9]: Tanner, M. and Wong, W. (1987). The calculation of posterior distributions by data augmentation (with discussion), Journal of the American Statistical Association 82: 528–550.
+[^10]: Spiegelhalter, D., Best, N., Gilks, W. and Inskip, H. (1996). Hepatitis B: a case study in MCMC methods, in W. Gilks, S. Richardson and D. Spegelhalter (eds), Markov Chain Monte Carlo in Practice, Inter- disciplinary Statistics, Chapman and Hall, London, pp. 21–43.
+[^11]: Dempster, A., Laird, N. and Rubin, D. (1977). Maximum likelihood from incomplete data via the EM algorithm (with discussion), Journal of the Royal Statistical Society Series B 39: 1–38.
+[^12]: Neal, R. and Hinton, G. (1998). A view of the EM algorithm that justifies incremental, sparse, and other variants; in Learning in Graphical Models, M. Jordan (ed.), Dordrecht: Kluwer Academic Publishers, Boston, MA., pp. 355–368.
+[^13]: Breiman, L. (1996a). Bagging predictors, Machine Learning 26: 123–140.
+[^14]: Wolpert, D. (1992). Stacked generalization, Neural Networks 5: 241–259.
+[^15]: Leblanc, M. and Tibshirani, R. (1996). Combining estimates in regression and classification, Journal of the American Statistical Association 91: 1641–1650.
+[^16]: Madigan, D. and Raftery, A. (1994). Model selection and accounting for model uncertainty using Occam’s window, Journal of the American Statistical Association 89: 1535–46.
+[^17]: Tibshirani, R. and Knight, K. (1999). Model search and inference by bootstrap “bumping, Journal of Computational and Graphical Statistics 8: 671–686.
