@@ -1147,21 +1147,31 @@
 <td>时间</td>
 <td>2017-02-01</td>
 </tr>
+<tr>
+<td>校对</td>
+<td>2017-09-13</td>
+</tr>
 </tbody>
 </table>
-<p>在贝叶斯推断中，在给出参数的情况下对于我们的数据确定样本模型$Pr(\mathbf Z;\theta)$(密度或者概率质量函数)，以及反映我们在得到数据之前对于$\theta$的认知的$Pr(\theta)$的先验分布。然后我们计算后验分布
+<blockquote>
+<p>写在前面</p>
+<p>当时翻译的时候对贝叶斯了解也不深，公式那一块压根就没太看懂</p>
+<p>现在校对的时候，才发现其实挺好懂的。大概是之前看了Peter D. Hoff的《A First Course in Bayesian Statistical Methods》中部分的章节，我觉得Peter的这本书挺好的，很适合入门！！</p>
+<p>@2017.09.13</p>
+</blockquote>
+<p>贝叶斯推断中，为我们的数据确定一个在给定参数时的采样模型$Pr(\mathbf Z;\theta)$(密度函数或者概率质量函数)，以及反映我们在得到数据之前对于$\theta$认知的$Pr(\theta)$的先验分布。然后计算后验分布
 <script type="math/tex; mode=display">
-Pr(\theta;\mathbf Z)=\frac{Pr(\mathbf Z\mid\theta)\cdot Pr(\theta)}{\int Pr(\mathbf Z\mid \theta)\cdot Pr(\theta)d\theta}\qquad (8.23)
+Pr(\theta\mid\mathbf Z)=\frac{Pr(\mathbf Z\mid\theta)\cdot Pr(\theta)}{\int Pr(\mathbf Z\mid \theta)\cdot Pr(\theta)d\theta}\qquad (8.23)
 </script>
 </p>
-<p>它表示当我们知道数据后更新对$\theta$的认知。为了理解这一后验分布，可以从中抽取样本或者通过计算均值或众数来概况它。贝叶斯方法不同于一般的推断方法在于在知道数据之前用先验分布来表达这种不确定性，而且在知道数据之后运行不确定性继续存在，表示成后验分布。</p>
-<p>后验分布也提供了预测未来观测$z^{new}$值的基，通过预测分布：
+<p>它表示当我们知道数据后更新对$\theta$的认知。为了理解这一后验分布，可以从中抽取样本或者通过计算均值或众数来描述它。贝叶斯方法不同于一般的推断方法在于，用先验分布来表达知道数据之前的这种不确定性，而且在知道数据之后允许不确定性继续存在，将它表示成后验分布。</p>
+<p>后验分布也提供了预测未来观测$z^{new}$值的基础，通过预测分布(predictive distribution)实现：
 <script type="math/tex; mode=display">
 Pr(z^{new}\mid \mathbf  Z)=\int Pr(z^{new}\mid \theta)\cdot Pr(\theta\mid \mathbf Z)d\theta\qquad (8.24)
 </script>
 相反地，最大似然方法会使用在最大概率估计那个点的密度$Pr(z^{new}\mid \hat\theta)$来预测未来的数据。不同于（8.24）的预测分布，这个并不说明估计$\theta$的不确定性。</p>
 <p>让我们在光滑化例子中采用贝叶斯方法。首先从由(8.5)式给出的参数模型开始，然后假设$\sigma^2$是已知的。我们假设观测特征的值为$x_1,x_2,\ldots,x_N$是固定的，因此数据的随机性仅仅来源于$y$与均值$\mu(x)$的偏差。</p>
-<p>第二步我们需要先验分布。函数的分布是相当复杂的：一种方式是使用先验高斯过程，其中我们指定任何两个函数值$\mu(x)$和$\mu(x&rsquo;)$的先验协方差。（Wahba,1990; Neal, 1996）</p>
+<p>第二步我们需要先验分布。函数的分布是相当复杂的：一种方式是使用先验高斯过程，其中我们指定任何两个函数值$\mu(x)$和$\mu(x&rsquo;)$的先验协方差。（Wahba,1990<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>; Neal, 1996<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）</p>
 <p>这里我们采取一个简单的方法：考虑$\mu(x)$的有限$B$样条基，则可以得到系数$\beta$的先验分布，而且这隐式地定义了$\mu(x)$的先验分布。我们选取中心化的先验高斯分布
 <script type="math/tex; mode=display">
 \beta\sim N(0,\tau\mathbf \Sigma)\qquad (8.25)
@@ -1179,7 +1189,7 @@ $\beta$的后验分布也是高斯的，均值和方差分别为
 E(\beta\mid \mathbf Z)&=(\mathbf{H^TH}+\frac{\sigma^2}{\tau}\mathbf\Sigma^{-1})^{-1}\mathbf{H^Ty}\\
 Cov(\beta\mid\mathbf Z)&=(\mathbf{H^TH}+\frac{\sigma^2}{\tau}\mathbf \Sigma^{-1})^{-1}\sigma^2
 \end{align}
-\qquad (8.27)\qquad (???????)
+\qquad (8.27)\qquad
 </script>
 后验$\mu(x)$对应的相应值为
 <script type="math/tex; mode=display">
@@ -1201,6 +1211,19 @@ cov[\mu(x),\mu(x')\mid\mathbf Z]&=h(x)^T(\mathbf{H^TH}+\frac{\sigma^2}{\tau}\mat
 </blockquote>
 <p>当$\tau\longrightarrow \infty$时的分布（8.25）称为$\theta$的无信息先验（noninformative prior），在高斯模型中，极大似然和参数自助法趋向于与对自由参数使用无信息先验的贝叶斯分析一致。这些趋向于一致，因为在常值先验情况下，后验分布与概率成比例。这种对应也可以推广到非参的情形。其中非参自助法近似于一个无信息先验的贝叶斯分析；8.4节将详细介绍细节。</p>
 <p>然而，我们已经做了一些从贝叶斯观点来看不是很恰当的事情。我们已经用了$\sigma^2$的无信息（常值）先验，而且在后验中换成了最大似然估计$\hat\sigma^2$。一个更加标准的贝叶斯分析也会在$\sigma$上加先验（一般地，$g(\sigma)\propto 1/\sigma$）,计算$\mu(x)$和$\sigma$的联合后验分布，然后把$\sigma$整合出来，而不是仅仅提取后验分布的最大值（“MAP”估计）</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Wahba, G. (1990). Spline Models for Observational Data, SIAM, Philadel-
+phia.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Neal, R. (1996). Bayesian Learning for Neural Networks, Springer, New
+York.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 <div id="disqus_thread"></div>
 <script>
