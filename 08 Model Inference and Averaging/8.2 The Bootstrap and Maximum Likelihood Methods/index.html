@@ -1246,7 +1246,7 @@ L(\theta;\mathbf Z)=\prod\limits_{i=1}^Ng_\theta(z_i)\qquad (8.11)
 <script type="math/tex; mode=display">
 \mathbf i(\theta)=E_\theta[\mathbf I(\theta)]\qquad (8.15)
 </script>
-</p>
+&lt;!&ndash;</p>
 <blockquote>
 <p><strong>weiya</strong>注：</p>
 <p>设随机变（向）量$X$来自分布族$\cal F={p(x;\theta):\theta\in\Theta}$,其中$p(x;\theta)$为其概率密度函数，$\Theta$为开区间，假设$p(x;\theta)$关于$\theta$可导，且
@@ -1280,7 +1280,44 @@ $I(\theta)$称为$X$或分布族$\cal F$的Fisher Information。</p>
 I(\theta)=-E_\theta[\frac{\partial^2\mathrm{log}p(X;\theta)}{\partial \theta^2}]
 </script>
 </p>
+<p>&ndash;&gt;</p>
 </blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>“weiya”注
+    设随机变（向）量$X$来自分布族$\cal F={p(x;\theta):\theta\in\Theta}$,其中$p(x;\theta)$为其概率密度函数，$\Theta$为开区间，假设$p(x;\theta)$关于$\theta$可导，且
+    <script type="math/tex; mode=display">
+\begin{align}
+0&=\frac{d}{d\theta}\int_{-\infty}^\infty p(x;\theta)dx\\
+&=\int_{-\infty}^\infty \frac{\partial p(x;\theta)}{\partial \theta}dx\\
+&=\int_{-\infty}^\infty\frac{\partial \mathbb{log}p(x;\theta)}{\partial\theta}p(x;\theta)dx\\
+&=E_\theta[\frac{\partial \mathbb{log}p(X;\theta)}{\partial \theta}]
+\end{align}
+</script>
+    从而
+<script type="math/tex; mode=display">
+\begin{align}
+I(\theta):&=\mathrm{Var}_\theta\{\frac{\partial \mathrm{log}p(X;\theta)}{\partial \theta}\}\\
+&=E_\theta[\frac{\partial\mathrm{log}p(x;\theta)}{\partial\theta}]^2\\
+&=\int_{-\infty}^\infty(\frac{\partial \mathrm{log}p(x;\theta)}{\partial \theta})^2p(x;\theta)dx
+\end{align}
+</script>
+    $I(\theta)$称为$X$或分布族$\cal F$的Fisher Information。</p>
+<pre><code>如果$\frac{\partial^2}{\partial\theta^2}p(x;\theta)$对任意的$\theta\in\Theta$都存在，且积分与求导可以交换，则
+$$
+</code></pre>
+<p>
+<script type="math/tex; mode=display">\begin{align}
+0&=\frac{d^2}{d\theta^2}\int_{-\infty}^\infty p(x;\theta)dx\\
+&=\int_{-\infty}^{\infty}\frac{\partial}{\partial \theta}[\frac{\partial \mathrm{log }p(x;\theta)}{\partial \theta}p(x;\theta)]dx\\
+&=\int_{-\infty}^\infty[\frac{\partial^2\mathrm{log}p(x;\theta)}{\partial \theta^2}p(x;\theta)]dx+\int_{-\infty}^\infty[\frac{\partial\mathrm{log} p(x;\theta)}{\partial \theta}]^2p(x;\theta)dx
+\end{align}</script>
+<script type="math/tex; mode=display">
+    从而
+</script>
+I(\theta)=-E_\theta[\frac{\partial^2\mathrm{log}p(X;\theta)}{\partial \theta^2}]
+$$</p>
 <p>最后，记$\theta$的真值为$\theta_0$.</p>
 <p>一个标准的结果表明最大似然估计量的样本分布服从极限正态分布
 <script type="math/tex; mode=display">
@@ -1324,7 +1361,7 @@ $\theta_j$的置信点可以通过（8.17）的任意一个近似得到。这样
 因此估计的方差$\mathbf{(H^TH)}/\hat\sigma^2$与最小二乘一致。</p>
 <h2 id="_4">自助法和最大似然法</h2>
 <p>本质上自助法是非参自助法或者参数自助法的计算机实现。与最大似然法相比自助法的好处是允许我们在没有公式的情况下计算标准误差和其他一些量的最大似然估计。</p>
-<p>在我们的例子中，假设我们通过对定义了B样条的结点的数目和位置进行交叉验证来自适应地选择，而不是事先固定住。记$\lambda$为结点和它们位置的集合。则标准误差和置信域说明了$\lambda$的自适应选择，但是没有分析的方法可以实现。有了自助法，我们通过对每个自助法样本进行自适应选择来计算B-样条光滑。最终曲线的分位数既捕捉目标里面的噪声变化以及$\hat\lambda$的变化。在这个例子中置信域（没有显示出来）看起来与固定$\lambda$后的置信域没有太大不同。但是字其他问题里面，当使用更多的自适应，可以得到更多重要的结果。</p>
+<p>在我们的例子中，假设我们通过对定义了B样条的结点的数目和位置进行交叉验证来自适应地选择，而不是事先固定住。记$\lambda$为结点和它们位置的集合。则标准误差和置信域说明了$\lambda$的自适应选择，但是没有分析的方法可以实现。有了自助法，我们通过对每个自助法样本进行自适应选择来计算B-样条光滑。最终曲线的分位数既捕捉目标里面的噪声变化以及$\hat\lambda$的变化。在这个例子中置信域（没有显示出来）看起来与固定$\lambda$后的置信域没有太大不同。但是在其他问题里面，当使用更多的自适应，可以得到更多重要的结果。</p>
 
 <div id="disqus_thread"></div>
 <script>
