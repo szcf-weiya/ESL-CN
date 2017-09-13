@@ -9,6 +9,9 @@ The Elements of Statistical Learning (ESL)的中文翻译及其代码实现。
 4. [AdaBoost实现R&Julia](code/boosting)
 5. [MARS实现](code/MARS)
 6. [RBM](code/rbm)，或者可以查看 [Jupyter Notebook](http://nbviewer.jupyter.org/github/szcf-weiya/ESL-CN/blob/master/code/rbm/RBM.ipynb)
+7. [Gibbs](code/Gibbs)
+8. [Self-organized Map](code/SOM)
+9. [kernel estimation](code/nonParametrics)
 
 ## 文献统计
 | Chap | AOS  | JASA | JRSS | BKA  | percentage |

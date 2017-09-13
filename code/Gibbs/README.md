@@ -26,5 +26,3 @@ abline(h = 0.546)
 ![](hist_mu2.png)
 
 ![](hist_pi.png)
-
-
