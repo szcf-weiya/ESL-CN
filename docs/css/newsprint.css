@@ -37,25 +37,11 @@ html {
 
 html, body {
 	background-color: #f3f2ee;
-	font-family: "PT Serif", 'Times New Roman', Times;
+	font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 	color: #1f0909;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	line-height: 1.5em;
 }
-
-/*#write {
-	overflow-x: auto;
-    max-width: initial;
-	padding-left: calc(50% - 17em);
-    padding-right: calc(50% - 17em);
-}
-
-@media (max-width: 36em) {
- 	#write {
- 		padding-left: 1em;
-    	padding-right: 1em;
- 	}
-}*/
 
 ol,
 ul {
