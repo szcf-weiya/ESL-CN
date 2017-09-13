@@ -1246,78 +1246,77 @@ L(\theta;\mathbf Z)=\prod\limits_{i=1}^Ng_\theta(z_i)\qquad (8.11)
 <script type="math/tex; mode=display">
 \mathbf i(\theta)=E_\theta[\mathbf I(\theta)]\qquad (8.15)
 </script>
-&lt;!&ndash;</p>
-<blockquote>
-<p><strong>weiya</strong>注：</p>
-<p>设随机变（向）量$X$来自分布族$\cal F={p(x;\theta):\theta\in\Theta}$,其中$p(x;\theta)$为其概率密度函数，$\Theta$为开区间，假设$p(x;\theta)$关于$\theta$可导，且
-<script type="math/tex; mode=display">
-\begin{align}
-0&=\frac{d}{d\theta}\int_{-\infty}^\infty p(x;\theta)dx\\
-&=\int_{-\infty}^\infty \frac{\partial p(x;\theta)}{\partial \theta}dx\\
-&=\int_{-\infty}^\infty\frac{\partial \mathbb{log}p(x;\theta)}{\partial\theta}p(x;\theta)dx\\
-&=E_\theta[\frac{\partial \mathbb{log}p(X;\theta)}{\partial \theta}]
-\end{align}
-</script>
-从而
-<script type="math/tex; mode=display">
-\begin{align}
-I(\theta):&=\mathrm{Var}_\theta\{\frac{\partial \mathrm{log}p(X;\theta)}{\partial \theta}\}\\
-&=E_\theta[\frac{\partial\mathrm{log}p(x;\theta)}{\partial\theta}]^2\\
-&=\int_{-\infty}^\infty(\frac{\partial \mathrm{log}p(x;\theta)}{\partial \theta})^2p(x;\theta)dx
-\end{align}
-</script>
-$I(\theta)$称为$X$或分布族$\cal F$的Fisher Information。</p>
-<p>如果$\frac{\partial^2}{\partial\theta^2}p(x;\theta)$对任意的$\theta\in\Theta$都存在，且积分与求导可以交换，则
-<script type="math/tex; mode=display">
-\begin{align}
-0&=\frac{d^2}{d\theta^2}\int_{-\infty}^\infty p(x;\theta)dx\\
-&=\int_{-\infty}^{\infty}\frac{\partial}{\partial \theta}[\frac{\partial \mathrm{log }p(x;\theta)}{\partial \theta}p(x;\theta)]dx\\
-&=\int_{-\infty}^\infty[\frac{\partial^2\mathrm{log}p(x;\theta)}{\partial \theta^2}p(x;\theta)]dx+\int_{-\infty}^\infty[\frac{\partial\mathrm{log} p(x;\theta)}{\partial \theta}]^2p(x;\theta)dx
-\end{align}
-</script>
-从而
-<script type="math/tex; mode=display">
-I(\theta)=-E_\theta[\frac{\partial^2\mathrm{log}p(X;\theta)}{\partial \theta^2}]
-</script>
 </p>
-<p>&ndash;&gt;</p>
-</blockquote>
+<!--**weiya**注:
+> 设随机变（向）量$X$来自分布族$\cal F=\{p(x;\theta):\theta\in\Theta\}$,其中$p(x;\theta)$为其概率密度函数，$\Theta$为开区间，假设$p(x;\theta)$关于$\theta$可导，且
+> $$
+> \begin{align}
+> 0&=\frac{d}{d\theta}\int_{-\infty}^\infty p(x;\theta)dx\\
+> &=\int_{-\infty}^\infty \frac{\partial p(x;\theta)}{\partial \theta}dx\\
+> &=\int_{-\infty}^\infty\frac{\partial \mathbb{log}p(x;\theta)}{\partial\theta}p(x;\theta)dx\\
+> &=E_\theta[\frac{\partial \mathbb{log}p(X;\theta)}{\partial \theta}]
+> \end{align}
+> $$
+> 从而
+> $$
+> \begin{align}
+> I(\theta):&=\mathrm{Var}_\theta\{\frac{\partial \mathrm{log}p(X;\theta)}{\partial \theta}\}\\
+> &=E_\theta[\frac{\partial\mathrm{log}p(x;\theta)}{\partial\theta}]^2\\
+> &=\int_{-\infty}^\infty(\frac{\partial \mathrm{log}p(x;\theta)}{\partial \theta})^2p(x;\theta)dx
+> \end{align}
+> $$
+> $I(\theta)$称为$X$或分布族$\cal F$的Fisher Information。
+>
+> 如果$\frac{\partial^2}{\partial\theta^2}p(x;\theta)$对任意的$\theta\in\Theta$都存在，且积分与求导可以交换，则
+> $$
+> \begin{align}
+> 0&=\frac{d^2}{d\theta^2}\int_{-\infty}^\infty p(x;\theta)dx\\
+> &=\int_{-\infty}^{\infty}\frac{\partial}{\partial \theta}[\frac{\partial \mathrm{log }p(x;\theta)}{\partial \theta}p(x;\theta)]dx\\
+> &=\int_{-\infty}^\infty[\frac{\partial^2\mathrm{log}p(x;\theta)}{\partial \theta^2}p(x;\theta)]dx+\int_{-\infty}^\infty[\frac{\partial\mathrm{log} p(x;\theta)}{\partial \theta}]^2p(x;\theta)dx
+> \end{align}
+> $$
+> 从而
+> $$
+> I(\theta)=-E_\theta[\frac{\partial^2\mathrm{log}p(X;\theta)}{\partial \theta^2}]
+> $$
+>
+-->
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
 <p>“weiya”注
     设随机变（向）量$X$来自分布族$\cal F={p(x;\theta):\theta\in\Theta}$,其中$p(x;\theta)$为其概率密度函数，$\Theta$为开区间，假设$p(x;\theta)$关于$\theta$可导，且
     <script type="math/tex; mode=display">
-\begin{align}
-0&=\frac{d}{d\theta}\int_{-\infty}^\infty p(x;\theta)dx\\
-&=\int_{-\infty}^\infty \frac{\partial p(x;\theta)}{\partial \theta}dx\\
-&=\int_{-\infty}^\infty\frac{\partial \mathbb{log}p(x;\theta)}{\partial\theta}p(x;\theta)dx\\
-&=E_\theta[\frac{\partial \mathbb{log}p(X;\theta)}{\partial \theta}]
-\end{align}
-</script>
+    \begin{align}
+    0&=\frac{d}{d\theta}\int_{-\infty}^\infty p(x;\theta)dx\\
+    &=\int_{-\infty}^\infty \frac{\partial p(x;\theta)}{\partial \theta}dx\\
+    &=\int_{-\infty}^\infty\frac{\partial \mathbb{log}p(x;\theta)}{\partial\theta}p(x;\theta)dx\\
+    &=E_\theta[\frac{\partial \mathbb{log}p(X;\theta)}{\partial \theta}]
+    \end{align}
+    </script>
     从而
-<script type="math/tex; mode=display">
-\begin{align}
-I(\theta):&=\mathrm{Var}_\theta\{\frac{\partial \mathrm{log}p(X;\theta)}{\partial \theta}\}\\
-&=E_\theta[\frac{\partial\mathrm{log}p(x;\theta)}{\partial\theta}]^2\\
-&=\int_{-\infty}^\infty(\frac{\partial \mathrm{log}p(x;\theta)}{\partial \theta})^2p(x;\theta)dx
-\end{align}
-</script>
+    <script type="math/tex; mode=display">
+    \begin{align}
+    I(\theta):&=\mathrm{Var}_\theta\{\frac{\partial \mathrm{log}p(X;\theta)}{\partial \theta}\}\\
+    &=E_\theta[\frac{\partial\mathrm{log}p(x;\theta)}{\partial\theta}]^2\\
+    &=\int_{-\infty}^\infty(\frac{\partial \mathrm{log}p(x;\theta)}{\partial \theta})^2p(x;\theta)dx
+    \end{align}
+    </script>
     $I(\theta)$称为$X$或分布族$\cal F$的Fisher Information。</p>
 <pre><code>如果$\frac{\partial^2}{\partial\theta^2}p(x;\theta)$对任意的$\theta\in\Theta$都存在，且积分与求导可以交换，则
 $$
-</code></pre>
-<p>
-<script type="math/tex; mode=display">\begin{align}
-0&=\frac{d^2}{d\theta^2}\int_{-\infty}^\infty p(x;\theta)dx\\
-&=\int_{-\infty}^{\infty}\frac{\partial}{\partial \theta}[\frac{\partial \mathrm{log }p(x;\theta)}{\partial \theta}p(x;\theta)]dx\\
-&=\int_{-\infty}^\infty[\frac{\partial^2\mathrm{log}p(x;\theta)}{\partial \theta^2}p(x;\theta)]dx+\int_{-\infty}^\infty[\frac{\partial\mathrm{log} p(x;\theta)}{\partial \theta}]^2p(x;\theta)dx
-\end{align}</script>
-<script type="math/tex; mode=display">
-    从而
-</script>
+\begin{align}
+0&amp;=\frac{d^2}{d\theta^2}\int_{-\infty}^\infty p(x;\theta)dx\\
+&amp;=\int_{-\infty}^{\infty}\frac{\partial}{\partial \theta}[\frac{\partial \mathrm{log }p(x;\theta)}{\partial \theta}p(x;\theta)]dx\\
+&amp;=\int_{-\infty}^\infty[\frac{\partial^2\mathrm{log}p(x;\theta)}{\partial \theta^2}p(x;\theta)]dx+\int_{-\infty}^\infty[\frac{\partial\mathrm{log} p(x;\theta)}{\partial \theta}]^2p(x;\theta)dx
+\end{align}
+$$
+从而
+$$
 I(\theta)=-E_\theta[\frac{\partial^2\mathrm{log}p(X;\theta)}{\partial \theta^2}]
-$$</p>
+$$
+</code></pre>
 <p>最后，记$\theta$的真值为$\theta_0$.</p>
 <p>一个标准的结果表明最大似然估计量的样本分布服从极限正态分布
 <script type="math/tex; mode=display">
