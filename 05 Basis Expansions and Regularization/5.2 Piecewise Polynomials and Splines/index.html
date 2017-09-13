@@ -1303,7 +1303,7 @@ d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\qquad (5.5)
 <p>灰色曲线十分粗糙。因为输入信号有相当强的正自相关性，这导致系数中的负自相关。另外，样本大小仅仅为每个系数仅仅提供了4个有效的观测。</p>
 <p>类似这样的应用允许自然的正则化。我们强制系数作为频率的函数均匀变化。图5.5中下图的红色曲线显示了对这些数据应用这样一个光滑参数曲线。我们看到低频率的差异性很明显。这个光滑不仅允许对相反的进行简单的解读，而且得到更加精确的分类器：</p>
 <p><img alt="" src="../../img/05/tabno1.png" /></p>
-<p>红色光滑曲线可以应用非常简单的自然三次样条得到。我们可以将系数函数表达成样条$\beta(f)=\sum_{m=1}^Mh_m(f)\theta_m$的展开。实际中这意味着$\beta=\mathbf H\theta$，其中，$\mathbf H$是 $p\times M$三次样条的基矩阵，定义在频率集上。这里我们采用$M=12$个基函数，其中结点均匀分布在表示频率的整数$1,2,\ldots,256$上。因为$x^T\beta=x^T\mathbf H\theta$，我们可以简单地将输入特征$x$替换成滤波（filtered）形式<script type="math/tex">x^*=\mathbf{H}^Tx</script>，并在$x^*$上通过线性逻辑斯蒂回归拟合$\theta$。因此红色曲线是$\beta(f)=h(f)^T\hat\theta$</p>
+<p>红色光滑曲线可以应用非常简单的自然三次样条得到。我们可以将系数函数表达成样条$\beta(f)=\sum_{m=1}^Mh_m(f)\theta_m$的展开。实际中这意味着$\beta=\mathbf H\theta$，其中，$\mathbf H$是 $p\times M$三次样条的基矩阵，定义在频率集上。这里我们采用$M=12$个基函数，其中结点均匀分布在表示频率的整数$1,2,\ldots,256$上。因为$x^T\beta=x^T\mathbf H\theta$，我们可以简单地将输入特征$x$替换成滤波（filtered）形式<script type="math/tex">x^*=\mathbf{H}^Tx</script>，并在$x^*$上通过线性逻辑斯蒂回归拟合$\theta$。因此红色曲线是$\beta(f)=h(f)^T\hat\theta$。</p>
 
 <div id="disqus_thread"></div>
 <script>
