@@ -1157,7 +1157,7 @@
 \hat f_{bag}(x)=\frac{1}{B}\sum\limits_{b=1}^B\hat f^{*b}(x)\qquad (8.51)
 </script>
 </p>
-<p>用$\hat{\cal P}$记在每个数据点$(x_i,y_i)$上赋予相同概率$1/N$的经验分布。实际上，“真正”的bagging估计由$E_{\hat{\cal P}}\hat f^*(x)$定义，其中$\mathbf Z^<em>=(x_1^</em>,y_1^<em>),(x_2^</em>,y_2^<em>),\ldots,(x_N^*,y_N^*)$，并且$(x_i^</em>,y_i^*)\in \hat{\cal P}。当$B\rightarrow \infty$，表达式（8.51）是真实bagging估计的蒙特卡洛估计。</p>
+<p>用$\hat{\cal P}$记在每个数据点$(x_i,y_i)$上赋予相同概率$1/N$的经验分布。实际上，“真正”的bagging估计由$E_{\hat{\cal P}}\hat f^*(x)$定义，其中$\mathbf Z^*=(x_1^*,y_1^*),(x_2^*,y_2^*),\ldots,(x_N^*,y_N^*)$，并且$(x_i^*,y_i^*)\in \hat{\cal P}。当$B\rightarrow \infty$，表达式（8.51）是真实bagging估计的蒙特卡洛估计。</p>
 <p>bagged估计（8.51）与原始估计$\hat f(x)$仅仅当后者是数据的非线性或者数据的自适应函数才有区别。举个例子，为了使8.2.1节的B样条光滑，我们对图8.2的左下图中的曲线在每个$x$处进行平均。如果我们固定输入则B样条光滑在数据中是线性的，则当$B\rightarrow \infty$时，$\hat f_{bag}(x)\rightarrow \hat f(x)$（练习8.4）.因此bagging仅仅在图8.2的左上图中重现了原先的光滑。如果我们使用非参自助法来bagging结论也近似正确。</p>
 <p>一个更有趣的例子是回归树，其中$\hat f(x)$记为在每个输入向量$x$处树的预测（回归树在第九章中讨论）。每个自助法树跟比原始特征相比，涉及不同的特征，而且可能会有不同的终止结点。bagged估计是在$x$处这$B$棵树的平均预测。</p>
 <p>现在假设我们的树产生一个用于$K$个类别响应变量的分类器$\hat G(x)$。这里考虑一个潜在的指示向量函数$\hat f(x)$（其中有一个1和$K-1$个0）使得$\hat G(x)=\mathrm{arg \; max}<em>k\;\hat f(x)$是很有用的。则袋装估计$\hat f</em>{bag}(x)$（8.51）是一个$K$维向量$[p_1(x),p_2(x),\ldots,p_K(x)]$,其中$p_k(x)$等于在$x$处预测为类别$k$的树的比例。袋装分类器从$B$棵树中选择得“票”最多的类别，$\hat G_{bag}(x)=\mathrm{arg \; max}<em>k\; \hat f</em>{bag}(x)$</p>
