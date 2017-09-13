@@ -1123,14 +1123,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mcmc">MCMC从后采样</a></li>
+        <li class="main active"><a href="#mcmc">MCMC向后采样</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="mcmc">MCMC从后采样</h1>
+<h1 id="mcmc">MCMC向后采样</h1>
 <table>
 <thead>
 <tr>
@@ -1162,7 +1162,7 @@ P(x) = \int P(x, \theta)d\theta
 </script>
 有人会想到有Monte Carlo来近似上述的积分值（关于应用Monte Carlo进行积分近似，可以参见<a href="https://stats.hohoweiya.xyz//montecarlo/2017/09/07/The-Need-of-Monte-Carlo/">The Applications of Monte Carlo</a>），但这也是不实际的。因为如果要用Monte Carlo近似，则首先我们需要在从$\theta$的后验分布中sample出$m$个样本来（注意到我们需要求的就是$\theta$的后验分布），进而采用下式进行近似
 <script type="math/tex; mode=display">
-\hat P(x) = \int _{\theta}d\theta \frac{1}{m}\sum\limits_{i=1}^mP(x, \theta^{(m)})
+\hat P(x) = \int _{\theta}d\theta\cdot \frac{1}{m}\sum\limits_{i=1}^mP(x, \theta^{(m)})
 </script>
 但幸好可以通过构造一个Markov chain来进行Monte Carlo近似，称为MCMC。在<a href="http://nbviewer.jupyter.org/github/szcf-weiya/MonteCarlo/blob/master/MCMC/MCMC_example.ipynb">MCMC_example.ipynb</a>里面用一个例子说明了怎么用MCMC得到参数的后验分布。</p>
 </div>
