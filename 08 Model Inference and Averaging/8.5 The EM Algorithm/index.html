@@ -42,6 +42,9 @@
           	processEscapes:true
           },
           TeX: {
+            Macros: {
+              LOG: "{\\mathrm{log }}"
+            },
           	entensions: ["color.js"]
           }
           });
@@ -1276,7 +1279,23 @@ Pr(\mathbf Z\mid \theta')=\frac{Pr(\mathbf T\mid \theta')}{Pr(\mathbf Z^m\mid \m
 &\equiv Q(\theta',\theta)-R(\theta',\theta)\qquad\qquad (8.46)
 \end{align}
 </script>
-在最大化那一步，EM算法最大化关于$\theta&rsquo;$的$Q(\theta&rsquo;,\theta)$,而不是实际的目标函数$\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化$\ell(\theta&rsquo;;\mathbf Z)$？注意到$R(\theta^*,\theta)$是由$\theta^*$指示的密度的期望，这个密度同时由$\theta$指示，因此（由琴生不等式）当$\theta^*=\theta$时（见练习8.1<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）最大化关于$\theta^*$的函数。所以如果$\theta&rsquo;$最大化$Q(\theta&rsquo;,\theta)$,我们可以看到
+在最大化那一步，EM算法最大化关于$\theta&rsquo;$的$Q(\theta&rsquo;,\theta)$,而不是实际的目标函数$\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化$\ell(\theta&rsquo;;\mathbf Z)$？注意到$R(\theta^*,\theta)$是由$\theta^*$指示的密度的期望，这个密度同时由$\theta$指示，因此（由琴生不等式）当$\theta^*=\theta$时（见练习8.1<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）最大化关于$\theta^*$的函数。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注<p>练习8.1如下：
+<img alt="" src="../../img/08/ex8.1.png" />
+证明想法如下:
+记$x=r(y), c=q(y)$
+<script type="math/tex; mode=display">
+\phi(x)=-\mathrm{log}\frac{c}{x}=\mathrm{log}x-\mathrm{log}c
+</script>
+为凸函数，则有
+<script type="math/tex; mode=display">
+E(LOG(\frac{r(y)}{q(y)}))=E(-LOG(\frac{q(y)}{r(y)}))\ge-LOG\frac{q(y)}{E(r(y))}=LOG E\frac{r(y)}{q(y)} 
+</script>
+</p>
+</p>
+</div>
+<p>所以如果$\theta&rsquo;$最大化$Q(\theta&rsquo;,\theta)$,我们可以看到
 <script type="math/tex; mode=display">
 \begin{align}
 \ell(\theta';\mathbf Z) - \ell(\theta;\mathbf Z) &= [Q(\theta',\theta)-Q(\theta,\theta)]-[R(\theta',\theta)-R(\theta,\theta)]\\
