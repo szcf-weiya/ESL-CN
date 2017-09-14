@@ -43,7 +43,9 @@
           },
           TeX: {
             Macros: {
-              LOG: "{\\mathrm{log }}"
+              LOG: "{\\mathrm{log }}",
+              E: "{\\mathrm{E }}",
+              1: "{\\boldsymbol 1}"
             },
           	entensions: ["color.js"]
           }
@@ -1290,9 +1292,15 @@ Pr(\mathbf Z\mid \theta')=\frac{Pr(\mathbf T\mid \theta')}{Pr(\mathbf Z^m\mid \m
 </script>
 为凸函数，则有
 <script type="math/tex; mode=display">
-E(\LOG(\frac{r(y)}{q(y)}))=E(-\LOG(\frac{q(y)}{r(y)}))\ge-\LOG\frac{q(y)}{E(r(y))}=\LOG E\frac{r(y)}{q(y)}
+\E(\LOG(\frac{r(y)}{q(y)}))=\E(-\LOG(\frac{q(y)}{r(y)}))\ge-\LOG\frac{q(y)}{E(r(y))}=\LOG \E\frac{r(y)}{q(y)}
 </script>
-</p>
+当$r(y)=q(y)$时取等。
+于是$\E(\LOG r(Y)/q(Y))$在$r(y)=q(y)$时取等。
+对于$R(\theta&rsquo;,\theta)$，我们有
+<script type="math/tex; mode=display">
+R(\theta',\theta)=\frac{\E (\1_{\mathbf Z,\theta}\ell_1(\theta';\mathbf Z^m\mid \mathbf Z))}{P(\mathbf Z,\theta)}
+</script>
+所以也有题目中结论的形式，故当$R(\theta,\theta)\ge R(\theta&rsquo;,\theta)$</p>
 </p>
 </div>
 <p>所以如果$\theta&rsquo;$最大化$Q(\theta&rsquo;,\theta)$,我们可以看到
