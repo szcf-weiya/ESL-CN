@@ -39,6 +39,7 @@ pages:
       - 5.2 分段多项式和样条: '05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines.md'
       - 5.3 滤波和特征提取: '05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction.md'
       - 5.4 光滑样条: '05 Basis Expansions and Regularization/5.4 Smoothing Splines.md'
+      - 5.6 非参逻辑斯蒂回归: '05 Basis Expansions and Regularization/5.6 Nonparametric Logistic Regression.md'
       - 文献笔记: '05 Basis Expansions and Regularization/Bibliographic Notes.md'
     - 6 核光滑方法:
       - 6.0 导言: '06 Kernel Smoothing Methods/6.0 Introduction.md'
