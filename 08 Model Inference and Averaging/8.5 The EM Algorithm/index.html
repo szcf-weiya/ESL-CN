@@ -1276,7 +1276,7 @@ Pr(\mathbf Z\mid \theta')=\frac{Pr(\mathbf T\mid \theta')}{Pr(\mathbf Z^m\mid \m
 &\equiv Q(\theta',\theta)-R(\theta',\theta)\qquad\qquad (8.46)
 \end{align}
 </script>
-在最大化那一步，EM算法最大化关于$\theta&rsquo;$的$Q(\theta&rsquo;,\theta)$,而不是实际的目标函数$\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化$\ell(\theta&rsquo;;\mathbf Z)$？注意到$R(\theta^*,\theta)$是由$\theta*$指示的的密度的期望，这个密度同时由$\theta$指示，因此（由琴生不等式）当$\theta^*=\theta$时（见练习8.1<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）最大化关于$\theta^*$的函数。所以如果$\theta&rsquo;$最大化$Q(\theta&rsquo;,\theta)$,我们可以看到
+在最大化那一步，EM算法最大化关于$\theta&rsquo;$的$Q(\theta&rsquo;,\theta)$,而不是实际的目标函数$\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化$\ell(\theta&rsquo;;\mathbf Z)$？注意到$R(\theta^*,\theta)$是由$\theta*$指示的密度的期望，这个密度同时由$\theta$指示，因此（由琴生不等式）当$\theta^*=\theta$时（见练习8.1<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）最大化关于$\theta^*$的函数。所以如果$\theta&rsquo;$最大化$Q(\theta&rsquo;,\theta)$,我们可以看到
 <script type="math/tex; mode=display">
 \begin{align}
 \ell(\theta';\mathbf Z) - \ell(\theta;\mathbf Z) &= [Q(\theta',\theta)-Q(\theta,\theta)]-[R(\theta',\theta)-R(\theta,\theta)]\\
@@ -1301,6 +1301,10 @@ F(\theta',\tilde P) = E_{\tilde P}[\ell_0(\theta';\mathbf T)] - E_{\tilde P}[\ma
 <p>图8.7. EM算法的最大化-最大化角度。图中画出了（增广）观测数据对数似然函数$F(\theta&rsquo;,\tilde P)$的等高线。步骤E等价于在潜在数据分布的参数上最大化对数似然函数。步骤M在对数似然参数上进行最大化。红色曲线对应观测数据的对数似然函数，这是对每个$\theta&rsquo;$值进行最大化$F(\theta&rsquo;,\tilde P)$得到的曲线。</p>
 </blockquote>
 <p>最后，因为当$\tilde P(\mathbf Z^m)=Pr(\mathbf Z^m\mid \mathbf Z,\theta&rsquo;)$时，$F(\theta&rsquo;,\tilde P)$和观测数据的对数似然函数是一致的，对前者的最大化也实现了对后者的最大化。图8.7展现了这一过程的示意图。EM算法的这个角度导出了另一个最大化过程。举个例子，不需要立刻对所有潜在数据参数进行最大化，但是可以每次最大化其中的一个，通过在步骤M来轮流实现。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注<p>有点类似于坐标轮换(univariate search)，关于坐标轮换及其其他优化方法的介绍，可以参见<a href="https://sites.ualberta.ca/~aksikas/nlpm.pdf">nlpm</a></p>
+</p>
+</div>
 <div class="footnote">
 <hr />
 <ol>
