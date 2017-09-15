@@ -1281,7 +1281,7 @@ Pr(\mathbf Z\mid \theta')=\frac{Pr(\mathbf T\mid \theta')}{Pr(\mathbf Z^m\mid \m
 &\equiv Q(\theta',\theta)-R(\theta',\theta)\qquad\qquad (8.46)
 \end{align}
 </script>
-在最大化那一步，EM算法最大化关于$\theta&rsquo;$的$Q(\theta&rsquo;,\theta)$,而不是实际的目标函数$\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化$\ell(\theta&rsquo;;\mathbf Z)$？注意到$R(\theta^*,\theta)$是由$\theta^*$指示的密度的期望，这个密度同时由$\theta$指示，因此（由琴生不等式）当$\theta^*=\theta$时（见练习8.1<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）最大化关于$\theta^*$的函数。</p>
+在最大化那一步，EM算法最大化关于$\theta&rsquo;$的$Q(\theta&rsquo;,\theta)$,而不是实际的目标函数$\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化$\ell(\theta&rsquo;;\mathbf Z)$？注意到$R(\theta^*,\theta)$是由$\theta^*$指示的密度的期望，这个密度同时由$\theta$指示，因此（由琴生不等式）当$\theta^*=\theta$时（见练习8.1）最大化关于$\theta^*$的函数。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注<p>练习8.1如下：
 <img alt="" src="../../img/08/ex8.1.png" />
@@ -1300,7 +1300,7 @@ Pr(\mathbf Z\mid \theta')=\frac{Pr(\mathbf T\mid \theta')}{Pr(\mathbf Z^m\mid \m
 <script type="math/tex; mode=display">
 R(\theta',\theta)=\frac{\E (\1_{\mathbf Z,\theta}\ell_1(\theta';\mathbf Z^m\mid \mathbf Z))}{P(\mathbf Z,\theta)}
 </script>
-所以也有题目中结论的形式，故当$R(\theta,\theta)\ge R(\theta&rsquo;,\theta)$</p>
+注意到$\ell_1$其实是对数似然，分母为是与$\theta$有关的常数，所以满足题目中结论的形式，于是$R(\theta,\theta)\ge R(\theta&rsquo;,\theta)$</p>
 </p>
 </div>
 <p>所以如果$\theta&rsquo;$最大化$Q(\theta&rsquo;,\theta)$,我们可以看到
@@ -1331,14 +1331,6 @@ F(\theta',\tilde P) = E_{\tilde P}[\ell_0(\theta';\mathbf T)] - E_{\tilde P}[\ma
 <div class="admonition note">
 <p class="admonition-title">weiya注<p>有点类似于坐标轮换(univariate search)，关于坐标轮换及其其他优化方法的介绍，可以参见<a href="https://sites.ualberta.ca/~aksikas/nlpm.pdf">nlpm</a></p>
 </p>
-</div>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p><img alt="" src="../../img/08/ex8.1.png" />&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
 </div>
 
 <div id="disqus_thread"></div>
