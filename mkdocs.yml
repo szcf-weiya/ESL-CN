@@ -143,7 +143,7 @@ pages:
       - 15.3 随机森林的细节: '15 Random Forests/15.3 Details of Random Forests.md'
       - 文献笔记: '15 Random Forests/Bibliographic Notes.md'
 
-    - 16 增强学习:
+    - 16 集成学习:
       - 16.1 导言: '16 Ensemble Learning/16.1 Introduction.md'
       - 16.2 增强和正则路径: '16 Ensemble Learning/16.2 Boosting and Regularization Paths.md'
       - 文献笔记: '16 Ensemble Learning/Bibliographic Notes.md'
