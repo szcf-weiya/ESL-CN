@@ -1247,11 +1247,12 @@ C_\alpha(T)=\sum\limits_{m=1}^{\vert T\vert}N_mQ_m(T)+\alpha\vert T\vert\qquad (
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p>下面看一下如何在R中实现CART算法，采用rpart包来完成，下面是一个很简单的例子。
-<code>r
-library(rpart)
-library(rpart.plot)
-fit &lt;- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
-rpart.plot(fit)</code>
+```
+library(rpart)</p>
+<p>library(rpart.plot)</p>
+<p>fit &lt;- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)</p>
+<p>rpart.plot(fit)
+```
 最终，我们得到
 <img alt="" src="../../img/09/ex_CART.png" /></p>
 </div>
