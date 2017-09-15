@@ -1246,14 +1246,12 @@ C_\alpha(T)=\sum\limits_{m=1}^{\vert T\vert}N_mQ_m(T)+\alpha\vert T\vert\qquad (
 <p>Gini指数可以用两种方式来解读。与其将观测值划分到结点的主要类别中，我们可以以一定概率$\hat p_{mk}$将它们划分到类别$k$。于是该结点的这条规则的训练误差率是$\sum_{k\neq k&rsquo;}\hat p_{mk}\hat p_{mk&rsquo;}$——Gini指数。类似地，如果我们对类别$k$的观测编码为1，而对其它的观测编码为0，则该结点的0-1响应变量的方差为$\hat p_{mk}(1-\hat p_{mk})$.将$k$个类别的全部相加再一次得到Gini指数。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
-<p>下面看一下如何在R中实现CART算法，采用rpart包来完成，下面是一个很简单的例子。
-```
-library(rpart)</p>
+<p>下面看一下如何在R中实现CART算法，采用rpart包来完成，下面是一个很简单的例子。</p>
+<p>library(rpart)</p>
 <p>library(rpart.plot)</p>
 <p>fit &lt;- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)</p>
-<p>rpart.plot(fit)
-```
-最终，我们得到
+<p>rpart.plot(fit)</p>
+<p>最终，我们得到
 <img alt="" src="../../img/09/ex_CART.png" /></p>
 </div>
 <h2 id="_4">其他的问题</h2>
