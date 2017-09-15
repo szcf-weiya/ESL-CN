@@ -953,7 +953,7 @@
                     
                         
   <li class="dropdown-submenu scrollable-menu">
-    <a tabindex="-1" class="nav-title">16 增强学习</a>
+    <a tabindex="-1" class="nav-title">16 集成学习</a>
     <ul class="dropdown-menu scrollable-menu">
         
             
@@ -1134,16 +1134,16 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">增强和正则路径</a></li>
+        <li class="main active"><a href="#boosting">boosting和正则化路径</a></li>
         
-            <li><a href="#_2">惩罚回归</a></li>
+            <li><a href="#_1">惩罚回归</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">增强和正则路径</h1>
+<h1 id="boosting">boosting和正则化路径</h1>
 <table>
 <thead>
 <tr>
@@ -1163,7 +1163,7 @@
 </tbody>
 </table>
 <p>在本书的第10.12.2节中，我们表明了由梯度加速算法产生的模型序列与在高维特征空间中拟合的正则模型是相似的。这最初是观测到线性模型的加速版本和lasso之间（第3.4.2节）的紧密联系得到的。我们和其他人一起研究这些联系，并且在这里放上在这个领域我们当前的思考。我们从最初的动机开始，这在本章中很自然地适合于集成学习。</p>
-<h2 id="_2">惩罚回归</h2>
+<h2 id="_1">惩罚回归</h2>
 <p>梯度加速的收缩策略(10.41)的成功直觉上可以通过类比含有很大的基展开的惩罚线性回归得到。考虑所有可能的$J$终止结点的回归树$\cal T={T_k}$的字典作为$R^p$的基函数，这在训练数据上可以实现。线性模型为
 <script type="math/tex; mode=display">
 f(x)=\sum\limits_{k=1}^K\alpha_kT_k(x)\qquad (16.1)
@@ -1182,7 +1182,7 @@ J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\qquad (16.4)
 \end{align}
 </script>
 这些都在3.4节介绍了。正如这里讨论的那样，从中等到较大的$\lambda$的lasso问题的解趋向于是稀疏的；许多$\hat\alpha_k(\lambda)=0$. 也就是，只有所有可能树的一小部分会选进模型(16.1)。这似乎是合理的，因为似乎只有所有可能树的一小部分对近似任意特定的目标函数是恰当的。那些没有设为0的系数被lasso收缩了，因为它们的绝对值比对应最小二乘值要小：$\vert\hat\alpha_k(\lambda)\vert&lt;\vert\hat\alpha_k(0)\vert$。当$\lambda$增大时，系数都进行了收缩，每一个最终都变为0。</p>
-<p>由于非常大量的基函数$T_k$，直接求解含有lasso惩罚(16.4)的(16.2)是不可能的。然而，存在可行的向前逐步策略，对lasso的影响有非常大的近似，并且与增强和向前逐步算法10.2非常相似。算法16.1给出了细节。尽管是用树的基函数$T_k$表示的，算法也可以用来任意基函数的集合中。    </p>
+<p>由于非常大量的基函数$T_k$，直接求解含有lasso惩罚(16.4)的(16.2)是不可能的。然而，存在可行的向前逐步策略，对lasso的影响有非常大的近似，并且与增强和向前逐步算法10.2非常相似。算法16.1给出了细节。尽管是用树的基函数$T_k$表示的，算法也可以用来任意基函数的集合中。</p>
 
 <div id="disqus_thread"></div>
 <script>
