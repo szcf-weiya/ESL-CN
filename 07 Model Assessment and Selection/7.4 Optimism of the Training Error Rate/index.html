@@ -1183,7 +1183,7 @@
 \overline{err} = \frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f(x_i))\qquad (7.17)
 </script>
 </p>
-<p>会比真实误差$\mathrm{Err}_{\cal T}$，因为同样的数据被用来拟合方法并且评估误差（见练习2.9）。拟合方法一般适应于训练数据，因此显式或训练误差$\overline{err}$是过度乐观估计的推广误差$\mathrm {Err}_{\cal T}$。</p>
+<p>会比真实误差$\mathrm{Err}_{\cal T}$小，因为数据被同时用来拟合方法并且评估误差（见练习2.9）。拟合方法一般适应于训练数据，因此训练误差$\overline{err}$是过度乐观估计的泛化误差$\mathrm {Err}_{\cal T}$。</p>
 <p>部分差异是因为取值点的选取。值$\mathrm {Err}_{\cal T}$可以看成是样本外（extra-sample）误差，因为测试输入向量不需要与训练输入向量一致。当我们去关注样本内（in-sample）误差，可以很简单地理解$\overline{err}$乐观估计的本质</p>
 <p>
 <script type="math/tex; mode=display">
