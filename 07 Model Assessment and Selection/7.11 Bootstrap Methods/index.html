@@ -1175,9 +1175,9 @@
 其中$\bar S^*=\sum_b S(\mathbf Z^{*b})/B$。注意到$\widehat{Var}[S(\mathbf Z)]$可以认为是从数据$(z_1,z_2,\ldots,z_N)$的经验分布$\hat F$中取样对$S(\mathbf Z)$的方差的蒙特卡洛估计。</p>
 <p>我们怎样应用自助法来估计预测误差？一种方式是在自助法样本集合上拟合问题中的模型，然后跟踪它预测原始训练集的好坏。如果$\hat f^{*b}(x_i)$是在$x_i$处根据第$b$个自助法数据集拟合出的模型的预测值，我们的估计为
 <script type="math/tex; mode=display">
-\widehat{Err}_{boot}=\frac{1}{B}\frac{1}{N}\sum\limits_{b=1}^B\sum\limits_{i=1}^NL(y_i,\hat f^{\*b}(x_i))\qquad (7.54)
+\widehat{Err}_{boot}=\frac{1}{B}\frac{1}{N}\sum\limits_{b=1}^B\sum\limits_{i=1}^NL(y_i,\hat f^{*b}(x_i))\qquad (7.54)
 </script>
-然而，可以简单地看到一般情形下$\widehat{Err}_{boot}$没有给出良好估计。原因在于自助法数据集是作为训练样本，而原始训练集是作为测试样本，而且这两个样本有共同的观测。这种重合会使得过拟合的预测看起来不现实地好，这也是交叉验证明确地使用非重合的数据作为训练和测试样本。考虑对两个类别的分类问题应用1-最近邻分类器的例子，每个类有相同的观测，预测变量和类别标签实际上是独立的。于是真实误差率为0.5。但是对自助法估计$\widehat{Err}<em>{boot}$的贡献会是0，除非观测$i$不出现在自助法样本$b$中。后一种情形中会有正确的期望值0.5。现在
+然而，可以简单地看到一般情形下$\widehat{Err}_{boot}$没有给出良好估计。原因在于自助法数据集是作为训练样本，而原始训练集是作为测试样本，而且这两个样本有共同的观测。这种重合会使得过拟合的预测看起来难以置信地好，这也是交叉验证明确地使用非重合的数据作为训练和测试样本。考虑对两个类别的分类问题应用1-最近邻分类器的例子，每个类有一样多的观测值，预测变量和类别标签实际上是独立的。于是真实误差率为0.5。但是对自助法估计$\widehat{Err}_{boot}$的贡献会是0，除非观测$i$不出现在自助法样本$b$中。后一种情形中会有正确的期望值0.5。现在
 <script type="math/tex; mode=display">
 \begin{align}
 Pr\{\text{观测}i\in\text{自助法样本}b\}&=1-(1-\frac{1}{N})^N\\
@@ -1185,7 +1185,7 @@ Pr\{\text{观测}i\in\text{自助法样本}b\}&=1-(1-\frac{1}{N})^N\\
 &=0.632\qquad (7.55)
 \end{align}
 </script>
-因此$\widehat{Err}</em>{boot}$的期望为$0.5\times 0.368=0.184$，远远低于正确的误差率0.5。</p>
+因此$\widehat{Err}_{boot}$的期望为$0.5\times 0.368=0.184$，远远低于正确的误差率0.5。</p>
 <p>通过模仿交叉验证，可以得到更好的自助法估计。对于每个观测，我们仅仅跟踪自助法样本中不包含该观测的预测。这个舍一法预测误差的自助法估计由下式定义
 <script type="math/tex; mode=display">
 \widehat{Err}^{(1)}=\frac{1}{N}\sum\limits_{i=1}^N\frac{1}{\vert C^{-i}\vert}\sum\limits_{b\in C^{-i}}L(y_i,\hat f^{*b}(x_i))\qquad (7.56)
