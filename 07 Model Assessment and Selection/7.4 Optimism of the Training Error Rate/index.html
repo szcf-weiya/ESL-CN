@@ -1134,14 +1134,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">训练误差率的乐观</a></li>
+        <li class="main active"><a href="#optimism">训练误差率的optimism</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">训练误差率的乐观</h1>
+<h1 id="optimism">训练误差率的optimism</h1>
 <table>
 <thead>
 <tr>
@@ -1162,9 +1162,9 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">weiya 注</p>
-<p>标题中的乐观（optimism）是本节定义的一个量$op$。</p>
+<p>标题中的optimism是本节定义的一个量$op$。</p>
 </div>
-<p>讨论误差率的估计可能令人困惑，因为我们必须弄清楚哪些量是固定的哪些量是随机的。在我们继续之前，我们需要一些定义，详细阐述第7.2节的内容。给出训练集$\cal T={(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)}$，模型$\hat f$的推广误差为</p>
+<p>讨论误差率的估计可能令人困惑，因为我们必须弄清楚哪些量是固定的哪些量是随机的。在我们继续之前，我们需要一些定义，详细阐述第7.2节的内容。给出训练集$\cal T=\{(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)\}$，模型$\hat f$的泛化误差为</p>
 <p>
 <script type="math/tex; mode=display">
 \mathrm{Err}_{\cal T} = E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid \cal T]\qquad (7.15)
@@ -1183,7 +1183,7 @@
 \overline{err} = \frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f(x_i))\qquad (7.17)
 </script>
 </p>
-<p>会比真实误差$\mathrm{Err}<em>{\cal T}$，因为同样的数据被用来拟合方法并且评估误差（见练习2.9）。拟合方法一般适应于训练数据，因此显式或训练误差$\overline{err}$是过度乐观估计的推广误差$\mathrm {Err}</em>{\cal T}$。</p>
+<p>会比真实误差$\mathrm{Err}_{\cal T}$，因为同样的数据被用来拟合方法并且评估误差（见练习2.9）。拟合方法一般适应于训练数据，因此显式或训练误差$\overline{err}$是过度乐观估计的推广误差$\mathrm {Err}_{\cal T}$。</p>
 <p>部分差异是因为取值点的选取。值$\mathrm {Err}_{\cal T}$可以看成是样本外（extra-sample）误差，因为测试输入向量不需要与训练输入向量一致。当我们去关注样本内（in-sample）误差，可以很简单地理解$\overline{err}$乐观估计的本质</p>
 <p>
 <script type="math/tex; mode=display">
