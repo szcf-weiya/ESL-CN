@@ -1192,15 +1192,12 @@ Pr\{\text{观测}i\in\text{自助法样本}b\}&=1-(1-\frac{1}{N})^N\\
 </script>
 这里$C^{-i}$是不包含观测$i$的自助法样本$b$的指标集，而且$\vert C^{-i}\vert$为这些样本的个数。在计算$\widehat{Err}^{(1)}$时，我们要么必须选择充分大的$B$来保证所有的$\vert C^{-i}\vert$都大于0，或者我们可以直接删掉（7.56）式中$\vert C^{-i}\vert=0$的项。</p>
 <p>舍一自助法解决了$\widehat{Err}_{boot}$遭受的过拟合问题，但是会有在讨论交叉验证中提到的训练集大小偏差问题。每个自助法样本中不同观测的平均个数大约为$0.632\cdot N$，所以它的偏差会大致表现得和两折交叉验证一样。因此如果学习曲线在样本大小为$N/2$时有相当大的斜率，则舍一自助法作为真实误差的估计会有一个向上的偏差。</p>
-<div class="admonition notes">
-<p class="admonition-title">weiya 注</p>
-</div>
 <p>“.632估计”是为了减轻偏差而设计的。由下式定义
 <script type="math/tex; mode=display">
 \widehat{Err}^{(.632)}=.368\cdot\overline{err}+.632\cdot\widehat{Err}^{(1)}\qquad (7.57)
 </script>
 0.632估计的来源是很复杂的；直观上它将舍一自助的估计向训练误差率靠近，也因此降低了向上的偏差。常值.632与式（7.55）有关。</p>
-<p>.632估计在“轻拟合”情形下表现很好，但是在过拟合情形下会变糟。这里是来自Breiman等人（1984）的一个例子。假设我们有两个相同大小的类，目标与类别标签独立，而且我们采用1-最近邻规则。则$\overline{err}=0,\widehat{Err}^{(1)}=0.5$，而且因此$\widehat{Err}^{(.632)}=.632\times 0.5=.316$。然而，真实误差率为0.5。</p>
+<p>.632估计在“轻拟合”情形下表现很好，但是在过拟合情形下会变糟。这里是来自Breiman et al.（1984）[^1]的一个例子。假设我们有两个相同大小的类，目标与类别标签独立，而且我们采用1-最近邻规则。则$\overline{err}=0,\widehat{Err}^{(1)}=0.5$，而且因此$\widehat{Err}^{(.632)}=.632\times 0.5=.316$。然而，真实误差率为0.5。</p>
 <p>可以通过考虑过拟合的程度来改善.632估计。首先我们定义$\gamma$为无信息误差率（no-information error rate）：这是如果输入与类别标签独立时的预测规则的误差率。$\gamma$的估计可以通过在所有可能的目标$y_i$和预测$x_{i&rsquo;}$的组合上应用预测规则得到
 <script type="math/tex; mode=display">
 \hat\gamma = \frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^NL(y_i,\hat f(x_{i'}))\qquad (7.58)
