@@ -1186,9 +1186,6 @@ Pr\{\text{观测}i\in\text{自助法样本}b\}&=1-(1-\frac{1}{N})^N\\
 \end{align}
 </script>
 因此$\widehat{Err}</em>{boot}$的期望为$0.5\times 0.368=0.184$，远远低于正确的误差率0.5。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya 注</p>
-</div>
 <p>通过模仿交叉验证，可以得到更好的自助法估计。对于每个观测，我们仅仅跟踪自助法样本中不包含该观测的预测。这个舍一法预测误差的自助法估计由下式定义
 <script type="math/tex; mode=display">
 \widehat{Err}^{(1)}=\frac{1}{N}\sum\limits_{i=1}^N\frac{1}{\vert C^{-i}\vert}\sum\limits_{b\in C^{-i}}L(y_i,\hat f^{*b}(x_i))\qquad (7.56)
