@@ -261,7 +261,7 @@ blockquote img.emojione {
     vertical-align: text-bottom;
 }
 
-note img.emojione {
+.note img.emojione {
     display: -webkit-inline-box;
     width: 1.5rem;
     vertical-align: text-bottom;
