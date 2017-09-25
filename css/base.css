@@ -255,6 +255,18 @@ blockquote img.emojione {
     vertical-align: text-bottom;
 }
 
+blockquote img.emojione {
+    display: -webkit-inline-box;
+    width: 1.5rem;
+    vertical-align: text-bottom;
+}
+
+note img.emojione {
+    display: -webkit-inline-box;
+    width: 1.5rem;
+    vertical-align: text-bottom;
+}
+
 
 /* pymdownx.critic*/
 .md-typeset .comment.critic,.md-typeset del.critic,.md-typeset ins.critic {
