@@ -146,6 +146,7 @@ pages:
     - 16 集成学习:
       - 16.1 导言: '16 Ensemble Learning/16.1 Introduction.md'
       - 16.2 增强和正则路径: '16 Ensemble Learning/16.2 Boosting and Regularization Paths.md'
+      - 16.3 学习集成: '16 Ensemble Learning/16.3 Learning Ensembles.md'
       - 文献笔记: '16 Ensemble Learning/Bibliographic Notes.md'
 
     - 17 无向图模型:
