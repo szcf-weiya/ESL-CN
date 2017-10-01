@@ -1172,6 +1172,10 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>写在前面</p>
+<p>Hastie和Tibshirani他们的<a href="https://lagunita.stanford.edu/courses/HumanitiesSciences/StatLearning/Winter2016/info">HumanitiesSciences&rsquo;s StatLearning</a>课程是基于ISLR这本书，其中有采用cv来解决具体问题的代码，可以在<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/Resampling">这里</a>找到。</p>
+</blockquote>
 <p>用来估计预测误差的最简单的并且最广泛使用的方法大概是交叉验证。这个方法直接估计额外样本误差期望值$Err=E[L(Y,\hat f(X))]$，当方法$\hat f(X)$应用到与$X$和 $Y$联合分布独立的测试样本中该值是广义误差的平均值。正如前面提到的，我们可能希望交叉验证估计当测试集$\cal T$固定时的条件误差。但是正如我们将在7.12节看到的那样，交叉验证一般仅仅对预测误差的期望值有良好的估计。</p>
 <h2 id="k">K折交叉验证</h2>
 <p>理论上，如果我们有足够的数据，我们可以设置一个验证集并且用它去评估我们预测模型的好坏。因为数据经常是稀缺的，所有这种方式通常是不可能的。为了巧妙地解决这个问题，$K$折交叉验证采用部分可用数据去拟合模型，然后用不同的部分数据去测试。我们将数据分成$K$个大致相等的部分；举个例子，当$K=5$，情形就像这样：</p>
