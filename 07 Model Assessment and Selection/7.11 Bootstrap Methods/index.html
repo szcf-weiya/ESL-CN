@@ -1172,6 +1172,13 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>写在前面</p>
+<p>自助法我觉得是最“独立”，最“自强”的方法了</p>
+<p>无论是那个传说中的Baron pick himself up by his own bootstraps</p>
+<p>还是被作者称为poor man&rsquo;s Bayes posterior（8.4节）</p>
+<p>所以这也是我最喜欢的统计方法了。<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" /></p>
+</blockquote>
 <p>自助法是估计统计精确性的一般工具。首先我们描述一般的自助法，接着介绍它怎么用来估计样本外预测误差。如同交叉验证一样，自助法力求估计条件误差$Err_{\cal T}$，但一般只对期望预测误差Err有良好的估计。</p>
 <p>假设我们有一个根据训练数据拟合的模型。我们用$\mathbf Z=(z_1,z_2,\ldots,z_N)$来记训练集，其中$z_i=(x_i,y_i)$。基本思想是从训练集中有放回地随机选取数据集，每个样本的大小与原始数据集相同。做B次（如B=100）选取的操作，得到B个自助训练集，正如图7.12显示的那样。接着我们对每个自助法数据集重新拟合模型，并且检查在$B$个复制集上拟合的行为。</p>
 <p><img alt="" src="../../img/07/fig7.12.png" /></p>
