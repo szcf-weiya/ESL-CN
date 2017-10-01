@@ -12,6 +12,7 @@ The Elements of Statistical Learning (ESL)的中文翻译及其代码实现。
 7. [Gibbs](code/Gibbs)
 8. [Self-organized Map](code/SOM)
 9. [kernel estimation](code/nonParametrics)
+10. [Resampling Method](code/Resampling): 包括交叉验证(cv)和自助法(bootstrap)
 
 ## 文献统计
 | Chap | AOS  | JASA | JRSS | BKA  | percentage |
