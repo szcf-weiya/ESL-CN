@@ -1181,8 +1181,12 @@
 <li>在每一个测试点$x$上，$\hat p_\ell (x)$是第 $\ell $个响应的预测概率。</li>
 <li>定义$\delta_k(x)=\sum_{\ell=1}^L\vert C_{k\ell}-\hat p_\ell(x)\vert$,是第$k$个类别的判别函数，其中$C_{k\ell}$是表16.1第$k$行和第$\ell$列的值。</li>
 </ol>
-<p>$\mathbf C$的每一行是表示该类的二进制编码。每一行的位数比必要的二进制位数更多，而且冗余的“error-correcting”位数在一些不精确的情形下是允许的，而且可以提高模型的效果。事实上，上面的全编码矩阵$\mathbf C$在任意两列中有一个最小的Hamming距离7。注意到甚至响应指示变量编码（4.2节）是多余的，因为10个类别仅仅需要$[log_210=4]$位来实现唯一表示。Dietterich和Bakiri在1995年证明了当分类数作为基分类器会使得不同的多类别问题有显著性提高。</p>
-<p>James and Hastie (1998)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>分析ECOC方法，而且证明了随机编码分配和最优结构化error-correcting编码。他们也提出这种编码的好处在于降低方差（和bagging和随机森林一样），因为不同的编码问题会引出不同的树，另外上面解码步骤（3）跟平均(averaging)有相似的影响。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注<p>关于$\delta_k(x)$的定义，可以这样理解。首先，$\hat p_\ell (x)$值越大，表示越倾向于类别1，越小则越倾向于类别0，于是$\vert C_{k\ell}-\hat p_\ell(x) \vert$预测正确时的程度，值越小表示得到的预测会越正确。因此，最后类别为使得$delta_k(x), k=1,2,\ldots, L$中最小的$k$。</p>
+</p>
+</div>
+<p>$\mathbf C$的每一行是表示该类的二进制编码。每一行的位数比必要的二进制位数更多，而且冗余的“error-correcting”位数在一些不精确的情形下是允许的，而且可以提高模型的效果。事实上，上面的全编码矩阵$\mathbf C$在任意两列中有一个最小的Hamming距离7。注意到甚至响应指示变量编码（4.2节）是多余的，因为10个类别仅仅需要$[log_210=4]$位来实现唯一表示。Dietterich and Bakiri (1995)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>证明了当分类数作为基分类器会使得不同的多类别问题有显著性提高。</p>
+<p>James and Hastie (1998)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>分析ECOC方法，而且证明了随机编码分配和最优结构化error-correcting编码。他们也提出这种编码的好处在于降低方差（和bagging和随机森林一样），因为不同的编码问题会引出不同的树，另外上面解码步骤（3）跟平均(averaging)有相似的影响。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注<p>Hamming距离为两个向量不匹配的值的个数。</p>
 </p>
@@ -1197,7 +1201,10 @@
 <p>Dietterich, T. and Bakiri, G. (1995). Solving multiclass learning problems via error-correcting output codes, Journal of Artificial Intelligence Research 2: 263–286.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>James, G. and Hastie, T. (1998). The error coding method and PICTs, Journal of Computational and Graphical Statistics 7(3): 377–387.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Dietterich, T. and Bakiri, G. (1995). Solving multiclass learning problems via error-correcting output codes, Journal of Artificial Intelligence Research 2: 263–286.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>James, G. and Hastie, T. (1998). The error coding method and PICTs, Journal of Computational and Graphical Statistics 7(3): 377–387.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
