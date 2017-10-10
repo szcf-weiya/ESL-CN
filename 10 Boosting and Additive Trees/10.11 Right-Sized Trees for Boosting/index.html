@@ -9,7 +9,7 @@
         <link rel="canonical" href="https://szcf-weiya.github.io/ESL-CN/10 Boosting and Additive Trees/10.11 Right-Sized Trees for Boosting/">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>10.11 合适大小的boosting树 - ESL CN</title>
+	<title>10.11 大小合适的boosting树 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -703,7 +703,7 @@
         
             
 <li class="active">
-    <a href="./">10.11 合适大小的boosting树</a>
+    <a href="./">10.11 大小合适的boosting树</a>
 </li>
 
         
@@ -1146,14 +1146,14 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#boosting">合适大小的boosting树</a></li>
+        <li class="main active"><a href="#boosting">大小合适的boosting树</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="boosting">合适大小的boosting树</h1>
+<h1 id="boosting">大小合适的boosting树</h1>
 <table>
 <thead>
 <tr>
@@ -1168,7 +1168,7 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-10-07 &amp; 2017-10-08</td>
+<td>2017-10-07 &amp; 2017-10-08  &amp;   2017-10-09</td>
 </tr>
 </tbody>
 </table>
@@ -1188,7 +1188,7 @@ f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
 </script>
 </p>
 <p>这里期望值是对$(X,Y)$的总体联合分布而言。目标函数$\eta(x)$是在未来数据上有最小预测风险的函数。这是我们试图近似的函数。</p>
-<p>$\eta(X)$一个相关的性质是坐标变量$X^T=(X_1,X_2,\lots, X_p)$间交叉项的阶。这个可以通过它的ANOVA展开式得到</p>
+<p>$\eta(X)$一个相关的性质是坐标变量$X^T=(X_1,X_2,\ldots, X_p)$间交叉项的阶。这个可以通过它的ANOVA展开式得到</p>
 <p>
 <script type="math/tex; mode=display">
 \eta(X)=\sum\limits_{j}\eta_j(X_j)+\sum\limits_{jk}\eta_{jk}(X_j,X_k)+\sum\limits_{jkl}\eta_{jkl}(X_j,X_k, X_l)+\cdots\qquad (10.40)
