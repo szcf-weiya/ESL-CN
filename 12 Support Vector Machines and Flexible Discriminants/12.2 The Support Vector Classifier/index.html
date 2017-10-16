@@ -1274,7 +1274,7 @@ y_i(x_i^T\beta+\beta_0)-(1-\xi_i)\ge 0\qquad (12.16)
 <script type="math/tex; mode=display">
 \hat\beta=\sum\limits_{i=1}^N\hat\alpha_iy_ix_i\qquad (12.17)
 </script>
-非负系数$\hat\alpha_i$只对严格满足约束(12.16)的观测成立（由于(12.14)）。因为$\hat\beta$用他们单独表示，所以把这些观测称之为<strong>支持向量</strong>。在这些支持点中，有些会在空白的边缘处(<script type="math/tex">\hat\xi_i=0</script>)，因此根据式(12.15)，式(12.12)可以由$0&lt;\hat{\alpha_i}<C$来表示；剩余部分（$\hat\xi_i>0$）有$\hat\alpha_i=C$（由(12.15)式得到）。从(12.14)我们可以看到任一边缘点（$0&lt;\hat{\alpha_i},\hat{\xi_i}=0$）可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值。</p>
+非负系数$\hat\alpha_i$只对严格满足约束(12.16)的观测成立（由于(12.14)）。因为$\hat\beta$用这些观测单独表示，所以把它们称之为<strong>支持向量</strong>。在这些支持点中，有些会在空白的边缘处(<script type="math/tex">\hat\xi_i=0</script>)，因此根据式(12.15)，式(12.12)可以由$0&lt;\hat{\alpha_i}<C$来表示；剩余部分（$\hat{\xi_i}>0$）有$\hat{\alpha_i}=C$（由(12.15)式得到）。从(12.14)我们可以看到任一边缘点（$0&lt;\hat{\alpha_i},\hat{\xi_i}=0$）可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值。</p>
 <p>最大化对偶问题（12.13）是比原问题（12.9）更简单的凸优化问题，而且可以用标准的方法进行求解（举个例子，Murray et al., 1981<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）</p>
 <p>给定解$\hat\beta_0$和$\beta$，判别函数可以写成
 <script type="math/tex; mode=display">
