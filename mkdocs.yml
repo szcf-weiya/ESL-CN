@@ -100,6 +100,7 @@ pages:
       - 10.9 boosting树: '10 Boosting and Additive Trees/10.9 Boosting Trees.md'
       - 10.10 利用梯度boosting的数值优化: '10 Boosting and Additive Trees/10.10 Numerical Optimization via Gradient Boosting.md'
       - 10.11 大小合适的boosting树: '10 Boosting and Additive Trees/10.11 Right-Sized Trees for Boosting.md'
+      - 10.12 正则化: '10 Boosting and Additive Trees/10.12 Regularization.md'
       - 文献笔记: '10 Boosting and Additive Trees/Bibliographic Notes.md'
 
     - 11 神经网络:
