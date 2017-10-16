@@ -709,6 +709,12 @@
         
             
 <li >
+    <a href="../../10 Boosting and Additive Trees/10.12 Regularization/">10.12 正则化</a>
+</li>
+
+        
+            
+<li >
     <a href="../../10 Boosting and Additive Trees/Bibliographic Notes/">文献笔记</a>
 </li>
 
@@ -1172,12 +1178,12 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-12-19:2016-12-20</td>
+<td>2016-12-19:2016-12-20      &amp; 2017.10.15</td>
 </tr>
 </tbody>
 </table>
-<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面。我们复习这个并且推广到不可分的情形下（类别可能不会被线性边界分离）。</p>
-<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in {-1,1}$.定义超平面
+<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面。我们先复习一下，然后推广到不可分的情形下（类别可能不会被线性边界分离）。</p>
+<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in \{-1,1\}$.定义超平面
 <script type="math/tex; mode=display">
 \{x:f(x)=x^T\beta+\beta_0=0\}\qquad (12.1)
 </script>
@@ -1185,7 +1191,7 @@
 <script type="math/tex; mode=display">
 G(x)=sign[x^T\beta+\beta_0]\qquad (12.2)
 </script>
-超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$,满足$y_if(x_i)&gt;0,\forall i$.因此我们可以找到超平面在类别1和-1的训练点之间创造最大的空白（图12.1）。优化问题是
+超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$,满足$y_if(x_i)&gt;0,\forall i$.因此我们可以找到超平面在类别1和-1的训练点之间创造最大的margin（图12.1）。优化问题是
 <script type="math/tex; mode=display">
 \begin{array}{ll}
 \underset{\beta,\beta_0,\Vert \beta\Vert=1}{max}\; M\\
@@ -1196,9 +1202,9 @@ s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
 </p>
 <p><img alt="" src="../../img/12/fig12.1.png" /></p>
 <blockquote>
-<p>图12.1. 支持向量分类器。左图显示了可分情形。判别边界是实线，而虚线确定了边缘空白（阴影部分）的最大宽度为$2M=2/\Vert\beta\Vert$。右图中显示了不可分（重叠）情形。标记为$\xi_j^<em>$的点是在边缘空白错误的一边，且$\xi_j^</em>=M\xi_j$；在正确一侧的点有$\xi_j^<em>=0.$ 最大化空白边界是要满足总代价$\sum\xi_i\le constant$.因此，$\sum\xi_j^</em>$是在空白边界中点的距离综合。</p>
+<p>图12.1. 支持向量分类器。左图显示了可分情形。判别边界是实线，而虚线确定了边缘空白（阴影部分）的最大宽度为$2M=2/\Vert\beta\Vert$。右图中显示了不可分（重叠）情形。标记为$\xi_j^*$的点是在边缘空白错误的一边，且$\xi_j^*=M\xi_j$；在正确一侧的点有$\xi_j^*=0.$ 最大化空白边界是要满足总代价$\sum\xi_i\le constant$.因此，$\sum\xi_j^*$是在空白边界中点的距离总和。</p>
 </blockquote>
-<p>图中的条纹宽度为$M$是分离超平面到另一边的距离，因此总共宽度为$2M$。这称为边缘空白（margin）。</p>
+<p>图中的条纹宽度为$M$是分离超平面到其中一边的距离，因此总共宽度为$2M$。这称为边缘空白（margin）。</p>
 <p>我们已经证明了这个问题可以更方便地写成
 <script type="math/tex; mode=display">
 \begin{array}{ll}
