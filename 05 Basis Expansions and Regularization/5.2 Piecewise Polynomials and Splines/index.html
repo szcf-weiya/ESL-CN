@@ -1200,6 +1200,8 @@
 微分方程的order指的是方程中最高次的微分，所以上式的order为2；而degree指的是最高次微分的幂，所以上式degree为1。值得注意的是，order的定义是完整的，但degree的定义是不完整的，对于非多项式的微分方程，不能定义其degree，也就是并不知道$sin(\frac{dy}{dx})$的degree是多少。
 关于这两者的区别，可以参见Quora上的一篇回答<a href="https://www.quora.com/What-is-the-difference-between-the-degree-and-order-of-a-differential-equation">What is the difference between the degree and order of a differential equation?</a>
 @2017.09.13</p>
+<p>今天跟yy同学简要讨论了一下样条方法，ta觉得“样条方法本身其实就是最小二乘，惩罚样条也不过就是跟最小二乘的Lasso 之类一个原理，没什么新意，不过这种非参估计因为假设放宽所以渐进性要比线性模型证明起来复杂的多。” 说得很对，但我觉得并非没有新意，看上去确实是由最小二乘，但想到样条方法的初衷，不就是将线性模型拓展到超线性，而这种超线性的体现在于可加的分量是$h(X)$，是原始变量$X$的某个变换，比如样条基。所以我觉得表现形式很像最小二乘（或广义最小二乘）是很自然的，并且其惩罚也应该对应着线性中的惩罚，无论是lasso，还是$L_2$。另外，我一个很大的感受是，看上去很general的东西但看他们的论文或者书并不会觉得没有新意，比如esl中很多方法你似乎看上去都可以归结为最最一般的方法，但还是惊叹于新方法的巧妙。
+@2017.10.18</p>
 </blockquote>
 <p>直到5.7节我们都假设$X$为一维向量。分段多项式函数$f(X)$通过将$X$的定义域分成连续的区间，然后在每个区间内用单独的多项式来表示$f$。图5.1显示了两个简单的分段多项式。第一个是分段常值，含有三个基函数：
 <script type="math/tex; mode=display">
