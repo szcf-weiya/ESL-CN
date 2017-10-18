@@ -172,7 +172,9 @@ site_name: 'ESL CN'
 
 site_description: 'The Elements of Statistical Learning(ESL) 的中文笔记'
 
-site_url: https://szcf-weiya.github.io/ESL-CN/
+#site_url: https://szcf-weiya.github.io/ESL-CN/
+
+site_url: https://esl.hohoweiya.xyz
 
 repo_url: https://github.com/szcf-weiya
 
@@ -203,3 +205,5 @@ extra_css:
 
 docs_dir: 'docs'
 theme_dir: 'yeti'
+
+use_directory_urls: false 

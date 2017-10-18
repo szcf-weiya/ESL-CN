@@ -47,9 +47,11 @@
                     </a>
                 </li>
               -->
+              <!--
                 <li>
                   <a href="{{page.canonical_url}}#disqus_thread">0 Comments</a>
                 </li>
+              -->
                 <li {% if not page.previous_page %}class="disabled"{% endif %}>
                     <a rel="next" {% if page.previous_page %}href="{{ page.previous_page.url }}"{% endif %}>
                         <i class="fa fa-arrow-left"></i> 上一节
