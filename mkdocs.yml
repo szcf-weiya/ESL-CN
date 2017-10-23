@@ -51,6 +51,7 @@ pages:
       - 6.6 核密度估计和分类: '06 Kernel Smoothing Methods/6.6 Kernel Density Estimation and Classification.md'
       - 6.7 径向基函数和核: '06 Kernel Smoothing Methods/6.7 Radial Basis Functions and Kernels.md'
       - 文献笔记: '06 Kernel Smoothing Methods/Bibliographic Notes.md'
+      - 附录-B样条的计算: '06 Kernel Smoothing Methods/Appendix-Computations-for-B-splines.md'
   - 中篇:
     - 7 模型评估及选择:
       - 7.1 导言: '07 Model Assessment and Selection/7.1 Introduction.md'
@@ -206,4 +207,4 @@ extra_css:
 docs_dir: 'docs'
 theme_dir: 'yeti'
 
-use_directory_urls: false 
+use_directory_urls: false
