@@ -1452,24 +1452,25 @@ r_i &= y_i -x_i\hat{\beta}
 <p>正交输入的最小二乘回归。向量$\mathbf{x}_2$在向量$\mathbf{x}_1$上回归，得到残差向量$\mathbf{z}$。$\mathbf{y}$在$\mathbf{z}$上的回归给出$\mathbf{x}_2$的系数。把$\mathbf{y}$在$\mathbf{x}_1$和$\mathbf{z}$上的投影加起来给出了最小二乘拟合$\mathbf{\hat{y}}$.</p>
 <p>这个方法可以推广到$p$个输入的情形，如算法3.1所示。注意到第二步的输入$\mathbf{z}<em>0,\ldots,\mathbf{z}</em>{j-1}$是正交的，因此这里计算得到的简单回归的系数实际上是多重回归的系数。</p>
 <p><img alt="" src="../../img/03/Alg3.1.png" /></p>
-<hr />
-<p><strong>算法 3.1</strong> 依次正交的回归</p>
-<hr />
-<ol>
-<li>初始化 $\mathbf{z}_0=\mathbf{x}_0=\mathbf{1}$</li>
-<li>对于 $j=1,2,\ldots,p$
-    在$\mathbf{z}<em>0,\mathbf{z}_1,\ldots,\mathbf{z}</em>{j-1}​$上对$\mathbf{x}<em>j​$回归得到系数$\hat{\gamma}</em>{\ell j}=\langle \mathbf{z}<em>{\ell},\mathbf{x}_j \rangle/\langle\mathbf{z}</em>{\ell},\mathbf{z}<em>{\ell}\rangle,\ell=0,\ldots,j-1$以及残差向量$\mathbf{z}_j=\mathbf{x}_j-\sum</em>{k=0}^{j-1}\hat{\gamma}_{kj}\mathbf{z}_k$</li>
-<li>在残差$\mathbf{z}_p$上回归$\mathbf{y}$得到系数$\hat{\beta}_p$</li>
-</ol>
-<hr />
+<!--
+****
+**算法 3.1** 依次正交的回归
+****
+1. 初始化 $\mathbf{z}_0=\mathbf{x}_0=\mathbf{1}$
+2. 对于 $j=1,2,\ldots,p$
+    在$\mathbf{z}_0,\mathbf{z}_1,\ldots,\mathbf{z}_{j-1}​$上对$\mathbf{x}_j​$回归得到系数$\hat{\gamma}_{\ell j}=\langle \mathbf{z}_{\ell},\mathbf{x}_j \rangle/\langle\mathbf{z}_{\ell},\mathbf{z}_{\ell}\rangle,\ell=0,\ldots,j-1$以及残差向量$\mathbf{z}_j=\mathbf{x}_j-\sum_{k=0}^{j-1}\hat{\gamma}_{kj}\mathbf{z}_k$
+3. 在残差$\mathbf{z}_p$上回归$\mathbf{y}$得到系数$\hat{\beta}_p$
+****
+-->
+
 <p>算法的结果为
 <script type="math/tex; mode=display">
 \hat{\beta}_p=\dfrac{\langle \mathbf{z}_p,\mathbf{y} \rangle}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}\qquad (3.28)
 </script>
 </p>
-<p>对第二步中的残差进行重排列，我们可以看到每个$\mathbf x_j​$是$\mathbf z_k,k\le j​$的线性组合。因为$\mathbf z_j​$是正交的，它们形成了$\mathbf{X}​$列空间的基，从而得到最小二乘在子空间上投影为$\hat{\mathbf{y}}​$。因为$\mathbf z_p​$仅与$\mathbf x_p​$有关(系数为1)，我们可以看到系数(3.28)确实是$\mathbf{y}​$在$\mathbf x_p​$上多重回归的系数。这一重要结果揭示了在多重回归中相关输入的影响。注意到通过对$\mathbf x_j​$重排列，任何其中一个都有可能是最后一个，然后得到一个类似的结果。因此一般来说，我们已经展示了多重回归的第$j​$个系数是$\mathbf{y}​$在$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$的单变量回归，$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$是$\mathbf{x}<em>j​$ 在$\mathbf x_0,\mathbf x_1,&hellip;,\mathbf x</em>{j-1},\mathbf{j+1},&hellip;,\mathbf{x}_p​$回归后的残差向量：</p>
+<p>对第二步中的残差进行重排列，我们可以看到每个$\mathbf x_j​$是$\mathbf z_k,k\le j​$的线性组合。因为$\mathbf z_j​$是正交的，它们形成了$\mathbf{X}​$列空间的基，从而得到最小二乘在子空间上投影为$\hat{\mathbf{y}}​$。因为$\mathbf z_p​$仅与$\mathbf x_p​$有关(系数为1)，我们可以看到系数(3.28)确实是$\mathbf{y}​$在$\mathbf x_p​$上多重回归的系数。这一重要结果揭示了在多重回归中相关输入的影响。注意到通过对$\mathbf x_j​$重排列，任何其中一个都有可能是最后一个，然后得到一个类似的结果。因此一般来说，我们已经展示了多重回归的第$j​$个系数是$\mathbf{y}​$在$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$的单变量回归，$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$是$\mathbf x_j​$ 在$\mathbf x_0,\mathbf x_1,&hellip;,\mathbf x_{j-1},\mathbf{j+1},&hellip;,\mathbf{x}_p​$回归后的残差向量：</p>
 <blockquote>
-<p>多重回归系数$\hat\beta_j​$表示$\mathbf x_j​$经过$\mathbf{x}<em>0,\mathbf{x}_1,\ldots,\mathbf{x}</em>{j-1},\mathbf{x}_{j+1},\ldots,\mathbf{x}_p​$调整后$\mathbf{x}_j​$对$\mathbf{y}​$多余的贡献</p>
+<p>多重回归系数$\hat\beta_j​$表示$\mathbf x_j​$经过$\mathbf x_0,\mathbf x_1,\ldots,\mathbf x_{j-1},\mathbf x_{j+1},\ldots,\mathbf x_p​$调整后$\mathbf x_j​$对$\mathbf y​$多余的贡献</p>
 </blockquote>
 <p>如果$\mathbf{x}_p$与某些$\mathbf{x}_k$高度相关，残差向量$\mathbf{z}_p$会近似等于0，而且由(3.28)得到的系数$\hat{\beta}_p$会非常不稳定。在相关集对于所有的变量都是正确的。在这些情形下我们可能得到所有的Z分数（表3.2所示）都很小——集中的任何一个都可以删掉——然而我们不可能删掉所有。由（3.28）我们也得到估计方差（3.8）的另一种方法
 <script type="math/tex; mode=display">
@@ -1521,7 +1522,7 @@ Y_k&=\beta_{0k}+\sum\limits_{j=1}^pX_j\beta_{jk}+\varepsilon_k \qquad (3.34)\\\\
 <p>这里$\mathbf{Y}$为$N\times K$的响应矩阵，$ik$处值为$y_{ik}$，$\mathbf{X}$为$N\times (p+1)$的输入矩阵，$\mathbf{B}$为$(p+1)\times K$的系数矩阵 $\mathbf{E}$为$N\times K$的误差矩阵。单变量损失函数（3.2）的直接推广为
 <script type="math/tex; mode=display">
 \begin{align}
-RSS(\mathbf{B})&=\sum\limits_{k=1}^K\sum\limits_{i=1}^N(y_{ik}-f_k(x_i))^2\qquad (3.37)
+RSS(\mathbf{B})&=\sum\limits_{k=1}^K\sum\limits_{i=1}^N(y_{ik}-f_k(x_i))^2\qquad (3.37)\\
 &= tr[\mathbf{(Y-XB)^T(Y-XB)}]\qquad (3.38)
 \end{align}
 </script>
