@@ -1202,6 +1202,10 @@
 <td>时间</td>
 <td>2016-10-21:2016-10-21</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2017-12-05</td>
+</tr>
 </tbody>
 </table>
 <p>自从LAR算法（Efron et al., 2004<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）的提出，许多研究都在发展对于不同问题的正则化拟合算法。另外，$L_1$正则有它自己的用处，它引领了信号处理领域的压缩传感(compressed sensing).（Donoho, 2006a<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>; Candes, 2006<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）在这部分我们讨论一些相关的想法和以LAR算法为先驱的其它路径算法。</p>
@@ -1224,11 +1228,11 @@
 <p><img alt="" src="../../img/03/fig3.19.png" /></p>
 <p>这里我们主要对小的$\epsilon$值感兴趣。令$\epsilon\rightarrow0$则有图3.19的右图，在这种情形下与图3.10的lasso路径相同。我们称这个极限过程为无穷小的向前逐渐回归(infinitesimal forward stagewise regression)或者$FS_0$。这个过程在非线性、自适应方法中有着很重要的作用，比如boosting（第10和16章），并且是增长的向前逐渐回归的，这是最能禁得起理论分析的版本。由于它与boosting的关系，Buhlmann and Hothorn (2007)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>称这个过程为&rdquo;L2boost&rdquo;</p>
 <p>Efron最初认为LAR算法3.2是$FS_0$的一个实现，允许每个连结变量(tied predictor)以一种平衡的方式更新他们的系数，并且在相关性方面保持连结。然而，他接着意识到LAR在这些连结预测变量中的最小二乘拟合可以导致系数向相反的方向移动到它们的相关系数，这在算法3.4中是不可能发生的。下面对LAR算法的修正实现了$FS_0$：</p>
-<p><img alt="" src="../../img/03/alg3.2b.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p>直观上看，在算法3.2的第4步中，系数朝着联合最小二乘方向移动，注意此时方向与最小二乘方向可能一致或者相反。然而算法3.4中的移动方向始终与最小二乘方向保持一致。因此需要算法3.2b的修改。</p>
 </div>
+<p><img alt="" src="../../img/03/alg3.2b.png" /></p>
 <!--
 ****
 **算法 3.2b** 最小角回归：$FS_0$修正
@@ -1241,12 +1245,43 @@ $$
 ****
 -->
 
-<p>这个修正相当于一个非负的最小二乘拟合, 保持系数的符号与相关系数的符号一致.可以证明它实现了对于最大相关性的tied变量的无限小&rdquo;更新&rdquo;的最优平衡。（Hastie等人，2007）。类似lasso，全$FS_0$路径可以通过LAR算法非常有效地计算出来。</p>
-<p>作为这些事实的结果，如果LAR图象是单调不减或者单调不增，正如3.19所示，则LAR，lasso，以及$FS_0$这三种算法给出了相同的图象。如果图象不是单调的但是不穿过0，则LAR和lasso是一样的。</p>
-<p>因为$FS_0$与lasso不同，很自然地问它是否完善了准则。答案比lasso更加的复杂；$FS_0$系数曲线是微分方程的一个解。然而lasso在降低系数向量$\beta$的$L_1$范数的单位残差平方和增长方面实现了最优化，$FS_0$在沿着系数路径的$L_1$弧长的单位增长是最优的。因此它的系数曲线不会经常改变方向。</p>
-<p>$FS_0$比lasso更约束，事实上也可以看成是lasso的单调版本；看614页的图16.3生动的例子。$FS_0$可能在$p&gt;&gt;N$情形下很有用，它的系数曲线更加的光滑，因此比lasso有更小的方差。更多关于$FS_0$的细节将在16.2.3节给出以及Hastie等人的工作（2007）。图3.16包含了$FS_0$, 它的表现非常类似于lasso。</p>
+<p>这个修正相当于一个非负的最小二乘拟合, 保持系数的符号与相关系数的符号一致。可以证明它实现了对于最大相关性的连结变量的无限小&rdquo;更新&rdquo;的最优平衡。（Hastie et al.，2007<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>）。类似lasso，全$FS_0$路径可以通过LAR算法非常有效地计算出来。</p>
+<p>作为这些事实的结果，如果LAR图象是单调不减或者单调不增，如3.19所示，则LAR，lasso，以及$FS_0$这三种算法给出了相同的图象。如果图象不是单调的但是不穿过0，则LAR和lasso是一样的。</p>
+<p>因为$FS_0$与lasso不同，很自然地问它是否优化了准则。答案比lasso更加的复杂；$FS_0$系数曲线是微分方程的一个解。尽管lasso在降低系数向量$\beta$的$L_1$范数的单位残差平方和增长方面实现了最优化，但$FS_0$在沿着系数路径的$L_1$弧长的单位增长是最优的。因此它的系数曲线不会经常改变方向。</p>
+<p>$FS_0$比lasso的约束更强，事实上也可以看成是lasso的单调版本；见图16.3生动的例子。$FS_0$可能在$p&gt;&gt;N$情形下很有用，它的系数曲线会更加的光滑，因此比lasso有更小的方差。更多关于$FS_0$的细节将在16.2.3节以及给出以及Hastie et al. (2007)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>。图3.16包含了$FS_0$, 它的表现非常类似于lasso。</p>
 <h2 id="_2">分段线性路径算法</h2>
+<p>最小角回归过程探索了lasso解的路径分段线性的本质。这导出了其他正则化问题类似的“路径算法”。假设我们求解</p>
+<p>
+<script type="math/tex; mode=display">
+\hat \beta(\lambda)=\mathrm{argmin}_\beta[R(\beta)+\lambda J(\beta)]\qquad (3.76)
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77)
+</script>
+</p>
+<p>其中损失函数$L$和惩罚函数$J$都是凸函数。则下面是解的路径$\hat\beta(\lambda)$为分段线性的充分条件(Rosset and Zhu, 2007)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup></p>
+<ol>
+<li>$R$作为$\beta$的函数是二次的或者是分段二次</li>
+<li>$J$关于$\beta$分段线性</li>
+</ol>
+<p>这也意味着（原则上）解的路径可以有效地计算出来。例子包括平方损失和绝对误差损失，“Huberized”损失，以及关于$\beta$的$L_1, L_\infinity$ 惩罚。另一个例子是支持向量机中的“hinge loss”。那里损失是分段线性，惩罚是二次的。有趣的是，这导出了对偶空间的分段线性路径算法；更多的细节在12.3.5节给出。</p>
 <h2 id="dantzig">Dantzig选择器</h2>
+<p>Candes and Tao (2007)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup> 提出下面的准则：</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{min}_\beta\Vert\beta\Vert_1\text{ subject to }\Vert \mathbf X^T(\mathbf y-\mathbf X\beta)\Vert_\infinity\le s\qquad (3.78)
+</script>
+</p>
+<p>他们称这个解为Dantzig选择器(DS)。可以等价地写成</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{min}_\infinity \Vert \mathbf X^T(\mathbf y-\mathbf X\beta)\Vert_\infinity\text{ subject to } \Vert\beta\Vert\le t\qquad (3.79)
+</script>
+</p>
+<p>这里$\Vert\cdot\Vert_\infinity$为$L_\infinity$范数，也就是该向量中绝对值最大的组分。这种形式类似lasso，用梯度绝对值的最大值替换平方误差损失。注意到当$t$变大，如果$N&lt;p$两个过程都得到最小二乘解。如果$p\ge N$，它们都得到最小的$L_1$范数的最小二乘解。然而，对于较小的$t$，DS过程得到与lasso不同的解的路径。</p>
+<p>Candes and Tao (2007)证明了求解DS是线性规划问题；因此称为Dantzig，来纪念Bakin (1999)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>，Lin and Zhang (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>的提出，以及Yuan and Lin (2007)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>的研究和推广。推广包括更一般的$L_2$范数$\Vert \eta\Vert=(\eta^TK\eta)^{1/2}$，并且允许重复的预测变量(Zhao et al., 2008<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)。拟合离散的可加模型的方法之间也有联系（Lin and Zhang, 2006<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Ravikumar et al., 2008<sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup>）</p>
 <h2 id="the-grouped-lasso">The Grouped Lasso</h2>
 <h2 id="lasso_1">lasso的更多性质</h2>
 <p><img alt="" src="../../img/03/fig3.20.png" /></p>
@@ -1265,6 +1300,30 @@ $$
 </li>
 <li id="fn:4">
 <p>Bühlmann, P. and Hothorn, T. (2007). Boosting algorithms: regularization, prediction and model fitting (with discussion), Statistical Science 22(4): 477–505.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Hastie, T., Taylor, J., Tibshirani, R. and Walther, G. (2007). Forward stagewise regression and the monotone lasso, Electronic Journal of Statistics 1: 1–29.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Rosset, S. and Zhu, J. (2007). Piecewise linear regularized solution paths, Annals of Statistics 35(3): 1012–1030.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Candes, E. and Tao, T. (2007). The Dantzig selector: Statistical estimation when p is much larger than n, Annals of Statistics 35(6): 2313–2351.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Bakin, S. (1999). Adaptive regression and model selection in data mining problems, Technical report, PhD. thesis, Australian National University, Canberra.&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Lin, Y. and Zhang, H. (2006). Component selection and smoothing in smoothing spline analysis of variance models, Annals of Statistics 34: 2272–2297.&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Yuan, M. and Lin, Y. (2007). Model selection and estimation in regression with grouped variables, Journal of the Royal Statistical Society, Series B 68(1): 49–67.&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Zhao, P., Rocha, G. and Yu, B. (2008). The composite absolute penalties for grouped and hierarchichal variable selection, Annals of Statistics. (to appear).&#160;<a class="footnote-backref" href="#fnref:11" rev="footnote" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>Ravikumar, P., Liu, H., Lafferty, J. and Wasserman, L. (2008). Spam: Sparse additive models, in J. Platt, D. Koller, Y. Singer and S. Roweis (eds), Advances in Neural Information Processing Systems 20, MIT Press, Cambridge, MA, pp. 1201–1208.&#160;<a class="footnote-backref" href="#fnref:12" rev="footnote" title="Jump back to footnote 12 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
