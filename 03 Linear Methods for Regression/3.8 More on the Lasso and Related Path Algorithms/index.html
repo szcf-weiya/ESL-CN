@@ -1323,7 +1323,7 @@ R(\tilde\beta(\lambda),\beta_j)=\frac{1}{2}\sum\limits_{i=1}^N(y_i-\sum\limits_{
 \tilde \beta_j(\lambda)\leftarrow S(\sum\limits_{i=1}^Nx_{ij}(y_i-\tilde y_i^{(j)}),\lambda)\qquad (3.84)
 </script>
 </p>
-<p>这里$S(t,\lambda)=sign(t)(\vert t\vert-\lambda)<em>+$是表3.4中的软阈值算子。$S(\cdot)$中的第一个变量是部分残差在标准化变量$x</em>{ij}$上的简单最小二乘系数。(3.84)的重复迭代——轮流考虑每个变量直到收敛——得到lasso估计$\hat\beta(\lambda)$。</p>
+<p>这里$S(t,\lambda)=sign(t)(\vert t\vert-\lambda)_+$是表3.4中的软阈值算子。$S(\cdot)$中的第一个变量是部分残差在标准化变量$x_{ij}$上的简单最小二乘系数。(3.84)的重复迭代——轮流考虑每个变量直到收敛——得到lasso估计$\hat\beta(\lambda)$。</p>
 <p>我们也采用这种简单的算法来有效地计算在$\lambda$的每个网格结点上lasso的解。我们从使得$\hat\beta(\lambda_{max})=0$的最小$\lambda_{max}$开始，每次降低一点点来循环考虑每个变量直到收敛。采用前一个解作为$\lambda$新值的“warm start”，$\lambda$再一次降低，并且重复该过程。这个可以比LARS算法快，特别是在大型问题中。它速度的关键在于(3.84)中的量随着$j$变化可以快速更新，并且通常更新后有$\tilde \beta_j=0$。另一方面，它在$\lambda$的网格处求解，而不是整个解的路径。同样类型的算法可以应用到elastic net，grouped lasso以及许多其它惩罚为个体参数的函数之和的模型（Friedman et al., 2010<sup id="fnref:31"><a class="footnote-ref" href="#fn:31" rel="footnote">31</a></sup>）。通过一些修改，这也可以应用到fused lasso（18.4.2节）；细节在Friedman et al. (2007)<sup id="fnref:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>中给出。</p>
 <div class="footnote">
 <hr />
