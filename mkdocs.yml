@@ -122,6 +122,7 @@ pages:
     - 12 支持向量机和灵活的判别方法:
       - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
       - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md'
+      - 12.3 支持向量机和核: '12 Support Vector Machines and Flexible Discriminants/12.3 Support Vector Machines and Kernels.md'
       - 文献笔记: '12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes.md'
 
   - 下篇:
