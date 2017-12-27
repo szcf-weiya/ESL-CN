@@ -1198,13 +1198,31 @@
     
         <li class="main active"><a href="#_1">线性回归模型和最小二乘法</a></li>
         
-            <li><a href="#_2">例子：前列腺癌</a></li>
+    
+        <li class="main "><a href="#multiple-regression-power-calculation">Multiple regression power calculation</a></li>
+        
+    
+        <li class="main "><a href="#u-3">u = 3</a></li>
+        
+    
+        <li class="main "><a href="#v-1842426">v = 184.2426</a></li>
+        
+    
+        <li class="main "><a href="#f2-00769">f2 = 0.0769</a></li>
+        
+    
+        <li class="main "><a href="#siglevel-005">sig.level = 0.05</a></li>
+        
+    
+        <li class="main "><a href="#power-09">power = 0.9</a></li>
+        
+            <li><a href="#_3">例子：前列腺癌</a></li>
         
             <li><a href="#guass-markov">Guass-Markov定理</a></li>
         
-            <li><a href="#_3">从简单单变量回归到多重回归</a></li>
+            <li><a href="#_4">从简单单变量回归到多重回归</a></li>
         
-            <li><a href="#_4">多重输出</a></li>
+            <li><a href="#_5">多重输出</a></li>
         
     
     </ul>
@@ -1230,10 +1248,14 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-10-31</td>
+<td>2017-10-31, 2017-12-27</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>更新笔记</p>
+<p>@2017-12-27　最近在看power analysis的有关内容，R in Action一书中举了了例子来讨论对于不同模型如何进行power analysis，但其中关于线性模型的部分没有想清楚。后来在这一节的式(3.13)找到答案，为丰富本节内容，遂更新与式3.13有关的power analysis.</p>
+</blockquote>
 <p>正如第二章介绍的那样，我们有输入向量$X^T=(X_1,X_2,\ldots,X_p)$，而且想要预测实值输出变量$Y$。线性回归模型有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
@@ -1346,6 +1368,23 @@ F=\dfrac{(RSS_0-RSS_1)/(p_1-p_0)}{RSS_1/(N-p_1-1)}\qquad (3.13)
 </script>
 </p>
 <p>其中$RSS_1$是有$p_1+1$个参数的大模型的最小二乘法拟合的残差平方和，$RSS_0$是有$p_0+1$参数的小模型的最小二乘法拟合的残差平方和，其有$p_1-p_0$个参数约束为0。$F$统计量衡量了在大模型中每个增加的系数对残差平方和的改变，而且用$\sigma^2$的估计值进行标准化。在高斯分布以及小模型的零假设为正确的情况下，$F$统计量服从$F_{p_1-p_0,N-p_1-1}$分布。可以证明（习题3.1）（3.12）式中的$z_j$等于从模型中去除单系数$\beta_j$的$F$统计量，当$N$足够大时，$F_{p_1-p_0,N-p_1-1}$近似$\chi^2_{p_1-p_0}$</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>在R语言中，可以采用pwr包来进行power analysis。这里举一个实际例子来说明如何在线性回归模型中进行power analysis。</p>
+<p>假设我们要研究老板的领导风格对公司员工满意度的影响，同时员工满意度还与薪酬有关，其中薪酬用3个变量来衡量，而老板领导风格用4个变量来衡量。根据以往经验，薪酬能够解释员工满意度方差的30\%，现在问题是确定多少的调查个体，使得显著度为.05，而power为.90。求解代码如下
+```
+pwr.f2.test(u=3, f2=0.0769, sig.level=0.05, power=0.90)</p>
+<h1 id="multiple-regression-power-calculation">Multiple regression power calculation</h1>
+</div>
+<h1 id="_2"></h1>
+<h1 id="u-3">u = 3</h1>
+<h1 id="v-1842426">v = 184.2426</h1>
+<h1 id="f2-00769">f2 = 0.0769</h1>
+<h1 id="siglevel-005">sig.level = 0.05</h1>
+<h1 id="power-09">power = 0.9</h1>
+<pre><code>```
+其中u和v分别被称为分子、分母自由度。结合(3.13)式，我们可以看出$p_1-p_0=u, N-p_1-1=v$，并且这里$p_0=4, p_1=7$。换个角度看，其实式(3.13)就是用于power analysis的检验统计量，原假设为可以将领导力水平的四个变量系数设为0，若F足够大，则会拒绝原假设。
+</code></pre>
 <p>类似地，我们可以分离式（3.10）中的$\beta_j$得到$\beta_j$的置信水平为$1-2\alpha$的置信区间</p>
 <p>
 <script type="math/tex; mode=display">
@@ -1368,7 +1407,7 @@ C_{\beta} = \{\beta \mid (\hat{\beta}-\beta\mathbf\bf{X^TX}(\hat{\beta}-\beta)\l
 </script>
 </p>
 <p>其中，$\chi_\ell^{2^{(1-\alpha)}}$是$\ell$个自由度的卡方分布的$1-\alpha$的分位数：举个例子，$\chi^{2^{(1-0.05)}}_5=11.1,\chi^{2^{(1-0.1)}}_5=9.2$。这个关于$\beta$的置信集导出关于真函数$f(x)=x^T\beta$对应的置信集，记作${x^T\beta\mid \beta \in C_\beta}$（练习3.2；并见5.2.2节中函数置信带的例子图5.4）</p>
-<h2 id="_2">例子：前列腺癌</h2>
+<h2 id="_3">例子：前列腺癌</h2>
 <p>这个例子的数据来自Stamey et al. (1989)[^1]。他们检验即将接受彻底前列腺切除术男性的前列腺特定抗原水平和一系列临床措施之间的相关性。变量有癌体积的对数值(lcavol)、前列腺重量的对数值(lweight)、良性前列腺增生数量(lbph)、精囊浸润(svi)、包膜浸透的对数值(lcp)、Gleason得分(gleason)、Gleason得分为4或5的比例(pgg45)。表3.1中给出的预测变量的相关性矩阵显示了很多强相关性。第1章的图1.1（第3页）是散点图矩阵，显示了变量两两间的图像。我们看到svi是二进制变量，gleason是有序分类变量。举个例子，我们看到lcavol和lcp都与响应变量lpsa有强的相关性。我们需要联合拟合这些影响来解开预测变量和响应变量之间的关系。</p>
 <p><img alt="" src="../../img/03/tab3.1.png" /></p>
 <blockquote>
@@ -1432,7 +1471,7 @@ E(Y_0-\tilde{f}(x_0))^2 &=\sigma^2+E(x_0^T\tilde{\beta}-f(x_0))^2\\
 </script>
 </p>
 <p>因此，预测误差的估计值和均方误差只有常数值$\sigma^2$的差别，$\sigma^2$表示了新观测$y_0$的方差。</p>
-<h2 id="_3">从简单单变量回归到多重回归</h2>
+<h2 id="_4">从简单单变量回归到多重回归</h2>
 <p>有$p&gt;1$个输入的线性模型（3.1）称作多重线性回归模型。模型（3.6）的最小二乘估计用单（$p=1$）变量线性模型的估计最好理解，我们将在这部分指出。</p>
 <p>首先假设我们有一个没有截距的单变量模型，也就是</p>
 <p>
@@ -1539,7 +1578,7 @@ Var(\hat{\beta}_p)=\dfrac{\sigma^2}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}=\
 </script>
 </p>
 <p>等式（3.32）很容易求解，因为$\mathbf{R}$为上三角（练习3.4）</p>
-<h2 id="_4">多重输出</h2>
+<h2 id="_5">多重输出</h2>
 <p>假设我们有多重输出$Y_1,Y_2,\ldots,Y_K$，我们希望通过我们的输入$X_0,X_1,X_2,\ldots,X_p$去预测。我们假设对于每一个输出有线性模型</p>
 <p>
 <script type="math/tex; mode=display">
