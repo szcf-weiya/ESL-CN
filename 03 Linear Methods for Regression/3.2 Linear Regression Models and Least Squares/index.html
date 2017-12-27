@@ -1375,16 +1375,15 @@ F=\dfrac{(RSS_0-RSS_1)/(p_1-p_0)}{RSS_1/(N-p_1-1)}\qquad (3.13)
 ```
 pwr.f2.test(u=3, f2=0.0769, sig.level=0.05, power=0.90)</p>
 <h1 id="multiple-regression-power-calculation">Multiple regression power calculation</h1>
-</div>
 <h1 id="_2"></h1>
 <h1 id="u-3">u = 3</h1>
 <h1 id="v-1842426">v = 184.2426</h1>
 <h1 id="f2-00769">f2 = 0.0769</h1>
 <h1 id="siglevel-005">sig.level = 0.05</h1>
 <h1 id="power-09">power = 0.9</h1>
-<pre><code>```
-其中u和v分别被称为分子、分母自由度。结合(3.13)式，我们可以看出$p_1-p_0=u, N-p_1-1=v$，并且这里$p_0=4, p_1=7$。换个角度看，其实式(3.13)就是用于power analysis的检验统计量，原假设为可以将领导力水平的四个变量系数设为0，若F足够大，则会拒绝原假设。
-</code></pre>
+<p>```
+其中u和v分别被称为分子、分母自由度。结合(3.13)式，我们可以看出$p_1-p_0=u, N-p_1-1=v$，并且这里$p_0=4, p_1=7$。换个角度看，其实式(3.13)就是用于power analysis的检验统计量，原假设为可以将领导力水平的四个变量系数设为0，若F足够大，则会拒绝原假设。</p>
+</div>
 <p>类似地，我们可以分离式（3.10）中的$\beta_j$得到$\beta_j$的置信水平为$1-2\alpha$的置信区间</p>
 <p>
 <script type="math/tex; mode=display">
