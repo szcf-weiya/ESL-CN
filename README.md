@@ -14,7 +14,7 @@ The Elements of Statistical Learning (ESL)的中文翻译及其代码实现。
 9. [kernel estimation](code/nonParametrics)
 10. [Resampling Method](code/Resampling): 包括交叉验证(cv)和自助法(bootstrap)
 11. [Neural Network](code/nn): [Simple Classification](http://nbviewer.jupyter.org/github/szcf-weiya/TFnotes/blob/master/nn/nn.ipynb)，[Implementation for Section 11.6](http://nbviewer.jupyter.org/github/szcf-weiya/ESL-CN/blob/master/code/nn/Implementation-for-Section-6.ipynb)
-
+12. [高维问题例子](code/HighDim): [例18.1的模拟](http://rmd.hohoweiya.xyz/ex18_1.nb.html)
 ## 文献统计
 | Chap | AOS  | JASA | JRSS | BKA  | percentage |
 | ---- | ---- | ---- | ---- | ---- | ---------- |
