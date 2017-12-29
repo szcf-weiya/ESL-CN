@@ -56,6 +56,8 @@ pages:
       - 6.5 局部似然和其他模型: '06 Kernel Smoothing Methods/6.5 Local Likelihood and Other Models.md'
       - 6.6 核密度估计和分类: '06 Kernel Smoothing Methods/6.6 Kernel Density Estimation and Classification.md'
       - 6.7 径向基函数和核: '06 Kernel Smoothing Methods/6.7 Radial Basis Functions and Kernels.md'
+      - 6.8 混合模型的密度估计和分类: '06 Kernel Smoothing Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification.md'
+      - 6.9 计算上的考虑: '06 Kernel Smoothing Methods/6.9-Computational-Consoderations.md'
       - 文献笔记: '06 Kernel Smoothing Methods/Bibliographic Notes.md'
 
   - 中篇:
