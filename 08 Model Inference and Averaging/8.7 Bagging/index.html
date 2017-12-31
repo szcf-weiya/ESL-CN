@@ -1246,6 +1246,10 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">更新笔记</p>
+<p>@2017-12-31 本节中提到了随机森林和boosting方式。ISLR在讲基于树的方法时是将这两种方式与bagging一起介绍的，有个读书笔记及有关R代码参见<a href="https://stats.hohoweiya.xyz/rmd/Tree-Based%20Methods.html">这里</a>。简单来说，bagging和随机森林都是针对bootstrap样本，且前者可以看成后者的特殊形式；而boosting是针对残差样本。</p>
+</div>
 <p>前面我们已经介绍了自助法(bootstrap)可用来评估参数估计或预测的正确性。这里我们展示怎么使用自助法去改善估计或者预测本身。在8.4节我们研究了自助法和贝叶斯方法之间的关系，而且发现自助法均值近似于一个后验平均。Bagging进一步探索这之间的联系。</p>
 <p>首先考虑一个回归问题。假设我们根据我们的训练数据$\mathbf Z={(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)}$拟合一个模型，得到在输入$x$处的预测值$\hat f(x)$。自助法整合(Bootstrap aggregation)或者bagging在自助法样本的集合中平均了这个预测值，因此降低了它的方差。对于每个自助法样本$\mathbf Z^{*b},b=1,2,\ldots,B$，拟合我们的模型得到预测值$\hat f^{*b}(x)$。bagging估计定义为</p>
 <p>
