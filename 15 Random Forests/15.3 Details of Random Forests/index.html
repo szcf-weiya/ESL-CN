@@ -1303,6 +1303,10 @@
 <script type="math/tex; mode=display">
 \frac{\binom{2}{1}\binom{5}{1}+\binom{2}{2}}{\binom{7}{2}}=0.52
 </script>
+更一般地，设$n_1$为相关变量的个数，$n_2$为噪声变量的个数，$m=\lfloor n_1+n_2\rfloor$，则
+<script type="math/tex; mode=display">
+\frac{\sum\limits_{i=1}^{min(n_1,m)}\binom{n_1}{i}\binom{n_2}{m-i}}{\binom{n_1+n_2}{m}}
+</script>
 </p>
 </div>
 <p>当概率变小，boosting和随机森林的差别变大。当相关变量个数变多，随机森林的表现在噪声变量增加时出奇地鲁棒。举个例子，当有6个相关变量，100个噪声变量，假设$m=\sqrt{6+100}\approx 10$相关变量在任意分割点被选择到的概率为0.46。根据图15.7，与boosting相比，这不会损害随机森林的表现。这种鲁棒性大部分是因为误分类代价与每棵树中偏差方差概率估计的不敏感性。我们在下一节考虑用于回归的随机森林。</p>
