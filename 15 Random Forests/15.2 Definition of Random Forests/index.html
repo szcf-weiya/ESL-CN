@@ -1314,6 +1314,22 @@ Var(\sum  X_i)=B\sigma^2+B(B-1)\rho\sigma^2\ge 0
 <p>图15.1显示了这三个方法在2500棵树上测试误差的变化。在这种情形下，有证据表明gradient boosting开始过拟合，尽管10折交叉验证选择了所有的2500棵树。</p>
 <p><img alt="" src="../../img/15/fig15.1.png" /></p>
 <p>图15.2展现了在nested spheres问题上随机森林与gradient boosting模拟的结果。这里boosting很容易地比随机森林表现要好。注意点这里较小的$m$会更好，尽管部分是疑问真实的判别边界是可加的。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>nested spheres问题在<a href="https://esl.hohoweiya.xyz/10%20Boosting%20and%20Additive%20Trees/10.1%20Boosting%20Methods/index.html">10.1 boosting方法</a>中定义，即
+特征$X_1,\ldots,X_{10}$是标准独立高斯分布，目标$Y$定义如下
+<script type="math/tex; mode=display">
+Y=
+\left\{
+\begin{array}{ll}
+1&\text{if } \sum_{j=1}^{10}X_j^2>\chi_{10}^2(0.5)\\
+-1 & \text{otherwise}
+\end{array}
+\right.
+\qquad (10.2)
+</script>
+</p>
+</div>
 <p><img alt="" src="../../img/15/fig15.2.png" /></p>
 <p>图15.3比较了在一个回归问题中随机森林与（带收缩的）boosting，该问题采用加利福利亚住房数据（10.14.1节）。</p>
 <p><img alt="" src="../../img/15/fig15.3.png" /></p>
