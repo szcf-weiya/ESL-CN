@@ -1308,7 +1308,7 @@ Var(\frac 1B \sum X_i)=\rho\sigma^2+\frac{1-\rho}{B}\sigma^2
 <p>出现的两个很强的特征是</p>
 <ul>
 <li>随机森林在大概200棵树时稳定了，而在1000棵树的时候boosting仍然在改善。boosting被收缩放慢了，同时也因为树更小的事实。</li>
-<li>这里boosting比随机森林更好。在1000项的时候，弱boosting模型(深度为4的GBM)比更强的随机森林（RF $m=6$）有更小的误差；对均值绝对误差进行Wilcoxon检验得到$p$值为0.007。对于较大的$m$，随机森林不要表现得更好。</li>
+<li>这里boosting比随机森林更好。在1000项的时候，弱boosting模型(深度为4的GBM)比更强的随机森林（RF $m=6$）有更小的误差；对均值绝对误差进行Wilcoxon检验得到$p$值为0.007。对于较大的$m$，随机森林不会表现得更好。</li>
 </ul>
 
 <div id="disqus_thread"></div>
