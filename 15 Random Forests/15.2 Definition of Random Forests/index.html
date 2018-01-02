@@ -1277,7 +1277,15 @@ Var(\sum X_i)&=E(\sum X_i-E(\sum X_i))^2\\
 <script type="math/tex; mode=display">
 Var(\frac 1B \sum X_i)=\rho\sigma^2+\frac{1-\rho}{B}\sigma^2
 </script>
-</p>
+在Ex 15.1中，额外问了为什么在$\rho$小于0的情形不成立。其实我们只要从
+<script type="math/tex; mode=display">
+Var(\sum  X_i)=B\sigma^2+B(B-1)\rho\sigma^2\ge 0
+</script>
+得到
+<script type="math/tex; mode=display">
+\rho\ge \frac{-1}{B-1}
+</script>
+当$B\rightarrow 0$，有$\rho\ge 0$。</p>
 </div>
 <p>当$B$增大时，第二项消失，但是第一项还在，而且成对bagged的树的相关系数的大小限制了平均的好处。随机森林的想法（算法15.1）是通过降低树之间的相关系数来改善方差的降低，而不使方差增长过大。这可以通过在生成树的过程中对输入变量进行随机选择来实现。</p>
 <p><img alt="" src="../../img/15/alg15.1.png" /></p>
