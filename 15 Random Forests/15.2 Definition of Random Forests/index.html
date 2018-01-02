@@ -1260,6 +1260,27 @@
 \rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \qquad (15.1)
 </script>
 </p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>已知$X_i,i=1,\ldots, B$独立同分布，方差均为$Var(X_i)=\sigma^2$。则
+<script type="math/tex; mode=display">
+Var(\frac 1B \sum X_i)=\frac{1}{B^2}Var(\sum X_i)
+</script>
+而
+<script type="math/tex; mode=display">
+\begin{align}
+Var(\sum X_i)&=E(\sum X_i-E(\sum X_i))^2\\
+&=E(\sum((X_i-E X_i)^2))\\
+&=\sum E(X_i-EX_i)^2+2\sum\limits_{1\le i<j\le B}E(X_i-EX_i)(X_j-EX_j)\\
+&=B\sigma^2+B(B-1)\rho\sigma^2
+\end{align}
+</script>
+则
+<script type="math/tex; mode=display">
+Var(\frac 1B \sum X_i)=\rho\sigma^2+\frac{1-\rho}{B}\sigma^2
+</script>
+</p>
+</div>
 <p>当$B$增大时，第二项消失，但是第一项还在，而且成对bagged的树的相关系数的大小限制了平均的好处。随机森林的想法（算法15.1）是通过降低树之间的相关系数来改善方差的降低，而不使方差增长过大。这可以通过对输入变量的随机选择的树的增长中实现。</p>
 <p>特别地，当在一个bootstrapped数据集中生成树时：</p>
 <p><em>在每次分割时，随机选择$m\le p$个输入变量作为候选变量用来分割</em></p>
