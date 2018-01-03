@@ -156,6 +156,7 @@ pages:
       - 15.1 导言: '15 Random Forests/15.1 Introduction.md'
       - 15.2 随机森林的定义: '15 Random Forests/15.2 Definition of Random Forests.md'
       - 15.3 随机森林的细节: '15 Random Forests/15.3 Details of Random Forests.md'
+      - 15.4 随机森林的分析: '15 Random Forests/15.4-Analysis-of-Random-Forests.md'
       - 文献笔记: '15 Random Forests/Bibliographic Notes.md'
 
     - 16 集成学习:
