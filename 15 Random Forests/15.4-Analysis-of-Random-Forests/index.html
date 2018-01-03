@@ -1306,6 +1306,24 @@ Var\hat f_{rf}(x)=\rho(x)\sigma^2(x)\qquad (15.5)
 <li>$\mathbf Z$自身的采样波动的结果</li>
 </ul>
 <p>实际上，在$x$处拟合的成对树的条件协方差为0，因为自助采样和特征采样都是独立同分布的，见练习15.5。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注： Ex. 15.5</p>
+<p>证明成对随机森林树在点$x$的采样相关性由下式给出
+<script type="math/tex; mode=display">
+\rho(x)=\frac{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]}{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}[T(x;\Theta(\mathbf Z))]}\qquad (15.12)
+</script>
+暂时不能给出严谨的证明<img alt="😞" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f61e.svg" title=":disappointed:" />
+但有个类比的想法。记得在线性回归中，对于(复)相关系数$R$，我们有
+<script type="math/tex; mode=display">
+\begin{align}
+R^2&=\frac{ESS}{TSS}\\
+&=\frac{(\hat Y-\bar y\boldsymbol 1_n)'(\hat Y-\bar y\boldsymbol 1_n)}{(Y-\bar y\boldsymbol 1_n)'(Y-\bar y\boldsymbol 1_n)}\\
+&=\frac{Var(\hat Y)}{Var(Y)}\\
+&=\frac{Var(E(Y\mid X))}{Var(Y)}
+\end{align}
+</script>
+上式中$\hat Y$其实是$E(Y\mid X)$的一个估计。这与我们所要证的会不会有所关联呢？其实对应起来看，我有点怀疑(15.2）的左边应该为$\rho^2(x)$，而非$\rho(x)$。</p>
+</div>
 <p>接下来的论证基于下面的模拟模型</p>
 <p>
 <script type="math/tex; mode=display">
