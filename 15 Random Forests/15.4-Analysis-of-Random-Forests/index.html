@@ -1318,6 +1318,15 @@ Y=\frac{1}{\sqrt{50}}\sum\limits_{j=1}^{50}X_j+\epsilon\qquad (15.8)
 <p>在图15.10的左边，我们考虑单棵树预测的方差，$VarT(x;\Theta(\mathbf Z))$（在从我们模拟的模型中随机抽取的600个预测点$x$上平均）。</p>
 <p><img alt="" src="../../img/15/fig15.10.png" /></p>
 <p>这是总的方差，而且可以采用条件方差公式分解成两部分（见练习15.5）：</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+Var_{\Theta,\mathbf Z}T(x;\Theta(\mathbf Z))&=&Var_{\mathbf Z}E_{\mathbf \Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))&+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\\
+Total\; Variance&=&Var_{\mathbf Z}\hat f_{rf}(x)&+within-\mathbf Z\; Variance
+\end{align}
+\qquad (15.9)
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注： 条件方差公式</p>
 <p>概率论中，全方差率(law of total variance)或条件方差公式(conditional variance formulas)表明，若$X$与$Y$为同一个概率空间的随机变量，且$Y$的方差有限，则
@@ -1335,15 +1344,6 @@ Var(Y)&=E(Y^2)-(EY)^2\\
 </script>
 参考<a href="https://en.wikipedia.org/wiki/Law_of_total_variance">Law_of_total_variance</a></p>
 </div>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-Var_{\Theta,\mathbf Z}T(x;\Theta(\mathbf Z))&Var_{\mathbf Z}E_{\mathbf \Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))&+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\\
-Total\; Variance&=Var_{\mathbf Z}\hat f_{rf}(x)&+within-\mathbf Z\; Variance
-\end{align}
-\qquad (15.9)
-</script>
-</p>
 <p>第二项是$\mathbf Z$间方差——随机化的结果，会随着$m$降低而增大。第一项实际上是随机森林集（显示在图15.19的右边）中的采样方差，会随着$m$降低而增大。单棵树的方差在$m$的大部分取值范围内不会有明显的改变，因此根据式(15.5)，随机森林集的方差显著比树的方差要低。</p>
 <h2 id="_3">偏差</h2>
 <p>和bagging中一样，随机森林的bagging与任意单棵采样后的树$T(x;\Theta(\mathbf Z))$一样：</p>
