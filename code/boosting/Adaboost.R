@@ -37,17 +37,20 @@ AdaBoost <- function(x, y, m = 10)
     {
       for (k in 1:N)
       {
-        err = 0
+        #err = 0
         flag.tmp = 1
         cutpoint.val.tmp = x[k, j]
-        for (kk in 1:N)
-        {
-          pred = 1
-          xx = x[kk, j]
-          if (xx < cutpoint.val.tmp)
-            pred = -1
-          err = err + w[kk] * as.numeric(y[kk] != pred) 
-        }
+        # for (kk in 1:N)
+        # {
+        #   pred = 1
+        #   xx = x[kk, j]
+        #   if (xx < cutpoint.val.tmp)
+        #     pred = -1
+        #   err = err + w[kk] * as.numeric(y[kk] != pred) 
+        # }
+        xj = x[, j]
+        pred = sapply(xj, function(x) ifelse(x < cutpoint.val.tmp, -1, 1))
+        err = sum(w*as.numeric(y != pred))
       }
       if (err > 0.5)
       {

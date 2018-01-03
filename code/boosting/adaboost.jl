@@ -10,16 +10,22 @@ end
 
 function train!(model::Adaboost, X::Matrix, y::Vector)
     n_sample, n_feature = size(X)
+    ## initialize weight
     w = ones(n_sample) / n_sample
     threshold = 0
-    polarity = 0
+    ## indicate the classification direction
+    ## consider observation obs which is larger than cutpoint.val
+    ## if flag = 1, then classify obs as 1
+    ## else if flag = -1, classify obs as -1
+    flag = 0
     feature_index = 0
     alpha = 0
     for i = 1:model.n_clf
+        ## step 2(a): stump
         err_max = 1e10
         for feature_ind = 1:n_feature
             for threshold_ind = 1:n_sample
-                polarity_ = 1
+                flag_ = 1
                 err = 0
                 threshold_ = X[threshold_ind, feature_ind]
 
@@ -34,28 +40,30 @@ function train!(model::Adaboost, X::Matrix, y::Vector)
                 err = err / sum(w)
                 if err > 0.5
                     err = 1 - err
-                    polarity_ = -1
+                    flag_ = -1
                 end
 
                 if err < err_max
                     err_max = err
                     threshold = threshold_
-                    polarity = polarity_
+                    flag = flag_
                     feature_index = feature_ind
                 end
             end
         end
+        ## step 2(c)
+        #alpha = 1/2 * log((1-err_max)/(err_max))
         alpha = 1/2 * log((1.000001-err_max)/(err_max+0.000001))
-
+        ## step 2(d)
         for j = 1:n_sample
             pred = 1
             x = X[j, feature_index]
-            if polarity * x < polarity * threshold
+            if flag * x < flag * threshold
                 pred = -1
             end
             w[j] = w[j] * exp(-alpha * y[j] * pred)
         end
-        model.clf[i, :] = [feature_index, threshold, polarity, alpha]
+        model.clf[i, :] = [feature_index, threshold, flag, alpha]
     end
 end
 
@@ -76,10 +84,10 @@ function predict(model::Adaboost,
         pred = 1
         feature_index = trunc(Int64,model.clf[i, 1])
         threshold = model.clf[i, 2]
-        polarity = model.clf[i, 3]
+        flag = model.clf[i, 3]
         alpha = model.clf[i, 4]
         x_temp = x[feature_index]
-        if polarity * x_temp < polarity * threshold
+        if flag * x_temp < flag * threshold
             pred = -1
         end
         s += alpha * pred
@@ -126,7 +134,7 @@ function test_Adaboost()
         model = Adaboost(n_clf=m[i])
         train!(model, x_train, y_train)
         predictions = predict(model, x_test)
-        println("The number of week classifiers ", m[i])
+        println("The number of weak classifiers ", m[i])
         res[i] = classification_error(y_test, predictions)
         println("classification error: ", res[i])
     end
