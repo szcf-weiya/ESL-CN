@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记">
         
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/04 Linear Methods for Classification/4.1 Introduction/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/15 Random Forests/15.4-Analysis-of-Random-Forests/index.html">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>4.1 导言 - ESL CN</title>
+	<title>15.4 随机森林的分析 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -95,7 +95,7 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">上篇 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -279,38 +279,38 @@
     <ul class="dropdown-menu scrollable-menu">
         
             
-<li class="active">
-    <a href="index.html">4.1 导言</a>
+<li >
+    <a href="../../04 Linear Methods for Classification/4.1 Introduction/index.html">4.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../4.2 Linear Regression of an Indicator Matrix/index.html">4.2 指示矩阵的线性回归</a>
+    <a href="../../04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix/index.html">4.2 指示矩阵的线性回归</a>
 </li>
 
         
             
 <li >
-    <a href="../4.3 Linear Discriminant Analysis/index.html">4.3 线性判别分析</a>
+    <a href="../../04 Linear Methods for Classification/4.3 Linear Discriminant Analysis/index.html">4.3 线性判别分析</a>
 </li>
 
         
             
 <li >
-    <a href="../4.4 Logistic Regression/index.html">4.4 逻辑斯蒂回归</a>
+    <a href="../../04 Linear Methods for Classification/4.4 Logistic Regression/index.html">4.4 逻辑斯蒂回归</a>
 </li>
 
         
             
 <li >
-    <a href="../4.5 Separating Hyperplanes/index.html">4.5 分离超平面</a>
+    <a href="../../04 Linear Methods for Classification/4.5 Separating Hyperplanes/index.html">4.5 分离超平面</a>
 </li>
 
         
             
 <li >
-    <a href="../Bibliographic Notes/index.html">文献笔记</a>
+    <a href="../../04 Linear Methods for Classification/Bibliographic Notes/index.html">文献笔记</a>
 </li>
 
         
@@ -878,7 +878,7 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">下篇 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -1009,31 +1009,31 @@
         
             
 <li >
-    <a href="../../15 Random Forests/15.1 Introduction/index.html">15.1 导言</a>
+    <a href="../15.1 Introduction/index.html">15.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../../15 Random Forests/15.2 Definition of Random Forests/index.html">15.2 随机森林的定义</a>
+    <a href="../15.2 Definition of Random Forests/index.html">15.2 随机森林的定义</a>
 </li>
 
         
             
 <li >
-    <a href="../../15 Random Forests/15.3 Details of Random Forests/index.html">15.3 随机森林的细节</a>
+    <a href="../15.3 Details of Random Forests/index.html">15.3 随机森林的细节</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="index.html">15.4 随机森林的分析</a>
 </li>
 
         
             
 <li >
-    <a href="../../15 Random Forests/15.4-Analysis-of-Random-Forests/index.html">15.4 随机森林的分析</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../15 Random Forests/Bibliographic Notes/index.html">文献笔记</a>
+    <a href="../Bibliographic Notes/index.html">文献笔记</a>
 </li>
 
         
@@ -1187,16 +1187,16 @@
               -->
               <!--
                 <li>
-                  <a href="https://esl.hohoweiya.xyz/04 Linear Methods for Classification/4.1 Introduction/index.html#disqus_thread">0 Comments</a>
+                  <a href="https://esl.hohoweiya.xyz/15 Random Forests/15.4-Analysis-of-Random-Forests/index.html#disqus_thread">0 Comments</a>
                 </li>
               -->
                 <li >
-                    <a rel="next" href="../../03 Linear Methods for Regression/Bibliographic Notes/index.html">
+                    <a rel="next" href="../15.3 Details of Random Forests/index.html">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../4.2 Linear Regression of an Indicator Matrix/index.html">
+                    <a rel="prev" href="../Bibliographic Notes/index.html">
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -1232,14 +1232,20 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#41">4.1 导言</a></li>
+        <li class="main active"><a href="#_1">随机森林的分析</a></li>
+        
+            <li><a href="#_2">方差和去相关性的影响</a></li>
+        
+            <li><a href="#_3">偏差</a></li>
+        
+            <li><a href="#_4">自适应最近邻</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="41">4.1 导言</h1>
+<h1 id="_1">随机森林的分析</h1>
 <table>
 <thead>
 <tr>
@@ -1254,30 +1260,108 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-12-06</td>
+<td>2018-01-03</td>
 </tr>
 </tbody>
 </table>
-<p>在这章我们重新回到分类问题并且集中在分类的线性方法上。因为我们的预测变量$G(x)$是在离散集$\cal G$中取值，我们总是可以把输入空间分成一些区域的集合，这些区域根据分类来打上标签。我们在第2章看到这些区域的边界依赖于预测函数，边界会变得粗糙或者光滑。对于这些过程的一个很重要的类，这些判别边界（decision boundaries）都是线性的；这也是我们说的分类的线性方法。</p>
-<p>线性判别边界可以通过许多不同的方式找到。在第二章中，我们根据类别指示变量拟合线性回归模型，根据最大的拟合来分类。假设有$K$个类别，为了方便记为$1,2,\ldots,K$,第$k$个响应预测变量的拟合好的线性模型为$\hat f_k(x)=\hat\beta_{k0}+\hat\beta_k^Tx$.第$k$类和第$l$类的判别边界是满足$\hat f_k(x)=\hat f_\ell(x)$的点的集合，也就是集合${x:(\hat\beta_{k0}-\hat\beta_{\ell 0})+(\hat\beta_k-\hat\beta_\ell)^Tx=0}$,这是一个仿射集或者超平面（<strong>作者注：严格来说，超平面需要通过原点，而仿射集不需要。我们有时忽略它们之间的区别并且一般指超平面</strong>）。对于任意两个类别这也是正确的，输入空间被分段超平面判别边界分成了常值分类的区域。回归方法是对每个类别建立判别函数$\delta_k(x)$方法中的一个，然后将$x$分到有最大值的判别函数上。建立后验概率$Pr(G=k\mid X=x)$也是属于这种类别。说的更清楚点，只要$\delta_k(x)$或者$Pr(G=k\mid X=x)$关于$x$是线性的，则判别边界将也是线性的。</p>
-<p>实际上，我们所有的要求是$\delta_k$或者$Pr(G=k\mid X=x)$的一些单调变换关于判别边界是线性的。举个例子，如果这里有两个类，一个关于后验概率很流行的模型是
+<p>这一节我们分析随机森林应用的额外随机化的机制。为了讨论，我们集中在回归和平方误差损失，因为这会得到主要观点，并且0-1损失下偏差和方差都会更复杂（见7.3.1节）。另外，甚至在分类问题的情形中，我们可以将随机森林的平均看成是类别后验概率的估计，因为偏差和方差都是合适的描述器。</p>
+<h2 id="_2">方差和去相关性的影响</h2>
+<p>随机森林回归分类器的极限形式$B\rightarrow \infty$是</p>
+<p>
 <script type="math/tex; mode=display">
-\begin{array}{ll}
-Pr(G=1\mid X=x)&=\dfrac{exp(\beta_0+\beta^Tx)}{1+exp(\beta_0+\beta^Tx)}\\
-Pr(G=2\mid X=x)&=\dfrac{1}{1+exp(\beta_0+\beta^Tx)}
-\end{array}
-\qquad \qquad(4.1)
+\hat f_{rf}(x)=E_{\Theta\mid Z}T(x;\Theta(Z))\qquad (15.4)
 </script>
 </p>
-<p>这里单调变换是logit变换：$log[p/(1-p)]$，事实上我们看到
+<p>其中我们已经显式地表达了在训练数据$Z$上的独立性。这里我们考虑在单个目标点$x$的估计。从(15.1)式我们可以看到</p>
+<p>
 <script type="math/tex; mode=display">
-log\dfrac{Pr(G=1\mid X=x)}{Pr(G=2\mid X=x)}=\beta_0+\beta^Tx\qquad\qquad (4.2)
+Var\hat f_{rf}(x)=\rho(x)\sigma^2(x)\qquad (15.5)
 </script>
-判别边界是<em>log-odds</em>等于0的点的几何，这是由${x\mid\beta_0+\beta^Tx=0}$定义的超平面。我们讨论两种非常流行但是不同的方法，都是线性的log-odds或者logits：线性判别分析和线性logistic回归。尽管他们推导不相同，但是他们关键的区别在于线性函数根据训练数据拟合的方式。</p>
-<p>一个清晰地在类别之间建立边界的更加直接的方法便是线性的。对于在$p$维输入空间的两个类别的问题，这意味着把超平面作为判别边界来界定——换句话说，一个正态向量和一个分隔点。我们将清楚地看到两种方法都是寻找“分隔超平面”。第一个是Rosenblatt(1958)的感知器（<em>perceptron</em>）模型，它由一个从训练数据中寻找分离超平面的算法，如果存在超平面的话。第二个方法要归功于Vapnik(1996)，寻找一个最优分离超平面如果超平面存在的话，不存在的话则寻找一个超平面使得训练数据中的重叠最小。我们这里处理离散的情形，非离散的情形将推到第12章讨论。</p>
-<p>尽管整个章节都在谈论线性判别边界，考虑一般倾向也是可以的。举个例子，我们可以将我们的变量集$X_1,X_2,\ldots,X_p$ 通过加上他们的交叉积$X_1^2,X_2^2,\ldots,X_1X_2,\ldots,$ 因此加入了$p(p+1)/2$ 个额外的变量。在增广空间的线性函数投影到原空间的线性函数——因此从线性判别边界转换为二次判别边界。图4.1描述了这一想法。数据集是一样的，左边在二维空间中用线性判别函数，而右边图在增广的五维空间中用线性判别函数。这种方式可以跟任意基变换$h(X)$一起使用，其中$h:R^p\rightarrow R^q,q&gt;p$,这将在后面章节中讨论。</p>
-<p><img alt="" src="../../img/04/fig4.1.png" /></p>
-<p>图4.1：左图显示了三个类别的一些数据，以及通过线性判别分析得到的线性判别边界。右图显示了二次判别边界。这是通过在五维空间$X_1,X_2,X_1X_2,X_1^2,X_2^2$找到线性边界得到。这个空间里面的线性不等式是原空间的二次不等式。</p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
+<script type="math/tex; mode=display">
+\rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \qquad (15.1)
+</script>
+</p>
+</div>
+<p>这里</p>
+<ul>
+<li>$\rho(x)$是参与平均的树的任意一对的样本相关性:
+<script type="math/tex; mode=display">
+\rho(x)=corr[T(x;\Theta_1(Z)),T(x;\Theta_2(Z))]\qquad (15.6)
+</script>
+其中$\Theta_1(Z)$和$\Theta_2(Z)$随机抽取的一对随机森林树，这些树是从对$Z$随机抽取的样本中生成的。</li>
+<li>$\sigma^2(x)$是任意随机抽出的单棵树的样本方差
+<script type="math/tex; mode=display">
+\sigma^2(x)=Var T(x;\Theta(Z))\qquad (15.7)
+</script>
+</li>
+</ul>
+<p>很容易将$\rho(x)$与给定随机森林树集中的拟合树的平均相关系数混淆；后者也就是，考虑拟合树为$N$维向量，然后在数据的条件下这些向量的成对相关系数的平均。但$\rho(x)不是这种情形，这个条件相关系数不直接与平均过程有关，并且$\rho(x)$中依赖的$x$提醒我们这个区别。更准确地说，$\rho(x)$是在$x$处取值的成对随机森林树的理论相关系数，这通过首先在总体中重复从训练样本$\mathbf Z$中采样，然后得到一对随机森林树导出的。用统计的术语说，这是由$\mathbf Z$和$\Theta$的采样分布导出的。</p>
+<p>更准确地，对式(15.6)和(15.7)中计算平均的波动的都是</p>
+<ul>
+<li>在$\mathbf Z$的条件上：因为自助采样和在每个分割点的特征采样，以及</li>
+<li>$\mathbf Z$自身的采样波动的结果</li>
+</ul>
+<p>实际上，在$x$处拟合的成对树的条件协方差为0，因为自助采样和特征采样都是独立同分布的，见练习15.5。</p>
+<p>接下来的论证基于下面的模拟模型</p>
+<p>
+<script type="math/tex; mode=display">
+Y=\frac 1\sqrt{50}\sum\limits_{j=1}^{50}X_j+\epsilon\qquad (15.8)
+</script>
+</p>
+<p>其中所有$X_j$和$\epsilon$都是独立高斯分布。我们用500个大小为100的训练集，以及600个测试点的单个测试集。因为回归树关于$\mathbf Z$是非线性的，我们在下面看到的模式将会取决于模型的结构而有些不同。</p>
+<p>图15.9展示了当$m$降低时成对树间的相关性(15.6)也降低：如果不同训练集$\mathbf Z$的成对树不使用同样的分割变量，则在$x$处的预测很可能不相似。</p>
+<p><img alt="" src="../../img/15/fig15.9.png" /></p>
+<p>在图15.10的左边，我们考虑单棵树预测的方差，$VarT(x;\Theta(\mathbf Z))$（在从我们模拟的模型中随机抽取的600个预测点$x$上平均）。</p>
+<p><img alt="" src="../../img/15/fig15.10.png" /></p>
+<p>这是总的方差，而且可以采用条件方差公式分解成两部分（见练习15.5）：</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注： 条件方差公式</p>
+<p>概率论中，全方差率(law of total variance)或条件方差公式(conditional variance formulas)表明，若$X$与$Y$为同一个概率空间的随机变量，且$Y$的方差有限，则
+<script type="math/tex; mode=display">
+Var(Y)=E(Var(Y\mid X))+Var(E(Y\mid X))
+</script>
+证明如下：
+<script type="math/tex; mode=display">
+\begin{align}
+Var(Y)&=E(Y^2)-(EY)^2\\
+&=E(E(Y^2\mid X))-[E(E(Y\mid X))]^2\\
+&=E(Var(Y\mid X)+(E(Y\mid X))^2) - [E(E(Y\mid X))]^2\\
+& = E(Var(Y\mid X)) + Var(E(Y\mid X))
+\end{align}
+</script>
+参考<a href="https://en.wikipedia.org/wiki/Law_of_total_variance">Law_of_total_variance</a></p>
+</div>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+Var_{\Theta,\mathbf Z}T(x;\Theta(\mathbf Z))&Var_{\mathbf Z}E_{\mathbf \Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))&+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\\
+Total\; Variance&=Var_{\mathbf Z}\hat f_{rf}(x)&+within-\mathbf Z\; Variance
+\end{align}
+\qquad (15.9)
+</script>
+</p>
+<p>第二项是$\mathbf Z$间方差——随机化的结果，会随着$m$降低而增大。第一项实际上是随机森林集（显示在图15.19的右边）中的采样方差，会随着$m$降低而增大。单棵树的方差在$m$的大部分取值范围内不会有明显的改变，因此根据式(15.5)，随机森林集的方差显著比树的方差要低。</p>
+<h2 id="_3">偏差</h2>
+<p>和bagging中一样，随机森林的bagging与任意单棵采样后的树$T(x;\Theta(\mathbf Z))$一样：</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+Bias(x) &= \mu(x)-E_{\mathbf Z}\hat f_{rf}(x)\\
+&=\mu(x)-E_{\mathbf Z}E_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\qquad (15.10)
+\end{align}
+</script>
+</p>
+<p>这一般比由$\mathbf Z$生成的未剪枝的树的偏差要大，因为随机化和减小的样本空间的约束。因此通过bagging或随机森林对预测带来的改善仅仅是方差降低的结果。</p>
+<p>任意偏差的讨论基于未知的真实函数。图15.10的右图展示了我们可加模拟模型的平方偏差（通过500次实现估计得到）。尽管对于不同的模型，偏差曲线的形状和比率可能不同，但是一般的趋势是当$m$降低时，偏差增大。图中展示的是均方误差，并且我们看到经典的关于选择$m$的偏差-方差的权衡。对所有的$m$，随机森林的平方偏差比单棵树的平方偏差（水平线）要大。</p>
+<p>这些模式表现出与岭回归的相似性(3.4.1节)。当大量的变量有着相似大小的系数岭回归非常有用，岭回归将它们的系数收缩到0，并且将那些强相关的变量收缩到一起。尽管训练样本的大小不允许所有的变量都出现在模型中，但是通过岭回归正则化能使模型稳定并且允许所有的变量都有它们的影响（尽管被削弱了）。$m$较小的随机森林表现出相似的平均。每个相关的变量都有其机会成为主分割变量，并且随机森林树集的平均降低了任意单个变量的贡献。因为模拟例子(15.8)基于关于所有变量的线性模型，岭回归达到更低的均方误差（大约为0.45，当$df(\lambda_{opt})\approx 29$）。</p>
+<h2 id="_4">自适应最近邻</h2>
+<p>随机森林分类器与$k$最近邻分类器（13.3节）有许多相同的地方；实际上是其中的加权版本。因为每棵树生长为最大的大小，对于特定的$\Theta^*$，$T(x;\Theta^*(\mathbf Z))$是其中一个训练样本的响应变量的值。生成树算法任意从中选择最有信息量的预测量，寻找到该观测的最优路径。平均的过程是对训练响应赋予权重，这最终对预测值进行投票。因此通过随机森林的投票机制，那些靠近目标点的观测赋予了权重——一个等价核——这些结合在一起形成了分类边界。</p>
+<p>图15.11展示了3-最近邻和随机森林在混合数据中的判别边界的相似性。</p>
+<p><img alt="" src="../../img/15/fig15.11.png" /></p>
 
 <div id="disqus_thread"></div>
 <script>
@@ -1287,8 +1371,8 @@ log\dfrac{Pr(G=1\mid X=x)}{Pr(G=2\mid X=x)}=\beta_0+\beta^Tx\qquad\qquad (4.2)
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "https://esl.hohoweiya.xyz/04 Linear Methods for Classification/4.1 Introduction/index.html";  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "https://esl.hohoweiya.xyz/04 Linear Methods for Classification/4.1 Introduction/index.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = "https://esl.hohoweiya.xyz/15 Random Forests/15.4-Analysis-of-Random-Forests/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "https://esl.hohoweiya.xyz/15 Random Forests/15.4-Analysis-of-Random-Forests/index.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
