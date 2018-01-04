@@ -1232,16 +1232,16 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#-">偏差-方差分解</a></li>
+        <li class="main active"><a href="#73-">7.3 偏差-方差分解</a></li>
         
-            <li><a href="#-_1">例子： 方差-偏差之间的权衡</a></li>
+            <li><a href="#-">例子： 方差-偏差之间的权衡</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="-">偏差-方差分解</h1>
+<h1 id="73-">7.3 偏差-方差分解</h1>
 <table>
 <thead>
 <tr>
@@ -1258,26 +1258,47 @@
 <td>时间</td>
 <td>2017-02-18:2017-02-18</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-01-04</td>
+</tr>
 </tbody>
 </table>
 <p>像第2章一样，如果我们假设$Y=f(X)+\varepsilon$，其中$E(\varepsilon)=0$，并且$Var(\epsilon)=\sigma_\varepsilon^2$，我们可以导出在使用平方误差损失的情形下，输入点$X=x_0$处回归拟合$\hat f(X)$的取值的期望预测误差。
 <script type="math/tex; mode=display">
 \begin{align}
-Err(x_0)&=E[(Y-\hat f(x_0))\mid X=x_0]\\
+Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
 &=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2\\
 &=\sigma_\varepsilon^2+Bias^2(\hat f(x_0))+Var(\hat f(x_0))\\
 &=\text{Irreducible Error} + \text{Bias}^2+\text{Variance}\qquad (7.9)
 \end{align}
 </script>
-第一项是目标在真实均值$f(x_0)$处的方差，无论我们对$f(x_0)$的估计有多好，这是不可避免的，除非$\sigma_\varepsilon^2=0$。第二项是偏差的平方，是我们估计的均值与真实的均值间的偏差量；最后一项是方差，是估计的$\hat f(x_0)$在其均值处的平方偏差的期望值。一般地，我们建立的模型$\hat f$越复杂，（平方）偏差越低但是方差越大。</p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：推导(7.9)</p>
+<p>(7.9)其实暗含$Ef(x_0)E\hat f(x_0)=E(f(x_0)\hat f(x_0))$，这显然成立，因为我们训练$\hat f$时，完全不知道真实的$f$，故它们独立。
+<script type="math/tex; mode=display">
+\begin{align}
+Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
+&=E[(f(x_0)+\varepsilon-\hat f(x_0))^2\mid X=x_0]\\
+&=\sigma_\varepsilon^2 + E[f(x_0)-E\hat f(x_0)+E\hat f(x_0)-\hat f(x_0)]^2\\
+&=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2+Ef(x_0)E\hat f(x_0)-E(f(x_0)\hat f(x_0))\\
+&=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2\\
+&=\sigma_\varepsilon^2+Bias^2(\hat f(x_0))+Var(\hat f(x_0))\\
+&=\text{Irreducible Error} + \text{Bias}^2+\text{Variance}
+\end{align}
+</script>
+</p>
+</div>
+<p>第一项是目标在真实均值$f(x_0)$处的方差，无论我们对$f(x_0)$的估计有多好，这是不可避免的，除非$\sigma_\varepsilon^2=0$。第二项是偏差的平方，是我们估计的均值与真实的均值间的偏差量；最后一项是方差，是估计的$\hat f(x_0)$在其均值处的平方偏差的期望值（即均方误差）。一般地，我们建立的模型$\hat f$越复杂，（平方）偏差越低但是方差越大。</p>
 <p>对于$k$-最近邻回归拟合，这些表达式有简单的形式
 <script type="math/tex; mode=display">
 \begin{align}
 Err(x_0)&=E[(Y-\hat f_k(x_0))^2\mid X=x_0]\\
-&= \sigma_\varepsilon^2+[f(x_0)-\frac{1}{k}\sum\limits_{i=1}^k f(x_{(\ell)})]^2+\frac{\sigma_\varepsilon^2}{k}\qquad (7.10)
+&= \sigma_\varepsilon^2+[f(x_0)-\frac{1}{k}\sum\limits_{\ell=1}^k f(x_{(\ell)})]^2+\frac{\sigma_\varepsilon^2}{k}\qquad (7.10)
 \end{align}
 </script>
-这里为了简单我们假设训练输入$x_i$为固定的，则随机性来自$y_i$。邻居的个数$k$反过来与模型复杂度有关。对于较小的$k$，估计出的$\hat f_k(x)$可以对潜在的函数$f(x)$可能有更好的适应性。当$k$增大，偏差——$f(x_0)$与$k$-最近邻中的$f(x)$平均值的差的平方——一般会增大，而方差会降低。</p>
+这里为了简单我们假设训练输入$x_i$为固定的，则随机性来自$y_i$。邻居的个数$k$与模型复杂度负相关。对于较小的$k$，估计出的$\hat f_k(x)$可以对潜在的函数$f(x)$可能有更好的适应性。当$k$增大，偏差——$f(x_0)$与$k$-最近邻中的$f(x)$平均值的差的平方——一般会增大，而方差会降低。</p>
 <p>对于线性模型拟合$\hat f_p(x)=x^T\hat\beta$，其中含有$p$个组分的参数向量$\beta$通过最小二乘拟合的，我们有
 <script type="math/tex; mode=display">
 \begin{align}
@@ -1291,7 +1312,9 @@ Err(x_0)&=E[(Y-\hat f_p(x_0))^2\mid X=x_0]\\
 <p>记$X=(x_1,x_2,\ldots,x_N)&rsquo;$，则
 <script type="math/tex; mode=display">
 \begin{align}
-\sum\limits_{i=1}^N\Vert\mathbf h(x_i)\Vert^2&=\sum\limits_{i=1}^Nx_i^T(\mathbf{X^TX})^{-1}x_i\\
+\sum\limits_{i=1}^N\Vert\mathbf h(x_i)\Vert^2
+&=\sum\limits_{i=1}^N\mathbf h^T(x_i)\mathbf h^T(x_i)\\
+&=\sum\limits_{i=1}^Nx_i^T(\mathbf{X^TX})^{-1}x_i\\
 &=trace[X(X^TX)^{-1}X^T]\\
 &=trace[(x^TX)^{-1}X^TX]\\
 &=p
@@ -1309,7 +1332,7 @@ Err(x_0)&=E[(Y-\hat f_p(x_0))^2\mid X=x_0]\\
 <script type="math/tex; mode=display">
 \beta_*=\mathrm{arg}\;\underset{\beta}{\mathrm{min}}\;E(f(X)-X^T\beta)^2\qquad (7.13)
 </script>
-这里期望是关于输入变量$X$的分布取的。接着我们可以将平均偏差平方写成
+这里期望是对输入变量$X$的分布取的。接着我们可以将平均偏差的平均(average squared bias)写成
 <script type="math/tex; mode=display">
 \begin{align}
 E_{x_0}[f(x_0)-E\hat f_\alpha(x_0)]^2&=E_{x_0}[f(x_0)-x_0^T\beta_*]^2+E_{x_0}[x_0^T\beta_*-Ex_0^T\hat\beta_\alpha]^2\\
@@ -1317,14 +1340,14 @@ E_{x_0}[f(x_0)-E\hat f_\alpha(x_0)]^2&=E_{x_0}[f(x_0)-x_0^T\beta_*]^2+E_{x_0}[x_
 \end{align}
 </script>
 右侧的第一项是模型偏差（model bias）平方的平均，它是最优线性近似和真实函数之间的误差。第二项是估计偏差（estimation bias）平方的平均，它是估计的平均值$E(x_0^T\hat\beta)$与最优线性近似之间的误差。</p>
-<p>对于通过普通最小二乘拟合的线性模型，偏差估计值为0。对于约束的拟合，比如岭回归，它是正的，而且我们用减小方差的好处进行交易。模型偏差仅仅可以通过将线性模型类扩大为更广的模型类，通过在模型中加入变量的交叉项以及转换项（通过变量的变换得到的）。</p>
-<p>图7.2 显示了偏差和方差之间的权衡的原理图。在线性模型的情形下，模型空间是从$p$个输入的所有线性预测的集合，并且标记为“closest fit”的黑点是$x^T\beta_*$。蓝色阴影部分区域表示与在训练样本中我们看到的真实值之间的误差$\sigma_\varepsilon$ 。</p>
+<p>对于通过普通最小二乘拟合的线性模型，estimation bias值为0。对于约束的拟合，比如岭回归，它是正的，而且我们用减小方差的好处进行交易。模型偏差仅仅可以通过将线性模型类扩大为更广的模型类才能降低，或者通过在模型中加入变量的交叉项以及转换项（通过变量的变换得到的）来降低。</p>
+<p>图7.2 显示了偏差和方差之间的权衡的原理图。在线性模型的情形下，模型空间是从$p$个输入的所有线性预测的集合，并且标记为“closest fit”的黑点是$x^T\beta_*$。蓝色阴影部分区域表示训练样本中与真实值（图中的truth）之间的误差$\sigma_\varepsilon$ 。</p>
 <p><img alt="" src="../../img/07/fig7.2.png" /></p>
 <blockquote>
-<p>图7.2. 偏差和方差行为的原理图。模型空间是根据模型所有可能的预测的集合，“closest fit”用黑点标出。图中显示了偏离真实值的模型偏差，以及用圆心在标记为“closest fit in population”的黑点处的黄色的大圆来表示方差。图中也显示了收缩或者正则化的拟合，有额外的估计偏差，但是因为方差的减小导致了更小的预测误差。</p>
+<p>图7.2. 偏差和方差行为的原理图。模型空间是模型的所有可能的预测的集合，“closest fit”用黑点标出。图中显示了偏离真实值的模型偏差，以及用圆心在标记为“closest fit in population”的黑点处的黄色的大圆来表示方差。图中也显示了收缩或者正则化的拟合，它们有额外的估计偏差，但是因为方差的减小导致了更小的预测误差。</p>
 </blockquote>
-<p>图中也显示了最小二乘的方差，用圆心在标记为“closest fit in population”的黑点处的黄色大圆来表示。现在如果我们用更少的预测变量来拟合模型，或者通过将它们向0收缩来正则化系数，我们会得到图中的“shrunken fit”。这个拟合有额外的估计偏差，因为它不是模型空间的最近拟合。另一方面，它有更小的方差。如果方差的减少大于（平方）偏差的增大，则是值得的。</p>
-<h2 id="-_1">例子： 方差-偏差之间的权衡</h2>
+<p>图中也显示了最小二乘的方差，用圆心在标记为“closest fit in population”的黑点处的黄色大圆来表示。现在如果我们用更少的预测变量来拟合模型，或者通过将它们向0收缩来正则化系数，我们会得到图中的“shrunken fit”。这个拟合有额外的估计偏差，因为它不是模型空间的最近拟合(closest fit)。另一方面，它有更小的方差。如果方差的减少大于（平方）偏差的增大，则是值得的。</p>
+<h2 id="-">例子： 方差-偏差之间的权衡</h2>
 <p><img alt="" src="../../img/07/fig7.3.png" /></p>
 <blockquote>
 <p>图7.3. 某模拟例子的预测误差的期望（橘黄色），平方偏差（绿色）以及方差（蓝色）。上面两张图为平方误差损失的回归；下面两张图为0-1损失的分类。模型是$k$最近邻（左边）以及大小为$p$的最优子集回归（右）。在回归和分类中的方差和偏差曲线是一样的，但是预测误差曲线是不同的。</p>
