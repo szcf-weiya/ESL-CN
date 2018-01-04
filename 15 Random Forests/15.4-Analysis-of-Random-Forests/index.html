@@ -1320,20 +1320,19 @@
 <script type="math/tex; mode=display">
 \rho(x)=\frac{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]}{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}[T(x;\Theta(\mathbf Z))]}\qquad (15.12)
 </script>
-~~暂时不能给出严谨的证明<img alt="😞" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f61e.svg" title=":disappointed:" />~~
-已经想出证明了
+证明过程如下：
 <script type="math/tex; mode=display">
 \begin{align}
 \rho &=\mathrm{corr}[T(x;\Theta_1(Z)),T(x;\Theta_2(Z))]\\
 &=\frac{Cov(T(x;\Theta_1(Z)), T(x;\Theta_2(Z)) )}{\sqrt{Var(T(x;\Theta_1(Z)))Var(T(x;\Theta_2(Z)))}}\\
-&=\frac{E[Cov(T(x;\Theta_1(Z)), T(x;\Theta_2(Z))\mid Z)]+Cov[E(T(x;\Theta_1(Z))\mid Z), E(T(x;\Theta_2(Z))\mid Z)]}{\sqrt{E[Var(T(x;\Theta_1(Z))\mid Z)]+Var[E(T(x;\Theta_1(Z)))]}\sqrt{E[Var(T(x;\Theta_2(Z))\mid Z)]+Var[E(T(x;\Theta_2(Z)))]}}
+&=\frac{E[Cov_{\Theta_i\mid Z}(T(x;\Theta_1(Z)), T(x;\Theta_2(Z)))]+Cov[E_{\Theta_1\mid Z}T(x;\Theta_1(Z)), E_{\Theta_2\mid Z}T(x;\Theta_2(Z))]}{\sqrt{E[Var_{\Theta_1\mid Z}T(x;\Theta_1(Z))]+Var[E_{\Theta_1\mid Z}T(x;\Theta_1(Z))]}\sqrt{E[Var_{\Theta_2\mid Z}T(x;\Theta_2(Z))]+Var[E_{\Theta_2\mid Z}T(x;\Theta_2(Z))]}}
 \end{align}
 </script>
-因为$Cov[T(x;\Theta_1(Z)),T(x;\Theta_2(Z))\mid Z]=0$且
+因为$T(x;\Theta_i(Z))$的自助采样和特征采样分别是独立同分布的，则$Cov_{\Theta_i\mid Z}[T(x;\Theta_1(Z)),T(x;\Theta_2(Z))]=0$且
 <script type="math/tex; mode=display">
 \begin{align}
-E(T(x;\Theta_1(Z))\mid Z)&=E(T(x;\Theta_2(Z))\mid Z)
-Var(T(x;\Theta_1(Z))\mid Z)&=Var(T(x;\Theta_2(Z))\mid Z)\\
+E_{\Theta_1\mid Z}T(x;\Theta_1(Z)&=E_{\Theta_2\mid Z}T(x;\Theta_2(Z))\\
+Var_{\Theta_1\mid Z}T(x;\Theta_1(Z))&=Var_{\Theta_2\mid Z}T(x;\Theta_2(Z))
 \end{align}
 </script>
 则
@@ -1342,17 +1341,29 @@ Var(T(x;\Theta_1(Z))\mid Z)&=Var(T(x;\Theta_2(Z))\mid Z)\\
 \rho &=\frac{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]}{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}[T(x;\Theta(\mathbf Z))]}
 \end{align}
 </script>
+证毕。</p>
+</div>
+<!--
+$$
+\begin{align}
+\rho &=\mathrm{corr}[T(x;\Theta_1(Z)),T(x;\Theta_2(Z))]\\
+&=\frac{Cov(T(x;\Theta_1(Z)), T(x;\Theta_2(Z)) )}{\sqrt{Var(T(x;\Theta_1(Z)))Var(T(x;\Theta_2(Z)))}}\\
+&=\frac{E[Cov(T(x;\Theta_1(Z)), T(x;\Theta_2(Z))\mid Z)]+Cov[E(T(x;\Theta_1(Z))\mid Z), E(T(x;\Theta_2(Z))\mid Z)]}{\sqrt{E[Var(T(x;\Theta_1(Z))\mid Z)]+Var[E(T(x;\Theta_1(Z)))]}\sqrt{E[Var(T(x;\Theta_2(Z))\mid Z)]+Var[E(T(x;\Theta_2(Z)))]}}
+\end{align}
+$$
+~~暂时不能给出严谨的证明:disappointed:~~
 但有个类比的想法。记得在线性回归中，对于(复)相关系数$R$，我们有
-<script type="math/tex; mode=display">
+$$
 \begin{align}
 R^2&=\frac{ESS}{TSS}\\
 &=\frac{(\hat Y-\bar y\boldsymbol 1_n)'(\hat Y-\bar y\boldsymbol 1_n)}{(Y-\bar y\boldsymbol 1_n)'(Y-\bar y\boldsymbol 1_n)}\\
 &=\frac{Var(\hat Y)}{Var(Y)}\\
 &=\frac{Var(E(Y\mid X))}{Var(Y)}
 \end{align}
-</script>
-上式中$\hat Y$其实是$E(Y\mid X)$的一个估计。这与我们所要证的会不会有所关联呢？其实对应起来看，我有点怀疑(15.2)的左边应该为$\rho^2(x)$，而非$\rho(x)$。</p>
-</div>
+$$
+上式中$\hat Y$其实是$E(Y\mid X)$的一个估计。这与我们所要证的会不会有所关联呢？其实对应起来看，我有点怀疑(15.2)的左边应该为$\rho^2(x)$，而非$\rho(x)$。
+-->
+
 <p>接下来的论证基于下面的模拟模型</p>
 <p>
 <script type="math/tex; mode=display">
