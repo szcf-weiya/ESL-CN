@@ -1232,16 +1232,16 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">光滑样条</a></li>
+        <li class="main active"><a href="#54">5.4 光滑样条</a></li>
         
-            <li><a href="#_2">自由度和光滑矩阵</a></li>
+            <li><a href="#_1">自由度和光滑矩阵</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">光滑样条</h1>
+<h1 id="54">5.4 光滑样条</h1>
 <table>
 <thead>
 <tr>
@@ -1257,6 +1257,10 @@
 <tr>
 <td>时间</td>
 <td>2017-02-16</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>2018-01-04</td>
 </tr>
 </tbody>
 </table>
@@ -1280,7 +1284,7 @@ RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\qq
   </script>
   但这里为什么只用二阶导？</p>
 </div>
-<p>准则（5.9）定义在无限维函数空间上——实际上，是二阶导有定义的Sobolev函数空间。值得注意的是，可以证明（5.9）有一个显式的有限维的唯一一个最小值点，是一个结点在唯一的$x_i,i=1,2,\ldots,N$处的自然三次样条。（练习5.7）。表面上看，这个函数族仍然是过参量化，因为有$N$个结点，这意味着$N$个自由度。然而，惩罚项转换为对样条系数的惩罚，使得某些向着线性拟合收缩。</p>
+<p>准则（5.9）定义在无限维函数空间上——实际上，是二阶导有定义的Sobolev函数空间。值得注意的是，可以证明（5.9）有一个显式的有限维的唯一一个最小值点，是一个结点在不重复的$x_i,i=1,2,\ldots,N$处的自然三次样条。（练习5.7）。表面上看，这个函数族仍然是过参量化，因为有$N$个结点，这意味着$N$个自由度。然而，惩罚项转换为对样条系数的惩罚，使得某些向着线性拟合收缩。</p>
 <p>因为解为自然样条，所以我们可以写成</p>
 <p>
 <script type="math/tex; mode=display">
@@ -1293,10 +1297,10 @@ f(x)=\sum\limits_{j=1}^NN_j(x)\theta_j\qquad (5.10)
 RSS(\theta,\lambda)=(\mathbf y-\mathbf N\theta)^T(\mathbf y-\mathbf N\theta)+\lambda\theta^T\Omega_N\theta\qquad (5.11)
 </script>
 </p>
-<p>其中${\mathbf N}_{ij}=N_j(x_i)$以及${\Omega_N}_{jk}=\int N_j&rsquo;&lsquo;(t)N_k&rsquo;&lsquo;(t)dt$.可以看到解为</p>
+<p>其中$\{\mathbf N\}_{ij}=N_j(x_i)$以及$\{\Omega_N\}_{jk}=\int N_j&rsquo;&lsquo;(t)N_k&rsquo;&lsquo;(t)dt$.可以看到解为</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\theta = (\mathbf N^T\mathbf+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\qquad (5.12)
+\hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\qquad (5.12)
 </script>
 </p>
 <p>是广义岭回归。拟合后的光滑样条由下式给出</p>
@@ -1311,7 +1315,7 @@ RSS(\theta,\lambda)=(\mathbf y-\mathbf N\theta)^T(\mathbf y-\mathbf N\theta)+\la
 <blockquote>
 <p>图5.6. 响应变量是青少年中脊髓的骨矿物质密度的相对改变，将它看成是年龄的函数。对男性和女性分别进行光滑样条拟合，其中$\lambda\approx 0.00022$。这个选择对应12个自由度。</p>
 </blockquote>
-<h2 id="_2">自由度和光滑矩阵</h2>
+<h2 id="_1">自由度和光滑矩阵</h2>
 <p>我们还没有指出光滑样条的$\lambda$是怎么选取的。本章的后面我们描述使用如交叉验证的技巧的自动化方法。在这部分中我们讨论预先确定光滑总量的直观方式。</p>
 <p>预先选择$\lambda$的光滑样条是线性光滑的一个例子（如在线性算子中一样）。这是因为（5.12）的估计参数是$y_i$的线性组合。记$\hat{\mathbf f}$ 为$N$维在训练预测变量$x_i$处的拟合值 $\hat f(x_i)$向量。则</p>
 <p>
