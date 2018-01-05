@@ -1232,11 +1232,11 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#em">EM算法</a></li>
+        <li class="main active"><a href="#85-em">8.5 EM算法</a></li>
         
             <li><a href="#_1">两个组分的混合模型</a></li>
         
-            <li><a href="#em_1">一般情形下的EM算法</a></li>
+            <li><a href="#em">一般情形下的EM算法</a></li>
         
             <li><a href="#em-">EM作为一个最大化-最大化的过程</a></li>
         
@@ -1245,7 +1245,7 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="em">EM算法</h1>
+<h1 id="85-em">8.5 EM算法</h1>
 <table>
 <thead>
 <tr>
@@ -1358,7 +1358,7 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 <p class="admonition-title">weiya注<p>自己实现了上述的模拟过程，具体R代码在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">这里</a></p>
 </p>
 </div>
-<h2 id="em_1">一般情形下的EM算法</h2>
+<h2 id="em">一般情形下的EM算法</h2>
 <p>上面的过程是对于特定问题的类别下最大化概率的EM（或者Baum-Welch）算法。这些问题的概率最大化是困难的，但是通过运用潜在数据（未观测）增大样本会变得简单。这也称作数据增广。这里潜在数据是模型成员$\Delta_i$.在其它问题中，潜在数据是理应被观测到的实际数据但是缺失了。</p>
 <p>算法8.2给出了EM算法的一般形式。我们的观测数据是$\mathbf Z$，其对数概率$\ell(\theta;\mathbf Z)$取决于参数$\theta$。潜在数据或者缺失数据为$\mathbf Z^m$，因此完整数据为$\mathbf {T=(Z,Z^m)}$，对数似然函数为$\ell_0(\theta;\mathbf T)$，$\ell_0$基于完整的密度函数。在混合问题中，$(\mathbf{Z,Z^m)=(y,}\Delta)$，且$\ell_0(\theta;\mathbf T)$由（8.40）式给出。</p>
 <p><img alt="" src="../../img/08/alg8.2.png" /></p>
