@@ -22,7 +22,7 @@ genY <- function(X, case = 1){
 ## global parameters setting
 ntest = 1000
 percent = 0.75
-B = 100 # the number of repeatation
+B = 100 # the number of repetition
 
 ## #########################################
 ## left panel
