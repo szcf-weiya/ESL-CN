@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记">
         
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/summary/sim-7-3/index.html">
 	<link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>13.1 导言 - ESL CN</title>
+	<title>模拟图7.3 - ESL CN</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -878,7 +878,7 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">下篇 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -888,38 +888,38 @@
     <ul class="dropdown-menu scrollable-menu">
         
             
-<li class="active">
-    <a href="index.html">13.1 导言</a>
+<li >
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/index.html">13.1 导言</a>
 </li>
 
         
             
 <li >
-    <a href="../13.2 Prototype Methods/index.html">13.2 原型方法</a>
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.2 Prototype Methods/index.html">13.2 原型方法</a>
 </li>
 
         
             
 <li >
-    <a href="../13.3 k-Nearest-Neighbor Classifiers/index.html">13.3 k最近邻分类器</a>
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.3 k-Nearest-Neighbor Classifiers/index.html">13.3 k最近邻分类器</a>
 </li>
 
         
             
 <li >
-    <a href="../13.4 Adaptive Nearest-Neighbor Methods/index.html">13.4 自适应的最近邻方法</a>
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/index.html">13.4 自适应的最近邻方法</a>
 </li>
 
         
             
 <li >
-    <a href="../13.5 Computational Considerations/index.html">13.5 计算上的考虑</a>
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.5 Computational Considerations/index.html">13.5 计算上的考虑</a>
 </li>
 
         
             
 <li >
-    <a href="../Bibliographic Notes/index.html">文献笔记</a>
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/Bibliographic Notes/index.html">文献笔记</a>
 </li>
 
         
@@ -1175,13 +1175,13 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人总结 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
-<li >
-    <a href="../../summary/sim-7-3/index.html">模拟图7.3</a>
+<li class="active">
+    <a href="index.html">模拟图7.3</a>
 </li>
 
                     
@@ -1202,16 +1202,16 @@
               -->
               <!--
                 <li>
-                  <a href="https://esl.hohoweiya.xyz/13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/index.html#disqus_thread">0 Comments</a>
+                  <a href="https://esl.hohoweiya.xyz/summary/sim-7-3/index.html#disqus_thread">0 Comments</a>
                 </li>
               -->
                 <li >
-                    <a rel="next" href="../../12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes/index.html">
+                    <a rel="next" href="../../18 High-Dimensional Problems/Bioliographic Notes/index.html">
                         <i class="fa fa-arrow-left"></i> 上一节
                     </a>
                 </li>
-                <li >
-                    <a rel="prev" href="../13.2 Prototype Methods/index.html">
+                <li class="disabled">
+                    <a rel="prev" >
                         下一节 <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -1247,37 +1247,15 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#131">13.1 导言</a></li>
+        <li class="main active"><a href="#73">模拟图7.3</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="131">13.1 导言</h1>
-<table>
-<thead>
-<tr>
-<th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>翻译</td>
-<td>szcf-weiya</td>
-</tr>
-<tr>
-<td>时间</td>
-<td>2017-01-28</td>
-</tr>
-<tr>
-<td>更新</td>
-<td>2017-08-28</td>
-</tr>
-</tbody>
-</table>
-<p>这章中我们讨论一些简单的、而且本质上不取决于具体模型的，并且适用于分类和模式识别的方法。因为它们的高度无结构性(highly unstructured)，一般地对理解特征和类别结果之间的本质关系也没有作用。然而，作为一种黑箱(black box)的预测器，它们变得很有效，而且在实际数据问题中经常是表现最好的。最近邻技巧也可以用于回归，在第2章有提到而且对于低维问题效果很好。然而，对于高维特征，偏差和方差之间的权衡不再像在分类中表现的那样好。</p>
+<h1 id="73">模拟图7.3</h1>
+<iframe src="http://rmd.hohoweiya.xyz/sim7_3.html"></iframe>
 
 <div id="disqus_thread"></div>
 <script>
@@ -1287,8 +1265,8 @@
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.url = "https://esl.hohoweiya.xyz/13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/index.html";  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "https://esl.hohoweiya.xyz/13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/index.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = "https://esl.hohoweiya.xyz/summary/sim-7-3/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "https://esl.hohoweiya.xyz/summary/sim-7-3/index.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
