@@ -201,7 +201,7 @@ website_en: Blog
 
 website_cn: 随笔
 
-copyright: 'Copyright &copy; 2016-2017 weiya'
+copyright: 'Copyright &copy; 2016-2018 weiya'
 
 markdown_extensions:
   - admonition
