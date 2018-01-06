@@ -1260,10 +1260,14 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-01-05</td>
+<td>2018-01-05&amp;2018-01-07</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">更新笔记</p>
+<p>@2018-01-07 完成了图7.7的部分模拟，即AIC和BIC下kNN回归与分类的情形，其它情形待完成。具体模拟细节记录在了<a href="http://rmd.hohoweiya.xyz/sim7_7.html">这个R Notebook</a>中。</p>
+</div>
 <p>使用样本内误差估计的困难在于需要确定在拟合中使用的参数（或复杂度）个数$d$。尽管7.6节引入的有效参数个数对部分非线性模型是有用的，但是不太普遍。Vapnik-Chervonenkis（VC）理论提供了对复杂度更一般的度量，而且给出了相应的optimism估计。这里我们简短回顾这个理论。</p>
 <p>假设我们有由参数$\alpha$编码的函数类$\{f(x,\alpha)\},x\in R^p$。现在假设$f$为指示函数，也就是取值为0或1。如果$\alpha=(\alpha_0,\alpha_1)$，且$f$为线性指示函数$I(\alpha_0+\alpha_1^Tx&gt;0)$，于是说函数$f$的复杂度是参数个数$p+1$似乎是合理的。但是如果$f(x,\alpha)=I(sin\alpha\cdot x),x\in R$， $\alpha$为任意实数会怎么样呢？图7.5显示了函数$sin(50\cdot x)$的图象。</p>
 <p><img alt="" src="../../img/07/fig7.5.png" /></p>
@@ -1340,7 +1344,7 @@ s.setAttribute('data-timestamp', +new Date());
         <footer class="col-md-12">
             <hr>
             
-                <center>Copyright &copy; 2016-2017 weiya</center>
+                <center>Copyright &copy; 2016-2018 weiya</center>
             
             <center>Powered by <a href="http://www.mkdocs.org/">MkDocs</a> and <a href="http://bootswatch.com/yeti/">Yeti</a></center>
         </footer>
