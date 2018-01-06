@@ -1232,7 +1232,7 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mars">MARS: 多变量自适应回归样条</a></li>
+        <li class="main active"><a href="#94-mars">9.4 MARS: 多变量自适应回归样条</a></li>
         
             <li><a href="#_1">垃圾邮件的例子（继续）</a></li>
         
@@ -1245,7 +1245,7 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="mars">MARS: 多变量自适应回归样条</h1>
+<h1 id="94-mars">9.4 MARS: 多变量自适应回归样条</h1>
 <table>
 <thead>
 <tr>
@@ -1438,7 +1438,7 @@ R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
 </p>
 </div>
 <h2 id="_3">其他的问题</h2>
-<h3 id="mars_1">MARS用于分类</h3>
+<h3 id="mars">MARS用于分类</h3>
 <p>MARS方法和算法可以拓展到处理分类问题。已经提出了几种策略。</p>
 <p>对于两个类别，可以将输出编码为0/1，并且将其看成是回归问题；我们在spam例子中已经这样做了。对于多余两个类别的情形，可以采用4.2节描述的指示响应变量的方法。用0/1来编码$K$个响应类别，接着采用多重响应的MARS回归。对于后者我们对所有的响应变量采用共同的基函数集合。分类使得类别有最大的预测向量的值。然而，这种方法存在潜在的掩盖问题，正如4.2中描述的那样。一般更好的方式是在12.5节讨论的optimal scoring.</p>
 <p>Stone等人（1997）发展了MARS的混合版本PolyMARS，是为了处理分类问题特别设计的。它采用在4.4节描述的多重逻辑斯蒂回归框架。以类似MARS的向前逐步方式来建立模型，但是在每一步多多变量对数似然作二次近似来寻找下一个基函数对。一旦找到，则通过极大似然扩大模型，并且这个过程重复进行。</p>
