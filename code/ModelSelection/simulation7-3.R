@@ -19,7 +19,7 @@ genY <- function(X, case = 1){
   return(Y)
 }
 
-# case 1
+# left panel
 seed = 123
 set.seed(seed)
 X = genX()
