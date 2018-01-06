@@ -1,5 +1,36 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "模拟图7.7"
+author: "weiya <szcfweiya@gmail.com>"
+date: "Jan. 7, 2018"
+output:
+  html_document:
+    toc: yes
+  html_notebook:
+    toc: yes
 ---
+本笔记是[ESL7.9节](https://esl.hohoweiya.xyz/07%20Model%20Assessment%20and%20Selection/7.9%20Vapnik-Chervonenkis%20Dimension/index.html)图7.9的模拟。
 
+## 问题回顾
+
+这是接着图7.3的例子，关于7.3的例子，我也重现了书中的模拟，见[这里](http://rmd.hohoweiya.xyz/sim7_3.html)。
+
+采用AIC，BIC和SRM来对图7.3的例子来选择模型大小。对于KNN，模型指标$\alpha$指的是邻居的个数，而对于标着REG的来说$\alpha$为子集大小。采用每个选择方法（例如，AIC），我们估计最优模型$\hat \alpha$并且在测试集上找到真实的预测误差$Err_{\cal T}(\hat\alpha)$。对于同样的训练集，我们计算最优和最坏可能的模型选择的预测误差：$min_\alpha Err_{\cal T}(\alpha)$和$max_\alpha Err_{\cal T}(\alpha)$。
+考察下列比值，它表示采用选择的模型和最优模型的误差
+$$
+100\times \frac{Err_{\cal T}(\hat \alpha)-min_\alpha Err_{\cal T}(\alpha)}{max_\alpha Err_{\cal T}(\alpha)-min_\alpha Err_{\cal T}(\alpha)}
+$$
+并作出箱线图。
+
+## 几个问题及我的处理办法
+
+1. 估计$\sigma_\epsilon^2$，特别是分类时
+
+在训练集中，用预测值减去真实值得到误差，然后求方差；对于分类也是这样计算。
+
+2. k最近邻的有效参数个数
+
+原书有介绍：$N/k$。
+
+3. $k=1$如何求训练误差，以及相应的aic
+
+因为其实实际情况都不会选到$k=1$的情形，所以暂时手动设为`Inf`，若有更好的处理方法，欢迎大家提出。
