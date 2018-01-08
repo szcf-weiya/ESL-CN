@@ -1232,20 +1232,20 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#boosting">利用梯度boosting进行数值优化</a></li>
+        <li class="main active"><a href="#1010-boosting">10.10 利用梯度boosting进行数值优化</a></li>
         
             <li><a href="#_1">最速下降</a></li>
         
-            <li><a href="#boosting_1">梯度boosting</a></li>
+            <li><a href="#boosting">梯度boosting</a></li>
         
-            <li><a href="#boosting_2">梯度boosting的实现</a></li>
+            <li><a href="#boosting_1">梯度boosting的实现</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="boosting">利用梯度boosting进行数值优化</h1>
+<h1 id="1010-boosting">10.10 利用梯度boosting进行数值优化</h1>
 <table>
 <thead>
 <tr>
@@ -1318,7 +1318,7 @@ g_{im}=\Big[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \Big]_{f(x_i)=f_{m-1
 </script>
 </p>
 <p>这个过程一直重复直到下一次迭代。最速下降可以看成是非常贪婪的策略，因为$-\mathbf g_m$是$R^N$空间中$L(\mathbf f)$在$\mathbf f= \mathbf f_{m-1}$处最速下降的局部方向。</p>
-<h2 id="boosting_1">梯度boosting</h2>
+<h2 id="boosting">梯度boosting</h2>
 <p>向前逐步boosting(算法10.2)也是非常贪婪的策略。每一步中，在给定当前模型$f_{m-1}$以及其拟合值$f_{m-1}(x_i)$下，得到的解是在最大程度上降低(10.29)的树。
 <script type="math/tex; mode=display">
 \hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
@@ -1391,7 +1391,7 @@ logit损失函数的负梯度为
 <p>将上述几种损失函数及其梯度用如下的Julia程序表达出来。</p>
 <script src="https://gist.github.com/szcf-weiya/cc6eaee677a027af5451f9fd17930543.js"></script>
 
-<h2 id="boosting_2">梯度boosting的实现</h2>
+<h2 id="boosting_1">梯度boosting的实现</h2>
 <p><img alt="" src="../../img/10/alg10.3.png" /></p>
 <p>上图中的算法10.3展示了用于回归的树的梯度boosting的通用算法。特定的算法可以通过插入不同的损失准则$L(y, f(x))$得到。算法第一行初始化为最优的常数模型，也就是单终止结点的树。第2(a)行的负梯度计算的组分被称为广义残差或伪残差，$r$。通常使用的损失函数的梯度已经总结在表10.2中。用于分类的算法是类似的。第2(a)-(d)行在第$m$次迭代重复$K$次，每次对每个类采用(10.38)计算负梯度。第3行的结果是$K$个不同的树的展开$f_{kM}(x), k=1,2,\ldots, K$。这通过(10.21)得到概率或者像(10.20)一样做分类。两个基本的调整参数为迭代次数$M$和每个组分树的大小$J_m,m=1,2\ldots,M$.</p>
 <p>这个算法原始实现称为MART，指的是“多重可加回归树(multiple additive regression trees)”。原书的这章中很多图是用MART得到的。这里描述的梯度boosting在R语言的gbm包中有实现(Ridgeway, 1999, “Gradient Boosted Models”)，可以免费使用。10.14.2节中用了<code>gbm</code>包，在第16章和第15章有详细介绍。另外，还有个boosting算法的R语言实现是<code>mboost</code>(Hothorn and Bühlmann, 2006)。有个梯度boosting/MART的商业实现称为TreeNet (Salford Systems, Inc.)</p>

@@ -1232,18 +1232,18 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">损失函数和鲁棒性</a></li>
+        <li class="main active"><a href="#106">10.6 损失函数和鲁棒性</a></li>
         
-            <li><a href="#_2">鲁棒的分类损失函数</a></li>
+            <li><a href="#_1">鲁棒的分类损失函数</a></li>
         
-            <li><a href="#_3">鲁棒的回归损失函数</a></li>
+            <li><a href="#_2">鲁棒的回归损失函数</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">损失函数和鲁棒性</h1>
+<h1 id="106">10.6 损失函数和鲁棒性</h1>
 <table>
 <thead>
 <tr>
@@ -1267,7 +1267,7 @@
 </tbody>
 </table>
 <p>在这一节我们进一步讨论用于分类和回归的损失函数的不同，并且根据它们对极端数据的鲁棒性来描述它们。</p>
-<h2 id="_2">鲁棒的分类损失函数</h2>
+<h2 id="_1">鲁棒的分类损失函数</h2>
 <p>
 <script type="math/tex; mode=display">
 L(y,f(x))=exp(-yf(x))\qquad (10.8)
@@ -1310,7 +1310,7 @@ L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
 </script>
 在两个类别的情形中，标准(10.22)对不正确预测的惩罚仅仅与不正确的程度是线性的。</p>
 <p>Zhu等人（2005）一般化了$K$类别问题的指数损失。更多细节见练习10.5.</p>
-<h2 id="_3">鲁棒的回归损失函数</h2>
+<h2 id="_2">鲁棒的回归损失函数</h2>
 <p>在回归问题中，类似指数损失和二项对数似然的关系是平方误差$L(y,f(x))=(y-f(x))^2$和绝对值损失$L(y,f(x))=\vert y-f(x)\vert$之间的关系。对于平方误差的总体解为$f(x)=E(Y\mid x)$,而对于绝对值损失的总体解为$f(x)=\mathrm{median}(Y\mid x)$;对于对称的误差分布这是一样的。然而，在有限样本上拟合过程中，平方误差损失更多地强调具有大的绝对值残差$\vert y_i-f(x_i)\vert$的观测值上。因此它更不鲁棒，而且它的表现对于长尾误差分布严重退化，特别是对于总体错误策略的$y$值（异常点）。其它更鲁棒的标准，比如绝对损失，在这些情形下表现得很好。在统计鲁棒性领域里，已经提出各种不同的回归损失标准，这些标准对总体异常点表现强烈的抵抗性（不是绝对的免疫），尽管这些异常点近似最小二乘的高斯误差。它们经常比任一适度的重尾的误差分布要好。其中一个这样的标准是用于$M$回归（Huber，1964）的Huber损失标准
 <script type="math/tex; mode=display">
 L(y,f(x))=
