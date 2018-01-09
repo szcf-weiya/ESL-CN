@@ -1232,22 +1232,22 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">离散变量的无向图模型</a></li>
+        <li class="main active"><a href="#174">17.4 离散变量的无向图模型</a></li>
         
-            <li><a href="#_2">当图结构已知时估计参数</a></li>
+            <li><a href="#_1">当图结构已知时估计参数</a></li>
         
-            <li><a href="#_3">隐藏结点</a></li>
+            <li><a href="#_2">隐藏结点</a></li>
         
-            <li><a href="#_4">图结构的估计</a></li>
+            <li><a href="#_3">图结构的估计</a></li>
         
-            <li><a href="#_5">限制玻尔兹曼机</a></li>
+            <li><a href="#_4">限制玻尔兹曼机</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">离散变量的无向图模型</h1>
+<h1 id="174">17.4 离散变量的无向图模型</h1>
 <table>
 <thead>
 <tr>
@@ -1294,7 +1294,7 @@ p(X,\mathbf\Theta)=exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\T
 Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta_{jk}x_k}\qquad (17.30)
 </script>
 其中$X_{-j}$记除了$j$的所有结点。因此参数$\theta_{jk}$衡量了在给定其它结点条件下，$X_j$在$X_k$上的依赖性。</p>
-<h2 id="_2">当图结构已知时估计参数</h2>
+<h2 id="_1">当图结构已知时估计参数</h2>
 <p>从模型中给出一些数据，我们可以怎么估计参数？假设我们有观测$x_i=(x_{i1},x_{i2},\ldots,x_{ip})\in\{0,1\}^p,i=1,\ldots,N$。对数似然为
 <script type="math/tex; mode=display">
 \begin{align}
@@ -1334,7 +1334,7 @@ Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta
 <li>为了得到近似解，使用吉布斯采样（8.6节）来近似$E_{\mathbf\Theta}(X_jX_k)$，通过从估计模型$Pr_{\mathbf\Theta}(X_j\mid X_{-j})$来逐步抽样（见Ripley(1996)）</li>
 </ul>
 <p>我们没有讨论可分解模型，因为极大似然估计不需要任何迭代可以在闭形式中找到。举个例子，这些模型来自树：截断树拓扑的特殊图。当要关心计算易处理性，树表示一个有用的模型类，并且它们回避本节中提出的计算上的考虑。详见Whittaker(1990)的第12章的例子。</p>
-<h2 id="_3">隐藏结点</h2>
+<h2 id="_2">隐藏结点</h2>
 <p>我们可以通过包含潜在或隐藏结点来增加离散马尔科夫网络的复杂性。假设变量的子集$X_{\cal H}$是未观测的或者“隐藏的”，并且剩余的变量$X_{\cal V}$是观测的或者“可见的”。则观测数据的对数似然为
 <script type="math/tex; mode=display">
 \begin{align}
@@ -1359,11 +1359,11 @@ Pr_{\mathbf\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in{\cal
 \right.
 </script>
 现在需要进行两个独立的吉布斯采样；第一个是从上面的模型中采样估计$E_{\mathbf \Theta}(X_jX_k)$，第二个是估计$E_{\mathbf\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})$。对于后者，固定（“夹住”）可见单元为观测值，并且仅仅对隐藏变量进行取样。吉布斯采样必须对训练集中的每一个观测进行，在梯度搜索的每一阶段。结果是这个过程可以变得非常慢，甚至对于中等大小的模型也是如此。在17.4.4节我们考虑进一步的模型约束来使得计算可行。</p>
-<h2 id="_4">图结构的估计</h2>
+<h2 id="_3">图结构的估计</h2>
 <p>Lee等人(2007)和Wainwright等人(2007)建议使用二值成对马尔科夫网络的lasso惩罚。第一个作者研究含惩罚的对数似然的精确最小化的共轭梯度过程。瓶颈是梯度中$E_{\mathbf\Theta}(X_jX_k)$的计算；通过junction tree 算法的精确计算对与稀疏图是可行的但是对稠密的图变得难以处理。</p>
 <p>第二个作者提出近似的解法，类似对于高斯图模型的Meinshausen和Bühlmann（2006）的方法。它们将每个结点看成其他结点的函数的$L_1$惩罚逻辑斯蒂回归，接着以某种方式对称边的参数。举个例子，如果$\hat\theta_{jk}$为从输出变量为结点$j$的逻辑斯蒂回归模型中得到的$j-k$边参数的估计，“最小”的对称化设定$\hat\theta_{jk}$为$\hat\theta_{jk}$或$\hat\theta_{kj}$中绝对值最小的，类似地定义“最大”准则。他们证明在确定条件下，随着样本大小变为无穷大，两种近似都估计正确的非零边。Hoefling和Tibshirani(2008)将图lasso扩大为离散马尔科夫网络，得到比共轭梯度稍快的过程，但是依旧必须处理$E_{\mathbf\Theta}(X_jX_k)$的计算。他们也在广泛的模拟研究中比较精确和近似解，并且找到“最小”和“最大”近似仅仅比精确解略微不精确，对于估计非零边和估计边参数的真实值都是这样，而且快很多。此外，他们可以处理稠密图的情形因为他们不需要计算$E_{\mathbf\Theta}(X_jX_k)$.</p>
 <p>最后，我们指出高斯和二值模型的关键区别。在高斯情况下，$\mathbf\Sigma$和其逆经常都是感兴趣的，而且图lasso过程都实现了这两个的估计。然而，Meinshausen和Bühlmann (2006)对于高斯图模型的近似类似Wainwright等人（2007）对二值情形的近似，仅仅得到$\mathbf\Sigma^{-1}$的估计。相反地，在二值数据的马尔科夫模型中，$\mathbf\Theta$是我们感兴趣的，而它的逆不是我们感兴趣的。Wainwright等人（2007）近似的方法有效地估计$\mathbf\Theta$，因此是二值问题的吸引人的解。</p>
-<h2 id="_5">限制玻尔兹曼机</h2>
+<h2 id="_4">限制玻尔兹曼机</h2>
 <p>这节我们考虑受神经网络影响的一种特殊的图模型结构，该结构中，单元是按层进行组织的。限制玻尔兹曼机(RBM)包含一层可见单元和一层隐藏单元，单层之间没有联系。如果隐藏单元的连接被移除掉，计算条件期望变得很简单（如17.37和17.38）。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：<p>这样（17.38）式变成，对于观测$i$，
