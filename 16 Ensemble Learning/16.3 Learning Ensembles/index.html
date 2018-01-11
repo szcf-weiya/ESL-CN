@@ -1246,16 +1246,16 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">学习集成</a></li>
+        <li class="main active"><a href="#163">16.3 学习集成</a></li>
         
-            <li><a href="#_2">学习一个好的集成</a></li>
+            <li><a href="#_1">学习一个好的集成</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">学习集成</h1>
+<h1 id="163">16.3 学习集成</h1>
 <table>
 <thead>
 <tr>
@@ -1294,7 +1294,7 @@ f(x)=\alpha_0+\sum\limits_{T_k\in \cal T}\alpha_kT_k(x)\qquad (16.8)
 <p>作为初步的说明，我们将这个过程应用到对spam数据集成的随机森林上。</p>
 <p><img alt="" src="../../img/16/fig16.6.png" /></p>
 <p>图16.6 展示了lasso post-processing对随机森林（蓝色曲线）有了较大程度的改善，并且将森林降至了40棵树，而不是原来的1000棵。这个post-processed表现与gradient boosting 相当。橘黄色曲线展示了修改版的随机森林，它是为了更大程度上降低树之间的相关性。这里训练样本$5\%$的子样本（无放回）用来生成每棵树，并且每棵树限制得很低（大约6个终止结点）。这种情形下post-processing有更显著的改善，而且训练花费大概降低了100倍。然而，这个post-processed模型的表现有点比蓝色曲线差。</p>
-<h2 id="_2">学习一个好的集成</h2>
+<h2 id="_1">学习一个好的集成</h2>
 <p>并非所有的集成采用post-processing都表现得很好。采用基函数，我们想要一个能够覆盖所需要的空间的集合，为了实现有效性，其post-processor与其它的显著不同。</p>
 <p>Friedman and Popescu (2003)从数字正交（numerical quadrature）和重要性采样中获得启发。他们将未知的函数看成如下的积分</p>
 <p>
