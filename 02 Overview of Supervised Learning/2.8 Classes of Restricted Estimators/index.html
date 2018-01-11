@@ -1246,20 +1246,20 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">限制性估计的类别</a></li>
+        <li class="main active"><a href="#28">2.8 限制性估计的类别</a></li>
         
-            <li><a href="#_2">粗糙惩罚和贝叶斯方法</a></li>
+            <li><a href="#_1">粗糙惩罚和贝叶斯方法</a></li>
         
-            <li><a href="#_3">核方法和局部回归</a></li>
+            <li><a href="#_2">核方法和局部回归</a></li>
         
-            <li><a href="#_4">基函数和字典方法</a></li>
+            <li><a href="#_3">基函数和字典方法</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">限制性估计的类别</h1>
+<h1 id="28">2.8 限制性估计的类别</h1>
 <table>
 <thead>
 <tr>
@@ -1279,7 +1279,7 @@
 </tbody>
 </table>
 <p>非参回归方法的多样性和学习方法的多种类别取决于插入的限制条件的本质。这些类别不是截然不同的，而且确实一些方法变成了几种不同的方法。这里我们进行一个简短的概要，因为详细的描述将在后面章节中给出。每个类都有与之对应的一个或多个参数，有时恰当地称之为光滑化参数，这些参数控制着局部邻域的有效规模。这里我们描述三个大的类别</p>
-<h2 id="_2">粗糙惩罚和贝叶斯方法</h2>
+<h2 id="_1">粗糙惩罚和贝叶斯方法</h2>
 <p>这是由显式的惩罚$RSS(f)$和粗糙惩罚控制的函数类
 <script type="math/tex; mode=display">\begin{equation}
 PRSS(f;\lambda)=RSS(f)+\lambda J(f)
@@ -1292,7 +1292,7 @@ PRSS(f;\lambda)=\sum\limits_{i=1}^N(y_i-f(x_i))^2+\lambda \int [f''(x)]^2dx
 这里的粗糙惩罚控制了$f$的二阶微分大的值，而且惩罚的数量由$\lambda \ge 0$来支配。$\lambda=0$表示没有惩罚，任意插值函数都可以实现，尽管$\lambda=\infty$仅仅当关于$x$的函数为线性才允许。</p>
 <p>预测函数$J$可以在任意维数下构造函数，而且一些特殊的版本可以用来插入特殊的结构。举个例子，可加性惩罚$J(f)=\sum_{j=1}^pJ(f_j)$与可加性函数$f(X)=\sum_{j=1}^pf_j(X_j)$联合使用去构造可加的光滑坐标函数的模型。类似地，投射追踪回归(<em>regression pursuit regression</em>)模型有$f(X)=\sum_{m=1}^Mg_m(\alpha_m^TX)$，其中$\alpha_m$为适应地选择的方向，函数$g_m$的每一个有对应的粗糙惩罚。</p>
 <p>惩罚函数，或者说正则(<em>regularization</em>)方法,表达了我们最初的信仰——我们寻找的函数类型展现了一个确定的光滑行为的类型，而且确实可以套进贝叶斯的模型中。惩罚$J$对应先验概率，$PRSS(f;\lambda)$为后验分布，最小化$PRSS(f;\lambda)$意味着寻找后验模式。我们将在第5章中讨论粗糙惩罚方法并在第8章中讨论贝叶斯范式。</p>
-<h2 id="_3">核方法和局部回归</h2>
+<h2 id="_2">核方法和局部回归</h2>
 <p>这些方法被认为是通过确定局部邻域的本质来显式提供回归函数的估计或条件期望，并且属于局部拟合得很好的规则函数类。局部邻域由核函数(<em>kernel function</em>)$K_{\lambda}(x_0,x)$来确定，核函数对$x_0$附近的区域$x$赋予系数（见p192的图6.1），举个例子，高斯核有一个基于高斯密度函数的系数函数
 <script type="math/tex; mode=display">\begin{equation}
 K_{\lambda}(x_0,x)=\frac{1}{\lambda}exp[-\frac{\mid \mid x-x_0\mid \mid ^2}{2\lambda}]
@@ -1316,7 +1316,7 @@ K_k(x,x_0)=I(\mid \mid x-x_0\mid \mid \le \mid \mid x_{(k)}-x_0\mid \mid )
 \end{equation}</script>
 其中$x_{(k)}$是训练观测值中离$x_0$的距离排名第$k$个的观测，而且$I(S)$是集合$S$的指标函数。</p>
 <p>为了避免维数的灾难，这些方法在高纬情形下要做修正。将在第6章讨论不同的改编。</p>
-<h2 id="_4">基函数和字典方法</h2>
+<h2 id="_3">基函数和字典方法</h2>
 <p>这个方法的类别包括熟悉的线性和多项式展开式，但是最重要的有多种多样的更灵活的模型。这些关于$f$的模型是基本函数的线性展开
 <script type="math/tex; mode=display">\begin{equation}
 f_{\theta}(x)  = \sum\limits_{m=1}^M\theta_mh_m(x)
