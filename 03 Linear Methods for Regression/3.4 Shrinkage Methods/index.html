@@ -1246,22 +1246,22 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">收缩的方法</a></li>
+        <li class="main active"><a href="#34">3.4 收缩的方法</a></li>
         
-            <li><a href="#_2">岭回归</a></li>
+            <li><a href="#_1">岭回归</a></li>
         
             <li><a href="#lasso">Lasso</a></li>
         
             <li><a href="#lasso_1">讨论：子集的选择，岭回归，Lasso</a></li>
         
-            <li><a href="#_3">最小角回归</a></li>
+            <li><a href="#_2">最小角回归</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">收缩的方法</h1>
+<h1 id="34">3.4 收缩的方法</h1>
 <table>
 <thead>
 <tr>
@@ -1281,7 +1281,7 @@
 </tbody>
 </table>
 <p>通过保留预测变量的子集并且丢弃剩余的，子集的选择得到一个可解释的、预测误差可能比全模型低的模型。然而，因为这是一个离散的过程——变量不是保留就是丢弃——经常表现为高方差，因此不会降低全模型的预测误差。收缩方法更加连续，而且不会遭受高易变太大的影响。</p>
-<h2 id="_2">岭回归</h2>
+<h2 id="_1">岭回归</h2>
 <p>岭回归通过对回归系数的大小加上惩罚因子来收缩回归系数。岭回归的系数使得惩罚的残差平方和最小</p>
 <p>
 <script type="math/tex; mode=display">
@@ -1518,7 +1518,7 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\\
 <blockquote>
 <p>图3.13 $q=1.2$时$\sum_j\vert\beta_j\vert^q$为常数值的轮廓线（左图）以及$\alpha=0.2$时弹性网惩罚$\sum_j(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)$为常数值的轮廓线（右图）。尽管看起来很相似，弹性网有尖角（不可导），而$q=1.2$的惩罚不会有尖角。</p>
 </blockquote>
-<h2 id="_3">最小角回归</h2>
+<h2 id="_2">最小角回归</h2>
 <p>最小角回归（LAR）是相对较新的方法（2004年Efron等人），而且可以看成是一种向前逐步回归（3.3.2节）的“民主”版本。正如我们所看到的，LAR与lasso联系紧密，并且事实上提供了如图3.10所示的计算整个lasso路径的非常有效的算法。</p>
 <blockquote>
 <p><strong>weiya 注：</strong>

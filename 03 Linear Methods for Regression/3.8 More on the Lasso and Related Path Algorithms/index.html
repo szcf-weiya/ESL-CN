@@ -1246,7 +1246,7 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#lasso">Lasso和相关路径算法的补充</a></li>
+        <li class="main active"><a href="#38-lasso">3.8 Lasso和相关路径算法的补充</a></li>
         
             <li><a href="#_1">增长的向前逐渐回归</a></li>
         
@@ -1256,7 +1256,7 @@
         
             <li><a href="#the-grouped-lasso">The Grouped Lasso</a></li>
         
-            <li><a href="#lasso_1">lasso的更多性质</a></li>
+            <li><a href="#lasso">lasso的更多性质</a></li>
         
             <li><a href="#pathwise-coordinate-optimization">Pathwise Coordinate Optimization</a></li>
         
@@ -1265,7 +1265,7 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="lasso">Lasso和相关路径算法的补充</h1>
+<h1 id="38-lasso">3.8 Lasso和相关路径算法的补充</h1>
 <table>
 <thead>
 <tr>
@@ -1371,7 +1371,7 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 </script>
 </p>
 <p>其中$\sqrt{p_\ell}$项对应不同的群体大小，并且$\Vert\cdot\Vert_2$是欧几里得范数。因为一个向量$\beta_\ell$的欧式范数为0当且仅当其各组分都为0，这个过程保证了群体层次和个体水平的稀疏性。也就是，对于某些$\lambda$，预测变量的整个群体都排除在模型之外。这个过程由Bakin (1999)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>和Lin and Zhang (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>提出，以及Yuan and Lin (2007)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>的研究和推广。推广包括更一般的$L_2$范数$\Vert \eta\Vert=(\eta^TK\eta)^{1/2}$，并且允许重复的预测变量(Zhao et al., 2008<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)。拟合离散的可加模型的方法之间也有联系（Lin and Zhang, 2006<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Ravikumar et al., 2008<sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup>）</p>
-<h2 id="lasso_1">lasso的更多性质</h2>
+<h2 id="lasso">lasso的更多性质</h2>
 <p>许多作者已经研究了当$N$和$p$增长时，lasso的能力以及重建模型相关的过程。这个工作的例子有Knight and Fu (2000)<sup id="fnref:15"><a class="footnote-ref" href="#fn:15" rel="footnote">15</a></sup>, Greenshtein and Ritov (2004)<sup id="fnref:16"><a class="footnote-ref" href="#fn:16" rel="footnote">16</a></sup>, Tropp (2004)<sup id="fnref:17"><a class="footnote-ref" href="#fn:17" rel="footnote">17</a></sup>, Donoho (2006b)<sup id="fnref:18"><a class="footnote-ref" href="#fn:18" rel="footnote">18</a></sup>, Meinshausen (2007)<sup id="fnref:19"><a class="footnote-ref" href="#fn:19" rel="footnote">19</a></sup>, Meinshausen and Bühlmann (2006)<sup id="fnref:20"><a class="footnote-ref" href="#fn:20" rel="footnote">20</a></sup>, Tropp (2006)<sup id="fnref:21"><a class="footnote-ref" href="#fn:21" rel="footnote">21</a></sup>, Zhao and Yu (2006)<sup id="fnref:22"><a class="footnote-ref" href="#fn:22" rel="footnote">22</a></sup>, Wainwright (2006)<sup id="fnref:23"><a class="footnote-ref" href="#fn:23" rel="footnote">23</a></sup>, 以及 Bunea et al. (2007)<sup id="fnref:24"><a class="footnote-ref" href="#fn:24" rel="footnote">24</a></sup>。举个例子，Donoho (2006b)<sup id="fnref2:18"><a class="footnote-ref" href="#fn:18" rel="footnote">18</a></sup>集中在$p&gt;N$的情形并且当边界$t$变大时lasso的解。极限情形下，这给出了在所有零训练误差的模型中最小的$L_1$范数解。他证明了对模型矩阵$\mathbf X$加上具体的假设，如果真实模型为稀疏的，则解能以高概率识别出正确的预测变量。</p>
 <p>许多这领域的结果对模型矩阵假设了如下条件</p>
 <p>
