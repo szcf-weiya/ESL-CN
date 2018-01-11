@@ -1246,30 +1246,30 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#_1">支持向量机和核</a></li>
+        <li class="main active"><a href="#123">12.3 支持向量机和核</a></li>
         
             <li><a href="#svm">用于分类的SVM</a></li>
         
             <li><a href="#svm_1">SVM作为惩罚的方法</a></li>
         
-            <li><a href="#_2">函数估计和重生核</a></li>
+            <li><a href="#_1">函数估计和重生核</a></li>
         
             <li><a href="#svm_2">SVM和维数灾难</a></li>
         
             <li><a href="#svm_3">SVM分类器的路径算法</a></li>
         
-            <li><a href="#_3">用于回归的支持向量机</a></li>
+            <li><a href="#_2">用于回归的支持向量机</a></li>
         
-            <li><a href="#_4">回归和核</a></li>
+            <li><a href="#_3">回归和核</a></li>
         
-            <li><a href="#_5">讨论</a></li>
+            <li><a href="#_4">讨论</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="_1">支持向量机和核</h1>
+<h1 id="123">12.3 支持向量机和核</h1>
 <table>
 <thead>
 <tr>
@@ -1361,7 +1361,7 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <p class="admonition-title">原作者注：</p>
 <p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$分散，但是$\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$收敛到最优分离超平面。</p>
 </div>
-<h2 id="_2">函数估计和重生核</h2>
+<h2 id="_1">函数估计和重生核</h2>
 <p>TODO</p>
 <h2 id="svm_2">SVM和维数灾难</h2>
 <p>在这一节，我们提出问题，SVMs是否存在维数灾难。注意到在展开式(12.23)中，我们不允许在幂和乘积的空间中有完全一般的内积。举个例子，所有形如$2X_jX_j&rsquo;$赋予相同的权重，并且核不能自动更新来集中到子空间中。如果特征的数量$p$很大，但是类别分类仅仅发生在$X_1$和$X_2$张成的子空间，这个核不会简单地被找到其结构并且需要在很多维度下搜寻。必须将子空间的信息考虑进核中；也就是，忽略除了前两个的输入。如果有信息能够得到先验，大多数统计学习会变得很简单。自适应方法的主要目标是发现类似的结构。</p>
@@ -1371,9 +1371,9 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <p>在原始特征空间中，超平面不能分离类别，而且支持向量分类器（第一行）表现很差。多项式支持向量机在测试误差率方面取得显著改善，但同时也被6个噪声特征严重影响。这对核的选择非常敏感：二阶多项式核（第2行）表现最好，因为真实的判别边界就是二阶多项式。然而，高阶多项式（第3和第4行）表现很差。BRUTO表现得很好，因为其边界是可加的。BRUTO和MARS自适应得很好：因为噪声的存在，所以它们的表现不会退化太大。</p>
 <h2 id="svm_3">SVM分类器的路径算法</h2>
 <p>TODO</p>
-<h2 id="_3">用于回归的支持向量机</h2>
-<h2 id="_4">回归和核</h2>
-<h2 id="_5">讨论</h2>
+<h2 id="_2">用于回归的支持向量机</h2>
+<h2 id="_3">回归和核</h2>
+<h2 id="_4">讨论</h2>
 
 <div id="disqus_thread"></div>
 <script>
