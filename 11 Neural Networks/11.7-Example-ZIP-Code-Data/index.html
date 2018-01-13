@@ -1272,10 +1272,10 @@
 </tr>
 </tbody>
 </table>
-<p>这个例子是字体识别任务：对手写字母分类。这个问题引起了机器学习和神经网络社区数年的关注，并且仍是该领域的基准问题。图11.9展示了标准化手写字体的一些例子，这是从美国邮局服务的信封中自动扫描得到的。原始的扫描数字是二值的且有不同的大小和朝向；这里展示的图象已经被deslanted且大小被标准化了，最终得到$16\times 16$的灰白图象（Le Cun et al., 1990）。这256个像素值作为神经网络分类器的输入。</p>
+<p>这个例子是字体识别任务：对手写字母分类。这个问题引起了机器学习和神经网络社区数年的关注，并且仍是该领域的基准问题。图11.9展示了标准化手写字体的一些例子，这是从美国邮局服务的信封中自动扫描得到的。原始的扫描数字是二值的且有不同的大小和朝向；这里展示的图象已经被deslanted且大小被标准化了，最终得到$16\times 16$的灰白图象（Le Cun et al., 1990<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。这256个像素值作为神经网络分类器的输入。</p>
 <p><img alt="" src="../../img/11/fig11.9.png" /></p>
-<p>黑箱神经网络不适合这个特征识别任务，一部分是因为图象的像素表示缺少具体的不变量（比如图象微小的旋转）。结果使得早期神经网络的尝试得到将近4.5\%的误分类率。在这一节我们展示一些利用神经网络克服这些不足的开拓性研究（Le Cun, 1989），最终导致了神经网络性能的最佳状态(Le Cun et al., 1998)。</p>
-<p>尽管当前数字数据集已经有成千上万的训练集和测试集，但这里为了强调其效果而特意取中等的样本大小。这些例子是通过扫描部分真实的手写字体然后通过随机偏离产生另外的图象得到的。具体细节可以在Le Cun (1989)中找到。在训练集中有320个手写数字，而在测试集中有160个。</p>
+<p>黑箱神经网络不适合这个特征识别任务，一部分是因为图象的像素表示缺少具体的不变量（比如图象微小的旋转）。结果使得早期神经网络的尝试得到将近4.5\%的误分类率。在这一节我们展示一些利用神经网络克服这些不足的开拓性研究（Le Cun, 1989<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>），最终导致了神经网络性能的最佳状态(Le Cun et al., 1998<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>)。</p>
+<p>尽管当前数字数据集已经有成千上万的训练集和测试集，但这里为了强调其效果而特意取中等的样本大小。这些例子是通过扫描部分真实的手写字体然后通过随机偏离产生另外的图象得到的。具体细节可以在Le Cun (1989)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>中找到。在训练集中有320个手写数字，而在测试集中有160个。</p>
 <p>对这些数据应用五个不同的网络进行拟合。</p>
 <ul>
 <li>Net-1: 无隐藏层，等价于多项逻辑斯底回归。</li>
@@ -1295,15 +1295,31 @@
 <p>Net-4和Net-5具有局部连接性和共享权重。在局部特征映射中的所有单元在图象的不同部分进行同样的操作，这通过共享权重实现。Net-4有两个$8\times 8$的数组，每个单元类似Net-3中一样从$3\times 3$的小片中得到输入。然而，在单个$8\times 8$的特征映射中的每个单元共享9个同样的权重（但是会有各自的偏差参数）。这使得在图象不同部位提取的特征要使用同样的线性函数来计算，结果这些网络有时被称为卷积网络(convolutional networks)。Net-4的第二层没有权重共享，这与Net-3一样。误差函数$R$关于共享权重的梯度等于$R$关于问题中由权重控制的每个连接的梯度之和。</p>
 <p><img alt="" src="../../img/11/tab11.1.png" /></p>
 <p>表11.1给出了连接的个数，权重的个数以及每个网络的最优测试表现。我们看到Net-4比Net-3有更多的连接但是更少的权重，并且有更优秀的效果。Net-5在第二个隐藏层有4个$4\times 4$特征映射，每个单元与下一层的$5\times 5$的局部小块有连接。在这些特征映射中权重是共享的。我们看到Net-5效果最好，误差率仅为1.6\%，而Net-2的“vanilla”为13\%。Net-5的巧妙设计，是受书写风格应当出现在数字的多个部分这一事实启发的，是许多人多年的实验的结果。对于邮编问题，这个网络以及相似的网络在当时给出了比其它任何学习方法都好的效果（1990年代早期）。这个例子也展示了神经网络不是一个如它们有时做广告所称的全自动工具。和所有统计模型一样，主观知识可以并且应该用来改善其效果。</p>
-<p>这个网络后来被第13.3.3节讨论的切线距离方法(Simard et al., 1993)所超过，该方法显性地结合了自然的仿射不变量。这时数字识别数据集变成了每个学习过程的测试床，而且研究者们努力工作来降低误差率。在原文的写作时，从标准的NIST数据库导出的某个大数据库(60,000个训练，10,000个测试观测)的最优误差率报告如下：(Le Cun et
-al., 1998)：</p>
+<p>这个网络后来被第13.3.3节讨论的切线距离方法(Simard et al., 1993<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>)所超过，该方法显性地结合了自然的仿射不变量。这时数字识别数据集变成了每个学习过程的测试床，而且研究者们努力工作来降低误差率。在原文的写作时，从标准的NIST数据库导出的某个大数据库(60,000个训练，10,000个测试观测)的最优误差率报告如下：(Le Cun et al., 1998<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>)：</p>
 <ul>
 <li>1.1\%：1-最近邻分类器的切线距离（第13.3.3节）</li>
 <li>0.8\%：9阶多项式SVM（第12.3节)</li>
 <li>0.8\%： LeNet-5，这里描述的卷积神经网络的更复杂版本</li>
 <li>0.7\%： boosted LeNet-4。boosting在第8章有描述。LeNet-4是LeNet-5的先驱。</li>
 </ul>
-<p>Le Cun et al. (1998)报告了大量的效果结果表，而且一直有研究团队在努力工作来降低误差率。、他们在误差估计上报告了0.1\%的标准误差，这是基于$N=10,000,p\sim 0.01$的二项平均。这意味着误差率在0.1-0.2\%的方法在统计上是等价的。实际中标准误差会更高，因为测试数据已经隐式地用在了各种调参过程中。</p>
+<p>Le Cun et al. (1998)<sup id="fnref3:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>报告了大量的效果结果表，而且一直有研究团队在努力工作来降低误差率。、他们在误差估计上报告了0.1\%的标准误差，这是基于$N=10,000,p\sim 0.01$的二项平均。这意味着误差率在0.1-0.2\%的方法在统计上是等价的。实际中标准误差会更高，因为测试数据已经隐式地用在了各种调参过程中。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Le Cun, Y., Boser, B., Denker, J., Henderson, D., Howard, R., Hubbard, W. and Jackel, L. (1990). Handwritten digit recognition with a backpropogation network, in D. Touretzky (ed.), Advances in Neural Information Processing Systems, Vol. 2, Morgan Kaufman, Denver, CO, pp. 386–404.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Le Cun, Y. (1989). Generalization and network design strategies, Technical Report CRG-TR-89-4, Department of Computer Science, Univ. of Toronto.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Le Cun, Y., Bottou, L., Bengio, Y. and Haffner, P. (1998). Gradient-based learning applied to document recognition, Proceedings of the IEEE 86(11): 2278–2324.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Simard, P., Cun, Y. L. and Denker, J. (1993). Efficient pattern recognition using a new transformation distance, Advances in Neural Information Processing Systems, Morgan Kaufman, San Mateo, CA, pp. 50–58.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 <div id="disqus_thread"></div>
 <script>
