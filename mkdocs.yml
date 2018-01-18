@@ -1,7 +1,3 @@
-theme:
-  name: mkdocs
-  custom_dir: custom_theme
-  
 pages:
   - 主页: 'index.md'
   - 上篇:
@@ -228,6 +224,9 @@ extra_css:
 
 #docs_dir: 'docs'
 
+theme:
+  name: null
+  custom_dir: yeti
 
 
 #theme_dir: 'yeti'
