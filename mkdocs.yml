@@ -222,8 +222,12 @@ extra_templates:
   - sitemap.xml
 
 docs_dir: 'docs'
+
 theme:
-  name: null
-  custom_dir: 'yeti'
+  name: yeti
+  custom_dir: yeti/
+  static_templates:
+        - sitemap.xml
+#theme_dir: 'yeti'
 
 use_directory_urls: false
