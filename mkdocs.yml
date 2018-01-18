@@ -226,9 +226,6 @@ extra_templates:
 
 theme:
     name: 'mkdocs'
-    custom_dir: yeti/
-    static_templates:
-        - sitemap.xml
 
 #theme_dir: 'yeti'
 
