@@ -225,8 +225,8 @@ extra_css:
 #docs_dir: 'docs'
 
 theme:
-  name: null
-  custom_dir: yeti
+  name: yeti
+  custom_dir: 'yeti'
 
 
 #theme_dir: 'yeti'
