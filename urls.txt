@@ -51,3 +51,14 @@ https://esl.hohoweiya.xyz/10%20Boosting%20and%20Additive%20Trees/10.9%20Boosting
 https://esl.hohoweiya.xyz/10%20Boosting%20and%20Additive%20Trees/10.10%20Numerical%20Optimization%20via%20Gradient%20Boosting/index.html
 https://esl.hohoweiya.xyz/10%20Boosting%20and%20Additive%20Trees/10.11%20Right-Sized%20Trees%20for%20Boosting/index.html
 https://esl.hohoweiya.xyz/10%20Boosting%20and%20Additive%20Trees/10.12%20Regularization/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.3%20Cluster%20Analysis/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.2%20Association%20Rules/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.1%20Introduction/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.4%20Self-Organizing%20Maps/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.5%20Principal%20Components,%20Curves%20and%20Surfaces/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.6%20Non-negative%20Matrix%20Factorization/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.7%20Independent%20Component%20Analysis%20and%20Exploratory%20Projection%20Pursuit/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.8%20Multidimensional%20Scaling/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.9%20Nonlinear%20Dimension%20Reduction%20and%20Local%20Multidimensional%20Scaling/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.10%20The%20Google%20PageRank%20Algorithm/index.html
+https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/Bibliographic%20Notes/index.html
