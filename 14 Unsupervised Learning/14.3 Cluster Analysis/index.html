@@ -1436,6 +1436,10 @@ S(N,K)=\frac{1}{K!}\sum\limits_{k=1}^K(-1)^{K-k}\binom{K}{k}k^N\qquad (14.30)
 d(x_i,x_{i'})=\sum\limits_{j=1}^p(x_{ij}-x_{i'j})^2=\Vert x_i-x_{i'}\Vert^2
 </script>
 注意到加权欧式距离可以通过重新定义$x_{ij}$来实现（练习14.1）</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: Ex. 14.1 </p>
+<p>这个可以很容易计算。原问题及解答参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/42">Issues 42: Ex. 14.1</a></p>
+</div>
 <p>类间点散（14.28）可以写成
 <script type="math/tex; mode=display">
 \begin{align}
@@ -1443,7 +1447,15 @@ W(C)&=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}\Ve
 &=\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2\qquad \qquad (14.31)
 \end{align}
 </script>
-其中$\bar x_k=(\bar x_{1k},\ldots,\bar x_{pk})$是与第$k$个类的均值向量，并且$N_k=\sum_{i=1}^NI(C(i)=k)$。因此，通过以某种方式将$N$个观测分配到$K$个类中来最小化该准则，该方式为最小化每个类中观测点与类别中心（用该类中的点定义）的不相似性的平均值。</p>
+其中$\bar x_k=(\bar x_{1k},\ldots,\bar x_{pk})$是与第$k$个类的均值向量，并且$N_k=\sum_{i=1}^NI(C(i)=k)$。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>式(14.31)并不成立，以两个点为例，
+<script type="math/tex; mode=display">
+(x_1-x_2)^2=(x_1-\mu+\mu-x_2)^2\neq (x_1-\mu)^2+(x_2-\mu)^2
+</script>。</p>
+</div>
+<p>因此，通过以某种方式将$N$个观测分配到$K$个类中来最小化该准则，该方式为最小化每个类中观测点与类别中心（用该类中的点定义）的不相似性的平均值。</p>
 <p>求解下列问题的迭代下降算法
 <script type="math/tex; mode=display">
 C^*=\underset{C}{min}\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
@@ -1465,7 +1477,12 @@ C^*=\underset{C}{min}\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_
 <p>图14.6. 对于图14.4的模拟数据的K-means聚类算法的逐次迭代</p>
 </blockquote>
 <h2 id="soft-k-means">高斯混合作为Soft K-means聚类</h2>
-<p>K-means 聚类算法与估计特定的高斯混合模型的EM算法有关。（6.8节和8.5.1节）EM算法的步骤E对每个数据点基于在每个混合部分中的相对密度来赋予“responsibilities”，而步骤M基于当前的responsibilities重新计算各组分的密度参数。假设明确了我们有$K$个混合组分，每个是有着标量协方差矩阵$\sigma^2\mathbf I$的高斯密度。则在每个混合组分的相对密度是关于数据点到混合中心欧氏距离的单调函数。因此在这一步中EM是K-means聚类的soft，使得点以概率（而不是确定性的）分配到聚类中心。因为方差$\sigma\rightarrow 0$，这些概率变成0和1，两种方法也就一致。细节在练习14.2中给出。图14.7说明了实线上两个聚类的结果。</p>
+<p>K-means 聚类算法与估计特定的高斯混合模型的EM算法有关。（6.8节和8.5.1节）EM算法的步骤E对每个数据点基于在每个混合部分中的相对密度来赋予“responsibilities”，而步骤M基于当前的responsibilities重新计算各组分的密度参数。假设明确了我们有$K$个混合组分，每个是有着标量协方差矩阵$\sigma^2\mathbf I$的高斯密度。则在每个混合组分的相对密度是关于数据点到混合中心欧氏距离的单调函数。因此在这一步中EM是K-means聚类的soft，使得点以概率（而不是确定性的）分配到聚类中心。因为方差$\sigma\rightarrow 0$，这些概率变成0和1，两种方法也就一致。细节在练习14.2中给出。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: Ex. 14.2</p>
+<p>Ex. 14.2讨论了$k$个高斯组分的混合模型，而算法8.1针对的是两组分的高斯混合模型，但主要思想是一致的。具体解题过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/43">Issues 43: Ex. 14.2</a></p>
+</div>
+<p>图14.7说明了实线上两个聚类的结果。</p>
 <p><img alt="" src="../../img/14/fig14.7.png" /></p>
 <blockquote>
 <p>图14.7. (左：)实线为两个高斯密度$g_0(x)$和$g_1(x)$（蓝色和橘黄色），以及$x=0.5$处的单个数据点（绿色圆点）。带颜色的方块画在$x=-1.0$和$x=1.0$处，每个密度的均值。（右：）对于数据点来说，相对密度$g_0(x)/(g_0(x)+g_1(x))$和$g_1(x)/(g_0(x)+g_1(x))$称作每个聚类的“responsibilities”。上面一排的两张图，高斯标准误差为$\sigma=1.0$在下面的两张图中$\sigma=0.2$。EM算法用这些responsibilities来对每个数据点做“soft”分配到两个簇中。当$\sigma$相对大，responsibilities可以接近0.5，（右上图中为0.36和0.64）。当$\sigma\rightarrow 0$时，responsibilities接近1，表示聚类中心离目标点很近，0代表是其它的聚类。“hard”版本的分配如右下图所示。</p>
