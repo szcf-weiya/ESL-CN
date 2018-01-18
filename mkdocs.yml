@@ -1,3 +1,7 @@
+theme:
+  name: mkdocs
+  custom_dir: custom_theme
+  
 pages:
   - 主页: 'index.md'
   - 上篇:
@@ -182,9 +186,7 @@ pages:
       - 18.7 特征评估和多重检验问题: '18 High-Dimensional Problems/18.7 Feature Assessment and the Multiple-Testing Problem.md'
       - 文献笔记: '18 High-Dimensional Problems/Bioliographic Notes.md'
 
-theme:
-  name: mkdocs
-  custom_dir: custom_theme
+
 
 site_name: 'ESL CN'
 
