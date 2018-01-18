@@ -224,8 +224,12 @@ extra_templates:
 
 #docs_dir: 'docs'
 
+theme:
+    name: mkdocs
+    custom_dir: yeti/
+    static_templates:
+        - sitemap.xml
 
-
-theme_dir: 'yeti'
+#theme_dir: 'yeti'
 
 use_directory_urls: false
