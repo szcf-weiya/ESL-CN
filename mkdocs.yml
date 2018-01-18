@@ -221,13 +221,12 @@ extra_css:
 #extra_templates:
 #  - sitemap.xml
 
-docs_dir: 'docs'
+#docs_dir: 'docs'
 
 theme:
-  name: null
+  name: mkdocs
   custom_dir: 'yeti'
-  static_templates:
-        - sitemap.xml
+
 #theme_dir: 'yeti'
 
 use_directory_urls: false
