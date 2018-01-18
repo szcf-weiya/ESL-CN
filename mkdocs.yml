@@ -225,7 +225,7 @@ extra_templates:
 #docs_dir: 'docs'
 
 theme:
-    name: 'mkdocs'
+  name: 'mkdocs'
 
 #theme_dir: 'yeti'
 
