@@ -219,13 +219,13 @@ extra_css:
   - css/newsprint.css
   - css/admonition_fix.css
 
-extra_templates:
-  - sitemap.xml
-
 #docs_dir: 'docs'
 
 theme:
-  name: 'mkdocs'
+  name: null
+  custome_dir: yeti
+  static_templates:
+        - sitemap.xml
 
 #theme_dir: 'yeti'
 
