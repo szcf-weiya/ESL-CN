@@ -225,7 +225,7 @@ extra_templates:
 #docs_dir: 'docs'
 
 theme:
-    name: mkdocs
+    name: 'mkdocs'
     custom_dir: yeti/
     static_templates:
         - sitemap.xml
