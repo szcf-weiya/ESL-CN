@@ -218,7 +218,12 @@ extra_css:
   - css/newsprint.css
   - css/admonition_fix.css
 
+extra_templates:
+  - sitemap.xml
+
 docs_dir: 'docs'
-theme_dir: 'yeti'
+theme:
+  name: null
+  custom_dir: 'yeti'
 
 use_directory_urls: false
