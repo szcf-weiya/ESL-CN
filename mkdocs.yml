@@ -222,8 +222,7 @@ extra_css:
 #docs_dir: 'docs'
 
 theme:
-  name: null
-  custome_dir: 'yeti/'
+  name: yeti
   static_templates:
         - sitemap.xml
 
