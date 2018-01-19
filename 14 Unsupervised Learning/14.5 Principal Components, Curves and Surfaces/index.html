@@ -1485,16 +1485,16 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 <p>更精确地，考虑$N$个点$x_i\in R^p$，令$d_{ii&rsquo;}$为$x_i$和$x_{i&rsquo;}$间的欧几里得距离。我们将radical-kernel gram 矩阵作为我们的相似性矩阵；也就是 $s_{ii&rsquo;}=exp(-d_{ii&rsquo;}^2/c)$，其中$c &gt; 0$是缩放参数。</p>
 <p>有许多方式来定义相似性矩阵，并且其与反映局部行为的相似性图有关。最流行的方式是mutual K-nearest-neighbor graph。定义$\cal{N}<em>K$为邻居点的对称子集；特别地，如果点$i$在$i&rsquo;$的最近邻中，则点对$(i,i&rsquo;)$在$\cal{N}_K$中，反之亦然。接着我们连接所有的对称最近邻，然后给出边的权重$w</em>{ii&rsquo;}=s_{ii&rsquo;}$；否则边的权重为0。等价地，我们对不属于$\cal{N}_K$的点的成对相关性赋为0，然后画出这个修改版本的矩阵的图。</p>
 <p>另外，全连接图包含所有的成对边，权重为$w_{ii&rsquo;}=s_{ii&rsquo;}$，局部行为通过缩放参数$c$来控制。</p>
-<p>从相似图得到的边的矩阵$\mathbf W={w_{ii&rsquo;}}$成为邻接矩阵。结点$i$的度为$g_i=\sum_iw_{ii&rsquo;}$，与该点相连的权重之和。令$\mathbf G$表示对角元为$g_i$的对角矩阵。</p>
+<p>从相似图得到的边的矩阵$\mathbf W=\{w_{ii&rsquo;}\}$称为邻接矩阵。结点$i$的度为$g_i=\sum_iw_{ii&rsquo;}$，与该点相连的权重之和。令$\mathbf G$表示对角元为$g_i$的对角矩阵。</p>
 <p>最后，graph laplacian定义为</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf L=G-W\qquad (14.63)
+\mathbf{L=G-W}\qquad (14.63)
 </script>
 </p>
-<p>这称为未标准化的graph lapacian，人们提出一系列正则化的版本——这些对laplacian关于结点的度进行正则化，举个例子，$\tilde{\mathbf L}=\mathbf I-\mathbf G^{-1}\mathbf W$。</p>
-<p>谱聚类寻找$\mathbf Z_{N\times m}$的$m$个特征向量，这对应$\mathbf L$最小的$m$个特征值（忽略平方的常值特征向量）。采用如K-means的标准方法，我们可以将$\mathbf Z$的行聚类得到原始数据点的聚类。</p>
-<p>图14.49展示了一个例子。左上图显示了在3个圆形类别中的450个模拟数据点。K-means聚类很明显对于簇外的点不容易进行分类。我们采用10最近邻相似图的谱聚类，并且右下图展示了对应graph laplacian的第二和第三最小特征值的特征向量。这两个特征向量找出了是哪个簇，并且特征向量矩阵$\mathbf Y$的行的散点图清晰地将簇分隔开。对变换后的点应用K-means聚类的过程同样能得打三个类。</p>
+<p>这称为未标准化的graph lapacian，人们提出一系列标准化的版本——对laplacian关于结点的度进行标准化，举个例子，$\tilde{\mathbf L}=\mathbf I-\mathbf G^{-1}\mathbf W$。</p>
+<p>谱聚类寻找对应$\mathbf L$最小的$m$个特征值（忽略平方的常值特征向量）的$m$个特征向量$\mathbf Z_{N\times m}$。采用如K-means的标准方法，我们可以将$\mathbf Z$的行聚类得到原始数据点的聚类。</p>
+<p>图14.49展示了一个例子。左上图显示了在3个圆形类别中的450个模拟数据点。K-means聚类很明显对于簇外的点不容易进行分类。我们采用10最近邻相似图的谱聚类，并且右下图展示了对应graph laplacian的第二和第三最小特征值的特征向量。这两个特征向量找出了是哪个簇，并且特征向量矩阵$\mathbf Y$的行的散点图清晰地将簇分隔开。对变换后的点应用K-means聚类的过程同样能得到三个类。</p>
 <p>为什么谱聚类有效？对于任意向量$\hat{\mathbf f}$，我们有</p>
 <p>
 <script type="math/tex; mode=display">
