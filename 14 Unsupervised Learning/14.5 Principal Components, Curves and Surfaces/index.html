@@ -1250,7 +1250,7 @@
         
             <li><a href="#_1">主成分</a></li>
         
-            <li><a href="#_3">主成分曲线和曲面</a></li>
+            <li><a href="#_3">主曲线和主曲面</a></li>
         
             <li><a href="#_4">谱聚类</a></li>
         
@@ -1327,22 +1327,39 @@ f(\lambda)=\mu+\mathbf V_q\lambda\qquad (14.49)
 \underset{\mathbf V_q}{min}\sum\limits_{i=1}^N\Vert (x_i-\bar x)-\mathbf V_q\mathbf V_q^T(x_i-\bar x)\Vert\qquad (14.53)
 </script>
 </p>
-<p>为了方便，我们假设$\bar x=0$（否则我们只需要简单地对数据进行中心化$\tilde x_i=x_i-\bar x$）。$p\times p$矩阵$\mathbf H_q=\mathbf V_q\mathbf V_q^T$是投影矩阵(projection matrix)，并且将每个点$x_i$投影到它的秩为$q$的重构$\mathbf H_qx_i$上，这是$x_i$在由$\mathbf V_q$的列张成的子空间上的正交投影。(14.53)的解可以按如下形式表示。将(中心化的)观测放进$N\times p$的矩阵$\mathbf X$的行中。构造$X$的奇异值分解：</p>
+<p>为了方便，我们假设$\bar x=0$（否则我们只需要简单地对数据进行中心化$\tilde x_i=x_i-\bar x$）。$p\times p$矩阵$\mathbf H_q=\mathbf V_q\mathbf V_q^T$是投影矩阵(projection matrix)，并且将每个点$x_i$投影到它的秩为$q$的重构$\mathbf H_qx_i$上，这是$x_i$在由$\mathbf V_q$的列张成的子空间上的正交投影。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：投影矩阵</p>
+<p>投影是从一个向量空间到其自身的线性变换，并且投影矩阵满足$\mathbf P^2=\mathbf P$。
+首先，根据$\mathbf H_qx_i=\mathbf V_q\mathbf V^T_qx_i$可以得出投影点是在$\mathbf V_q$的列所张成的子空间中；其次，对于该子空间中任一点$y_i$，其在原空间的坐标为$\mathbf V_qy_i$，计算
+<script type="math/tex; mode=display">
+\begin{align}
+(x_i-\mathbf Px_i)\cdot \mathbf V_qy_i&=(\mathbf I-\mathbf P)x_i\cdot \mathbf V_qy_i\\
+&=x_i^T(\mathbf I-\mathbf P)^T\mathbf V_qy_i\\
+&=x_i^T\mathbf O_{p\times q}y_i\\
+&=0
+\end{align}
+</script>
+故为正交投影。</p>
+</div>
+<p>(14.53)的解可以按如下形式表示。将(中心化的)观测值放进$N\times p$的矩阵$\mathbf X$的行中。构造$X$的奇异值分解：</p>
 <p>
 <script type="math/tex; mode=display">
 \mathbf{X=UDV^T}\qquad (14.54)
 </script>
 </p>
-<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983[^1]）。这里$\mathbf U$是$N\times p$的正交矩阵($\mathbf{U^TU}=\mathbf I_p$)，它的列向量$\mathbf u_j$称为左奇异向量，$\mathbf V$是$p\times p$的正交矩阵($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量$\mathbf v_j$称之为右奇异向量。对每个秩$q$，(14.53)的解$\mathbf V_q$包含$\mathbf V$的前$q$列。$\mathbf{UD}$的列称为$X$的主成分（见3.5.1节）。(14.52)中$N$个最优的$\hat\lambda_i$由前$q$个主成分给出（$N\times q$的矩阵$\mathbf U_q\mathbf D_q$的$N$行）。</p>
-<p>$R^2$中的一维主成分分析显示在图14.20中。</p>
+<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。这里$\mathbf U$是$N\times p$的正交矩阵($\mathbf{U^TU}=\mathbf I_p$)，它的列向量$\mathbf u_j$称为左奇异向量，$\mathbf V$是$p\times p$的正交矩阵($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量$\mathbf v_j$称之为右奇异向量。对每个秩$q$，(14.53)的解$\mathbf V_q$包含$\mathbf V$的前$q$列。$\mathbf{UD}$的列称为$X$的主成分（见3.5.1节）。(14.52)中$N$个最优的$\hat\lambda_i$由前$q$个主成分给出（$N\times q$的矩阵$\mathbf U_q\mathbf D_q$的$N$个行向量）。</p>
+<p>图14.20展示了$R^2$中的一维主成分分析。</p>
 <p><img alt="" src="../../img/14/fig14.20.png" /></p>
-<p>对于每个数据点$x_i$，在直线上有个最近的点，由$u_{i1}d_1v_1$给出。这里$v_1$是该直线的方向，并且$\hat \lambda_i=u_{i1}d_1$衡量了沿着直线离原点的距离。类似地，图14.21展示了拟合half-sphere数据的二维主成分曲面（左图）。右图显示了数据在前两个主成分上的投影。这个投影是之前介绍的SOM方法的初始化的基础。这个过程在分离簇方面表现得非常成功。因为half-sphere是非线性的，非线性的投影会做得更好，这将是下一节的主题。</p>
+<p>对于每个数据点$x_i$，在直线上有个离它最近的点，由$u_{i1}d_1v_1$给出。这里$v_1$是该直线的方向，并且$\hat \lambda_i=u_{i1}d_1$衡量了沿着直线离原点的距离。类似地，图14.21展示了拟合half-sphere数据的二维主成分曲面（左图）。右图显示了数据在前两个主成分上的投影。这个投影是之前介绍的SOM方法的初始化的基础。这个过程在分离簇方面表现得非常成功。因为half-sphere是非线性的，非线性的投影会做得更好，这将是下一节的主题。</p>
 <p><img alt="" src="../../img/14/fig14.21.png" /></p>
-<p>主成分还有许多其它的性质，举个例子，线性组合$\mathbf Xv_1$在所有特征的线性组合中有最大的方差；$\mathbf Xv_2$在满足$v_2$正交$v_1$的所有线性组合中有最高的方差，以此类推。</p>
+<p>主成分还有许多其它的性质，举个例子，线性组合$\mathbf Xv_1$在特征的所有线性组合中有最大的方差；$\mathbf Xv_2$在满足$v_2$正交$v_1$的所有线性组合中有最大的方差，以此类推。</p>
 <h3 id="_2">例子：手写数字</h3>
-<p>主成分是维度降低和压缩的有效工具。我们用第一章中描述的手写数字的例子来说明这个特点。图14.22显示了从658个‘3’中抽取的130个‘3’的样本，每一个都是数字化的$16\times 16$的灰度图象。我们看到书写风格，字体粗细以及字体方向上有显著差异。我们将这些图象看成是$R^{256}$中的点$x_i$，并且通过SVD(14.54)来计算它们的主成分。</p>
+<p>主成分是降低和压缩维度的有效工具。我们用第一章中描述的手写数字的例子来说明这个特点。图14.22显示了从658个‘3’中抽取的130个‘3’的样本，每一个都是数字化的$16\times 16$的灰度图象。我们看到书写风格、字体粗细以及字体方向上有显著差异。我们将这些图象看成是$R^{256}$中的点$x_i$，并且通过SVD(14.54)来计算它们的主成分。</p>
 <p><img alt="" src="../../img/14/fig14.22.png" /></p>
-<p>图14.23显示了这些数据的前两个主成分。对于前两个主成分$u_{i1}d_1$和$u_{i2}d_2$，我们计算$5%, 25%, 50%, 75%, 95%$分位数，并且用它们去定义叠加在图中的长方形网格。圆点表明这些图象接近网格的顶点，而距离度量主要考虑这些投影的坐标，但也给正交子空间中的成分一些权重。右图显示了对应这些圆点的图象。这帮助我们可视化前两个主成分的本质。我们看到$v_1$（水平方向）主要与手写‘3’的下尾有关，而$v_2$（垂直方向）与字体粗细有关。用(14.49)的参数化模型表示，这两个组分的模型有如下形式</p>
+<p>图14.23显示了这些数据的前两个主成分。</p>
+<p><img alt="" src="../../img/14/fig14.23.png" /></p>
+<p>对于前两个主成分$u_{i1}d_1$和$u_{i2}d_2$，我们计算5%, 25%, 50%, 75%, 95%分位数，并且用它们去定义叠加在图中的长方形网格。圆点表明靠近网格的顶点的图象，而距离主要用这些投影点的坐标来衡量，但也给正交子空间中的组分一些权重。右图显示了对应这些圆点的图象。这帮助我们观察前两个主成分的本质。我们看到$v_1$（水平方向）主要与手写‘3’的下尾有关，而$v_2$（垂直方向）与字体粗细有关。用(14.49)的参数化模型表示，这两个组分的模型有如下形式</p>
 <!--
 $$
 \begin{align}
@@ -1355,57 +1372,68 @@ $$
 -->
 
 <p><img alt="" src="../../img/14/eq1455.png" /></p>
-<p>这里我们以图象形式展示了前两个主成分的方向，$v_1$和$v_2$。尽管有256个可能的主成分，接近50个主成分解释了90%的方差，12个主成分解释了63%。图14.24比较了奇异值和相等大小的不相关数据的奇异值，后者通过对$\mathbf X$的每一列进行随机扰动得到。在数字图象中的像素点本质上是相关的，因为所有这些图象都是同一个数字，因此相关性甚至更强。（疑问：前者指像素点的相关，但后者似乎是不同点的相关，两者的联系？）主成分相对小的子集是表示高维数据的极好的低维特征。</p>
-<p><img alt="" src="../../img/14/fig14.23.png" /></p>
+<p>这里我们以图象形式展示了前两个主成分的方向，$v_1$和$v_2$。尽管有256个可能的主成分，但大约50个主成分解释了90%的方差，12个主成分解释了63%的方差。</p>
 <p><img alt="" src="../../img/14/fig14.24.png" /></p>
+<p>图14.24比较了奇异值和相等大小的不相关数据的奇异值，后者通过对$\mathbf X$的每一列进行随机扰动得到。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：奇异值</p>
+<p>在SVD分解中，$\mathbf{D}$为$p\times p$的对角矩阵，对角元$d_1\ge d_2 \ge \cdots \ge d_p \ge 0$称作$\mathbf{X}$的奇异值。如果一个或多个$d_j=0$,则$\mathbf{X}$为奇异的。</p>
+</div>
+<p>在数字图象中的像素点本质上是相关的，而且因为所有这些图象都是同一个数字，因此相关性甚至更强。（疑问：前者指像素点的相关，但后者似乎是不同点的相关，两者的联系？）相对小的主成分子集是表示高维数据的极好的低维特征。</p>
 <h3 id="procrustes">例子：Procrustes转换和形状平均</h3>
 <p><img alt="" src="../../img/14/fig14.25.png" /></p>
-<p>图14.25在同一张图中展示了两个集合的点，橘黄色和绿色。在这里例子中，这些点表示手写&rsquo;S&rsquo;的两个数字化版本，这是从&rdquo;Suresh&rdquo;签名中提取的。图14.26展示了整个签名（第三和第四幅图）。这些签名采用touch-screen设备（超市中很常见的设备）动态采集的。有$N=96$个点来分别表示$S$，我们用$N\times 2$的矩阵$\mathbf X_1$和$\mathbf X_2$来表示。这些点之间存在对应关系，$\mathbf X_1$和$\mathbf X_2$的第$i$行表示沿着两个&rsquo;S&rsquo;的同样位置。用形态测量(morphometrics)的术语说就是这些点表示两个物体的landmarks。怎样寻找这样一个landmark一般是很困难的，而且因情况而异。在这里，我们采用沿着每个签名的速度信号的dynamic time warping(Hastie et al., 1992)，但是在这里不展开讨论。</p>
-<p>右图中，我们已经对绿色点已经采用了转换和旋转的方式来尽可能与橘黄色点匹配——这称之为Procrustes转换（如，Mardia et al., 1979）。</p>
+<p>图14.25在同一张图中展示了两个集合的点，橘黄色和绿色。在这里例子中，这些点表示手写&rsquo;S&rsquo;的两个数字化版本，这是从&rdquo;Suresh&rdquo;签名中提取的。图14.26展示了整个签名（第三和第四幅图）。这些签名是采用touch-screen设备（超市中很常见的设备）动态采集的。每个$S$有$N=96$个点来表示，记为$N\times 2$的矩阵$\mathbf X_1$和$\mathbf X_2$。这些点之间存在对应关系，$\mathbf X_1$和$\mathbf X_2$的第$i$行表示沿着两个&rsquo;S&rsquo;的同一位置。用形态测量(morphometrics)的术语说就是这些点表示两个物体的landmarks。怎样寻找这样一个landmark一般是很困难的，而且因情况而异。在这里，我们采用沿着每个签名的速度信号的dynamic time warping(Hastie et al., 1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)，但是在这里不展开讨论。</p>
+<p>右图中，我们已经对绿色点已经采用了平移(translation)和旋转(rotation)的方式来尽可能与橘黄色点匹配——这称之为Procrustes变换（如，Mardia et al., 1979<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
+<p class="admonition-title">weiya注：Procrustes变换</p>
 <p>普罗库鲁斯提斯(Procrustes)是希腊神话中非洲的一个土匪，他经常用一个铁床来折磨别人，把抓来的人绑在铁床上，然后根据铁床的长度来裁剪他们的身体长度：那些身材短的人被拉长，那些身材长的人被砍掉多余的部分。</p>
 </div>
 <p>考虑下面的问题：</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\mu, \mathbf R}\Vert \mathbf X_2-(\mathbf X_1\mathbf R+\boldsymbol 1\mu^T)\Vert_F\qquad (14.56)
+\underset{\mu, \mathbf R}{min}\Vert \mathbf X_2-(\mathbf X_1\mathbf R+\boldsymbol 1\mu^T)\Vert_F\qquad (14.56)
 </script>
 </p>
-<p>其中$\mathbf X_1$和$\mathbf X_2$都是对应点的$N\times p$矩阵，$\mathbf R$是标准正交$o\times p$的矩阵，$\mu$是$p$维的位置向量。这里$\Vert \mathbf X\Vert_F^2=trace(\mathbf \mathbf X^T\mathbf X)$是Frobenius矩阵范数的平方。</p>
-<p>令$\bar x_1$和$\bar x_2$是矩阵的列均值向量，$\tilde{\mathbf X_1}$和$\tilde{\mathbf X_2}$是这些矩阵减去均值得到的。考虑SVD分解$\tilde {\mathbf X_1}^T\tilde{\mathbf X_2}=\mathbf U\mathbf D\mathbf V^T$。则(14.56)的解有下式给出(练习14.8)</p>
+<p>其中$\mathbf X_1$和$\mathbf X_2$都是对应点的$N\times p$矩阵，$\mathbf R$是标准正交$p\times p$的矩阵，$\mu$是$p$维的位置向量。</p>
+<div class="admonition note">
+<p class="admonition-title">原书注：$\mathbf R$</p>
+<p>为了简化问题，只考虑包含反射和旋转的正交矩阵（$O(p)$群）；尽管这里不可能有反射，这些方法可以进一步限制为只允许旋转（$SO(p)$群）。</p>
+</div>
+<p>这里$\Vert \mathbf X\Vert_F^2=trace(\mathbf X^T\mathbf X)$是Frobenius矩阵范数的平方。</p>
+<p>令$\bar x_1$和$\bar x_2$是矩阵的列均值向量，$\tilde{\mathbf X}_1$和$\tilde{\mathbf X}_2$是这些矩阵减去均值得到的。考虑SVD分解$\tilde {\mathbf X}_1^T\tilde{\mathbf X}_2=\mathbf U\mathbf D\mathbf V^T$。则(14.56)的解由下式给出(练习14.8)</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\hat{\mathbf R}&\mathbf U\mathbf V^T\\
+\hat{\mathbf R}&=\mathbf U\mathbf V^T\\
 \hat\mu&=\bar x_2-\hat{\mathbf R}\bar x_1
 \end{align}
 \qquad （14.57)
 </script>
 </p>
-<p>并且这个最小距离被称为Procrustes距离。从该解的形式来看，我们可以将每个矩阵在其列中心点处进行中心化，接着完全忽略掉位置向量。后面我们假设是这种情形。</p>
+<p>并且这个最小距离被称为Procrustes距离。从该解的形式来看，我们可以将每个矩阵在其列中心点处进行中心化，接着完全忽略掉位置向量。下文假设是这种情形。</p>
 <p>带尺度的Procrustes距离解决了更一般的问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta,\mathbf R}\Vert \mathbf X_2-\beta\mathbf X_1\mathbf R\Vert_F\qquad (14.58)
+\underset{\beta,\mathbf R}{min}\Vert \mathbf X_2-\beta\mathbf X_1\mathbf R\Vert_F\qquad (14.58)
 </script>
 </p>
 <p>其中$\beta&gt;0$是正的标量值。$\mathbf R$的解和前面一样，$\hat\beta=trace(D)/\Vert \mathbf X_1\Vert_F^2$</p>
-<p>与Procrustes距离有关的是$L$个形状集合的Procrustes平均，它解决了下面的问题</p>
+<p>与Procrustes距离有关的是$L$个形状的Procrustes平均，它解决了下面的问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\mathbf R_\ell\}_1^L,M}\sum\limits_{\ell=1}^L\Vert \mathbf X_\ell \mathbf R_\ell -\mathbf M\Vert_F^2\qquad (14.59)
+\underset{\{\mathbf R_\ell\}_1^L,M}{min}\sum\limits_{\ell=1}^L\Vert \mathbf X_\ell \mathbf R_\ell -\mathbf M\Vert_F^2\qquad (14.59)
 </script>
 </p>
 <p>也就是，在所有的形状中寻找Procrustes距离平方最近的形状$\mathbf X$。这可以通过简单的算法实现：</p>
 <ol>
 <li>初始化$\mathbf M=\mathbf X_1$（举个例子）</li>
-<li>固定$\mathbf M$，求解$L$个Procrustes旋转问题，得到$\mathbf X_\ell&rsquo;\leftarrow \mathbf X\hat{\mathbf X_\ell}$</li>
+<li>固定$\mathbf M$，求解$L$个Procrustes旋转问题，得到$\mathbf X_\ell&rsquo;\leftarrow \mathbf X\hat{\mathbf R_\ell}$</li>
 <li>令$\mathbf M\leftarrow \frac 1L\sum\limits_{\ell=1}^L\mathbf X_\ell&rsquo;$</li>
 </ol>
-<p>重复步骤1和2准则(14.59)收敛。。</p>
-<p>图14.26显示了三个形状的简单例子。注意到我们仅仅希望得到旋转的一个解；另外，我们加上约束，使得$\mathbf M$是上三角形式，来强制唯一解。我们可以很简单地结合定义(14.59)中的缩放；见练习14.9。</p>
-<p>更一般地，我们可以通过下式来定义形状的集合的affine-invariant平均。</p>
+<p>重复步骤2和3准则直至(14.59)收敛。</p>
+<p><img alt="" src="../../img/14/fig14.26.png" /></p>
+<p>图14.26显示了三个形状的简单例子。注意到我们仅仅希望得到旋转的一个解；另外，我们加上约束，使得$\mathbf M$是上三角形式，来强制解是唯一的。我们可以很简单地把缩放合并到定义(14.59)；见练习14.9。</p>
+<p>更一般地，我们可以通过下式来定义一系列形状的affine-invariant平均：</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{\{\mathbf A_\ell\}_1^L,\mathbf M}\sum\limits_{\ell=1}^L\Vert\mathbf X_\ell\mathbf A_\ell-\mathbf M\Vert_F^2\qquad (14.60)
@@ -1414,20 +1442,19 @@ $$
 <p>其中$\mathbf A_\ell$是任意$p\times p$的非奇异矩阵。这里我们要求标准化，使得$\mathbf M^T\mathbf M=\mathbf I$，来避免平凡解。这个解是吸引人的，并且可以不用迭代便可以计算（练习14.10）：</p>
 <ol>
 <li>令$\mathbf H_\ell=\mathbf X_\ell(\mathbf X_\ell^T\mathbf X_\ell)^{-1}\mathbf X_\ell^T$为由$\mathbf X_\ell$定义的秩为$p$的投影矩阵</li>
-<li>$\mathbf M$是$M\times p$的矩阵，其由$p$个最大的特征向量所构成$\bar{\mathbf H}=\frac{1}{L}\sum\limits_{\ell=1}^L\mathbf H_\ell$</li>
+<li>$\mathbf M$是$N\times p$的矩阵，其由$\bar{\mathbf H}=\frac{1}{L}\sum\limits_{\ell=1}^L\mathbf H_\ell$的最大$p$个特征向量所构成</li>
 </ol>
-<p><img alt="" src="../../img/14/fig14.26.png" /></p>
-<h2 id="_3">主成分曲线和曲面</h2>
-<p>主曲线推广了主成分直线，它提供了对$\mathbf R^p$中一系列点的一维光滑曲线的近似。主曲线更一般，提供了二维或更高维的流形近似。</p>
-<p>我们首先定义随机变量$X\in R^p$的主曲线，并接着讨论有限数据的情形。令$f(\lambda)$为$R^p$中参数化的光滑曲线。因此$f(\lambda)$是有着$p$个坐标的向量函数ambda$的向量函数，每个都是关于单参数$\lambda$的函数。举个例子，可以选择参数$\lambda$为沿着曲线距离固定原点的弧长。如果满足</p>
+<h2 id="_3">主曲线和主曲面</h2>
+<p>主曲线推广了主成分直线，它提供了对$\mathbf R^p$中一系列点的一维光滑曲线的近似。主曲线更一般化，它给出了二维或更高维的流形近似。</p>
+<p>我们首先定义随机变量$X\in R^p$的主曲线，并接着讨论有限数据的情形。令$f(\lambda)$为$R^p$中参数化的光滑曲线。因此$f(\lambda)$是有着$p$个坐标的向量函数，每个都是关于单参数$\lambda$的光滑函数。举个例子，可以选择参数$\lambda$为沿着曲线到固定原点的弧长。对于每个数据点$x$，令$\lambda_f(x)$为曲线上离$x$最近的点。如果满足</p>
 <p>
 <script type="math/tex; mode=display">
 f(\lambda) = E(X\mid \lambda_f(X)=\lambda)\qquad (14.61)
 </script>
 </p>
-<p>则$f(\lambda)$成为随机向量$X$的分布的主曲线。这也就是说$f(\lambda)$是投影到上面的所有数据点的平均，这些点也称为有责任的点。这也称作 self-consistency性质。尽管在实际中，连续多元分布有无穷多个主曲线，但是我们主要对光滑的主曲线感兴趣。图14.27显示了一个主曲线。</p>
+<p>则$f(\lambda)$称为随机向量$X$的分布的主曲线。这也就是说$f(\lambda)$是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点。这也称作 self-consistency性质。尽管在实际中，连续多元分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣。图14.27显示了一个主曲线。</p>
 <p><img alt="" src="../../img/14/fig14.27.png" /></p>
-<p>主点是与之相关的一个有趣的概念。考虑$k$个原型的集合，对于在分布支撑集中的每个点$x，选出最近的原型，也就，为之负责的那个原型。这导出了对特征空间的划分，得打Voronoi区域。这$k$个点最小化了$X$到其原型的的期望距离，它们称为该分布的主点。每个主点是self-consistent，因为它等于其Voronoi区域的$X$的均值。举个例子，当$k=1$，circular正态分布的住店是均值向量；当$k=2$时，成对的点对称排列在通过均值向量的射线上。主点的分布类似$K$-means聚类中的重心。主曲线可以看成是$k=\infty$时的去电，但是限制为光滑曲线，类似的方式，包含K-means聚类中心的SOM落在光滑流形上。</p>
+<p>主点(Principal points)是与之相关的一个有趣的概念。考虑$k$个原型的集合，对于在分布的支撑集中的每个点$x$，选出最近的原型，也就是，为之负责的那个原型。这导出了对特征空间的划分，得到Voronoi区域。这$k$个点最小化了$X$到其原型的期望距离，它们称为该分布的主点。每个主点是self-consistent，因为它等于其Voronoi区域的$X$的均值。举个例子，当$k=1$，一个圆形正态分布的主点是均值向量；当$k=2$时，成对的点对称排列在通过均值向量的射线上。主点类似$K$-means聚类中的重心的分布。主曲线可以看成是$k=\infty$时的主点，但是限制为光滑曲线，用类似的方式，包含K-means聚类中心的SOM落在一个光滑流形上。</p>
 <p>为了寻找某分布的主曲线$f(\lambda)$，我们考虑坐标函数$f(\lambda)=[f_1(\lambda),f_2(\lambda),\ldots, f_p(\lambda)]$，并且令$X^T=(X_1, X_2,\ldots, X_p)$。 考虑下面的轮换过程：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -1485,6 +1512,23 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 <h2 id="_6">稀疏主成分</h2>
 <p><img alt="" src="../../img/14/fig14.31.png" /></p>
 <p><img alt="" src="../../img/14/fig14.32.png" /></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Golub, G. and Van Loan, C. (1983). Matrix Computations, Johns Hopkins University Press, Baltimore.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Hastie, T., Kishon, E., Clark, M. and Fan, J. (1992). A model for signature verification, Technical report, AT&amp;T Bell Laboratories. http://www-stat.stanford.edu/∼hastie/Papers/signature.pdf .&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Duchamp, T. and Stuetzle, W. (1996). Extremal properties of principal curves in the plane, Annals of Statistics 24: 1511–1520.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 <div id="disqus_thread"></div>
 <script>
