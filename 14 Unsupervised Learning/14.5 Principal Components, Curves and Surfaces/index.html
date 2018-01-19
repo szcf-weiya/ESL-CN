@@ -1324,7 +1324,7 @@ f(\lambda)=\mu+\mathbf V_q\lambda\qquad (14.49)
 <p>这促使我们去寻找正交矩阵$\mathbf V_q$:</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\mathbf V_q}\sum\limits_{i=1}^N\Vert (x_i-\bar x)-\mathbf V_q\mathbf V_q^T(x_i-\bar x)\Vert\qquad (14.53)
+\underset{\mathbf V_q}{min}\sum\limits_{i=1}^N\Vert (x_i-\bar x)-\mathbf V_q\mathbf V_q^T(x_i-\bar x)\Vert\qquad (14.53)
 </script>
 </p>
 <p>为了方便，我们假设$\bar x=0$（否则我们只需要简单地对数据进行中心化$\tilde x_i=x_i-\bar x$）。$p\times p$矩阵$\mathbf H_q=\mathbf V_q\mathbf V_q^T$是投影矩阵(projection matrix)，并且将每个点$x_i$投影到它的秩为$q$的重构$\mathbf H_qx_i$上，这是$x_i$在由$\mathbf V_q$的列张成的子空间上的正交投影。(14.53)的解可以按如下形式表示。将(中心化的)观测放进$N\times p$的矩阵$\mathbf X$的行中。构造$X$的奇异值分解：</p>
