@@ -1281,7 +1281,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-01-18</td>
+<td>2018-01-18&amp;2018-01-19</td>
 </tr>
 </tbody>
 </table>
@@ -1343,25 +1343,143 @@ f(\lambda)=\mu+\mathbf V_q\lambda\qquad (14.49)
 <p>主成分是维度降低和压缩的有效工具。我们用第一章中描述的手写数字的例子来说明这个特点。图14.22显示了从658个‘3’中抽取的130个‘3’的样本，每一个都是数字化的$16\times 16$的灰度图象。我们看到书写风格，字体粗细以及字体方向上有显著差异。我们将这些图象看成是$R^{256}$中的点$x_i$，并且通过SVD(14.54)来计算它们的主成分。</p>
 <p><img alt="" src="../../img/14/fig14.22.png" /></p>
 <p>图14.23显示了这些数据的前两个主成分。对于前两个主成分$u_{i1}d_1$和$u_{i2}d_2$，我们计算$5%, 25%, 50%, 75%, 95%$分位数，并且用它们去定义叠加在图中的长方形网格。圆点表明这些图象接近网格的顶点，而距离度量主要考虑这些投影的坐标，但也给正交子空间中的成分一些权重。右图显示了对应这些圆点的图象。这帮助我们可视化前两个主成分的本质。我们看到$v_1$（水平方向）主要与手写‘3’的下尾有关，而$v_2$（垂直方向）与字体粗细有关。用(14.49)的参数化模型表示，这两个组分的模型有如下形式</p>
-<p>
-<script type="math/tex; mode=display">
+<!--
+$$
 \begin{align}
 \hat f(\lambda)&=\bar x+\lambda_1b_1+\lambda_2v_2\\
 &=\includegraphics[height=5.6ex]{../img/14/s1.png}+\lambda_1\cdot
 \includegraphics[height=5.6ex]{../img/14/s2.png}+\lambda_2\cdot
 \includegraphics[height=5.6ex]{../img/14/s3.png}
 \end{align}
+$$
+-->
+
+<p><img alt="" src="../../img/14/eq1455.png" /></p>
+<p>这里我们以图象形式展示了前两个主成分的方向，$v_1$和$v_2$。尽管有256个可能的主成分，接近50个主成分解释了90%的方差，12个主成分解释了63%。图14.24比较了奇异值和相等大小的不相关数据的奇异值，后者通过对$\mathbf X$的每一列进行随机扰动得到。在数字图象中的像素点本质上是相关的，因为所有这些图象都是同一个数字，因此相关性甚至更强。（疑问：前者指像素点的相关，但后者似乎是不同点的相关，两者的联系？）主成分相对小的子集是表示高维数据的极好的低维特征。</p>
+<p><img alt="" src="../../img/14/fig14.23.png" /></p>
+<p><img alt="" src="../../img/14/fig14.24.png" /></p>
+<h3 id="procrustes">例子：Procrustes转换和形状平均</h3>
+<p><img alt="" src="../../img/14/fig14.25.png" /></p>
+<p>图14.25在同一张图中展示了两个集合的点，橘黄色和绿色。在这里例子中，这些点表示手写&rsquo;S&rsquo;的两个数字化版本，这是从&rdquo;Suresh&rdquo;签名中提取的。图14.26展示了整个签名（第三和第四幅图）。这些签名采用touch-screen设备（超市中很常见的设备）动态采集的。有$N=96$个点来分别表示$S$，我们用$N\times 2$的矩阵$\mathbf X_1$和$\mathbf X_2$来表示。这些点之间存在对应关系，$\mathbf X_1$和$\mathbf X_2$的第$i$行表示沿着两个&rsquo;S&rsquo;的同样位置。用形态测量(morphometrics)的术语说就是这些点表示两个物体的landmarks。怎样寻找这样一个landmark一般是很困难的，而且因情况而异。在这里，我们采用沿着每个签名的速度信号的dynamic time warping(Hastie et al., 1992)，但是在这里不展开讨论。</p>
+<p>右图中，我们已经对绿色点已经采用了转换和旋转的方式来尽可能与橘黄色点匹配——这称之为Procrustes转换（如，Mardia et al., 1979）。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>普罗库鲁斯提斯(Procrustes)是希腊神话中非洲的一个土匪，他经常用一个铁床来折磨别人，把抓来的人绑在铁床上，然后根据铁床的长度来裁剪他们的身体长度：那些身材短的人被拉长，那些身材长的人被砍掉多余的部分。</p>
+</div>
+<p>考虑下面的问题：</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\mu, \mathbf R}\Vert \mathbf X_2-(\mathbf X_1\mathbf R+\boldsymbol 1\mu^T)\Vert_F\qquad (14.56)
 </script>
 </p>
-<p><img alt="" src="../../img/14/fig14.23.png" />
-<img alt="" src="../../img/14/fig14.24.png" />
-<img alt="" src="../../img/14/fig14.25.png" />
-<img alt="" src="../../img/14/fig14.26.png" /></p>
+<p>其中$\mathbf X_1$和$\mathbf X_2$都是对应点的$N\times p$矩阵，$\mathbf R$是标准正交$o\times p$的矩阵，$\mu$是$p$维的位置向量。这里$\Vert \mathbf X\Vert_F^2=trace(\mathbf \mathbf X^T\mathbf X)$是Frobenius矩阵范数的平方。</p>
+<p>令$\bar x_1$和$\bar x_2$是矩阵的列均值向量，$\tilde{\mathbf X_1}$和$\tilde{\mathbf X_2}$是这些矩阵减去均值得到的。考虑SVD分解$\tilde {\mathbf X_1}^T\tilde{\mathbf X_2}=\mathbf U\mathbf D\mathbf V^T$。则(14.56)的解有下式给出(练习14.8)</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat{\mathbf R}&\mathbf U\mathbf V^T\\
+\hat\mu&=\bar x_2-\hat{\mathbf R}\bar x_1
+\end{align}
+\qquad （14.57)
+</script>
+</p>
+<p>并且这个最小距离被称为Procrustes距离。从该解的形式来看，我们可以将每个矩阵在其列中心点处进行中心化，接着完全忽略掉位置向量。后面我们假设是这种情形。</p>
+<p>带尺度的Procrustes距离解决了更一般的问题</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\beta,\mathbf R}\Vert \mathbf X_2-\beta\mathbf X_1\mathbf R\Vert_F\qquad (14.58)
+</script>
+</p>
+<p>其中$\beta&gt;0$是正的标量值。$\mathbf R$的解和前面一样，$\hat\beta=trace(D)/\Vert \mathbf X_1\Vert_F^2$</p>
+<p>与Procrustes距离有关的是$L$个形状集合的Procrustes平均，它解决了下面的问题</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\{\mathbf R_\ell\}_1^L,M}\sum\limits_{\ell=1}^L\Vert \mathbf X_\ell \mathbf R_\ell -\mathbf M\Vert_F^2\qquad (14.59)
+</script>
+</p>
+<p>也就是，在所有的形状中寻找Procrustes距离平方最近的形状$\mathbf X$。这可以通过简单的算法实现：</p>
+<ol>
+<li>初始化$\mathbf M=\mathbf X_1$（举个例子）</li>
+<li>固定$\mathbf M$，求解$L$个Procrustes旋转问题，得到$\mathbf X_\ell&rsquo;\leftarrow \mathbf X\hat{\mathbf X_\ell}$</li>
+<li>令$\mathbf M\leftarrow \frac 1L\sum\limits_{\ell=1}^L\mathbf X_\ell&rsquo;$</li>
+</ol>
+<p>重复步骤1和2准则(14.59)收敛。。</p>
+<p>图14.26显示了三个形状的简单例子。注意到我们仅仅希望得到旋转的一个解；另外，我们加上约束，使得$\mathbf M$是上三角形式，来强制唯一解。我们可以很简单地结合定义(14.59)中的缩放；见练习14.9。</p>
+<p>更一般地，我们可以通过下式来定义形状的集合的affine-invariant平均。</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\{\mathbf A_\ell\}_1^L,\mathbf M}\sum\limits_{\ell=1}^L\Vert\mathbf X_\ell\mathbf A_\ell-\mathbf M\Vert_F^2\qquad (14.60)
+</script>
+</p>
+<p>其中$\mathbf A_\ell$是任意$p\times p$的非奇异矩阵。这里我们要求标准化，使得$\mathbf M^T\mathbf M=\mathbf I$，来避免平凡解。这个解是吸引人的，并且可以不用迭代便可以计算（练习14.10）：</p>
+<ol>
+<li>令$\mathbf H_\ell=\mathbf X_\ell(\mathbf X_\ell^T\mathbf X_\ell)^{-1}\mathbf X_\ell^T$为由$\mathbf X_\ell$定义的秩为$p$的投影矩阵</li>
+<li>$\mathbf M$是$M\times p$的矩阵，其由$p$个最大的特征向量所构成$\bar{\mathbf H}=\frac{1}{L}\sum\limits_{\ell=1}^L\mathbf H_\ell$</li>
+</ol>
+<p><img alt="" src="../../img/14/fig14.26.png" /></p>
 <h2 id="_3">主成分曲线和曲面</h2>
-<p><img alt="" src="../../img/14/fig14.27.png" />
-<img alt="" src="../../img/14/fig14.28.png" /></p>
+<p>主曲线推广了主成分直线，它提供了对$\mathbf R^p$中一系列点的一维光滑曲线的近似。主曲线更一般，提供了二维或更高维的流形近似。</p>
+<p>我们首先定义随机变量$X\in R^p$的主曲线，并接着讨论有限数据的情形。令$f(\lambda)$为$R^p$中参数化的光滑曲线。因此$f(\lambda)$是有着$p$个坐标的向量函数ambda$的向量函数，每个都是关于单参数$\lambda$的函数。举个例子，可以选择参数$\lambda$为沿着曲线距离固定原点的弧长。如果满足</p>
+<p>
+<script type="math/tex; mode=display">
+f(\lambda) = E(X\mid \lambda_f(X)=\lambda)\qquad (14.61)
+</script>
+</p>
+<p>则$f(\lambda)$成为随机向量$X$的分布的主曲线。这也就是说$f(\lambda)$是投影到上面的所有数据点的平均，这些点也称为有责任的点。这也称作 self-consistency性质。尽管在实际中，连续多元分布有无穷多个主曲线，但是我们主要对光滑的主曲线感兴趣。图14.27显示了一个主曲线。</p>
+<p><img alt="" src="../../img/14/fig14.27.png" /></p>
+<p>主点是与之相关的一个有趣的概念。考虑$k$个原型的集合，对于在分布支撑集中的每个点$x，选出最近的原型，也就，为之负责的那个原型。这导出了对特征空间的划分，得打Voronoi区域。这$k$个点最小化了$X$到其原型的的期望距离，它们称为该分布的主点。每个主点是self-consistent，因为它等于其Voronoi区域的$X$的均值。举个例子，当$k=1$，circular正态分布的住店是均值向量；当$k=2$时，成对的点对称排列在通过均值向量的射线上。主点的分布类似$K$-means聚类中的重心。主曲线可以看成是$k=\infty$时的去电，但是限制为光滑曲线，类似的方式，包含K-means聚类中心的SOM落在光滑流形上。</p>
+<p>为了寻找某分布的主曲线$f(\lambda)$，我们考虑坐标函数$f(\lambda)=[f_1(\lambda),f_2(\lambda),\ldots, f_p(\lambda)]$，并且令$X^T=(X_1, X_2,\ldots, X_p)$。 考虑下面的轮换过程：</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+(a) & \hat f_j(\lambda)\leftarrow E(X_j\mid \lambda(X)=\lambda); \;j=1,2,\ldots, p
+(b) & \hat \lambda_f(x)\leftarrow argmin_{\lambda'}\Vert x-\hat f(\lambda')\Vert^2
+\end{align}
+\qquad （14.62）
+</script>
+</p>
+<p>第一个等式固定$\lambda$，并且加上self-consistentcy的要求(14.61)。第二个等式固定曲线在曲线上寻找距离每个点最近的点。在有限的数据情形下，主曲线算法以2线性主成分开始，迭代(14.62)中的两步直至收敛。散点图光滑器用于估计步骤(a)中的条件期望，这通过将其看成关于弧长$\hat \lambda(X)$的函数来光滑每个$X_j$，而且(b)中的投影对于每个观测数据点来实现。证明一般情况下的收敛是很困难的，但是可以证明如果散点图光滑中采用线性最小二乘拟合，则该过程将会收敛至第一线性主成分，这等价寻找矩阵最大特征值的幂法。</p>
+<p>主表面与主曲线有着完全相同的形式，但是是在更高维度下的。广泛使用的是二维主表面，有坐标函数</p>
+<p>
+<script type="math/tex; mode=display">
+f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_2)]
+</script>
+</p>
+<p>上述步骤(a)中的估计从二维表明光滑器得到大于2的主表明很少用到，因为在高维光滑的可视化不是很吸引人。</p>
+<p>图14.28展示了对half-sphere数据进行主曲面光滑的结果。图象是数据点作为估计的非线性坐标$\hat \lambda_1(x_i), \hat \lambda_2(x_i)$。类别划分是很显然的。</p>
+<p>主曲面非常类似自组织图。如果我们采用核表面光滑其来估计坐标函数$f_j(\lambda_1，\lambda_2)$，这与SOMs的batch版本(14.48)有着相同的形式。SOM的权重$w_k$恰恰是核中的权重。然而，有一个区别，主表面估计di对所有的数据点估计单独的原型$f(\lambda_1(x_i),\lambda_2(x_i))$。结果是，SOM与主曲面仅仅当SOM原型的个数非常大时两者才一致。</p>
+<p>两者之间还有一个区别。主表面提供了用坐标函数表示的整个流形的光滑参量化，而SOMs是离散的并且仅仅产生近似数据的那些估计的原型。主表面的光滑参数保持局部的距离：在图14.28中，揭示了红色聚类点比绿色或蓝色聚类点更紧凑。在简单的例子中，估计的坐标函数本身是可以知道的：见联系14.13。</p>
+<p><img alt="" src="../../img/14/fig14.28.png" /></p>
 <h2 id="_4">谱聚类</h2>
+<p>像K-means这样传统的聚类方法采用spherical 或者elliptical度量来对数据点进行划分。因此当簇是非凸的时候，图14.29中左上角的图。。。。。</p>
+<p>谱聚类是标准聚类方法的推广，而且也是为这些情形所设计的。它局部多维缩放技巧（推广了MDS）有着紧密的联系（14.9节）。</p>
+<p>起始点是所有观测点对间的成对相似性为$s_{ii&rsquo;}\ge 0$的$N\times N$矩阵。我们将这些观测在无向相似性图$G=\langle V, E \rangle$中表示。$N$个顶点$v_i$表示观测值，如果成对顶点的相似性为正值（或者超出某个阈值），则它们之间用一条边相连。我们希望对这个图进行划分，使得不同类直接的边有较低的权重，而在类间有着较高的权重。在谱聚类中，思想是构造相似性图来表示观测点间的局部邻居关系。</p>
+<p>更精确地，考虑$N$个点$x_i\R^p$，令$d_{ii&rsquo;}$为$x_i$和$x_{i&rsquo;}$间的欧几里得距离。我们将radical-kernel gram 矩阵作为我们的相似性矩阵；也就是 $s_{ii&rsquo;}=exp(-d_{ii&rsquo;}^2/c)$，其中$c&gt;0$是缩放参数。</p>
+<p>有许多方式来定义相似性矩阵，并且其与反映局部行为的相似性图有关。最流行的方式是mutual K最近邻图。定义$\cal{N}<em>K$为附近点的对称子集；特别地，如果点$i$在$i&rsquo;$的最近邻间，则点对$(i,i&rsquo;)$在$\cal{N}_K$中，反之亦然。接着我们连接所有的对称最近邻，然后给出边的权重$w</em>{ii&rsquo;}=s_{ii&rsquo;}$；否则边的权重为0。等价地，我们对不属于$\cal{N}_K$的点的成对相关性赋为0，然后画出这个修改版本的矩阵的图。</p>
+<p>另外，全连接图包含所有的成对边，权重为$w_{ii&rsquo;}=s_{ii&rsquo;}$，局部行为通过缩放参数$c$来控制。</p>
+<p>从相似图得到的边的矩阵$\mathbf W={w_{ii&rsquo;}}$成为邻接矩阵。结点$i$的度为$g_i=\sum_iw_{ii&rsquo;}$，与该点相连的权重之和。令$\mathbf G$表示对角元为$g_i$的对角矩阵。</p>
+<p>最后，graph laplacian定义为</p>
+<p>
+<script type="math/tex; mode=display">
+\mathbf L=G-W\qquad (14.63)
+</script>
+</p>
+<p>这称为未标准化的graph lapacian，人们提出一系列正则化的版本——这些对laplacian关于结点的度进行正则化，举个例子，$\tilde{\mathbf L}=\mathbf I-\mathbf G^{-1}\mathbf W$。</p>
+<p>谱聚类寻找$\mathbf Z_{N\times m}$的$m$个特征向量，这对应$\mathbf L$最小的$m$个特征值（忽略平方的常值特征向量）。采用如K-means的标准方法，我们可以将$\mathbf Z$的行聚类得到原始数据点的聚类。</p>
+<p>图14.49展示了一个例子。左上图显示了在3个圆形类别中的450个模拟数据点。K-means聚类很明显对于簇外的点不容易进行分类。我们采用10最近邻相似图的谱聚类，并且右下图展示了对应graph laplacian的第二和第三最小特征值的特征向量。这两个特征向量找出了是哪个簇，并且特征向量矩阵$\mathbf Y$的行的散点图清晰地将簇分隔开。对变换后的点应用K-means聚类的过程同样能得打三个类。</p>
 <p><img alt="" src="../../img/14/fig14.29.png" /></p>
+<p>为什么谱聚类有效？对于任意向量$\hat{\mathbf f}$，我们有</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbf f^T\mathbf L\mathbf f&=\sum\limits_{i=1}^Ng_if_i^2-\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nf_if_{i'}w_{ii'}\\
+& = \frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nw_{ii'}(f_i-f_{i'}^2)\qquad (14.64)
+\end{align}
+</script>
+公式14.64表明如果有较大邻接的数据对的坐标$f_i$和$f_{i&rsquo;}$很接近，则$\mathbf f^T\mathbf L\mathbf f$将达到较小的值。</p>
+<p>因为对于任意的图$\boldsymol 1^T\mathbf L\boldsymbol 1=0$，常值向量是特征值为0的平凡解。如果图是连接的，这个结论并并不是很显然，这是唯一的0特征向量（练习14.21）。推广这个结论，可以很简单地证明对于有$m$个连接组分的图，可以重新排列结点使得$\mathbf L$是成块对角的，其中一个块是连接的组分。于是$\mathbf L$有$m$个特征值为0的特征向量，并且特征值为0的特征空间有连接组分的指示向量张成。实际上，连接有强有弱，则零特征值也可以用较小的特征值代替。</p>
+<p>谱聚类是寻找非凸簇的一种很有趣的方法。当采用标准化后的graph laplacian定义为，有另外一种方式来看这种方法。定义$\mathbf P=\mathbf G^{-1}\mathbf W$，我们考虑在图上以转移概率矩阵$\mathbf P$进行随机游走。则谱聚类得到随机游走中类与类直接不发生转移的点集。</p>
+<p>在实际中应用谱聚类时必须要处理一系列的问题。我们必须选择相似图的类型——比如，全连接或者最近邻，以及相关的参数比如最近邻的个数$k$或者核的缩放参数$c$。我们也必须选择从$\mathbf L$中提取的特征向量的个数，以及最后像所有聚类方法一样，选择簇的个数。在图14.29这一简单例子中，我们得到$k\in [5, 200]$中良好的结果，值为200对应全连接图。当$k &lt; 5$，结果变坏。观测图14.29的右上图，我们看到最小的三个特征值与剩余部分没有强烈的分离。因此选择多少个特征向量并不清楚。</p>
 <h2 id="_5">核主成分</h2>
 <p><img alt="" src="../../img/14/fig14.30.png" /></p>
 <h2 id="_6">稀疏主成分</h2>
