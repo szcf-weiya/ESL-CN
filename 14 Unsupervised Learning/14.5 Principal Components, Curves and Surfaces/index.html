@@ -1333,15 +1333,27 @@ f(\lambda)=\mu+\mathbf V_q\lambda\qquad (14.49)
 \mathbf{X=UDV^T}\qquad (14.54)
 </script>
 </p>
-<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983[^1]）。这里$\mathbf U$是$N\times p$的正交矩阵($\mathbf{U^TU}=\mathbf I_p$)，它的列向量$\mathbf u_j$称为左奇异向量，$\mathbf V$是$p\times p$的正交矩阵($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量$\mathbf v_j$称之为右奇异向量。对每个秩$q$，(14.53)的解$\mathbf V_q$包含$\mathbf V$的前$q$列。$\mathbf UD$的列称为$X$的主成分（见3.5.1节）。(14.52)中$N$个最优的$\hat\lambda_i$由前$q$个主成分给出（$N\times q$的矩阵$\mathbf U_q\mathbf D_q$的$N$行）。</p>
+<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983[^1]）。这里$\mathbf U$是$N\times p$的正交矩阵($\mathbf{U^TU}=\mathbf I_p$)，它的列向量$\mathbf u_j$称为左奇异向量，$\mathbf V$是$p\times p$的正交矩阵($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量$\mathbf v_j$称之为右奇异向量。对每个秩$q$，(14.53)的解$\mathbf V_q$包含$\mathbf V$的前$q$列。$\mathbf{UD}$的列称为$X$的主成分（见3.5.1节）。(14.52)中$N$个最优的$\hat\lambda_i$由前$q$个主成分给出（$N\times q$的矩阵$\mathbf U_q\mathbf D_q$的$N$行）。</p>
 <p>$R^2$中的一维主成分分析显示在图14.20中。</p>
 <p><img alt="" src="../../img/14/fig14.20.png" /></p>
 <p>对于每个数据点$x_i$，在直线上有个最近的点，由$u_{i1}d_1v_1$给出。这里$v_1$是该直线的方向，并且$\hat \lambda_i=u_{i1}d_1$衡量了沿着直线离原点的距离。类似地，图14.21展示了拟合half-sphere数据的二维主成分曲面（左图）。右图显示了数据在前两个主成分上的投影。这个投影是之前介绍的SOM方法的初始化的基础。这个过程在分离簇方面表现得非常成功。因为half-sphere是非线性的，非线性的投影会做得更好，这将是下一节的主题。</p>
 <p><img alt="" src="../../img/14/fig14.21.png" /></p>
 <p>主成分还有许多其它的性质，举个例子，线性组合$\mathbf Xv_1$在所有特征的线性组合中有最大的方差；$\mathbf Xv_2$在满足$v_2$正交$v_1$的所有线性组合中有最高的方差，以此类推。</p>
 <h3 id="_2">例子：手写数字</h3>
-<p><img alt="" src="../../img/14/fig14.22.png" />
-<img alt="" src="../../img/14/fig14.23.png" />
+<p>主成分是维度降低和压缩的有效工具。我们用第一章中描述的手写数字的例子来说明这个特点。图14.22显示了从658个‘3’中抽取的130个‘3’的样本，每一个都是数字化的$16\times 16$的灰度图象。我们看到书写风格，字体粗细以及字体方向上有显著差异。我们将这些图象看成是$R^{256}$中的点$x_i$，并且通过SVD(14.54)来计算它们的主成分。</p>
+<p><img alt="" src="../../img/14/fig14.22.png" /></p>
+<p>图14.23显示了这些数据的前两个主成分。对于前两个主成分$u_{i1}d_1$和$u_{i2}d_2$，我们计算$5%, 25%, 50%, 75%, 95%$分位数，并且用它们去定义叠加在图中的长方形网格。圆点表明这些图象接近网格的顶点，而距离度量主要考虑这些投影的坐标，但也给正交子空间中的成分一些权重。右图显示了对应这些圆点的图象。这帮助我们可视化前两个主成分的本质。我们看到$v_1$（水平方向）主要与手写‘3’的下尾有关，而$v_2$（垂直方向）与字体粗细有关。用(14.49)的参数化模型表示，这两个组分的模型有如下形式</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat f(\lambda)&=\bar x+\lambda_1b_1+\lambda_2v_2\\
+&=\includegraphics[height=5.6ex]{../img/14/s1.png}+\lambda_1\cdot
+\includegraphics[height=5.6ex]{../img/14/s2.png}+\lambda_2\cdot
+\includegraphics[height=5.6ex]{../img/14/s3.png}
+\end{align}
+</script>
+</p>
+<p><img alt="" src="../../img/14/fig14.23.png" />
 <img alt="" src="../../img/14/fig14.24.png" />
 <img alt="" src="../../img/14/fig14.25.png" />
 <img alt="" src="../../img/14/fig14.26.png" /></p>
