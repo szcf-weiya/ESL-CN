@@ -18,7 +18,8 @@ TeX: {
     I: "{\\mathbf{I}}",
     X: "{\\mathbf{S}}",
 
-    Cov: "{\\mathrm{Cov }}"
+    Cov: "{\\mathrm{Cov }}",
+    Var: "{\\mathrm{Var }}"
   },
   entensions: ["color.js"]
 }
