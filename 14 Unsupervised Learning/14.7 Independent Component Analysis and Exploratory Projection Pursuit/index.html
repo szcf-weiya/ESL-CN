@@ -1274,24 +1274,25 @@
 <script type="math/tex; mode=display">
 \begin{align}
 X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_p\\
-X_@&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p\\
+X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p\\
 \vdots &=\vdots\\
 X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p
 \end{align}
 \qquad (14.78)
 </script>
 </p>
-<p>或者简单地写成$X=\mathbf AS$。相关的$X_j$都表示称不相关的、单位方差的变量$S_\ell$的线性展开。尽管这不是太满意，因为对于任意给定的$p\times p$的正交矩阵$\mathbf R$，我们可以写出</p>
+<p>或者简单地写成$X=\A S$。相关的$X_j$都表示称不相关的、单位方差的变量$S_\ell$的线性展开。尽管这不是太满意，因为对于任意给定的$p\times p$的正交矩阵$\R$，我们可以写出</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-X&=\mathbf AS\\
-&=\mathbf A\mathbf R^T\mathbf R S\\
-&=\mathbf A^*S\^*
+X&=\A S\\
+&=\A\R^T\R S
+&=\A^\*S^*
 \end{align}
 \qquad (14.79)
 </script>
 </p>
+<p>并且$\Cov (S^*)=\R\Cov(S)\R^T=\I$。因此存在许多这样的分解，也因此不可能将任意特定的潜变量作为唯一的潜在来源。SVD分解确实有这样的性质，以最优的方式得到使得任意$q&lt;p$的截断分解。</p>
 <h2 id="_2">独立分量分析</h2>
 <p>TODO</p>
 <h2 id="_3">探索投影寻踪</h2>

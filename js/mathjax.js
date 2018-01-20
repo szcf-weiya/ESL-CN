@@ -18,7 +18,9 @@
       R: "{\\mathbf{R}}",
       S: "{\\mathbf{S}}",
       I: "{\\mathbf{I}}",
-      X: "{\\mathbf{S}}"
+      X: "{\\mathbf{S}}",
+
+      Cov: "{\\mathrm{Cov }}"
     },
     entensions: ["color.js"]
   }
