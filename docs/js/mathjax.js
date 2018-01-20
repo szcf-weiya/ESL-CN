@@ -26,5 +26,3 @@
   }
   });
 </script>
-<script data-cfasync="false" type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
