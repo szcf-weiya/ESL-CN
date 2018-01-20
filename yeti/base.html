@@ -59,6 +59,9 @@
 }
 	</style>
 -->
+{%- for path in extra_javascript %}
+<script src="{{ path }}"></script>
+{%- endfor %}
     </head>
     <body>
 
@@ -84,9 +87,7 @@
         <script data-main="{{ base_url }}/mkdocs/js/search.js" src="{{ base_url }}/mkdocs/js/require.js"></script>
         <script src="{{ base_url }}/js/base.js"></script>
 	<script src="{{ base_url }}/js/jquery.dropdown.js"></script>
-        {%- for path in extra_javascript %}
-        <script src="{{ path }}"></script>
-        {%- endfor %}
+
 <!--
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">
