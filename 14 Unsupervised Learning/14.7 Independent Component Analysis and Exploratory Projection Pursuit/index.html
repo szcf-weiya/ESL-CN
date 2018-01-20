@@ -1262,6 +1262,10 @@
 <td>时间</td>
 <td>2017-09-03</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-01-20</td>
+</tr>
 </tbody>
 </table>
 <p>多元数据经常被看成是从未知来源中多重间接测量的数据，一般不能直接测量。包括以下例子：</p>
@@ -1278,7 +1282,7 @@
 \begin{align}
 X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_p\\
 X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p\\
-\vdots &\vdots\\
+\vdots &\qquad\vdots\\
 X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p
 \end{align}
 \qquad (14.78)
@@ -1296,14 +1300,14 @@ X&=\A S\\
 </script>
 </p>
 <p>并且$\Cov (S^*)=\R\Cov(S)\R^T=\I$。因此存在许多这样的分解，也因此不可能将任意特定的潜变量作为唯一的潜在来源。SVD分解确实有这样的性质，以最优的方式得到使得任意$q &lt; p$的截断分解。</p>
-<p>经典的因子分析模型，主要由心理测量学(psychometrics)的研究者发展而来。某种程度上缓解了这个问题；举个例子，Mardia et al. (1979)[^1]。当$q &lt; p$，因子分析模型有如下形式</p>
+<p>经典的因子分析模型，主要由心理测量学(psychometrics)的研究者发展而来。某种程度上缓解了这个问题；举个例子，Mardia et al. (1979)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。当$q &lt; p$，因子分析模型有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_q+\varepsilon_1\\
-X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_q+\varepsilon_2\\
-\vdots &\vdots\\
-X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_q+\varepsilon_p
+X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1q}S_q+\varepsilon_1\\
+X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2q}S_q+\varepsilon_2\\
+\vdots &\qquad\vdots\\
+X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
 \end{align}
 \qquad (14.80)
 </script>
@@ -1316,10 +1320,15 @@ X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_q+\varepsilon_p
 </p>
 <p>其中$\D_\varepsilon = diag[\Var(\varepsilon_1),\ldots, \Var(\varepsilon_p)]$。$S_\ell$为高斯并且不相关，这使得它们在统计上是独立随机变量。因此一系列的教育考试成绩可以认为是有潜在独立的因子，比如智力(intelligence)，动机(drive)等等所决定的。$\A$的列被称为因子载荷(factor loadings)，而且用来命名因子和解释因子。</p>
 <p>不幸的是，唯一性问题(14.79)仍然存在，因为在式(14.81)中，对于任意$q\times q$的正交矩阵$\R$，$\A$和$\A\R^T$是等价的。这导致了因子分析中的主观性，因为用户可以寻找因子更易解释的旋转版本。这点使得许多分析学家对因子分析表示之一，而且这可能是它在当代统计中不受欢迎的原因。尽管我们这里不继续讨论细节，但是SVD分解在(14.81)的估计上发挥重要作用。举个例子，$\Var(\varepsilon_j)$假设相等，SVD的前$q$个成分确定了由$\A$张成的子空间。</p>
-<p>因为每个$X_j$独立的扰动$\varepsilon_j$，因子分析可以看成是对$X_j$的相关结构进行建模，而非对协方差结构建模。这个可以通过对(14.81)的协方差结构进行标准化后得到（练习14.14）。这是因子分析与PCA的重要区别，尽管这不是讨论的重点。练习14.15讨论了一个简单的例子，因为这个差异，因子分析和主成分的解完全不同。</p>
+<p>因为每个$X_j$独立的扰动$\varepsilon_j$，因子分析可以看成是对$X_j$的相关结构进行建模，而非对协方差结构建模。这个可以通过对(14.81)的协方差结构进行标准化后得到（练习14.14）。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: Ex. 14.14</p>
+<p>练习14.14表明，因子分析实质上是对相关矩阵进行分解。详见解答见<a href="https://github.com/szcf-weiya/ESL-CN/issues/51">Ex. 14.14</a></p>
+</div>
+<p>这是因子分析与PCA的重要区别，尽管这不是我们讨论的重点。练习14.15讨论了一个简单的例子，因为这个差异，因子分析和主成分的解完全不同。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注: Ex. 14.15</p>
-<p>练习14.15用一个实际例子说明了，因子分析和主成分得到的第一因子和第一主成分完全不同。</p>
+<p>练习14.15用一个实际例子说明了，因子分析和主成分得到的第一因子和第一主成分完全不同。详细解答见<a href="https://github.com/szcf-weiya/ESL-CN/issues/50">Ex. 14.15</a></p>
 </div>
 <h2 id="_2">独立分量分析</h2>
 <p>TODO</p>
@@ -1327,6 +1336,14 @@ X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_q+\varepsilon_p
 <p>TODO</p>
 <h2 id="_4">独立分量分析的一种直接方法</h2>
 <p>TODO</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 <div id="disqus_thread"></div>
 <script>
