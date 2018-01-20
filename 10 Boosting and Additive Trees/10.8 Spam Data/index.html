@@ -34,25 +34,7 @@
           ga('send', 'pageview');
 
         </script>
-        <!--mathjax-->
-        <script data-cfasync="false" type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          tex2jax: {
-          	inlineMath: [['$','$'], ['\\(','\\)']],
-          	processEscapes:true
-          },
-          TeX: {
-            Macros: {
-              LOG: "{\\mathrm{log }}",
-              E: "{\\mathrm{E }}",
-              1: "{\\boldsymbol 1}"
-            },
-          	entensions: ["color.js"]
-          }
-          });
-        </script>
-        <script data-cfasync="false" type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
+
         <script>
 (function(){
     var bp = document.createElement('script');
@@ -1313,6 +1295,7 @@ s.setAttribute('data-timestamp', +new Date());
         <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
         <script src="../../js/base.js"></script>
 	<script src="../../js/jquery.dropdown.js"></script>
+        <script src="../../js/mathjax.js"></script>
         <script src="../../search/require.js"></script>
         <script src="../../search/search.js"></script>
 <!--
