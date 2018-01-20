@@ -58,9 +58,8 @@
 }
 	</style>
 -->
-<script src="../../js/mathjax.js"></script>
-<script src="../../search/require.js"></script>
-<script src="../../search/search.js"></script>
+<script data-cfasync="false" type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
     </head>
     <body>
 
@@ -1300,14 +1299,15 @@ X&=\A S\\
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_p+\epsilon_1\\
-X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p+\epsilon_2\\
+X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_q+\epsilon_1\\
+X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_q+\epsilon_2\\
 \vdots &=\vdots\\
-X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p+\epsilon_p
+X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_q+\epsilon_p
 \end{align}
-\qquad (14.78)
+\qquad (14.80)
 </script>
 </p>
+<p>或者写成$X=\A S+\epsilon$。这里$S$是$q &lt; p$个揭示潜变量或者因子的向量，$\A$是$p\times q$的因子载荷(loadings)矩阵，$\varepsilon_j$是零均值不相干的扰动。</p>
 <h2 id="_2">独立分量分析</h2>
 <p>TODO</p>
 <h2 id="_3">探索投影寻踪</h2>
@@ -1355,7 +1355,9 @@ s.setAttribute('data-timestamp', +new Date());
         <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
         <script src="../../js/base.js"></script>
 	<script src="../../js/jquery.dropdown.js"></script>
-
+        <script src="../../js/mathjax.js"></script>
+        <script src="../../search/require.js"></script>
+        <script src="../../search/search.js"></script>
 <!--
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">
