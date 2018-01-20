@@ -219,8 +219,8 @@ extra_css:
   - css/newsprint.css
   - css/admonition_fix.css
 
-extra_javascript:
-  - js/mathjax.js
+#extra_javascript:
+#  - js/mathjax.js
 
 #docs_dir: 'docs'
 
