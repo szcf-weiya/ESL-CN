@@ -1535,22 +1535,22 @@ f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\qquad (14.89)
 <script type="math/tex; mode=display">
 A_0(g)=\frac 1n\sum g(x_i)
 </script>
-在$\int exp^g(x)dx=1$的约束下的最大值等于
+在$\int e^g=1$的约束下的最大值等于
 <script type="math/tex; mode=display">
 A(g)=\frac 1n\sum g(x_i)-\int exp(g(x))dx
 </script>
 的最大值。
-考虑$g^<em>=g-\LOG \int e^g$
+考虑$g^*=g-\LOG \int e^g$
 则
 <script type="math/tex; mode=display">
-\int e^{g^*}=\int e^{g(x)}\cdot \frac{1}{\int e^{g(t)dt}}dx=1
+\int e^{g^*}=\int e^{g(x)}\cdot \frac{1}{\int e^{g(t)}dt}dx=1
 </script>
 于是
 <script type="math/tex; mode=display">
-A(g^*)=A(g)+\int exp(g(x))dx-\LOG(\int e^{g(t)dt})-1
+A(g^*)=A(g)+\int exp(g(x))dx-\LOG(\int e^{g(t)}dt)-1
 </script>
 因$t-\LOG t\ge 1, \forall t&gt;0$，且当且仅当$t=1$取等号。
-则$A(g^</em>)\le A(g)$，也就是当且仅当$\int e^g = 1$时，$A(g)$会取得最大值，而这时候$A(g)=A_0(g)-1$，所以$A_0(g)$也会取得最大值。由此看成，$A_0(g)$在$\int e^g=1$的约束下的最大值等价于（无约束的） $A(g)$取得最大值。</p>
+则$A(g^*)\le A(g)$，也就是当且仅当$\int e^g = 1$时，$A(g)$会取得最大值，而这时候$A(g)=A_0(g)-1$，所以$A_0(g)$也会取得最大值。由此看成，$A_0(g)$在$\int e^g=1$的约束下的最大值等价于（无约束的） $A(g)$取得最大值。</p>
 </div>
 <p>可以进一步证明每个解密度$\hat f_j=\phi e^{\hat g_j}$的均值为0, 方差为1(练习14.18). 当我们增大$\lambda_j$, 这些解近似标准高斯密度$\phi$. </p>
 <p><img alt="" src="../../img/14/alg14.3.png" /></p>
