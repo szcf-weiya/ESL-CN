@@ -1362,10 +1362,10 @@ X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
 <p>练习14.15用一个实际例子说明了，因子分析和主成分得到的第一因子和第一主成分完全不同。详细解答见<a href="https://github.com/szcf-weiya/ESL-CN/issues/50">Ex. 14.15</a></p>
 </div>
 <h2 id="_2">独立成分分析</h2>
-<p>独立成分分析(ICA)模型与(14.78)有相同的形式，除了$S_\ell$假设为统计上独立而非不相关。</p>
+<p>独立成分分析(ICA)模型与(14.78)有相同的形式, 除了假设$S_\ell$是统计上独立而非不相关. </p>
 <div class="admonition note">
-<p class="admonition-title">weiya注：独立与不相关</p>
-<p>统计上，连续型随机变量$X$与$Y$独立的定义为
+<p class="admonition-title">weiya注: 独立与不相关</p>
+<p>统计上, 连续型随机变量$X$与 $Y$独立的定义为
 <script type="math/tex; mode=display">
 p(x, y)=p_X(x)p_Y(y)\;\forall x,y
 </script>
@@ -1375,28 +1375,28 @@ Cov(X, Y)=0
 </script>
 独立意味着不相关，但反之不对。对于二元正态随机变量，两者等价。</p>
 </div>
-<p>直观上，不相关决定着多元变量分布的二阶交叉矩(协方差)，而一般地，统计独立决定了所有的交叉矩。这些额外的矩允许我们找到唯一的$\A$中的元素。因为多元正态分布由二阶矩独立确定，因此这是一个例外，任意高斯独立组分可以像之前一样乘以一个旋转来确定。因此如果假设$S_\ell$是独立且非高斯的，则可以避免(14.78)和(14.80)的唯一性问题。</p>
-<p>这里我们将要讨论(14.78)中的全$p$个组分的模型，其中$S_\ell$是独立的且有单位方差；因子分析模型(14.80)的ICA版本也同样存在。我们的处理基于Hyvärinen and Oja (2000)的综述文章。</p>
-<p>我们希望恢复$X=\A S$中的混合矩阵$\A$。不失一般性，我们假设$X$已经满足$\Cov(X)=\I$；这一般可以通过前面描述的SVD实现。反过来，因为$S$的协方差也为$\I$，这意味着$\A$是正交的。所以求解ICA问题等价于寻找正交的$\A$使得随机变量向量$S=\A^T X$的组分是独立(且是非高斯的)。</p>
+<p>直观上, 不相关确定了多元变量分布的二阶交叉矩(协方差), 而一般地, 统计独立确定了所有的交叉矩. 这些额外的矩条件能让我们找到唯一的$\A$. 因为多元正态分布只要二阶矩就可以确定, 因此这是一个特例, 任意高斯独立成分可以像之前一样乘以一个旋转来确定. 因此如果假设$S_\ell$是独立且非高斯的, 则可以避免(14.78)和(14.80)的唯一性问题.</p>
+<p>这里我们将要讨论(14.78)中的全$p$个成分的模型, 其中$S_\ell$是独立的且有单位方差; 因子分析模型(14.80)的ICA版本也同样存在. 我们的处理基于Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的综述文章.</p>
+<p>我们希望恢复$X=\A S$中的混合矩阵$\A$. 不失一般性, 我们假设$X$已经白化(whitened)得到$\Cov(X)=\I$; 这一般可以通过前面描述的SVD实现. 反过来, 因为$S$的协方差也为$\I$, 这意味着$\A$是正交的. 所以求解ICA问题等价于寻找正交的$\A$使得随机变量向量$S=\A^T X$的组分是独立(且是非高斯的)。</p>
 <p><img alt="" src="../../img/14/fig14.37.png" /></p>
-<p>图14.37显示了在分离两个混合信号方面ICA的能力。这也是经典的cocktail party problem的一个例子，不同的麦克风$X_j$接受来自不同独立源$S_\ell$（音乐、不同人说的话等等）的混合信号。ICA通过利用原始信号源的独立性和非高斯性，能够进行盲信号分离(blind source separation)。</p>
-<p>ICA许多流行的方式是基于熵。密度为$g(y)$的随机变量$Y$的相对熵(differential entropy) $H$由下式给出</p>
+<p>图14.37显示了在分离两个混合信号例子中ICA的能力。这也是经典的cocktail party problem的一个例子，不同的麦克风$X_j$接受来自不同独立源$S_\ell$(音乐、不同人说的话等等)的混合信号. ICA通过利用原始信号源的独立性和非高斯性，能够进行盲信号分离(blind source separation).</p>
+<p>ICA许多流行的方式是基于熵. 密度为$g(y)$的随机变量$Y$的相对熵(differential entropy) $H$由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
 H(Y)=-\int g(y)\LOG g(y)dy\qquad (14.82)
 </script>
 </p>
-<p>信息理论中一个著名的结论是在所有等方差的随机变量中，高斯随机变量有最大的熵。最后，随机向量$Y$的组分之间的互信息量$I(Y)$是独立性的一个自然度量：</p>
+<p>信息理论中一个著名的结论是在所有同方差的随机变量中，高斯随机变量有最大的熵。最后，随机向量$Y$的组分之间的互信息量(mutual information)$I(Y)$是独立性的一个自然度量:</p>
 <p>
 <script type="math/tex; mode=display">
 I(Y)=\sum\limits_{j=1}^pH(Y_j)-H(Y)\qquad (14.83)
 </script>
 </p>
-<p>值$I(Y)$称为$Y$的密度$g(y)$与其独立版本$\prod\limits_{j=1}^pg_j(y_j)$之间的Kullback-Leibler距离，其中$g_j(y_j)$是 $Y_j$的边缘密度. 如果 $X$ 有协方差$\I$, 且$Y=\A^TX$, 其中$\A$是正交, 则易证</p>
+<p>值$I(Y)$称为$Y$的密度$g(y)$与其独立版本$\prod\limits_{j=1}^pg_j(y_j)$之间的Kullback-Leibler距离, 其中$g_j(y_j)$是 $Y_j$的边缘密度. 如果$X$有协方差$\I$, 且$Y=\A^TX$, 其中$\A$是正交, 则易证</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-I(Y)&= \sum\limits_{j=1}^pH(X)-\LOG\vert det\A\vert\qquad (14.84)\\
+I(Y)&= \sum\limits_{j=1}^pH(X)-\LOG\vert \det\A\vert\qquad (14.84)\\
 &=\sum\limits_{j=1}^pH(Y_j)-H(X)\qquad (14.85)
 \end{align}
 </script>
@@ -1409,7 +1409,7 @@ H(Y)=H(X)+\LOG \vert \det \A \vert
 </script>
 对(14.82)进行变量替换有
 <script type="math/tex; mode=display">
-H(Y)=-\int g(\A'x)\LOG g(\A'x)\vert \det \J\vert dx\qquad (*)
+H(Y)=-\int g(\A'x)\LOG g(\A'x)\cdot \vert \det \J\vert dx\qquad (*)
 </script>
 其中$\J_{ij}=\frac{\partial y_i}{\partial x_j}$.
 又
@@ -1438,23 +1438,35 @@ H(Y) &= -\int \frac{f(x)}{\vert\det\A\vert} \LOG\frac{f(x)}{\vert\det\A\vert}\cd
 <p>寻找$\A$来最小化$I(Y)=I(\A^TX)$也就是寻找使得组分间的独立性最强的正交变换. 考虑到式(14.84), 这等价于最小化$Y$的各组分的熵的和, 反过来意味着最大化它们与高斯分布的距离.</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
-<p>因为高斯随机变量的交叉熵最大, 则让各组分熵之和最小, 意味着各组分&rdquo;远离&rdquo;高斯分布.</p>
+<p>因为高斯随机变量的交叉熵最大, 则让各组分熵之和最小, 意味着各组分远离高斯分布.</p>
 </div>
-<p>为了简便, 与其采用熵$H(Y_j)$, Hyvärinen and Oja (2000)采用负熵(negentropy)$J(Y_j)$</p>
+<p>为了简便, 与其采用熵$H(Y_j)$, Hyvärinen and Oja (2000)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>采用负熵(negentropy)$J(Y_j)$</p>
 <p>
 <script type="math/tex; mode=display">
 J(Y_j) = H(Z_j)-H(Y_j)\qquad (14.86)
 </script>
 </p>
-<p>其中$Z_j$是与$Y_j$同方差的高斯随机变量. 负熵是非负, 并且度量了$Y_j$与高斯随机变量之间的距离. 他们提出负熵的一个简单近似, 这个近似可以用来计算和优化数据. 图14.37和图14.39中的ICA都采用下面的近似</p>
+<p>其中$Z_j$是与$Y_j$同方差的高斯随机变量. 负熵是非负的, 它度量了$Y_j$与高斯随机变量之间的距离. 他们提出负熵的一个简单近似, 这个近似可以用来计算和优化数据. 图14.37至图14.39中的ICA都采用下面的近似</p>
 <p>
 <script type="math/tex; mode=display">
 J(Y_j)\approx [EG(Y_j) - EG(Z_j)]^2\qquad (14.87)
 </script>
 </p>
-<p>其中$G(u)=\frac 1a\LOG \cosh(au), 1\le a\le 2$. 当应用到实际数据时, 期望用数据的平均值代替. 这是这些作者们提供的<code>FastICA</code>软件中的一个选项. 更经典(以及不太鲁棒)的度量基于四阶矩, 也因此通过峰度(kurtosis)来衡量与高斯分布的距离. 更多细节参见Hyvärinen and Oja (2000). 在14.7.4节我们讨论他们寻找最优方向的近似牛顿算法.</p>
-<p>总结一下, ICA应用到多元数据中, 来寻找一系列的正交投影, 使得投影数据尽可能远离高斯分布. 采用预处理的数据(协方差为$\I$), 这意味着寻找尽可能独立的组分.</p>
-<p>ICA本质上从因子分析的一个解出发, 并且寻找一个旋转得到独立组分. 从看, ICA与在心理测量学中采用的传统方法&rdquo;varimax&rdquo;和&rdquo;quartimax&rdquo;一样, 仅仅是因子旋转的方式.</p>
+<p>其中$G(u)=\frac 1a\LOG \cosh(au), 1\le a\le 2$. 当应用到实际数据时, 期望用数据的平均值代替. 这是这些作者们提供的<code>FastICA</code>软件中的一个选项. 更经典(以及不太鲁棒)的度量是基于四阶矩, 也因此可以通过峰度(kurtosis)来衡量与高斯分布的距离. 更多细节参见Hyvärinen and Oja (2000)<sup id="fnref3:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>. 在14.7.4节我们讨论他们寻找最优方向的近似牛顿算法.</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注:</p>
+<p>峰度是四阶标准矩
+<script type="math/tex; mode=display">
+Kurt(X)=\E\Big[
+\Big(
+\frac{X-\mu}{\sigma}
+\Big)^4
+\Big]
+</script>
+</p>
+</div>
+<p>总结一下, ICA应用到多元数据中, 来寻找一系列的正交投影, 使得投影数据尽可能远离高斯分布. 采用白化后的数据(协方差为$\I$), 这意味着寻找尽可能独立的组分.</p>
+<p>ICA本质上从因子分析的一个解出发, 并且寻找一个旋转得到独立组分. 从这点看, ICA与在心理测量学中采用的传统方法<code>varimax"和</code>quartimax&rdquo;一样, 仅仅是因子旋转的一种方式.</p>
 <h3 id="_3">例子: 手写数字</h3>
 <p>我们重现讨论14.5.1 节用PCA分析的手写数字&rdquo;3&rdquo;. </p>
 <p><img alt="" src="../../img/14/fig14.39.png" /></p>
@@ -1521,6 +1533,9 @@ f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\qquad (14.89)
 <ol>
 <li id="fn:1">
 <p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Hyvärinen, A., Karhunen, J. and Oja, E. (2001). Independent Component Analysis, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
