@@ -66,9 +66,6 @@ tex2jax: {
 },
 TeX: {
   Macros: {
-    LOG: "{\\mathrm{log\; }}",
-    E: "{\\mathrm{E\; }}",
-    1: "{\\boldsymbol 1}",
 
     A: "{\\mathbf{A}}",
     B: "{\\mathbf{B}}",
@@ -80,10 +77,13 @@ I: "{\\mathbf{I}}",
 J: "{\\mathbf{J}}",
     X: "{\\mathbf{S}}",
 
-    Cov: "{\\mathrm{Cov\; }}",
-Var: "{\\mathrm{Var\; }}",
-det: "{\\mathrm{det\; }}",
-cosh: "{\\mathrm{cosh\; }}"
+LOG: "{\\mathrm{log}\\;}",
+    E: "{\\mathrm{E}\\;}",
+    1: "{\\boldsymbol 1}",
+    Cov: "{\\mathrm{Cov}\\;}",
+Var: "{\\mathrm{Var}\\;}",
+det: "{\\mathrm{det}\\;}",
+cosh: "{\\mathrm{cosh}\\;}"
 
   },
   entensions: ["color.js"]
@@ -1362,7 +1362,7 @@ X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
 <p>练习14.15用一个实际例子说明了，因子分析和主成分得到的第一因子和第一主成分完全不同。详细解答见<a href="https://github.com/szcf-weiya/ESL-CN/issues/50">Ex. 14.15</a></p>
 </div>
 <h2 id="_2">独立成分分析</h2>
-<p>独立分量分析(ICA)模型与(14.78)有相同的形式，除了$S_\ell$假设为统计上独立而非不相关。</p>
+<p>独立成分分析(ICA)模型与(14.78)有相同的形式，除了$S_\ell$假设为统计上独立而非不相关。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：独立与不相关</p>
 <p>统计上，连续型随机变量$X$与$Y$独立的定义为
