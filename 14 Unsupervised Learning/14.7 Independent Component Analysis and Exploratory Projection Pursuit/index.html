@@ -71,7 +71,8 @@ TeX: {
     B: "{\\mathbf{B}}",
     C: "{\\mathbf{C}}",
     D: "{\\mathbf{D}}",
-    R: "{\\mathbf{R}}",
+R: "{\\mathbf{R}}",
+IR: "{\\mathrm{I\!R}}",
     S: "{\\mathbf{S}}",
 I: "{\\mathbf{I}}",
 J: "{\\mathbf{J}}",
@@ -85,7 +86,9 @@ Var: "{\\mathrm{Var}\\;}",
 det: "{\\mathrm{det}\\;}",
 cosh: "{\\mathrm{cosh}\\;}",
 arg: "{\\mathrm{arg}\\;}",
-max: "{\\mathrm{max}\\;}"
+max: "{\\mathrm{max}\\;}",
+
+df: "{\\mathrm{df}}"
 
   },
   entensions: ["color.js"]
@@ -1297,7 +1300,7 @@ max: "{\\mathrm{max}\\;}"
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-01-20 &amp; 2018-01-21</td>
+<td>2018-01-20 &amp; 2018-01-21 &amp; 2018-01-22</td>
 </tr>
 </tbody>
 </table>
@@ -1580,10 +1583,40 @@ y_\ell^*=\frac{#s_i\in (s_\ell^*-\Delta/2, s_\ell^*+\Delta/2)}{N}\qquad (14.93)
 <p>
 <script type="math/tex; mode=display">
 \sum\limits_{\ell=1}^L\Big\{
-y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta
+y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta\phi(s_\ell^*)e^{g(s_\ell^*)}-\lambda\int (g^{3})^2ds\qquad (14.94)
 \Big\}
 </script>
 </p>
+<p>这个表达是可以看成是与惩罚的possion对数似然成比例， 其中响应变量为$y_\ell^*/\Delta$， 惩罚参数为$\lambda/\Delta$， 均值为$\mu(s)=\phi(s)e^{g(s)}$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/54">Issue 54</a>）。 这是一个广义可加样条模型(generalized additive spline model)(Hastie and Tibshirani, 1990<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Efron and Tibshirani, 1996<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>)， 其中的offset项为$\LOG \phi(s)$， 并且可以以$O(L)$的复杂度用牛顿算法进行拟合。 尽管要求四次样条， 但是实际中我们发现三次样条就足够了。 我们有$p$个调整参数$\lambda_j$需要设定， 在实际中我们使得它们相等， 然后通过有效自由度$\df(\lambda)$来确定光滑的程度。 我们的软件采用$5\df$作为默认值。</p>
+<p>算法14.3的2(b)要求在给定$\hat g_j$， 对$\A$进行优化。和式中仅仅第一项有涉及$\A$，并且因为$\A$是正交的， 则涉及$\phi$的所有项的集合不依赖$\A$（练习14.19）。因此我们需要最大化</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+C(\A) &= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\qquad (14.95)\\
+&= \sum\limits_{j=1}^pC_j(a_j)
+\end{align}
+</script>
+</p>
+<p>$C(\A)$是拟合的密度与高斯密度间的对数似然比，而且可以看成是负熵(14.86)的一个估计， 其中每个$\hat g_j$就像(14.87)中的差异函数。第2(b)步中的固定点更新是修改后的牛顿法（练习14.20）：</p>
+<ol>
+<li>对于每个$j$，更新
+<script type="math/tex; mode=display">
+a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\qquad (14.96)
+</script>
+其中$\E$表示关于$x_i$的期望。因为$\hat g_j$是拟合的四次（或者三次）样条，则式中第一项和第二项已经计算好了。</li>
+<li>采用对称平方根变换将$\A$化为正交矩阵：$(\A\A^T)^{-\frac 12}\A$。如果$\A=\U\D\V^T$是$\A$的SVD分解，则易证$\A\leftarrow UV^T$。</li>
+</ol>
+<p>我们的<code>ProDenICA</code>算法和<code>FastICA</code>算法在图14.37中的模拟时间序列数据、图14.38的均匀分布数据的混合以及图14.39中的数字数据都表现得一样好。</p>
+<h3 id="_7">例子：模拟</h3>
+<p><img alt="" src="../../img/14/fig14.42.png" /></p>
+<p>图14.42展示了比较<code>ProDenICA</code>与<code>FastICA</code>以及另外一个半参方法<code>KernelICA</code>(Bach and Jordan, 2002<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)的模拟的结果。左图展示了作为比较的基础的18个分布。对于每个分布，我们产生成对的独立组分($N=1024$)，以及随机的混合矩阵$\IR^2$，取值为1到2之间。我们采用<code>FastICA</code>的R语言实现，采用(14.87)的负熵准则，<code>ProDenICA</code>也是这样。对于<code>KernelICA</code>，我们采用作者的MATLAB代码。因为搜索准则是非凸的，我们对每种方法采用5个随机初始值。每个算法都传入正交的混合矩阵$\A$（数据已经进行了白化），这可以用来比较产生的正交混合矩阵$\A_0$。我们采用Amari距离(Bach and Jordan, 2002<sup id="fnref2:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)来度量两个矩阵接近程度：</p>
+<p>
+<script type="math/tex; mode=display">
+d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vertr_{ij}\vert}-1\Big)+
+\frac{1}{2p}\sum\limits_{j=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vertr_{ij}\vert}-1\Big)\qquad (14.97)
+</script>
+</p>
+<p>其中$r_{ij}=(\A_o\A^{-1})_{ij}$。图14.42的右图比较了真实矩阵与估计的矩阵的Amari距离（对数尺度下）。<code>ProDenICA</code>在所有的情形都可以与<code>FastICA</code>和<code>KernelICA</code>进行比较，并且在大多数混合情形下表现最好。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -1610,6 +1643,15 @@ y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta
 </li>
 <li id="fn:8">
 <p>Silverman, B. (1986). Density Estimation for Statistics and Data Analysis, Chapman and Hall, London.&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Hastie, T. and Tibshirani, R. (1990). Generalized Additive Models, Chapman and Hall, London.&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Efron, B. and Tibshirani, R. (1996). Using specially designed exponential families for density estimation, Annals of Statistics 24(6): 2431–2461.&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Bach, F. and Jordan, M. (2002). Kernel independent component analysis, Journal of Machine Learning Research 3: 1–48.&#160;<a class="footnote-backref" href="#fnref:11" rev="footnote" title="Jump back to footnote 11 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:11" rev="footnote" title="Jump back to footnote 11 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
