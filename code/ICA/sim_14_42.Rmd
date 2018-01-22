@@ -1,0 +1,100 @@
+---
+title: "独立成分分析(ICA)的模拟实验"
+author: "weiya <szcfweiya@gmail.com>"
+date: "Jan. 22, 2018"
+output:
+  html_document:
+    toc: yes
+  html_notebook:
+    toc: yes
+---
+
+本笔记是[ESL14.7节](https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.7%20Independent%20Component%20Analysis%20and%20Exploratory%20Projection%20Pursuit/index.html)图14.42的模拟过程。第一部分将以`ProDenICA`法为例试图介绍ICA的整个计算过程；第二部分将比较`ProDenICA`、`FastICA`以及`KernelICA`这种方法，试图重现图14.42。
+
+## ICA的模拟过程
+
+### 生成数据
+
+首先我们得有一组独立（ICA的前提条件）分布的数据$S$（未知），然后经过矩阵$A_0$混合之后得到实际的观测值$X$，即
+
+$$
+X= SA_0
+$$
+
+也可以写成
+$$
+S=XA_0^{-1}
+$$
+
+用鸡尾酒酒会的例子来说就是，来自不同个体的说话声经过麦克风混合之后得到我们实际接收到的信号。假设有两组独立同分布的数据，分布都为`n`（对应图14.42中的编号），每组数据个数均为$N=1024$，混合矩阵为`A0`，用R代码描述这一过程如下
+
+```{r}
+library(ProDenICA)
+p = 2
+dist = "n" 
+N = 1024
+A0 = mixmat(p)
+s = scale(cbind(rjordan(dist,N),rjordan(dist,N)))
+x = s %*% A0
+```
+
+最终我们得到观测值`x`。
+
+### 白化
+
+在进行ICA时，也就是恢复$X=S\mathbf A$中的混合矩阵$\mathbf A$，都会假设$X$已经白化得到$\mathrm{Cov}(X)=\mathbf I$，而这个处理过程可以用SVD实现。对于中心化的$X$，根据
+
+$$
+X=\mathbf{UDV}^T= \sqrt{N}\mathbf U\frac{1}{\sqrt{N}}\mathbf{DV}^T=X^*\frac{1}{\sqrt{N}}\mathbf{DV}^T
+$$
+
+得到满足$Cov(X^*)=\mathbf I$的$X^*$，则
+
+$$
+S=XA_0^{-1}=X^*DV^TA_0^{-1}/\sqrt{N}
+$$
+
+于是经过这个变换之后，混合矩阵变为
+
+$$
+A = DV^TA_0^{-1}/\sqrt{N}
+$$
+
+则
+$$
+X^*=SA^T
+$$
+
+用R语言表示如下
+
+```{r}
+x <- scale(x, TRUE, FALSE) # central
+sx <- svd(x)	
+x <- sqrt(N) * sx$u # satisfy cov(x) = I
+target <- solve(A0)
+target <- diag(sx$d) %*% t(sx$v) %*% target/sqrt(N) # new mixing maxtrix
+```
+
+### `ProDenICA`法
+
+细节不再展开，直接利用`ProDenICA`中的包进行计算
+
+```{r}
+W0 <- matrix(rnorm(2*2), 2, 2)
+W0 <- ICAorthW(W0)
+W1 <- ProDenICA(x, W0=W0,trace=TRUE,Gfunc=GPois)$W
+```
+
+得到$A$的估计值`W1`
+
+### 计算Amari距离
+
+```{r}
+amari(W1, target)
+```
+
+
+## 比较三种算法
+
+这一部分试图重现Fig. 14.42。
+
