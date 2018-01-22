@@ -76,7 +76,9 @@ IR: "{\\mathrm{I\!R}}",
     S: "{\\mathbf{S}}",
 I: "{\\mathbf{I}}",
 J: "{\\mathbf{J}}",
-    X: "{\\mathbf{X}}",
+X: "{\\mathbf{X}}",
+U: "{\\mathbf{U}}",
+V: "{\\mathbf{V}}",
 
 LOG: "{\\mathrm{log}\\;}",
     E: "{\\mathrm{E}\\;}",
@@ -1576,7 +1578,7 @@ RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\qq
 <p>尽管(14.92)的第二个积分导出光滑样条， 但第一个积分比较困难， 需要近似。 我们构造一个$L$个值为$s_\ell^*$的细网格，这些值间距为$\Delta$、覆盖观测值$s_i$的取值范围， 并且统计得到的小块中$s_i$的个数：</p>
 <p>
 <script type="math/tex; mode=display">
-y_\ell^*=\frac{#s_i\in (s_\ell^*-\Delta/2, s_\ell^*+\Delta/2)}{N}\qquad (14.93)
+y_\ell^*=\frac{\#s_i\in (s_\ell^*-\Delta/2, s_\ell^*+\Delta/2)}{N}\qquad (14.93)
 </script>
 </p>
 <p>一般我们取$L$为1000就已经足够了。 则(14.92)可以近似为</p>
@@ -1604,7 +1606,7 @@ C(\A) &= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\qquad 
 a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\qquad (14.96)
 </script>
 其中$\E$表示关于$x_i$的期望。因为$\hat g_j$是拟合的四次（或者三次）样条，则式中第一项和第二项已经计算好了。</li>
-<li>采用对称平方根变换将$\A$化为正交矩阵：$(\A\A^T)^{-\frac 12}\A$。如果$\A=\U\D\V^T$是$\A$的SVD分解，则易证$\A\leftarrow UV^T$。</li>
+<li>采用对称平方根变换将$\A$化为正交矩阵：$(\A\A^T)^{-\frac 12}\A$。如果$\A=\U\D\V^T$是$\A$的SVD分解，则易证$\A\leftarrow \U\V^T$。</li>
 </ol>
 <p>我们的<code>ProDenICA</code>算法和<code>FastICA</code>算法在图14.37中的模拟时间序列数据、图14.38的均匀分布数据的混合以及图14.39中的数字数据都表现得一样好。</p>
 <h3 id="_7">例子：模拟</h3>
@@ -1612,8 +1614,8 @@ a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\qquad (14.9
 <p>图14.42展示了比较<code>ProDenICA</code>与<code>FastICA</code>以及另外一个半参方法<code>KernelICA</code>(Bach and Jordan, 2002<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)的模拟的结果。左图展示了作为比较的基础的18个分布。对于每个分布，我们产生成对的独立组分($N=1024$)，以及随机的混合矩阵$\IR^2$，取值为1到2之间。我们采用<code>FastICA</code>的R语言实现，采用(14.87)的负熵准则，<code>ProDenICA</code>也是这样。对于<code>KernelICA</code>，我们采用作者的MATLAB代码。因为搜索准则是非凸的，我们对每种方法采用5个随机初始值。每个算法都传入正交的混合矩阵$\A$（数据已经进行了白化），这可以用来比较产生的正交混合矩阵$\A_0$。我们采用Amari距离(Bach and Jordan, 2002<sup id="fnref2:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)来度量两个矩阵接近程度：</p>
 <p>
 <script type="math/tex; mode=display">
-d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vertr_{ij}\vert}-1\Big)+
-\frac{1}{2p}\sum\limits_{j=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vertr_{ij}\vert}-1\Big)\qquad (14.97)
+d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)+
+\frac{1}{2p}\sum\limits_{j=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)\qquad (14.97)
 </script>
 </p>
 <p>其中$r_{ij}=(\A_o\A^{-1})_{ij}$。图14.42的右图比较了真实矩阵与估计的矩阵的Amari距离（对数尺度下）。<code>ProDenICA</code>在所有的情形都可以与<code>FastICA</code>和<code>KernelICA</code>进行比较，并且在大多数混合情形下表现最好。</p>
