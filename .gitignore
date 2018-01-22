@@ -9,3 +9,4 @@ site
 .RData
 .ipynb_checkpoints/
 other
+.spyproject/
