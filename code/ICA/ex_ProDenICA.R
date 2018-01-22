@@ -1,7 +1,7 @@
 library(ProDenICA)
 p=2
 ### Can use letters a-r below for dist
-dist="n" 
+dist="a" 
 N=1024
 A0<-mixmat(p)
 s<-scale(cbind(rjordan(dist,N),rjordan(dist,N)))

@@ -15,8 +15,8 @@ genData <- function(dist, N = 1024, p = 2){
   x = scale(x, TRUE, FALSE)
   # whiten x
   xs = svd(x)
-  x = sqrt(N) * sx$u # new observations
-  mix.mat2 = diag(sx$d) %*% t(sx$v) %*% solve(mix.mat) / sqrt(N) # new mixing matrix
+  x = sqrt(N) * xs$u # new observations
+  mix.mat2 = diag(xs$d) %*% t(xs$v) %*% solve(mix.mat) / sqrt(N) # new mixing matrix
   return(list(x = x, A = mix.mat2))
 }
 
@@ -37,12 +37,15 @@ for (i in c(1:18)){
   }
 }
 
-res.mean = apply(res, c(1,2), mean)
-res.max = apply(res, c(1,2), max)
-res.min = apply(res, c(1,2), min)
+res.mean = log(1+apply(res, c(1,2), mean))
+offset = apply(res, c(1,2), sd)
+res.max = res.mean + offset/4
+res.min = res.mean - offset/4
+#res.max = apply(res, c(1,2), max)
+#res.min = apply(res, c(1,2), min)
 
 # plot
-plot(1:18, res.mean[1, ], xlab = "Distribution", ylab = "Amari Distance from True A", xaxt = 'n', type = "o", col = "orange", pch = 19, lwd = 2, ylim = c(min(res), max(res)))
+plot(1:18, res.mean[1, ], xlab = "Distribution", ylab = "Amari Distance from True A", xaxt = 'n', type = "o", col = "orange", pch = 19, lwd = 2, ylim = c(0, 0.5))
 axis(1, at = 1:18, labels = letters[1:18])
 lines(1:18, res.mean[2, ], type = "o", col = 'blue', pch = 19, lwd=2)
 legend("topright", c("ProDenICA", "FastICA"), lwd = 2, pch = 19, col = c("orange", "blue"))
