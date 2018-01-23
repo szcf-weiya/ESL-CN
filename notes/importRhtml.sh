@@ -24,5 +24,6 @@ filename=$(basename "$1")
 cp $1 .
 echo "copy ... OK"
 sed -i "10i <base target=\"_parent\">" $filename
+sed -i 's/mathjax.rstudio.com\/latest/cdn.bootcss.com\/mathjax\/2.7.2-beta.0/g' $filename
 echo "sed ... OK"
 exit 0
