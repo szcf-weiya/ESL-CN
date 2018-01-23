@@ -308,8 +308,3 @@ blockquote img.emojione {
 .md-typeset .critic.block :last-child {
  margin-bottom:.5em
 }
-
-iframe#rmd {
-  width: -webkit-fill-available;
-  height: -webkit-fill-available;
-}

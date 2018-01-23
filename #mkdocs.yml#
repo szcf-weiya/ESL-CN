@@ -1,0 +1,241 @@
+pages:
+  - 主页: 'index.md'
+  - 上篇:
+    - 序言:
+      - 第二版序言: 'Preface/2016-07-20-Preface-to-the-Second-Edition.md'
+      - 第一版序言: 'Preface/2016-07-21-Preface-to-the-First-Edition.md'
+    - 1 简介:
+      - 1.1 导言: '01 Introduction/2016-07-26-Chapter-1-Introduction.md'
+    - 2 监督学习概要:
+      - 2.1 导言: '02 Overview of Supervised Learning/2.1 Introduction.md'
+      - 2.2 变量类型和术语: '02 Overview of Supervised Learning/2.2 Variable Types and Terminology.md'
+      - 2.3 两种预测的简单方法: '02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction.md'
+      - 2.4 统计判别理论: '02 Overview of Supervised Learning/2.4 Statistical Decision Theory.md'
+      - 2.5 高维问题的局部方法: '02 Overview of Supervised Learning/2.5 Local Methods in High Dimensions.md'
+      - 2.6 统计模型，监督学习和函数逼近: '02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation.md'
+      - 2.7 结构化的回归模型: '02 Overview of Supervised Learning/2.7 Structured Regression Models.md'
+      - 2.8 限制性估计的类别: '02 Overview of Supervised Learning/2.8 Classes of Restricted Estimators.md'
+      - 2.9 模型选择和偏差-方差的权衡: '02 Overview of Supervised Learning/2.9 Model Selection and the Bias-Variance Tradeoff.md'
+      - 文献笔记: '02 Overview of Supervised Learning/Bibliographic Notes.md'
+    - 3 回归的线性方法:
+      - 3.1 导言: '03 Linear Methods for Regression/3.1 Introduction.md'
+      - 3.2 线性回归模型和最小二乘法: '03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares.md'
+      - 3.3 子集的选择: '03 Linear Methods for Regression/3.3 Subset Selection.md'
+      - 3.4 收缩的方法: '03 Linear Methods for Regression/3.4 Shrinkage Methods.md'
+      - 3.5 运用派生输入方向的方法: '03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions.md'
+      - 3.6 选择和收缩方法的比较: '03 Linear Methods for Regression/3.6 A Comparison of the Selection and Shrinkage Methods.md'
+      - 3.7 多重输出的收缩和选择: '03 Linear Methods for Regression/3.7 Multiple Outcome Shrinkage and Selection.md'
+      - 3.8 Lasso和相关路径算法的补充: '03 Linear Methods for Regression/3.8 More on the Lasso and Related Path Algorithms.md'
+      - 3.9 计算上的考虑: '03 Linear Methods for Regression/3.9 Computational Considerations.md'
+      - 文献笔记: '03 Linear Methods for Regression/Bibliographic Notes.md'
+    - 4 分类的线性方法:
+      - 4.1 导言: '04 Linear Methods for Classification/4.1 Introduction.md'
+      - 4.2 指示矩阵的线性回归: '04 Linear Methods for Classification/4.2 Linear Regression of an Indicator Matrix.md'
+      - 4.3 线性判别分析: '04 Linear Methods for Classification/4.3 Linear Discriminant Analysis.md'
+      - 4.4 逻辑斯蒂回归: '04 Linear Methods for Classification/4.4 Logistic Regression.md'
+      - 4.5 分离超平面: '04 Linear Methods for Classification/4.5 Separating Hyperplanes.md'
+      - 文献笔记: '04 Linear Methods for Classification/Bibliographic Notes.md'
+    - 5 基展开和正规化:
+      - 5.1 导言: '05 Basis Expansions and Regularization/5.1 Introduction.md'
+      - 5.2 分段多项式和样条: '05 Basis Expansions and Regularization/5.2 Piecewise Polynomials and Splines.md'
+      - 5.3 滤波和特征提取: '05 Basis Expansions and Regularization/5.3 Filtering and Feature Extraction.md'
+      - 5.4 光滑样条: '05 Basis Expansions and Regularization/5.4 Smoothing Splines.md'
+      - 5.5 光滑参数的自动选择: '05 Basis Expansions and Regularization/5.5-Automatic-Selection-of-the-Smoothing-Parameters.md'
+      - 5.6 非参逻辑斯蒂回归: '05 Basis Expansions and Regularization/5.6 Nonparametric Logistic Regression.md'
+      - 5.7 多维样条: '05 Basis Expansions and Regularization/5.7-Multidimensional-Splines.md'
+      - 5.8 正则化和再生核希尔伯特空间理论: '05 Basis Expansions and Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces.md'
+      - 5.9 小波光滑: '05 Basis Expansions and Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces.md'
+      - 文献笔记: '05 Basis Expansions and Regularization/Bibliographic Notes.md'
+      - 附录-B样条的计算: '05 Basis Expansions and Regularization/Appendix-Computations-for-B-splines.md'
+    - 6 核光滑方法:
+      - 6.0 导言: '06 Kernel Smoothing Methods/6.0 Introduction.md'
+      - 6.1 一维核光滑器: '06 Kernel Smoothing Methods/6.1 One-Dimensional Kernel Smoothers.md'
+      - 6.2 选择核的宽度: '06 Kernel Smoothing Methods/6.2 Selecting the Width of the Kernel.md'
+      - 6.3 $R^p$中的局部回归: '06 Kernel Smoothing Methods/6.3 Local Regression in R^p.md'
+      - 6.4 $R^p$中的结构化局部回归模型: '06 Kernel Smoothing Methods/6.4 Structured Local Regression Models in R^p.md'
+      - 6.5 局部似然和其他模型: '06 Kernel Smoothing Methods/6.5 Local Likelihood and Other Models.md'
+      - 6.6 核密度估计和分类: '06 Kernel Smoothing Methods/6.6 Kernel Density Estimation and Classification.md'
+      - 6.7 径向基函数和核: '06 Kernel Smoothing Methods/6.7 Radial Basis Functions and Kernels.md'
+      - 6.8 混合模型的密度估计和分类: '06 Kernel Smoothing Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification.md'
+      - 6.9 计算上的考虑: '06 Kernel Smoothing Methods/6.9-Computational-Consoderations.md'
+      - 文献笔记: '06 Kernel Smoothing Methods/Bibliographic Notes.md'
+
+  - 中篇:
+    - 7 模型评估及选择:
+      - 7.1 导言: '07 Model Assessment and Selection/7.1 Introduction.md'
+      - 7.2 偏差，方差和模型复杂度: '07 Model Assessment and Selection/7.2 Bias, Variance and Model Complexity.md'
+      - 7.3 偏差-方差分解: '07 Model Assessment and Selection/7.3 The Bias-Variance Decomposition.md'
+      - 7.4 测试误差率的optimism: '07 Model Assessment and Selection/7.4 Optimism of the Training Error Rate.md'
+      - 7.5 样本内预测误差的估计: '07 Model Assessment and Selection/7.5 Estimates of In-Sample Prediction Error.md'
+      - 7.6 参数的有效个数: '07 Model Assessment and Selection/7.6 The Effective Number of Parameters.md'
+      - 7.7 贝叶斯方法和BIC: '07 Model Assessment and Selection/7.7 The Bayesian Approach and BIC.md'
+      - 7.8 最小描述长度: '07 Model Assessment and Selection/7.8 Minimum Description Length.md'
+      - 7.9 VC维: '07 Model Assessment and Selection/7.9 Vapnik-Chervonenkis Dimension.md'
+      - 7.10 交叉验证: '07 Model Assessment and Selection/7.10 Cross-Validation.md'
+      - 7.11 自助法: '07 Model Assessment and Selection/7.11 Bootstrap Methods.md'
+      - 7.12 条件测试误差或期望测试误差: '07 Model Assessment and Selection/7.12 Conditional or Expected Test Error.md'
+      - 文献笔记: '07 Model Assessment and Selection/Bibliographic Notes.md'
+
+    - 8 模型推断和平均:
+      - 8.1 导言: '08 Model Inference and Averaging/8.1 Introduction.md'
+      - 8.2 自助法和最大似然法: '08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods.md'
+      - 8.3 贝叶斯方法: '08 Model Inference and Averaging/8.3 Bayesian Methods.md'
+      - 8.4 自助法和贝叶斯推断之间的关系: '08 Model Inference and Averaging/8.4 Relationship Between the Bootstrap and Bayesian Inference.md'
+      - 8.5 EM算法: '08 Model Inference and Averaging/8.5 The EM Algorithm.md'
+      - 8.6 MCMC向后采样: '08 Model Inference and Averaging/8.6 MCMC for Sampling from the Posterior.md'
+      - 8.7 袋装法: '08 Model Inference and Averaging/8.7 Bagging.md'
+      - 8.8 模型平均和堆栈: '08 Model Inference and Averaging/8.8 Model Averaging and Stacking.md'
+      - 8.9 随机搜索: '08 Model Inference and Averaging/8.9 Stochastic Search.md'
+      - 文献笔记: '08 Model Inference and Averaging/Bibliographic Notes.md'
+
+    - 9 增广模型，树，以及相关方法:
+      - 9.0 导言: '09 Additive Models, Trees, and Related Methods/9.0 Introduction.md'
+      - 9.1 广义加性模型: '09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models.md'
+      - 9.2 基于树的方法: '09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods(CART).md'
+      - 9.3 耐心规则归纳法: '09 Additive Models, Trees, and Related Methods/9.3 PRIM(Bump Hunting).md'
+      - 9.4 多变量自适应回归样条: '09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines).md'
+      - 9.5 专家的系统混合: '09 Additive Models, Trees, and Related Methods/9.5 Hierarchical Mixtures of Experts.md'
+      - 9.6 缺失数据: '09 Additive Models, Trees, and Related Methods/9.6 Missing Data.md'
+      - 9.7 计算上的考虑: '09 Additive Models, Trees, and Related Methods/9.7 Computational Considerations.md'
+      - 文献笔记: '09 Additive Models, Trees, and Related Methods/Bibliographic Notes.md'
+
+    - 10 增强和加性树:
+      - 10.1 增强方法: '10 Boosting and Additive Trees/10.1 Boosting Methods.md'
+      - 10.2 boosting拟合可加模型:  '10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model.md'
+      - 10.3 向前逐步加性建模: '10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling.md'
+      - 10.4 指数损失和AdaBoost: '10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost.md'
+      - 10.5 为什么是指数损失: '10 Boosting and Additive Trees/10.5 Why Exponential Loss.md'
+      - 10.6 损失函数和鲁棒性: '10 Boosting and Additive Trees/10.6 Loss Functions and Robustness.md'
+      - 10.7 数据挖掘的现货方法: '10 Boosting and Additive Trees/10.7 Off-the-Shelf Procedures for Data Mining.md'
+      - 10.8 垃圾邮件的例子: '10 Boosting and Additive Trees/10.8 Spam Data.md'
+      - 10.9 boosting树: '10 Boosting and Additive Trees/10.9 Boosting Trees.md'
+      - 10.10 利用梯度boosting的数值优化: '10 Boosting and Additive Trees/10.10 Numerical Optimization via Gradient Boosting.md'
+      - 10.11 大小合适的boosting树: '10 Boosting and Additive Trees/10.11 Right-Sized Trees for Boosting.md'
+      - 10.12 正则化: '10 Boosting and Additive Trees/10.12 Regularization.md'
+      - 文献笔记: '10 Boosting and Additive Trees/Bibliographic Notes.md'
+
+    - 11 神经网络:
+      - 11.1 导言: '11 Neural Networks/11.1 Introduction.md'
+      - 11.2 投影寻踪回归: '11 Neural Networks/11.2 Projection Pursuit Regression.md'
+      - 11.3 神经网络: '11 Neural Networks/11.3 Neural Networks.md'
+      - 11.4 拟合神经网络: '11 Neural Networks/11.4 Fitting Neural Networks.md'
+      - 11.5 训练神经网络的一些问题: '11 Neural Networks/11.5 Some Issues in Training Neural Networks.md'
+      - 11.6 模拟数据的例子: '11 Neural Networks/11.6 Example of Simulated Data.md'
+      - 11.7 邮编数字的例子: '11 Neural Networks/11.7-Example-ZIP-Code-Data.md'
+      - 文献笔记: '11 Neural Networks/Bibliographic Notes.md'
+
+    - 12 支持向量机和灵活的判别方法:
+      - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
+      - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md'
+      - 12.3 支持向量机和核: '12 Support Vector Machines and Flexible Discriminants/12.3 Support Vector Machines and Kernels.md'
+      - 文献笔记: '12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes.md'
+
+  - 下篇:
+    - 13 原型方法和最近邻:
+      - 13.1 导言: '13 Prototype Methods and Nearest-Neighbors/13.1 Introduction.md'
+      - 13.2 原型方法: '13 Prototype Methods and Nearest-Neighbors/13.2 Prototype Methods.md'
+      - 13.3 k最近邻分类器: '13 Prototype Methods and Nearest-Neighbors/13.3 k-Nearest-Neighbor Classifiers.md'
+      - 13.4 自适应的最近邻方法: '13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods.md'
+      - 13.5 计算上的考虑: '13 Prototype Methods and Nearest-Neighbors/13.5 Computational Considerations.md'
+      - 文献笔记: '13 Prototype Methods and Nearest-Neighbors/Bibliographic Notes.md'
+
+    - 14 非监督学习:
+      - 14.1 导言: '14 Unsupervised Learning/14.1 Introduction.md'
+      - 14.2 关联规则: '14 Unsupervised Learning/14.2 Association Rules.md'
+      - 14.3 聚类分析: '14 Unsupervised Learning/14.3 Cluster Analysis.md'
+      - 14.4 自组织图: '14 Unsupervised Learning/14.4 Self-Organizing Maps.md'
+      - 14.5 主成分，主曲线以及主曲面: '14 Unsupervised Learning/14.5-Principal-Components-Curves-and-Surfaces.md'
+      - 14.6 非负矩阵分解: '14 Unsupervised Learning/14.6 Non-negative Matrix Factorization.md'
+      - 14.7 独立成分分析和探索投射寻踪: '14 Unsupervised Learning/14.7 Independent Component Analysis and Exploratory Projection Pursuit.md'
+      - 14.8 多维缩放: '14 Unsupervised Learning/14.8 Multidimensional Scaling.md'
+      - 14.9 非线性降维和局部多维缩放: '14 Unsupervised Learning/14.9 Nonlinear Dimension Reduction and Local Multidimensional Scaling.md'
+      - 14.10 谷歌的PageRank算法: '14 Unsupervised Learning/14.10 The Google PageRank Algorithm.md'
+      - 文献笔记: '14 Unsupervised Learning/Bibliographic Notes.md'
+
+    - 15 随机森林:
+      - 15.1 导言: '15 Random Forests/15.1 Introduction.md'
+      - 15.2 随机森林的定义: '15 Random Forests/15.2 Definition of Random Forests.md'
+      - 15.3 随机森林的细节: '15 Random Forests/15.3 Details of Random Forests.md'
+      - 15.4 随机森林的分析: '15 Random Forests/15.4-Analysis-of-Random-Forests.md'
+      - 文献笔记: '15 Random Forests/Bibliographic Notes.md'
+
+    - 16 集成学习:
+      - 16.1 导言: '16 Ensemble Learning/16.1 Introduction.md'
+      - 16.2 增强和正则路径: '16 Ensemble Learning/16.2 Boosting and Regularization Paths.md'
+      - 16.3 学习集成: '16 Ensemble Learning/16.3 Learning Ensembles.md'
+      - 文献笔记: '16 Ensemble Learning/Bibliographic Notes.md'
+
+    - 17 无向图模型:
+      - 17.1 导言: '17 Undirected Graphical Models/17.1 Introduction.md'
+      - 17.2 马尔科夫图及其性质: '17 Undirected Graphical Models/17.2 Markov Graphs and Their Properties.md'
+      - 17.3 连续变量的无向图模型: '17 Undirected Graphical Models/17.3 Undirected Graphical Models for Continuous Variables.md'
+      - 17.4 离散变量的无向图模型: '17 Undirected Graphical Models/17.4 Undirected Graphical Models for Discrete Variables.md'
+      - 文献笔记: '17 Undirected Graphical Models/Bibliographic Notes.md'
+
+    - 18 高维问题:
+      - 18.1 当p大于N: '18 High-Dimensional Problems/18.1 When p is Much Bigger than N.md'
+      - 18.2 对角线性判别分析和最近收缩重心: '18 High-Dimensional Problems/18.2 Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids.md'
+      - 18.3 二次正则的线性分类器: '18 High-Dimensional Problems/18.3 Linear Classifiers with Quadratic Regularization.md'
+      - 18.4 一次正则的线性分类器: '18 High-Dimensional Problems/18.4 Linear Classifiers with L1 Regularization.md'
+      - 18.5 当特征不可用时的分类: '18 High-Dimensional Problems/18.5 Classification When Features are Unavailable.md'
+      - 18.6 有监督的主成分: '18 High-Dimensional Problems/18.6 High-Dimensional Regression.md'
+      - 18.7 特征评估和多重检验问题: '18 High-Dimensional Problems/18.7 Feature Assessment and the Multiple-Testing Problem.md'
+      - 文献笔记: '18 High-Dimensional Problems/Bioliographic Notes.md'
+
+  - 个人笔记:
+    - 模拟实验:
+      - ICA模拟实验: 'notes/ICA.md'
+      - 
+
+
+
+site_name: 'ESL CN'
+
+site_description: 'The Elements of Statistical Learning(ESL) 的中文笔记'
+
+#site_url: https://szcf-weiya.github.io/ESL-CN/
+
+site_url: https://esl.hohoweiya.xyz
+
+repo_url: https://github.com/szcf-weiya
+
+url_en: https://stats.hohoweiya.xyz
+
+url_cn: https://blog.hohoweiya.xyz
+
+website_en: Blog
+
+website_cn: 随笔
+
+copyright: 'Copyright &copy; 2016-2018 weiya'
+
+markdown_extensions:
+  - admonition
+  - smarty
+  - sane_lists
+  - mdx_math
+  - footnotes
+  - meta
+  - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+
+extra_css:
+  - css/newsprint.css
+  - css/admonition_fix.css
+
+#extra_javascript:
+#  - js/mathjax.js
+
+#docs_dir: 'docs'
+
+extra_templates:
+  - sitemap.xml
+
+theme:
+  name: mkdocs
+  custom_dir: yeti
+
+#theme_dir: 'yeti'
+
+use_directory_urls: false
