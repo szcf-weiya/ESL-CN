@@ -2491,14 +2491,19 @@
             "title": "\u6587\u732e\u7b14\u8bb0"
         }, 
         {
-            "location": "/notes/ICA/ICA/index.html", 
-            "text": "ICA\u7684\u6a21\u62df\u5b9e\u9a8c", 
-            "title": "ICA\u6a21\u62df\u5b9e\u9a8c"
+            "location": "/notes/sim73/index.html", 
+            "text": "", 
+            "title": "\u6a21\u578b\u9009\u62e97.3"
         }, 
         {
-            "location": "/notes/ICA/ICA/index.html#ica", 
+            "location": "/notes/sim77/index.html", 
             "text": "", 
-            "title": "ICA\u7684\u6a21\u62df\u5b9e\u9a8c"
+            "title": "\u6a21\u578b\u9009\u62e97.7"
+        }, 
+        {
+            "location": "/notes/ICA/index.html", 
+            "text": "", 
+            "title": "ICA\u6a21\u62df\u5b9e\u9a8c"
         }
     ]
 }
