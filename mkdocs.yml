@@ -184,7 +184,9 @@ pages:
 
   - 个人笔记:
     - 模拟实验:
-      - ICA模拟实验: 'notes/ICA/ICA.md'
+      - 模型选择7.3: 'notes/sim73.md'
+      - 模型选择7.7: 'notes/sim77.md'
+      - ICA模拟实验: 'notes/ICA.md'
 
 
 

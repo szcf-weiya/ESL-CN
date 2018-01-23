@@ -21,8 +21,8 @@ if [[ ! -f $1 ]]; then
 fi
 
 filename=$(basename "$1")
-mv $1 .
-echo "moving ... OK"
+cp $1 .
+echo "copy ... OK"
 sed -i "10i <base target=\"_parent\">" $filename
 echo "sed ... OK"
 exit 0

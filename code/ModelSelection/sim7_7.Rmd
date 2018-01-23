@@ -4,7 +4,7 @@ author: "weiya <szcfweiya@gmail.com>"
 date: "Jan. 7, 2018"
 output:
   html_document:
-    toc: yes
+    css: ~/Github/ESL-CN/docs/css/newsprint.css
   html_notebook:
     toc: yes
 ---
@@ -14,7 +14,7 @@ output:
 
 ## 问题回顾
 
-这是接着图7.3的例子，关于7.3的例子，我也重现了书中的模拟，见[这里](http://rmd.hohoweiya.xyz/sim7_3.html)。
+这是接着图7.3的例子的后续。
 
 采用AIC，BIC和SRM来对图7.3的例子来选择模型大小。对于KNN，模型指标$\alpha$指的是邻居的个数，而对于标着REG的来说$\alpha$为子集大小。采用每个选择方法（例如，AIC），我们估计最优模型$\hat \alpha$并且在测试集上找到真实的预测误差$Err_{\cal T}(\hat\alpha)$。对于同样的训练集，我们计算最优和最坏可能的模型选择的预测误差：$min_\alpha Err_{\cal T}(\alpha)$和$max_\alpha Err_{\cal T}(\alpha)$。
 考察下列比值，它表示采用选择的模型和最优模型的误差
