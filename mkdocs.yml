@@ -182,6 +182,10 @@ pages:
       - 18.7 特征评估和多重检验问题: '18 High-Dimensional Problems/18.7 Feature Assessment and the Multiple-Testing Problem.md'
       - 文献笔记: '18 High-Dimensional Problems/Bioliographic Notes.md'
 
+  - 个人笔记:
+    - 模拟实验:
+      - ICA模拟实验: 'notes/ICA/ICA.md'
+
 
 
 site_name: 'ESL CN'

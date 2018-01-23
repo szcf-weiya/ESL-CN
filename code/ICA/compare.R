@@ -37,7 +37,7 @@ for (i in c(1:18)){
   }
 }
 
-res.mean = log(1+apply(res, c(1,2), mean))
+res.mean = apply(res, c(1,2), mean)
 offset = apply(res, c(1,2), sd)
 res.max = res.mean + offset/4
 res.min = res.mean - offset/4

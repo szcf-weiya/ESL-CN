@@ -170,3 +170,7 @@ legend("topright", c("ProDenICA", "FastICA"), lwd = 2, pch = 19, col = c("orange
 试图绘制出图中的变化范围，但由于书中并未指出变换范围是什么，尝试了标准差及最大最小值，但效果不是很好，这是可以继续优化的一个方面。下图是用四分之一的标准差作为其波动范围得到的
 
 ![](ICA_with_sd_4.png)
+
+## 待完善
+
+加入kernelICA
