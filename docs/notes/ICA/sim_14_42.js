@@ -270,9 +270,9 @@ res.max = apply(res, c(1,2), max)\
 res.min = apply(res, c(1,2), min)\
 \
 # plot\
-plot(1:18, res.mean[1, ], xlab = &quot;Distribution&quot;, ylab = &quot;Amari Distance from True A&quot;, xaxt = \''n\'', type = &quot;o&quot;, col = &quot;orange&quot;, pch = 19, lwd = 2, ylim = c(0, 0.5))\
+plot(1:18, res.mean[1, ], xlab = &quot;Distribution&quot;, ylab = &quot;Amari Distance from True A&quot;, xaxt = \'n\', type = &quot;o&quot;, col = &quot;orange&quot;, pch = 19, lwd = 2, ylim = c(0, 0.5))\
 axis(1, at = 1:18, labels = letters[1:18])\
-lines(1:18, res.mean[2, ], type = &quot;o&quot;, col = \''blue\'', pch = 19, lwd=2)\
+lines(1:18, res.mean[2, ], type = &quot;o&quot;, col = \'blue\', pch = 19, lwd=2)\
 legend(&quot;topright&quot;, c(&quot;ProDenICA&quot;, &quot;FastICA&quot;), lwd = 2, pch = 19, col = c(&quot;orange&quot;, &quot;blue&quot;))\
 #for(i in 1:18)\
 #{\
@@ -310,7 +310,7 @@ legend(&quot;topright&quot;, c(&quot;ProDenICA&quot;, &quot;FastICA&quot;), lwd 
 \
 // add bootstrap table styles to pandoc tables\
 function bootstrapStylePandocTables() {\
-  $(\''tr.header\'').parent(\''thead\'').parent(\''table\'').addClass(\''table table-condensed\'');\
+  $(\'tr.header\').parent(\'thead\').parent(\'table\').addClass(\'table table-condensed\');\
 }\
 $(document).ready(function () {\
   bootstrapStylePandocTables();\

@@ -31,5 +31,5 @@ targetFile="../docs/notes/${dirname}/${filename}.js"
 echo $targetFile
 
 echo "document.write('\\" > $targetFile
-sed 's/\\/\\\\/g;s/^.*$/&\\/g;s/'\''/\\'\'\''/g' $1 >> $targetFile
+sed 's/\\/\\\\/g;s/^.*$/&\\/g;s/'\''/\\'\''/g' $1 >> $targetFile
 echo "');" >> $targetFile
