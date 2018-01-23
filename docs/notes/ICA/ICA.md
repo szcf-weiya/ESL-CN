@@ -1,5 +1,4 @@
 # ICA的模拟实验
 
-<div id="rmd">
-<script src="../sim_14_42.js"></script>
-</div>
+<iframe id="rmd" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Rmd" width="100%" src="../sim_14_42.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 456px !important;" horizontalscrolling="no" verticalscrolling="no">
+</iframe>
