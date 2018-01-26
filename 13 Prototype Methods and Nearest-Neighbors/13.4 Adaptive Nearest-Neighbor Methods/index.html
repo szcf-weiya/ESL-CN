@@ -1336,18 +1336,43 @@ tr: "{\\mathrm{tr}}",
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-08-29</td>
+<td>2017-08-29&amp; 2018-01-26</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>In Progress</td>
 </tr>
 </tbody>
 </table>
-<p>当在高维特征空间中做最近邻分类时，最近邻的点可以非常远，导致出偏差，并且降低了分类的效果。</p>
+<p>当在高维特征空间中做最近邻分类时，最近邻的点可以非常远，导致偏差，并且降低了分类的效果。</p>
 <p>为了定量化这一点，考虑在单位立方体$[-\frac{1}{2},\frac{1}{2}]^p$中均匀分布的数据点。令$R$为中心在原点的1-最近邻的半径。则</p>
 <p>
 <script type="math/tex; mode=display">
-\text{median(R)} = v_p^{-frac{1}{p}}(1-\frac{1}{2}^{1/N})^{1/p}\qquad (13.7)
+\text{median(R)} = v_p^{-\frac{1}{p}}(1-\frac{1}{2}^{1/N})^{1/p}\qquad (13.7)
 </script>
 </p>
-<p>其中$v_pr^p$是在$p$维空间半径为$r$的球的体积。图13.12显示了不同的训练样本大小和维度下半径的中位数。我们看到半径的中位数很快达到0.5，也就是到立方体的边的距离。</p>
+<p>其中$v_pr^p$是在$p$维空间半径为$r$的球的体积。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：推导(13.7)</p>
+<p>记$X$为离原点的距离，根据点的均匀分布知
+<script type="math/tex; mode=display">
+F(X) = P(X<x)=v_pr^p
+</script>
+考虑次序统计量$X_{(1)}$，即原点的1最近邻点，则
+<script type="math/tex; mode=display">
+F_1(x)=P(X_{(1)}<x)=1-(1-F(x))^N
+</script>
+而中位数满足
+<script type="math/tex; mode=display">
+F_1(\mathrm{median}(R))=\frac 12
+</script>
+则
+<script type="math/tex; mode=display">
+\mathrm{median}=v_p^{-\frac 1p}\Big(1-{\frac 12}^{\frac 1N}\Big)^{1/p}
+</script>
+证毕。</p>
+</div>
+<p>图13.12显示了不同的训练样本大小和维度下半径的中位数。我们看到半径的中位数很快达到0.5，也就是到立方体的边的距离。</p>
 <p><img alt="" src="../../img/13/fig13.12.png" /></p>
 <p>这个问题我们可以怎么做呢？考虑图13.13的两个类别的情形。</p>
 <p><img alt="" src="../../img/13/fig13.12.png" /></p>
