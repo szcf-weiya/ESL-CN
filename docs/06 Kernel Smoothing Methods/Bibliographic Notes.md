@@ -1,4 +1,4 @@
-# 文献笔记
+# 6.10 文献笔记
 
 | 原文   | [The Elements of Statistical Learning](../book/The Elements of Statistical Learning.pdf) |
 | ---- | ---------------------------------------- |
