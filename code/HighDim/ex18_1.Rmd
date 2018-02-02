@@ -3,8 +3,10 @@ title: "模拟例18.1"
 author: "weiya <szcfweiya@gmail.com>"
 date: "December 29, 2017"
 output:
-  html_notebook: 
-    toc: true
+  html_document:
+    css: ~/Github/ESL-CN/docs/css/newsprint.css
+  html_notebook:
+    toc: yes
 ---
 
 本笔记是[ESL18.1节](https://esl.hohoweiya.xyz/18%20High-Dimensional%20Problems/18.1%20When%20p%20is%20Much%20Bigger%20than%20N/index.html)例子的模拟。
