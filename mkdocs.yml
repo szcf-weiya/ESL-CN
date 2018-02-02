@@ -187,6 +187,7 @@ pages:
       - 模型选择7.3: 'notes/sim73.md'
       - 模型选择7.7: 'notes/sim77.md'
       - ICA模拟实验: 'notes/ICA.md'
+      - 高维问题: 'notes/ex18_1.md'
     - 比较总结:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
 
