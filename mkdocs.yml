@@ -186,6 +186,7 @@ pages:
     - 模拟实验:
       - 模型选择7.3: 'notes/sim73.md'
       - 模型选择7.7: 'notes/sim77.md'
+      - 13.3节的比较研究: 'notes/sim13_5.md'
       - ICA模拟实验: 'notes/ICA.md'
       - 高维问题: 'notes/ex18_1.md'
     - 比较总结:

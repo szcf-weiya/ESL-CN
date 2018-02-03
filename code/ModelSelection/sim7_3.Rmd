@@ -4,7 +4,7 @@ author: "weiya <szcfweiya@gmail.com>"
 date: "Jan. 5, 2018"
 output:
   html_document:
-    css: ~/Github/ESL-CN/docs/css/newsprint.css
+    css: ../../docs/css/newsprint.css
   html_notebook:
     toc: yes
 ---
