@@ -198,6 +198,11 @@ code,
 }
 
 pre,
+code {
+	font-family: Consolas;
+}
+
+pre,
 code,
 tt {
 	font-size: .875em;
