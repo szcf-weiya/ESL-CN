@@ -652,22 +652,22 @@
         }, 
         {
             "location": "/05 Basis Expansions and Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html", 
-            "text": "5.8 \u6b63\u5219\u5316\u548c\u518d\u751f\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u7406\u8bba\n\n\n\n\n\n\n\n\n\u539f\u6587\n\n\nThe Elements of Statistical Learning\n\n\n\n\n\n\n\n\n\n\n\u7ffb\u8bd1\n\n\nszcf-weiya\n\n\n\n\n\n\n\u65f6\u95f4\n\n\n2017-12-07", 
+            "text": "5.8 \u6b63\u5219\u5316\u548c\u518d\u751f\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u7406\u8bba\n\n\n\n\n\n\n\n\n\u539f\u6587\n\n\nThe Elements of Statistical Learning\n\n\n\n\n\n\n\n\n\n\n\u7ffb\u8bd1\n\n\nszcf-weiya\n\n\n\n\n\n\n\u65f6\u95f4\n\n\n2018-02-03\n\n\n\n\n\n\n\n\n\u5728\u8fd9\u90e8\u5206\u6211\u4eec\u5c06\u6837\u6761\u653e\u8fdb\u66f4\u5927\u7684\u6b63\u89c4\u65b9\u6cd5\u6846\u67b6\u4e0b\uff0c\u5e76\u4e14\u518d\u751f\u51fa\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u3002\u8fd9\u90e8\u5206\u975e\u5e38\u4e13\u4e1a(quite technical)\uff0c\u56e0\u6b64\u4e0d\u611f\u5174\u8da3\u6216\u8005\u754f\u60e7\u7684\u8bfb\u8005\u53ef\u4ee5\u8df3\u8fc7\u3002", 
             "title": "5.8 \u6b63\u5219\u5316\u548c\u518d\u751f\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u7406\u8bba"
         }, 
         {
             "location": "/05 Basis Expansions and Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html#58", 
-            "text": "\u539f\u6587  The Elements of Statistical Learning      \u7ffb\u8bd1  szcf-weiya    \u65f6\u95f4  2017-12-07", 
+            "text": "\u539f\u6587  The Elements of Statistical Learning      \u7ffb\u8bd1  szcf-weiya    \u65f6\u95f4  2018-02-03     \u5728\u8fd9\u90e8\u5206\u6211\u4eec\u5c06\u6837\u6761\u653e\u8fdb\u66f4\u5927\u7684\u6b63\u89c4\u65b9\u6cd5\u6846\u67b6\u4e0b\uff0c\u5e76\u4e14\u518d\u751f\u51fa\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u3002\u8fd9\u90e8\u5206\u975e\u5e38\u4e13\u4e1a(quite technical)\uff0c\u56e0\u6b64\u4e0d\u611f\u5174\u8da3\u6216\u8005\u754f\u60e7\u7684\u8bfb\u8005\u53ef\u4ee5\u8df3\u8fc7\u3002", 
             "title": "5.8 \u6b63\u5219\u5316\u548c\u518d\u751f\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u7406\u8bba"
         }, 
         {
             "location": "/05 Basis Expansions and Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html", 
-            "text": "5.8 \u6b63\u5219\u5316\u548c\u518d\u751f\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u7406\u8bba\n\n\n\n\n\n\n\n\n\u539f\u6587\n\n\nThe Elements of Statistical Learning\n\n\n\n\n\n\n\n\n\n\n\u7ffb\u8bd1\n\n\nszcf-weiya\n\n\n\n\n\n\n\u65f6\u95f4\n\n\n2017-12-07", 
+            "text": "5.8 \u6b63\u5219\u5316\u548c\u518d\u751f\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u7406\u8bba\n\n\n\n\n\n\n\n\n\u539f\u6587\n\n\nThe Elements of Statistical Learning\n\n\n\n\n\n\n\n\n\n\n\u7ffb\u8bd1\n\n\nszcf-weiya\n\n\n\n\n\n\n\u65f6\u95f4\n\n\n2018-02-03\n\n\n\n\n\n\n\n\n\u5728\u8fd9\u90e8\u5206\u6211\u4eec\u5c06\u6837\u6761\u653e\u8fdb\u66f4\u5927\u7684\u6b63\u89c4\u65b9\u6cd5\u6846\u67b6\u4e0b\uff0c\u5e76\u4e14\u518d\u751f\u51fa\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u3002\u8fd9\u90e8\u5206\u975e\u5e38\u4e13\u4e1a(quite technical)\uff0c\u56e0\u6b64\u4e0d\u611f\u5174\u8da3\u6216\u8005\u754f\u60e7\u7684\u8bfb\u8005\u53ef\u4ee5\u8df3\u8fc7\u3002", 
             "title": "5.9 \u5c0f\u6ce2\u5149\u6ed1"
         }, 
         {
             "location": "/05 Basis Expansions and Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html#58", 
-            "text": "\u539f\u6587  The Elements of Statistical Learning      \u7ffb\u8bd1  szcf-weiya    \u65f6\u95f4  2017-12-07", 
+            "text": "\u539f\u6587  The Elements of Statistical Learning      \u7ffb\u8bd1  szcf-weiya    \u65f6\u95f4  2018-02-03     \u5728\u8fd9\u90e8\u5206\u6211\u4eec\u5c06\u6837\u6761\u653e\u8fdb\u66f4\u5927\u7684\u6b63\u89c4\u65b9\u6cd5\u6846\u67b6\u4e0b\uff0c\u5e76\u4e14\u518d\u751f\u51fa\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u3002\u8fd9\u90e8\u5206\u975e\u5e38\u4e13\u4e1a(quite technical)\uff0c\u56e0\u6b64\u4e0d\u611f\u5174\u8da3\u6216\u8005\u754f\u60e7\u7684\u8bfb\u8005\u53ef\u4ee5\u8df3\u8fc7\u3002", 
             "title": "5.8 \u6b63\u5219\u5316\u548c\u518d\u751f\u6838\u5e0c\u5c14\u4f2f\u7279\u7a7a\u95f4\u7406\u8bba"
         }, 
         {
