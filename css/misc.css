@@ -3,5 +3,18 @@
 }
 
 .md-typeset__table {
-  width: 100%;
+  display: block !important;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+img.emojione {
+    display: -webkit-inline-box;
+    width: 1.5rem;
+    vertical-align: text-bottom;
 }
