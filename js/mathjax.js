@@ -5,21 +5,35 @@ window.MathJax = {
   },
   TeX: {
     Macros: {
-      LOG: "{\\mathrm{log }}",
-      E: "{\\mathrm{E }}",
-      1: "{\\boldsymbol 1}",
-
       A: "{\\mathbf{A}}",
       B: "{\\mathbf{B}}",
       C: "{\\mathbf{C}}",
       D: "{\\mathbf{D}}",
       R: "{\\mathbf{R}}",
-      S: "{\\mathbf{S}}",
+      IR: "{\\mathrm{I\!R}}",
+          S: "{\\mathbf{S}}",
       I: "{\\mathbf{I}}",
-      X: "{\\mathbf{S}}",
+      J: "{\\mathbf{J}}",
+      X: "{\\mathbf{X}}",
+      Y: "{\\mathbf{Y}}",
+      U: "{\\mathbf{U}}",
+      V: "{\\mathbf{V}}",
+      W: "{\\mathbf{W}}",
 
-      Cov: "{\\mathrm{Cov }}",
-      Var: "{\\mathrm{Var }}"
+      LOG: "{\\mathrm{log}\\;}",
+      E: "{\\mathrm{E}\\;}",
+      1: "{\\boldsymbol 1}",
+      Cov: "{\\mathrm{Cov}\\;}",
+      Var: "{\\mathrm{Var}\\;}",
+      det: "{\\mathrm{det}\\;}",
+      cosh: "{\\mathrm{cosh}\\;}",
+      arg: "{\\mathrm{arg}\\;}",
+      max: "{\\mathrm{max}\\;}",
+      min: "{\\mathrm{min}\\;}",
+
+      sign: "{\\mathrm{sign}}",
+      df: "{\\mathrm{df}}",
+      tr: "{\\mathrm{tr}}"
     },
     entensions: ["color.js"]
   }
