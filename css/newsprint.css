@@ -120,7 +120,7 @@ h1 {
 
 a {
 	text-decoration: none;
-	color: #065588;
+	/*color: #065588;*/
 }
 a:hover,
 a:active {
