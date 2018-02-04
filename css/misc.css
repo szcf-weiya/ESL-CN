@@ -19,6 +19,18 @@ img.emojione {
     vertical-align: text-bottom;
 }
 
-a {
-  color: indigo !important;
+/* link in main doc */ 
+p a {
+  color: blue !important;
+}
+p a:hover {
+  color: red!important;
+}
+
+/* link in thead */
+th a {
+  color: blue !important;
+}
+th a:hover {
+  color: red!important;
 }
