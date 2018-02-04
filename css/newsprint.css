@@ -60,6 +60,10 @@ q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	/*center*/
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
 /* styles */
 
@@ -416,4 +420,12 @@ header, .context-menu, .megamenu-content, footer {
 .footnotes hr {
   width: 50%;
   margin-left: 0;
+}
+
+/* img */
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
 }
