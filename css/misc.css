@@ -19,7 +19,7 @@ img.emojione {
     vertical-align: text-bottom;
 }
 
-/* link in main doc */ 
+/* link in main doc */
 p a {
   color: blue !important;
 }
@@ -33,4 +33,14 @@ th a {
 }
 th a:hover {
   color: red!important;
+}
+
+/* toc */
+label.md-nav__link {
+  font-weight: 550;
+}
+
+label.md-nav__title {
+  font-weight: lighter;
+  font-size: 2em;
 }
