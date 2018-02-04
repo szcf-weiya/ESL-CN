@@ -1,3 +1,7 @@
 .md-typeset__table a {
   color: red;
 }
+
+.md-typeset__table {
+  width: 100%;
+}
