@@ -1,14 +1,9 @@
-<!--
-<iframe id="rmd" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Rmd" width="100%" src="../sim7_3.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 10000px !important;" horizontalscrolling="no" verticalscrolling="no">
-</iframe>
--->
+# 模拟：Fig. 7.3
 
-# 图7.3的模拟实验
-
-| R Notebook   | [模拟图7.3](http://rmd.hohoweiya.xyz/sim7_3.html) |
+| R Notebook   | [模拟：Fig. 7.3](http://rmd.hohoweiya.xyz/sim7_3.html) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2017-01-05                               |
+| 时间   | 2018-01-05                               |
 | 更新 | 2018-02-04 |
 
 本笔记是[ESL7.3节](https://esl.hohoweiya.xyz/07%20Model%20Assessment%20and%20Selection/7.3%20The%20Bias-Variance%20Decomposition/index.html)图7.3的模拟。

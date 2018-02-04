@@ -1,65 +1,39 @@
-<!--
-<iframe id="rmd" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Rmd" width="100%" src="../sim7_3.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 10000px !important;" horizontalscrolling="no" verticalscrolling="no">
-</iframe>
--->
+## simulation for fig. 7.3
+## author: weiya <szcfweiya@gmail.com>
 
-# 图7.3的模拟实验
-
-| R Notebook   | [模拟图7.3](http://rmd.hohoweiya.xyz/sim7_3.html) |
-| ---- | ---------------------------------------- |
-| 作者   | szcf-weiya                               |
-| 时间   | 2017-01-05                               |
-| 更新 | 2018-02-04 |
-
-本笔记是[ESL7.3节](https://esl.hohoweiya.xyz/07%20Model%20Assessment%20and%20Selection/7.3%20The%20Bias-Variance%20Decomposition/index.html)图7.3的模拟。
-
-## 生成数据
-
-```R
 # generate dataset
 genX <- function(n = 80, p = 20){
   X = matrix(runif(n*p, 0, 1), ncol = p, nrow = n)
   return(X)
 }
-# generate response
+# generate response 
 genY <- function(X, case = 1){
   n = nrow(X)
   Y = numeric(n)
   if (case == 1){ # for the left panel of fig. 7.3
     Y = sapply(X[, 1], function(x) ifelse(x <= 0.5, 0, 1))
-  }
+  } 
   else {
-    Y = apply(X[, 1:10], 1, function(x) ifelse(sum(x) > 5, 1, 0))
+    Y = apply(X[, 1:10], 1, function(x) ifelse(sum(x) > 5, 1, 0))  
   }
   return(Y)
 }
+
 ## global parameters setting
 ntest = 1000
 percent = 0.75
 B = 100 # the number of repetition
-```
 
-
-## 左图情形： kNN回归和分类
-
-首先考虑左图的情形: 若$X_1\le 1/2$，$Y=0$，且若$X_1>1/2$，$Y=1$，而且应用$k$-最近邻模型。
-
-
-设置随机种子，方便后面进行随机化。
-
-```R
-# case 1
+## #########################################
+## left panel
+## #########################################
 seed = 123
 set.seed(seed)
 X = genX()
 Y = genY(X)
-X.test = genX(n = 1000)
+X.test = genX(n = ntest)
 Y.test = genY(X.test)
-```
 
-下面编写主程序，变化$k$最近邻中的邻居数$k$，并重复建立$B$次模型用来估计测试集中的每个点，用来估计其偏差、方差及预测误差的期望。
-
-```R
 ## kNN
 library(class)
 library(caret)
@@ -108,13 +82,11 @@ for(i in 1:nk){
   cl.variance.full[i] = mean(variance)
   cl.epe.full[i] = mean(epe)
 }
-```
 
-下面类似书中的图7.3，作出如下图象
-```R
 ## plot
 yrange = 0.4
 ## kNN regression
+png(paste0("knn-reg-", seed,".png"))
 #yrange = round(range(reg.epe.full)[2]+0.1, digits = 2)
 plot(kseq, seq(0, yrange, length.out = nk), "n",
      xlab = "Number of Neighbors k", ylab = "", main = "k-NN Regression",
@@ -124,8 +96,10 @@ axis(2, at = seq(0, yrange, by = 0.05))
 lines(50-kseq, reg.epe.full, type="o", pch = 19, lwd = 2, col="orange")
 lines(50-kseq, reg.bias2.full, type = "o", pch = 19, lwd = 2, col = "green")
 lines(50-kseq, reg.variance.full, type = "o", lwd = 2, pch = 19, col = "blue")
+dev.off()
 
 ## kNN classification
+png(paste0("knn-cl-", seed,".png"))
 #yrange = round(range(cl.epe.full)[2]+0.1, digits = 2)
 plot(kseq, seq(0, yrange, length.out = nk), "n",
      xlab = "Number of Neighbors k", ylab = "", main = "k-NN Classification",
@@ -137,26 +111,21 @@ lines(50-kseq, reg.bias2.full, type = "o", pch = 19, lwd = 2, col = "green")
 lines(50-kseq, reg.variance.full, type = "o", lwd = 2, pch = 19, col = "blue")
 #lines(50-kseq, cl.bias2.full, type = "o", pch = 19, lwd = 2, col = "green")
 #lines(50-kseq, cl.variance.full, type = "o", lwd = 2, pch = 19, col = "blue")
-```
+dev.off()
 
-对比原图，发现除了kNN分类的预测误差的估计随$k$的变化略有不同外（也仅仅在$k$比较大的情形），其余曲线都很好地重现了原图的特征。
 
-## 右图情形：最优子集回归
+## #######################################
+## right panel
+## #######################################
 
-若$\sum_{j=1}^{10}X_j>5$，$Y=1$，否则$Y=0$，且采用大小为$p$的最优子集回归。
-
-首先生成模拟数据
-```R
 ## case 2
-seed = 123
+seed = 1234
 set.seed(seed)
 X = genX()
 Y = genY(X, case = 2)
 X.test = genX(n = ntest)
 Y.test = genY(X.test, case = 2)
-```
-采用`leaps`包中的`regsubsets`函数进行最优子集回归，因为该类没有对应`predict`函数，于是编写自己的预测函数。需要说明的是，下面程序前半段有考虑是否存在截距项，但后来发现其实截距项是默认存在的，所以后半段没有继续考虑，简化了程序。
-```R
+
 ## use leaps package to do best subset selection
 library(leaps)
 ## predict test dataset by using the best subset model with size p
@@ -186,10 +155,7 @@ predict.regsub <- function(model, p, X.test){
   pred = apply(cbind(1, X.test), 1, function(x) sum(x*coef.vec))
   return(pred)
 }
-```
 
-接着在不同大小的子集模型下，重复建立模型对测试集进行预测，并存储预测值。
-```R
 n = nrow(X)
 ## store all prediction
 reg.pred.full = vector("list", 20)
@@ -206,10 +172,6 @@ for (i in 1:B){
      reg.pred.full[[j]][, i] = predict.regsub(reg.sub, j, X.test)
    }
 }
-```
-
-下面计算平方偏差、方差和预测误差，注意回归跟分类的差别仅在于预测误差。
-```R
 ## calculate bias2, variance, epe
 reg.bias2.full = numeric(20)
 reg.variance.full = numeric(20)
@@ -235,14 +197,11 @@ for (i in 1:20){
   reg.epe.full[i] = mean(epe)
   cl.epe.full[i] = mean(epe.cl)
 }
-```
 
-作出图象
-```R
 ## plot
 yrange = 0.4
 ## best subset regression
-#png(paste0("sub-reg-", seed,".png"))
+png(paste0("sub-reg-", seed,".png"))
 #yrange = round(range(reg.epe.full)[2]+0.1, digits = 2)
 plot(1:20, seq(0, yrange, length.out = 20), "n",
      xlab = "Subset size p", ylab = "", main = "Linear Model - Regression",
@@ -252,10 +211,10 @@ axis(2, at = seq(0, yrange, by = 0.05))
 lines(1:20, reg.epe.full, type="o", pch = 19, lwd = 2, col="orange")
 lines(1:20, reg.bias2.full, type = "o", pch = 19, lwd = 2, col = "green")
 lines(1:20, reg.variance.full, type = "o", lwd = 2, pch = 19, col = "blue")
-#dev.off()
+dev.off()
 
 ## best subset regression for classification
-#png(paste0("sub-cl-", seed,".png"))
+png(paste0("sub-cl-", seed,".png"))
 #yrange = round(range(reg.epe.full)[2]+0.1, digits = 2)
 plot(1:20, seq(0, yrange, length.out = 20), "n",
      xlab = "Subset size p", ylab = "", main = "Linear Model - Classification",
@@ -266,11 +225,4 @@ axis(2, at = seq(0, yrange, by = 0.05))
 lines(1:20, cl.epe.full, type="o", pch = 19, lwd = 2, col="orange")
 lines(1:20, reg.bias2.full, type = "o", pch = 19, lwd = 2, col = "green")
 lines(1:20, reg.variance.full, type = "o", lwd = 2, pch = 19, col = "blue")
-#dev.off()
-```
-
-## 总结
-
-最后我们得到的图象如下图
-
-![](full-123.png)
+dev.off()

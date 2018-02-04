@@ -10,6 +10,3 @@ site
 .ipynb_checkpoints/
 other
 .spyproject/
-*/*/.Rhistory
-*/*/.RData
-*/*/.Rproj.user

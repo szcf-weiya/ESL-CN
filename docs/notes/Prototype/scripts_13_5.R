@@ -1,34 +1,10 @@
----
-title: "图13.5的比较研究"
-author: "weiya <szcfweiya@gmail.com>"
-date: "Feb. 3, 2018"
-output:
-  html_document:
-    toc: no
-  html_notebook:
-    toc: yes
----
+## ###################################
+## Scripts for simulation of Fig. 13.5
+##
+## author: weiya <szcfweiya@gmail.com>
+## date: 2018-02-04
+## ###################################
 
-
-## 问题重述
-
-对于Easy Problem，
-$$
-Y = I(X_1\ge \frac 12)
-$$
-
-对于Difficult Problem，
-
-$$
-Y=I(\mathrm{sign}\Big\{\prod\limits_{j=1}^3(X_j-\frac 12)\Big\}>0)
-$$
-
-本模拟实验比较了k最近邻和k均值应用在上述两个问题的分类误差率随相应参数变化的曲线，结果表明与书中图13.5完美契合。
-
-
-## 生成数据
-
-```{r}
 ## generate dataset X
 genX <- function(N, p = 10){
   sapply(1:p, function(i) runif(N))
@@ -45,28 +21,22 @@ genY <- function(X, id = 1){
     cat("WARNING! Incorrect id for problems.")
   }
 }
-```
 
-## 参数设定
-
-```{r}
+## set parameters
 n.train = 100
 n.test = 1000
 n.realization = 10
-```
 
-## k最近邻
+## ######################################
+## kNN
+## ######################################
 
-```{r}
 library(class)
 seq.knn = seq(1, 71, by = 7)
 n.knn = length(seq.knn)
 err = array(NA, c(n.knn, n.realization))
-```
 
-编写在两个问题中k最近邻的模拟函数`knn.sim()`
-
-```{r}
+## knn simulations function
 knn.sim <- function(id){
   for (j in 1:n.realization){
     X.train = genX(n.train)
@@ -80,11 +50,8 @@ knn.sim <- function(id){
   }
   return(err)
 }
-```
 
-编写整个模拟实验中通用的绘图函数`myplot()`
-
-```{r}
+## plot function
 myplot <- function(seq.knn, err, main, xlab, ylim){
   ## calculate the mean and std of misclassification error
   err.mean = apply(err, 1, mean)
@@ -92,51 +59,43 @@ myplot <- function(seq.knn, err, main, xlab, ylim){
 
   n.knn = length(seq.knn)
   ## plot
-  plot(seq.knn, err.mean, 
-       main = main, 
-       ylab = "Misclassification Error", 
-       xlab = xlab, 
+  plot(seq.knn, err.mean,
+       main = main,
+       ylab = "Misclassification Error",
+       xlab = xlab,
        col = "blue", type = "l",
        ylim = ylim)
   for(i in 1:n.knn){
-    lines(c(seq.knn[i], seq.knn[i]), 
-          c(err.mean[i] - err.std[i], err.mean[i] + err.std[i]), 
+    lines(c(seq.knn[i], seq.knn[i]),
+          c(err.mean[i] - err.std[i], err.mean[i] + err.std[i]),
           col = "blue", pch = 3)
-    lines(c(seq.knn[i]-0.2, seq.knn[i]+0.2), 
+    lines(c(seq.knn[i]-0.2, seq.knn[i]+0.2),
           c(err.mean[i] - err.std[i], err.mean[i] - err.std[i]),
           col = "blue", pch = 3)
-    lines(c(seq.knn[i]-0.2, seq.knn[i]+0.2), 
-          c(err.mean[i] + err.std[i], err.mean[i] + err.std[i]), 
+    lines(c(seq.knn[i]-0.2, seq.knn[i]+0.2),
+          c(err.mean[i] + err.std[i], err.mean[i] + err.std[i]),
           col = "blue", pch = 3)
   }
 }
-```
 
-则Easy Problem的分类误差随邻居数变化的曲线为
-
-```{r}
+## Nearest Neighbors / Easy
+png("knn_easy.png")
 err = knn.sim(1)
 myplot(seq.knn, err, "Nearest Neighbors / Easy", "Number of Neighbors", c(0.1, 0.5))
-```
-
-对于Difficult Problem，我们有
-
-```{r}
+dev.off()
+## Nearest Neighbors / Difficult
+png("knn_difficult.png")
 err = knn.sim(2)
 myplot(seq.knn, err, "Nearest Neighbors / Difficult", "Number of Neighbors", c(0.4, 0.6))
-```
+dev.off()
 
-## k-means聚类
-
-```{r}
+## #########################################
+## kmeans
+## #########################################
 seq.kmeans = c(1, 2, 3, 5, seq(6, 31, by = 4))
 n.kmeans = length(seq.kmeans)
 err = array(NA, c(n.kmeans, n.realization))
-```
 
-编写两个问题中k-means的模拟函数`kmeans.sim()`
-
-```{r}
 ## predict function for k-means
 predict.kmeans <- function(cl0, cl1, newpoint){
   center0 = cl0$centers
@@ -149,6 +108,7 @@ predict.kmeans <- function(cl0, cl1, newpoint){
   })
   ifelse(res0 < res1, 0, 1)
 }
+## simulation function for kmeans
 kmeans.sim <- function(id){
   for (j in 1:n.realization){
     X.train = genX(n.train)
@@ -164,23 +124,14 @@ kmeans.sim <- function(id){
   }
   return(err)
 }
-```
 
-则Easy Problem的分类误差随原型个数变化的曲线为
-
-```{r}
+## K-means / Easy
+png("kmeans_easy.png")
 err = kmeans.sim(1)
 myplot(seq.kmeans, err, "K-means / Easy", "Number of Prototypes per Class", c(0.1, 0.5))
-```
-
-而Difficult Problem对应的图象为
-
-```{r}
+dev.off()
+## K-means / Difficult
+png("kmeans_difficult.png")
 err = kmeans.sim(2)
 myplot(seq.kmeans, err, "K-means / Difficult", "Number of Prototypes per Class", c(0.4, 0.6))
-```
-
-## 待解决的问题
-
-- 为什么贝叶斯误差率为0.
-- 加入LVQ
+dev.off()

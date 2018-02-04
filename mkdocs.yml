@@ -184,11 +184,11 @@ pages:
 
   - 个人笔记:
     - 模拟实验:
-      - 模型选择7.3: 'notes/sim73.md'
-      - 模型选择7.7: 'notes/sim77.md'
-      - 13.3节的比较研究: 'notes/sim13_5.md'
-      - ICA模拟实验: 'notes/ICA.md'
-      - 高维问题: 'notes/ex18_1.md'
+      - Fig. 7.3: 'notes/ModelSelection/sim7_3.md'
+      - Fig. 7.7: 'notes/ModelSelection/sim7_7.md'
+      - Fig. 13.5: 'notes/Prototype/sim13_5.md'
+      - Fig. 14.42: 'notes/ICA/sim14_42.md'
+      - Fig. 18.1: 'notes/HighDim/sim18_1.md'
     - 比较总结:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
 
@@ -218,7 +218,7 @@ markdown_extensions:
   - admonition
   - smarty
   - sane_lists
-  - mdx_math
+  - codehilite
   - footnotes
   - meta
   - pymdownx.critic
@@ -249,7 +249,6 @@ extra:
       link: 'mailto:szcfweiya@gmail.com'
 
 extra_javascript:
-  - js/init.js
   - js/mathjax.js
   - 'https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
   - js/baiduzhanzhang.js
@@ -265,7 +264,7 @@ theme:
   language: 'zh'
   feature:
     tabs: true
-  logo: 'img/logo_white.svg'
+  logo: 'img/logo_white_24x24.svg'
   search:
     language: 'en, jp'
   favicon: 'img/favicon.ico'
