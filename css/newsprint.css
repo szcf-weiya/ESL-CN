@@ -28,9 +28,11 @@
     src: local('PT Serif'), local('PTSerif-BoldItalic'), url('./newsprint/PT_Serif-Web-BoldItalic.ttf')
 }
 */
+/*
 html {
 	font-size: 16px;
 }
+*/
 
 html, body {
 	background-color: #f3f2ee;
