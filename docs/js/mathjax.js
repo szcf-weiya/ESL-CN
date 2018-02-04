@@ -33,7 +33,8 @@ window.MathJax = {
 
       sign: "{\\mathrm{sign}}",
       df: "{\\mathrm{df}}",
-      tr: "{\\mathrm{tr}}"
+      tr: "{\\mathrm{tr}}",
+      Err: "{\\mathrm{Err}}"
     },
     entensions: ["color.js"]
   }
