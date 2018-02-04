@@ -249,6 +249,7 @@ extra:
       link: 'mailto:szcfweiya@gmail.com'
 
 extra_javascript:
+  - js/init.js
   - js/mathjax.js
   - 'https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
   - js/baiduzhanzhang.js
