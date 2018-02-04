@@ -18,3 +18,7 @@ img.emojione {
     width: 1.5rem;
     vertical-align: text-bottom;
 }
+
+a {
+  color: indigo !important;
+}
