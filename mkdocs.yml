@@ -195,21 +195,22 @@ pages:
 
 site_name: 'ESL CN'
 
-site_description: 'The Elements of Statistical Learning(ESL) 的中文笔记'
+site_description: 'The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现'
 
 #site_url: https://szcf-weiya.github.io/ESL-CN/
-
+site_author: szcf-weiya
 site_url: https://esl.hohoweiya.xyz
 
-repo_url: https://github.com/szcf-weiya
+repo_name: 'szcf-weiya/ESL-CN'
+repo_url: 'https://github.com/szcf-weiya/ESL-CN'
+edit_uri: ""
+#url_en: https://stats.hohoweiya.xyz
 
-url_en: https://stats.hohoweiya.xyz
+#url_cn: https://blog.hohoweiya.xyz
 
-url_cn: https://blog.hohoweiya.xyz
+#website_en: Blog
 
-website_en: Blog
-
-website_cn: 随笔
+#website_cn: 随笔
 
 copyright: 'Copyright &copy; 2016-2018 weiya'
 
@@ -223,13 +224,34 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.emoji:
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - toc:
+      permalink: true
 
 extra_css:
-  - css/newsprint.css
-  - css/admonition_fix.css
+  - css/misc.css
+#  - css/newsprint.css
+#  - css/admonition_fix.css
 
-#extra_javascript:
-#  - js/mathjax.js
+extra:
+  disqus: 'esl-hohoweiya-xyz'
+  social:
+    - type: 'github'
+      link: 'https://github.com/szcf-weiya'
+    - type: 'code'
+      link: 'https://tech.hohoweiya.xyz'
+    - type: 'home'
+      link: 'https://hohoweiya.xyz'
+    - type: 'rss'
+      link: 'https://blog.hohoweiya.xyz'
+    - type: 'linkedin'
+      link: 'https://www.linkedin.com/in/szcfweiya/'
+    - type: 'envelope'
+      link: 'mailto:szcfweiya@gmail.com'
+
+extra_javascript:
+  - js/mathjax.js
+  - 'https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+  - js/baiduzhanzhang.js
 
 #docs_dir: 'docs'
 
@@ -237,9 +259,29 @@ extra_templates:
   - sitemap.xml
 
 theme:
-  name: mkdocs
-  custom_dir: yeti
+  name: null
+  custom_dir: material
+  language: 'zh'
+  feature:
+    tabs: true
+  logo: 'img/logo_white.svg'
+  search:
+    language: 'en, jp'
+  favicon: 'img/favicon.ico'
+  palette:
+    primary: 'black'
+    accent: 'red'
+  font:
+    text: Roboto
+    code: Roboto Mono
+#  custom_dir: yeti
 
 #theme_dir: 'yeti'
+
+
+# Google Analytics
+google_analytics:
+  - 'UA-85046550-1'
+  - 'auto'
 
 use_directory_urls: false

@@ -28,16 +28,18 @@
     src: local('PT Serif'), local('PTSerif-BoldItalic'), url('./newsprint/PT_Serif-Web-BoldItalic.ttf')
 }
 */
+/*
 html {
 	font-size: 16px;
 }
+*/
 
 html, body {
 	background-color: #f3f2ee;
 	font-family: "lucida grande", "lucida sans unicode", lucida, 'Open Sans', helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 	color: #1f0909;
-	font-size: 1.1em;
-	line-height: 1.5em;
+	font-size: 1em;
+	line-height: 1em;
 }
 
 ol,
@@ -58,6 +60,10 @@ q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	/*center*/
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
 /* styles */
 
@@ -114,7 +120,7 @@ h1 {
 
 a {
 	text-decoration: none;
-	color: #065588;
+	/*color: #065588;*/
 }
 a:hover,
 a:active {
@@ -414,4 +420,12 @@ header, .context-menu, .megamenu-content, footer {
 .footnotes hr {
   width: 50%;
   margin-left: 0;
+}
+
+/* img */
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
 }
