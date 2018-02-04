@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/15 Random Forests/15.3 Details of Random Forests/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2796,10 +2896,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/15 Random Forests/15.3 Details of Random Forests.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="153">15.3 随机森林的细节</h1>
+                <h1 id="153">15.3 随机森林的细节<a class="headerlink" href="#153" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2828,14 +2926,14 @@
 <p class="admonition-title">Recall</p>
 <p><img alt="" src="../../img/15/fig15.3.png" /></p>
 </div>
-<h2 id="_1">集外样本</h2>
+<h2 id="_1">集外样本<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>随机森林一个重要的特征是它对集外(out-of-bag)(OOB)样本的使用：</p>
 <blockquote>
 <p>对于每个观测$z_i=(x_i, y_i)$，通过仅对部分的树平均来构造随机森林预测量，这部分的树是对应那些$z_i$不出现的自助样本。</p>
 </blockquote>
 <p>OOB误差估计几乎等价于通过$N$折交叉验证得到的估计；见练习15.2。因此与许多其它的非线性估计量不同，随机森林可以按序列拟合，同时交叉验证也将沿着这个序列进行。一旦OOB误差稳定，训练可以终止。</p>
 <p>图15.4显示了<code>spam</code>数据的OOB误分类误差，与测试误差进行比较。尽管这里平均了2500棵树，从图中可以看出似乎200棵树就足够了。</p>
-<h2 id="_2">变量重要性</h2>
+<h2 id="_2">变量重要性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>随机森林的变量重要性图象可以用gradient-boosted模型完全一样的方式来作出（10.13节）。在每个树的每个分割点，分割准则的改进是最重要性度量，而重要性度量归功于分离变量，并且对于每个变量，这种改进在森林中的每棵树中都有积累。图15.5的左图展现了用这种方式计算的<code>spam</code>数据的变量重要度；可以与gradient boosting对应的图10.6进行比较。</p>
 <p><img alt="" src="../../img/15/fig15.5.png" /></p>
 <div class="admonition note">
@@ -2844,13 +2942,13 @@
 </div>
 <p>boosting完全忽略了一些变量，而随机森林不会。备选的分离变量选择增加了任意单个变量被包含进随机森林的概率，而boosting中没有这种选择。</p>
 <p>随机森林也采用OOB样本来构造不同的变量重要性度量，这显然是用来衡量每个变量的预测强度。当生成$b$棵树，得到OOB样本，预测的准确度被记录。接下来第$j$个变量的值在OOB样本样本中随机排列，并且再一次计算准确度。准确度的降低是这种排列在所有树上进行平均造成的，而且这也用作对随机森林中第$j$个变量的重要性的度量。这些被表示成图15.5右图的最大值的比例。尽管这两种方法的排名类似，但右图中的重要性在变量间更加均匀。随机化有效取消了单个变量的影响，这很像在线性模型中设置对应变量的系数为0（练习15.7）。如果这个变量不可用，这并不能度量该变量对预测的影响，因为如果模型去掉该变量重新拟合，其它的变量可以作为替代品使用。</p>
-<h2 id="_3">邻近图</h2>
+<h2 id="_3">邻近图<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>随机森林宣扬的一个输出是邻近图(proximity plot)。图15.6展示了第2章中2.3.3节的混合数据的邻近图。</p>
 <p><img alt="" src="../../img/15/fig15.6.png" /></p>
 <p>在生成随机森林时，便会积累训练数据$N\times N$的邻近矩阵。对于每棵树，任意一对OOB观测值共享一个终止结点时其邻近值增加1。这个邻近矩阵接着用高维缩放（14.8节）表示成两维。这个想法是即使数据可能是高维的，其中涉及混合变量等等，但邻近图会给出随机森林分类器中彼此充分靠近的观测的标示。</p>
 <p>不管什么数据，随机森林的邻近图经常看起来非常类似，这也让人怀疑其效用。这些图趋向于星形，每个类别一个臂，当分类效果越好，图就会越清楚。</p>
 <p>因为混合数据是二维的，我们可以将邻近图中的点映射到原始坐标中，然后更好地理解它们所代表的。似乎在每个类的纯区域中的点映射到星状图的末端，而靠近判别边界的点映射到中心。当我们考虑到邻近矩阵的构造时便会知道这不奇怪。在纯区域中的相邻点经常最终会共享一个“桶(bucket)”，因为当终止结点是纯的，它不在被随机森林的生成树算法而分割。另一方面，属于不同类别的相互靠近的点有时会共享一个终止结点，但不是总是。</p>
-<h2 id="_4">随机森林和过拟合</h2>
+<h2 id="_4">随机森林和过拟合<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>当变量个数很大时，而相关变量很少，$m$较小时的随机森林可能表现很差。在每个分割处，相关变量被选择的概率很小。图15.7展示了支持这个断言的模拟的结果。细节在图题和练习15.3中给出。</p>
 <p><img alt="" src="../../img/15/fig15.7.png" /></p>
 <p>在图中的顶部我们可以看到相关变量在随机森林任意分割时被选到的超几何概率（这个模拟中，相关变量个数相同）。</p>

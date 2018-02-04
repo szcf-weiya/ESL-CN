@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/03 Linear Methods for Regression/3.4 Shrinkage Methods/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2822,10 +2922,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/03 Linear Methods for Regression/3.4 Shrinkage Methods.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="34">3.4 收缩的方法</h1>
+                <h1 id="34">3.4 收缩的方法<a class="headerlink" href="#34" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2845,7 +2943,7 @@
 </tbody>
 </table>
 <p>通过保留预测变量的子集并且丢弃剩余的，子集的选择得到一个可解释的、预测误差可能比全模型低的模型。然而，因为这是一个离散的过程——变量不是保留就是丢弃——经常表现为高方差，因此不会降低全模型的预测误差。收缩方法更加连续，而且不会遭受高易变太大的影响。</p>
-<h2 id="_1">岭回归</h2>
+<h2 id="_1">岭回归<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>岭回归通过对回归系数的大小加上惩罚因子来收缩回归系数。岭回归的系数使得惩罚的残差平方和最小</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3018,7 +3116,7 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\\
 </script>
 </p>
 <p>上面$\lambda$的单调递减函数是岭回归拟合的有效自由度。通常在有$p$个变量的线性回归拟合中，拟合的自由度为$p$，也就是无约束参数的个数。想法是尽管岭回归拟合中所有的$p$个系数都不为0，但是它们在由$\lambda$控制的约束方式中拟合。注意到当$\lambda=0$（没有规范化）时$df(\lambda)=p$，并且当$\lambda\rightarrow \infty$时$df(\lambda)\rightarrow 0$。当然总是对于截距会多一个自由度，在前面已经去掉了。这个定义将在3.4.4节和7.4-7.6节中详细介绍。图3.7中最小值在$df(\lambda)=5.0$处。表3.3显示了岭回归将全最小二乘估计的测试误差减少了一小部分。</p>
-<h2 id="lasso">Lasso</h2>
+<h2 id="lasso">Lasso<a class="headerlink" href="#lasso" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><strong>weiya注：</strong></p>
 <p>lasso是下面这句话的首字母缩写</p>
@@ -3047,7 +3145,7 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\\
 <blockquote>
 <p>图3.10 当惩罚参数$t$变化时的lasso系数曲线。图中画了系数关于$s=t/\sum^p_1\vert\hat{\beta}_j\vert$的曲线。垂直直线画在$s=0.36$处，该值通过交叉验证来选择。比较65页的图3.8，lasso曲线会达到0，然而岭回归不会。曲线是分段线性的，所以只计算显示点处的值；详见3.4.4节。</p>
 </blockquote>
-<h2 id="lasso_1">讨论：子集的选择，岭回归，Lasso</h2>
+<h2 id="lasso_1">讨论：子集的选择，岭回归，Lasso<a class="headerlink" href="#lasso_1" title="Permanent link">&para;</a></h2>
 <p>这部分我们讨论并且比较至今为止约束线性回归模型的三种方法：子集选择、岭回归和lasso。</p>
 <p>在正规输入矩阵的情况下，三种过程都有显式解。每种方法对最小二乘估计$\hat{\beta}_j$应用简单的转换，详见表3.4。</p>
 <p><img alt="" src="../../img/03/tab3.4.png" /></p>
@@ -3082,7 +3180,7 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\\
 <blockquote>
 <p>图3.13 $q=1.2$时$\sum_j\vert\beta_j\vert^q$为常数值的轮廓线（左图）以及$\alpha=0.2$时弹性网惩罚$\sum_j(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)$为常数值的轮廓线（右图）。尽管看起来很相似，弹性网有尖角（不可导），而$q=1.2$的惩罚不会有尖角。</p>
 </blockquote>
-<h2 id="_2">最小角回归</h2>
+<h2 id="_2">最小角回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>最小角回归（LAR）是相对较新的方法（2004年Efron等人），而且可以看成是一种向前逐步回归（3.3.2节）的“民主”版本。正如我们所看到的，LAR与lasso联系紧密，并且事实上提供了如图3.10所示的计算整个lasso路径的非常有效的算法。</p>
 <blockquote>
 <p><strong>weiya 注：</strong>
@@ -3148,7 +3246,7 @@ R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Ver
 <p>图3.16：LAR、lasso、向前逐步、向前逐渐（FS）和增长向前逐渐（$FS_0$）回归之间的比较。设定与图3.6相同，除了这里$N=100$而不是300.这里较慢的$FS$回归最终表现得比向前逐步好。LAR和lasso表现得和FS、$FS_0$相似。因为这些过程采取不同的步数（根据模拟复制和方法），我们画出最小二乘拟合的MSE关于整体$L_1$弧长的片段的函数。</p>
 </blockquote>
 <p>图3.16将LAR和lasso与向前逐步（forward stepwise）和向前逐渐（forward stagewise）回归。设定与p59的图3.6是相同的，除了这里的$N=100$而不是300，所有这个问题更加困难。我们可以看到增长性更快的向前逐步很快地过拟合（10个变量加入模型中之前是很好的），最终比增长性较慢的向前逐渐回归表现得更差。LAR和lasso的行为与向前逐渐回归相似。增长的向前逐渐回归与LAR和lasso类似，并且将在3.8.1节中描述。</p>
-<h3 id="larlasso">LAR和Lasso自由度法则</h3>
+<h3 id="larlasso">LAR和Lasso自由度法则<a class="headerlink" href="#larlasso" title="Permanent link">&para;</a></h3>
 <p>假设我们通过最小角回归过程拟合了线性模型，在某步$k&lt;p$停止，或者等价地用lasso边界$t$来得到约束情况下的全最小二乘拟合。我们需要多少参数，或者自由度？</p>
 <p>首先考虑采用$k$个特征的子集的线性回归。如果这个子集是没有通过训练数据而事先确定好的，然后在该拟合模型中的自由度定义为$k$。当然，在经典统计学中，线性独立参数的个数也就是自由度。另外地，假设我们经历了一个最优子集选择去定了最优的$k$个预测变量。于是结果模型中有$k$个参数，但在某种意义上我们用了多余$k$个的自由度。</p>
 <p>我们需要一个对于自适应拟合模型的有效自由度的一般定义。我们定义拟合向量$\hat{\mathbf y}=(\hat y_1,\hat y_2,\ldots,\hat y_N)$的自由度为

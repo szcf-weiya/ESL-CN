@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../13.1%20Introduction/index.html" title="下篇" class="md-tabs__link md-tabs__link--active">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2768,10 +2868,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="134">13.4 自适应最近邻方法</h1>
+                <h1 id="134">13.4 自适应最近邻方法<a class="headerlink" href="#134" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2829,8 +2927,8 @@ F_1(\mathrm{median}(R))=\frac 12
 <p>图中有两个特征，并且用圆形区域画出了查询点的最近邻。最近邻分类的隐含假设是类别概率在邻域内近似为常值，也因此简单的平均会得到不错的估计。然而，在这个例子中，只变化了水平方向上的类别概率。如果知道这些，我们将邻居拉伸为长方形区域。这会降低估计的偏差，同时方差不变。</p>
 <p>一般地，这导致了对最近邻分类中使用的度量的自适应更新，所以得到的邻域在类别不会改变太多的方向上进行了拉伸。在高维特征空间中，类别概率可能仅仅需要在一个低维的子空间中有所改变，因此自适应度量是很重要的优点。</p>
 <p>TODO</p>
-<h2 id="_1">例子</h2>
-<h2 id="_2">最近邻的全局维度降低</h2>
+<h2 id="_1">例子<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_2">最近邻的全局维度降低<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
                 
                   
                 

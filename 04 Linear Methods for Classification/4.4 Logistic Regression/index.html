@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/04 Linear Methods for Classification/4.4 Logistic Regression/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2810,10 +2910,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/04 Linear Methods for Classification/4.4 Logistic Regression.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="44">4.4 逻辑斯蒂回归</h1>
+                <h1 id="44">4.4 逻辑斯蒂回归<a class="headerlink" href="#44" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2852,7 +2950,7 @@ Pr(G=K\mid X=x)=\dfrac{1}{1+\sum\limits_{\ell=1}^{K-1}exp(\beta_{\ell0+\beta_\el
 </script>
 显然它们相加等于1。为了强调对参数集$\theta={\beta_{10},\beta_1^T,\ldots,\beta_{(K-1)0},\beta_{K-1}^T}$的依赖，我们将概率记为$p_k(x,\theta)$.</p>
 <p>当$K=2$时，模型非常简单，因为只有一个单线性函数。在生物统计应用中应用很广，因为经常会有二进制（两个类别）的响应变量。举个例子，病人获救或死亡，患心脏病和不患心脏病，或者某个条件存在与否。</p>
-<h2 id="441">4.4.1 拟合逻辑斯蒂回归模型</h2>
+<h2 id="441">4.4.1 拟合逻辑斯蒂回归模型<a class="headerlink" href="#441" title="Permanent link">&para;</a></h2>
 <p>逻辑斯蒂回归经常通过极大似然法，采用在给定$X$的条件下$G$的条件概率。因为$Pr(G\mid X)$完全明确了条件分布，多元正态是合适的选择。$N$个观测的概率密度的对数为
 <script type="math/tex; mode=display">
 \ell(\theta)=\sum\limits_{i=1}^Nlog\,p_{g_i}(x_i;\theta)\qquad (4.19)
@@ -2922,7 +3020,7 @@ x_{i+1}=x_i-\dfrac{f(x_i)}{f'(x_i)}
 似乎$\beta=0$是迭代过程一个很好的初始值，尽管收敛性不会保证。一般地算法确实是收敛的，因为概率的对数是凹的，但是可以出现过收敛的情况。如果在罕见的情形下概率的对数值下降，对步长二分法会保证收敛性。</p>
 <p>对于多类别的情况$K\ge 3$,牛顿算法也可以表达成加权迭代最小二乘，只是对于每一个观测用一个$K-1$的响应向量和非对角系数矩阵。后者阻碍了任何简化算法，在这种情况下直接使用展开向量$\theta$数值上会更加方便（练习4.4）.另一种是坐标下降方法（3.8.6节）也可以有效地最大化概率的log值。R语言的glmnet包（Friedman等人2008a）可以有效地拟合$N$和$p$都非常大的逻辑斯蒂回归。尽管是为了拟合正规化模型设计的，但是对于非正规化的拟合也适用。</p>
 <p>逻辑斯蒂回归经常被用作一种数据分析和推断的工具，目标就是理解在解释输出时输入变量的角色。一般地，许多模型是通过寻找涉及变量的最简介的模型，很可能还有一些交叉项。下面的例子说明了涉及到的一些问题。</p>
-<h2 id="442">4.4.2 例子：南非心脏病</h2>
+<h2 id="442">4.4.2 例子：南非心脏病<a class="headerlink" href="#442" title="Permanent link">&para;</a></h2>
 <p>这里我们展示一个用二值数据分析去说明逻辑斯蒂回归的传统统计学应用。图4.12中的数据取自CORIS调查的部分数据，这个调查在南非Western Cape的三个乡村进行（Rousseauw等人1983）.调查的目标是建立在高发生率的地区的缺血性心脏病影响因子的强度模型。数据中有15到64岁的白人男性，响应变量是MI的存在或者缺失（该地区整个MI流行程度为5.1%）。在我们数据集中有160个案例，以及302个控制个体。数据在Hastie和Tibshirani（1987）的工作中有详细描述。</p>
 <p><img alt="" src="../../img/04/fig4.12.png" /></p>
 <blockquote>
@@ -2945,7 +3043,7 @@ x_{i+1}=x_i-\dfrac{f(x_i)}{f'(x_i)}
 <p>为什么是两倍？</p>
 </blockquote>
 <p>我们将在第5章再次用到这些数据，我们将会看到一些变量会有非线性影响，当进行合适的建模后不会被剔除模型。</p>
-<h2 id="443">4.4.3 二次拟合和推断</h2>
+<h2 id="443">4.4.3 二次拟合和推断<a class="headerlink" href="#443" title="Permanent link">&para;</a></h2>
 <p>极大似然法的参数估计$\hat\beta$满足自一致性关系：它们是加权最小二乘拟合的系数，其中响应变量为
 <script type="math/tex; mode=display">
 z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\qquad (4.29)
@@ -2960,7 +3058,7 @@ z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\qquad (4.29)
 - 中心极限定理证明$\hat \beta$的分布收敛到$N(\beta,\mathbf{(X^TWX)^{-1}})$。这个可以模仿正态理论推断直接从加权最小二乘得到。
 - 对于逻辑斯蒂回归建立模型计算量比较大，因为每个模型拟合需要迭代。受欢迎的方法是Rao score检验来检验是否包含某一项，以及Wald检验来检验是否剔除某一项。这些都不需要迭代拟合，而且都是基于当前模型的极大似然拟合。结果是两者都代表在加权最小二乘拟合中运用相同的系数加上或剔除某一项。这些计算可以高效地进行，不需要重新计算整个加权最小二乘拟合。</p>
 <p>软件实现可以利用这些联系。举个例子，R中的广义线性模型（包括作为二项式模型族中的逻辑斯蒂回归）充分运用了他们。GLM（广义线性模型）对象可以当作线性模型对象来处理，而且所有对于线性模型可用的工具都可以自动应用起来。</p>
-<h2 id="444-l_1">4.4.4 $L_1$正则化逻辑斯蒂回归</h2>
+<h2 id="444-l_1">4.4.4 $L_1$正则化逻辑斯蒂回归<a class="headerlink" href="#444-l_1" title="Permanent link">&para;</a></h2>
 <p>lasso中使用了$L_1$惩罚（3.4.2节）可以被应用到任意线性回归模型的变量选择和收缩上面。对于逻辑斯蒂回归，我们最大化（4.20）的带惩罚项的版本：
 <script type="math/tex; mode=display">
 \underset{\beta_0,\beta}{max}\{\sum\limits_{i=1}^N[y_i(\beta_0+\beta^Tx_i)-log(1+e^{\beta_0+\beta^Tx_i})]-\lambda\sum\limits_{j=1}^p\vert \beta_j\vert\}\qquad (4.31)
@@ -2977,7 +3075,7 @@ z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\qquad (4.29)
 <p>图4.13. 南非心脏病数据的$L_1$正则化逻辑斯蒂回归系数，画出了作为$L_1$范数函数的曲线。这些变量都标准化后有单位方差。在图像每一个点处都精确算出来了。</p>
 </blockquote>
 <p>坐标下降方法（3.8.6节）对于计算$\lambda$网格上的值的系数曲线是很有效的。R语言glmnet包（Friedman等人2008a）对于非常大的逻辑斯蒂回归问题拟合系数路径是非常有效的（$N$或$p$很大时）。他们的算法可以利用预测变量矩阵$X$的稀疏性，甚至对于大规模问题也适用。18.4节有更详细的解释，而且将会讨论$L_1$正则多项分布模型。</p>
-<h2 id="445-lda">4.4.5 逻辑斯蒂回归或者LDA？</h2>
+<h2 id="445-lda">4.4.5 逻辑斯蒂回归或者LDA？<a class="headerlink" href="#445-lda" title="Permanent link">&para;</a></h2>
 <p>在4.3节我们发现类别$k$和$K$类关于$x$线性函数的后验概率odds的对数（4.9）：
 <script type="math/tex; mode=display">
 \begin{array}{ll}

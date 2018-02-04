@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/08 Model Inference and Averaging/8.2 The Bootstrap and Maximum Likelihood Methods.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="82">8.2 自助法和最大似然法</h1>
+                <h1 id="82">8.2 自助法和最大似然法<a class="headerlink" href="#82" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2808,7 +2906,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_1">平滑的例子</h2>
+<h2 id="_1">平滑的例子<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>自助法提供了一个通过在训练数据中取样来评估不确定性的直接计算的方式。这里我们用一个简单的一维平滑问题来解释自助法，并且展示它与最大似然之间的联系。</p>
 <p><img alt="" src="../../img/08/fig8.1.png" /></p>
 <blockquote>
@@ -2861,7 +2959,7 @@ y_i^*=\hat\mu(x_i)+\varepsilon_i^*;\qquad \varepsilon_i^*\sim N(0,\hat\sigma^2);
 \hat\mu^*(x)\sim N(\hat \mu(x), h(x)^T\mathbf{(H^TH)^{-1}}h(x)\hat\sigma^2)\qquad (8.7)
 </script>
 注意到该分布的均值是最小二乘估计，标准误差和近似公式（8.4）相同。</p>
-<h2 id="_2">最大似然推断</h2>
+<h2 id="_2">最大似然推断<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>结果证明在前面的例子中参数自助法和最小二乘是一致的因为模型（8.5）有可加的高斯误差。一般地，参数自助法跟最小二乘不一致，但跟最大似然一致，我们现在再检验一下。</p>
 <p>首先确定我们观测值的概率密度或者概率质量函数
 <script type="math/tex; mode=display">
@@ -3010,7 +3108,7 @@ $\theta_j$的置信点可以通过（8.17）的任意一个近似得到。这样
 \mathbf I(\beta)=\mathbf{(H^TH)}/\sigma^2\qquad (8.22)
 </script>
 因此估计的方差$\mathbf{(H^TH)}/\hat\sigma^2$与最小二乘一致。</p>
-<h2 id="_3">自助法和最大似然法</h2>
+<h2 id="_3">自助法和最大似然法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>本质上自助法是非参自助法或者参数自助法的计算机实现。与最大似然法相比自助法的好处是允许我们在没有公式的情况下计算标准误差和其他一些量的最大似然估计。</p>
 <p>在我们的例子中，假设我们通过对定义了B样条的结点的数目和位置进行交叉验证来自适应地选择，而不是事先固定住。记$\lambda$为结点和它们位置的集合。则标准误差和置信域说明了$\lambda$的自适应选择，但是没有分析的方法可以实现。有了自助法，我们通过对每个自助法样本进行自适应选择来计算B-样条光滑。最终曲线的分位数既捕捉目标里面的噪声变化以及$\hat\lambda$的变化。在这个例子中置信域（没有显示出来）看起来与固定$\lambda$后的置信域没有太大不同。但是在其他问题里面，当使用更多的自适应，可以得到更多重要的结果。</p>
                 

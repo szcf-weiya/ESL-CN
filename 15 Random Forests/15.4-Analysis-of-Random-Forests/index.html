@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/15 Random Forests/15.4-Analysis-of-Random-Forests/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/15 Random Forests/15.4-Analysis-of-Random-Forests.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="154">15.4 随机森林的分析</h1>
+                <h1 id="154">15.4 随机森林的分析<a class="headerlink" href="#154" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2805,7 +2903,7 @@
 </tbody>
 </table>
 <p>这一节我们分析随机森林应用的额外随机化的机制。为了讨论，我们集中在回归和平方误差损失，因为这会得到主要结论，而0-1损失下的偏差和方差都会更复杂（见7.3.1节）。另外，甚至在分类问题的情形中，我们可以将随机森林的平均看成是类别后验概率的估计，因为偏差和方差都是合适的描述器。</p>
-<h2 id="_1">方差和去相关性的影响</h2>
+<h2 id="_1">方差和去相关性的影响<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>随机森林回归估计量的极限形式$B\rightarrow \infty$是</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2943,7 +3041,7 @@ Var(Y)&=E(Y^2)-(EY)^2\\
 参考<a href="https://en.wikipedia.org/wiki/Law_of_total_variance">Law_of_total_variance</a></p>
 </div>
 <p>第二项是$\mathbf Z$间方差——随机化的结果，会随着$m$降低而增大。第一项实际上是随机森林集（显示在图15.19的右边）中的采样方差，会随着$m$降低而降低。单棵树的方差在$m$的大部分取值范围内不会有明显的改变，因此根据式(15.5)，随机森林集的方差显著比树的方差要低。</p>
-<h2 id="_2">偏差</h2>
+<h2 id="_2">偏差<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>和bagging中一样，随机森林的偏差与任意单棵采样后的树$T(x;\Theta(\mathbf Z))$一样：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2956,7 +3054,7 @@ Bias(x) &= \mu(x)-E_{\mathbf Z}\hat f_{rf}(x)\\
 <p>因为随机化和减小的样本空间的约束，这一般比由$\mathbf Z$生成的未剪枝的树的偏差的绝对值要大。因此通过bagging或随机森林对预测带来的改善仅仅是方差降低的结果。</p>
 <p>偏差的所有讨论都依赖于未知的真实函数。图15.10的右图展示了我们可加模拟模型的平方偏差（通过500次实现估计得到）。尽管对于不同的模型，偏差曲线的形状(shape)和变化率(rate)可能不同，但是一般的趋势是当$m$降低时，偏差增大。图中展示的是均方误差，并且我们在$m$的选择中看到了经典的偏差-方差的权衡。对所有的$m$，随机森林的平方偏差比单棵树的平方偏差（水平线）要大。</p>
 <p>这些模式表现出与岭回归的相似性(3.4.1节)。当大量的变量有着相似大小的系数，岭回归会非常有用，岭回归将它们的系数收缩到0，并且将那些强相关的变量收缩到一起。尽管训练样本的大小可能不允许所有的变量都出现在模型中，但是通过岭回归正则化能使模型稳定并且允许所有的变量都有它们的影响（尽管被削弱了）。$m$较小的随机森林表现出相似的平均。每个相关的变量都会成为主分割变量，并且随机森林树集的平均降低了任一单个变量的贡献。因为模拟例子(15.8)是基于关于所有变量的线性模型，岭回归达到了更低的均方误差（大约为0.45，当$df(\lambda_{opt})\approx 29$）。</p>
-<h2 id="_3">自适应最近邻</h2>
+<h2 id="_3">自适应最近邻<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>随机森林分类器与$k$最近邻分类器（13.3节）有许多相同的地方；实际上前者是后者的加权版本。因为每棵树生长到最大时，对于特定的$\Theta^*$，$T(x;\Theta^*(\mathbf Z))$是其中一个训练样本的响应变量的值。生成树算法任意从中选择最有信息量的预测量，寻找到该观测的最优路径。平均的过程是对训练响应变量赋予权重，这最终对预测值进行投票。因此通过随机森林的投票机制，那些靠近目标点的观测赋予了权重——一个等价核——这些结合在一起形成了分类边界。</p>
 <p>图15.11展示了3-最近邻和随机森林在混合数据中的判别边界的相似性。</p>
 <p><img alt="" src="../../img/15/fig15.11.png" /></p>

@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/notes/Mixture-Gaussian/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/notes/Mixture-Gaussian.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="_1">估计高斯混合模型参数的三种方式</h1>
+                <h1 id="_1">估计高斯混合模型参数的三种方式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>对于如下的两类别的高斯混合模型</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2793,7 +2891,7 @@
 </script>
 </p>
 <p>参数为$\theta = (\pi, \mu_1,\mu_2,\sigma_1,\sigma_2)$。至今，我了解到有三种方式来估计这五个参数。这三种方式分别为梯度下降法、EM算法和Gibbs采样，而且这三种算法并非毫不相关。EM算法其实是简化梯度下降法中对于对数似然的计算，而Gibbs采样跟EM算法区别在于前者采样后者求最大值。</p>
-<h2 id="_2">梯度下降法</h2>
+<h2 id="_2">梯度下降法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>思想其实很简单，就是极大似然法，但是解析形式不好确定，好在我们可以通过梯度下降来实现，而且现在有很方便的深度学习框架（如tensorflow）可以实现梯度下降，从而估计参数。下面用一个实际的例子（取自<a href="https://cosx.org/2017/08/tensorflow-for-statisticians/">为什么统计学家也应该学学 TensorFlow</a>）来展示梯度下降这一过程</p>
 <pre><code class="python">import numpy as np
 import matplotlib.pyplot as plt
@@ -2862,7 +2960,7 @@ print('Estimated values:', sess.run([t_p1, t_mu1, t_mu2, t_sigma1, t_sigma2]))
 print('True values:', [p1, mu1, mu2, sigma1, sigma2])
 </code></pre>
 
-<h2 id="em">EM算法</h2>
+<h2 id="em">EM算法<a class="headerlink" href="#em" title="Permanent link">&para;</a></h2>
 <p>这一部分在我的<a href="https://esl.hohoweiya.xyz/">ESL-CN翻译项目</a>的<a href="https://esl.hohoweiya.xyz/08%20Model%20Inference%20and%20Averaging/8.5%20The%20EM%20Algorithm/index.html">8.5 EM算法</a>一节中有详细介绍。具体算法如下：</p>
 <p><img alt="" src="http://images2017.cnblogs.com/blog/953584/201712/953584-20171227194006363-115445559.png" /></p>
 <p>R语言代码如下（也可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">ESL-CN项目</a>中找到）：</p>
@@ -2936,7 +3034,7 @@ ll = IterEM(mu1, mu2, sigma1, sigma2, pi0, eps)
 plot(1:length(ll), ll, xlab = 'iterations', ylab = 'Log-likelihood', 'o')
 </code></pre>
 
-<h2 id="gibbs">Gibbs采样</h2>
+<h2 id="gibbs">Gibbs采样<a class="headerlink" href="#gibbs" title="Permanent link">&para;</a></h2>
 <p>这一部分在我的<a href="https://esl.hohoweiya.xyz/">ESL-CN翻译项目</a>的<a href="https://esl.hohoweiya.xyz/08%20Model%20Inference%20and%20Averaging/8.6%20MCMC%20for%20Sampling%20from%20the%20Posterior/index.html">8.6 MCMC向后采样</a>一节中有详细介绍。具体算法如下：</p>
 <p><img alt="" src="http://images2017.cnblogs.com/blog/953584/201712/953584-20171227194225300-1574126579.png" /></p>
 <p>R语言代码如下（也可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/Gibbs/gibbs.R">ESL-CN项目</a>中找到）：</p>

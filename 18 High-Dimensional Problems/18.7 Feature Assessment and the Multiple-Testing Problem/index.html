@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/18 High-Dimensional Problems/18.7 Feature Assessment and the Multiple-Testing Problem/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/18 High-Dimensional Problems/18.7 Feature Assessment and the Multiple-Testing Problem.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="187">18.7 特征评估和多重检验问题</h1>
+                <h1 id="187">18.7 特征评估和多重检验问题<a class="headerlink" href="#187" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2855,7 +2953,7 @@ H_{1j} = \text{治疗对基因}j\text{有作用}\\
 <p>做多重检验的一个很简单的方式是Bonferroni方法。它让每个个体检验更加严格，使得FWER至多等于$\alpha$: 如果$p_j&lt;\alpha/M$， 我们拒绝$H_{0j}$。可以很简单地证明这会使得FWER$\le\alpha$。Bonferroni方法在$M$相对较小的情形下有用，但是对于大的$M$则太过保守，也就是，得到的显著基因数目过少。</p>
 <p>在我们的例子中，如果在$\alpha=0.05$水平下检验，则我们需要采用的阈值为$0.05/12625=3.9\times 10^{-6}$。在12625个基因的$p$值中没有比这还小。</p>
 <p>有许多对该方法的变形，通过调整单个$p$值使得FWER至多为$\alpha$，一些方法避免了对独立性的假设，比如，Dudoit et al.（2002b）的工作。</p>
-<h2 id="fdr">FDR</h2>
+<h2 id="fdr">FDR<a class="headerlink" href="#fdr" title="Permanent link">&para;</a></h2>
 <p>多重检验的另一种不同的方式不是试图控制FWER，但是关注假阳性基因的比例。正如我们将要看到的，这个方法在实际中有很强的吸引力。</p>
 <p>图18.5总结了$M$个假设检验的理论结果。注意到FWER为$Pr(V\ge 1)$。</p>
 <p><img alt="" src="../../img/18/tab18.5.png" /></p>
@@ -2891,7 +2989,7 @@ E(V/R)\approx\frac{E(V)}{E(R)}\qquad (18.47)
 </p>
 <p>而且一般地，$\widehat{FDR}$是FDR的一致估计（Storey, 2002; Storey et al., 2004）。注意到分子$\widehat{E(V)}$实际上估计了$(M/M_0)E(V)$，因为排列分布使用$M$而非$M_0$个零假设。因此如果有了$M_0$的一个估计，FDR的一个良好估计FDR的良好估计可以从$(\hat M_0/M)\cdot \widehat{FDR}$中得到。练习18.19展示了估计$M_0$的一种方式。最保守的FDR估计方法是用$M_0=M$（向上偏）。等价地，$M_0$的估计可以用来改善BH方法，通过关系(18.45)。</p>
 <p>读者可能会惊讶我们选了一个较大的数0.15作为FDR的界$\alpha$。我们必须记住FDR不同于第一类误差，后者经常选择0.05。对于科学家，FDR是假阳性在被统计学家称为显著的基因中比例的期望。微阵列实验表明FDR达到0.15仍然有用，特别是当我们探索自然时。</p>
-<h2 id="sam">对称分割点和SAM过程</h2>
+<h2 id="sam">对称分割点和SAM过程<a class="headerlink" href="#sam" title="Permanent link">&para;</a></h2>
 <p>在上面描述的检验方法中，我们采用检验统计量$t_j$的绝对值，因此对于统计量的正值和赋值有相同的截断点。在一些试验中，可能会出现大部分或者所以的差异表达基因在正方向上变化（或者所有都在负方向）。对于这种情形，对两种情形分布导出截断点是有利的。</p>
 <p>微阵列的显著性分析(SAM)提供了一种方式。SAM方法的基本思想展现在图18.20中。在竖轴上，我们画出有序测试统计量$t_{(1)}\le t_{(2)}\le \ldots t_{(M)}$，而横轴展示了从数据的排列中得到的有序统计量的期望：$\tilde t_{(j)}=(1/K)\sum_{k=1}^Kt_{(j)}^k$，其中$t_{(1)}^k\le t_{(2)}^k\le \cdots\le t_{(M)}^k$是排列$k$的有序检验统计量。</p>
 <p><img alt="" src="../../img/18/fig18.20.png" /></p>
@@ -2911,7 +3009,7 @@ E(V/R)\approx\frac{E(V)}{E(R)}\qquad (18.47)
 </script>
 </p>
 <p>再次，每个$t_{(j)}$的阈值取决于对应的$\tilde t_{(j)}$值。</p>
-<h2 id="fdr_1">FDR的贝叶斯解释</h2>
+<h2 id="fdr_1">FDR的贝叶斯解释<a class="headerlink" href="#fdr_1" title="Permanent link">&para;</a></h2>
                 
                   
                 

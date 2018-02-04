@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/08 Model Inference and Averaging/8.5 The EM Algorithm/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/08 Model Inference and Averaging/8.5 The EM Algorithm.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="85-em">8.5 EM算法</h1>
+                <h1 id="85-em">8.5 EM算法<a class="headerlink" href="#85-em" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2805,7 +2903,7 @@
 </tbody>
 </table>
 <p>EM算法是简化复杂极大似然问题的一种很受欢迎的工具。我们首先在一个简单的混合模型中讨论它。</p>
-<h2 id="_1">两个组分的混合模型</h2>
+<h2 id="_1">两个组分的混合模型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>这一节我们描述一个估计密度的简单混合模型，以及对应的求解极大似然估计的EM算法。这与贝叶斯推断中的Gibbs取样方法有着本质的联系。混合模型将在本书其他部分的章节讨论和演示，特别是6.8，12.7和13.2.3节。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：</p>
@@ -2898,7 +2996,7 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 <p class="admonition-title">weiya注<p>自己实现了上述的模拟过程，具体R代码在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">这里</a></p>
 </p>
 </div>
-<h2 id="em">一般情形下的EM算法</h2>
+<h2 id="em">一般情形下的EM算法<a class="headerlink" href="#em" title="Permanent link">&para;</a></h2>
 <p>上面的过程是对于特定问题的类别下最大化概率的EM（或者Baum-Welch）算法。这些问题的概率最大化是困难的，但是通过运用潜在数据（未观测）增大样本会变得简单。这也称作数据增广。这里潜在数据是模型成员$\Delta_i$.在其它问题中，潜在数据是理应被观测到的实际数据但是缺失了。</p>
 <p>算法8.2给出了EM算法的一般形式。我们的观测数据是$\mathbf Z$，其对数概率$\ell(\theta;\mathbf Z)$取决于参数$\theta$。潜在数据或者缺失数据为$\mathbf Z^m$，因此完整数据为$\mathbf {T=(Z,Z^m)}$，对数似然函数为$\ell_0(\theta;\mathbf T)$，$\ell_0$基于完整的密度函数。在混合问题中，$(\mathbf{Z,Z^m)=(y,}\Delta)$，且$\ell_0(\theta;\mathbf T)$由（8.40）式给出。</p>
 <p><img alt="" src="../../img/08/alg8.2.png" /></p>
@@ -2950,7 +3048,7 @@ R(\theta',\theta)=\frac{\E (\1_{\mathbf Z,\theta}\ell_1(\theta';\mathbf Z^m\mid 
 </script>
 因此EM迭代不会降低对数似然值。</p>
 <p>这个论据也让我们明白在最大化那一步整体最大化不是必要的：我们仅仅需要找到一个值$\hat\theta^{(j+1)}$使得$Q(\theta&rsquo;,\hat\theta^{(j)})$关于第一个变量是增的，也就是$Q(\hat\theta^{(j+1)},\hat\theta^{(j)}) &gt; Q(\hat\theta^{(j)},\hat\theta^{(j)})$.这一过程称之为GEM（广义EM）算法。EM算法也可以看成是最小化的过程：见练习8.7.</p>
-<h2 id="em-">EM作为一个最大化-最大化的过程</h2>
+<h2 id="em-">EM作为一个最大化-最大化的过程<a class="headerlink" href="#em-" title="Permanent link">&para;</a></h2>
 <p>这里从一个不同的角度来看EM过程，看成一个联合最大化算法。考虑函数
 <script type="math/tex; mode=display">
 F(\theta',\tilde P) = E_{\tilde P}[\ell_0(\theta';\mathbf T)] - E_{\tilde P}[\mathrm{log}\tilde P(\mathbf Z^m)]\qquad (8.48)

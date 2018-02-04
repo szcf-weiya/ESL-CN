@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/02 Overview of Supervised Learning/2.3 Two Simple Approaches to Prediction.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="23">2.3 两种简单的预测方式：最小二乘和最近邻</h1>
+                <h1 id="23">2.3 两种简单的预测方式：最小二乘和最近邻<a class="headerlink" href="#23" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2805,7 +2903,7 @@
 </tbody>
 </table>
 <p>在这一部分中我们讨论两种简单但很有用的预测方法：最小二乘法的线性模型拟合和k-最近邻预测规则。线性模型对结构做出很大的假设而且得出稳定但可能不正确的预测。$k$-最近邻方法对结构的假设很温和：它的预测通常是准确的但不稳定。</p>
-<h2 id="_1">线性模型和最小二乘</h2>
+<h2 id="_1">线性模型和最小二乘<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>线性模型已经成为过去30年统计学的支柱，而且仍然是我们最重要的工具。给定输入向量$X^T=(X_1,X_2,\cdots,X_p)$，我们通过模型</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2862,7 +2960,7 @@ $$</p>
 <p>就生成模型而言，混合的高斯分布是描述得最好的。首先产生一个离散随机变量，该变量决定使用哪个部分的高斯分布，然后根据选择的密度产生观测值。在每一类是一个高斯分布的情形下，我们将在第四章看到一个线性的判别边界是最好的，而且我们的估计也几乎是最优的。区域的重叠是不可避免的，而且将要被预测的数据因为数据重叠也会变得很麻烦。</p>
 <p>在混合紧密聚集的高斯分布中情形不一样了。一个线性的判别边界不大可能是最优的，而且事实上也不是。最优的判别边界是非线性不相交的，而且作为这种判别边界，将会更难确定。</p>
 <p>我们现在来看一下另一种分类和回归的过程，在某种程度上是与线性模型相反的一种做法，但却更好地能够适用第二种情形。</p>
-<h2 id="_2">最邻近方法</h2>
+<h2 id="_2">最邻近方法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>最邻近方法用训练集$\mathcal{T}$中在输入空间中离$x$最近的观测组成$\hat{Y}$。特别地，对$\hat{Y}$的$k$-最近邻拟合定义如下：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2880,7 +2978,7 @@ $$</p>
 <p>相比较图2.1，在图2.2中更少的训练观测值被错误地分类。尽管如此，这个不应该给我们太大的安慰，因为图2.3中没有一个训练数据被错误地分类。一个小小的想法表明在$k$-最近邻拟合中，训练数据的误差应该近似是关于$k$的增函数，而且当$k=1$时误差总是为0。一个独立的测试集比较这些不同的方法会给我们一个满意的方法。</p>
 <p>看起来$k$-最近邻拟合只有一个参数，$k$值的大小，而在最小二乘有$p$个参数。尽管情况就是这样，我们将会看到$k$-最近邻的有效(<em>effective</em>)参数个数是$\frac{N}{k}$，而且一般地会比$p$大，另外随着$k$的增长有效参数个数减少。为了弄清楚为什么，注意到如果邻域没有重叠，则会有$\frac{N}{k}$个邻域，而且我们在每个区域内拟合一个参数。</p>
 <p>我们不能在训练集上将误差平方和作为选择$k$的标准，因为我们总会选择$k=1$。$k$-最近邻方法对于上文中描述的情境2更适合，尽管对于高斯分布的数据$k$-最近邻判别边界会有不必要的噪声。</p>
-<h2 id="_3">从最小二乘到最近邻</h2>
+<h2 id="_3">从最小二乘到最近邻<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>最小二乘法的线性判别边界非常光滑，而且显然拟合得很稳定。它似乎严重依赖线性判别边界是合理的假设。我们马上用文字讨论，它有低方差和潜在的高偏差。</p>
 <p>另一方面，$k$-最近邻过程似乎不非常依赖任何关于数据的假设，而且可以适用于任何情形。然而，判别边界的任何特定的分区都依赖几个输入点和它们的特定位置，而且因此左右摇摆不稳定——高方差和低偏差。</p>
 <p>每种方法都有各自处理得最好的情形；特别地，线性回归更适合上面介绍的情形1，而最邻近方法最适合情形2。是来揭露困难的时候了。事实上数据是从介于两种情形的模型中模拟出来的，但是更接近于情形2。首先，我们从双变量高斯分布$(N(1,0)^T,\bf{I})$中产生10个均值$m_k$，标记此类为蓝色。类似地，从双变量高斯分布$(N(0,1)^T,\bf{I})$中产生10个均值并标记此类为橘黄色。然后对每一类按照下面方式产生100个观测：对于每个观测，我们以1/10的概率随机选择一个$m_k$，然后产生$N(m_k,\bf{I}/5)$，因此对于每一类引出了一个高斯分布簇的混合。图2.4显示了从该模型产生10000个新观测的的分类结果，我们比较最小二乘法和一系列$k$值对应的$k$-最近邻的结果。</p>

@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/04 Linear Methods for Classification/4.3 Linear Discriminant Analysis/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/04 Linear Methods for Classification/4.3 Linear Discriminant Analysis.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="43">4.3 线性判别分析</h1>
+                <h1 id="43">4.3 线性判别分析<a class="headerlink" href="#43" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2878,7 +2976,7 @@ x^T\hat\Sigma^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\Sigma^{-1}\ha
 <p>图4.6. 拟合二次边界的两种方法。左图显示了图4.1的二次判别边界（在五维空间$X_1,X_2,X_1X_2,X_1^2,X_2^2$中运用LDA得到）。右图显示了通过QDA寻找到的二次判别边界。两者差别很小，通常也是这种情况。</p>
 </blockquote>
 <p>QDA的估计类似LDA的估计，除了协方差矩阵必须要按每一类来估计。当$p$很大这意味着系数有显著性的增长。因为判别边界是系数密度的函数，参数的个数必须要考虑。对于LDA，似乎有$(K-1)\times(p+1)$个参数，因为我们仅仅需要判别函数之间的不同$\delta_k(x)-\delta_K(x)$，其中$K$是一些预先选好的类别（这里我们已经选了最后一类），每个不同需要$p+1$个参数。对于QDA类似地，我们会有$(K-1)\times {p(p+3)/2+1}$个参数。LDA和QDA在非常大以及离散的数据集的分类上面表现得很好。举个例子，在STATLOG项目中（Michie et al. 1994）LDA在22个数据集的7个分类方法中的表现排前三名，QDA在四个数据集中排前三名，对于10个数据集两者中的一个排前三名。两种方法都被广泛运用，整本书集中讨论LDA上。在各种外来方法风靡一时的今天，我们总是会有两种简单的方法可以使用。为什么LDA和QDA有那么好的效果？原因不可能是数据近似服从高斯分布，对于LDA协方差矩阵也不可能近似相等。很可能的一个原因是数据仅仅可以支持简单的判别边界比如线性和二次，并且通过高斯模型给出的估计是稳定的，这是一个偏差与方差之间的权衡——我们可以忍受线性判别边界的偏差因为它可以通过用比其它方法更低的方差来弥补。这个论点对于QDA更是不可想象，因为它自身有许多的参数，尽管或许比非参估计的参数要少。</p>
-<h2 id="_1">正则化判别分析</h2>
+<h2 id="_1">正则化判别分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>Friedman(1989)提出LDA和QDA之间的一个权衡，使得QDA的协方差阵向LDA中的共同协方差阵收缩。这些方法非常类似岭回归。正则化协方差矩阵有如下形式
 <script type="math/tex; mode=display">
 \hat\Sigma_k(\alpha)=\alpha\hat\Sigma_k+(1-\alpha)\hat\Sigma\qquad (4.13)
@@ -2895,7 +2993,7 @@ x^T\hat\Sigma^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\Sigma^{-1}\ha
 </script>
 对于$\gamma\in[0,1]$。用$\hat\Sigma(\gamma)$替换掉(4.13)的$\hat\Sigma$导出了一个更加一般的协方差阵族$\hat\Sigma(\alpha,\gamma)$,这是由一对参数来表示的。</p>
 <p>在12章，我们将讨论LDA的另一种正则化版本，当数据来自数字化的相似的信号和图像时更加地合适。在这些情形下特征是高维的且相关的，LDA系数可以通过正则化在原始信号域变得光滑和稀疏。这导出了更好的一般化并且对于这些系数有着简单的解释。在第18章中我们也处理非常高维的问题，举个例子如微阵列研究中基因表达测量的特征。这里方法集中在(4.14)中$\gamma=0$的情形，以及其它LDA的正则化版本。</p>
-<h2 id="lda">LDA的计算</h2>
+<h2 id="lda">LDA的计算<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
 <p>作为下一主题的介绍，我们简单地岔开去讨论LDA的计算特别是QDA。这些计算可以通过对角化$\hat\Sigma$或$\hat\Sigma_k$来简化。对于后者，假设我们对每一个计算特征值分解$\hat\Sigma_k=U_kD_kU_k^T$，其中$U_k$是$p\times p$的对角矩阵，$D_k$是正的特征值$d_{k\ell}$组成的对角矩阵。则$\delta_k(x)$(4.12)的组成成分是</p>
 <ul>
 <li>$(x-\hat\mu_k)^T\hat\Sigma_k^{-1}(x-\hat\mu_k)=[U_k^T(x-\hat\mu_k)]^TD_k^{-1}[U_k^T(x-\hat\mu_k)]$</li>
@@ -2906,7 +3004,7 @@ x^T\hat\Sigma^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\Sigma^{-1}\ha
 <li>对数据关于协方差矩阵$\hat\Sigma$球面化：$X^*\leftarrow D^{-\frac{1}{2}}U^TX$,其中$\hat\Sigma=UDU^T$.$X^*$的共同协方差矩阵变为单位阵。</li>
 <li>对类别先验概率$\pi_k$的影响取模，在变换后的空间里面分到最近的类别形心。</li>
 </ul>
-<h2 id="_2">降维线性判别分析</h2>
+<h2 id="_2">降维线性判别分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>至此我们已经讨论了限制为高斯分类器中的LDA。它受欢迎的部分原因是因为额外的限制使得我们可以看到数据在低维空间中的投影。</p>
 <p>在$p$维输入空间的$K$形心位于维数小于$K-1$的超平面，如果$p$比$K$大很多，维数上会有显著的降低。更多地，在确定最近的形心时，我们可以忽略到垂直子空间的距离，因为它们对每个类的作用同样大。因此我们可能仅仅将数据$X^*$投射到形心张成的子空间$H_{K-1}$，并且在子空间内比较距离。因此在LDA中存在一个基础维数的降低，换句话说就是，我们仅仅需要考虑在维数至多为$K-1$的子空间的数据。如果$K=3$，举个例子，这允许我们可以在二维图中观察数据，对类别进行颜色编码。这样做我们不会丢失任何LDA分类需要的信息。</p>
 <div class="admonition note">

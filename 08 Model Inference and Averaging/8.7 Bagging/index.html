@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/08 Model Inference and Averaging/8.7 Bagging/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2754,10 +2854,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/08 Model Inference and Averaging/8.7 Bagging.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="87-bagging">8.7 Bagging</h1>
+                <h1 id="87-bagging">8.7 Bagging<a class="headerlink" href="#87-bagging" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2815,7 +2913,7 @@
 </p>
 </div>
 <p>一个简单的两个类别的例子显示了它们在这种情形下的失败。假设在$x$处类别1的真实概率为0.75，而且每个bagging分类器准确地预测了1。于是$p_1(x)=1$,这是不正确的。然而，对于许多分类器$\hat G(x)$，已经有一个估计了$x$处类别概率的潜在函数$\hat f(x)$（对于树而言，类别的比例即为末结点处的类别比例）。另一种bagging策略是对这些结点处的比例取平均而不是对得分指示向量取平均。这个过程不仅仅改善了类别概率的估计，而且趋向于产生低方差的bagging分类器，特别是对于小$B$(见下一个例子的图8.10)</p>
-<h2 id="_1">例子： 树与模拟数据</h2>
+<h2 id="_1">例子： 树与模拟数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>我们产生样本大小为$N=30$，两个类别，以及有$p=5$个特征的样本，每个样本服从标准高斯分布，并且成对相关系数为0.95。根据$Pr(Y=1\mid x_1\le 0.5)=0.2，Pr(Y=1\mid x_1&gt; 0.5)=0.8$。贝叶斯误差率为0.2。同时从相同的总体中生成大小为2000的测试集合。我们对训练样本和200个自助样本拟合分类树（分类树在第九章中有描述）。不使用剪枝技巧。图8.9显示了原始的树和11个自助树。</p>
 <p><img alt="" src="../../img/08/fig8.9.png" /></p>
 <p>注意到这些树是怎样完全不同的，既有不同的分割特征，也有不同的截断点。原始分类树和bagged树的测试误差展现在图8.10。</p>

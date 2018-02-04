@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/18 High-Dimensional Problems/18.6 High-Dimensional Regression/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2768,10 +2868,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/18 High-Dimensional Problems/18.6 High-Dimensional Regression.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="186">18.6 高维回归: 有监督的主成分</h1>
+                <h1 id="186">18.6 高维回归: 有监督的主成分<a class="headerlink" href="#186" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2829,9 +2927,9 @@
 <p>图18.14展示了这个例子中有监督的主成分的结果. 我们采用3.53作为Cox得分的分割点, 得到了27个基因, 其中3.53是通过10折交叉验证得到的. 接着我们仅利用这27个基因的训练集以及其所对应的测试集中的观测值来计算第一主成分(m=1). 我们将这些作为Cox回归模型的定量变量, 其似然比的显著程度为$p=0.005$. 当进行二值化(采用训练数据集的均值作为阈值), 它能够清晰地将测试集中的病人划分成了低风险和高风险的群体 (图18.14中右边中间的图, $p=0.006$).</p>
 <p>图18.14中右边最上面的图仅仅采用最高得分的基因作为生存的预测变量. 在测试集上不显著. 同样地, 右边最下面的图显示了采用所有训练数据的主成分的二值化, 这也是不显著的.</p>
 <p>我们的过程允许在第(2a)步中采用$m&gt;1$个主成分. 然而, 步骤(1)中的有监督使得主成分与输出变量一致, 也因此在大部分情形下, 只有第一或者前几个主成分对预测有用. 在下面的数学部分, 我们仅仅考虑第一主成分, 但是对多余一个主成分的拓展可以按照类似的方式进行.</p>
-<h2 id="_1">与潜变量模型的联系</h2>
+<h2 id="_1">与潜变量模型的联系<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
-<h2 id="_2">与偏最小二乘的联系</h2>
+<h2 id="_2">与偏最小二乘的联系<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
                 
                   

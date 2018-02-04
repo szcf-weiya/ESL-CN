@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/03 Linear Methods for Regression/3.8 More on the Lasso and Related Path Algorithms/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2824,10 +2924,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/03 Linear Methods for Regression/3.8 More on the Lasso and Related Path Algorithms.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="38-lasso">3.8 Lasso和相关路径算法的补充</h1>
+                <h1 id="38-lasso">3.8 Lasso和相关路径算法的补充<a class="headerlink" href="#38-lasso" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2851,7 +2949,7 @@
 </tbody>
 </table>
 <p>自从LAR算法（Efron et al., 2004<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）的提出，许多研究都在发展对于不同问题的正则化拟合算法。另外，$L_1$正则有它自己的用处，它引领了信号处理领域的压缩传感(compressed sensing).（Donoho, 2006a<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>; Candes, 2006<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）在这部分我们讨论一些相关的想法和以LAR算法为先驱的其它路径算法。</p>
-<h2 id="_1">增长的向前逐渐回归</h2>
+<h2 id="_1">增长的向前逐渐回归<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>这里我们提出另外一种类似LAR的算法，这次集中在向前逐渐回归。有趣地是，理解一个灵活的非线性回归过程的努力导出了线性模型的一个新算法（LAR）。在阅读本书的第一版时，第16章的向前逐渐算法16.1，Brad Efron意识到对于线性模型，可以明确地构造出如图3.10所示的分段线性的lasso路径。这促使他提出3.4.4节介绍的LAR过程，以及这里提到的向前逐渐回归(forward-stagewise regression)的增长版本。</p>
 <p><img alt="" src="../../img/03/alg3.4.png" /></p>
 <!--
@@ -2891,7 +2989,7 @@ $$
 <p>作为这些事实的结果，如果LAR图象是单调不减或者单调不增，如3.19所示，则LAR，lasso，以及$FS_0$这三种算法给出了相同的图象。如果图象不是单调的但是不穿过0，则LAR和lasso是一样的。</p>
 <p>因为$FS_0$与lasso不同，很自然地问它是否优化了准则。答案比lasso更加的复杂；$FS_0$系数曲线是微分方程的一个解。尽管lasso在降低系数向量$\beta$的$L_1$范数的单位残差平方和增长方面实现了最优化，但$FS_0$在沿着系数路径的$L_1$弧长的单位增长是最优的。因此它的系数曲线不会经常改变方向。</p>
 <p>$FS_0$比lasso的约束更强，事实上也可以看成是lasso的单调版本；见图16.3生动的例子。$FS_0$可能在$p&gt;&gt;N$情形下很有用，它的系数曲线会更加的光滑，因此比lasso有更小的方差。更多关于$FS_0$的细节将在16.2.3节以及给出以及Hastie et al. (2007)<sup id="fnref2:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>。图3.16包含了$FS_0$, 它的表现非常类似于lasso。</p>
-<h2 id="_2">分段线性路径算法</h2>
+<h2 id="_2">分段线性路径算法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>最小角回归过程探索了lasso解的路径分段线性的本质。这导出了其他正则化问题类似的“路径算法”。假设我们求解</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2909,7 +3007,7 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 <li>$J$关于$\beta$分段线性</li>
 </ol>
 <p>这也意味着（原则上）解的路径可以有效地计算出来。例子包括平方损失和绝对误差损失，“Huberized”损失，以及关于$\beta$的$L_1, L_\infty$ 惩罚。另一个例子是支持向量机中的“hinge loss”。那里损失是分段线性，惩罚是二次的。有趣的是，这导出了对偶空间的分段线性路径算法；更多的细节在12.3.5节给出。</p>
-<h2 id="dantzig">Dantzig选择器</h2>
+<h2 id="dantzig">Dantzig选择器<a class="headerlink" href="#dantzig" title="Permanent link">&para;</a></h2>
 <p>Candes and Tao (2007)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup> 提出下面的准则：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2925,7 +3023,7 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 <p>这里$\Vert\cdot\Vert_\infty$为$L_\infty$范数，也就是该向量中绝对值最大的组分。这种形式类似lasso，用梯度绝对值的最大值替换平方误差损失。注意到当$t$变大，如果$N&lt;p$两个过程都得到最小二乘解。如果$p\ge N$，它们都得到最小的$L_1$范数的最小二乘解。然而，对于较小的$t$，DS过程得到与lasso不同的解的路径。</p>
 <p>Candes and Tao (2007)<sup id="fnref2:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>证明了求解DS是线性规划问题；为了纪念George Dantzig（线性规划中单纯形法的发明者），因此称为Dantzig。他们也证明了该方法的一系列有趣的数学问题，这些性质与重建潜在的稀疏系数向量的能力有关。如Bickel et al. (2008)<sup id="fnref:13"><a class="footnote-ref" href="#fn:13" rel="footnote">13</a></sup>所证明，这些性质对于lasso也适用。</p>
 <p>不幸的是DS方法的运算性质有些不足。这个方法想法上与lasso类似，特别是当我们观察lasso的平稳条件（3.58）。和LAR算法一样，对于活跃集中的所有变量，lasso保持着与当前残差相同的内积（以及相关系数），并且将它们的系数向残差平方和的最优下降方向变化。在这个过程中，相同的相关系数单调下降（练习3.23），并且在任何时刻这个相关性大于非活跃集中的变量。而Dantzig选择器试图最小化当前残差与所有变量之间的最大内积。因此它可以达到比lasso更小的最大值，但是在这一过程中会发生奇怪的现象。如果活跃集的大小为$m$，则会有$m$个变量与最大相关性绑在一起。然而，这些变量不需要与活跃集重合！因此它可以在模型中包含这样一个变量，其与当前残差的相关性小于不在活跃集中的变量与残差的相关性(Efron et al., 2007<sup id="fnref:14"><a class="footnote-ref" href="#fn:14" rel="footnote">14</a></sup>)。这似乎不合理，而且有时会导致较差的预测误差。Efron et al. (2007)也证明了随着正则化参数$s$的变化，DS可能得到非常不稳定的系数曲线。</p>
-<h2 id="the-grouped-lasso">The Grouped Lasso</h2>
+<h2 id="the-grouped-lasso">The Grouped Lasso<a class="headerlink" href="#the-grouped-lasso" title="Permanent link">&para;</a></h2>
 <p>在一些问题中，预测变量属于预定义的群体中；举个例子，属于同一个生物路径的基因，或者表示类别型数据层次的指示变量（哑变量）。在这种情形中，或许想要对群体中每个成员一起进行收缩或者选择操作。grouped lasso便是一种实现方式。假设$p$个预测变量被分到$L$个群中，在第$\ell$个群中有$p_\ell$个成员。为了简便，我们采用矩阵$\mathbf X_\ell$来表示对应第$\ell$个群的预测变量，对应的系数向量为$\beta_\ell$。grouped-lasso最小化下列的凸准则</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2933,7 +3031,7 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 </script>
 </p>
 <p>其中$\sqrt{p_\ell}$项对应不同的群体大小，并且$\Vert\cdot\Vert_2$是欧几里得范数。因为一个向量$\beta_\ell$的欧式范数为0当且仅当其各组分都为0，这个过程保证了群体层次和个体水平的稀疏性。也就是，对于某些$\lambda$，预测变量的整个群体都排除在模型之外。这个过程由Bakin (1999)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>和Lin and Zhang (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>提出，以及Yuan and Lin (2007)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>的研究和推广。推广包括更一般的$L_2$范数$\Vert \eta\Vert=(\eta^TK\eta)^{1/2}$，并且允许重复的预测变量(Zhao et al., 2008<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)。拟合离散的可加模型的方法之间也有联系（Lin and Zhang, 2006<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Ravikumar et al., 2008<sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup>）</p>
-<h2 id="lasso">lasso的更多性质</h2>
+<h2 id="lasso">lasso的更多性质<a class="headerlink" href="#lasso" title="Permanent link">&para;</a></h2>
 <p>许多作者已经研究了当$N$和$p$增长时，lasso的能力以及重建模型相关的过程。这个工作的例子有Knight and Fu (2000)<sup id="fnref:15"><a class="footnote-ref" href="#fn:15" rel="footnote">15</a></sup>, Greenshtein and Ritov (2004)<sup id="fnref:16"><a class="footnote-ref" href="#fn:16" rel="footnote">16</a></sup>, Tropp (2004)<sup id="fnref:17"><a class="footnote-ref" href="#fn:17" rel="footnote">17</a></sup>, Donoho (2006b)<sup id="fnref:18"><a class="footnote-ref" href="#fn:18" rel="footnote">18</a></sup>, Meinshausen (2007)<sup id="fnref:19"><a class="footnote-ref" href="#fn:19" rel="footnote">19</a></sup>, Meinshausen and Bühlmann (2006)<sup id="fnref:20"><a class="footnote-ref" href="#fn:20" rel="footnote">20</a></sup>, Tropp (2006)<sup id="fnref:21"><a class="footnote-ref" href="#fn:21" rel="footnote">21</a></sup>, Zhao and Yu (2006)<sup id="fnref:22"><a class="footnote-ref" href="#fn:22" rel="footnote">22</a></sup>, Wainwright (2006)<sup id="fnref:23"><a class="footnote-ref" href="#fn:23" rel="footnote">23</a></sup>, 以及 Bunea et al. (2007)<sup id="fnref:24"><a class="footnote-ref" href="#fn:24" rel="footnote">24</a></sup>。举个例子，Donoho (2006b)<sup id="fnref2:18"><a class="footnote-ref" href="#fn:18" rel="footnote">18</a></sup>集中在$p&gt;N$的情形并且当边界$t$变大时lasso的解。极限情形下，这给出了在所有零训练误差的模型中最小的$L_1$范数解。他证明了对模型矩阵$\mathbf X$加上具体的假设，如果真实模型为稀疏的，则解能以高概率识别出正确的预测变量。</p>
 <p>许多这领域的结果对模型矩阵假设了如下条件</p>
 <p>
@@ -2951,7 +3049,7 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 </p>
 <p>方括号中的第二项降低了lasso对于较大$\beta$的收缩程度，在极限状态时，当$a\rightarrow \infty$，没有收缩。图3.20显示了SCAD惩罚，以及lasso和$\beta$^{1-\nu}$。然而这个准则不是凸的，这是一个缺陷，因为它会使得计算变得很困难。adaptive lasso (Zou, 2006)<sup id="fnref:26"><a class="footnote-ref" href="#fn:26" rel="footnote">26</a></sup>采用形如$\sum_{j=1}^pw_j\vert\beta_j\vert$的加权惩罚，其中$w_j=1/\vert\hat\beta_j\vert^\nu$，$\hat\beta_j$是一般最小二乘估计并且$\nu&gt;0$。这是对3.4.3节中讨论的$\vert\beta\vert^q$惩罚的实际近似（这里$q=1-\nu$）。adaptive lasso在保证lasso吸引人的凸性基础上还得到了参数的一致估计。</p>
 <p><img alt="" src="../../img/03/fig3.20.png" /></p>
-<h2 id="pathwise-coordinate-optimization">Pathwise Coordinate Optimization</h2>
+<h2 id="pathwise-coordinate-optimization">Pathwise Coordinate Optimization<a class="headerlink" href="#pathwise-coordinate-optimization" title="Permanent link">&para;</a></h2>
 <p>一种替代计算lasso的LARS算法是简单的坐标下降(simple coordinate descent)。这个想法由Fu (1998)<sup id="fnref:27"><a class="footnote-ref" href="#fn:27" rel="footnote">27</a></sup>和Daubechies et al. (2004)<sup id="fnref:28"><a class="footnote-ref" href="#fn:28" rel="footnote">28</a></sup>提出，后来被Friedman et al. (2007)<sup id="fnref:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>, Wu and Lange (2008)<sup id="fnref:30"><a class="footnote-ref" href="#fn:30" rel="footnote">30</a></sup>和其他人研究及推广。想法是固定Lagrangian形式(3.52)中的惩罚参数$\lambda$，在控制其它参数固定不变时，相继地优化每一个参数。</p>
 <p>假设预测变量都经过标准化得到0均值和单位范数。用$\tilde\beta_k(\lambda)$表示惩罚参数为$\lambda$时对$\beta_k$的当前估计。我们可以分离出(3.52)的$\beta_j$,</p>
 <p>

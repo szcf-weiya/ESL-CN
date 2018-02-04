@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2768,10 +2868,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/03 Linear Methods for Regression/3.5 Methods Using Derived Input Directions.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="35-derived-input-directions">3.5 运用派生输入方向（Derived Input Directions）的方法</h1>
+                <h1 id="35-derived-input-directions">3.5 运用派生输入方向（Derived Input Directions）的方法<a class="headerlink" href="#35-derived-input-directions" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2791,7 +2889,7 @@
 </tbody>
 </table>
 <p>在很多情形下我们有很多输入，这些输入相关性经常是非常强的。这一小节中的方法得到较少的原输入变量$X_j$的线性组合$Z_m,m=1,2,\ldots,M$，然后$Z_m$用来代替$X_j$来作为回归的输入。这些方法区别于怎样构造线性组合。</p>
-<h2 id="_1">主成分回归</h2>
+<h2 id="_1">主成分回归<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在这种方法下，使用的线性组合$Z_m$是在前面3.4.1节中定义的主成分。</p>
 <p>主成分回归构造派生的输入列$\mathbf z_m=\mathbf Xv_m$，然后在$\mathbf z_1,\mathbf z_2,\ldots,\mathbf z_M,\; M\le p$上回归$\mathbf y$.因为$\mathbf z_m$是正交的，这个回归仅仅是一个单变量回归的和
 <script type="math/tex; mode=display">
@@ -2806,7 +2904,7 @@
 <p><img alt="" src="../../img/03/fig3.17.png" /></p>
 <p>图3.17 岭回归运用(3.47)中的收缩因子$d_j^2/(d_j^2+\lambda)$来收缩主成分回归的系数。主成分回归截断了它们。 图中显示了图3.7对应的收缩和截断模式作为主成分指标的函数。</p>
 <p>在图3.7中我们看到交叉验证表明有7项；最终模型在表3.3中有最低的测试误差。</p>
-<h2 id="_2">偏最小二乘</h2>
+<h2 id="_2">偏最小二乘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>这个技巧也构造了一系列用于回归的输入变量的线性组合，但是与主成分回归不同的是它采用$\mathbf y$（以及$\mathbf X$）来构造。和主成分回归相同的是，偏最小二乘(PLS)不是尺度不变的，所以我们假设每个$\mathbf x_j$标准化使得均值为0和方差为1。PLS通过对每个$j$计算$\hat \psi_{1j}=\langle \mathbf x_j, \mathbf y\rangle$。从这里我们构造了新的输入变量$\mathbf z_1=\sum_j\hat \psi_{1j}\mathbf x_j$, 这是第一偏最小二乘方向。因此在每个$\mathbf z_m$的构造中，输入变量通过判断其在$\mathbf y$上的单变量影响强度来加权。输出变量<strong>$\mathbf y$在$\mathbf z_1$上回归</strong>便得到系数$\hat \theta_1$, 然后我们对$\mathbf x_1,\mathbf x_2,\ldots,\mathbf x_p$进行关于$\mathbf z_1$的正交化。我们继续这个过程，直到$M\le p$。在这种方式下，偏最小二乘得到一系列派生出的、正交化的输入或者方向$\mathbf z_1,\mathbf z_2,\ldots, \mathbf z_p$。至于主成分回归，如果我们构造所有$M=p$个方向，我们会得到一个等价于普通最小二乘估计的解；如果使用$M&lt; p$个方向会得到一个低维的回归。这个过程将在算法3.3中详细描述。</p>
 <blockquote>
 <p><strong>weiya 注：</strong>在$\mathbf a$上回归$\mathbf b$(或者称作$\mathbf b$在$\mathbf a$上回归)指的是</p>

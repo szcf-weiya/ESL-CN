@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/07 Model Assessment and Selection/7.10 Cross-Validation/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../7.1%20Introduction/index.html" title="中篇" class="md-tabs__link md-tabs__link--active">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/07 Model Assessment and Selection/7.10 Cross-Validation.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="710">7.10 交叉验证</h1>
+                <h1 id="710">7.10 交叉验证<a class="headerlink" href="#710" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2818,7 +2916,7 @@
 <p class="admonition-title">weiya注：回顾</p>
 <p>在7.2节，详细讨论了我们实际上最需要当测试集$\cal T$固定时的条件误差，而非预测误差的期望值。</p>
 </div>
-<h2 id="k">K折交叉验证</h2>
+<h2 id="k">K折交叉验证<a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
 <p>理论上，如果我们有足够的数据，我们可以设置一个验证集并且用它去评估我们预测模型的好坏。因为数据经常是稀缺的，所有这种方式通常是不可能的。为了巧妙地解决这个问题，$K$折交叉验证采用部分可用数据去拟合模型，然后用不同的部分数据去测试。我们将数据分成$K$个大致相等的部分；举个例子，当$K=5$，情形就像这样：</p>
 <p><img alt="" src="../../img/07/pic1.png" /></p>
 <p>对于第$k$部分（上面的第三个），我们用剩下的$K-1$个部分数据来拟合模型，然后计算预测第$k$部分的数据时模型的预测误差。对$k=1,2,\ldots,K$时做类似的工作并且将$K$个预测误差的估计值结合起来。</p>
@@ -2886,7 +2984,7 @@ AIC=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon
 显然，它们的区别在于$\sigma^2_{varepsilon}$的估计方法不同。
 毕。</p>
 </div>
-<h2 id="_1">做交叉验证的错误与正确方式</h2>
+<h2 id="_1">做交叉验证的错误与正确方式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>考虑有许多预测变量的分类问题，举个例子，可能在基因与蛋白质的应用中。一般的分析技巧或许如下：</p>
 <ol>
 <li>筛选预测变量：选择与类别有着相当强（单变量）相关性的“好”预测变量的一个子集</li>
@@ -2911,7 +3009,7 @@ AIC=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon
 <p>在第2(c)步的误差估计接着在所有$K$折上进行累积，得到预测误差的交叉验证估计。图7.10的下图显示了在某个特定的$k$折样本上，正确步骤的第2(a)步选择的100个预测变量与类别的相关性。我们看到它们平均值近似为0，恰恰是它们应该取的值。</p>
 <p>一般地，在多步建模过程中，交叉验证必须应用到整个模型步骤的序列中。特别地，在任何选择或者过滤步骤中样本必须“丢弃”。有一个条件：初始非监督筛选步骤可以在丢弃样本之前完成。举个例子，开始交叉验证前，我们可以选择1000个在50个样本上有着最大方差的预测变量。因为这个过滤不涉及到类别，所以它不会给预测变量不公平的好处。</p>
 <p>尽管这点对于读者来说是显然的，但是我们看到这个错误在顶级期刊中发表的文章中犯了很多次。因为大量预测变量在基因和其他领域是很常见的，这个错误潜在的后果也显著增加；见Ambroise and McLachlan(2002)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>对这个问题的详细讨论。</p>
-<h2 id="_2">交叉验证是否真的有用？</h2>
+<h2 id="_2">交叉验证是否真的有用？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们再一次在高维分类问题中检验交叉验证的 效果。考虑$N=20$个样本的情形，样本被均分为两个类别，而且有$p=500$个与类别独立的定量变量。同样，任一分类器的真实误差率为$50\%$。考虑一个简单的单变量分类器：最小化误差率的单分割（“stump”）。Stumps是一棵单分割的树，而且应用在增强方法中（第10章）。一个简单的论断表明交叉验证在这种设定下不会很好地起作用（作者注：这个论断是在蛋白质实验室会议上一名科学家向我们提出来的，于是便有了这一节的内容）。</p>
 <blockquote>
 <p>对全数据集进行拟合，我们将会发现一个对数据集分离得很好的预测变量。如果我们做5折交叉验证，同样的预测变量应该对数据的4/5和1/5都分离得很好，因此交叉验证误差率会很小（远远小于$50\%$）。因此CV不能给出一个准确的误差估计。</p>

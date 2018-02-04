@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines)/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2890,10 +2990,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines).md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="94-mars">9.4 MARS: 多变量自适应回归样条</h1>
+                <h1 id="94-mars">9.4 MARS: 多变量自适应回归样条<a class="headerlink" href="#94-mars" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3029,24 +3127,24 @@ Y_i\sim h_{\ell}(X)(X_{ij}-t_r), \; r=1,2,\ldots, N; i=1,2,\ldots, N
 <p>MARS中向前建模的策略是层次性的，因为多重乘积是从已经在模型中的项来建立的。举个例子，仅仅当4重乘积中的一个3重乘积已经在模型中，才会加入该四重乘积。这里的哲学是，高阶交叉项仅仅当其中的低阶项存在才会存在。这个需求不是正确的，但是是合理的假设，并且避免了在可行选择数目呈指数增长的空间中的搜索。</p>
 <p>在模型的项构造时有一个约束：每个输入变量在一个乘积中至多可以出现一次。这预防了输入变量的高阶幂的形成，这导致参数空间的边界会有剧烈的增大或下降。这样的幂次可以通过分段线性函数以一种更稳定的方式来近似。</p>
 <p>MARS过程中的一个有用选项是在交叉项的阶数上设置上界。举个例子，可以设置上界为2，允许成对的分段线性函数的乘积，但是不允许3次或更高次的乘积。这个可以帮助最终模型的解释。含有上界得到加性模型。</p>
-<h2 id="_1">垃圾邮件的例子（继续）</h2>
+<h2 id="_1">垃圾邮件的例子（继续）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>我们对垃圾邮件的数据应用MARS，本章前面已经分析了这个数据集。为了增强解释性，我们限制MARS到2阶交叉项。尽管响应变量是取值为两个类别的类别型变量，但我们还是采用平方误差损失函数（见9.4.3节）。图9.12显示了模型中测试误差误分类率作为秩（独立基函数的个数）的函数。误差率约为5.5%，这比前面讨论的广义加性模型的误差率(5.3%)稍高一点。GCV选择大小为60的模型，近似给出了最优表现的最小模型。通过MARS找到的主要交叉项涉及(ch\$, remove),(ch\$, free)和(hp, CAPTOT)。然而，这些交叉项没有提高广义加性模型中的表现。</p>
 <p><img alt="" src="../../img/09/fig9.12.png" /></p>
 <blockquote>
 <p>垃圾数据：MARS过程的测试误差误分类率，作为模型的秩（独立基函数的个数）的函数。</p>
 </blockquote>
-<h2 id="_2">例子（模拟数据）</h2>
+<h2 id="_2">例子（模拟数据）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>这里我们在三种不同的情形下验证MARS的表现。$N=100$个观测，预测变量$X_1,X_2,\ldots,X_p$和误差$\varepsilon$有独立标准正态分布。</p>
-<h3 id="1">情形1：</h3>
+<h3 id="1">情形1：<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <p>数据产生模型为
 <script type="math/tex; mode=display">
 Y=(X_1-1)_++(X_1-1)_+\cdot (X_2-.8)_++0.12\cdot\varepsilon\qquad (9.21)
 </script>
 </p>
 <p>选择噪声标准误差0.12使得信噪比约为5.我们称这个为张量积情形；乘积项给出类似图9.11的表面。</p>
-<h3 id="2">情形2：</h3>
+<h3 id="2">情形2：<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <p>同情形1，但是总共$p=20$个预测变量，也就是，有18个独立于响应变量的输入。</p>
-<h3 id="3">情形3：</h3>
+<h3 id="3">情形3：<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>有神经网络的结构：
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3085,19 +3183,19 @@ R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
 <p class="admonition-title">weiya注<p>利用<code>earth</code>包拟合出的MARS模型，编写R代码进行测试，结果表明，对于情形1和情形2的$R^2$而言，与书中的结果一致；而情形3则相差较多，在我的程序中为负值，也就是表明情形3的MARS还不如利用均值直接估计。代码可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/MARS/simulation.R">这里</a>找到。</p>
 </p>
 </div>
-<h2 id="_3">其他的问题</h2>
-<h3 id="mars">MARS用于分类</h3>
+<h2 id="_3">其他的问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="mars">MARS用于分类<a class="headerlink" href="#mars" title="Permanent link">&para;</a></h3>
 <p>MARS方法和算法可以拓展到处理分类问题。已经提出了几种策略。</p>
 <p>对于两个类别，可以将输出编码为0/1，并且将其看成是回归问题；我们在spam例子中已经这样做了。对于多余两个类别的情形，可以采用4.2节描述的指示响应变量的方法。用0/1来编码$K$个响应类别，接着采用多重响应的MARS回归。对于后者我们对所有的响应变量采用共同的基函数集合。分类使得类别有最大的预测向量的值。然而，这种方法存在潜在的掩盖问题，正如4.2中描述的那样。一般更好的方式是在12.5节讨论的optimal scoring.</p>
 <p>Stone等人（1997）发展了MARS的混合版本PolyMARS，是为了处理分类问题特别设计的。它采用在4.4节描述的多重逻辑斯蒂回归框架。以类似MARS的向前逐步方式来建立模型，但是在每一步多多变量对数似然作二次近似来寻找下一个基函数对。一旦找到，则通过极大似然扩大模型，并且这个过程重复进行。</p>
-<h3 id="marscart">MARS和CART的关系</h3>
+<h3 id="marscart">MARS和CART的关系<a class="headerlink" href="#marscart" title="Permanent link">&para;</a></h3>
 <p>尽管它们看起来相当不同，但是MARS和CART策略实际上有很强的相似性。假设我们进行了MARS过程，并且作出下面改变：</p>
 <ul>
 <li>用阶跃函数$I(x-t&gt;0)$和$I(x-t\le 0)$来替换分段线性基函数。</li>
 <li>当模型中的项与候选项相乘，用交叉性来代替，因此对于后续的交叉项不是可行的。</li>
 </ul>
 <p>有了这些改变，MARS向前过程与CART构造树的算法是一样的。乘上一对反射阶跃函数等价于在阶跃点分割开。第二条限制表明一个结点可能不会被分割成多次，因此得到受欢迎的CART模型的二叉树表示。另一方面，也是这条限制使得CART很难对加性结构进行建模。MARS放弃树结构并且得到捕捉加性影响的能力。</p>
-<h3 id="_4">混合输入</h3>
+<h3 id="_4">混合输入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>MARS可以用一种自然的方式处理混合预测变量——定量和定性变量，这非常像CART。对于一个定性变量，MARS考虑将该定性变量的类别分成两块的所有可能的二叉分割。每个这样的分割产生成对分段常值基函数——关于两个类别集的指示函数。这个基对现在被看成和其他的一样，并且用它和其它已经在模型中的基函数来构造张量积。</p>
                 
                   

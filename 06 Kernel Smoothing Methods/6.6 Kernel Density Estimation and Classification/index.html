@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/06 Kernel Smoothing Methods/6.6 Kernel Density Estimation and Classification/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/06 Kernel Smoothing Methods/6.6 Kernel Density Estimation and Classification.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="_1">核密度估计和分类</h1>
+                <h1 id="_1">核密度估计和分类<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2805,7 +2903,7 @@
 </tbody>
 </table>
 <p>核密度估计是非监督学习过程，在历史上先于核回归。这也很自然地得到非参分类过程的简单族。</p>
-<h2 id="_2">核密度估计</h2>
+<h2 id="_2">核密度估计<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>假设我们从概率密度$f_X(x)$中取随机样本$x_1,x_2,\ldots,x_N$，并且我们希望估计$x_0$处的$f_X$。为了简化，我们现在假设$X\in R$。与前面一样，一个自然的局部估计有如下形式
 <script type="math/tex; mode=display">
 \hat f_X(x_0)=\frac{\#x_i\in \cal N(x_0)}{N\lambda}\qquad (6.21)
@@ -2829,7 +2927,7 @@
 \hat f_X(x_0)=\frac{1}{N(2\lambda^2\pi)^{p/2}}\sum\limits_{i=1}^Ne^{-\frac{1}{2}(\Vert x_i-x_0\Vert/\lambda)^2}\qquad (6.24)
 </script>
 </p>
-<h2 id="_3">核密度分类</h2>
+<h2 id="_3">核密度分类<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>利用贝叶斯定理采用直接方式来对分类做非参数密度估计。假设对于$J$个分类的问题，我们对每个类别拟合非参密度估计$\hat f_j(X),j=1,\ldots,J$，并且我们有类别先验概率$\hat \pi_j$的估计（通常是样本比例）。接着
 <script type="math/tex; mode=display">
 \widehat{Pr}(G=j\mid X=x_0)=\frac{\hat \pi_j\hat f_j(x_0)}{\sum_{k=1}^J\hat\pi_k\hat f_k(x_0)}\qquad (6.25)
@@ -2845,7 +2943,7 @@
 <blockquote>
 <p>总体类别的密度可能会有有趣的结构（左图），但是这种结构会在后验概率中消失（右图）。</p>
 </blockquote>
-<h2 id="_4">朴素贝叶斯分类器</h2>
+<h2 id="_4">朴素贝叶斯分类器<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>这是这些年仍然流行的技巧，尽管它的名字（也称为“白痴的贝叶斯”！）当特征空间的维数$p$很高，这种方式特别合适，使得密度估计不再吸引人。朴素贝叶斯模型假设给定类别$G=j$，特征$X_k$是独立的:</p>
 <p>
 <script type="math/tex; mode=display">

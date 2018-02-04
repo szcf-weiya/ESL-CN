@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2796,10 +2896,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/03 Linear Methods for Regression/3.2 Linear Regression Models and Least Squares.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="32">3.2 线性回归模型和最小二乘法</h1>
+                <h1 id="32">3.2 线性回归模型和最小二乘法<a class="headerlink" href="#32" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2967,7 +3065,7 @@ C_{\beta} = \{\beta \mid (\hat{\beta}-\beta\mathbf\bf{X^TX}(\hat{\beta}-\beta)\l
 </script>
 </p>
 <p>其中，$\chi_\ell^{2^{(1-\alpha)}}$是$\ell$个自由度的卡方分布的$1-\alpha$的分位数：举个例子，$\chi^{2^{(1-0.05)}}_5=11.1,\chi^{2^{(1-0.1)}}_5=9.2$。这个关于$\beta$的置信集导出关于真函数$f(x)=x^T\beta$对应的置信集，记作${x^T\beta\mid \beta \in C_\beta}$（练习3.2；并见5.2.2节中函数置信带的例子图5.4）</p>
-<h2 id="_1">例子：前列腺癌</h2>
+<h2 id="_1">例子：前列腺癌<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>这个例子的数据来自Stamey et al. (1989)[^1]。他们检验即将接受彻底前列腺切除术男性的前列腺特定抗原水平和一系列临床措施之间的相关性。变量有癌体积的对数值(lcavol)、前列腺重量的对数值(lweight)、良性前列腺增生数量(lbph)、精囊浸润(svi)、包膜浸透的对数值(lcp)、Gleason得分(gleason)、Gleason得分为4或5的比例(pgg45)。表3.1中给出的预测变量的相关性矩阵显示了很多强相关性。第1章的图1.1（第3页）是散点图矩阵，显示了变量两两间的图像。我们看到svi是二进制变量，gleason是有序分类变量。举个例子，我们看到lcavol和lcp都与响应变量lpsa有强的相关性。我们需要联合拟合这些影响来解开预测变量和响应变量之间的关系。</p>
 <p><img alt="" src="../../img/03/tab3.1.png" /></p>
 <blockquote>
@@ -2982,7 +3080,7 @@ F=\dfrac{(32.81-29.43)/(9-5)}{29.43/(67-9)}=1.67\qquad (3.16)
 </p>
 <p>其中，$p$值为0.17（$Pr(F_{4,58}&gt;1.67)=0.17$）,因此不是显著的。</p>
 <p>测试数据的平均预测误差为0.521。相反地，使用lpsa训练数据的平均值预测的测试误差为1.057，称作“基本误差阶”。因此线性模型将基本误差阶降低了大概$50\%$。下文中我们将要回到这个例子来比较不同的选择和收缩方法。</p>
-<h2 id="guass-markov">Guass-Markov定理</h2>
+<h2 id="guass-markov">Guass-Markov定理<a class="headerlink" href="#guass-markov" title="Permanent link">&para;</a></h2>
 <p>统计学中一个很有名的结论称参数$\beta$的最小二乘估计在所有的线性无偏估计中有最小的方差。我们将要严谨地说明这一点，并且说明约束为无偏估计不是明智的选择。这个结论导致我们考虑本章中像Ridge回归的有偏估计。我们考虑任意参数$\theta = a^T\beta$的线性组合，举个例子，预测值$f(x_0)=x_0^T\beta$是这种形式。$a^T\beta$的最小二乘估计为</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3031,7 +3129,7 @@ E(Y_0-\tilde{f}(x_0))^2 &=\sigma^2+E(x_0^T\tilde{\beta}-f(x_0))^2\\
 </script>
 </p>
 <p>因此，预测误差的估计值和均方误差只有常数值$\sigma^2$的差别，$\sigma^2$表示了新观测$y_0$的方差。</p>
-<h2 id="_2">从简单单变量回归到多重回归</h2>
+<h2 id="_2">从简单单变量回归到多重回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>有$p&gt;1$个输入的线性模型（3.1）称作多重线性回归模型。模型（3.6）的最小二乘估计用单（$p=1$）变量线性模型的估计最好理解，我们将在这部分指出。</p>
 <p>首先假设我们有一个没有截距的单变量模型，也就是</p>
 <p>
@@ -3138,7 +3236,7 @@ Var(\hat{\beta}_p)=\dfrac{\sigma^2}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}=\
 </script>
 </p>
 <p>等式（3.32）很容易求解，因为$\mathbf{R}$为上三角（练习3.4）</p>
-<h2 id="_3">多重输出</h2>
+<h2 id="_3">多重输出<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>假设我们有多重输出$Y_1,Y_2,\ldots,Y_K$，我们希望通过我们的输入$X_0,X_1,X_2,\ldots,X_p$去预测。我们假设对于每一个输出有线性模型</p>
 <p>
 <script type="math/tex; mode=display">

@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/02 Overview of Supervised Learning/2.6 Statistical Models, Supervised Learning and Function Approximation.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="26">2.6 统计模型，监督学习和函数逼近</h1>
+                <h1 id="26">2.6 统计模型，监督学习和函数逼近<a class="headerlink" href="#26" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2810,7 +2908,7 @@
 <li>如果知道存在特殊的结构，可以用来降低估计的偏差与方差。</li>
 </ul>
 <p>我们预先用了关于$f(X)$的其它类别的模型，在很多情形下是为了解决维数问题而特别设计的，现在我们讨论把它们合并进去一个预测问题的框架。</p>
-<h2 id="prxy">联合分布$Pr(X,Y)$的统计模型</h2>
+<h2 id="prxy">联合分布$Pr(X,Y)$的统计模型<a class="headerlink" href="#prxy" title="Permanent link">&para;</a></h2>
 <p>假设事实上我们的数据是从统计模型</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2822,9 +2920,9 @@ Y=f(X)+\epsilon\qquad(2.29)
 <p>对于这些问题一个确定的关系确实存在。许多在机器学习中学习的分类问题都是这个形式，其中，响应表面可以认为是定义在$\mathbf{R}^p$的彩色地图。这些训练数据包括从图$\{x_i,g_i\}$的彩色样本，目标是对每一点着色。这里函数是确定的，并且随机量进入到训练数据的$x$处。现在我们不去追究这个问题，但是会看到这个可以通过合适的基于误差的模型技巧解决。</p>
 <p>在式($\ref{2.29}$)的假设中误差是独立同分布不是严格必要的，但是当我们在EPE准则下对均匀分布的平方误差进行平均时似乎出现在我们脑海后面。对于这样的一个模型，用最小二乘作为模型估计的数据准则变得很自然正如在式($\ref{2.1}$)一样。一些简单的修改可以避免独立性的假设；举个例子，我们有$Var(Y\mid X=x)=\sigma(x)$,并且均值和方差都依赖于$X$。一般地，条件分布$Pr(Y\mid X)$可以以复杂的方式依赖$X$,但是可加误差模型排除了这些。</p>
 <p>至今为止我们集中考虑定量的响应变量。可加误差模型一般不用于定性的输出$G$;这种情形下目标函数$p(X)$是条件密度$Pr(G\mid X)$,这是直接建模的。举个例子，对于两个类别的数据，假设数据来自独立的二元试验总是合理的，特定的一个输出的概率是$p(X)$,另一个为$1-p(X)$。因此，如果$Y$是0-1编码的$G$,然后$E(Y\mid X=x)=p(x)$,但是方差同样依赖$x$:$Var(Y\mid X=x)=p(x)[1-p(x)]$</p>
-<h2 id="_1">监督学习</h2>
+<h2 id="_1">监督学习<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在我们推出更多的统计导向的术语之前，从机器学习的观点我们提出函数拟合的范例。为了简化假设误差可加，而且模型为$Y=f(X)+\epsilon$是合理的假设。监督学习试图通过老师(<em>teacher</em>)从样本中来学习$f$。在观测系统中，无论输入还是输出，装配观测值为${\cal T}=(x_i,y_i),i=1,\ldots,N$的训练集(<em>training</em>)。对系统$x_i$的观测输入馈送到人工系统，被称作学习算法（通常是计算机程序），同时针对输入变量产生输出$\hat{f}(x_i)$。学习算法有根据原始输出和产生的输出之间的差异$y_i-\hat{f}(x_i)$可以修改输入和输出的关系$\hat{f}$的特点。这一过程被称作样本学习（<em>learning by example</em>）。完成学习过程的希望是，人工输出与实际输出足够地接近，这样对所有实际可能会出现的输入是有帮助的。</p>
-<h2 id="_2">函数逼近</h2>
+<h2 id="_2">函数逼近<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>上一部分的学习范例已经成为了机器学习领域（类比人类思考）和神经网络（生物类比大脑）领域中监督学习研究的动力。应用数学和统计学的方法已从函数逼近和估计的角度。数据对$\{x_i,y_i\}$被看成是$(p+1)$维欧几里得空间的点。函数$f(X)$的定义域为$p$-维输入子空间，通过一个模型如$y_i=f(x_i)+\epsilon_i$关联这些数据。为了方便，本章中假设定义域为$p$维的欧几里得空间$\mathbf{R}^p$，尽管输入可能是混合类型。给定$\cal T$的表示，目标是对于$\mathbf{R}^p$的某些区域里面的所有$x$得到一个对$f(x)$有用的近似。尽管相比较学习的范例不是那么优美，但把监督学习看成函数逼近的问题可以将欧式空间里面的几何概念以及概率推断中的数学概念应用到问题中。这也是本书的方式。</p>
 <p>我们将要遇到的许多近似都与一系列系数$\theta$有关，可以修改这些系数去适应手头上数据。举个例子，线性模型$f(x)=x^T\beta$有$\theta=\beta$。另外一种有用的近似可以表示为基本线性展开(<em>linear basis expansions</em>)</p>
 <p>

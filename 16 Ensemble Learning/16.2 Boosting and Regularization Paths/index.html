@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/16 Ensemble Learning/16.2 Boosting and Regularization Paths/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/16 Ensemble Learning/16.2 Boosting and Regularization Paths.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="162-boosting">16.2 boosting和正则化路径</h1>
+                <h1 id="162-boosting">16.2 boosting和正则化路径<a class="headerlink" href="#162-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2809,7 +2907,7 @@
 <p class="admonition-title">weiya注</p>
 <p>上述中的作者当然是指Hastie，Tibshirani和Friedman他们咯<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" /></p>
 </div>
-<h2 id="_1">惩罚回归</h2>
+<h2 id="_1">惩罚回归<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>梯度加速的收缩策略(10.41)的成功直觉上可以通过类比含有很大的基展开的惩罚线性回归得到。考虑所有可能的$J$个终止结点的回归树$\cal T={T_k}$的字典作为$R^p$的基函数，这在训练数据上可以实现。线性模型为
 <script type="math/tex; mode=display">
 f(x)=\sum\limits_{k=1}^K\alpha_kT_k(x)\qquad (16.1)
@@ -2841,9 +2939,9 @@ J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\qquad (16.4)
 <p>Hastie et al. (2007)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>证明了这个无穷小量向前逐步算法($FS_0$)拟合了lasso的单调版本，在给定系数路径的角长度(arc length)的增长下，最优化了每一步的损失函数（参见16.2.3节和3.8.1节）。对于$\epsilon&gt;0$的情形角长度为$M\epsilon$，也因此与步数成比例。</p>
 <p>带收缩(10.41)的boosting树算法（算法10.3）非常近似算法16.1，其中学习速率参数$\nu$对应$\epsilon$。对于平方误差损失，唯一的区别在于每一次迭代时最优树的选取是通过标准的自上而下的贪婪生成树的算法。对于其他的损失函数，比如AdaBoost的指数损失和二项误差，Rosset et al. (2004a)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>展示了类似我们这里的结果。因此，可以将带收缩的boosting树看成在所有可能树（$J$个终止结点）上的单调ill-posed回归的形式，其中将lasso的惩罚作为正则化项。我们将在16.2.3节继续讨论这个话题。</p>
 <p>无收缩的选择(式子(10.41)中$\nu=1$)类似向前逐步回归，并且其更aggressive的最优子集选择，其中对于非零系数的个数加上惩罚$J(\alpha)=\sum_k\vert \alpha_k\vert^0$。对于少量的主要变量，最优子集方法经常取得很好的效果。但是在有较多强变量的情形下，众所周知，最优子集选择非常greedy（Copas, 1983<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>），与其他不太aggressive的算法，如lasso或岭回归相比，经常得到很差的结果。当采用boosting的收缩得到重大的改善是这种方式的又一个说明。</p>
-<h2 id="bet-on-sparsity">&ldquo;Bet on Sparsity&rdquo;原则</h2>
+<h2 id="bet-on-sparsity">&ldquo;Bet on Sparsity&rdquo;原则<a class="headerlink" href="#bet-on-sparsity" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
-<h2 id="_2">正则化路径，过拟合和边缘</h2>
+<h2 id="_2">正则化路径，过拟合和边缘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
 <div class="footnote">
 <hr />

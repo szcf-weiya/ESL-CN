@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2796,10 +2896,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="91">9.1 广义加性模型</h1>
+                <h1 id="91">9.1 广义加性模型<a class="headerlink" href="#91" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2856,7 +2954,7 @@ g[\mu(X)]=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.4)
 Y_t=S_t+T_t+\varepsilon_t\qquad (9.5)
 </script>
 其中，$S_t$是季节项，$T_t$是趋势项，$\varepsilon$是误差项。</p>
-<h2 id="_1">拟合加性模型</h2>
+<h2 id="_1">拟合加性模型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在这一节我们讨论拟合加性模型和它们的一般形式的标准算法。组件是用一种灵活的方式拟合非线性影响的散点图光滑器。具体地，我们将在第五章中讨论的三次光滑样条作为我们的散点图光滑器。</p>
 <p>加性模型有如下形式
 <script type="math/tex; mode=display">
@@ -2879,7 +2977,7 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
 <p>如果我们仅仅在训练集点上考虑光滑器算子$\cal S_j$，这可以用$N\times N$的算子矩阵$\mathbf S_j$来表示（见5.4.1节）。则第$j$项的自由度（近似）是$\mathrm {df}_j=\mathrm{trace}[\mathbf S_j]-1$,这与第5和第6章中讨论的光滑器的自由度是类似的。</p>
 <p>对于一个大类别的线性光滑器$\mathbf S_j$，backfitting等价于求解确定线性系统的Gauss-Seidel算法。细节在练习9.2中给出。</p>
 <p>对于逻辑斯蒂回归和其他广义加性模型，合适的准则是惩罚的对数似然。为了最大化它，backfitting过程与概率最大化一起起作用。在广义线性模型中最大化对数似然的Newton-Raphson方法可以重新改造成一个IRILS（迭代重加权最小二乘）算法。这涉及在协变量上对工作中的响应变量重复进行加权线性回归；每个回归得到一个新的参数估计，反过来又给了新的工作相应变量和系数，而且这一过程迭代进行（见4.4.1节）。在广义加性模型中，加权线性回归简单地用加权backfitting算法来替换。我们将在下面讨论逻辑斯蒂回归时该算法的细节，更一般的讨论在第6章的Hastie和Tibshirani(1990).</p>
-<h2 id="_2">例子：加性逻辑斯蒂回归</h2>
+<h2 id="_2">例子：加性逻辑斯蒂回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>或许在医学研究中应用最广的模型是对二值数据的逻辑斯蒂回归模型。在这个模型中，输出$Y$可以编码成0或1，其中1代表事件发生（比如死亡，疾病复发），0代表没有事件发生。我们希望建立$Pr(Y=1\mid X)$的模型，其中$Pr(Y=1\mid X)$是给定预测因子$X^T=(X_1,\ldots,X_p)$后事件发生的概率。目标通常是确定预测因子的作用，而不是对新个体进行分类。逻辑斯蒂回归也应用到当对估计类别比例感兴趣的情况下，比如risk screening。除了医学上的应用，信用风险screening也是一个受欢迎的应用方面。</p>
 <p>广义加性模型有如下形式
 <script type="math/tex; mode=display">
@@ -2890,7 +2988,7 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
 <p>加性模型在算法9.2中的第（2）步拟合需要一个带权重的散点图光滑器。许多光滑过程可以接受观测值权重（练习5.12）；更多细节参见第三章Hastie和Tibshirani（1990）的工作。</p>
 <p>加性逻辑斯蒂回归模型可以进一步推广为解决超过两个类别的情形，通过采用在4.4节中列出的多维逻辑斯蒂公式。尽管这个形式是（9.8）式的直接展开，拟合这些模型的算法更加复杂。更多细节参加Yee和Wild(1996)，并且VGAM软件可以从下面网站中得到</p>
 <p><a href="http://www.stat.auckland.ac.nz/∼yee"></a></p>
-<h2 id="_3">例子：预测垃圾邮件</h2>
+<h2 id="_3">例子：预测垃圾邮件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>我们对第一章的spam数据应用广义加性模型。数据包含4601条电子邮件信息，在一项研究中去扫描邮件来找出“spam”（比如，垃圾邮件）。数据可以在<a href="../ftp.ics.uci.edu">ftp.ics.uci.edu</a>上获得，而且接受California的Palo Alto的Hewlett-Packard实验室中George Forman的捐赠。</p>
 <p>响应变量是二值数据，值为email或者spam，在下面描述了57个预报变量。</p>
 <ul>
@@ -2921,7 +3019,7 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
 <p>更ambitiously,我们通过对类别0的观测赋予权重$L_{01}$，对类别1的观测赋予权重$L_{10}$使得模型更好地对类别0中的数据进行拟合。像上面一样，我们接着运用贝叶斯准则来预测。在类别0和类别1中误差率分别为1.2%和8.0%.我们在基于树的模型中讨论损失不相等的问题。</p>
 <p>拟合加性模型之后，应该检查一下加入交互关系之后是否显著性提高拟合。这可以通过插入一些或全部的显著性输入来“手动”完成，或者通过MARS过程来自动完成。（见9.4节）</p>
 <p>这个例子以一种自动的方式来使用加性模型。作为一个数据分析工具，加性模型经常以一种更交互的方式来使用，通过添加或者删除项来确定它们的影响。通过校准关于$df_j$的光滑数量，可以在线性模型（$df_j=1$）和部分线性模型中移动，其中一些项更加灵活地建模。更多细节见Hastie和Tibshirani(1990)的工作。</p>
-<h2 id="_4">总结</h2>
+<h2 id="_4">总结<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>加性模型提供一个有用的线性模型拓展，使得不仅保留着大部分的可解释性，也更加灵活。在线性模型中建模和推断熟悉的工具对于加性模型也是适用的，见表9.2的例子。拟合这些模型的backfitting过程是简单而有模式的，允许对于每个输入变量去选择合适的拟合方法。结果在统计领域它们越来越被广泛地应用。</p>
 <p>然而加性模型对于大的数据挖掘的应用是有限制的。backfitting算法拟合所有的预测变量，而大部分的预测变量是不可行的也不是必需的。BRUTO过程（Hastie和Tibshirani,1990，第9章）结合backfitting和输入选择，但是不是为了大规模的数据挖掘的问题。最近也有用lasso型惩罚来估计稀疏加性模型的工作，举个例子，Lin和Zhang（2006）提出的COSSO过程，以及Ravikumar等人（2008）提出的SpAM。对于大型问题，向前逐步方法（比如第10章的boosting）更加地有效，而且运行交叉项包含进模型中。</p>
                 

@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.10 Numerical Optimization via Gradient Boosting/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2782,10 +2882,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/10 Boosting and Additive Trees/10.10 Numerical Optimization via Gradient Boosting.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="1010-boosting">10.10 利用梯度boosting进行数值优化</h1>
+                <h1 id="1010-boosting">10.10 利用梯度boosting进行数值优化<a class="headerlink" href="#1010-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2840,7 +2938,7 @@ f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
 </script>
 </p>
 <p>其中$\mathbf f_0=\mathbf h_0$是初识化的猜测，并且每个接下来的$\mathbf f_m$基于当前的参数向量$\mathbf f_{m-1}$来导出。<!--，而$\mathbf f_{m-1}$为此前已经更新的和。-->数值优化方法的区别在于它们采用不同的方法来计算每个增长向量$\mathbf h_m$。</p>
-<h2 id="_1">最速下降</h2>
+<h2 id="_1">最速下降<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>最速下降选择$\mathbf h_m=-\rho_m \mathbf g_m$，其中$\rho_m$为标量值，$\mathbf g_m\in R^N$是在$\mathbf f=\mathbf f_{m-1}$取值的$L(\mathbf f)$的梯度。$\mathbf g_m$的组分为</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2858,7 +2956,7 @@ g_{im}=\Big[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \Big]_{f(x_i)=f_{m-1
 </script>
 </p>
 <p>这个过程一直重复直到下一次迭代。最速下降可以看成是非常贪婪的策略，因为$-\mathbf g_m$是$R^N$空间中$L(\mathbf f)$在$\mathbf f= \mathbf f_{m-1}$处最速下降的局部方向。</p>
-<h2 id="boosting">梯度boosting</h2>
+<h2 id="boosting">梯度boosting<a class="headerlink" href="#boosting" title="Permanent link">&para;</a></h2>
 <p>向前逐步boosting(算法10.2)也是非常贪婪的策略。每一步中，在给定当前模型$f_{m-1}$以及其拟合值$f_{m-1}(x_i)$下，得到的解是在最大程度上降低(10.29)的树。
 <script type="math/tex; mode=display">
 \hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
@@ -2931,7 +3029,7 @@ logit损失函数的负梯度为
 <p>将上述几种损失函数及其梯度用如下的Julia程序表达出来。</p>
 <script src="https://gist.github.com/szcf-weiya/cc6eaee677a027af5451f9fd17930543.js"></script>
 
-<h2 id="boosting_1">梯度boosting的实现</h2>
+<h2 id="boosting_1">梯度boosting的实现<a class="headerlink" href="#boosting_1" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../../img/10/alg10.3.png" /></p>
 <p>上图中的算法10.3展示了用于回归的树的梯度boosting的通用算法。特定的算法可以通过插入不同的损失准则$L(y, f(x))$得到。算法第一行初始化为最优的常数模型，也就是单终止结点的树。第2(a)行的负梯度计算的组分被称为广义残差或伪残差，$r$。通常使用的损失函数的梯度已经总结在表10.2中。用于分类的算法是类似的。第2(a)-(d)行在第$m$次迭代重复$K$次，每次对每个类采用(10.38)计算负梯度。第3行的结果是$K$个不同的树的展开$f_{kM}(x), k=1,2,\ldots, K$。这通过(10.21)得到概率或者像(10.20)一样做分类。两个基本的调整参数为迭代次数$M$和每个组分树的大小$J_m,m=1,2\ldots,M$.</p>
 <p>这个算法原始实现称为MART，指的是“多重可加回归树(multiple additive regression trees)”。原书的这章中很多图是用MART得到的。这里描述的梯度boosting在R语言的gbm包中有实现(Ridgeway, 1999, “Gradient Boosted Models”)，可以免费使用。10.14.2节中用了<code>gbm</code>包，在第16章和第15章有详细介绍。另外，还有个boosting算法的R语言实现是<code>mboost</code>(Hothorn and Bühlmann, 2006)。有个梯度boosting/MART的商业实现称为TreeNet (Salford Systems, Inc.)</p>

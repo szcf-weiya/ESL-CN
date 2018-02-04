@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/04 Linear Methods for Classification/4.5 Separating Hyperplanes/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2768,10 +2868,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/04 Linear Methods for Classification/4.5 Separating Hyperplanes.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="45">4.5 分离超平面</h1>
+                <h1 id="45">4.5 分离超平面<a class="headerlink" href="#45" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2816,7 +2914,7 @@
 <blockquote>
 <p>图4.15. 超平面（仿射集）的线性代数</p>
 </blockquote>
-<h2 id="451-rosenblatt">4.5.1 Rosenblatt的感知器学习算法</h2>
+<h2 id="451-rosenblatt">4.5.1 Rosenblatt的感知器学习算法<a class="headerlink" href="#451-rosenblatt" title="Permanent link">&para;</a></h2>
 <p>感知器学习算法试图通过最小化误分类的点到判别边界距离来寻找分离超平面。如果响应变量$y_i=1$是误分类的，则$x_i^T\beta+\beta_0&lt;0$，对于误分类的响应变量$y_i=-1$是反过来的。目标是最小化
 <script type="math/tex; mode=display">
 D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\qquad (4.41)
@@ -2845,7 +2943,7 @@ D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\qquad (4.41)
 </ul>
 <p>第二个问题经常通过不在原空间中寻找超平面而被忽略，而在一个通过构造在原空间中变量的基函数变换得到的增广空间中。这类似于在多项式回归问题中为了将残差降为0而使得阶数特别大。完美的分离不总是可以达到：举个例子，如果来自两个类别的观测值有一个共同输入。这或许也不是需要的，因为得到的模型很可能是过拟合从而不能很好地进行推广。我们将在下一节的结束回到这个问题的讨论。</p>
 <p>对于第一个问题的优雅解决方式是对分离超平面加上额外的约束条件。</p>
-<h2 id="452">4.5.2 最优分离超平面</h2>
+<h2 id="452">4.5.2 最优分离超平面<a class="headerlink" href="#452" title="Permanent link">&para;</a></h2>
 <p>最优分离超平面将两个类别分离开且使得超平面到每一个类别最近点的距离最大（Vapnik, 1996）.这样不仅得到分离超平面问题的唯一解，而且通过使得在训练集上两个类别的边缘最大，这使得在测试集上有更好的分类表现。</p>
 <p>我们需要一般化准则（4.41）。考虑下面的优化问题
 <script type="math/tex; mode=display">

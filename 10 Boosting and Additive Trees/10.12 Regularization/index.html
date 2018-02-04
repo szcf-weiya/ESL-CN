@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.12 Regularization/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2768,10 +2868,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/10 Boosting and Additive Trees/10.12 Regularization.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="1012">10.12 正则化</h1>
+                <h1 id="1012">10.12 正则化<a class="headerlink" href="#1012" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2791,7 +2889,7 @@
 </tbody>
 </table>
 <p>除了候选树的大小$J$，梯度boosting的另一个元参数(meta-parameter)是boosting的迭代次数$M$。每一次迭代通常会降低训练风险$L(f_M)$，所以对于充分大的$M$，误差可以达到任意小。然而，对训练数据拟合得太好会导致过拟合，它会降低预测未来数据的效果。因此，存在一个最小话未来预测风险的最优$M^*$，它依赖于具体应用。估计$M^*$的一个方便方式是检测在验证样本上关于$M$的函数的预测风险。最小化风险的$M$值作为$M^*$的一个估计。这类似于经常用在神经网络中的早停(early stopping)策略（11.4节）。</p>
-<h2 id="_1">收缩</h2>
+<h2 id="_1">收缩<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>控制$M$的值并不是唯一正则化的策略。与岭回归和神经网络一样，也可以应用收缩策略（见3.4.1节和11.5节）。boosting中收缩最简单的实现方式是使用因子$0&lt;\nu&lt;1$来收缩每棵树的贡献。也就是，算法10.3的第2(d)行用下式代替</p>
 <p>
 <script type="math/tex; mode=display">
@@ -2803,7 +2901,7 @@ f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\qquad (1
 <p><img alt="" src="../../img/10/fig10.11.png" /></p>
 <p>图10.11显示了图10.2的模拟例子(10.2)的测试误差曲线。梯度boosted模型(MART)通过采用二项偏差来训练，分stump和6个终止结点树的情况讨论，以及分有无收缩进行讨论。收缩的好处是很显然的，特别是当跟踪二项偏差时。有了收缩，每个测试误差曲线达到较低的值，并且在许多迭代中保持不变。</p>
 <p>16.2.1节将boosting的向前逐步收缩和为了正则化模型参数使用的$L_1$惩罚(lasso)联系起来。我们认为$L_1$惩罚可能会比用在一些方法（比如支持向量机）中的$L_2$惩罚要更好。</p>
-<h2 id="_2">子采样</h2>
+<h2 id="_2">子采样<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们在8.7节看到bootstrap averaging (bagging) 通过averaging提高了噪声分类器的表现效果。第15章详细讨论了通过平均实现的降低方差的机制。我们也可以在gradient boosting中采用这一方法，同时提高了效果和计算效率。</p>
 <p>采用stochastic gradient boosting (Friedman, 1999<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)，在每一步我们采样$\eta$倍的训练观测值（无放回），并且采用这种子采样来生成下一棵树。剩下的算法同样。一般可以取$\eta$为$\frac{1}{2}$，尽管对于大的$N$，$\eta$可以比$\frac{1}{2}$小很多。</p>
 <p>这种采样不仅仅降低了$\eta$倍的计算时间，在很多情况下也实际上得到了更精确的模型。</p>

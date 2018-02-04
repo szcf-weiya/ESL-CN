@@ -16,6 +16,8 @@
         <link rel="canonical" href="https://esl.hohoweiya.xyz/01 Introduction/2016-07-26-Chapter-1-Introduction/index.html">
       
       
+        <meta name="author" content="szcf-weiya">
+      
       
         <meta name="lang:clipboard.copy" content="复制">
       
@@ -147,7 +149,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -171,6 +173,104 @@
       
         
       
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../index.html" title="主页" class="md-tabs__link">
+        主页
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07%20Model%20Assessment%20and%20Selection/7.1%20Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13%20Prototype%20Methods%20and%20Nearest-Neighbors/13.1%20Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/sim73/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -196,7 +296,7 @@
   
 
 
-  <a href="https://github.com/szcf-weiya/ESL-CN/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="前往 Github 仓库" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -2852,10 +2952,8 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/01 Introduction/2016-07-26-Chapter-1-Introduction.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                
-                <h1 id="11">1.1 导言</h1>
+                <h1 id="11">1.1 导言<a class="headerlink" href="#11" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2904,7 +3002,7 @@
 </blockquote>
 <p>上述的例子描述的是监督学习问题。之所以称之为监督学习是因为存在结果变量来引导学习的过程。在非监督学习中，我们仅仅观察特征而且没有对结果的测量。我们的任务而是描述数据是如何形成的或者成簇的。我们将本书的绝大部分致力于监督学习，非监督学习问题的进展也相对较小，我们将在最后一章讨论。</p>
 <p>下面是在本书中讨论的一些真实的学习问题。</p>
-<h2 id="1">例1：垃圾电子邮件</h2>
+<h2 id="1">例1：垃圾电子邮件<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <p>例子中的数据包含4601封电子邮件的信息，在一项研究中试图预测一封电子邮件是否是垃圾邮件。目标是涉及一个自动垃圾邮件检测器，该检测器可以在邮件塞进用户邮箱前过滤掉垃圾电子邮件。对于所有的4601封电子邮件，可用的真实结果是邮件或者垃圾邮件，同时还有57个常用词和标点符号的相对频率。这是一个监督学习的例子，其中结果变量是类别型变量 <strong>email/spam</strong>。这也被称作分类问题。</p>
 <p>表1.1列出了垃圾邮件和普通邮件平均差异比较大的单词和字符。</p>
 <p>我们的学习方法要决定用哪个特征以及怎么使用，比如说，我们会有下述规则</p>
@@ -2912,7 +3010,7 @@
 <p>另一条规则可能是</p>
 <p><strong>当(0.2 · %you − 0.3 · %george) &gt; 0时，为垃圾邮件，否则为普通邮件</strong></p>
 <p>对于这个问题不是所有的错误都相等，我们想要避免过滤掉好的电子邮件，尽管让垃圾邮件通过不是想要的但是结果不是很严重。我们将在本书中讨论一系列不同的方法来解决这个学习问题。</p>
-<h2 id="2">例2：前列腺癌</h2>
+<h2 id="2">例2：前列腺癌<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../../img/01/fig1.1.png" /></p>
 <blockquote>
 <p>图1.1是前列腺癌数据的散点图矩阵。第一行显示了响应变量和自变量之间的关系。其中两个自变量，<em>svi</em>和<em>gleason</em>是类别型变量。</p>
@@ -2920,13 +3018,13 @@
 <p>这个例子的数据如图1.1所示，来自1989年Stamey和其他人的检验前列腺癌特定抗原水平和临床措施之间相关性的研究，其中有97名男性接受了彻底的前列腺切除术。</p>
 <p>目标是根据癌体积的对数值（<em>lcavol</em>）、前列腺重量的对数值（<em>lweight</em>）、良性前列腺增生数量（<em>lbph</em>）、精囊浸润（<em>svi</em>）、包膜浸透的对数值（<em>lcp</em>）、Gleason得分（<em>gleason</em>）、Gleason得分为4或5的比例（<em>pgg45</em>）来预测PSA的对数值（<em>lpsa</em>）。图1.1是这些变量的散点图矩阵。一些和（<em>lpsa</em>）的值是显著的，但是一个好的预测模型是很难根据眼睛构造出来的。</p>
 <p>这是一个监督学习的问题，也称之为回归问题，因为结果测量是可量化的。</p>
-<h2 id="3">例3：手写数字识别</h2>
+<h2 id="3">例3：手写数字识别<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../../img/01/fig1.2.png" /></p>
 <blockquote>
 <p>本例的数据是来自美国邮局中信封上的手写邮政编码。每张图片是五位邮政编码的一部分，并且每个数字分隔开了。这些图片是16*16的8位灰度位图，每个像素点密度值为0到255.一些样例图片如图1.2所示。</p>
 </blockquote>
 <p>这些图片都已经被标准化为几乎同样尺寸同样方向的图片了。任务是从16*16的灰度值矩阵中快速用准确的判断每张图片上的数字（0，1，&hellip;，9）。如果结果够精确，最终的算法会用到自动整理信封的过程中。这是一个分类问题，而且要求犯错误概率要很低避免分错邮箱。为了实现低错误率，一些物品要被分到不知道这个类里面，然而人工分拣。</p>
-<h2 id="4">例4：基因表达微阵列</h2>
+<h2 id="4">例4：基因表达微阵列<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>DNA是脱氧核糖核酸，而且是组成人类染色体的基本材料。DNA表达微阵列通过测量一个细胞某基因的mRNA的量来衡量基因的表达情况。DNA表达微阵列被当作一个生物学领域的重大突破，促进了对单个细胞内成千上万基因同时量化研究。</p>
 <p>下面介绍DNA表达微阵列如何工作。几千个基因的核苷酸序列打印在载玻片上。分别用红色和绿色染料标记目标样本和参照样本，并且每个都与载玻片上的DNA混合。通过X光透视检查，可以测量出每个位置上红色/绿色的RNA强度之比的对数值。结果是几千个数，基本上在-6到6之间，衡量每个目标样本中基因相对于参考样本中基因的表达水平。正值表示目标样本中基因表达程度更高，反之亦然。</p>
 <p>一个基因表达数据集收集了一系列DNA微阵列实验中的表达的值，每一列表示一次实验。因此几千行表示几千个不同的基因，每一列表示一个样本：在图1.3中有6830个基因（行）和64个样本（列），尽管为了清晰只有一个随机样本的100行显示出来。这张图是用热点图显示了该数据集，从绿色（消极）到红色（积极）。样本是从不同病人得到的64个癌症肿瘤。</p>
@@ -2939,21 +3037,21 @@
 <blockquote>
 <p>图1.3 DNA阵列数据：基于人类肿瘤数据的6830个基因（行）、64个样本（列）的基因表达矩阵。只有随机的100行显示在图中。使用热点图描述这些数据，从绿色（消极，抑制表达）到红色（积极，过表达）。缺失数据为灰色。行和列是采用随机的顺序展示。</p>
 </blockquote>
-<h2 id="_1">谁应该读读这本书</h2>
+<h2 id="_1">谁应该读读这本书<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>这本书是为了许多领域的研究者和学生设计的，这些领域包括统计、人工智能、工程、金融以及其他。我们预期读者至少学过统计的一门基础课程，掌握包括线性回归等基本概念。</p>
 <p>我们没有试图写一篇全面的关于学习方法的目录，而是描述一些很重要的技巧。同样值得说明的是，我们描述根本的概念和用于研究者评判学习方法需要考虑的因素。我们试图从一个直观的角度来写这本书，强调概念而不是数学细节。</p>
 <p>作为统计学家，我们的描述自然反映了我们的背景和专业领域。然而在过去八年时间里我们参加了神经网络、数据挖掘和机器学习领域的会议，而且我们的想法已经深深被这些令人激动的领域所影响，这些影响在我们当前研究以及这本书中是很明显的。</p>
-<h2 id="_2">这本书是如何组织的</h2>
+<h2 id="_2">这本书是如何组织的<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们的观点是一个人在尝试掌握复杂的概念前必须理解简单的方法。因此，当在<strong>第二章</strong>对监督学习给出概要后，我们在<strong>第三和第四章</strong>讨论了回归和分类的线性方法。<strong>第五章</strong>我们描述了对单个自变量的样条，小波和正则/惩罚方法，<strong>第六章</strong>则描述了核方法和局部回归。上述两种方法都是高纬学习技术的重要基石。模型评估与选择是<strong>第七章</strong>的主题，包括偏差和方差，过拟合和用于选择模型用的交叉验证。<strong>第八章</strong>讨论了模型推断与平均，概要地介绍了极大似然法、贝叶斯推断、自助法、EM算法、吉布斯抽样和bagging。与此相关的boosting过程是<strong>第十章</strong>的重点。</p>
 <p>在<strong>第九到十三章</strong>我们描述了一系列用于监督学习的结构化方法，其中<strong>第九和第十一章</strong>介绍回归以及<strong>第十二和第十三章</strong>重点在分类。<strong>第十四章</strong>描述了非监督学习的方法。两个最近提出来的技术，随机森林和集成学习将在<strong>第十五和第十六章</strong>讨论。我们在<strong>第十七章</strong>讨论无向图模型以及最后在<strong>第十八章</strong>学习高纬问题。</p>
 <p>在每一张结尾我们讨论计算需要考虑的因素，这对於数据挖掘的应用是很重要的，包括计算量级随着观测值和自变量数目的变化。每一章节最后的文献注解提供了本章的背景参考资料。</p>
 <p>我们建议按顺序先阅读第1-4章，第7章也应该当作强制阅读，因为它介绍了关于所有学习方法的中心概念。有了这些概念，这本书的其他章节根据读者的兴趣可以按照顺序读，或选读。</p>
 <p>这个标志表明这是技术上困难的部分，读者可以跳过这部分而且不会影响后续讨论。</p>
-<h2 id="_3">书的网址</h2>
+<h2 id="_3">书的网址<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>这本书的网站是
 <a href="http://www-stat.stanford.edu/ElemStatLearn">http://www-stat.stanford.edu/ElemStatLearn</a>
 里面包含很多资源，包括这本书里面用到的很多数据集。</p>
-<h2 id="_4">教师注意事项</h2>
+<h2 id="_4">教师注意事项<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>我们成功地将这本书的第一版用做两个短学期的课程基础，如果加上第二版中的补充材料，可以用做三个短学期。练习题在每一章的最后。对学生而言，使用良好的软件处理书后的问题是很重要的。我们在自己的教学课堂上使用R和S-PLUS 编程。</p>
                 
                   
