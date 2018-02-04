@@ -2844,17 +2844,17 @@
 </tbody>
 </table>
 <p>首先考虑一个非常简单的例子，我们考虑服从正态分布单个的观测变量$z$
-<script type="math/tex; mode=display">
+$$
 z\sim N(\theta,1)\qquad (8.29)
-</script>
+$$
 为了完成关于$\theta$的贝叶斯分析，我们需要确定一个先验。最方便和普遍的选择是$\theta\sim N(0, \tau)$,得到后验分布
-<script type="math/tex; mode=display">
+$$
 \theta\mid z\sim N(\frac{z}{1+1/\tau},\frac{1}{1+1/\tau})\qquad (8.30)
-</script>
+$$
 于是当我们选择的$\tau$越大，后验在最大似然估计$\hat\theta=z$附近越集中。当$\tau\rightarrow\infty$时，我们得到一个无信息（常值）先验，后验分布为
-<script type="math/tex; mode=display">
+$$
 \theta\mid z\sim N(z,1)\qquad (8.31)
-</script>
+$$
 这与参数自助法的分布相同，其中我们从采样密度$N(z,1)$的最大似然估计产生自助法值$z^*$。</p>
 <p>有三点性质实现了这种对应关系。</p>
 <ol>
@@ -2864,28 +2864,27 @@ z\sim N(\theta,1)\qquad (8.29)
 </ol>
 <p>性质（2）和（3）本来只有当为高斯分布时才满足。然而，对于多项式分布也近似满足，导出非参自助法和贝叶斯推断之间的对应，我们将在下面阐述要点。</p>
 <p>假设我们有$L$个类别的离散样本空间。令$w_j$为样本点落入第$j$类的概率，而$\hat w_j$为第$j$类的观测比例。令$w=(w_1,w_2,\ldots,w_L)$,$\hat w=(\hat w_1,\hat w_2,\ldots, \hat w_L)$。记我们的估计为$S(\hat w)$;取参数为$a$的对称Dirichlet分布作为$w$的先验分布：
-<script type="math/tex; mode=display">
+$$
 w\sim \mathrm{Di}_L(a1)\qquad (8.32)
-</script>
-</p>
+$$</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p><a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">from wiki</a>
 <img alt="" src="../../img/08/wiki.png" /></p>
 </div>
 <p>也就是，先验概率质量函数与$\prod_{\ell=1}^Lw_\ell^{a-1}$成比例。则$w$的后验密度为
-<script type="math/tex; mode=display">
-w\sim \mathrm{Di}_L(a1+N\hat w)\qquad (8.33)
-</script>
+$$
+w\sim \mathrm{Di}<em>L(a1+N\hat w)\qquad (8.33)
+$$
 其中$N$为样本大小。令$a\rightarrow 0$得到无信息先验
-<script type="math/tex; mode=display">
+$$
 w\sim \mathrm{Di}_L(N\hat w)\qquad (8.34)
-</script>
+$$
 于是，通过有放回取样得到的自助法分布可以表示成从多项式分布中对类别比例进行抽样。特别地，
-<script type="math/tex; mode=display">
+$$
 N\hat w^*\sim \mathrm{Mult}(N,\hat w)\qquad (8.35)
-</script>
-其中，$\mathrm {Mult}(N,\hat w)$为多项式分布，概率质量函数为$\binom{N}{N\hat w_1^*,\ldots,N\hat w_L^*}\prod\hat w_\ell^{N\hat w_\ell^*}$.这个分布与上面的后验分布很相似，有着相同的支撑集，相同的均值，以及近似相同的协方差矩阵。因此$S(\hat w^*)$的自助法分布近似为$S(w)$的后验分布。</p>
+$$
+其中，$\mathrm {Mult}(N,\hat w)$为多项式分布，概率质量函数为$\binom{N}{N\hat w_1^*,\ldots,N\hat w_L^*}\prod\hat w</em>\ell^{N\hat w_\ell^*}$.这个分布与上面的后验分布很相似，有着相同的支撑集，相同的均值，以及近似相同的协方差矩阵。因此$S(\hat w^*)$的自助法分布近似为$S(w)$的后验分布。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p><a href="https://en.wikipedia.org/wiki/Multinomial_distribution">from wiki</a>

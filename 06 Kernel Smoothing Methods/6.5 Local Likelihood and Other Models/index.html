@@ -2847,18 +2847,16 @@
 <ul>
 <li>与每个观测$y_i$有关的是与协变量$x_i$成线性的参数$\theta_i=\theta(x_i)=x_i^T\beta$，并且基于对数似然$l(\beta)=\sum_{i=1}^Nl(y_i,x_i^T\beta)$对　$\beta$进行推断。我们可以使用$x_0$局部的概率来灵活地建立$\theta(X)$的模型。这用来推断$\theta(x_0)=x_0^T\beta(x_0)$：</li>
 </ul>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 l(\beta(x_0))=\sum\limits_{i=1}^NK_\lambda(x_0,x_i)l(y_i,x_i^T\beta(x_0))
-</script>
-</p>
+$$</p>
 <p>许多似然模型，特别是包含逻辑斯蒂回归和多数线性模型的广义线性模型。局部似然允许对全局线性模型进行松弛得到局部线性。</p>
 <ul>
 <li>
 <p>如上所述，除了不同的变量与用于定义局部似然性的$\theta$相关联：
-<script type="math/tex; mode=display">
+$$
 l(\theta(z_0))=\sum\limits_{i=1}^NK_\lambda(z_0,z_i)l(y_i,\eta(x_i,\theta(z_0)))
-</script>
+$$
 举个例子，$\eta(x,\theta)=x^T\theta$可以是关于$x$成线性的。这会通过最大化局部似然来拟合可变参数模型$\theta(z)$。</p>
 </li>
 <li>
@@ -2866,21 +2864,20 @@ l(\theta(z_0))=\sum\limits_{i=1}^NK_\lambda(z_0,z_i)l(y_i,\eta(x_i,\theta(z_0)))
 </li>
 </ul>
 <p>作为局部似然的图示，我们考虑第4章中多类线性逻辑斯蒂回归模型(4.36)的局部形式。数据包含特征$x_i$和相关的类别响应变量$g_i\in{1,2,\ldots,J}$，并且线性模型有如下形式
-<script type="math/tex; mode=display">
+$$
 Pr(G=j\mid X=x)=\frac{e^{\beta_{i0}+\beta_j^Tx}}{1+\sum_{k=1}^{J-1}e^{\beta_{k0+\beta_k^Tx}}}\qquad (6.18)
-</script>
+$$
 第$J$类的局部对数似然模型可以写成
-<script type="math/tex; mode=display">
-\sum\limits_{i=1}^NK_\lambda(x_0,x_i)\{beta_{g_i0}(x_0)+\beta_{g_i}(x_0)^T(x_i-x_0)-log[1+\sum\limits_{k=1}^{J-1}exp(\beta_{k0}(x_0)+\beta_k(x_0)^T(x_i-x_0))]\}\qquad (6.19)
-</script>
+$$
+\sum\limits_{i=1}^NK_\lambda(x_0,x_i){beta_{g_i0}(x_0)+\beta_{g_i}(x_0)^T(x_i-x_0)-log[1+\sum\limits_{k=1}^{J-1}exp(\beta_{k0}(x_0)+\beta_k(x_0)^T(x_i-x_0))]}\qquad (6.19)
+$$
 注意到
 - 我们使用$g_i$作为下标来选择合适的分子。
 - 由模型定义得$\beta_{J0}=0,\beta_J=0$
 - 我们已经对$x_0$处的局部回归进行了标准化，所以在$x_0$处的拟合后验概率简化为
-<script type="math/tex; mode=display">
+$$
 \widehat{Pr}(G=j\mid X=x_0)=\frac{e^{\hat \beta_{j0}(x_0)}}{1+\sum_{k=1}^{J-1}e^{\hat\beta_{k0}(x_0)}}\qquad (6.20)
-</script>
-</p>
+$$</p>
 <p>这个模型可以用来在适当低维度中的灵活多类别分类，尽管在高维的ZIP号码分类问题中也能成功使用。广义加性模型（第9章）采用核光滑方法是很相关的，并且通过假设回归函数的加性结构来避免了维数问题。</p>
 <p>作为一个简单的说明，我们对第4章中的心脏病数据来拟合两个类别的局部线性逻辑斯蒂回归模型。图6.12显示了对风险因子中的两个来拟合单变量局部逻辑斯蒂回归模型（分别）。这对于检查非线性是很有用的筛选工具，当数据本身提供很少的可视信息。这种情形下会发现未期望的异常值，而用传统的方法可能会没注意到。</p>
 <p><img alt="" src="../../img/06/fig6.12.png" /></p>

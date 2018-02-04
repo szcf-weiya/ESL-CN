@@ -2906,11 +2906,9 @@
 </div>
 <p>前面我们已经介绍了自助法(bootstrap)可用来评估参数估计或预测的正确性。这里我们展示怎么使用自助法去改善估计或者预测本身。在8.4节我们研究了自助法和贝叶斯方法之间的关系，而且发现自助法均值近似于一个后验平均。Bagging进一步探索这之间的联系。</p>
 <p>首先考虑一个回归问题。假设我们根据我们的训练数据$\mathbf Z={(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)}$拟合一个模型，得到在输入$x$处的预测值$\hat f(x)$。自助法整合(Bootstrap aggregation)或者bagging在自助法样本的集合中平均了这个预测值，因此降低了它的方差。对于每个自助法样本$\mathbf Z^{*b},b=1,2,\ldots,B$，拟合我们的模型得到预测值$\hat f^{*b}(x)$。bagging估计定义为</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 \hat f_{bag}(x)=\frac{1}{B}\sum\limits_{b=1}^B\hat f^{*b}(x)\qquad (8.51)
-</script>
-</p>
+$$</p>
 <p>记$\hat{\cal P}$为在每个数据点$(x_i,y_i)$上赋予相同概率$1/N$的经验分布。实际上，“真正”的bagging估计由$E_{\hat{\cal P}}\hat f^*(x)$定义，其中$\mathbf Z^*=(x_1^*,y_1^*),(x_2^*,y_2^*),\ldots,(x_N^*,y_N^*)$，并且$(x_i^*,y_i^*)\in \hat{\cal P}$。当$B\rightarrow \infty$，表达式（8.51）是真实bagging估计的蒙特卡洛估计。</p>
 <p>bagged估计（8.51）与原始估计$\hat f(x)$仅仅当后者是数据的非线性或者数据的自适应函数才有区别。举个例子，为了打包(bag)8.2.1节的B样条光滑器，我们对图8.2的左下图中的曲线在每个$x$处进行平均。</p>
 <div class="admonition note">
@@ -2925,14 +2923,13 @@
 <p class="admonition-title">weiya注</p>
 <p>本书很多部分都有这样处理：
 如<a href="https://esl.hohoweiya.xyz/06%20Kernel%20Smoothing%20Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html">混合模型的密度估计和分类</a>中
-<script type="math/tex; mode=display">
+$$
 \hat\gamma_{im}=\frac{\hat\alpha_m\phi(x_i;\hat\mu_m,\hat\Sigma_m)}{\sum_{k=1}^M\hat\alpha_k\phi(x_i;\hat\mu_k,\hat\Sigma_k)}\qquad (6.33)
-</script>
+$$
 又如<a href="https://esl.hohoweiya.xyz/18%20High-Dimensional%20Problems/18.2%20Diagonal%20Linear%20Discriminant%20Analysis%20and%20Nearest%20Shrunken%20Centroids/index.html">对角线性判别分析和最近收缩重心</a>中
-<script type="math/tex; mode=display">
-\hat p_k(x^\*)=\frac{e^{\frac{1}{2}\delta_k(x^\*)}}{\sum_{\ell=1}^Ke^{\frac{1}{2}\delta_\ell(x^\*)}}\qquad (18.8)
-</script>
-</p>
+$$
+\hat p_k(x^*)=\frac{e^{\frac{1}{2}\delta_k(x^*)}}{\sum_{\ell=1}^Ke^{\frac{1}{2}\delta_\ell(x^*)}}\qquad (18.8)
+$$</p>
 </div>
 <p>一个简单的两个类别的例子显示了它们在这种情形下的失败。假设在$x$处类别1的真实概率为0.75，而且每个bagging分类器准确地预测了1。于是$p_1(x)=1$,这是不正确的。然而，对于许多分类器$\hat G(x)$，已经有一个估计了$x$处类别概率的潜在函数$\hat f(x)$（对于树而言，类别的比例即为末结点处的类别比例）。另一种bagging策略是对这些结点处的比例取平均而不是对得分指示向量取平均。这个过程不仅仅改善了类别概率的估计，而且趋向于产生低方差的bagging分类器，特别是对于小$B$(见下一个例子的图8.10)</p>
 <h2 id="_1">例子： 树与模拟数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -2943,15 +2940,13 @@
 <p>在这个例子中，由于预测变量间的相关性，树有很高的方差。Bagging成功光滑掉方差，也因此降低了测试误差。</p>
 <p>Bagging可以显著降低不稳定的过程的方差得到更好的预测，比如说树。一个简单的论据说明了为什么bagging在平方误差损失下有效果，简单来说是因为它保持偏差不变降低了方差。</p>
 <p>假设我们的训练样本$(x_i, y_i),i=1,\ldots,N$是从分布$\cal P$中独立采样的，并且考虑理想的整合估计器$f_{ag}(x)=E_{\cal P}\hat f^* (x)$。这里$x$是固定的，并且自助数据集$\mathbf Z^<em> $包含从$\cal P$中采样的的观测$x_i*, y_i^</em> $。注意到$f_{ag}(x)$是从实际总体$\cal P$中而不是数据中采样得到一个bagging估计。实际中这并不是我们可以用的估计，但是用于分析这是很方便的。我们可以写出如下关系</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 \begin{align}
-E_{\cal P}[Y-\hat f^\*(x)]^2 &= E_{\cal P}[Y-f_{ag}(x)+f_{ag}(x)-\hat f^\*(x)]^2\\
-& = E_{\cal P}[Y-f_{ag}(x)]^2+E_{\cal P}[\hat f^\*(x) - f_{ag}(x)]^2\\
-& \ge E_{\cal P}[Y-f_{ag}(x)]^2\qquad (8.52)
+E_{\cal P}[Y-\hat f^*(x)]^2 &amp;= E_{\cal P}[Y-f_{ag}(x)+f_{ag}(x)-\hat f^*(x)]^2\
+&amp; = E_{\cal P}[Y-f_{ag}(x)]^2+E_{\cal P}[\hat f^*(x) - f_{ag}(x)]^2\
+&amp; \ge E_{\cal P}[Y-f_{ag}(x)]^2\qquad (8.52)
 \end{align}
-</script>
-</p>
+$$</p>
 <p>右侧额外的误差来自$\hat f^*(x)$在$f_{ag}(x)$附近的方差。因此真实的总体整合不会增加均值和平方误差。这表明从训练样本中采样的bagging将会经常降低均方误差。</p>
 <p>上面的论据对于0-1损失下的分类并不能保证，因为偏差和方差的不可加性。在那种情形下，对一个较好的分类器进行bagging会变得更好，但是bagging一个差的分类器会变得更差。举个简单采用随机化规则的例子。假设对于所有的$x$我们都有$Y=1$，并且分类器$\hat G(x)$以概率0.4预测$Y=1$（对所有$x$），并且以0.6的概率预测$Y=0$（对所有$x$）。则$\hat G(x)$的误分类率为0.6，但是bagged分类器的误差率为1.0。</p>
 <p>对于分类，我们可以就一个独立弱分类器的共识来理解bagging的效应（Dietterich, 2000a）。令在两类别例子中$x$处的贝叶斯最优边界为$G(x)=1$。假设每个弱分类器$G_b^*$的误差率为$e_b=e&lt;0.5$，并令$S_1(x)=\sum_{b=1}^BI(G_b^*=1)$是类别1的共识投票(consensus vote)。因为弱分类器假设是独立的，则$S_1(x)\sim B(B, 1-e)$，并且当B变大时，$Pr(S_1&gt;B/2)\rightarrow 1$。这个概念已经作为“Wisdom of Crowds”流行于统计学之外了（Surowiecki, 2004）——多样且独立的人们的群体知识一般会超出人格单个的个体，而且可以用于投票。当然，最主要的警告是“独立”，但bagged树不是。图8.11说明了在模拟例子中投票共识(consensus vote)的力量，其中只有30\%的投票者对候选者有一些了解。</p>

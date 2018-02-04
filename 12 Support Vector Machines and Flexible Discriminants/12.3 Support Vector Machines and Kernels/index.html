@@ -3003,24 +3003,18 @@
 <h2 id="svm">用于分类的SVM<a class="headerlink" href="#svm" title="Permanent link">&para;</a></h2>
 <p>我们可以以一种特殊的方式来表示优化问题(12.9)和它的解，这种方式只涉及通过内积来涉及输入特征。我们对这个变换后的特征向量$h(x_i)$直接进行这样的操作。则我们将看到对于特定选择的$h$，这些内积可以很方便地进行计算。</p>
 <p>(12.13)的lagrange对偶函数有如下形式：</p>
-<p>
-<script type="math/tex; mode=display">
-L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}\langle h(x_i), h(x_{i'})\rangle\qquad (12.19)
-</script>
-</p>
+<p>$$
+L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i&rsquo;=1}^N\alpha_i\alpha_{i&rsquo;}y_iy_{i&rsquo;}\langle h(x_i), h(x_{i&rsquo;})\rangle\qquad (12.19)
+$$</p>
 <p>从(12.10)中我们可以看到解函数$f(x)$可以写成</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 f(x)=h(x)^T\beta+\beta_0=\sum\limits_{i=1}^N\alpha_iy_i\langle h(x),h(x_i) \rangle+\beta_0\qquad (12.20)
-</script>
-</p>
+$$</p>
 <p>和之前一样，给定$\alpha_i$，当$0&lt;\alpha_i&lt;C$时，$\beta_0$可以通过对任意（或所有）$x_i$来求解$y_if(x_i)=1$</p>
 <p>所以(12.19)和(12.20)仅仅通过内积涉及$h(x)$。实际上，我们根本不需要明确变换关系$h(x)$，而仅仅要求知道在转换后的空间中计算内积的核函数</p>
-<p>
-<script type="math/tex; mode=display">
-K(x,x')=\langle h(x), h(x') \rangle\qquad (12.21)
-</script>
-</p>
+<p>$$
+K(x,x&rsquo;)=\langle h(x), h(x&rsquo;) \rangle\qquad (12.21)
+$$</p>
 <p>$K$应该是一个对称的(半)正定函数：见5.8.1节。</p>
 <p>在SVM中有三种流行的$K$可以选择</p>
 <ul>
@@ -3029,33 +3023,27 @@ K(x,x')=\langle h(x), h(x') \rangle\qquad (12.21)
 <li>神经网络：$K(x,x&rsquo;)=tanh(\kappa_1\langle x,x&rsquo; \rangle+\kappa_2)$</li>
 </ul>
 <p>考虑到含有两个输入变量$X_1$和$X_2$的特征空间，以及2阶的多项式。则</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 \begin{array}{ll}
-K(x,x')&=(1+\langle X,X' \rangle)^2\\
-&=(1+X_1X_1'+X_2X_2')^2\\
-&=1+2X_1X_1'+2X_2X_2'+(X_1X_1')^2+(X_2X_2')^2+2X_1X_1'X_2X_2'\quad (12.23)
+K(x,x&rsquo;)&amp;=(1+\langle X,X&rsquo; \rangle)^2\
+&amp;=(1+X_1X_1&rsquo;+X_2X_2&rsquo;)^2\
+&amp;=1+2X_1X_1&rsquo;+2X_2X_2&rsquo;+(X_1X_1&rsquo;)^2+(X_2X_2&rsquo;)^2+2X_1X_1&rsquo;X_2X_2&rsquo;\quad (12.23)
 \end{array}
-</script>
-</p>
+$$</p>
 <p>则$M=6$，而且如果我们选择$h_1(X)=1,h_2(X)=\sqrt{2}X_1,h_3(X)=\sqrt{2}X_2,h_4(X)=X_1^2,h_5(X)=X_2^2$，以及$h_6(X)=\sqrt{2}X_1X_2$，则$K(X,X&rsquo;)=\langle h(X),h(X&rsquo;)\rangle$</p>
 <p>从$(12.20)$我们可以看出该解可以写成</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 \hat f(x)=\sum\limits_{i=1}^N\hat \alpha_iy_iK(x,x_i)+\hat\beta_0\qquad (12.24)
-</script>
-</p>
+$$</p>
 <p>在增广的特征空间中，参数$C$的角色更加清晰，因为在这里经常会存在完美的分割。较大的$C$会抑制任何正的$\xi_i$，并且在原始特征空间中过拟合的弯弯曲曲的边界；较小的$C$值会鼓励较小的$\Vert\beta\Vert$，反过来会导致$f(x)$以及边界更加地光滑。图12.3显示了应用到第2章中的混合模型的两个支持向量机。两种情形下的正则化参数都是为了实现更好的测试误差。对该例子而言，径向基得到类似贝叶斯最优边界；与图2.5进行比较。</p>
 <p><img alt="" src="../../img/12/fig12.3.png" /></p>
 <p>在支持向量的早期研究中，有断言称，支持向量机的核性质是唯一的，并且允许对维数灾难进行巧妙地处理。</p>
 <p>这些断言都不是正确的，我们将在下一节详细讨论这些问题。</p>
 <h2 id="svm_1">SVM作为惩罚的方法<a class="headerlink" href="#svm_1" title="Permanent link">&para;</a></h2>
 <p>对于$f(x)=h(x)^T\beta+\beta_0$，考虑下列的优化问题</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 \underset{\beta_0,\beta}{min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{2}{\lambda}\Vert\beta\Vert^2\qquad (12.25)
-</script>
-</p>
+$$</p>
 <p>其中下标$+$表示正的部分。上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例。可以很简单地证明当$\lambda=1/C$时，(12.25)的解与(12.8)的解一致。</p>
 <p>对“hinge”损失函数$L(y,f)=[1-yf]<em>+$的检验证明对于二类别分类是很合理的。图12.4将之与逻辑斯蒂回归的对数似然进行比较，以及平方误差损失和其中的方差。（负）对数似然或者二项偏差与SVM损失有类似的尾分布，其中对margin中的点赋予0惩罚，对在错误一侧的边赋予线性惩罚。另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响。平方hinge损失$L(y,f)=[1-yf]</em>+^2$类似平方损失，除了对于各自margin中的点为0。在左尾中平方增长，而且对错误分类的观测的hinge或者偏差更加稳健。最近Rosset and Zhu (2007)提出平方hinge损失的“Huberized”版本，在$yf=-1$处将其平滑转换为了线性损失。</p>
 <p><img alt="" src="../../img/12/fig12.4.png" /></p>

@@ -2844,49 +2844,39 @@
 </tbody>
 </table>
 <p>回归和分类树在第9.2节已经详细讨论了。它们将所有联合预测变量的空间划分为分类的区域$R_j,j=1,2,\ldots,J$，这些区域用树的终止结点表示。常数值$\gamma_j$赋予到每个区域中，预测规则为</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 x\in R_j\Rightarrow f(x) = \gamma_j
-</script>
-</p>
+$$</p>
 <p>因此，一棵树可以正式地表达成</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 T(x;\Theta)=\sum\limits_{j=1}^J\gamma_jI(x\in R_j)\qquad (10.25)
-</script>
-</p>
-<p>其中参数为$\Theta={R_j,\gamma_j}_1^J$。$J$通常看成是元参数。通过最小化经验风险来确定
-<script type="math/tex; mode=display">
-\hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{j=1}^J\sum\limits_{x_i\in R_j}L(y_i,\gamma_j)\qquad (10.26)
-</script>
-</p>
+$$</p>
+<p>其中参数为$\Theta={R_j,\gamma_j}<em>1^J$。$J$通常看成是元参数。通过最小化经验风险来确定
+$$
+\hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits</em>{j=1}^J\sum\limits_{x_i\in R_j}L(y_i,\gamma_j)\qquad (10.26)
+$$</p>
 <p>这是个艰巨的组合优化问题，我们通常去寻求近似次优解。将该优化问题分成两个部分是很有用的：</p>
 <ol>
 <li><strong>给定$R_j$求$\gamma_j$:</strong> 给定$R_j$，估计$\gamma_j$是小菜一碟，而且通常有$\hat\gamma_j=\bar y_j$，是那些落在区域$R_j$的$y_i$的均值。对于误分类损失，$\gamma_j$是落在区域$R_j$的观测值的modal class.</li>
 <li><strong>求R_j:</strong> 对于求近似解，这是很困难的一部分。注意到寻找$R_j$意味着也估计$\gamma_j$。一个典型的策略是使用贪婪的，自上而下的递归划分算法来寻找$R_j$。另外，为了优化$R_j$，有时也需要通过一个更光滑以及更方便的准则来近似(10.26):
-<script type="math/tex; mode=display">
+$$
 \hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{i=1}^N\tilde L(y_i,T(x_i,\Theta))\qquad (10.27)
-</script>
+$$
 接着给定$\hat R_j=\tilde R_j$，$\gamma_j$可以运用原来的准则精确估计出。</li>
 </ol>
 <p>在9.2节我们讨论了用于分类树的这样一个策略。在增长树的过程（确定$R_j$）中用Gini指数替换误分类损失。</p>
 <p>boosted树模型是这些树的和</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
-</script>
-</p>
-<p>以向前逐步的方式导出(算法10.2)。在向前逐步过程中的每一步, 给定当前树模型$f_{m-1}(x)$，求出下一棵树的区域和常数$\Theta_m=\{R_{jm},\gamma_{jm}\}^{J_m}_1$需要求解
-<script type="math/tex; mode=display">
-\hat\Theta_m = \text{arg }\underset{\Thtea_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
-</script>
-</p>
+$$</p>
+<p>以向前逐步的方式导出(算法10.2)。在向前逐步过程中的每一步, 给定当前树模型$f_{m-1}(x)$，求出下一棵树的区域和常数$\Theta_m=\{R_{jm},\gamma_{jm}\}^{J_m}<em>1$需要求解
+$$
+\hat\Theta_m = \text{arg }\underset{\Thtea_m}{\text{min}}\sum\limits</em>{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
+$$</p>
 <p>给定区域$R_{jm}$，寻找每个区域的最优的常数值$\gamma_{jm}$是很直接的</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 \hat \gamma_{jm}=\text{arg }\underset{\gamma_{jm}}{\text{min}}\sum\limits_{x_i\in R_{jm}}L(y_i,f_{m-1}(x_i)+\gamma_{jm})\qquad (10.30)
-</script>
-</p>
+$$</p>
 <p>寻找区域是很困难的，甚至比寻找单棵树的区域还有困难。对于一些特殊情形，这个问题可以进行简化。</p>
 <p>TODO</p>
                 

@@ -2846,13 +2846,13 @@
 <p>AdaBoost.M1算法最初是从一个非常不一样的角度出发得到的，而不是上一节中提出的。它与基于指数损失的向前逐步加性建模的等价性仅在其提出后五年后才被发现。通过研究指数损失函数准则的性质，可以深入了解这个过程并且找出可能改善的方式。</p>
 <p>在加性模型中指数损失的主要吸引点在于计算上的方便；它导出简单的模块化重加权的AdaBoost算法。然而，研究它的统计性质也是我们关注的。它估计什么，估计有多么好？第一个问题可以通过寻找总体最小化来回答。</p>
 <p>可以很简单地证明（Friedman等人，2000）
-<script type="math/tex; mode=display">
-f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{1}{2}\mathrm{log}\frac{Pr(Y=1\mid X)}{Pr(Y=-1\mid X)}\qquad (10.16)
-</script>
+$$
+f^<em>(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{1}{2}\mathrm{log}\frac{Pr(Y=1\mid X)}{Pr(Y=-1\mid X)}\qquad (10.16)
+$$
 或者等价地，
-<script type="math/tex; mode=display">
-Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
-</script>
+$$
+Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^</em>(x)}}
+$$
 因此，由AdaBoost得到的加性展开是估计二分之一log的$P(Y=1\mid x)$比率。这证明使用它的符号作为（10.1）的分类规则是合理的。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
@@ -2862,29 +2862,27 @@ Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p>考虑
-<script type="math/tex; mode=display">
+$$
 z = logit(p) = log\frac{p}{1-p}
-</script>
+$$
 我们有$p=\frac{1}{1+e^{-z}}$，则二项分布似然函数为
-<script type="math/tex; mode=display">
+$$
 f=p^y(1-p)^{1-y},\; y=0,1
-</script>
+$$
 其负对数似然为
-<script type="math/tex; mode=display">
+$$
 L(p, y) = -log(f)=-(y\mathrm{log}p+(1-y)\mathrm{log}(1-p))
-</script>
+$$
 也称为logit损失函数。</p>
 </div>
 <p>令
-<script type="math/tex; mode=display">
+$$
 p(x)=Pr(Y=1\mid x)=\frac{e^{f(x)}}{e^{-f(x)}+e^{f(x)}}=\frac{1}{1+e^{-2f(x)}}\qquad (10.17)
-</script>
+$$
 并且定义$Y&rsquo;=(Y+1)/2\in \{0,1\}$.则二项对数概率损失函数为</p>
-<p>
-<script type="math/tex; mode=display">
-l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
-</script>
-</p>
+<p>$$
+l(Y,p(x))=Y&rsquo;\mathrm{log}p(x)+(1-Y&rsquo;)\mathrm{log}(1-p(x))
+$$</p>
 <!--
 !!! note "weiya注"
     个人觉得，上式写成
@@ -2895,10 +2893,9 @@ l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
 -->
 
 <p>或者等价地，偏差为
-<script type="math/tex; mode=display">
+$$
 -l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\qquad (10.18)
-</script>
-</p>
+$$</p>
 <!--
 !!! note "weiya注"
     $$

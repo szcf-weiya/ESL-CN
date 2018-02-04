@@ -2927,60 +2927,60 @@
 <p>非参回归方法的多样性和学习方法的多种类别取决于插入的限制条件的本质。这些类别不是截然不同的，而且确实一些方法变成了几种不同的方法。这里我们进行一个简短的概要，因为详细的描述将在后面章节中给出。每个类都有与之对应的一个或多个参数，有时恰当地称之为光滑化参数，这些参数控制着局部邻域的有效规模。这里我们描述三个大的类别</p>
 <h2 id="_1">粗糙惩罚和贝叶斯方法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>这是由显式的惩罚$RSS(f)$和粗糙惩罚控制的函数类
-<script type="math/tex; mode=display">\begin{equation}
+\begin{equation}
 PRSS(f;\lambda)=RSS(f)+\lambda J(f)
-\end{equation}</script>
+\end{equation}
 对于在输入空间的小邻域变换太快的函数$f$，用户选择的函数$J(f)$会变大。举个例子，著名的关于一维输入的三次光滑样条(<em>cubic smoothing spline</em>)的是惩罚最小二乘的准则的解。
-<script type="math/tex; mode=display">\begin{equation}
-PRSS(f;\lambda)=\sum\limits_{i=1}^N(y_i-f(x_i))^2+\lambda \int [f''(x)]^2dx
+\begin{equation}
+PRSS(f;\lambda)=\sum\limits_{i=1}^N(y_i-f(x_i))^2+\lambda \int [f&rsquo;&lsquo;(x)]^2dx
 \label{2.39}
-\end{equation}</script>
+\end{equation}
 这里的粗糙惩罚控制了$f$的二阶微分大的值，而且惩罚的数量由$\lambda \ge 0$来支配。$\lambda=0$表示没有惩罚，任意插值函数都可以实现，尽管$\lambda=\infty$仅仅当关于$x$的函数为线性才允许。</p>
 <p>预测函数$J$可以在任意维数下构造函数，而且一些特殊的版本可以用来插入特殊的结构。举个例子，可加性惩罚$J(f)=\sum_{j=1}^pJ(f_j)$与可加性函数$f(X)=\sum_{j=1}^pf_j(X_j)$联合使用去构造可加的光滑坐标函数的模型。类似地，投射追踪回归(<em>regression pursuit regression</em>)模型有$f(X)=\sum_{m=1}^Mg_m(\alpha_m^TX)$，其中$\alpha_m$为适应地选择的方向，函数$g_m$的每一个有对应的粗糙惩罚。</p>
 <p>惩罚函数，或者说正则(<em>regularization</em>)方法,表达了我们最初的信仰——我们寻找的函数类型展现了一个确定的光滑行为的类型，而且确实可以套进贝叶斯的模型中。惩罚$J$对应先验概率，$PRSS(f;\lambda)$为后验分布，最小化$PRSS(f;\lambda)$意味着寻找后验模式。我们将在第5章中讨论粗糙惩罚方法并在第8章中讨论贝叶斯范式。</p>
 <h2 id="_2">核方法和局部回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>这些方法被认为是通过确定局部邻域的本质来显式提供回归函数的估计或条件期望，并且属于局部拟合得很好的规则函数类。局部邻域由核函数(<em>kernel function</em>)$K_{\lambda}(x_0,x)$来确定，核函数对$x_0$附近的区域$x$赋予系数（见p192的图6.1），举个例子，高斯核有一个基于高斯密度函数的系数函数
-<script type="math/tex; mode=display">\begin{equation}
+\begin{equation}
 K_{\lambda}(x_0,x)=\frac{1}{\lambda}exp[-\frac{\mid \mid x-x_0\mid \mid ^2}{2\lambda}]
-\end{equation}</script>
+\end{equation}
 并且赋予那些到$x_0$的欧氏距离平方呈指数衰减的点系数。系数$\lambda$对应高斯密度的方差，并且控制着邻域的宽度。核估计的最简单形式是Nadaraya-Watson的系数平均
-<script type="math/tex; mode=display">\begin{equation}
+\begin{equation}
 \hat{f}(x_0)=\dfrac{\sum_{i=1}{N}K_{\lambda}(x_0,x_i)y_i}{\sum_{i=1}^NK_{\lambda}(x_0,x_i)}
 \label{2.41}
-\end{equation}</script>
+\end{equation}
 一般地，我们可以定义$f(x_0)$的局部回归估计$f_{\hat{\theta}}(x_0)$，其中$\hat{\theta}$使下式最小化
-<script type="math/tex; mode=display">\begin{equation}
+\begin{equation}
 RSS(f_{\theta},x_0)=\sum\limits_{i=1}^NK_{\lambda}(x_0,x_i)(y_i-f_{\theta}(x_i))^2
 \label{2.42}
-\end{equation}</script>
+\end{equation}
 并且$f_{\theta}$为含参函数，比如低阶的多项式。有如下例子：
 - 常值函数$f_{\theta}(x)=\theta_0$，结果在上面式$\eqref{2.41}$中的Nadaraya-Watson估计。
 - $f_{\theta}(x)=\theta_0+\theta_1x$给出最受欢迎的局部线性回归模型</p>
 <p>最近邻方法可以看成是某个更加依赖数据的度量的核方法。确实，$k$-最近邻的度量为
-<script type="math/tex; mode=display">\begin{equation}
+\begin{equation}
 K_k(x,x_0)=I(\mid \mid x-x_0\mid \mid \le \mid \mid x_{(k)}-x_0\mid \mid )
-\end{equation}</script>
+\end{equation}
 其中$x_{(k)}$是训练观测值中离$x_0$的距离排名第$k$个的观测，而且$I(S)$是集合$S$的指标函数。</p>
 <p>为了避免维数的灾难，这些方法在高纬情形下要做修正。将在第6章讨论不同的改编。</p>
 <h2 id="_3">基函数和字典方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>这个方法的类别包括熟悉的线性和多项式展开式，但是最重要的有多种多样的更灵活的模型。这些关于$f$的模型是基本函数的线性展开
-<script type="math/tex; mode=display">\begin{equation}
+\begin{equation}
 f_{\theta}(x)  = \sum\limits_{m=1}^M\theta_mh_m(x)
 \label{2.43}
-\end{equation}</script>
+\end{equation}
 其中每个$h_m$是输入$x$的函数，并且其中的线性项与参数$\theta$的行为有关。这个类别包括很多不同的方法。一些情形下基函数的顺序是规定的，如关于$x$的阶为$M$的多项式基函数。</p>
 <p>对于一维$x$,阶为$K$的多项式样条可以通过$M$个样条基函数的合理顺序来表示，反过来由$M-K$个结点（<em>knots</em>）来确定。在结点中间产生阶为$K$的分段多项式函数，并且在每个结点处由$K-1$阶连续函数来连接。考虑线性样条的例子，或者分段线性函数。一个直观满足条件的基包含函数$b_1(x)=1,b_2(x)=x,b_{m+2}(x)=(x-t_m)<em>{+},m=1,\ldots,M-2$,其中$t_m$为第$m$个结点，并且$z</em>{+}$表示正值部分。样条基的张量积可以用于维数大于一的输入（见5.2节，第9章的CRAT和MARS模型）。系数$\theta$可以是多项式的阶之和，或者是样条情形中的结点。</p>
 <p>放射基函数(<em>Radial basis functions</em>)是在质心处对称的$p$维核，
-<script type="math/tex; mode=display">\begin{equation}
+\begin{equation}
 f_{\theta}(x)=\sum\limits_{m=1}^MK_{\lambda_m}(\mu_m,x)\theta_m
-\end{equation}</script>
+\end{equation}
 举个例子，高斯核$K_{\lambda}(\mu,x)=e^{-\mid \mid x-\mu\mid \mid ^2/2\lambda}$是受欢迎的。</p>
 <p>放射基函数有质心$\mu_m$和尺寸$\lambda_m$，必须要确定这两个值。样条基函数有结点。一般地，我们也想要这些数据去支配它们。把它们作为系数将回归问题从径直的线性问题转换为困难的组合非线性问题。在实际中，贪心算法或两步过程是经常使用的捷径。6.7节中描述了这些方式。</p>
 <p>单层的向前反馈的有线性输出系数的神经网络模型可以认为是一种改编的基函数方法。模型有如下形式
-<script type="math/tex; mode=display">\begin{equation}
+\begin{equation}
 f_{\theta}(x)=\sum\limits_{m=1}^M\beta_m\sigma(\alpha_m^Tx+b_m)
 \label{2.46}
-\end{equation}</script>
+\end{equation}
 其中，$\sigma(x)=1/(1+e^{-x})$被称作活跃(<em>activation</em>)函数。作为投射追踪模型，方向$\alpha_m$以及偏差项$b_m$必须要确定，而且他们的估计是计算的食物。将在第11章给出细节。</p>
 <p>这些选择的自适应基函数的方法也被称作字典方法，其中有可用的无限集合或者包含可选的基函数的字典$\cal D$，而且通过应用其它的搜索机构来建立模型。</p>
                 

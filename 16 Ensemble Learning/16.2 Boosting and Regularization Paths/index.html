@@ -2931,25 +2931,20 @@
 </div>
 <h2 id="_1">惩罚回归<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>梯度加速的收缩策略(10.41)的成功直觉上可以通过类比含有很大的基展开的惩罚线性回归得到。考虑所有可能的$J$个终止结点的回归树$\cal T={T_k}$的字典作为$R^p$的基函数，这在训练数据上可以实现。线性模型为
-<script type="math/tex; mode=display">
+$$
 f(x)=\sum\limits_{k=1}^K\alpha_kT_k(x)\qquad (16.1)
-</script>
-</p>
+$$</p>
 <p>其中$K=card(\cal T)$。假设系数通过最小二乘进行估计。因为这些树的个数可能比最大训练集大很多，所以需要一些正则化。令$\hat\alpha(\lambda)$使得</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{\alpha}{min}\{\sum\limits_{i=1}^N(y_i-\sum\limits_{k=1}^K\alpha_kT_k(x_i))^2+\lambda\cdot J(\alpha)\}\qquad (16.2)
-</script>
-</p>
+<p>$$
+\underset{\alpha}{min}{\sum\limits_{i=1}^N(y_i-\sum\limits_{k=1}^K\alpha_kT_k(x_i))^2+\lambda\cdot J(\alpha)}\qquad (16.2)
+$$</p>
 <p>$J(\alpha)$是关于系数的函数，并且一般惩罚较大的值。比如</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 \begin{align}
-J(\alpha) &=\sum\limits_{k=1}^K\vert \alpha_k\vert^2\qquad \text{岭回归}\qquad (16.3)\\
-J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\qquad (16.4)
+J(\alpha) &amp;=\sum\limits_{k=1}^K\vert \alpha_k\vert^2\qquad \text{岭回归}\qquad (16.3)\
+J(\alpha) &amp;=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\qquad (16.4)
 \end{align}
-</script>
-</p>
+$$</p>
 <p>这些都在3.4节介绍了。正如这里讨论的那样，从中等大的$\lambda$到较大的$\lambda$的lasso问题的解是趋向于稀疏的；许多$\hat\alpha_k(\lambda)=0$。也就是，只有所有候选树的一小部分会选进模型(16.1)。这似乎是合理的，因为似乎只有所有候选树的一小部分对近似任意特定的目标函数是恰当的。然而，对于不同的目标值，相关的子集也会不一样。那些没有设为0的系数被lasso收缩了，因为它们的绝对值比对应最小二乘值要小：$\vert\hat\alpha_k(\lambda)\vert&lt;\vert\hat\alpha_k(0)\vert$。当$\lambda$增大时，系数都进行了收缩，每一个最终都变为0。</p>
 <p>由于非常多的基函数$T_k$，直接求解含有lasso惩罚(16.4)的(16.2)是不可能的。然而，存在可行的向前逐步策略，对lasso的效果有非常近的近似，并且与增强和向前逐步算法10.2非常相似。算法16.1给出了细节。尽管是用树的基函数$T_k$表示的，算法也可以用来任意基函数的集合中。第1行所有系数初始化为0；这对应了(16.2)式的$\lambda=\infty$. 每个接下来的步骤中，第2(a)行选择对当前残差拟合得最好的树$T_{k^*}$。其对应的系数$\check{\alpha}_{k^*}$接着在第2(b)步增长或减小一个无穷小量，而所有其他的系数$\check{\alpha}_{k\neq k\^*}$都保持不变。原则上，这个过程可以一直迭代到所有的残差为0，或者$\beta^*=0$。第二种情况会发生在$K&lt;N$的情形下，并且在那时候，参数值表示最小二乘的解。这对应了(16.2)式的$\lambda=0$。</p>
 <p><img alt="" src="../../img/16/alg16.1.png" /></p>

@@ -3094,9 +3094,9 @@
 <p>基于树的方法将特征空间划分成一系列长方形，然后对每个长方形拟合简单的模型（像一个常数）。They are conceptually simple yet powerful.我们首先描述一个基于树的称作CART的回归和分类的方法，后来与C4.5进行对比，这也是主要的一个对手。</p>
 <p>让我们考虑含连续响应变量$Y$和输入$X_1$和$X_2$的回归问题，每个都在单位区间内取值。图9.2的左上图表示了通过用平行于坐标轴的线对特征空间的一个划分。在每个划分元素里面我们可以用不同的常值来对$Y$进行建模。然而，这里有个问题：尽管每个划分直线有个像$X_1=c$的简单表示，但一些区域是很难描述的。</p>
 <p>为了简化问题，我们限制在如图9.2的右上图所示的递归二值划分。我们首先将空间分成两个区域，然后在每个区域里面用$Y$的均值来对响应变量进行建模。我们选择变量和分离点以实现最优拟合。然后这些区域又被分成两个区域，这个过程一直进行下去，知道满足停止规则。举个例子，在图9.2的右上图，我们首先在$X_1=t_1$处进行划分。然后在$X_2=t_2$处对区域$X_1\le t_1$进行划分，在$X_1=t_3$对区域$X_1&gt; t_1$进行划分。最后，在$X_2=t_4$处对区域$X_1&gt;t_3$进行划分。这一过程的结果是得到如图所示的五个区域$R_1,R_2,\ldots,R_5$的划分。对应的回归模型在区域$R_m$中用常数$c_m$来预测$Y$,这就是
-<script type="math/tex; mode=display">
-\hat f(X)=\sum\limits_{m=1}^5c_mI\{(X_1,X_2\in R_m\}\qquad (9.9)
-</script>
+$$
+\hat f(X)=\sum\limits_{m=1}^5c_mI{(X_1,X_2\in R_m}\qquad (9.9)
+$$
 同样的模型也可以用图9.2的左下图的二叉树来表示。在树的顶端标出全数据集。在每个交叉点处满足条件的观测分配到左枝上去，其他的分到右枝上去。终止结点或者树的叶子对应区域$R_1,R_2,\ldots, R_5$.图9.2的右下图是该模型回归表面的透视图。为了图解，我们选择结点均值$c_1=-5,c_2=-7,c_3=0,c_4=2,c_5=4$来画这张图。</p>
 <p><img alt="" src="../../img/09/fig9.2.png" /></p>
 <blockquote>
@@ -3105,58 +3105,58 @@
 <p>递归二叉树一个重要的有点在于它的解释性。特征空间被一棵树完全描述。超过两个输入，类似图9.2的右上图的划分很难画出来，但是二叉树表示能够仍然起作用。这种表示方法在医学科学家中很流行，或许它在模仿医生的思考方式。基于病人的特征，树将总体分成了高低不同的阶层。</p>
 <h2 id="_2">回归树<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们现在讨论怎样生成一个回归树的问题。我们的数据包含对$N$个观测值中的每一个的$p$个输入和1个输出：这就是，$(x_i,y_i),i=1,2,\ldots, N,$其中，$x_i=(x_{i1},x_{i2},\ldots,x_{ip})$.这个算法需要根据分离变量和分类点来自动确定，而且确定树应该有的拓扑结构（形状）。首先假设我们有一个分成$M$个区域$R_1,R_2,\ldots, R_M$的一个划分，而且我们在每个区域内用常数$c_m$来对响应变量来建立模型：
-<script type="math/tex; mode=display">
+$$
 f(x)=\sum\limits_{m=1}^Mc_mI(x\in R_m)\qquad (9.10)
-</script>
+$$
 如果我们采取最小化平方和$\sum(y_i-f(x_i))^2$的准则，则可以很简单地证明得到最好的$\hat c_m$恰巧是区域$R_m$中$y_i$的平均值：
-<script type="math/tex; mode=display">
+$$
 \hat c_m=\mathrm{ave}(y_i\mid x_i\in R_m)\qquad (9.11)
-</script>
+$$
 现在找出使得平方和最小的最优二分在计算上一般是不可行的。因此我们采用一种贪婪算法。从所有变量开始，考虑分离变量$j$和分离点$s$,定义半平面对
-<script type="math/tex; mode=display">
-R_1(j,s)=\{X\mid X_j\le s\}\;\text{and}\; R_2(j,s)=\{X\mid X_j>s\}\qquad (9.12)
-</script>
+$$
+R_1(j,s)={X\mid X_j\le s}\;\text{and}\; R_2(j,s)={X\mid X_j&gt;s}\qquad (9.12)
+$$
 于是我们寻找分离变量$j$和分离点$s$求解
-<script type="math/tex; mode=display">
+$$
 \underset{j,s}{\mathrm {min}}[\underset{c_1}{\mathrm{min}}\;\sum\limits_{x_i\in R_1(j,s)}(y_i-c_1)^2+\sum\limits_{x_i\in R_2(j,s)}(y_i-c_2)^2]\qquad (9.13)
-</script>
+$$
 对于每个选定的$j$和$s$，内部最小化通过下式来求解
-<script type="math/tex; mode=display">
+$$
 \hat c_1=\mathrm{ave}(y_i\mid x_i\in R_1(j,s))\;\text{and}\; \hat c_2=\mathrm{ave}(y_i\mid x_i\in R_2(j,s))\qquad (9.14)
-</script>
+$$
 对于每个分离变量，可以非常快地确定分离点$s$，因此对所有输入进行扫描，确定最优的对$(j,s)$是可行的。</p>
 <p>找到最优的分割之后，我们将数据分成两个区域，然后对每个区域重复分割过程。然后在对所有区域都重复同样的分割过程。</p>
 <p>我们应该生成多大的树？很显然，树太大会过拟合数据，而树太小则可能捕捉不了重要的结构。树的大小也是一个调整参数来控制模型复杂度，最优的树规模应该从数据中自适应选取。一种分割树结点的方式可能是仅仅如果由于分割超出一些阈值使得平方和降低。然而，这种策略太目光短浅了，因为看似无用的分割或许会导致下面得到很好的分割。</p>
 <p>更好的策略是生成一个大树$T_0$,仅仅当一些最小结点规模（比如5）达到停止分割过程。接着大树采用cost-complexity pruning来调整，我们现在讨论的内容。</p>
 <p>我们定义子树$T\subset T_0$为任何可以通过对$T_0$剪枝得到的树，也就是，压缩任意数目的中间（非终止）结点。我们用$m$表示终止结点，其中结点$m$表示区域$R_m$。令$\vert T\vert $为$T$中终止结点的个数。令
-<script type="math/tex; mode=display">
+$$
 \begin{align}
-N_m&=\#\{x_i\in R_m\}\\
-\hat c_m&=\frac{1}{N_m}\sum\limits_{x_i\in R_m}y_i\\
-Q_m(T)&=\frac{1}{N_m}\sum\limits_{x_i\in R_m}(y_i-\hat c_m)^2
+N_m&amp;=#{x_i\in R_m}\
+\hat c_m&amp;=\frac{1}{N_m}\sum\limits_{x_i\in R_m}y_i\
+Q_m(T)&amp;=\frac{1}{N_m}\sum\limits_{x_i\in R_m}(y_i-\hat c_m)^2
 \end{align}
 \qquad (9.15)
-</script>
+$$
 定义复杂度代价准则
-<script type="math/tex; mode=display">
+$$
 C_\alpha(T)=\sum\limits_{m=1}^{\vert T\vert}N_mQ_m(T)+\alpha\vert T\vert\qquad (9.16)
-</script>
+$$
 想法是对于每个$\alpha$,寻找子树$T_\alpha\subset T_0$使得$C_\alpha(T)$最小化。调整参数$\alpha\ge 0$调整树的规模和它对数据拟合的成都之间的平衡。较大的$\alpha$值导致小规模的树$T_\alpha$,对于较小的$\alpha$情况反过来了。这种记号表明，当$\alpha=0$时，解为全树$T_0$.我们下面讨论怎么自适应地选择$\alpha$.</p>
 <p>对于每个$\alpha$,可以找到唯一最小的子树$T_\alpha$使得$C_\alpha(T)$最小化。为了寻找$T_\alpha$我们采用weakest link pruning：逐步压缩在$\sum_mN_mQ_m(T)$中单节点增长最小的中间结点，直到我们得到单结点（根）的树。这给出了子树的（有限）序列，而且可以证明这条序列一定包含$T_\alpha$.更多细节见Breiman等人（1984）或者Ripley（1996）年的工作。$\alpha$的估计可以通过五折或者十折交叉验证得到：我们选择$\hat\alpha$使得交叉验证平方和最小。我们最终的树为$T_{\hat \alpha}$</p>
 <h2 id="_3">分类树<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>如果目标是结果取值为$1,2,\ldots,K$的分类问题，则在树的算法中唯一需要改变的是关于分离结点以及剪枝的准则。对于回归我们用（9.15）式定义的平方误差结点纯度，但是这对于分类便不适合了。在结点$m$,用$N_m$个观测值表示区域$R_m$，令
-<script type="math/tex; mode=display">
+$$
 \hat p_{mk} = \frac{1}{N_m}\sum\limits_{x_i\in R_m}I(y_i=k)
-</script>
+$$
 类别$k$的观测在结点$m$处的比例。我们将结点$m$处的观测划分为类别$k(m)=\mathrm{arg\; max}_k\hat p_{mk}$，结点$m$处最主要的类别。不同衡量结点纯度$Q_m(T)$的方法包括如下：
-<script type="math/tex; mode=display">
+$$
 \begin{align}
-\text{误分类误差：}& \frac{1}{N_m}\sum_{i\in R_m}I(y_i\neq k(m))=1-\hat p_{mk(m)}\\
-\text{Gini指数：}&\sum_{k\neq k'}\hat p_{mk}\hat p_{mk'}=\sum_{k=1}^K\hat p_{mk}(1-\hat p_{mk})\\
-\text{交叉熵或者偏差：}&-\sum_{k=1}^K\hat p_{mk}\mathbf{log} \hat p_{mk}
+\text{误分类误差：}&amp; \frac{1}{N_m}\sum_{i\in R_m}I(y_i\neq k(m))=1-\hat p_{mk(m)}\
+\text{Gini指数：}&amp;\sum_{k\neq k&rsquo;}\hat p_{mk}\hat p_{mk&rsquo;}=\sum_{k=1}^K\hat p_{mk}(1-\hat p_{mk})\
+\text{交叉熵或者偏差：}&amp;-\sum_{k=1}^K\hat p_{mk}\mathbf{log} \hat p_{mk}
 \end{align}
 \qquad (9.17)
-</script>
+$$
 对于两个类别，如果$p$是第二类的比例，则这三个衡量指标分别为$1-max(p,1-p), 2p(1-p)$以及$-p\mathrm{log}p-(1-p)\mathrm{log}(1-p)$.图9.3 画出了它们的函数曲线。这三者都类似，但是交叉熵和Gini指数是可微的，因此更加适合数值优化。比较（9.13）和（9.15）,我们看到我们需要由分离结点$m$得到的两个子节点的观测数$N_{m_L}$和$N_{m_R}$来对结点纯度赋予权重。</p>
 <p><img alt="" src="../../img/09/fig9.3.png" /></p>
 <blockquote>
@@ -3214,12 +3214,12 @@ C_\alpha(T)=\sum\limits_{m=1}^{\vert T\vert}N_mQ_m(T)+\alpha\vert T\vert\qquad (
 <p>Sensitivity：给定真实状态为患病预测为患病的概率</p>
 <p>Specificity：给定真实状态为未患病预测为未患病的概率</p>
 <p>如果我们将spam和email看成有无患病，则从表9.3我们有
-<script type="math/tex; mode=display">
+$$
 \begin{align}
-Sensitivity & = 100\times\frac{33.4}{33.4+5.3}=86.3\%\\
-Specificity &  = 100\times \frac{57.3}{57.3+4.0}=93.4\%
+Sensitivity &amp; = 100\times\frac{33.4}{33.4+5.3}=86.3\%\
+Specificity &amp;  = 100\times \frac{57.3}{57.3+4.0}=93.4\%
 \end{align}
-</script>
+$$
 在这个分析中我们使用了相等的损失。和之前一样令$L_{kk&rsquo;}$为将类别$k$预测成类别$k&rsquo;$对应的损失。通过改变损失$L_{01}$和$L_{10}$的相对大小，我们增大该规则的敏感性降低该规则的特异性，或者反过来。在这个例子中，我们想要避免将好的email预测成spam，因此我们希望确定性非常高。我们可以通过设置$L_{01}&gt;1,L_{10}=1$来实现。如果spam的比例$\ge L_{01}/(L_{10}+L_{01})$，则在每个终止结点处的贝叶斯规则将此结点归类为类别1，否则归为类别0.受试者工作特征曲线（ROC）是用于评估敏感性和特异性之间折中的常用概述。当我们改变分类规则的参数得到敏感性关于特异性的图像。在0.1和10之间改变损失$L_{01}$，然后对图9.4中选定的17个结点的贝叶斯规则，得到如图9.6所示的ROC曲线。每条曲线靠近0.9的标准误差近似为$\sqrt{0.9(1-0.9)/1536}=0.008$，因此差别的标准误差大概为0.01。我们为了实现接近100%的特异性，敏感性大致降低到了50%.曲线下面的面积是通常使用的定量概述；在曲线的两端线性扩张使得它在[0,100]上有定义，面积大概为0.95.为了比较，我们也画出了在9.2节对这些数据进行GAM模型拟合的ROC曲线；它给出了对于任意损失更好的分类规则，面积为0.98.</p>
 <p><img alt="" src="../../img/09/fig9.6.png" /></p>
 <blockquote>

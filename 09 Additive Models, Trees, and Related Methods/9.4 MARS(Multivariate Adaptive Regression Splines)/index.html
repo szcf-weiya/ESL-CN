@@ -3045,41 +3045,35 @@
 </blockquote>
 <p>MARS是回归的自适应过程，非常适合高维问题（比如，存在大量的输入）。可以从两个角度来理解它，首先，它可以看成是逐步线性回归的推广，其次，也可以看成是为了提高CART在回归中的效果而进行的改进。我们从第一种观点引入MARS，接着与CART联系起来。</p>
 <p>MARS采用形式为$(x-t)_+, (t-x)_+$的分段线性基函数的展开。“+”表示正的部分，所以</p>
-<p>
-<script type="math/tex; mode=display">
-(x-t)_+=\left\{
+<p>$$
+(x-t)<em>+=\left{
 \begin{array}{ll}
-x-t& \text{if }x>t\\
-0&\text{otherwise}
+x-t&amp; \text{if }x&gt;t\
+0&amp;\text{otherwise}
 \end{array}
 \right.
 \text{  and  }
-(t-x)_+=\left\{
+(t-x)</em>+=\left{
 \begin{array}{ll}
-t-x& \text{if }x<t\\
-0&\text{otherwise}
+t-x&amp; \text{if }x&lt;t\
+0&amp;\text{otherwise}
 \end{array}
 \right.
-</script>
-</p>
+$$</p>
 <p>举个例子，图9.9显示了函数$(x-0.5)_+, (0.5-x)_+$的图象。</p>
 <p><img alt="" src="../../img/09/fig9.9.png" /></p>
 <blockquote>
 <p>图9.9. MARS采用的基函数$(x-t)_+$(实心橘黄色)和$(t-x)_+$(蓝色虚线)</p>
 </blockquote>
 <p>每个函数是分段线性的，在值$t$处有一个结点。用第五章的术语说它们是线性样条。在下面的讨论中我们将这两个函数称为反射对(reflected pair)。想法是，对于每个输入变量$X_j$，将该输入变量的所有观测值作为结点。因此，基函数集合为</p>
-<p>
-<script type="math/tex; mode=display">
-{\cal C}=\{(X_j-t)_+,(t-X_j)_+\}_{t\in\{x_{1j},x_{2j},\ldots,x_{Nj}\},j=1,2,\ldots,p}\qquad (9.18)
-</script>
-</p>
+<p>$$
+{\cal C}={(X_j-t)<em>+,(t-X_j)</em>+}<em>{t\in{x</em>{1j},x_{2j},\ldots,x_{Nj}},j=1,2,\ldots,p}\qquad (9.18)
+$$</p>
 <p>如果所有的输入变量的观测值都不同，则总共有$2Np$个基函数。注意到尽管每个基函数仅仅取决于单个的$X_j$，举个例子，$h(X)=(X_j-t)_+$，但还是被看成是整个输入空间$R^p$中的函数。</p>
 <p>建立模型的策略类似向前逐步线性回归，但是不是使用原始输入，允许使用集合$\cal C$中的基函数及其基函数间的乘积。因此模型有如下形式</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 f(X)=\beta_0+\sum\limits_{m=1}^M\beta_mh_m(X)\qquad (9.19)
-</script>
-</p>
+$$</p>
 <p>其中每个$h_m(X)$是 $\cal C$ 中的基函数，也可能是两个或者更多这样基函数的乘积。</p>
 <p>给定$h_m$，通过最小残差平方和来估计系数$\beta_m$，也就是，通过标准线性回归。然而，函数$h_m(x)$的构造是“真正的艺术”。在我们的模型中以常数函数$h_0(X)=1$开始，集合$\cal C$中的所有函数都是候选函数。图9.10说明了这一过程</p>
 <p><img alt="" src="../../img/09/fig9.10.png" /></p>
@@ -3087,62 +3081,56 @@ f(X)=\beta_0+\sum\limits_{m=1}^M\beta_mh_m(X)\qquad (9.19)
 <p>图9.10. MARS向前建模的过程示意图。左边是已经在模型中的基函数：初始时，是常值函数$h(X)=1$。右图中是所有考虑加进模型的候选基函数。这些候选基函数是如图9.9所示的成对分段线性基函数，其中结点$t$为每个输入变量$X_j$的所有观测值$x_{ij}$。在每一步，我们考虑模型中的基函数和候选反射对间的所有乘积。将使得残差下降最多的乘积加进当前模型中。图中显示了这个过程的前三步，被选择的函数用红色标出。</p>
 </blockquote>
 <p>在每一步我们将模型集合$\cal M$中函数$h_m$的与$\cal C$中某个反射对的所有乘积看成是新的基函数。我们往模型$\cal M$中加入如下形式的项，该项使得训练误差有最大下降。</p>
-<p>
-<script type="math/tex; mode=display">
-\hat\beta_{M+1}h_\ell(X)\cdot (X_j-t)_++\hat\beta_{M+2}h_\ell(X)\cdot(t-X_j)_+,h_\ell\in \cal M
-</script>
-</p>
+<p>$$
+\hat\beta_{M+1}h_\ell(X)\cdot (X_j-t)<em>++\hat\beta</em>{M+2}h_\ell(X)\cdot(t-X_j)<em>+,h</em>\ell\in \cal M
+$$</p>
 <p>这里$\hat\beta_{M+1}$和$\hat \beta_{M+2}$是由最小二乘估计的系数，和模型中其他的$M+1$个系数一样。接着使得训练误差有最大下降的乘积被加入到模型中，这个过程不断继续直到模型集合$\cal M$中项的个数达到预设的最大值。</p>
 <p>举个例子，在第一步我们考虑往模型中加入形如$\beta_1(X_j-t)_++\beta_2(t-X_j)_+;t\in\{x_{ij}\}$的函数，因为乘以常数仅仅得到函数本身。假设最优选择为$\hat\beta_1(X_2-x_{72})_++\hat\beta_2(x_{72}-X_2)_+$。则这个基函数对加入到模型$\cal M$中，并且在下一步我们考虑加入如下形式的乘积对</p>
-<p>
-<script type="math/tex; mode=display">
-h_m(X)\cdot(X_j-t)_+\text{     and    }h_m(X)\cdot (t-X_j)_+,t\in\{x_{ij}\}
-</script>
-</p>
+<p>$$
+h_m(X)\cdot(X_j-t)<em>+\text{     and    }h_m(X)\cdot (t-X_j)</em>+,t\in{x_{ij}}
+$$</p>
 <p>其中对于$h_m$我们有如下选择
-<script type="math/tex; mode=display">
+$$
 \begin{align}
-h_0(X)&=1\\
-h_1(X)&=(X_2-x_{72})_+\\
-h_2(X)&=(x_{72}-X_2)_+
+h_0(X)&amp;=1\
+h_1(X)&amp;=(X_2-x_{72})<em>+\
+h_2(X)&amp;=(x</em>{72}-X_2)_+
 \end{align}
-</script>
-</p>
+$$</p>
 <p>第三个选择得到形如$(X_1-x_{51})_+\cdot (x_{72}-X_2)_+$的函数，如图9.11所示。</p>
 <p><img alt="" src="../../img/09/fig9.11.png" /></p>
 <blockquote>
 <p>图9.11. 函数$h(X_1,X_2)=(X_1-x_{51})_+\cdot (x_{72}-X_2)_+$，从两个分段线性的MARS基函数相乘得到。</p>
 </blockquote>
 <p>这个过程的最后我们有形如(9.19)的大模型。这些模型一般对数据过拟合，所以应用向后删除过程。每一步中，删掉的项使得残差平方和增长最小，得到每个$\lambda$（项的个数）下的最优模型的估计$\hat f_\lambda$。可以采用交叉验证来估计最优的$\lambda$，但是为了节省计算，MARS过程采用的是广义交叉验证。广义交叉验证准则定义为
-<script type="math/tex; mode=display">
+$$
 GCV(\lambda)=\frac{\sum_{i=1}^N(y_i-\hat f_\lambda(x_i))^2}{(1-M(\lambda)/N)^2}\qquad (9.20)
-</script>
+$$
 $M(\lambda)$是模型中有效参数的个数：它等于模型中项的个数，加上在选择最优结点位置的参数个数。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注</p>
-<p>7.10节中也有广义交叉验证的讨论。在那里，是针对平方误差损失下的线性拟合而言的。线性拟合方法可以写成<script type="math/tex; mode=display">\mathbf{\hat y=Sy}\qquad (7.50)</script>
-</p>
+<p>7.10节中也有广义交叉验证的讨论。在那里，是针对平方误差损失下的线性拟合而言的。线性拟合方法可以写成$$\mathbf{\hat y=Sy}\qquad (7.50)$$</p>
 </div>
-<p>GCV近似为<script type="math/tex; mode=display">
-GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\qquad (7.52)</script>
+<p>GCV近似为$$
+GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\qquad (7.52)$$
 $trace(\mathbf S)$的值是有效参数个数。</p>
 <p>一些理论的证明和实际的拟合结果表明在分段线性回归中每选择一个结点，应当增加三个有效参数。所以，如果模型中含有$r$个线性独立基函数，并且在向前过程中选择$K$个结点，则有$M(\lambda)=r+cK$，其中$c=3$。（当模型限定为加性时，$c=2$）。在向后删除变量的过程中，计算$GCV(\lambda)$，选择使得$GCV(\lambda)$最小的模型。</p>
 <p>为什么是这些分段线性函数，为什么是这个特定的模型策略？图9.9中函数的关键性质是它可以局部计算；在它们的定义域中有一部分为0。当它们乘起来，如图9.11，非零的结果仅仅占特征空间的一小部分，当函数的公共部分为非零。这样便可以非常简约地建立起回归曲面（如图9.11），只需要采用局部非零的部分。这是很重要的，因为在高维问题中应该小心地使用参数，因为它们很快就会用光。其它比如多项式的基函数会在任意地方产生非零乘积，而很多非零乘积也不会起作用（相当于浪费了参数）。</p>
 <p>这种分段线性基函数的第二个重要优点是关于计算的。考虑$\cal M$中的函数和输入变量$X_j$的 $N$个反射对的乘积。似乎需要拟合$N$个单输入的线性回归模型，每个需要$O(N)$的操作，总共需要$O(N^2)$的操作。然而，我们利用分段线性函数的简单形式的特点，首先用最右端结点的反射对。当这个结点每次依次向左移动一个位置，基函数在结点左边的值为0，在右边部分值为常数。每次移动后会以$O(1)$的操作更新拟合值。所以我们仅仅需要$O(N)$的操作来遍历每个结点。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注<p>对于单输入线性回归
-<script type="math/tex; mode=display">
+$$
 Y_i\sim h_{\ell}(X)(X_{ij}-t_r), \; r=1,2,\ldots, N; i=1,2,\ldots, N
-</script>
+$$
 不考虑截距的情况下，记
-<script type="math/tex; mode=display">
+$$
 \hat \beta^{(r)} = (\sum\limits_{i=1}^Nh_\ell(X)^2(X_{ij}-t_r)^2)^{-1}(\sum\limits_{i=1}^Nh_\ell(X)(X_{ij}-t_r)Y_i)=W_rZ_r
-</script>
+$$
 计算量为$O(N)$（考虑截距时，多了$O(1)$的2阶矩阵的求逆操作，故也是$O(N)$的计算量）。
 若首先从最右端的结点开始计算，则
-<script type="math/tex; mode=display">
+$$
 \hat\beta^{(r)} = (W_{r+1}+h_\ell^2(X)(X_{r+1,j}-t_r)^2)^{-1}(Z_{r+1}+h_\ell(X)(X_{r+1,j}-t_r)Y_{r+1})
-</script>
+$$
 即仅需要$O(1)$的更新操作，则原来$O(N^2)$($N$个$O(N)$)的操作采用这种更新策略只需要$O(N)$的计算量。</p>
 </p>
 </div>
@@ -3159,25 +3147,23 @@ Y_i\sim h_{\ell}(X)(X_{ij}-t_r), \; r=1,2,\ldots, N; i=1,2,\ldots, N
 <p>这里我们在三种不同的情形下验证MARS的表现。$N=100$个观测，预测变量$X_1,X_2,\ldots,X_p$和误差$\varepsilon$有独立标准正态分布。</p>
 <h3 id="1">情形1：<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <p>数据产生模型为
-<script type="math/tex; mode=display">
-Y=(X_1-1)_++(X_1-1)_+\cdot (X_2-.8)_++0.12\cdot\varepsilon\qquad (9.21)
-</script>
-</p>
+$$
+Y=(X_1-1)<em>++(X_1-1)</em>+\cdot (X_2-.8)_++0.12\cdot\varepsilon\qquad (9.21)
+$$</p>
 <p>选择噪声标准误差0.12使得信噪比约为5.我们称这个为张量积情形；乘积项给出类似图9.11的表面。</p>
 <h3 id="2">情形2：<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <p>同情形1，但是总共$p=20$个预测变量，也就是，有18个独立于响应变量的输入。</p>
 <h3 id="3">情形3：<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>有神经网络的结构：
-<script type="math/tex; mode=display">
+$$
 \begin{align}
-\ell_1 &= X_1+X_2+X_3+X_4+X_5\\
-\ell_2 &= X_6-X_7+X_8-X_9+X_{10}\\
-\sigma(t) &=1/(1+e^{-t})\\
-Y&=\sigma(\ell_1)+\sigma(\ell_2)+0.12\cdot \varepsilon
+\ell_1 &amp;= X_1+X_2+X_3+X_4+X_5\
+\ell_2 &amp;= X_6-X_7+X_8-X_9+X_{10}\
+\sigma(t) &amp;=1/(1+e^{-t})\
+Y&amp;=\sigma(\ell_1)+\sigma(\ell_2)+0.12\cdot \varepsilon
 \end{align}
 \qquad (9.22)
-</script>
-</p>
+$$</p>
 <p>情形1和2完美地适合MARS，而情形3包含高阶交叉项，可能很难用MARS来近似。我们对每个模型跑了5个模拟，并且记录结果。</p>
 <p>情形1中，MARS一般几乎完美地找到模型。情形2中，找到正确的结构但是找到一些涉及其它预测变量的多余项。</p>
 <div class="admonition note">
@@ -3185,20 +3171,17 @@ Y&=\sigma(\ell_1)+\sigma(\ell_2)+0.12\cdot \varepsilon
 </p>
 </div>
 <p>令$\mu(x)$为 $Y$的真实均值，并且令
-<script type="math/tex; mode=display">
+$$
 \begin{align}
-MSE_0&=ave_{x\in Test}(\bar y-\mu(x))^2\\
-MSE&= ave_{x\in Test}(\hat f(x)-\mu(x))^2
+MSE_0&amp;=ave_{x\in Test}(\bar y-\mu(x))^2\
+MSE&amp;= ave_{x\in Test}(\hat f(x)-\mu(x))^2
 \end{align}
 \qquad (9.23)
-</script>
-</p>
+$$</p>
 <p>这些表示了常值模型和拟合MARS模型的均方误差，通过对$x$的1000次测试值进行平均来估计。表9.4显示了每个情形中模型误差或者$R^2$的下降比例。</p>
-<p>
-<script type="math/tex; mode=display">
+<p>$$
 R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
-</script>
-</p>
+$$</p>
 <p>显示的值是五次模拟的均值和标准差。情形2中的因为了加入无用的输入略微降低了MARS的效果；在情形3中表现得很差。</p>
 <p><img alt="" src="../../img/09/tab9.4.png" /></p>
 <div class="admonition note">

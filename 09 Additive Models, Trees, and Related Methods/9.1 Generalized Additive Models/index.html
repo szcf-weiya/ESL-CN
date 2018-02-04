@@ -2941,23 +2941,22 @@
 <p>回归模型在许多数据分析中起着重要的作用，提供了预测和分类的规则、以及理解不同输入重要性的数据分析工具。</p>
 <p>尽管非常简单，但是传统的线性模型经常在这些情形下失效：实际生活中影响往往不是线性的。在前面的章节中我们讨论使用预定义的基函数来实现非线性的技巧。这部分描述更多自动的灵活的统计方法来识别和表征非线性回归的影响。这些方法被称为“广义加性模型”。</p>
 <p>在回归的设定中，一个广义加性模型有如下形式
-<script type="math/tex; mode=display">
+$$
 E(Y\mid X_1,X_2,\ldots,X_p) = \alpha+f_1(X_1)+f_2(X_2)+\cdots+f_p(X_p).\qquad (9.1)
-</script>
-</p>
+$$</p>
 <p>和通常一样，$X_1,X_2,\ldots,X_p$代表预报变量，$Y$表示输出；$f_j$是未定义的（非参）光滑函数。如果我们用基函数的展开（第5章）对每个函数进行建模，则最终的模型可以通过简单的最小二乘实现。我们这里的方式有些不同：我们用散点图光滑来拟合每个函数（比如，一个三次光滑样条或者核光滑），并且提供了同时估计所有$p$个函数的算法（9.1.1节）</p>
 <p>对于两个类别的分类，回忆在4.4节中讨论的二进制数据的逻辑斯蒂回归模型。我们通过一个线性回归模型和logit链接函数将预报变量与二进制响应变量的均值$\mu(X)=Pr(Y=1\mid X)$关联起来：
-<script type="math/tex; mode=display">
+$$
 \mathrm{log}(\frac{\mu(X)}{1-\mu(X)})=\alpha+\beta_1X_1+\cdots+\beta_pX_p\qquad (9.2)
-</script>
+$$
 加性逻辑斯蒂回归模型将每个线性项换成一个更一般的函数形式
-<script type="math/tex; mode=display">
+$$
 \mathrm{log}(\frac{\mu(X)}{1-\mu(X)})=\alpha+f_1(X_1)+f_2(X_2)+\cdots+f_p(X_p)\qquad (9.3)
-</script>
+$$
 其中每个$f_j$也是未定义的光滑函数。尽管函数$f_j$的非参形式使得模型更加灵活，但是可加性仍然保留，而且允许我们用前面一样的方式来解读模型。加性逻辑斯蒂回归模型是广义加性模型的一个例子。一般地，响应变量$Y$的条件均值$\mu(X)$通过一个链接函数$g$将预报变量的加性函数联系起来：
-<script type="math/tex; mode=display">
+$$
 g[\mu(X)]=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.4)
-</script>
+$$
 典型的链接函数的例子如下：</p>
 <ul>
 <li>$g(\mu)=\mu$是等值链接，在高斯相应数据中使用线性和加性模型</li>
@@ -2972,20 +2971,20 @@ g[\mu(X)]=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.4)
 <li>$g(\mu)=f(X)+g(Z,W)$，其中$g$是关于两个特征的非参数函数。</li>
 </ul>
 <p>加性模型可以用各种设置来替换线性模型，举个例子，时间序列的可加性分解，
-<script type="math/tex; mode=display">
+$$
 Y_t=S_t+T_t+\varepsilon_t\qquad (9.5)
-</script>
+$$
 其中，$S_t$是季节项，$T_t$是趋势项，$\varepsilon$是误差项。</p>
 <h2 id="_1">拟合加性模型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在这一节我们讨论拟合加性模型和它们的一般形式的标准算法。组件是用一种灵活的方式拟合非线性影响的散点图光滑器。具体地，我们将在第五章中讨论的三次光滑样条作为我们的散点图光滑器。</p>
 <p>加性模型有如下形式
-<script type="math/tex; mode=display">
+$$
 Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
-</script>
+$$
 其中误差项$\varepsilon$均值为0.给定观测值$x_i,y_i$,可以确定处该问题的类似5.4节中讨论的惩罚平方和（5.9）的准则，
-<script type="math/tex; mode=display">
-\mathrm{PRSS}(\alpha,f_1,f_2,\ldots,f_p)=\sum\limits_{i=1}^N(y_i-\alpha-\sum\limits_{j=1}^pf_j(x_{ij}))^2+\sum\limits_{j=1}^p\lambda_j\int f_j''(t_j)^2dt_j\quad (9.7)
-</script>
+$$
+\mathrm{PRSS}(\alpha,f_1,f_2,\ldots,f_p)=\sum\limits_{i=1}^N(y_i-\alpha-\sum\limits_{j=1}^pf_j(x_{ij}))^2+\sum\limits_{j=1}^p\lambda_j\int f_j&rsquo;&lsquo;(t_j)^2dt_j\quad (9.7)
+$$
 其中$\lambda_j\ge 0$是调整参数，可以证明（9.7）的最小值是可加三次样条模型；每个函数$f_j$是一个关于组分$X_j$的三次样条，结点在每个唯一的$x_{ij},i=1,\ldots,N$值处.然而，没有对模型有进一步的约束，解不是唯一的。常数$\alpha$不是唯一的，因为我们可以对每个函数$f_j$进行加减任意常数，然后因此调整$\alpha$.标准的规定是假设$\sum_1^Nf_j(x_{ij})=0,\forall j$——这些函数在数据上均值为0.可以很简单地证明得到在这种情形下$\hat\alpha=\mathrm {ave}(y_i)$.如果再加上这条约束，输入矩阵（第$ij$位置值为$x_{ij}$）有列满秩，则（9.7）是严格凸准则并且最小化是唯一的。如果矩阵是奇异的，则组分$f_j$的线性部分不能被唯一确定（尽管非线性部分可以！）（Buja等人1989）</p>
 <p>进一步，寻找解存在一个简单的迭代过程。令$\hat\alpha=\mathrm {ave}(y_i)$,而且不变。我们对目标${y_i-\hat\alpha-\sum_{k\neq j}\hat f_k(x_{ik})}<em>1^N$应用三次光滑样条$\cal S_j$作为$x</em>{ij}$的函数得到新估计$\hat f_j$。对每个预报变量依次这样处理，当计算$y_i-\hat\alpha-\sum_{k\neq j}\hat f_k(x_{ik})$时使用其它函数的当前估计$\hat f_k$。这个过程直到估计$\hat f_j$稳定。这个过程被称作“backfitting”（算法9.1中给出了详细细节），而且最后的拟合与对线性模型的多项式回归是相似的。</p>
 <p><img alt="" src="../../img/09/alg9.1.png" /></p>
@@ -3002,9 +3001,9 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
 <h2 id="_2">例子：加性逻辑斯蒂回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>或许在医学研究中应用最广的模型是对二值数据的逻辑斯蒂回归模型。在这个模型中，输出$Y$可以编码成0或1，其中1代表事件发生（比如死亡，疾病复发），0代表没有事件发生。我们希望建立$Pr(Y=1\mid X)$的模型，其中$Pr(Y=1\mid X)$是给定预测因子$X^T=(X_1,\ldots,X_p)$后事件发生的概率。目标通常是确定预测因子的作用，而不是对新个体进行分类。逻辑斯蒂回归也应用到当对估计类别比例感兴趣的情况下，比如risk screening。除了医学上的应用，信用风险screening也是一个受欢迎的应用方面。</p>
 <p>广义加性模型有如下形式
-<script type="math/tex; mode=display">
+$$
 \mathrm{log}\frac{Pr(Y=1\mid X)}{Pr(Y=0\mid X)}=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.8)
-</script>
+$$
 函数$f_1,f_2,\ldots,f_p$是通过在Newton-Raphson过程中运用backfitting算法估计得到的，算法9.2中显示了具体过程。</p>
 <p><img alt="" src="../../img/09/alg9.2.png" /></p>
 <p>加性模型在算法9.2中的第（2）步拟合需要一个带权重的散点图光滑器。许多光滑过程可以接受观测值权重（练习5.12）；更多细节参见第三章Hastie和Tibshirani（1990）的工作。</p>
