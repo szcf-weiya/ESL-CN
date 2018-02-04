@@ -1,1 +1,1 @@
-var base_url = '../..';
+var base_url = '{{ base_url }}';
