@@ -1,5 +1,11 @@
 # 估计高斯混合模型参数的三种方式
 
+| 博客   | [cnblogs](http://www.cnblogs.com/szcf715/p/8127416.html) |
+| ---- | ---------------------------------------- |
+| 作者   | szcf-weiya                               |
+| 时间   | 2017-12-27                               |
+|更新| 2018-02-04|
+
 对于如下的两类别的高斯混合模型
 
 $$
@@ -91,7 +97,7 @@ R语言代码如下（也可以在[ESL-CN项目](https://github.com/szcf-weiya/E
 
 ```R
 ## EM Algorithm for Two-component Gaussian Mixture
-## 
+##
 ## author: weiya
 ## date: 2017-07-19
 
@@ -209,7 +215,7 @@ while(TRUE)
     cat(Delta[i], " ")
   cat("\n")
   cat("mu1 = ", mu1, " mu2 = ", mu2, "pi0 = ",pi0, "\n")
-  
+
   ## generate mu1 and mu2
   mu1 = rnorm(1, mu1, sigma1)
   mu2 = rnorm(1, mu2, sigma2)

@@ -18,3 +18,29 @@ img.emojione {
     width: 1.5rem;
     vertical-align: text-bottom;
 }
+
+/* link in main doc */
+p a {
+  color: blue !important;
+}
+p a:hover {
+  color: red!important;
+}
+
+/* link in thead */
+th a {
+  color: blue !important;
+}
+th a:hover {
+  color: red!important;
+}
+
+/* toc */
+label.md-nav__link {
+  font-weight: 550;
+}
+
+label.md-nav__title {
+  font-weight: lighter;
+  font-size: 2em;
+}
