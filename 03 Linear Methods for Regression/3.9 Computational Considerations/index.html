@@ -38,6 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../img/favicon.ico">
+      
       <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.0">
     
     
@@ -63,6 +64,8 @@
     
     
       <link rel="stylesheet" href="../../css/misc.css">
+    
+      <link rel="stylesheet" href="../../css/iDisqus.min.css">
     
     
   </head>
@@ -2861,17 +2864,14 @@
                   <h2 id="__comments">评论</h2>
                   <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function () {
-    this.page.url = "https://esl.hohoweiya.xyz/03 Linear Methods for Regression/3.9 Computational Considerations/index.html";
-    this.page.identifier =
-      "/03 Linear Methods for Regression/3.9 Computational Considerations/index.html";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "//esl-hohoweiya-xyz.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+    var disq = new iDisqus('disqus_thread', {
+    forum: 'fooleap',
+    api: 'https://api.hohoweiya.xyz/disqus',
+    site: 'https://esl.hohoweiya.xyz',
+    mode: 1,
+    timeout: 3000,
+    init: true
+});
 </script>
                 
               
@@ -2986,6 +2986,8 @@
         <script src="https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
         <script src="../../js/baiduzhanzhang.js"></script>
+      
+        <script src="../../js/iDisqus.min.js"></script>
       
         <script src="../../search/require.js"></script>
       
