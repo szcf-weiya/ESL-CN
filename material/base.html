@@ -57,6 +57,11 @@
     {% block libs %}
       <script src="{{ base_url }}/assets/javascripts/modernizr.js"></script>
     {% endblock %}
+    {% block disqus %}
+      {% if config.extra.disqus and not page.is_homepage %}
+        <script src="{{ base_url }}/js/iDisqus.min.js"></script>
+      {% endif %}
+    {% endblock %}
     {% block fonts %}
       {% if font != false %}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{
