@@ -230,6 +230,7 @@ markdown_extensions:
 
 extra_css:
   - css/misc.css
+  - css/iDisqus.min.css
 #  - css/newsprint.css
 #  - css/admonition_fix.css
 
@@ -253,6 +254,7 @@ extra_javascript:
   - js/mathjax.js
   - 'https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
   - js/baiduzhanzhang.js
+  - js/iDisqus.min.js
 
 #docs_dir: 'docs'
 
