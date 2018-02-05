@@ -218,6 +218,7 @@ markdown_extensions:
   - admonition
   - smarty
   - sane_lists
+  - mdx_math
   - codehilite
   - footnotes
   - meta
