@@ -2927,30 +2927,37 @@
 <p>这一节我们分析随机森林应用的额外随机化的机制。为了讨论，我们集中在回归和平方误差损失，因为这会得到主要结论，而0-1损失下的偏差和方差都会更复杂（见7.3.1节）。另外，甚至在分类问题的情形中，我们可以将随机森林的平均看成是类别后验概率的估计，因为偏差和方差都是合适的描述器。</p>
 <h2 id="_1">方差和去相关性的影响<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>随机森林回归估计量的极限形式$B\rightarrow \infty$是</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat f_{rf}(x)=\mathrm E_{\Theta\mid Z}T(x;\Theta(Z))\qquad (15.4)
-$$</p>
+</script>
+</p>
 <p>其中我们已经显式地表达了对训练数据$Z$的依赖性。这里我们考虑在单个目标点$x$的估计。从(15.1)式我们可以看到</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \mathrm{Var}\hat f_{rf}(x)=\rho(x)\sigma^2(x)\qquad (15.5)
-$$</p>
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \qquad (15.1)
-$$</p>
+</script>
+</p>
 </div>
 <p>这里</p>
 <ul>
 <li>$\rho(x)$是任意一对参与平均的树的的采样相关性:
-$$
+<script type="math/tex; mode=display">
 \rho(x)=\mathrm{corr}[T(x;\Theta_1(Z)),T(x;\Theta_2(Z))]\qquad (15.6)
-$$
+</script>
 其中$\Theta_1(Z)$和$\Theta_2(Z)$是随机抽取的一对随机森林树，这些树是根据$Z^*$（$Z^*$是随机抽取$Z$得到的自助样本）生成的。</li>
 <li>$\sigma^2(x)$是任意随机抽出的单棵树的采样方差
-$$
+<script type="math/tex; mode=display">
 \sigma^2(x)=Var T(x;\Theta(Z))\qquad (15.7)
-$$</li>
+</script>
+</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
@@ -2970,30 +2977,30 @@ $$</li>
 <div class="admonition note">
 <p class="admonition-title">weiya注： Ex. 15.5</p>
 <p>证明成对随机森林树在点$x$的采样相关性由下式给出
-$$
+<script type="math/tex; mode=display">
 \rho(x)=\frac{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]}{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}[T(x;\Theta(\mathbf Z))]}\qquad (15.12)
-$$
+</script>
 证明过程如下：
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-\rho &amp;=\mathrm{corr}[T(x;\Theta_1(\mathbf Z)),T(x;\Theta_2(\mathbf Z))]\
-&amp;=\frac{Cov(T(x;\Theta_1(\mathbf Z)), T(x;\Theta_2(\mathbf Z)) )}{\sqrt{Var(T(x;\Theta_1(\mathbf Z)))Var(T(x;\Theta_2(\mathbf Z)))}}\
-&amp;=\frac{E_{\mathbf Z}[Cov_{\Theta_i\mid \mathbf Z}(T(x;\Theta_1(\mathbf Z)), T(x;\Theta_2(\mathbf Z)))]+Cov_{\mathbf Z}[E_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z)), E_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))]}{\sqrt{E_{\mathbf Z}[Var_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z))]+Var_{\mathbf Z}[E_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z))]}\sqrt{E_{\mathbf Z}[Var_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))]+Var_{\mathbf Z}[E_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))]}}
+\rho &=\mathrm{corr}[T(x;\Theta_1(\mathbf Z)),T(x;\Theta_2(\mathbf Z))]\\
+&=\frac{Cov(T(x;\Theta_1(\mathbf Z)), T(x;\Theta_2(\mathbf Z)) )}{\sqrt{Var(T(x;\Theta_1(\mathbf Z)))Var(T(x;\Theta_2(\mathbf Z)))}}\\
+&=\frac{E_{\mathbf Z}[Cov_{\Theta_i\mid \mathbf Z}(T(x;\Theta_1(\mathbf Z)), T(x;\Theta_2(\mathbf Z)))]+Cov_{\mathbf Z}[E_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z)), E_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))]}{\sqrt{E_{\mathbf Z}[Var_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z))]+Var_{\mathbf Z}[E_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z))]}\sqrt{E_{\mathbf Z}[Var_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))]+Var_{\mathbf Z}[E_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))]}}
 \end{align}
-$$
+</script>
 因为$T(x;\Theta_i(Z))$的自助采样和特征采样分别是独立同分布的，则$Cov_{\Theta_i\mid \mathbf Z}[T(x;\Theta_1(\mathbf Z)),T(x;\Theta_2(\mathbf Z))]=0$且
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-E_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z)&amp;=E_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))\
-Var_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z))&amp;=Var_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))
+E_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z)&=E_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))\\
+Var_{\Theta_1\mid \mathbf Z}T(x;\Theta_1(\mathbf Z))&=Var_{\Theta_2\mid \mathbf Z}T(x;\Theta_2(\mathbf Z))
 \end{align}
-$$
+</script>
 则分子只剩下第二项，分母的两个因子实际上相等，于是
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-\rho &amp;=\frac{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]}{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}[T(x;\Theta(\mathbf Z))]}
+\rho &=\frac{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]}{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}[T(x;\Theta(\mathbf Z))]}
 \end{align}
-$$
+</script>
 证毕。</p>
 </div>
 <!--
@@ -3018,48 +3025,54 @@ $$
 -->
 
 <p>接下来的论证基于下面的模拟模型</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 Y=\frac{1}{\sqrt{50}}\sum\limits_{j=1}^{50}X_j+\epsilon\qquad (15.8)
-$$</p>
+</script>
+</p>
 <p>其中所有$X_j$和$\epsilon$都是独立高斯分布。我们用500个大小为100的训练集，以及600个测试点的单个测试集。因为回归树关于$\mathbf Z$是非线性的，我们在下面看到的模式将会取决于模型的结构而有些不同。</p>
 <p>图15.9展示了当$m$降低时成对树间的相关性(15.6)也降低：如果不同训练集$\mathbf Z$的成对树不使用同样的分割变量，则在$x$处的预测很可能不相似。</p>
 <p><img alt="" src="../../img/15/fig15.9.png" /></p>
 <p>在图15.10的左边，我们考虑单棵树预测的方差，$VarT(x;\Theta(\mathbf Z))$（在我们模拟的模型中随机抽取的600个预测点$x$上平均）。</p>
 <p><img alt="" src="../../img/15/fig15.10.png" /></p>
 <p>这是总的方差，而且可以采用条件方差公式分解成两部分（见练习15.5）：</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{align}
-Var_{\Theta,\mathbf Z}T(x;\Theta(\mathbf Z))&amp;=&amp;Var_{\mathbf Z}E_{\mathbf \Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))&amp;+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\
-Total\; Variance&amp;=&amp;Var_{\mathbf Z}\hat f_{rf}(x)&amp;+\text{within-}\mathbf Z\; Variance
+Var_{\Theta,\mathbf Z}T(x;\Theta(\mathbf Z))&=&Var_{\mathbf Z}E_{\mathbf \Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))&+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\\
+Total\; Variance&=&Var_{\mathbf Z}\hat f_{rf}(x)&+\text{within-}\mathbf Z\; Variance
 \end{align}
 \qquad (15.9)
-$$</p>
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注： 条件方差公式</p>
 <p>概率论中，全方差率(law of total variance)或条件方差公式(conditional variance formulas)表明，若$X$与$Y$为同一个概率空间的随机变量，且$Y$的方差有限，则
-$$
+<script type="math/tex; mode=display">
 Var(Y)=E(Var(Y\mid X))+Var(E(Y\mid X))
-$$
+</script>
 证明如下：
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-Var(Y)&amp;=E(Y^2)-(EY)^2\
-&amp;=E(E(Y^2\mid X))-[E(E(Y\mid X))]^2\
-&amp;=E(Var(Y\mid X)+(E(Y\mid X))^2) - [E(E(Y\mid X))]^2\
-&amp; = E(Var(Y\mid X)) + Var(E(Y\mid X))
+Var(Y)&=E(Y^2)-(EY)^2\\
+&=E(E(Y^2\mid X))-[E(E(Y\mid X))]^2\\
+&=E(Var(Y\mid X)+(E(Y\mid X))^2) - [E(E(Y\mid X))]^2\\
+& = E(Var(Y\mid X)) + Var(E(Y\mid X))
 \end{align}
-$$
+</script>
 参考<a href="https://en.wikipedia.org/wiki/Law_of_total_variance">Law_of_total_variance</a></p>
 </div>
 <p>第二项是$\mathbf Z$间方差——随机化的结果，会随着$m$降低而增大。第一项实际上是随机森林集（显示在图15.19的右边）中的采样方差，会随着$m$降低而降低。单棵树的方差在$m$的大部分取值范围内不会有明显的改变，因此根据式(15.5)，随机森林集的方差显著比树的方差要低。</p>
 <h2 id="_2">偏差<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>和bagging中一样，随机森林的偏差与任意单棵采样后的树$T(x;\Theta(\mathbf Z))$一样：</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{align}
-Bias(x) &amp;= \mu(x)-E_{\mathbf Z}\hat f_{rf}(x)\
-&amp;=\mu(x)-E_{\mathbf Z}E_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\qquad (15.10)
+Bias(x) &= \mu(x)-E_{\mathbf Z}\hat f_{rf}(x)\\
+&=\mu(x)-E_{\mathbf Z}E_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\qquad (15.10)
 \end{align}
-$$</p>
+</script>
+</p>
 <p>因为随机化和减小的样本空间的约束，这一般比由$\mathbf Z$生成的未剪枝的树的偏差的绝对值要大。因此通过bagging或随机森林对预测带来的改善仅仅是方差降低的结果。</p>
 <p>偏差的所有讨论都依赖于未知的真实函数。图15.10的右图展示了我们可加模拟模型的平方偏差（通过500次实现估计得到）。尽管对于不同的模型，偏差曲线的形状(shape)和变化率(rate)可能不同，但是一般的趋势是当$m$降低时，偏差增大。图中展示的是均方误差，并且我们在$m$的选择中看到了经典的偏差-方差的权衡。对所有的$m$，随机森林的平方偏差比单棵树的平方偏差（水平线）要大。</p>
 <p>这些模式表现出与岭回归的相似性(3.4.1节)。当大量的变量有着相似大小的系数，岭回归会非常有用，岭回归将它们的系数收缩到0，并且将那些强相关的变量收缩到一起。尽管训练样本的大小可能不允许所有的变量都出现在模型中，但是通过岭回归正则化能使模型稳定并且允许所有的变量都有它们的影响（尽管被削弱了）。$m$较小的随机森林表现出相似的平均。每个相关的变量都会成为主分割变量，并且随机森林树集的平均降低了任一单个变量的贡献。因为模拟例子(15.8)是基于关于所有变量的线性模型，岭回归达到了更低的均方误差（大约为0.45，当$df(\lambda_{opt})\approx 29$）。</p>

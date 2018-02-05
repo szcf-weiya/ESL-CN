@@ -2844,42 +2844,54 @@
 </tbody>
 </table>
 <p>5.4节的光滑样条问题(5.9)实在回归的背景下提出来的。可以非常直接地将其转换到其他领域。这里我们考虑有单个定量变量的输入$X$的逻辑斯底回归。模型为</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 log\frac{Pr(Y=1\mid X=x)}{Pr(Y=0\mid X=x)}=f(x)\qquad (5.28)
-$$</p>
+</script>
+</p>
 <p>这意味着</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 Pr(Y=1\mid X=x)=\frac{e^{f(x)}}{1+e^{f(x)}}\qquad (5.29)
-$$</p>
+</script>
+</p>
 <p>以光滑化的方式对$f(x)$进行拟合得到条件概率$Pr(Y=1\mid x)$的光滑估计，它可以用来分类或者风险评分。</p>
 <p>我们构造如下的带惩罚的对数似然准则</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-\ell(f;\lambda)&amp;=\sum\limits_{i=1}^N[y_i\mathbrm{log}p(x_i)+(1-y_i)\mathrm{log}(1-p(x_i))]-\frac{1}{2}\lambda\int {f&rsquo;&lsquo;(t)}^2dt\
-&amp;=\sum\limits_{i=1}^N[y_if(x_i)-log(1+e^{f(x_i)})]-\frac{1}{2}\lambda \int{f&rsquo;&lsquo;(t)}^2dt\qquad (5.30)
+\ell(f;\lambda)&=\sum\limits_{i=1}^N[y_i\mathbrm{log}p(x_i)+(1-y_i)\mathrm{log}(1-p(x_i))]-\frac{1}{2}\lambda\int \{f''(t)\}^2dt\\
+&=\sum\limits_{i=1}^N[y_if(x_i)-log(1+e^{f(x_i)})]-\frac{1}{2}\lambda \int\{f''(t)\}^2dt\qquad (5.30)
 \end{array}
-$$</p>
+</script>
+</p>
 <p>其中$p(x)=Pr(Y=1\mid x)$。上述表达式的第一项为基于二项分布的对数似然。在5.4节中使用的类似的参数证明最优的$f$是结点在$x$的唯一地方的有限维自然样条。这意味着我们可以表示成$f(x)=\sum_{j=1}^NN_j(x)\theta_j$。我们比较一阶微分和二阶微分</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-\frac{\partial \ell(\theta)}{\partial \theta}&amp;=\mathbf {N^T(y-p)-\lambda\Omega}\theta\qquad (5.31)\
-\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^T}&amp;=-\mathbf{N^TWN-\lambda \Omega}\qquad (5.32)
+\frac{\partial \ell(\theta)}{\partial \theta}&=\mathbf {N^T(y-p)-\lambda\Omega}\theta\qquad (5.31)\\
+\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^T}&=-\mathbf{N^TWN-\lambda \Omega}\qquad (5.32)
 \end{array}
-$$</p>
+</script>
+</p>
 <p>其中$\mathbf p$是元素为$p(x_i)$的$N$维向量，$\mathbf W$是权重为$p(x_i)(1-p(x_i)$的对角矩阵。(5.31)的一阶微分关于$\theta$是非线性的，所以我们需要运用和4.4.1节的迭代算法。采用类似用于线性逻辑斯底回归的(4.23)和(4.26)的Newton-Raphson算法，更新的等式可以写成</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-\theta^{new} &amp;=\mathbf{(N^TWN+\lambda\Omega)^{-1}N^TW(N\theta^{old}+W^{-1}(y-p))}\
-&amp;= \mathbf{(N^TWN+\lambda\Omega)^{-1}N^TWz}\qquad (5.33)
+\theta^{new} &=\mathbf{(N^TWN+\lambda\Omega)^{-1}N^TW(N\theta^{old}+W^{-1}(y-p))}\\
+&= \mathbf{(N^TWN+\lambda\Omega)^{-1}N^TWz}\qquad (5.33)
 \end{array}
-$$</p>
+</script>
+</p>
 <p>也可以用拟合值表示更新</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-\mathbf f^{new} &amp;=\mathbf{N(N^TWN+\lambda\Omega)^{-1}N^TW(f^{old}+W^{-1}(y-p))}\
-&amp;= \mathbf{S_{\lambda,w}z}\qquad (5.34)
+\mathbf f^{new} &=\mathbf{N(N^TWN+\lambda\Omega)^{-1}N^TW(f^{old}+W^{-1}(y-p))}\\
+&= \mathbf{S_{\lambda,w}z}\qquad (5.34)
 \end{array}
-$$</p>
+</script>
+</p>
 <p>回到(5.12)和(5.14)式，我们看到更新对工作响应$\mathbf z$拟合了加权光滑样条（练习5.12）。</p>
 <p>式(5.34)的形式很有指导意义。试图用任何非参(加权)回归运算替换$\mathbf S_{\lambda,w}$，并且得到一般的非参逻辑斯底回归模型的族。尽管这里$x$是一维的，这个过程可以很自然地推广到高纬的$x$。这些拓展是广义可加模型的核心，我们将在第9章中讨论。</p>
                 

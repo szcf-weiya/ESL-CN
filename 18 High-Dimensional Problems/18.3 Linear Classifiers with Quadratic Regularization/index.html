@@ -2962,29 +2962,37 @@
 <p>RDA(正则判别分析)，正则多元逻辑斯底回归，以及支持向量机是更复杂的方法，试图研究数据的多变量信息。我们依次描述每个方法，以及一系列正则化方法，包括$L_1$和 $L_2$，以及两个都有的方法。</p>
 <h2 id="_1">正则化判别分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>正则化判别分析(RDA)在4.3.1节已经描述。线性判别分析涉及$p\times p$类间协方差阵的逆。当$p &gt;&gt; N$，该矩阵可以很大，秩至多为$N &lt; p$，因此是奇异矩阵。RDA克服了对类间协方差矩阵的估计$\hat\Sigma$正则化的问题。这里我们采用一个将$\hat\Sigma$收缩到其对角阵版本的RDA：</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat\Sigma(\gamma) = \gamma\hat\Sigma + (1-\gamma) diag(\hat\Sigma), \;\text{with}\; \gamma\in [0,1]\qquad (18.9)
-$$</p>
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat\Sigma_k(\alpha)=\alpha\hat\Sigma_k+(1-\alpha)\hat\Sigma\qquad (4.13)
-$$
-$$
+</script>
+<script type="math/tex; mode=display">
 \hat\Sigma(\gamma)=\gamma\hat\Sigma+(1-\gamma)\hat\sigma^2I\qquad (4.14)
-$$</p>
+</script>
+</p>
 </div>
 <p>注意到$\gamma = 0$对应对角LDA，也是最近收缩重心的“无收缩”版本。(18.9)的收缩形式很像岭回归(3.4.1节)，将整个特征的协方差矩阵收缩到对角（标量值）矩阵。实际上，将线性判别分析看成是类别响应变量的最优得分的线性回归（见12.6节的(12.57)），这个等价性变得更加精确。</p>
 <p>求大型$p\times p$矩阵逆的计算负担通过采用18.3.5节的方法可以克服。$\gamma$的值通过交叉验证取为表18.1中第二行的值；所有$\gamma\in(0.002,0.550)$给出了相同的CV和测试误差。RDA进一步的发展，除了协方差矩阵还包括重心的收缩，可以在Guo et al. (2006)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的工作中找到。</p>
 <h2 id="_2">二次正则的逻辑斯底回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>逻辑斯底回归(4.4节)可以用相似的方式进行改进用来处理$p &gt;&gt; N$的情形。在$K$个类别的情形下，我们采用p119的多类别逻辑斯底回归模型(4.17):</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 Pr(G=k\mid X=x)=\frac{exp(\beta_{k0}+x^T\beta_k)}{\sum_{\ell=1}^Kexp(\beta_{\ell0}+x^T\beta_\ell)}\qquad (18.10)
-$$</p>
+</script>
+</p>
 <p>这有$K$个对数几率参数$\beta_1,\beta_2,\ldots,\beta_K$的系数向量。我们通过最大化惩罚的对数似然来正则化拟合</p>
-<p>$$
-\underset{{\beta_{0k},\beta_k}<em>1^K}{max}[\sum\limits</em>{i=1}^NlogPr(g_i\mid x_i)-\frac{\lambda}{2}\sum\limits_{k=1}^K\Vert\beta_k\Vert]_2^2\qquad (18.11)
-$$</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\{\beta_{0k},\beta_k\}_1^K}{max}[\sum\limits_{i=1}^NlogPr(g_i\mid x_i)-\frac{\lambda}{2}\sum\limits_{k=1}^K\Vert\beta_k\Vert]_2^2\qquad (18.11)
+</script>
+</p>
 <p>正则化自动解决了参数化中的冗余，并且使得$\sum_{k=1}^K\hat\beta_{kj}=0,j=1,\ldots,p$(练习18.3)。注意到常数项$\beta_{k0}$没有正则化（并且应该被设成0）。结果得到的优化问题是凸的，而且可以通过牛顿算法或者其他数值技巧求解。详细细节在Zhu and Hastie(2004)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>的工作中给出。Friedman et al.(2010)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>提供了计算两个和多个类别逻辑斯底回归模型的正则化路径的软件。表18.1，第6行报告了多重类别逻辑斯底回归模型的结果，称之为“多项式”。可以证明(Rosset et al., 2004a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>)，对于可分数据，当$\lambda\rightarrow 0$，正则（两个类别）逻辑斯底回归估计（重标准化）收敛到最大边界分类器(maximal margin classifier)(12.2节)。这给出了支持向量机的一种受欢迎的替代方式，特别是在多重类别的情形中，这将在下面讨论。</p>
 <h2 id="_3">支持向量分类器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>两个类别情形的支持向量机在12.2节中讨论。当$p &gt; N$时，特别受欢迎， 因为一般情形下类别是可以被超平面完全可分的，除非在不同类别中有相同的特征向量。没有任何正则化，支持向量分类器寻找具有最大空白的分离超平面；也就是，超平面得到训练数据之间最大的间距。有点吃惊的是，当$p &gt;&gt; N$时未正则化的支持向量机通常和最优正则版本表现得一样好。过拟合经常似乎不是一个问题，部分是因为误分类损失的不敏感性。</p>
@@ -2997,31 +3005,38 @@ $$</p>
 <h2 id="pn">当$p&gt;&gt;N$时的计算捷径<a class="headerlink" href="#pn" title="Permanent link">&para;</a></h2>
 <p>这一节中讨论的计算技巧可以应用到任何对参数二次正则化的线性模型拟合中。这包含这节中讨论的所有方法，以及其他更多的方法。当$p &gt; N$时，通过在14.5节中介绍的奇异值分解方法，计算可以在$N$维空间中进行，而不是$p$。这里是几何上的直观：恰恰像三维空间中两点总是在一条直线上一样，在$p$维空间中的$N$个点位于$(N-1)$维仿射子空间中。</p>
 <p>给定$N\times p$的数据矩阵$\mathbf X$，令</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-\mathbf X &amp; = \mathbf {UDV^T}\quad (18.12)\
-&amp; = \mathbf{RV^T}\qquad (18.13)
+\mathbf X & = \mathbf {UDV^T}\quad (18.12)\\
+& = \mathbf{RV^T}\qquad (18.13)
 \end{array}
-$$</p>
+</script>
+</p>
 <p>为$\mathbf X$的奇异值分解；也就是，$\mathbf V$是有着正交列的$p\times N$矩阵，$\mathbf U$是 $N\times N$正交矩阵，$\mathbf D$是元素为$d_1\ge d_2\ge d_N\ge 0$的对角矩阵。矩阵$\mathbf R$是 $N\times N$的，列为$r_i^T$.</p>
 <p>举个简单的例子，我们首先考虑岭回归估计</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat\beta = (\mathbf{X^TX}+\lambda\mathbf I)^{-1}\mathbf{X^Ty}\qquad (18.14)
-$$</p>
+</script>
+</p>
 <p>用$\mathbf RV^T$替换$\mathbf X$，并且进行一些运算，可以证明它等于</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat\beta = \mathbf{V(R^TR+\lambda I)^{-1}\mathbf{R^Ty}}\qquad (18.15)
-$$</p>
+</script>
+</p>
 <p>（练习18.4）。因此$\hat\beta = \mathbf V\hat\theta$，其中$\hat\theta$是采用$N$个观测$(r_i,y_i),i=1,2,\ldots,N$的岭回归估计。换句话说，我们可以简单地将数据矩阵从$\mathbf X$降维成$\mathbf R$，并且对$\mathbf R$的行进行操作。这个技巧将$p &gt; N$时的计算花费从$O(p^3)$降为$O(pN^2)$</p>
 <p>这些结果可以推广到所有参数为线性并且有二次惩罚的模型。考虑任意的监督学习问题，我们采用线性函数$f(X)=\beta_0+X^T\beta$来建立条件分布$Y\mid X$的参数模型。我们通过在数据上最小化损失函数$\sum_{i=1}^NL(y_i,f(x_i))$和 $\beta$上的二次惩罚来拟合参数$\beta$。逻辑斯底回归是个很有用的例子。接着我们有下面简单的定理：</p>
 <blockquote>
 <p>令$f^*(r_i)=\theta_0+r_i^T\theta$， $r_i$ 如(18.13)定义，并且考虑成对优化问题：</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-(\hat\beta_0,\hat\beta) &amp;= arg\underset{\beta_0,\beta\in R^p}{min}\sum\limits_{i=1}^NL(y_i,\beta_0+x_i^T\beta)+\lambda\beta^T\beta\qquad (18.16)\
-(\hat\theta_0,\hat\theta) &amp;= arg\underset{\theta_0,\theta\in R^N}{min}\sum\limits_{i=1}^NL(y_i,\theta_0+r_i^T\theta)+\lambda\theta^T\theta\qquad (18.17)
+(\hat\beta_0,\hat\beta) &= arg\underset{\beta_0,\beta\in R^p}{min}\sum\limits_{i=1}^NL(y_i,\beta_0+x_i^T\beta)+\lambda\beta^T\beta\qquad (18.16)\\
+(\hat\theta_0,\hat\theta) &= arg\underset{\theta_0,\theta\in R^N}{min}\sum\limits_{i=1}^NL(y_i,\theta_0+r_i^T\theta)+\lambda\theta^T\theta\qquad (18.17)
 \end{array}
-$$
+</script>
 于是有$\hat\beta_0=\hat\theta_0, \hat\beta=\mathbf V\hat\theta$.</p>
 </blockquote>
 <p>这个定理说我们可以用$N$维的向量替换$p$维向量，并且像之前一样进行带惩罚的拟合，但是有更少的预测变量。$N$维向量的解$\hat\theta$接着通过简单的矩阵运算转化为$p$维向量的解。这个结果是统计学传说之一，理应当被广泛知道——更多细节详见Hastie and Tibshirani(2004)等人的工作。</p>

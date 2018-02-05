@@ -2929,9 +2929,11 @@
 </tbody>
 </table>
 <p>对于如下的两类别的高斯混合模型</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \pi\cdot N(\mu_1,\sigma_1^2)+(1-\pi)\cdot N(\mu_2,\sigma_2^2)
-$$</p>
+</script>
+</p>
 <p>参数为$\theta = (\pi, \mu_1,\mu_2,\sigma_1,\sigma_2)$。至今，我了解到有三种方式来估计这五个参数。这三种方式分别为梯度下降法、EM算法和Gibbs采样，而且这三种算法并非毫不相关。EM算法其实是简化梯度下降法中对于对数似然的计算，而Gibbs采样跟EM算法区别在于前者采样后者求最大值。</p>
 <h2 id="_2">梯度下降法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>思想其实很简单，就是极大似然法，但是解析形式不好确定，好在我们可以通过梯度下降来实现，而且现在有很方便的深度学习框架（如tensorflow）可以实现梯度下降，从而估计参数。下面用一个实际的例子（取自<a href="https://cosx.org/2017/08/tensorflow-for-statisticians/">为什么统计学家也应该学学 TensorFlow</a>）来展示梯度下降这一过程</p>

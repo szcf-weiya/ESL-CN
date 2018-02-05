@@ -3000,13 +3000,16 @@
 <h2 id="ica">ICA的模拟过程<a class="headerlink" href="#ica" title="Permanent link">&para;</a></h2>
 <h3 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>首先我们得有一组独立（ICA的前提条件）分布的数据$S$（未知），然后经过矩阵$A_0$混合之后得到实际的观测值$X$，即</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 X= SA_0
-$$</p>
+</script>
+</p>
 <p>也可以写成
-$$
+<script type="math/tex; mode=display">
 S=XA_0^{-1}
-$$</p>
+</script>
+</p>
 <p>用鸡尾酒酒会的例子来说就是，来自不同个体的说话声经过麦克风混合之后得到我们实际接收到的信号。假设有两组独立同分布的数据，分布都为<code>n</code>（对应图14.42中的编号），每组数据个数均为$N=1024$，混合矩阵为<code>A0</code>，用R代码描述这一过程如下</p>
 <div class="codehilite"><pre><span></span><span class="kn">library</span><span class="p">(</span>ProDenICA<span class="p">)</span>
 p <span class="o">=</span> <span class="m">2</span>
@@ -3021,21 +3024,28 @@ x <span class="o">=</span> s <span class="o">%*%</span> A0
 <p>最终我们得到观测值<code>x</code>。</p>
 <h3 id="_2">白化<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>在进行ICA时，也就是恢复$X=S\mathbf A$中的混合矩阵$\mathbf A$，都会假设$X$已经白化得到$\mathrm{Cov}(X)=\mathbf I$，而这个处理过程可以用SVD实现。对于中心化的$X$，根据</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 X=\mathbf{UDV}^T= \sqrt{N}\mathbf U\frac{1}{\sqrt{N}}\mathbf{DV}^T=X^*\frac{1}{\sqrt{N}}\mathbf{DV}^T
-$$</p>
+</script>
+</p>
 <p>得到满足$Cov(X^<em>)=\mathbf I$的$X^</em>$，则</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 S=XA_0^{-1}=X^*DV^TA_0^{-1}/\sqrt{N}
-$$</p>
+</script>
+</p>
 <p>于是经过这个变换之后，混合矩阵变为</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 A = DV^TA_0^{-1}/\sqrt{N}
-$$</p>
+</script>
+</p>
 <p>则
-$$
+<script type="math/tex; mode=display">
 X^*=SA^T
-$$</p>
+</script>
+</p>
 <p>用R语言表示如下</p>
 <div class="codehilite"><pre><span></span>x <span class="o">&lt;-</span> <span class="kp">scale</span><span class="p">(</span>x<span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="c1"># central</span>
 sx <span class="o">&lt;-</span> <span class="kp">svd</span><span class="p">(</span>x<span class="p">)</span>

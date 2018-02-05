@@ -2844,46 +2844,61 @@
 </tbody>
 </table>
 <p>在这一部分我们讨论一小部分理论，这些理论提供构建模型的一个框架，比如我们目前为止所有非正式讨论的模型。我们首先考虑定量输出时的情形，而且从随机变量和概率空间的角度来考虑。记$X\in {\mathbf{R}}^p$为实值随机输入向量，$Y\in \bf{R}$为实值随机输出变量，联合概率分布为$Pr(X,Y)$。给定输入$X$,我们寻找一个函数$f(X)$来预测$Y$。这个理论需要一个损失函数(<em>loss function</em>)$L(Y,f(X))$用来惩罚预测中的错误，到目前为止最常用并且最方便的是平方误差损失(<em>squared error loss</em>):$L(Y,f(X))=(Y-f(X))^2$。这导致了我们寻找$f$的一个标准——预测（平方）误差的期望</p>
-<p>$$
-\begin{align<em>}
-EPE(f)&amp;=E(Y-f(X))^2\qquad\qquad\qquad(2.9)\
-&amp;=\int[y-f(x)]^2Pr(dx,dy)\qquad(2.10)
-\end{align</em>}
-$$</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+EPE(f)&=E(Y-f(X))^2\qquad\qquad\qquad(2.9)\\
+&=\int[y-f(x)]^2Pr(dx,dy)\qquad(2.10)
+\end{align*}
+</script>
+</p>
 <p>在$X$的<strong>条件</strong>下，我们可以把EPE写成</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 EPE(f) = E_XE_{Y\mid X}([Y-f(X)]^2\mid X)\qquad(2.11)
-$$</p>
+</script>
+</p>
 <p>而且满足使EPE逐点最小：</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 f(x) = argmin_cE_{Y\mid X}([Y-c]^2\mid X=x)\qquad (2.12)
-$$</p>
+</script>
+</p>
 <p>解为</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 f(x) = E(Y\mid X=x)\qquad (2.13)
-$$</p>
+</script>
+</p>
 <p>是条件期望，也被称作回归（<em>regression</em>）函数。因此，$Y$的最优预测是在任意点$X=x$是条件均值，此处的最优是用平均平方误差来衡量的。
 !!! &ldquo;作者注：&rdquo;
     此处条件是指对联合概率密度分解$Pr(X, Y ) = Pr(Y \mid X)Pr(X)$，其中$Pr(Y \mid X) = Pr(Y, X)/Pr(X)$，因此分解成了双变量的积分</p>
 <p>最近邻方法试图直接利用训练数据完成任务。在每一点处，我们可能需要在输入$x_i=x$附近的所有$y_i$的均值。因为在任一点$x$,一般至多有一个观测值，我们决定有</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat{f}(x)=Ave(y_i\mid x_i\in N_k(x))
-$$</p>
+</script>
+</p>
 <p>其中“Ave”表示平均，$N_k(x)$是集$\cal{T}$中离$x$最近的$k$个点的邻域。这里有两个近似
 - 期望近似为样本数据的平均
 - 在每一点的条件是在对于某个目标点的“闭”区域的松弛。</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat{f}(x)=Ave(y_i\mid x_i\in N_k(x))\qquad(2.14)
-$$</p>
+</script>
+</p>
 <p>对于规模为$N$的大规模训练数据，邻域中的点更可能接近$x$，而且当$k$越大，平均值会更加稳定。事实上，在联合概率分布$Pr(X,Y)$温和的正则条件下，可以证明当$N,k \longrightarrow \infty$使得$k/N \longrightarrow 0$，$\hat{f}(x) \longrightarrow E(Y \mid X = x)$。根据这个，为什么看得更远，因为似乎我们有个一般的近似量吗？我们经常没有非常大的样本。如果线性或者其它更多结构化的模型是合适的，那么我们经常可以得到比$k$-最近邻更稳定的估计，尽管这些知识必须也要从数据中学习。然而还有其它的问题，有时是致命的。在下一个部分我们看到当维数$p$变大，$k$-最近邻的度量大小也随之变大。所以最近邻代替条件会让我们非常失望。收敛仍然保持，但是当维数增长后收敛阶(<em>rate</em>)变小。</p>
 <p>线性回归怎样适应这个框架？最简单的解释是假设回归函数$f(x)$近似线性</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 f(x)\approx x^T\beta\qquad (2.15)
-$$</p>
+</script>
+</p>
 <p>这是个基本模型的方式——对于明确回归函数的模型。将$f(x)$的线性模型插入EPE(2.9)然后微分可以理论上解出$\beta$
-$$
+<script type="math/tex; mode=display">
 \beta = [E(XX^T)]^{-1}E(XY)\qquad(2.16)
-$$</p>
+</script>
+</p>
 <p>注意到我们在$X$上没有条件；而是已经用了我们对函数关系的理解汇合$X$的值（<em>pool over values of X</em>）。最小二乘的解(2.16)相当于对训练数据平均替换式(2.16)中的期望。</p>
 <p>所以$k$-最邻近和最小二乘都是以对由平均得到的条件期望近似而结束。但是它们在模型上显著不同。</p>
 <ul>
@@ -2892,35 +2907,48 @@ $$</p>
 </ul>
 <p>尽管后者似乎更容易被接受，但我们已经看到我们需要为这种灵活性付出代价。</p>
 <p>很多这本书中描述的技巧都是基于基本模型的，尽管比严格的线性模型更加的灵活。举个例子，可加性模型假设</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 f(X) = \sum\limits_{j=1}^{p}f_j(X_j)\qquad(2.17)
-$$</p>
+</script>
+</p>
 <p>这保留着线性模型的可加性，但是每个并列的函数$f_j$是任意的。结果是可加模型的最优估计是对于每个并列的函数同时（<em>simultaneously</em>）用$k$-最邻近去近似单变量(<em>univariate</em>)的条件期望。因此在可加性的情况下，通过加上某些（通常不现实）的模型假设在高纬中估计条件期望的问题被扫除了。</p>
 <p>是否为(2.11)的标准而高兴？如果我们用$L_1$损失函数$E\mid Y-f(X)\mid $来替换$L_2$损失函数会怎么样。这种情况下解是条件中位数，
-$$
+<script type="math/tex; mode=display">
 \hat{f}(x) = median(Y \mid X = x)\qquad (2.18)
-$$</p>
+</script>
+</p>
 <p>条件中位数是另一种定位的方式，而且它的估计比条件均值更加鲁棒。$L_1$标准的导数不连续，阻碍了它们的广泛应用。其它更多抵抗的损失函数会在后面章节中介绍，但是平方误差是分析方便而且是最受欢迎的。</p>
 <p>当输出为类变量$G$时，我们应该怎样处理？同样的范例在这里也是可行的，除了我们需要一个不同的损失函数来惩罚预测错误。预测值$\hat{G}$在 $\cal G$ 中取值， $\cal G$是可能的类别的集合。我们的损失函数可以用$K\times K$的矩阵$\mathbf{L}$来表示，其中$K=card({\cal G})$。矩阵$\mathbf{L}$对角元为0且其它地方值非负，其中$L(k,\ell)$为把属于$\cal G_k$的类分到 $\cal G_\ell$的代价。大多数情况下我们用0-1(<em>zero-one</em>)损失函数，其中所有的错误分类都被要求一个单位的惩罚。预测错误的期望为</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 EPE = E[L(G,\hat{G}(X))]\qquad (2.19)
-$$</p>
+</script>
+</p>
 <p>关于联合分布$Pr(G,X)$，期望再一次起作用。再一次考虑条件分布，我们可以写出如下的EPE</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 EPE = E_X\sum\limits_{k=1}^KL[{\cal{G}}_k,\hat{G}(X)]Pr({\cal{G}}_k\mid X)\qquad(2.20)
-$$</p>
+</script>
+</p>
 <p>再一次满足逐点最小化:</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat{G}(x) = argmin_{g\in \cal{G}}\sum\limits_{k=1}^KL({\cal{G}}_k,g)Pr({\cal G}_k\mid X = x)\qquad(2.21)
-$$</p>
+</script>
+</p>
 <p>结合0-1损失函数上式简化为</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat{G}(x) = argmin_{g\in \cal{G}}[1 − Pr(g\mid X = x)]\qquad(2.22)
-$$</p>
+</script>
+</p>
 <p>或者简单地</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat{G}(X) = {\cal{G}}_k \text{ if } Pr({\cal{G}}_k\mid X = x) = \underset{g\in{\cal{G}}}{max } Pr(g\mid X = x)\qquad (2.23)
-$$</p>
+</script>
+</p>
 <p>合理的解决方法被称作贝叶斯分类（<em>Bayes classifier</em>)，利用条件（离散）分布$Pr(G\mid X)$分到最合适的类别。对于我们模拟的例子图2.5显示了最优的贝叶斯判别边界。贝叶斯分类的误差阶被称作贝叶斯阶(<em>Bayes rate</em>)。</p>
 <p><img alt="" src="../../img/02/fig2.5.png" /></p>
 <blockquote>

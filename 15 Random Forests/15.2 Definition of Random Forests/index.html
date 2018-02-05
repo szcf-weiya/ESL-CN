@@ -2849,36 +2849,37 @@
 </table>
 <p>bagging的核心思想是对许多有噪声但近似无偏的模型进行平均，也因此降低了方差。树是用于bagging的理想模型，因为它们可以捕捉数据中复杂的交叉项，而且如果树长得足够深的话，会有相对较低的偏差。因为树是充满噪声的，所以通过平均可以很大程度地改善它们。而且，因为bagging中产生的每棵树是同分布的，$B$棵这样的树的平均的期望与它们中的任一个是相同的。这意味着经过bagged的树的偏差与单个(bootstrap)树的偏差是一样的，而且唯一改善的希望是通过降低方差。这与boosting是相反的，在boosting中树以一种自适应的方式减小偏差，因此不是同分布的。</p>
 <p>$B$棵独立同分布、方差为$\sigma^2$的随机变量的平均的方差为$\frac{1}{B}\sigma^2$。如果变量是简单的同分布（不一定独立），有着正的成对相关系数$\rho$，平均的方差为（练习15.1）
-$$
+<script type="math/tex; mode=display">
 \rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \qquad (15.1)
-$$</p>
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注： Ex. 15.1</p>
 <p>已知$X_i,i=1,\ldots, B$独立同分布，方差均为$Var(X_i)=\sigma^2$。则
-$$
+<script type="math/tex; mode=display">
 Var(\frac 1B \sum X_i)=\frac{1}{B^2}Var(\sum X_i)
-$$
+</script>
 而
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-Var(\sum X_i)&amp;=E(\sum X_i-E(\sum X_i))^2\
-&amp;=E(\sum(X_i-E X_i))^2\
-&amp;=\sum E(X_i-EX_i)^2+2\sum\limits_{1\le i&lt;j\le B}E(X_i-EX_i)(X_j-EX_j)\
-&amp;=B\sigma^2+B(B-1)\rho\sigma^2
+Var(\sum X_i)&=E(\sum X_i-E(\sum X_i))^2\\
+&=E(\sum(X_i-E X_i))^2\\
+&=\sum E(X_i-EX_i)^2+2\sum\limits_{1\le i<j\le B}E(X_i-EX_i)(X_j-EX_j)\\
+&=B\sigma^2+B(B-1)\rho\sigma^2
 \end{align}
-$$
+</script>
 则
-$$
+<script type="math/tex; mode=display">
 Var(\frac 1B \sum X_i)=\rho\sigma^2+\frac{1-\rho}{B}\sigma^2
-$$
+</script>
 在Ex 15.1中，额外问了为什么在$\rho$小于0的情形不成立。其实我们只要从
-$$
+<script type="math/tex; mode=display">
 Var(\sum  X_i)=B\sigma^2+B(B-1)\rho\sigma^2\ge 0
-$$
+</script>
 得到
-$$
+<script type="math/tex; mode=display">
 \rho\ge \frac{-1}{B-1}
-$$
+</script>
 当$B\rightarrow \infty$，有$\rho\ge 0$。</p>
 </div>
 <p>当$B$增大时，第二项消失，但是第一项还在，而且成对bagged的树的相关系数的大小限制了平均的好处。随机森林的想法（算法15.1）是通过降低树之间的相关系数来改善方差的降低，而不使方差增长过大。这可以通过在生成树的过程中对输入变量进行随机选择来实现。</p>
@@ -2888,10 +2889,11 @@ $$
 <p>在每次分割时，随机选择$m\le p$个输入变量作为候选变量用来分割</p>
 </blockquote>
 <p>一般地，$m$取为$\sqrt{p}$，或者甚至小到取1。</p>
-<p>生成$B$棵这样的树$\{T(x;\Theta_b)\}<em>1^B$，随机森林（回归）预测变量为
-$$
-\hat f</em>{rf}^B(x) = \frac{1}{B}\sum\limits_{b=1}^BT(x;\Theta_b)\qquad (15.2)
-$$</p>
+<p>生成$B$棵这样的树$\{T(x;\Theta_b)\}_1^B$，随机森林（回归）预测变量为
+<script type="math/tex; mode=display">
+\hat f_{rf}^B(x) = \frac{1}{B}\sum\limits_{b=1}^BT(x;\Theta_b)\qquad (15.2)
+</script>
+</p>
 <p>如10.9节一样，$\Theta_b$根据分离变量、每个结点的分离值以及终止结点的值来表征第$b$个随机森林树。直观上，降低$m$会降低任意两棵树之间的相关系数，也因此通过（15.1）来降低平均的方差。</p>
 <p>并非所有的估计都可以通过像这样震荡数据来改善。似乎强非线性估计，比如树，改善最大。对于其bootstrapped树，$\rho$一般很小（一般是0.05或更小；见图15.9），而$\sigma^2$不比原树的方差要大。另一方面，bagging不会改变线性估计，比如样本均值（因此也不会改变方差）；其bootstrapped均值之间的成对相关系数大约为50%。</p>
 <div class="admonition note">
@@ -2907,16 +2909,17 @@ $$</p>
 <p class="admonition-title">weiya注</p>
 <p>nested spheres问题在<a href="https://esl.hohoweiya.xyz/10%20Boosting%20and%20Additive%20Trees/10.1%20Boosting%20Methods/index.html">10.1 boosting方法</a>中定义，即
 特征$X_1,\ldots,X_{10}$是标准独立高斯分布，目标$Y$定义如下
-$$
+<script type="math/tex; mode=display">
 Y=
-\left{
+\left\{
 \begin{array}{ll}
-1&amp;\text{if } \sum_{j=1}^{10}X_j^2&gt;\chi_{10}^2(0.5)\
--1 &amp; \text{otherwise}
+1&\text{if } \sum_{j=1}^{10}X_j^2>\chi_{10}^2(0.5)\\
+-1 & \text{otherwise}
 \end{array}
 \right.
 \qquad (10.2)
-$$</p>
+</script>
+</p>
 </div>
 <p><img alt="" src="../../img/15/fig15.2.png" /></p>
 <p>图15.3比较了在一个回归问题中随机森林与（带收缩的）boosting，该问题采用加利福利亚住房数据（10.14.1节）。</p>

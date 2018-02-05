@@ -2852,17 +2852,17 @@
 <p>@2017-12-28 挺惭愧的！直到今天才认真地从零开始写了个简单的神经网络代码，具体代码详见<a href="http://nbviewer.jupyter.org/github/szcf-weiya/TFnotes/blob/master/nn/nn.ipynb">Notebook for Simple Neural Network</a>。对于本节的例子，我也写了份代码试图重现书中的结果，代码详见<a href="http://nbviewer.jupyter.org/github/szcf-weiya/ESL-CN/blob/master/code/nn/Implementation-for-Section-6.ipynb">Notebook for this Section</a></p>
 </div>
 <p>我们从两个可加误差模型$Y=f(X)+\varepsilon$中产生数据：
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-\text{Sum of sigmoids: }&amp; Y=\sigma(a_1^TX)+\sigma(a_2^TX)+\varepsilon_1\
-\text{Radial: }&amp;Y=\prod\limits_{m=1}^{10}\phi(X_m)+\varepsilon_2
+\text{Sum of sigmoids: }& Y=\sigma(a_1^TX)+\sigma(a_2^TX)+\varepsilon_1\\
+\text{Radial: }&Y=\prod\limits_{m=1}^{10}\phi(X_m)+\varepsilon_2
 \end{align}
-$$
+</script>
 这里$X^T=(X_1,X_2,\ldots,X_p)$，每个$X_j$是标准高斯变量，第一个模型中$p=2$，第二个模型中$p=10$.</p>
 <p>对于sigmoid模型，$a_1=(3,3),a_2=(3,-3)$；对于径向模型，$\phi(t)=(1/2\pi)^{1/2}exp(-t^2/2)$.$\varepsilon_1$和$\varepsilon_2$都是高斯误差，选择方差使得两个模型的信噪比都为4.
-$$
+<script type="math/tex; mode=display">
 \frac{Var(E(Y\mid X))}{Var(Y-E(Y\mid X))}=\frac{Var(f(X))}{Var(\varepsilon)}\qquad (11.18)
-$$
+</script>
 我们取大小为100的训练集和大小为10000的测试集。我们采用权重系数衰减和不同的隐藏单元来拟合神经网络，然后记录10个随机初始权重系数值情形下的平均测试误差$E_{Test}(Y-\hat f(X))^2$。虽然只产生了一个训练集，但是结果是“平均”的训练集的典型。测试误差展示在图11.6中。注意到0个隐藏层单元指的是线性最小二乘回归。神经网络对于sigmoid函数之和的模型拟合效果很好，而且当有两个神经元时效果最好，非常接近贝叶斯误差率。（回忆一下，回归的平方误差的贝叶斯误差率是误差的方差；这张图中是测试误差相对于贝叶斯误差的比例）然而，注意到更多的隐藏层单元，很快便出现了过拟合，而且有些权重系数的初始值比线性模型（0个隐藏单元）拟合得还差。即便是2个隐藏单元的情形，10个权重系数的初始值中有两个的结果不好于线性模型，证实了多重初始值的重要性。</p>
 <p><img alt="" src="../../img/11/fig11.6.png" /></p>
 <blockquote>

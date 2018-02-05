@@ -2898,22 +2898,26 @@
 </table>
 <p>非负矩阵分解(Lee and Seung,1999)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>是最近提出来的一个用来替代主成分分析的方法，这个方法中数据以及成分假定为非负的。这对于建立非负数据的模型很有用，比如图象数据。</p>
 <p>$N\times p$数据矩阵$\mathbf X$由下式近似
-$$
+<script type="math/tex; mode=display">
 \mathbf X \approx \mathbf W\mathbf H\qquad (14.72)
-$$</p>
+</script>
+</p>
 <p>其中$\mathbf W$是$N\times r$，$\mathbf H$是$r\times p, r\le max(N,p)$的。我们假设$x_{ij}, w_{ik}, h_{kj}\ge 0$。</p>
 <p>通过最大化下式来确定$\mathbf W$ 和$\mathbf H$
-$$
-L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}log(\mathbf {WH}<em>{ij}-（\mathbf{WH})</em>{ij})]\qquad (14.73)
-$$</p>
+<script type="math/tex; mode=display">
+L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}log(\mathbf {WH}_{ij}-（\mathbf{WH})_{ij})]\qquad (14.73)
+</script>
+</p>
 <p>这是某模型的对数似然，模型中$x_{ij}$服从均值为$(\mathbf{WH}_{ij})$的Poisson分布——这个模型对于非负数据是合理的。</p>
 <p>下面的替代算法(Lee and Seung, 2001)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>收敛到$L(\mathbf W, \mathbf H)$的局部最大值：</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-w_{ik}&amp;\leftarrow w_{ik}\frac{\sum_{j=1}^ph_{kj}x_{ij}/(\mathbf{WH}<em>{ij})}{\sum</em>{j=1}^ph_{kj}}\
-h_{kj}&amp;\leftarrow h_{kj}\frac{\sum_{j=1}^pw_{ik}x_{ij}/(\mathbf{WH}<em>{ij})}{\sum</em>{j=1}^pw_{ik}}
+w_{ik}&\leftarrow w_{ik}\frac{\sum_{j=1}^ph_{kj}x_{ij}/(\mathbf{WH}_{ij})}{\sum_{j=1}^ph_{kj}}\\
+h_{kj}&\leftarrow h_{kj}\frac{\sum_{j=1}^pw_{ik}x_{ij}/(\mathbf{WH}_{ij})}{\sum_{j=1}^pw_{ik}}
 \end{array}\qquad (14.74)
-$$</p>
+</script>
+</p>
 <p>这个算法可以由最大化$L(\mathbf W, \mathbf H)$的最小过程来导出（练习14.23），并且与对数线性模型的迭代比例算法相关（练习14.24）。</p>
 <p>TODO</p>
 <h2 id="_1">典型分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>

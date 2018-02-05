@@ -2855,17 +2855,17 @@
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p>在贝叶斯分析中，计算后验分布时经常涉及复杂的积分运算，比如
-$$
+<script type="math/tex; mode=display">
 P(\theta\mid x)=\frac{P(x\mid \theta)P(\theta)}{P(x)}
-$$
+</script>
 而参数推断的目标是计算后验分布$P(\theta\mid x)$，困难在于$P(x)$, 因为
-$$
+<script type="math/tex; mode=display">
 P(x) = \int P(x, \theta)d\theta
-$$
+</script>
 有人会想到有Monte Carlo来近似上述的积分值（关于应用Monte Carlo进行积分近似，可以参见<a href="https://stats.hohoweiya.xyz//montecarlo/2017/09/07/The-Need-of-Monte-Carlo/">The Applications of Monte Carlo</a>），但这也是不实际的。因为如果要用Monte Carlo近似，则首先我们需要在从$\theta$的后验分布中sample出$m$个样本来（注意到我们需要求的就是$\theta$的后验分布），进而采用下式进行近似
-$$
-\hat P(x) = \int <em>{\theta}d\theta\cdot \frac{1}{m}\sum\limits</em>{i=1}^mP(x, \theta^{(m)})
-$$
+<script type="math/tex; mode=display">
+\hat P(x) = \int _{\theta}d\theta\cdot \frac{1}{m}\sum\limits_{i=1}^mP(x, \theta^{(m)})
+</script>
 但幸好可以通过构造一个Markov chain来进行Monte Carlo近似，称为MCMC。在<a href="http://nbviewer.jupyter.org/github/szcf-weiya/MonteCarlo/blob/master/MCMC/MCMC_example.ipynb">MCMC_example.ipynb</a>里面用一个例子说明了怎么用MCMC得到参数的后验分布。</p>
 </div>
 <p>这部分我们讨论马尔科夫蒙特卡洛法向后采样。我们将要看到吉布斯采样（一个MCMC过程）与EM算法非常相关：主要的区别在于前者从条件分布中采样而非对它们最大化。</p>
@@ -2877,9 +2877,9 @@ $$
 </div>
 <p>在正规化条件下可以证明这一过程最终稳定，得到的随机变量实际上是从$U_1,U_2,\ldots,U_K$联合分布中取的一个样本。尽管对于不同的$t$,样本$(U_1^{(t)},U_2^{(t)},\ldots,U_K^{(t)})$显然不独立。更正式地，吉布斯采样得到一个马尔科夫链，该马尔科夫链的平稳分布是真正的联合分布，因此称之为“马尔科夫链蒙特卡洛法”。在这个过程下真实的联合分布是平稳的并不奇怪，因为连续的步骤使得$U_k$的边缘分布不变。</p>
 <p>注意到我们不需要知道条件密度的显式形式，但是仅仅需要能够从中取样。经过这一过程达到平稳性，任意变量的子集的边缘密度可以通过应用样本值得到的密度估计来近似。然而，如果条件密度$Pr(U_k\mid U_\ell,\ell\neq k)$的显式形式是知道的，则$U_k$的边缘密度的一个良好估计可以从下式得到（练习8.3）：
-$$
-\widehat{Pr}<em>{U_k}(u)=\frac{1}{(M-m+1)}\sum\limits</em>{t=m}^MPr(u\mid U_\ell^{(t)},\ell\neq k)\qquad (8.50)
-$$
+<script type="math/tex; mode=display">
+\widehat{Pr}_{U_k}(u)=\frac{1}{(M-m+1)}\sum\limits_{t=m}^MPr(u\mid U_\ell^{(t)},\ell\neq k)\qquad (8.50)
+</script>
 这里我们对序列的$M-m+1$个成员平均，以在达到平稳之前允许初始的“老化”期。</p>
 <p>现在回到贝叶斯推断，我们的目标是在给定数据$\mathbf Z$情况下，从参数的联合后验分布中采样。如果从每个参数的条件分布（在给定其他参数和$\mathbf Z$）中取样很简单，则吉布斯取样会很有帮助。接下来详细讨论一个高斯分布混合问题的例子。</p>
 <p>在指数族模型中从后验吉布斯采样与EM算法有着紧密的联系。关键在于将EM过程的潜在数据$\mathbf Z^m$看成是吉布斯采样的另一个参数。为了让高斯混合问题中这一点更明确，我们取参数为$(\theta,\mathbf Z^m)$.为了简便，我们固定方差$\sigma_1^2,\sigma^2_2$以及最大似然时的混合比例$\pi$，使得$\theta$中未知的参数仅仅是均值$\mu_1$和$\mu_2$.此混合问题的吉布斯采样在算法8.4中给出。我们看到第2(a)和2(b)步与EM过程中的E和M一样，除了这里我们是取样而非最大化。在第2(a)步，不是计算最大似然的责任（responsibilities）$\gamma_i=E(\Delta_i\mid \theta,\mathbf Z)$,吉布斯采样过程从$Pr(\Delta_i\mid \theta,\mathbf Z)$的分布中模拟潜在数据$\Delta_i$.在第2(b)步，不是计算后验$Pr(\mu_1,\mu_2,\Delta\mid \mathbf Z)$的最大值，而是从条件分布$Pr(\mu_1,\mu_2\mid \Delta,\mathbf Z)$中模拟。</p>

@@ -2943,14 +2943,18 @@
 <p><img alt="" src="../../img/07/pic1.png" /></p>
 <p>对于第$k$部分（上面的第三个），我们用剩下的$K-1$个部分数据来拟合模型，然后计算预测第$k$部分的数据时模型的预测误差。对$k=1,2,\ldots,K$时做类似的工作并且将$K$个预测误差的估计值结合起来。</p>
 <p>下面介绍更多的细节。令$\kappa:\{1,\ldots,N\}\mapsto\{1,\ldots,K\}$是指示函数，它指示了观测值$i$被随机分配到哪的划分。用$\hat f^{-k}(x)$记拟合函数，是利用除掉第$k$部分的数据计算得到的。则预测误差的交叉验证估计为</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 CV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f^{-\kappa (i)}(x_i))\qquad (7.48)
-$$</p>
+</script>
+</p>
 <p>一般地选择$K$为5或10（见下）。$K=N$的情形也称作舍一法交叉验证。在$\kappa(i)=i$的情形中，对于第$i$个观测的拟合是利用不包含第$i$个观测的全部数据进行计算的。</p>
 <p>给出一系列模型$f(x,\alpha)$，它是由调整参数$\alpha$来编号的，记$\hat f^{-k}(x,\alpha)$为去除第$k$部分数据的第$\alpha$个模型的拟合。则对于这一系列模型我们定义</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 CV(\hat f,\alpha)=\frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f^{-\kappa (i)}(x_i,\alpha))\qquad (7.49)
-$$</p>
+</script>
+</p>
 <p>函数$CV(\hat f,\alpha)$给出了测试误差曲线的一个估计，而且我们可以找到调整参数$\hat\alpha$使其最小化。我们最终选择的模型是$f(x,\alpha)$，接着我们对所有数据进行拟合。</p>
 <p>有趣的是，想知道$K$折交叉验证估计的是什么量。$K=5$或10时，我们可能猜测它估计了期望误差Err，因为每一折的训练集不同于原始训练集。另一方面，如果$K=N$我们可能会猜测交叉验证估计了条件误差$Err_{\cal T}$。事实是交叉验证仅仅有效地估计出平均误差Err，正如将在7.12节讨论的那样。</p>
 <p>那我们应该为$K$取什么值呢？$K=N$时，交叉验证估计对于真实（期望的）预测误差近似无偏的，但是可能导致高方差因为$N$个训练集彼此是很相似的。计算量也是很大的，要求应用该学习方法$N$次。在特定的问题中，这个计算可以很快地完成——见练习7.3和5.13。</p>
@@ -2966,32 +2970,39 @@ $$</p>
 <p>图7.9. 预测误差（橘黄色）和从单个训练集估计的10折交叉验证曲线（蓝色），来自图7.3中右下图的情形。</p>
 </blockquote>
 <p>对于在平方误差损失下的线性拟合，广义交叉验证提供了舍一法交叉验证的一个方便的估计。正如在7.6节中定义的，线性拟合方法可以写成</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \mathbf{\hat y=Sy}\qquad (7.50)
-$$</p>
+</script>
+</p>
 <p>现在对于许多线性拟合方法，</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \frac{1}{N}\sum\limits_{i=1}^N[y_i-\hat f^{-i}(x_i)]^2 = \frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-S_{ii}}]^2\qquad (7.51)
-$$</p>
+</script>
+</p>
 <p>其中$S_{ii}$是$\mathbf S$的第$i$个对角元（见练习7.3）。GCV近似为</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\qquad (7.52)
-$$</p>
+</script>
+</p>
 <p>$trace(\mathbf S)$的值是有效参数个数，在7.6节定义。</p>
 <p>GCV在一些设定下有计算上的优点，其中$\mathbf S$的迹计算起来比单个元素$S_{ii}$更简单。在光滑问题中，GCV也可以减轻交叉验证趋向于欠光滑(undersmooth)的趋势。GCV和AIC的相似性可以从近似等式$1/(1-x)^2\approx 1+2x$得到（练习7.7）。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：Ex. 7.7</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{align}
-GCV(\hat f)&amp;=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\
-&amp;=\frac 1N\sum\limits_{i=1}^N(y_i-\hat f(x_i))^2(1+\frac{2trace(S)}{N})\
-&amp;=\overline{err} + \frac{2trace(S)}{N}\overline{err}
+GCV(\hat f)&=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\\
+&=\frac 1N\sum\limits_{i=1}^N(y_i-\hat f(x_i))^2(1+\frac{2trace(S)}{N})\\
+&=\overline{err} + \frac{2trace(S)}{N}\overline{err}
 \end{align}
-$$
+</script>
 而
-$$
+<script type="math/tex; mode=display">
 AIC=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon
-$$
+</script>
 显然，它们的区别在于$\sigma^2_{varepsilon}$的估计方法不同。
 毕。</p>
 </div>

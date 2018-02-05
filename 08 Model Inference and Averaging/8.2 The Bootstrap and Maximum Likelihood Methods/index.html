@@ -2941,23 +2941,24 @@
 <p>含$K$个结点的普通三次样条有$K+4$个基函数，而自然三次样条因为两个边界点占去4个自由度，所以其有$K$个基函数。</p>
 </div>
 <p>举个例子，可以通过B-样条基函数的线性展开来表示（见5.9.2节）：
-$$
+<script type="math/tex; mode=display">
 \mu(x)=\sum\limits_{j=1}^7\beta_jh_j(x).\qquad (8.1)
-$$
+</script>
 这里$h_j(x),j=1,2,\ldots,7$是在图8.1右图显示7个函数。我们可以将$\mu(x)$看成是条件期望$E(Y\mid X=x)$.</p>
 <p>令$\mathbf H$为$N\times 7$的矩阵，且第$ij$个元素为$h_j(x_i)$。$\beta$的一般估计通过最小化训练集上的均方误差得到，由下式给出
-$$
+<script type="math/tex; mode=display">
 \hat \beta=\mathbf{(H^TH)^{-1}H^Ty}\qquad (8.2)
-$$</p>
+</script>
+</p>
 <p>对应的拟合值$\hat \mu(x)=\sum_{j=1}^7\hat \beta_jh_j(x)$显示在图8.2的左上图。</p>
 <p>$\hat\beta$的协方差矩阵估计为
-$$
+<script type="math/tex; mode=display">
 \widehat{Var}(\hat\beta)=\mathbf{(H^TH)}^{-1}\hat\sigma^2\qquad (8.3)
-$$
+</script>
 其中白噪声方差的估计值由$\hat\sigma^2=\sum_{i=1}^N(y_i-\hat\mu(x_i))^2/N$给出。令$h(x)^T=(h_1(x),h_2(x),\ldots,h_7(x))$,预测值$\hat\mu(x)=h(x)^T\hat\beta$的标准误差为
-$$
+<script type="math/tex; mode=display">
 \widehat{se}[\hat\mu(x)]=[h(x)^T\mathbf{(H^TH)^{-1}}h(x)]^{\frac{1}{2}}\hat{\sigma}\qquad (8.4)
-$$
+</script>
 <img alt="" src="../../img/08/fig8.2.png" /></p>
 <blockquote>
 <p>图8.2. (左上图：)数据点的B-样条光滑。（右上图：）B-样条光滑加减1.96倍的标准误差得到的带状区域。（左下图：）B-样条光滑的自助法重复取样。（右下图：）从自助法的分布计算得到的B-样条和95%的标准误差区域带。</p>
@@ -2965,59 +2966,60 @@ $$
 <p>在图8.2的右上图中我们画出了$\hat\mu(x)\pm1.96\cdot\widehat{se}[\hat\mu(x)]$,因为1.96是标准正态分布函数97.5%的那个点，这表示$\mu(x)$的近似$100-2\times 2.5\%=95\%$逐点置信域。</p>
 <p>这里我们介绍怎么在这个例子中运用自助法。我们从训练集中有放回抽取$B$个大小均为$N=50$的数据集，取样单元为数据对$z_i=(x_i,y_i)$。对于每一个自助法的数据集$\mathbf Z^*$我们拟合三次样条$\hat \mu^*(x)$;从10个这样的样本中得到的拟合曲线如图8.2的左下图所示。利用$B=200$个自助法样本集，我们可以得到每个$x$处的95%置信区间：我们在每个$x$处找到第$2.5\%\times 200=5$大（小）的值。这在图8.2的右下图画出来了。这些带状与右上角的带状显示，不过在终点处更宽点。</p>
 <p>实际上最小二乘估计（8.2）和（8.3），自助法和最大似然法有着很紧密的联系。进一步假设模型误差为高斯分布，
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-Y&amp;=\mu(X)+\varepsilon\; \varepsilon\sim N(0,\sigma^2)\
-\mu(X)&amp;=\sum\limits_{j=1}^7\beta_jh_j(x).\qquad\qquad\qquad\qquad (8.5)
+Y&=\mu(X)+\varepsilon\; \varepsilon\sim N(0,\sigma^2)\\
+\mu(X)&=\sum\limits_{j=1}^7\beta_jh_j(x).\qquad\qquad\qquad\qquad (8.5)
 \end{align}
-$$
+</script>
 上面描述的自助法，通过从训练集中有放回地采样，称作非参自助法(nonparametric bootstrap)。这实际上意味着这个方法是与模型无关的，因为它使用原始数据来得到新的数据集，而不是一个特定的含参数的模型。考虑到自助法的方差，则称为参数自助法(parametric bootstrap)，通过对预测值加上高斯噪声模拟新的响应：
-$$
-y_i^<em>=\hat\mu(x_i)+\varepsilon_i^</em>;\qquad \varepsilon_i^<em>\sim N(0,\hat\sigma^2);\qquad i=1,2,\ldots,N\qquad (8.6)
-$$
+<script type="math/tex; mode=display">
+y_i^*=\hat\mu(x_i)+\varepsilon_i^*;\qquad \varepsilon_i^*\sim N(0,\hat\sigma^2);\qquad i=1,2,\ldots,N\qquad (8.6)
+</script>
 这一过程重复$B$次，这里$B=200$.得到的自助法数据集形式为$(x_1,y_1^*),\ldots,(x_N,y_N^*)$,而且我们可以重新对每一个计算B-样条光滑。这种方法得到的置信域实际上等于当自助法样本数趋于无穷时右上图的最小二乘置信域。由自助法样本$\mathbf y^*$的函数估计由$\hat\mu^*(x)=h(x)^T\mathbf{(H^TH)^{-1}H^Ty^*}$给出，而且服从分布
-$$
-\hat\mu^</em>(x)\sim N(\hat \mu(x), h(x)^T\mathbf{(H^TH)^{-1}}h(x)\hat\sigma^2)\qquad (8.7)
-$$
+<script type="math/tex; mode=display">
+\hat\mu^*(x)\sim N(\hat \mu(x), h(x)^T\mathbf{(H^TH)^{-1}}h(x)\hat\sigma^2)\qquad (8.7)
+</script>
 注意到该分布的均值是最小二乘估计，标准误差和近似公式（8.4）相同。</p>
 <h2 id="_2">最大似然推断<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>结果证明在前面的例子中参数自助法和最小二乘是一致的因为模型（8.5）有可加的高斯误差。一般地，参数自助法跟最小二乘不一致，但跟最大似然一致，我们现在再检验一下。</p>
 <p>首先确定我们观测值的概率密度或者概率质量函数
-$$
+<script type="math/tex; mode=display">
 z_i\sim g_\theta(z)\qquad (8.8)
-$$
+</script>
 这个表达式中$\theta$表示一个或多个未知的决定$Z$分布的参数。这称为$Z$的参数模型。举个例子，如果$Z$有均值为$\mu$、方差为$\sigma^2$的正态分布，则
-$$
+<script type="math/tex; mode=display">
 \theta=(\mu, \sigma^2)\qquad (8.9)
-$$
+</script>
 和
-$$
+<script type="math/tex; mode=display">
 g_\theta(z)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}(z-\mu)^2/\sigma^2}\qquad (8.10)
-$$
+</script>
 最大似然基于似然函数，似然函数由下式给出
-$$
+<script type="math/tex; mode=display">
 L(\theta;\mathbf Z)=\prod\limits_{i=1}^Ng_\theta(z_i)\qquad (8.11)
-$$
+</script>
 记$L(\theta;\mathbf Z)$的对数为
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-\ell(\theta;\mathbf Z)&amp;=\sum\limits_{i=1}^N\ell(\theta;z_i)\
-&amp;=\sum\limits_{i=1}^Nlogg_\theta(z_i)\qquad \qquad (8.12)
+\ell(\theta;\mathbf Z)&=\sum\limits_{i=1}^N\ell(\theta;z_i)\\
+&=\sum\limits_{i=1}^Nlogg_\theta(z_i)\qquad \qquad (8.12)
 \end{align}
-$$
+</script>
 有时简记为$\ell(\theta)$.该表达式称为对数似然，并且每个值$\ell(\theta;z_i)=\mathbb{log} g_\theta(z_i)$称为对数似然组分。最大似然法选择$\theta=\hat\theta$来最大化$\ell(\theta;\mathbf Z)$.</p>
 <p>似然函数可以被用来评估$\hat\theta$的准确性。我们需要更多的定义，得分函数由下式给出
-$$
+<script type="math/tex; mode=display">
 \dot\ell(\theta;\mathbf Z)=\sum\limits_{i=1}^N\dot \ell(\theta;z_i)\qquad (8.13)
-$$
+</script>
 其中$\ell(\theta;z_i)=\partial \ell(\theta;z_i)/\partial \theta$.假设概率在参数空间的内部取得最大值，则$\dot\ell(\hat\theta,\mathbf Z)=0$.信息矩阵为
-$$
+<script type="math/tex; mode=display">
 \mathbf I(\theta)=-\sum\limits_{i=1}^N\frac{\partial ^2\ell(\theta;z_i)}{\partial \theta\partial \theta^T}\qquad (8.14)
-$$
+</script>
 当$\mathbf I(\theta)$在$\theta=\hat\theta$处取值，则通常称为观测信息量。Fisher信息量（或者期望信息量）是
-$$
+<script type="math/tex; mode=display">
 \mathbf i(\theta)=E_\theta[\mathbf I(\theta)]\qquad (8.15)
-$$</p>
+</script>
+</p>
 <!--**weiya**注:
 > 设随机变（向）量$X$来自分布族$\cal F=\{p(x;\theta):\theta\in\Theta\}$,其中$p(x;\theta)$为其概率密度函数，$\Theta$为开区间，假设$p(x;\theta)$关于$\theta$可导，且
 > $$
@@ -3056,76 +3058,77 @@ $$</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p>设随机变（向）量$X$来自分布族$\cal F={p(x;\theta):\theta\in\Theta}$,其中$p(x;\theta)$为其概率密度函数，$\Theta$为开区间，假设$p(x;\theta)$关于$\theta$可导，且
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-0&amp;=\frac{d}{d\theta}\int_{-\infty}^\infty p(x;\theta)dx\
-&amp;=\int_{-\infty}^\infty \frac{\partial p(x;\theta)}{\partial \theta}dx\
-&amp;=\int_{-\infty}^\infty\frac{\partial \mathbb{log}p(x;\theta)}{\partial\theta}p(x;\theta)dx\
-&amp;=E_\theta[\frac{\partial \mathbb{log}p(X;\theta)}{\partial \theta}]
+0&=\frac{d}{d\theta}\int_{-\infty}^\infty p(x;\theta)dx\\
+&=\int_{-\infty}^\infty \frac{\partial p(x;\theta)}{\partial \theta}dx\\
+&=\int_{-\infty}^\infty\frac{\partial \mathbb{log}p(x;\theta)}{\partial\theta}p(x;\theta)dx\\
+&=E_\theta[\frac{\partial \mathbb{log}p(X;\theta)}{\partial \theta}]
 \end{align}
-$$
+</script>
 从而
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-I(\theta):&amp;=\mathrm{Var}<em>\theta{\frac{\partial \mathrm{log}p(X;\theta)}{\partial \theta}}\
-&amp;=E</em>\theta[\frac{\partial\mathrm{log}p(x;\theta)}{\partial\theta}]^2\
-&amp;=\int_{-\infty}^\infty(\frac{\partial \mathrm{log}p(x;\theta)}{\partial \theta})^2p(x;\theta)dx
+I(\theta):&=\mathrm{Var}_\theta\{\frac{\partial \mathrm{log}p(X;\theta)}{\partial \theta}\}\\
+&=E_\theta[\frac{\partial\mathrm{log}p(x;\theta)}{\partial\theta}]^2\\
+&=\int_{-\infty}^\infty(\frac{\partial \mathrm{log}p(x;\theta)}{\partial \theta})^2p(x;\theta)dx
 \end{align}
-$$
+</script>
 $I(\theta)$称为$X$或分布族$\cal F$的Fisher Information。</p>
 <p>如果$\frac{\partial^2}{\partial\theta^2}p(x;\theta)$对任意的$\theta\in\Theta$都存在，且积分与求导可以交换，则
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-0&amp;=\frac{d^2}{d\theta^2}\int_{-\infty}^\infty p(x;\theta)dx\
-&amp;=\int_{-\infty}^{\infty}\frac{\partial}{\partial \theta}[\frac{\partial \mathrm{log }p(x;\theta)}{\partial \theta}p(x;\theta)]dx\
-&amp;=\int_{-\infty}^\infty[\frac{\partial^2\mathrm{log}p(x;\theta)}{\partial \theta^2}p(x;\theta)]dx+\int_{-\infty}^\infty[\frac{\partial\mathrm{log} p(x;\theta)}{\partial \theta}]^2p(x;\theta)dx
+0&=\frac{d^2}{d\theta^2}\int_{-\infty}^\infty p(x;\theta)dx\\
+&=\int_{-\infty}^{\infty}\frac{\partial}{\partial \theta}[\frac{\partial \mathrm{log }p(x;\theta)}{\partial \theta}p(x;\theta)]dx\\
+&=\int_{-\infty}^\infty[\frac{\partial^2\mathrm{log}p(x;\theta)}{\partial \theta^2}p(x;\theta)]dx+\int_{-\infty}^\infty[\frac{\partial\mathrm{log} p(x;\theta)}{\partial \theta}]^2p(x;\theta)dx
 \end{align}
-$$
+</script>
 从而
-$$
+<script type="math/tex; mode=display">
 I(\theta)=-E_\theta[\frac{\partial^2\mathrm{log}p(X;\theta)}{\partial \theta^2}]
-$$</p>
+</script>
+</p>
 </div>
 <p>最后，记$\theta$的真值为$\theta_0$.</p>
 <p>一个标准的结果表明最大似然估计量的样本分布服从极限正态分布
-$$
+<script type="math/tex; mode=display">
 \hat\theta\longrightarrow N(\theta_0,\mathbf i(\theta_0)^{-1})\qquad (8.16)
-$$
+</script>
 当$N\longrightarrow \infty$。这表明$\hat\theta$的样本分布可能近似服从
-$$
+<script type="math/tex; mode=display">
 N(\hat\theta,\mathbf i(\hat\theta)^{-1})\text{   or   }N(\hat{\theta},\mathbf I(\hat\theta)^{-1})\qquad (8.17)
-$$
+</script>
 其中，$\hat\theta$表示由观测数据得到的最大似然估计。</p>
 <p>$\hat\theta_j$的标准误差对应的估计由下式给出
-$$
-\sqrt{\mathbf i(\hat\theta)<em>{jj}^{-1}}\text{ and }\sqrt{\mathbf I(\hat\theta)^{-1}</em>{jj}}\qquad(8.18)
-$$
+<script type="math/tex; mode=display">
+\sqrt{\mathbf i(\hat\theta)_{jj}^{-1}}\text{ and }\sqrt{\mathbf I(\hat\theta)^{-1}_{jj}}\qquad(8.18)
+</script>
 $\theta_j$的置信点可以通过（8.17）的任意一个近似得到。这样的置信点分别有如下形式
-$$
-\hat\theta_j-z^{(1-\alpha)}\cdot\sqrt{\mathbf i(\hat\theta)<em>{jj}^{-1}}\text{ or }\hat\theta_j-z^{(1-\alpha)}\cdot\sqrt{\mathbf I(\hat\theta)</em>{jj}^{-1}}
-$$
+<script type="math/tex; mode=display">
+\hat\theta_j-z^{(1-\alpha)}\cdot\sqrt{\mathbf i(\hat\theta)_{jj}^{-1}}\text{ or }\hat\theta_j-z^{(1-\alpha)}\cdot\sqrt{\mathbf I(\hat\theta)_{jj}^{-1}}
+</script>
 其中$z^{(1-\alpha)}$为标准正态分布的$1-\alpha$分位数。更精确的置信区间可以由似然函数得到，通过利用卡方分布的近似
-$$
+<script type="math/tex; mode=display">
 2[\ell(\hat\theta)-\ell(\theta_0)]\sim \chi_p^2\qquad (8.19)
-$$
+</script>
 其中$p$为$\theta$组分的个数。$1-2\alpha$置信区间是所有满足$2[\ell(\hat\theta)-\ell(\theta_0)]\le {\chi_p^2}^{(1-2\alpha)}$,其中，${\chi_p^2}^{(1-2\alpha)}$是自由度为$p$卡方分布的$1-2\alpha$分位数。</p>
 <p>回到光滑化的例子看看最大似然法的结果。参数为$\theta=(\beta,\sigma^2)$.对数似然为
-$$
+<script type="math/tex; mode=display">
 \ell(\theta)=-\frac{N}{2}\mathbb{log}\sigma^22\pi-\frac{1}{2\sigma^2}\sum\limits_{i=1}^N(y_i-h(x_i)^T\beta)^2\qquad (8.20)
-$$
+</script>
 最大似然估计由$\partial \ell/\partial \beta=0$和$\partial \ell/\partial \sigma^2$给出
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-\hat\beta&amp;=\mathbf{(H^TH)H^Ty}\
-\hat\sigma&amp;=\frac{1}{N}\sum{(y_i-\hat\mu(x_i))^2}
+\hat\beta&=\mathbf{(H^TH)H^Ty}\\
+\hat\sigma&=\frac{1}{N}\sum{(y_i-\hat\mu(x_i))^2}
 \end{align}
 \qquad (8.21)
-$$
+</script>
 这与（8.2）给出的一般估计和（8.3）是一样的。</p>
 <p>对于$\theta=(\beta,\sigma^2)$的信息矩阵是分块对角，对应于$\beta$的对角元为
-$$
+<script type="math/tex; mode=display">
 \mathbf I(\beta)=\mathbf{(H^TH)}/\sigma^2\qquad (8.22)
-$$
+</script>
 因此估计的方差$\mathbf{(H^TH)}/\hat\sigma^2$与最小二乘一致。</p>
 <h2 id="_3">自助法和最大似然法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>本质上自助法是非参自助法或者参数自助法的计算机实现。与最大似然法相比自助法的好处是允许我们在没有公式的情况下计算标准误差和其他一些量的最大似然估计。</p>

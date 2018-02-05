@@ -2962,13 +2962,15 @@
 
 
 <p>为了生成$Y$，根据下式</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
-$$</p>
+</script>
+</p>
 <p>首先需要生成标准高斯的参数$\beta_j$，并根据
-$$
+<script type="math/tex; mode=display">
 \frac{Var[E(Y\mid X)]}{Var(\varepsilon)}=\frac{Var(f(X))}{Var(\varepsilon)}=2
-$$
+</script>
 来确定$\sigma$，从而确定误差项。</p>
 <div class="codehilite"><pre><span></span>genY <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>X<span class="p">){</span>
   N <span class="o">=</span> <span class="kp">nrow</span><span class="p">(</span>X<span class="p">)</span>

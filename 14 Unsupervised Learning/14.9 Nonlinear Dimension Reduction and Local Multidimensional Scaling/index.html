@@ -2860,19 +2860,22 @@
 <ol>
 <li>对每个$p$维中的数据点$x_i$，寻找欧式距离的K最近邻$\cal N(i)$</li>
 <li>对每个点用邻居点的混合仿射来近似
-$$
+<script type="math/tex; mode=display">
 \underset{W_{ik}}\Vert x_i-\sum\limits_{k\in\cal N(i)}w_{ik}x_k\Vert^2\qquad (14.102)
-$$
+</script>
 其中权重$w_{ik}$满足$w_{ik}=0, k\not\in \cal N(i), \sum_{k=1}^Nw_{ik}=1$。$w_{ik}$是点$k$对$i$点的重构的贡献。注意到为了得到唯一解，我们必须要求$K &lt; p$。</li>
 <li>最后，固定$w_{ik}$，在$d &lt; p$维空间中寻找点$y_i$来最小化
-$$
+<script type="math/tex; mode=display">
 \sum\limits_{i=1}^N\Vert y_i-\sum\limits_{k=1}^Nw_{ik}y_k\Vert^2\qquad (14.103)
-$$</li>
+</script>
+</li>
 </ol>
 <p>在第三步，我们最小化</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \tr [(\Y-\W\Y)^T(\Y-\W\Y)] = \tr[\Y^T(\I-\W)^T(\I-\W)\Y)]\qquad (14.104)
-$$</p>
+</script>
+</p>
 <p>其中$\W$是$N\times N$; $\Y$是$N\times d, d &lt; p$。$\hat \Y$的解是$\M=(\I-\W)^T(\I-\W)$的trailing eigenvectors(<a href="https://github.com/szcf-weiya/ESL-CN/issues/59">Issue 59</a>)。因为$\1$是特征值为0的平凡特征向量，所以我们舍弃它并且保留接下来的$d$个。这会产生额外的影响$\1^T\Y=0$，因此嵌入坐标(embedding coordinates)进行了中心化。</p>
 <p><strong>局部MDS</strong>（Chen and Buja, 2008<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>） 采用最简单的、而且可以说是最直接的方式。定义$\cal N$为邻居点的对称集；具体地，如果点$i$在$i&rsquo;$的$K$最近邻中，则点对$(i, i&rsquo;)$在$\cal N$中，反过来也是如此。</p>
 <div class="admonition note">
@@ -2880,13 +2883,17 @@ $$</p>
 <p>在<a href="https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html">14.7节</a>中的谱聚类的mutual K-nearest-neighbor graph也有用到$\cal N$。</p>
 </div>
 <p>于是我们构造压力函数</p>
-<p>$$
-S_L(z_1,z_2,\ldots, z_N) = \sum\limits_{(i,i&rsquo;)\in \cal N}(d_{ii&rsquo;}-\Vert z_i-z_{i&rsquo;}\Vert)^2 + \sum\limits_{(i,i&rsquo;)\not\in \cal N}w\cdot (D-\Vert z_i-z_{i&rsquo;}\Vert)^2\qquad (14.105)
-$$</p>
+<p>
+<script type="math/tex; mode=display">
+S_L(z_1,z_2,\ldots, z_N) = \sum\limits_{(i,i')\in \cal N}(d_{ii'}-\Vert z_i-z_{i'}\Vert)^2 + \sum\limits_{(i,i')\not\in \cal N}w\cdot (D-\Vert z_i-z_{i'}\Vert)^2\qquad (14.105)
+</script>
+</p>
 <p>这里$D$是某个较大的常数，$w$是权重。想法是将不是邻居的点看成是距离非常远；这些点对被赋予小权重$w$使得它们不会主导整个压力函数。为了简化表达式，取$w\sim 1/D$，并令$D\rightarrow \infty$。展开式(14.105)，得到</p>
-<p>$$
-S_L(z_1,z_2,\ldots, z_N)=\sum\limits_{(i, i&rsquo;)\in\cal N}(d_{ii&rsquo;}-\Vert z_i-z_{i&rsquo;})^2-\tau \sum\limits_{(i,i&rsquo;)\not \in \cal N}\Vert z_i-z_{i&rsquo;}\Vert\qquad (14.106)
-$$</p>
+<p>
+<script type="math/tex; mode=display">
+S_L(z_1,z_2,\ldots, z_N)=\sum\limits_{(i, i')\in\cal N}(d_{ii'}-\Vert z_i-z_{i'})^2-\tau \sum\limits_{(i,i')\not \in \cal N}\Vert z_i-z_{i'}\Vert\qquad (14.106)
+</script>
+</p>
 <p>其中$\tau =2wD$。式(14.106)试图保持数据的局部性质，而第二项促使非邻居对$(i, i&rsquo;)$的$z_i,z_{i&rsquo;}$更远。局部MDS在固定邻居个数$K$以及调整参数$\tau$的情况下，在$z_i$上最小化压力函数(14.106)。</p>
 <p>图14.44的右图显示了采用$k=2$个邻居和$\tau = 0.01$的局部MDS的结果。我们采用多个起始值的坐标下降来寻找(非凸)损失函数一个好的最小值。沿着曲线的点的顺序大部分都被保持了。</p>
 <p><img alt="" src="../../img/14/fig14.45.png" /></p>

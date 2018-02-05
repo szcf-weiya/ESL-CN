@@ -2962,18 +2962,19 @@
 <p>这是接着图7.3的例子的后续。</p>
 <p>采用AIC，BIC和SRM来对图7.3的例子来选择模型大小。对于KNN，模型指标$\alpha$指的是邻居的个数，而对于标着REG的来说$\alpha$为子集大小。采用每个选择方法（例如，AIC），我们估计最优模型$\hat \alpha$并且在测试集上找到真实的预测误差$Err_{\cal T}(\hat\alpha)$。对于同样的训练集，我们计算最优和最坏可能的模型选择的预测误差：$min_\alpha Err_{\cal T}(\alpha)$和$max_\alpha Err_{\cal T}(\alpha)$。
 考察下列比值，它表示采用选择的模型和最优模型的误差
-$$
+<script type="math/tex; mode=display">
 100\times \frac{Err_{\cal T}(\hat \alpha)-min_\alpha Err_{\cal T}(\alpha)}{max_\alpha Err_{\cal T}(\alpha)-min_\alpha Err_{\cal T}(\alpha)}
-$$
+</script>
 并作出箱线图。</p>
 <h2 id="_2">几个问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ol>
 <li>估计$\sigma_\epsilon^2$</li>
 </ol>
 <p>原书中提到
-$$
+<script type="math/tex; mode=display">
 [N/(N-d)]\cdot \overline{err}
-$$</p>
+</script>
+</p>
 <ol>
 <li>k最近邻的有效参数个数</li>
 </ol>

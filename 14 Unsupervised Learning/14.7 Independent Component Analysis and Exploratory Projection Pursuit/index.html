@@ -3021,39 +3021,47 @@
 <p>因子分析(Factor Analysis)是在统计学领域为了识别潜在因素的一个经典方法。因子分析模型通常是用在高斯分布中，某种程度上阻碍了它的适用性。最近，独立成分分析(Independent Component Analysis)成为了因子分析的强劲对手，我们将会看到，它对非高斯分布的依赖是其成功的根本来源。</p>
 <h2 id="_1">潜变量和因子分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>奇异值分解$\mathbf X=\mathbf{UDV}^T$(14.54)有潜变量的表示。记$\mathbf S=\sqrt{N}\mathbf U$，以及$\mathbf A^T=\mathbf{DV}^T/\sqrt{N}$，我们有$\mathbf{X=SA}^T$，因此$\mathbf X$的每一列是$\mathbf S$的列的线性组合。现在因为$\mathbf U$是正交的，并且和之前一样假设$\mathbf X$的列均值为0（因此$\mathbf U$也是），这意味着$\mathbf S$列均值为0，而且不相关，有单位方差。采用随机变量，我们可以把SVD或者对应的主成分分析看成是下列潜变量模型的一个估计</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{align}
-X_1&amp;=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_p\
-X_2&amp;=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p\
-\vdots &amp;\qquad\vdots\
-X_p&amp;=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p
+X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_p\\
+X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p\\
+\vdots &\qquad\vdots\\
+X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p
 \end{align}
 \qquad (14.78)
-$$</p>
+</script>
+</p>
 <p>或者简单地写成$X=\A S$。相关的$X_j$都表示称不相关的、单位方差的变量$S_\ell$的线性展开。尽管这不是太满意，因为对于任意给定的$p\times p$的正交矩阵$\R$，我们可以写出</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{align}
-X&amp;=\A S\
-&amp;=\A\R^T\R S
-&amp;=\A^<em>S^</em>
+X&=\A S\\
+&=\A\R^T\R S
+&=\A^*S^*
 \end{align}
 \qquad (14.79)
-$$</p>
+</script>
+</p>
 <p>并且$\Cov (S^*)=\R\Cov(S)\R^T=\I$。因此存在许多这样的分解，也因此不可能将任意特定的潜变量作为唯一的潜在来源。SVD分解确实有这样的性质，以最优的方式得到使得任意$q &lt; p$的截断分解。</p>
 <p>经典的因子分析模型，主要由心理测量学(psychometrics)的研究者发展而来。某种程度上缓解了这个问题；举个例子，Mardia et al. (1979)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。当$q &lt; p$，因子分析模型有如下形式</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{align}
-X_1&amp;=a_{11}S_1+a_{12}S_2+\cdots+a_{1q}S_q+\varepsilon_1\
-X_2&amp;=a_{21}S_1+a_{22}S_2+\cdots+a_{2q}S_q+\varepsilon_2\
-\vdots &amp;\qquad\vdots\
-X_p&amp;=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
+X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1q}S_q+\varepsilon_1\\
+X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2q}S_q+\varepsilon_2\\
+\vdots &\qquad\vdots\\
+X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
 \end{align}
 \qquad (14.80)
-$$</p>
+</script>
+</p>
 <p>或者写成$X=\A S+\epsilon$。这里$S$是 $q &lt; p$个揭示潜变量或者因子的向量，$\A$ 是$p\times q$的因子载荷(loadings)矩阵，$\varepsilon_j$是零均值不相干的扰动。想法是潜变量$S_\ell$是$X_j$公共方差的来源，意味着它们之间的相关性结构，而$\varepsilon_j$对每个$X_j$是唯一的，并且解释了剩下的方差。一般地，$S_\ell$和$\varepsilon_j$假设为高斯随机变量，并且采用极大似然法来拟合模型。参数都存在于下面的协方差阵中</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \Sigma=\A\A^T+\D_\varepsilon \qquad (14.81)
-$$</p>
+</script>
+</p>
 <p>其中$\D_\varepsilon = diag[\Var(\varepsilon_1),\ldots, \Var(\varepsilon_p)]$. $S_\ell$为高斯并且不相关，这使得它们在统计上是独立随机变量。因此一系列的教育考试成绩可以认为是有潜在独立的因子，比如智力(intelligence)，动机(drive)等等所决定的. $\A$的列被称为因子载荷(factor loadings)，而且用来命名因子和解释因子。</p>
 <p>不幸的是, 唯一性问题(14.79)仍然存在, 因为在式(14.81)中, 对于任意$q\times q$的正交矩阵$\R$, $\A$和 $\A\R^T$是等价的. 这导致了因子分析中的主观性, 因为用户可以寻找因子更易解释的旋转版本. 这点使得许多分析学家对因子分析表示怀疑, 而且这可能是它在当代统计中不受欢迎的原因。尽管我们这里不继续讨论细节，但是SVD分解在(14.81)的估计上发挥重要作用。举个例子，$\Var(\varepsilon_j)$假设相等，SVD的前$q$个成分确定了由$\A$张成的子空间。</p>
 <p>因为每个$X_j$独立的扰动$\varepsilon_j$，因子分析可以看成是对$X_j$的相关结构进行建模，而非对协方差结构建模。这个可以通过对(14.81)的协方差结构进行标准化后得到（练习14.14）。</p>
@@ -3071,13 +3079,13 @@ $$</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注: 独立与不相关</p>
 <p>统计上, 连续型随机变量$X$与 $Y$独立的定义为
-$$
+<script type="math/tex; mode=display">
 p(x, y)=p_X(x)p_Y(y)\;\forall x,y
-$$
+</script>
 而不相关的定义为
-$$
+<script type="math/tex; mode=display">
 Cov(X, Y)=0
-$$
+</script>
 独立意味着不相关，但反之不对。对于二元正态随机变量，两者等价。</p>
 </div>
 <p>直观上, 不相关确定了多元变量分布的二阶交叉矩(协方差), 而一般地, 统计独立确定了所有的交叉矩. 这些额外的矩条件能让我们找到唯一的$\A$. 因为多元正态分布只要二阶矩就可以确定, 因此这是一个特例, 任意高斯独立成分可以像之前一样乘以一个旋转来确定. 因此如果假设$S_\ell$是独立且非高斯的, 则可以避免(14.78)和(14.80)的唯一性问题.</p>
@@ -3086,52 +3094,58 @@ $$
 <p><img alt="" src="../../img/14/fig14.37.png" /></p>
 <p>图14.37显示了在分离两个混合信号例子中ICA的能力。这也是经典的cocktail party problem的一个例子，不同的麦克风$X_j$接受来自不同独立源$S_\ell$(音乐、不同人说的话等等)的混合信号. ICA通过利用原始信号源的独立性和非高斯性，能够进行盲信号分离(blind source separation).</p>
 <p>ICA许多流行的方式是基于熵. 密度为$g(y)$的随机变量$Y$的相对熵(differential entropy) $H$由下式给出</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 H(Y)=-\int g(y)\LOG g(y)dy\qquad (14.82)
-$$</p>
+</script>
+</p>
 <p>信息理论中一个著名的结论是在所有同方差的随机变量中，高斯随机变量有最大的熵。最后，随机向量$Y$的组分之间的互信息量(mutual information)$I(Y)$是独立性的一个自然度量:</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 I(Y)=\sum\limits_{j=1}^pH(Y_j)-H(Y)\qquad (14.83)
-$$</p>
+</script>
+</p>
 <p>值$I(Y)$称为$Y$的密度$g(y)$与其独立版本$\prod\limits_{j=1}^pg_j(y_j)$之间的Kullback-Leibler距离, 其中$g_j(y_j)$是 $Y_j$的边缘密度. 如果$X$有协方差$\I$, 且$Y=\A^TX$, 其中$\A$是正交, 则易证</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{align}
-I(Y)&amp;= \sum\limits_{j=1}^pH(X)-\LOG\vert \det\A\vert\qquad (14.84)\
-&amp;=\sum\limits_{j=1}^pH(Y_j)-H(X)\qquad (14.85)
+I(Y)&= \sum\limits_{j=1}^pH(X)-\LOG\vert \det\A\vert\qquad (14.84)\\
+&=\sum\limits_{j=1}^pH(Y_j)-H(X)\qquad (14.85)
 \end{align}
-$$</p>
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注: (14.85)的证明</p>
 <p>只要证
-$$
+<script type="math/tex; mode=display">
 H(Y)=H(X)+\LOG \vert \det \A \vert
-$$
+</script>
 对(14.82)进行变量替换有
-$$
-H(Y)=-\int g(\A&rsquo;x)\LOG g(\A&rsquo;x)\cdot \vert \det \J\vert dx\qquad (<em>)
-$$
+<script type="math/tex; mode=display">
+H(Y)=-\int g(\A'x)\LOG g(\A'x)\cdot \vert \det \J\vert dx\qquad (*)
+</script>
 其中$\J_{ij}=\frac{\partial y_i}{\partial x_j}$.
 又
-$$
-y_i = \sum\limits_{j=1}^p (\A&rsquo;)<em>{ij}x_j
-$$
+<script type="math/tex; mode=display">
+y_i = \sum\limits_{j=1}^p (\A')_{ij}x_j
+</script>
 故
-$$
-\J</em>{ij}=(\A&rsquo;)_{ij}
-$$
+<script type="math/tex; mode=display">
+\J_{ij}=(\A')_{ij}
+</script>
 所以$\det\J = \det \A&rsquo;=\det \A$.
 另外, $X$的密度函数为
-$$
-f(x)=g(\A&rsquo;x)\cdot\vert \det\J\vert 
-$$
-于是$(</em>)$式可以写成
-$$
+<script type="math/tex; mode=display">
+f(x)=g(\A'x)\cdot\vert \det\J\vert 
+</script>
+于是$(*)$式可以写成
+<script type="math/tex; mode=display">
 \begin{align}
-H(Y) &amp;= -\int \frac{f(x)}{\vert\det\A\vert} \LOG\frac{f(x)}{\vert\det\A\vert}\cdot\vert\det\A\vert dx\
-&amp;=-\int f(x)[\LOG f(x)-\LOG\vert\det\A\vert]dx\
-&amp;=H(X)+\LOG\vert\det\A\vert
+H(Y) &= -\int \frac{f(x)}{\vert\det\A\vert} \LOG\frac{f(x)}{\vert\det\A\vert}\cdot\vert\det\A\vert dx\\
+&=-\int f(x)[\LOG f(x)-\LOG\vert\det\A\vert]dx\\
+&=H(X)+\LOG\vert\det\A\vert
 \end{align}
-$$
+</script>
 证毕.</p>
 </div>
 <p>寻找$\A$来最小化$I(Y)=I(\A^TX)$也就是寻找使得组分间的独立性最强的正交变换. 考虑到式(14.84), 这等价于最小化$Y$的各组分的熵的和, 反过来意味着最大化它们与高斯分布的距离.</p>
@@ -3140,24 +3154,29 @@ $$
 <p>因为高斯随机变量的交叉熵最大, 则让各组分熵之和最小, 意味着各组分远离高斯分布.</p>
 </div>
 <p>为了简便, 与其采用熵$H(Y_j)$, Hyvärinen and Oja (2000)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>采用负熵(negentropy)$J(Y_j)$</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 J(Y_j) = H(Z_j)-H(Y_j)\qquad (14.86)
-$$</p>
+</script>
+</p>
 <p>其中$Z_j$是与$Y_j$同方差的高斯随机变量. 负熵是非负的, 它度量了$Y_j$与高斯随机变量之间的距离. 他们提出负熵的一个简单近似, 这个近似可以用来计算和优化数据. 图14.37至图14.39中的ICA都采用下面的近似</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 J(Y_j)\approx [EG(Y_j) - EG(Z_j)]^2\qquad (14.87)
-$$</p>
+</script>
+</p>
 <p>其中$G(u)=\frac 1a\LOG \cosh(au), 1\le a\le 2$. 当应用到实际数据时, 期望用数据的平均值代替. 这是这些作者们提供的<code>FastICA</code>软件中的一个选项. 更经典(以及不太鲁棒)的度量是基于四阶矩, 也因此可以通过峰度(kurtosis)来衡量与高斯分布的距离. 更多细节参见Hyvärinen and Oja (2000)<sup id="fnref3:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>. 在14.7.4节我们讨论他们寻找最优方向的近似牛顿算法.</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注:</p>
 <p>峰度是四阶标准矩
-$$
+<script type="math/tex; mode=display">
 Kurt(X)=\E\Big[
 \Big(
 \frac{X-\mu}{\sigma}
 \Big)^4
 \Big]
-$$</p>
+</script>
+</p>
 </div>
 <p>总结一下, ICA应用到多元数据中, 来寻找一系列的正交投影, 使得投影数据尽可能远离高斯分布. 采用白化后的数据(协方差为$\I$), 这意味着寻找尽可能独立的组分.</p>
 <p>ICA本质上从因子分析的一个解出发, 并且寻找一个旋转得到独立组分. 从这点看, ICA与在心理测量学中采用的传统方法“varimax”和“quartimax”一样, 仅仅是因子旋转的一种方式.</p>
@@ -3186,30 +3205,38 @@ $$</p>
 <p>Friedman and Tukey (1974)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>提出了探索投影寻踪(exploratory projection pursuit)，这是可视化高维数据的图象探索技巧。 他们的观点是高维数据的大多数低维（一维或二维）投影看起来是高斯分布的。 他们提出一系列projection indices的方法用于优化, 每个集中在与高斯分布的不同距离。自从他们最先提出该方法, 陆续有各种改进的建议(Huber, 1985<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>; Friedman, 1987<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>)， 以及交互式图形软件包Xgobi(Swayne et al., 1991<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>, 现在叫做GGobi)中实现的各种指标，包括熵。 这些投影指标与上文介绍的$J(Y_j)$形式一样， 其中$Y_j=a_j^TX$是$X$组分的标准化的线性组合。 实际上， 交叉熵的一些近似和替代与投影寻踪中提出的指标重合。 一般在投影寻踪中, 方向$a_j$不需要限制为正交。 Friedman (1987)<sup id="fnref2:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>将数据在选定的投影上转换使之看起来像高斯分布， 然后搜索接下来的方向。 尽管他们的出发点不一样， 但是ICA和探索投影寻踪非常相似， 至少这里描述的表示形式。</p>
 <h2 id="_6">独立分量分析的一种直接方法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>由定义知独立组分有如下联合乘积密度</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 f_S(s)=\prod\limits_{j=1}^pf_j(s_j)\qquad (14.88)
-$$</p>
+</script>
+</p>
 <p>所以这里展示一种采用广义可加模型(9.1节)来直接估计这个密度的方式. 全部细节可以在Hastie and Tibshirani (2003)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>中找到, 并且这个方法已经在<code>ProDenICA</code>的R包中实现了, 这可以在CRAN上下载.</p>
 <p>根据与高斯分布的距离的表示, 我们将每个$f_j$写成</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\qquad (14.89)
-$$</p>
+</script>
+</p>
 <p>这是倾斜的高斯密度. 这里$\phi$是标准高斯分布密度, 并且$g_j$满足密度函数所要求的标准化条件. 和之前一样假设$X$已经预处理, 观测数据$X=\A S$的对数似然为</p>
-<p>$$
-\ell(\A, {g_j}<em>1^p;\X)=\sum\limits</em>{i=1}^N\sum\limits_{j=1}^p[\LOG \phi(a_j^Tx_i)+g_j(a_j^Tx_i)]\qquad (14.90)
-$$</p>
+<p>
+<script type="math/tex; mode=display">
+\ell(\A, \{g_j\}_1^p;\X)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[\LOG \phi(a_j^Tx_i)+g_j(a_j^Tx_i)]\qquad (14.90)
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：</p>
 <p>(14.90)原书中$\phi$有下标$j$， 但是因为$\phi$为标准正态， 所以应该直接忽略下标， 原书中后面的(14.91)也确实没有下标。</p>
 </div>
 <p>我们希望在$\A$为正交且(14.89)定义的$g_j$的条件下, 最大化上式. 对$g_j$不添加额外的约束, 模型$(14.90)$是过参数化的, 所以我们最大化下面的正则化版本</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \sum\limits_{j=1}^p\Big[
 \frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
 \int \phi(t)e^{g_j(t)}dt - 
-\lambda_j\int{g_j^{(3)}}^2(t)dt
+\lambda_j\int\{g_j^{(3)}\}^2(t)dt
 \Big]\qquad (14.91)
-$$</p>
+</script>
+</p>
 <p>受Silverman (1986)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>的启发, 在(14.91)中, 我们(对每个$j$)减去了两个惩罚项:</p>
 <ul>
 <li>第一个在任意解$\hat g_j$上强制要求密度约束$\int \phi(t)e^{\hat g_j(t)}dt=1$</li>
@@ -3218,64 +3245,72 @@ $$</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：</p>
 <p>下面说明为什么第一个惩罚项能够对$\phi(t)e^{\hat g_j(t)}$的密度进行约束。假设随机变量$X$的密度函数为$f(x)$， 其似然函数为$g(x)\propto \LOG f(x)$，这个问题归结为说明
-$$
+<script type="math/tex; mode=display">
 A_0(g)=\frac 1n\sum g(x_i)
-$$
+</script>
 在$\int e^g=1$的约束下的$\arg\max$等于
-$$
+<script type="math/tex; mode=display">
 A(g)=\frac 1n\sum g(x_i)-\int exp(g(x))dx
-$$
+</script>
 的$\arg\max$。
 考虑$g^*=g-\LOG \int e^g$
 则
-$$
-\int e^{g^<em>}=\int e^{g(x)}\cdot \frac{1}{\int e^{g(t)}dt}dx=1
-$$
+<script type="math/tex; mode=display">
+\int e^{g^*}=\int e^{g(x)}\cdot \frac{1}{\int e^{g(t)}dt}dx=1
+</script>
 于是
-$$
-A(g^</em>)=A(g)+\int e^{g(x)}dx-\LOG(\int e^{g(x)}dx)-1
-$$
+<script type="math/tex; mode=display">
+A(g^*)=A(g)+\int e^{g(x)}dx-\LOG(\int e^{g(x)}dx)-1
+</script>
 因$t-\LOG t\ge 1, \forall t&gt;0$，当且仅当$t=1$取等号，
 则$A(g^*)\le A(g)$，也就是当且仅当$\int e^g = 1$时，$A(g)$会取得最大值，而这时候$A(g)=A_0(g)-1$，所以$A_0(g)$也会取得最大值。由此看出，$A_0(g)$在$\int e^g=1$的约束下的$\arg\max$等于（无约束的）$A(g)$的$\arg\max$。
 关于第二个点说得到四次样条，我想可以这样类比理解（但不严谨），我们知道四次样条有三阶连续的导函数，且对于<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.4%20Smoothing%20Splines/index.html">光滑样条（三次）</a>有如下形式
-$$
-RSS(f,\lambda)=\sum\limits_{i=1}^N{y_i-f(x_i)}^2+\lambda\int {f&rsquo;&lsquo;(t)}^2dt\qquad (5.9)
-$$
+<script type="math/tex; mode=display">
+RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\qquad (5.9)
+</script>
 可以类比看出第二个惩罚正是针对四次样条。</p>
 </div>
 <p>可以进一步证明每个解密度$\hat f_j=\phi e^{\hat g_j}$的均值为0, 方差为1(练习14.18). 当我们增大$\lambda_j$, 这些解近似标准高斯密度$\phi$. </p>
 <p><img alt="" src="../../img/14/alg14.3.png" /></p>
 <p>如在算法14.3中描述, 以一种轮换的方式优化(14.91)来拟合函数$g_i$和方向$a_j$.</p>
 <p>第2(a)步等价于半参密度估计，可以采用广义可加模型来求解。为了方便，我们取$p$个独立问题中的一个</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
 \int \phi(t)e^{g_j(t)}dt - 
-\lambda_j\int{g_j^{(3)}}^2(t)dt\qquad (14.92)
-$$</p>
+\lambda_j\int\{g_j^{(3)}\}^2(t)dt\qquad (14.92)
+</script>
+</p>
 <p>尽管(14.92)的第二个积分导出光滑样条， 但第一个积分比较困难， 需要近似。 我们构造一个$L$个值为$s_\ell^*$的细网格，这些值间距为$\Delta$、覆盖观测值$s_i$的取值范围， 并且统计得到的小块中$s_i$的个数：</p>
-<p>$$
-y_\ell^<em>=\frac{#s_i\in (s_\ell^</em>-\Delta/2, s_\ell^*+\Delta/2)}{N}\qquad (14.93)
-$$</p>
+<p>
+<script type="math/tex; mode=display">
+y_\ell^*=\frac{\#s_i\in (s_\ell^*-\Delta/2, s_\ell^*+\Delta/2)}{N}\qquad (14.93)
+</script>
+</p>
 <p>一般我们取$L$为1000就已经足够了。 则(14.92)可以近似为</p>
-<p>$$
-\sum\limits_{\ell=1}^L\Big{
-y_i^<em>[\LOG(\phi(s_\ell^</em>)) + g(s_\ell^<em>)]-\delta\phi(s_\ell^</em>)e^{g(s_\ell^*)}-\lambda\int (g^{3})^2ds\qquad (14.94)
-\Big}
-$$</p>
+<p>
+<script type="math/tex; mode=display">
+\sum\limits_{\ell=1}^L\Big\{
+y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta\phi(s_\ell^*)e^{g(s_\ell^*)}-\lambda\int (g^{3})^2ds\qquad (14.94)
+\Big\}
+</script>
+</p>
 <p>这个表达是可以看成是与惩罚的possion对数似然成比例， 其中响应变量为$y_\ell^*/\Delta$， 惩罚参数为$\lambda/\Delta$， 均值为$\mu(s)=\phi(s)e^{g(s)}$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/54">Issue 54</a>）。 这是一个广义可加样条模型(generalized additive spline model)(Hastie and Tibshirani, 1990<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Efron and Tibshirani, 1996<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>)， 其中的offset项为$\LOG \phi(s)$， 并且可以以$O(L)$的复杂度用牛顿算法进行拟合。 尽管要求四次样条， 但是实际中我们发现三次样条就足够了。 我们有$p$个调整参数$\lambda_j$需要设定， 在实际中我们使得它们相等， 然后通过有效自由度$\df(\lambda)$来确定光滑的程度。 我们的软件采用$5\df$作为默认值。</p>
 <p>算法14.3的2(b)要求在给定$\hat g_j$， 对$\A$进行优化。和式中仅仅第一项有涉及$\A$，并且因为$\A$是正交的， 则涉及$\phi$的所有项的集合不依赖$\A$（练习14.19）。因此我们需要最大化</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{align}
-C(\A) &amp;= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\qquad (14.95)\
-&amp;= \sum\limits_{j=1}^pC_j(a_j)
+C(\A) &= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\qquad (14.95)\\
+&= \sum\limits_{j=1}^pC_j(a_j)
 \end{align}
-$$</p>
+</script>
+</p>
 <p>$C(\A)$是拟合的密度与高斯密度间的对数似然比，而且可以看成是负熵(14.86)的一个估计， 其中每个$\hat g_j$就像(14.87)中的差异函数。第2(b)步中的固定点更新是修改后的牛顿法（练习14.20）：</p>
 <ol>
 <li>对于每个$j$，更新
-$$
-a_j\leftarrow \E{X\hat g_j&rsquo;(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j}\qquad (14.96)
-$$
+<script type="math/tex; mode=display">
+a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\qquad (14.96)
+</script>
 其中$\E$表示关于$x_i$的期望。因为$\hat g_j$是拟合的四次（或者三次）样条，则式中第一项和第二项已经计算好了。</li>
 <li>采用对称平方根变换将$\A$化为正交矩阵：$(\A\A^T)^{-\frac 12}\A$。如果$\A=\U\D\V^T$是$\A$的SVD分解，则易证$\A\leftarrow \U\V^T$。</li>
 </ol>
@@ -3286,30 +3321,32 @@ $$
 <div class="admonition note">
 <p class="admonition-title">weiya注：条件数</p>
 <p>矩阵$A$的条件数为
-$$
+<script type="math/tex; mode=display">
 \kappa(A) = \Vert A^{-1}\Vert\cdot \Vert A\Vert\ge \Vert A^{-1}\cdot A\Vert=1
-$$
+</script>
 若$\Vert\cdot \Vert$为二范数
-$$
+<script type="math/tex; mode=display">
 \kappa(A) = \frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}
-$$
+</script>
 其中$\sigma_\max(A)$和$\sigma_\min(A)$分别为$A$的最大和最小的奇异值。
 对于正规矩阵，即满足
-$$
+<script type="math/tex; mode=display">
 A^TA=AA^T
-$$
+</script>
 有
-$$
+<script type="math/tex; mode=display">
 \kappa(A)=\frac{\vert\lambda_\max(A)\vert}{\vert \lambda_\min(A)\vert}
-$$
+</script>
 其中$\lambda$为特征值。
 当$A$为单位阵时，$\kappa(A)=1$。</p>
 </div>
 <p>我们采用<code>FastICA</code>的R语言实现，采用(14.87)的负熵准则，<code>ProDenICA</code>也是这样。对于<code>KernelICA</code>，我们采用作者的MATLAB代码。因为搜索准则是非凸的，我们对每种方法采用5个随机初始值。每个算法都传入正交的混合矩阵$\A$（数据已经进行了白化），这可以用来比较产生的正交混合矩阵$\A_0$。我们采用Amari距离(Bach and Jordan, 2002<sup id="fnref2:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)来度量两个矩阵接近程度：</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)+
 \frac{1}{2p}\sum\limits_{j=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)\qquad (14.97)
-$$</p>
+</script>
+</p>
 <p>其中$r_{ij}=(\A_o\A^{-1})_{ij}$。图14.42的右图比较了真实矩阵与估计的矩阵的Amari距离（对数尺度下）。<code>ProDenICA</code>在所有的情形都可以与<code>FastICA</code>和<code>KernelICA</code>进行比较，并且在大多数混合情形下表现最好。</p>
 <div class="footnote">
 <hr />

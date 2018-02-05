@@ -2855,14 +2855,14 @@
 </blockquote>
 <p>对于$K$个类别的分类问题，在顶部有$K$个单元，第$k$个单元表示类别$k$的概率。有$K$个目标测量$Y_k,k=1,2,\ldots,K$,对于第$k$个类别编码为0-1变量。</p>
 <p>派生特征$Z_m$是由输入的线性组合得到的，然后目标$Y_k$被建模成$Z_m$线性组合的函数，
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-Z_m&amp;=\sigma(\alpha_{0m}+\alpha_m^TX),m=1,2,\ldots,M\
-T_k&amp;=\beta_{0k}+\beta_k^TZ,k=1,\ldots,K,\
-f_k(X)&amp;=g_k(T),k=1,\ldots,K
+Z_m&=\sigma(\alpha_{0m}+\alpha_m^TX),m=1,2,\ldots,M\\
+T_k&=\beta_{0k}+\beta_k^TZ,k=1,\ldots,K,\\
+f_k(X)&=g_k(T),k=1,\ldots,K
 \end{align}
 \qquad (11.5)
-$$
+</script>
 其中$Z=(Z_1,Z_2,\ldots,Z_M)$,以及$T=(T_1,T_2,\ldots,T_K)$</p>
 <p>激活函数$\sigma(v)$通常取sigmoid函数$\sigma(v)=1/(1+e^{-v})$; 图11.3展示了$1/(1+e^{-v})$的一个图象。有时$\sigma(v)$取为高斯径向基函数，得到所谓的径向基函数网络(radical basis function network)。</p>
 <p><img alt="" src="../../img/11/fig11.3.png" /></p>
@@ -2871,19 +2871,19 @@ $$
 </blockquote>
 <p>类似图11.2的神经网络图有时画一个额外的bias单元馈送到隐藏层和输出层的每个单元。将常数1看成是额外的输入特征，这个bias单元捕捉模型（11.5）的截距项$\alpha_{0m}$和$\beta_{0k}$</p>
 <p>输出函数$g_k(T)$允许对输出向量$T$进行最后的变换。对于回归，我们一般选择单位函数$g_k(T)=T_k$.在$K$类别分类问题的早期工作中也使用单位函数，但是后来丢弃了而采用softmax函数
-$$
+<script type="math/tex; mode=display">
 g_k(T)=\frac{e^{T_k}}{\sum\limits_{\ell=1}^Ke^{T_\ell}}\qquad (11.6)
-$$
+</script>
 这与在多重logit模型使用的变换完全一样（4.4节），而且得到正的估计值且和为。在4.2节，我们用线性激活函数讨论其他问题，特别是潜在的严重掩饰影响（masking effects）。</p>
 <p>网络的中间层的单元，计算派生的特征$Z_m$,被称作隐藏层因为值$Z_m$不是直接被观测到。一般地，正如在本章的最后的例子说明的那样，存在不止一个的隐藏层。我们可以把$Z_m$看成是原始输入$X$的基展开；神经网络则是用这些变换作为输入的标准的线性模型、或者是线性多重逻辑斯蒂模型。然而，这是一个在第5章中讨论的基展开技巧的重要改进；这里基函数的参数是从数据中学习。</p>
 <p>注意到如果$\sigma$为单位函数，则整个模型在输入中退化为线性模型。因此神经网络可以看成是线性模型的非线性的推广，可以应用到回归和分类。通过引入非线性变换$\sigma$，它可以显著扩大线性模型类别的种类。图11.3中，我们看到sigmoid函数激活率取决于$\alpha_m$的范数，并且如果$\Vert \alpha_m\Vert$非常小，单元实际作用在激活函数的线性部分。</p>
 <p>也注意到含一个隐藏层的神经网络模型实际上与前面讨论的投影寻踪模型是一样的。不同之处在于PPR模型采用非参函数$g_m(v)$,而神经网络模型采用一个基于$\sigma(v)$更简单的函数，变量里面有三个自由参数。具体点，将神经网络模型看成是一个PPR模型，我们有
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-g_m(w_m^TX)&amp;=\beta_m\sigma(\alpha_{0m}+\alpha_m^TX)\
-&amp;=\beta_m\sigma(\alpha_{0m}+\Vert \alpha_m\Vert(w_m^TX))\qquad (11.7)
+g_m(w_m^TX)&=\beta_m\sigma(\alpha_{0m}+\alpha_m^TX)\\
+&=\beta_m\sigma(\alpha_{0m}+\Vert \alpha_m\Vert(w_m^TX))\qquad (11.7)
 \end{align}
-$$
+</script>
 其中$w_m=\alpha_m/\Vert \alpha_m\Vert$是$m$元单位向量。因为$\sigma_{\beta,\alpha_0,s}(v)=\beta\sigma(\alpha_0+sv)$比更一般的非参函数$g(v)$复杂度更低，所以当一个神经网络可能使用20或100个这样的函数，而PPR模型一般使用更少的项（举个例子，$M=5$或10），也不觉得奇怪了。</p>
 <p>最后，我们注意到“神经网络”的名字源于它们一开始被看成人类大脑的模型而发展的事实。每个单元代表一个神经元，并且连接（图11.2中的连线）表示突触。在早期模型中，当传递到该单元的总信号超过某一阈值，神经元被激发。在上面的模型中，这对应$\sigma(Z)$和$g_m(T)$的阶梯函数的使用。后来神经网络被看成是非线性统计建模的一个有用工具，为了这一目的，阶梯函数对于优化来说不是充分地光滑。因此阶梯函数被更光滑的阈值函数来替代，阈值函数为图11.3的sigmoid函数。</p>
                 

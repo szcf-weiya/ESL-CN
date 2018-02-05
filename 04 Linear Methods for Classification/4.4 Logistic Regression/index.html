@@ -2953,89 +2953,92 @@
 </tbody>
 </table>
 <p>逻辑斯蒂回归来源于通过关于$x$的线性函数来建立$K$个类后验概率的模型的需要，同时保证它们的和为1且每一个都在$[0,1]$范围内。模型有如下形式
-$$
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-log\dfrac{Pr(G=1\mid X=x)}{Pr(G=K\mid X=x)}&amp;=\beta_{10}+\beta_1^Tx\
-log\dfrac{Pr(G=2\mid X=x)}{Pr(G=K\mid X=x)}&amp;=\beta_{20}+\beta_2^Tx\
-&amp;\ldots\
-log\dfrac{Pr(G=K-1\mid X=x)}{Pr(G=K\mid X=x)}&amp;=\beta_{(K-1)0}+\beta_{K-1}^Tx\
+log\dfrac{Pr(G=1\mid X=x)}{Pr(G=K\mid X=x)}&=\beta_{10}+\beta_1^Tx\\
+log\dfrac{Pr(G=2\mid X=x)}{Pr(G=K\mid X=x)}&=\beta_{20}+\beta_2^Tx\\
+&\ldots\\
+log\dfrac{Pr(G=K-1\mid X=x)}{Pr(G=K\mid X=x)}&=\beta_{(K-1)0}+\beta_{K-1}^Tx\\
 \end{array}
 \qquad (4.17)
-$$
+</script>
 模型由$K-1$个log-odds或logit变换来确定（反映了概率相加和为1的约束）。虽然模型采用最后一类来作为odds-rations的分母，分母的选择其实是任意的，因为在这个选择下估计是相等的。简单地计算得到
-$$
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-Pr(G=k\mid X=x)=\dfrac{exp(\beta_{k0}+\beta_k^Tx)}{1+\sum\limits_{\ell=1}^{K-1}exp(\beta_{\ell0+\beta_\ell^Tx})},&amp; k=1,\ldots, K-1\
-Pr(G=K\mid X=x)=\dfrac{1}{1+\sum\limits_{\ell=1}^{K-1}exp(\beta_{\ell0+\beta_\ell^Tx})}&amp;
+Pr(G=k\mid X=x)=\dfrac{exp(\beta_{k0}+\beta_k^Tx)}{1+\sum\limits_{\ell=1}^{K-1}exp(\beta_{\ell0+\beta_\ell^Tx})},& k=1,\ldots, K-1\\
+Pr(G=K\mid X=x)=\dfrac{1}{1+\sum\limits_{\ell=1}^{K-1}exp(\beta_{\ell0+\beta_\ell^Tx})}&
 \end{array}
 \qquad (4.18)
-$$
+</script>
 显然它们相加等于1。为了强调对参数集$\theta={\beta_{10},\beta_1^T,\ldots,\beta_{(K-1)0},\beta_{K-1}^T}$的依赖，我们将概率记为$p_k(x,\theta)$.</p>
 <p>当$K=2$时，模型非常简单，因为只有一个单线性函数。在生物统计应用中应用很广，因为经常会有二进制（两个类别）的响应变量。举个例子，病人获救或死亡，患心脏病和不患心脏病，或者某个条件存在与否。</p>
 <h2 id="441">4.4.1 拟合逻辑斯蒂回归模型<a class="headerlink" href="#441" title="Permanent link">&para;</a></h2>
 <p>逻辑斯蒂回归经常通过极大似然法，采用在给定$X$的条件下$G$的条件概率。因为$Pr(G\mid X)$完全明确了条件分布，多元正态是合适的选择。$N$个观测的概率密度的对数为
-$$
+<script type="math/tex; mode=display">
 \ell(\theta)=\sum\limits_{i=1}^Nlog\,p_{g_i}(x_i;\theta)\qquad (4.19)
-$$
+</script>
 其中，$p_k(x_i;\theta)=Pr(G=k\mid X=x_i;\theta)$</p>
 <p>我们将线性讨论两个类别的情形，因为算法可以相当简化。我们可以用0/1来对两个类别$g_i$的响应变量$y_i$进行编码，当$g_i=1$时$y_i=1$,当$g_i=2$时$y_i=0$.令$p_1(x;\theta)=p(x,\theta)$,$p_2(x;\theta)=1-p(x;\theta)$,概率的对数为
-$$
+<script type="math/tex; mode=display">
 \begin{array}{lll}
-\ell(\beta)&amp;=&amp;\sum\limits_{i=1}^N{y_ilogp(x_i;\beta)+(1-y_i)log(1-p(x_i;\beta))}\
-&amp;=&amp;\sum\limits_{i=1}^N{y_i\beta^Tx_i-log(1+e^{\beta^Tx_i})}
+\ell(\beta)&=&\sum\limits_{i=1}^N\{y_ilogp(x_i;\beta)+(1-y_i)log(1-p(x_i;\beta))\}\\
+&=&\sum\limits_{i=1}^N\{y_i\beta^Tx_i-log(1+e^{\beta^Tx_i})\}
 \end{array}
 \qquad (4.20)
-$$
+</script>
 这里$\beta={\beta_{10},\beta_1}$,而且我们假设输入向量$x_i$包含表示截距的项1.</p>
 <p>为了最大化概率的对数，我们令微分为0，得到
-$$
+<script type="math/tex; mode=display">
 \dfrac{\partial \ell(\beta)}{\partial \beta}=\sum\limits_{i=1}^Nx_i(y_i-p(x_i;\beta))=0,\qquad (4.21)
-$$
+</script>
 这是关于$\beta$的$p+1$个非线性等式。注意到因为$x_i$的第一个组分为1,第一个得分等式为$\sum_{i=1}^Ny_i=\sum_{i=1}^Np(x_i;\beta)$;期望的类别数与观测的个数一致（因此有两个类别）</p>
 <p>为了求解（4.21）的得分等式，我们采用Newton-Raphson算法，需要Hessian矩阵
-$$
+<script type="math/tex; mode=display">
 \dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T}=\sum\limits_{i=1}^Nx_ix_i^Tp(x_i;\beta)(1-p(x_i;\beta))\qquad (4.22)
-$$</p>
+</script>
+</p>
 <blockquote>
 <p>weiya注：</p>
 <p>Newton-Raphson 也就是我们熟知的牛顿迭代法
-$$
-x_{i+1}=x_i-\dfrac{f(x_i)}{f&rsquo;(x_i)}
-$$
+<script type="math/tex; mode=display">
+x_{i+1}=x_i-\dfrac{f(x_i)}{f'(x_i)}
+</script>
 </p>
 </blockquote>
 <p>以$\beta^{old}$开始，新的Newton更新为
-$$
+<script type="math/tex; mode=display">
 \beta^{new}=\beta^{old}-(\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T})^{-1}\dfrac{\partial \ell(\beta)}{\partial(\beta)}\qquad (4.23)
-$$
+</script>
 其中微分值由$\beta^{old}$处的值得到。</p>
 <p>把得分和Hessian写成矩阵形式是很方便的。记$\mathbf y$为$y_i$的值，$\mathbf X$是值为$x_i$的$N\times (p+1)$矩阵，$\mathbf p$是拟合概率的向量且第$i$个元素为$p(x_i;\beta^{odd})$，$\mathbf W$是第$i$个对角元为$p(x_i;\beta^{odd})(1-p(x_i;\beta^{odd}))$的$N\times N$的对角矩阵。则我们有</p>
 <blockquote>
 <p>weiya注：</p>
 <p>$\mathbf X=[x&rsquo;_1,x&rsquo;_2,\ldots,x&rsquo;_N]&rsquo;$</p>
 </blockquote>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-\dfrac{\partial \ell(\beta)}{\partial \beta}&amp;=\mathbf{X^T(y-p)}\qquad (4.24)\
-\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T}&amp;=-\mathbf{X^TWX}\qquad (4.25)
+\dfrac{\partial \ell(\beta)}{\partial \beta}&=\mathbf{X^T(y-p)}\qquad (4.24)\\
+\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T}&=-\mathbf{X^TWX}\qquad (4.25)
 \end{array}
-$$
+</script>
 牛顿迭代为
-$$
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-\beta^{new}&amp;=\beta^{old}+\mathbf{(X^TWX)^{-1}X^T(y-p)}\
-&amp;=\mathbf {(X^TWX)^{-1}X^TW(X\beta^{old}+W^{-1}(y-p))}\
-&amp;=\mathbf{(X^TWX)^{-1}X^TWz}\qquad (4.26)
+\beta^{new}&=\beta^{old}+\mathbf{(X^TWX)^{-1}X^T(y-p)}\\
+&=\mathbf {(X^TWX)^{-1}X^TW(X\beta^{old}+W^{-1}(y-p))}\\
+&=\mathbf{(X^TWX)^{-1}X^TWz}\qquad (4.26)
 \end{array}
-$$</p>
+</script>
+</p>
 <p>在第二和第三行我们已经重新把牛顿迭代表达成最小二乘迭代，响应变量为
-$$
+<script type="math/tex; mode=display">
 \mathbf z=\mathbf X\beta^{old}+\mathbf{W^{-1}(y-p)}\qquad (4.27)
-$$
+</script>
 有时也被称作调整后的响应变量。这些方程重复地进行求解，每一次迭代$\mathbf p$改变，因此$\mathbf W$和$\mathbf z$也改变。这个算法被称作是加权迭代最小二乘或者IRILS，因为每次迭代求解加权最小二乘问题：
-$$
+<script type="math/tex; mode=display">
 \beta^{new}\leftarrow arg\,\underset{\beta}{min}(\mathbf z-\mathbf X\beta)^T\mathbf W(\mathbf z-\mathbf X\beta)\qquad (4.28)
-$$
+</script>
 似乎$\beta=0$是迭代过程一个很好的初始值，尽管收敛性不会保证。一般地算法确实是收敛的，因为概率的对数是凹的，但是可以出现过收敛的情况。如果在罕见的情形下概率的对数值下降，对步长二分法会保证收敛性。</p>
 <p>对于多类别的情况$K\ge 3$,牛顿算法也可以表达成加权迭代最小二乘，只是对于每一个观测用一个$K-1$的响应向量和非对角系数矩阵。后者阻碍了任何简化算法，在这种情况下直接使用展开向量$\theta$数值上会更加方便（练习4.4）.另一种是坐标下降方法（3.8.6节）也可以有效地最大化概率的log值。R语言的glmnet包（Friedman等人2008a）可以有效地拟合$N$和$p$都非常大的逻辑斯蒂回归。尽管是为了拟合正规化模型设计的，但是对于非正规化的拟合也适用。</p>
 <p>逻辑斯蒂回归经常被用作一种数据分析和推断的工具，目标就是理解在解释输出时输入变量的角色。一般地，许多模型是通过寻找涉及变量的最简介的模型，很可能还有一些交叉项。下面的例子说明了涉及到的一些问题。</p>
@@ -3064,14 +3067,14 @@ $$
 <p>我们将在第5章再次用到这些数据，我们将会看到一些变量会有非线性影响，当进行合适的建模后不会被剔除模型。</p>
 <h2 id="443">4.4.3 二次拟合和推断<a class="headerlink" href="#443" title="Permanent link">&para;</a></h2>
 <p>极大似然法的参数估计$\hat\beta$满足自一致性关系：它们是加权最小二乘拟合的系数，其中响应变量为
-$$
+<script type="math/tex; mode=display">
 z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\qquad (4.29)
-$$
+</script>
 系数为$w_i=\hat p_i(1-\hat p_i)$，都依赖$\hat\beta$自身。除了提供了一个方便的算法，这和最小二乘的联系还有其它用处：
 - 加权的残差平方和是熟悉的Pearson卡方统计量
-$$
+<script type="math/tex; mode=display">
 \sum\limits_{i=1}^N\dfrac{(y_i-\hat p_i)^2}{\hat p_i(1-\hat p_i)}\qquad (4.30)
-$$
+</script>
 是一个对偏差的二次近似。
 - 极限概率理论表明如果模型是正确的，则$\hat\beta$为常数（比如，收缩到真实的$\beta$）
 - 中心极限定理证明$\hat \beta$的分布收敛到$N(\beta,\mathbf{(X^TWX)^{-1}})$。这个可以模仿正态理论推断直接从加权最小二乘得到。
@@ -3079,13 +3082,13 @@ $$
 <p>软件实现可以利用这些联系。举个例子，R中的广义线性模型（包括作为二项式模型族中的逻辑斯蒂回归）充分运用了他们。GLM（广义线性模型）对象可以当作线性模型对象来处理，而且所有对于线性模型可用的工具都可以自动应用起来。</p>
 <h2 id="444-l_1">4.4.4 $L_1$正则化逻辑斯蒂回归<a class="headerlink" href="#444-l_1" title="Permanent link">&para;</a></h2>
 <p>lasso中使用了$L_1$惩罚（3.4.2节）可以被应用到任意线性回归模型的变量选择和收缩上面。对于逻辑斯蒂回归，我们最大化（4.20）的带惩罚项的版本：
-$$
-\underset{\beta_0,\beta}{max}{\sum\limits_{i=1}^N[y_i(\beta_0+\beta^Tx_i)-log(1+e^{\beta_0+\beta^Tx_i})]-\lambda\sum\limits_{j=1}^p\vert \beta_j\vert}\qquad (4.31)
-$$
+<script type="math/tex; mode=display">
+\underset{\beta_0,\beta}{max}\{\sum\limits_{i=1}^N[y_i(\beta_0+\beta^Tx_i)-log(1+e^{\beta_0+\beta^Tx_i})]-\lambda\sum\limits_{j=1}^p\vert \beta_j\vert\}\qquad (4.31)
+</script>
 对于lasso，我们一般不对截距项进行惩罚，而且对预测变量标准化后加惩罚是有意义的。准则（4.31）是凹的，而且运用非线性编程方法可以找到一个解（举个例子，Koh等人2007）。另外，运用我们在4.4.1节运用的Netwon算法的二次逼近，我们可以通过重复应用加权的lasso算法求解（4.31）.有趣的是非零系数变量的得分等式（式4.24）有如下形式
-$$
+<script type="math/tex; mode=display">
 \mathbf {x_j^T(y-p)} = \lambda\cdot sign(\beta_j)\qquad (4.32)
-$$
+</script>
 这一般化了3.4.4节中的（3.58）；活跃变量在与残差的一般化相关性结合在一起。
 路径算法比如说lasso的LAR算法更加困难，因为系数曲线是逐段光滑而不是线性的。然而，可以通过二次逼近来实现。</p>
 <p>图4.13显示了4.4.2节南非心脏病数据的$L_1$正则化路径。这是通过R语言glmpath包（Park和Hastie）实现的，运用了凸优化的predictor-corrector方法确定了$\lambda$在哪个非零活跃集值发生改变（图中的垂直线）。这里直线看似线性的，在其它的例子中曲率将会更加明显。</p>
@@ -3096,34 +3099,34 @@ $$
 <p>坐标下降方法（3.8.6节）对于计算$\lambda$网格上的值的系数曲线是很有效的。R语言glmnet包（Friedman等人2008a）对于非常大的逻辑斯蒂回归问题拟合系数路径是非常有效的（$N$或$p$很大时）。他们的算法可以利用预测变量矩阵$X$的稀疏性，甚至对于大规模问题也适用。18.4节有更详细的解释，而且将会讨论$L_1$正则多项分布模型。</p>
 <h2 id="445-lda">4.4.5 逻辑斯蒂回归或者LDA？<a class="headerlink" href="#445-lda" title="Permanent link">&para;</a></h2>
 <p>在4.3节我们发现类别$k$和$K$类关于$x$线性函数的后验概率odds的对数（4.9）：
-$$
+<script type="math/tex; mode=display">
 \begin{array}{ll}
-log\dfrac{Pr(G=k\mid X=x)}{Pr(G=K\mid X=x)}&amp;=log\dfrac{\pi_k}{\pi_K}-\frac{1}{2}(\mu_k+\mu_K)^T\Sigma^{-1}(\mu_k-\mu_K)\
-&amp;=\alpha_{k0}+\alpha_k^Tx\qquad\qquad (4.33)
+log\dfrac{Pr(G=k\mid X=x)}{Pr(G=K\mid X=x)}&=log\dfrac{\pi_k}{\pi_K}-\frac{1}{2}(\mu_k+\mu_K)^T\Sigma^{-1}(\mu_k-\mu_K)\\
+&=\alpha_{k0}+\alpha_k^Tx\qquad\qquad (4.33)
 \end{array}
-$$
+</script>
 线性是因为对类别的概率密度函数做了正态性假设及协方差矩阵相等的假设。通过构造线性逻辑斯蒂模型（4.17）有线性logits:
-$$
+<script type="math/tex; mode=display">
 log\frac{Pr(G=k\mid X=x)}{Pr(G=K\mid X=x)}=\beta_{k0}+\beta_k^Tx\qquad (4.34)
-$$
+</script>
 看起来模型似乎是一样的。尽管它们确实有相同的形式，区别在于它们系数估计的方式。逻辑斯蒂回归模型更加一般，因为它做了更少的假设。我们可以把$X$和$G$的联合概率密度写成
-$$
+<script type="math/tex; mode=display">
 Pr(X,G=k)=Pr(X)Pr(G=k\mid X)\qquad (4.35)
-$$
+</script>
 其中$Pr(X)$为输入$X$的边缘概率密度。对于LDA和逻辑斯蒂回归，右边的第二项有线性logit形式
-$$
+<script type="math/tex; mode=display">
 Pr(G=k\mid X=x)=\dfrac{e^{\beta_{k0}+\beta_k^Tx}}{1+\sum_{\ell=1}^{K-1}e^{\beta_{\ell0+\beta_\ell^Tx}}}\qquad (4.36)
-$$
+</script>
 我们再一次任意地选择最后一类作为标准。</p>
 <p>逻辑斯蒂回归模型使得$X$的边缘概率密度为一个任意的边界密度函数$Pr(X)$，然后通过最大化条件概率（$Pr(G=k\mid X)$的多项式概率）来拟合$Pr(G\mid X)$的参数。尽管$Pr(X)$完全忽略掉，我们可以把边缘密度作为在全部非参和无约束情形下的估计，采用在每个观测值上权重为$1/N$的经验分布函数。</p>
 <p>进行LDA时，我们通过基于下面的联合密度来最大化概率的对数值进行拟合参数
-$$
+<script type="math/tex; mode=display">
 Pr(X,G=k)=\phi(X;\mu_k,\Sigma)\pi_k\qquad (4.37)
-$$
+</script>
 其中$\phi$是高斯密度函数。标准正态的理论更容易估计4.3节的$\hat\mu_k,\hat\Sigma$和$\hat\pi_k$.因为（4.3）形式的逻辑斯蒂回归的线性参数是高斯分布参数的函数，我们通过插入对应的估计得到它们的极大似然估计。然而，不像在有条件的情形下，$Pr(X)$的边缘密度起着重要作用。它是一个混合密度
-$$
+<script type="math/tex; mode=display">
 Pr(X)=\sum\limits_{k=1}^K\pi_k\phi(X;\mu_k,\Sigma)\qquad (4.38)
-$$
+</script>
 同样涉及到参数。</p>
 <p>自己增加的成分/限制起着什么作用呢？通过对额外模型假设的依赖，我们得到参数更多的信息，因此可以更加有效地估计它们（低方差）。如果事实上$f_k(x)$的真实分布为高斯，则忽略密度的边缘项最坏的情形是在误差率上有近似30%的效率损失（Efron，1975）。换句话说：当再有30%的数据，条件概率同样做得很好。</p>
 <p>举个例子，远离判别边界的观测点（它们被逻辑斯蒂回归down-weighted）在估计斜方差阵中起着作用。这不是一个好消息，因为这意味着LDA对于重大的边界点不够稳健。</p>

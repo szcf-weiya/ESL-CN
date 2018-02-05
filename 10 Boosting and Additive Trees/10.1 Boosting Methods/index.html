@@ -2906,14 +2906,18 @@
 </div>
 <p>boosting是在最近20年内提出的最有力的学习方法。最初是为了分类问题而设计的，但是我们将在这章中看到，它也可以很好地扩展到回归问题上。boosting的动机是集合许多弱学习的结果来得到有用的“committee”。从这点看boosting与bagging以及其他的基于committee的方式（8.8节）类似。然而，我们应该看到这种联系最多是表面上的，boosting在根本上存在不同。</p>
 <p>我们以最流行的被称为“AdaBoost.M1”的boosting算法开始，这归功于Freund and Schapire (1997)。考虑两个类别的分类问题，输入变量编码为$Y\in\{-1,1\}$。给定预报向量$X$，分类器$G(X)$在二值$\{-1,1\}$中取一个值得到一个预测。在训练样本上的误差率是</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \overline{err}=\frac{1}{N}\sum\limits_{i=1}^NI(y_i\neq G(x_i))
-$$</p>
+</script>
+</p>
 <p>在未来预测值上的期望误差率为$E_{XY}I(Y\neq G(X))$</p>
 <p>弱分类器是误差率仅仅比随机猜测要好一点的分类器。boosting的目的是依次对反复修改的数据引用弱分类器算法，因此得到弱分类器序列$G_m(x),m=1,2,\ldots,M$ 根据它们得到的预测再通过一个加权来得到最终的预测</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\qquad (10.1)
-$$</p>
+</script>
+</p>
 <p>这里$\alpha_1,\alpha_2,\ldots,\alpha_M$通过boosting算法进行计算，它们对每个单独的$G_m(x)$的贡献度赋予权重。它们的作用是赋予分类器序列中更精确的分类器更大的影响力。图10.1显示了AdaBoost过程的概要图。</p>
 <p><img alt="" src="../../img/10/fig10.1.png" /></p>
 <blockquote>
@@ -2924,16 +2928,16 @@ $$</p>
 <p><img alt="" src="../../img/10/alg10.1.png" /></p>
 <p>在Firedman et al.(2000) 的工作中，AdaBoost.M1算法也称作“离散 AdaBoost”，因为基分类器$G_m(x)$返回一个离散的类别标签。如果基分类器返回实值预测（如映射到[-1,1]的概率），AdaBoost可以合适地修改（见Firedman et al. (2000) 的“Real AdaBoost”）</p>
 <p>AdaBoost显著提高非常弱的分类器的效果的能力展现在图10.2中。特征$X_1,\ldots,X_{10}$是标准独立高斯分布，目标$Y$定义如下
-$$
+<script type="math/tex; mode=display">
 Y=
-\left{
+\left\{
 \begin{array}{ll}
-1&amp;\text{if } \sum_{j=1}^{10}X_j^2&gt;\chi_{10}^2(0.5)\
--1 &amp; \text{otherwise}
+1&\text{if } \sum_{j=1}^{10}X_j^2>\chi_{10}^2(0.5)\\
+-1 & \text{otherwise}
 \end{array}
 \right.
 \qquad (10.2)
-$$
+</script>
 这里$\chi_{10}^2(0.5)=9.34$是自由度为10的卡方随机变量的中位数（10个标准的高斯分布的平方和）。有2000个训练情形，每个类别大概有1000个情形，以及10000个测试观测值。这里的弱分类器仅仅是一个“stump”：含两个终止结点的分类树。仅仅对训练数据应用分类器会得到非常差的测试集误差率（45.8%），与50%的随机猜测相差不多。然而，当不断进行boosting迭代，误差率将稳定下降，直到400次迭代之后达到5.8%。因此，对这一简单的非常弱的分类器进行boosting，其预测误差率可以几乎降低四分之一。它也比单个的大规模分类树（误差率为24.7%）表现得要好。自从它的提出，有很多理论来解释AdaBoost能成功得到正确分类器。很多工作集中在用分类树作为“基学习者(base learner)”G(x)，改善经常是非常显著的。事实上，Breiman(NIPS Workshop，1996)将树的AdaBoost作为“世界上最好的现成分类器”(best off-the-shelf classifier in
 the world)。这对于数据挖掘方面的应用尤其如此，本章的后面将更全面地讨论。</p>
 <p><img alt="" src="../../img/10/fig10.2.png" /></p>

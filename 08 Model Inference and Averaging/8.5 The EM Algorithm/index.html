@@ -2955,45 +2955,46 @@
 <p>表8.1. 图8.5中两个组分混合的例子中使用的20个模拟数据。</p>
 </blockquote>
 <p>我们想要建立数据点的密度模型，然后由于数据点呈现明显的双峰，高斯分布不是合适的选择。这里似乎有两个潜在的分开的形式，所以我们将$Y$作为两个正态分布混合的模型：
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-Y_1&amp;\sim N(\mu_1,\sigma^2_1)\
-Y_2&amp;\sim N(\mu_2,\sigma_2^2)\qquad \qquad \qquad\qquad(8.36)\
-Y&amp;=(1-\Delta)\cdot Y_1 + \Delta\cdot Y_2
+Y_1&\sim N(\mu_1,\sigma^2_1)\\
+Y_2&\sim N(\mu_2,\sigma_2^2)\qquad \qquad \qquad\qquad(8.36)\\
+Y&=(1-\Delta)\cdot Y_1 + \Delta\cdot Y_2
 \end{align}
-$$
+</script>
 其中$\Delta\in {0,1}$,且$Pr(\Delta =1)=\pi$. 产生过程是很显然的：以概率$\pi$产生$\Delta\in\{0,1\}$,然后根据输出结果，分配给$Y_1$或$Y_2$.令$\phi_{\theta}(x)$记为参数为$\theta=(\mu,\sigma^2)$的正态分布。则$Y$的密度为
-$$
+<script type="math/tex; mode=display">
 g_Y(y)=(1-\pi)\phi_{\theta_1}(y)+\pi\phi_{\theta_2}(y)\qquad (8.37)
-$$
+</script>
 现在假设我们希望通过极大似然估计来拟合图8.5中数据的模型。参数为
-$$
+<script type="math/tex; mode=display">
 \theta=(\pi,\theta_1,\theta_2)=(\pi,\mu_1,\sigma^2_1,\mu_2,\sigma_2^2)\qquad (8.38)
-$$
+</script>
 基于$N$个训练集的对数概率为
-$$
+<script type="math/tex; mode=display">
 \ell(\theta;\mathbf Z)=\sum\limits_{i=1}^Nlog[(1-\pi)\phi_{\theta_1}(y_i)+\pi\phi_{\theta_2}(y_i)]\qquad (8.39)
-$$
+</script>
 直接对$\ell(\theta;\mathbf Z)$进行最大化在数值上是很困难的，因为求和项在log函数里面。然而，这里有一个更简单的方式。我们考虑一个类似（8.36）中取0或1的潜变量$\Delta_i$：若$\Delta_i=1$则 $Y_i$来自模型2，否则来自模型1.假设我们已经知道了$\Delta_i$的值。则对数概率为
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-\ell_0(\theta;\bf Z,\bf{\Delta})&amp;=\sum\limits_{i=1}^N[(1-\Delta_i)log\phi_{\theta_1}(y_i)+\Delta_ilog\phi_{\theta_2}(y_i)]\
-&amp;+\sum\limits_{i=1}^N[(1-\Delta_i)log(1-\pi)+\Delta_ilog\pi]\qquad(8.40)
+\ell_0(\theta;\bf Z,\bf{\Delta})&=\sum\limits_{i=1}^N[(1-\Delta_i)log\phi_{\theta_1}(y_i)+\Delta_ilog\phi_{\theta_2}(y_i)]\\
+&+\sum\limits_{i=1}^N[(1-\Delta_i)log(1-\pi)+\Delta_ilog\pi]\qquad(8.40)
 \end{align}
-$$</p>
+</script>
+</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
 <p>假设我们已经知道$\Delta_i$的值，设$\Delta_i=0,i\in \cal I$，且$ \Delta_i=1,i\in\cal J$。注意到$p(\Delta_i=0)=1-\pi;p(\Delta_i=1)=\pi$，则似然函数为
-$$
+<script type="math/tex; mode=display">
 L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi_{\theta_1}(y_i)\prod\limits_{i\in \cal J}\Delta_i\pi\phi_{\theta_2}(y_i)
-$$
+</script>
 上式$i\in \cal I$部分，乘以$(1-\Delta_i)$也就相当于乘以1，同理对于$i\in \cal J$。这样取对数似然便有(8.40)式。</p>
 </div>
 <p>而且$\mu_1$和$\sigma_1^2$的极大似然估计为$\Delta_i=0$时样本均值和方差，类似地对于$\mu_2$和$\sigma_2^2$的极大似然估计为$\Delta_i=1$时的样本均值和方差。$\pi$的估计为$\Delta_i=1$的比例。</p>
 <p>因为$\Delta_i$的值实际上是不知道的，我们用一种迭代方式，替换（8.40）中的每个$\Delta_i$，它的期望值
-$$
+<script type="math/tex; mode=display">
 \gamma_i(\theta)=E(\Delta_i\mid\theta,\mathbf Z)=Pr(\Delta_i=1\mid \theta,\mathbf Z)\qquad (8.41)
-$$
+</script>
 也称为模型2对于每个观测$i$的责任（responsibility）。我们用一种称作EM算法（算法8.1中给出）的过程来求解这个特殊的高斯混合模型。在期望（expectation）这一步，我们对每一个模型的每一个观测做一个软赋值：根据每个模型下训练集点的相对密度，参数的当前估计用来给responsibilities赋值。在最大化（maximization）那一步，加权极大似然估计中使用的responsibilities用来更新参数估计。</p>
 <p>构造初始的$\hat\mu_1$和$\hat\mu_2$的一种很好的方式便是简单地随机选择$y_i$中的两个值。$\hat\sigma^2_1$和$\hat\sigma^2_2$都等于整体的样本方差$\sum_{i=1}^N(y_i-\hat y)^2/N$.最大比例的$\hat\pi$可以从0.5开始。</p>
 <p>注意到实际中概率的最大值发生在当我们固定一个数据点，换句话说，对于一些$i$令$\hat\mu_1=y_i$,$\hat\sigma^2_1=0$.这给出了无限大的概率，但是这不是一个有用的解。因此实际上我们寻找概率的一个良好的局部最大值，满足$\hat\sigma^2_1,\hat\sigma^2_2&gt;0$。进一步，可以有多个局部最大值满足$\hat\sigma^2_1,\hat\sigma^2_2&gt;0$.在我们例子中，我们用一系列不同的初始参数值来运行EM算法，所有的都满足$\hat\sigma^2_k&gt;0.5$,然后选择使得概率最大的那个。图8.6显示了在最大化对数概率的EM算法的过程。表8.2显示了在给定迭代次数的EM过程下$\hat\pi=\sum_i\hat\gamma_i/N$是类别2中观测值比例的极大似然估计。</p>
@@ -3007,11 +3008,11 @@ $$
 <p>图8.6. EM算法：观测数据的对数似然关于迭代次数的函数</p>
 </blockquote>
 <p>最后的极大似然估计为
-$$
-\hat\mu_1=4.62\qquad \sigma^2_1=0.87\
-\hat\mu_2=1.06\qquad \sigma^2_2=0.77\
+<script type="math/tex; mode=display">
+\hat\mu_1=4.62\qquad \sigma^2_1=0.87\\
+\hat\mu_2=1.06\qquad \sigma^2_2=0.77\\
 \hat\pi=0.546
-$$
+</script>
 图8.5的右图显示了从这个过程估计的混合高斯分布的密度（实心红色曲线），以及responsibilities（绿色点曲线）。注意到混合在监督学习中也很有用；在6.7节我们显示了高斯混合模型怎样导出radial基函数的版本。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注<p>自己实现了上述的模拟过程，具体R代码在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">这里</a></p>
@@ -3024,61 +3025,61 @@ $$
 <p>在我们的混合例子中，$E(\ell_0(\theta&rsquo;;\mathbf T)\mid \mathbf Z,\hat \theta^{(j)})$是式（8.40），至少后者中的$\Delta_i$替换成了解释度$\hat\gamma_i(\hat \theta)$.第三步的最大化仅仅是加权均值和方差。</p>
 <p>我们现在给出一个为什么一般情况下EM算法有用的解释。</p>
 <p>因为
-$$
-Pr(\mathbf Z^m\mid \mathbf Z,\theta&rsquo;)=\frac{Pr(\mathbf Z^m,\mathbf Z\mid \theta&rsquo;)}{Pr(\mathbf Z\mid \theta&rsquo;)}\qquad (8.44)
-$$
+<script type="math/tex; mode=display">
+Pr(\mathbf Z^m\mid \mathbf Z,\theta')=\frac{Pr(\mathbf Z^m,\mathbf Z\mid \theta')}{Pr(\mathbf Z\mid \theta')}\qquad (8.44)
+</script>
 我们可以写成
-$$
-Pr(\mathbf Z\mid \theta&rsquo;)=\frac{Pr(\mathbf T\mid \theta&rsquo;)}{Pr(\mathbf Z^m\mid \mathbf Z,\theta&rsquo;)}\qquad (8.45)
-$$
+<script type="math/tex; mode=display">
+Pr(\mathbf Z\mid \theta')=\frac{Pr(\mathbf T\mid \theta')}{Pr(\mathbf Z^m\mid \mathbf Z,\theta')}\qquad (8.45)
+</script>
 表示成对数似然函数，我们有$\ell(\theta&rsquo;;\mathbf Z)=\ell_0(\theta&rsquo;;\mathbf T)-\ell_1(\theta&rsquo;;\mathbf{Z^m\mid Z})$，其中$\ell_1$是基于条件密度$Pr(\mathbf{Z^m\mid Z,\theta&rsquo;})$.取关于由参数$\theta$确定的$\mathbf{T\mid Z}$分布的条件期望有
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-\ell(\theta&rsquo;;\mathbf Z)&amp;=E[\ell_0(\theta&rsquo;;\mathbf T)\mid \mathbf Z,\theta]-E[\ell_1(\theta&rsquo;;\mathbf{Z^m\mid Z)\mid Z,\theta}]\
-&amp;\equiv Q(\theta&rsquo;,\theta)-R(\theta&rsquo;,\theta)\qquad\qquad (8.46)
+\ell(\theta';\mathbf Z)&=E[\ell_0(\theta';\mathbf T)\mid \mathbf Z,\theta]-E[\ell_1(\theta';\mathbf{Z^m\mid Z)\mid Z,\theta}]\\
+&\equiv Q(\theta',\theta)-R(\theta',\theta)\qquad\qquad (8.46)
 \end{align}
-$$
+</script>
 在最大化那一步，EM算法最大化关于$\theta&rsquo;$的$Q(\theta&rsquo;,\theta)$,而不是实际的目标函数$\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化$\ell(\theta&rsquo;;\mathbf Z)$？注意到$R(\theta^*,\theta)$是由$\theta^*$指示的密度的期望，这个密度同时由$\theta$指示，因此（由琴生不等式）当$\theta^*=\theta$时（见练习8.1）最大化关于$\theta^*$的函数。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注<p>练习8.1如下：
 <img alt="" src="../../img/08/ex8.1.png" />
 证明想法如下:
 在给定$Y=y$的情况下，记$x=r(y), c=q(y)$
-$$
+<script type="math/tex; mode=display">
 \phi(x)=-\mathrm{log}\frac{c}{x}=\mathrm{log}x-\mathrm{log}c
-$$
+</script>
 为凸函数，则有
-$$
+<script type="math/tex; mode=display">
 \E(\LOG(\frac{r(y)}{q(y)}))=\E(-\LOG(\frac{q(y)}{r(y)}))\ge-\LOG\frac{q(y)}{E(r(y))}=\LOG \E\frac{r(y)}{q(y)}
-$$
+</script>
 当$r(y)=q(y)$时取等。
 于是$\E(\LOG r(Y)/q(Y))$在$r(y)=q(y)$时取等。
 对于$R(\theta&rsquo;,\theta)$，我们有
-$$
-R(\theta&rsquo;,\theta)=\frac{\E (\1_{\mathbf Z,\theta}\ell_1(\theta&rsquo;;\mathbf Z^m\mid \mathbf Z))}{P(\mathbf Z,\theta)}
-$$
+<script type="math/tex; mode=display">
+R(\theta',\theta)=\frac{\E (\1_{\mathbf Z,\theta}\ell_1(\theta';\mathbf Z^m\mid \mathbf Z))}{P(\mathbf Z,\theta)}
+</script>
 注意到$\ell_1$其实是对数似然，分母为是与$\theta$有关的常数，所以满足题目中结论的形式，于是$R(\theta,\theta)\ge R(\theta&rsquo;,\theta)$</p>
 </p>
 </div>
 <p>所以如果$\theta&rsquo;$最大化$Q(\theta&rsquo;,\theta)$,我们可以看到
-$$
+<script type="math/tex; mode=display">
 \begin{align}
-\ell(\theta&rsquo;;\mathbf Z) - \ell(\theta;\mathbf Z) &amp;= [Q(\theta&rsquo;,\theta)-Q(\theta,\theta)]-[R(\theta&rsquo;,\theta)-R(\theta,\theta)]\
-&amp;\ge 0\qquad\qquad\qquad \qquad (8.47)
+\ell(\theta';\mathbf Z) - \ell(\theta;\mathbf Z) &= [Q(\theta',\theta)-Q(\theta,\theta)]-[R(\theta',\theta)-R(\theta,\theta)]\\
+&\ge 0\qquad\qquad\qquad \qquad (8.47)
 \end{align}
-$$
+</script>
 因此EM迭代不会降低对数似然值。</p>
 <p>这个论据也让我们明白在最大化那一步整体最大化不是必要的：我们仅仅需要找到一个值$\hat\theta^{(j+1)}$使得$Q(\theta&rsquo;,\hat\theta^{(j)})$关于第一个变量是增的，也就是$Q(\hat\theta^{(j+1)},\hat\theta^{(j)}) &gt; Q(\hat\theta^{(j)},\hat\theta^{(j)})$.这一过程称之为GEM（广义EM）算法。EM算法也可以看成是最小化的过程：见练习8.7.</p>
 <h2 id="em-">EM作为一个最大化-最大化的过程<a class="headerlink" href="#em-" title="Permanent link">&para;</a></h2>
 <p>这里从一个不同的角度来看EM过程，看成一个联合最大化算法。考虑函数
-$$
-F(\theta&rsquo;,\tilde P) = E_{\tilde P}[\ell_0(\theta&rsquo;;\mathbf T)] - E_{\tilde P}[\mathrm{log}\tilde P(\mathbf Z^m)]\qquad (8.48)
-$$
+<script type="math/tex; mode=display">
+F(\theta',\tilde P) = E_{\tilde P}[\ell_0(\theta';\mathbf T)] - E_{\tilde P}[\mathrm{log}\tilde P(\mathbf Z^m)]\qquad (8.48)
+</script>
 这里$\tilde P(\mathbf Z^m)$是关于潜在数据$\mathbf Z^m$的任意分布。在混合例子中，$\tilde P(\mathbf Z^m)$包含概率集合$\gamma_i=Pr(\Delta_i=1\mid \theta,\mathbf Z)$。注意到从(8.46)式看，$F$在$\tilde P(\mathbf Z^m)=Pr(\mathbf Z^m\mid \mathbf Z,\theta&rsquo;)$取值，它是观测数据的对数似然函数（（8.46）式对所有$\theta$都成立，包含$\theta=\theta&rsquo;$）。函数$F$扩大了对数似然的定义域来帮助最大化过程。</p>
 <p>EM算法可以看成$F$关于$\theta&rsquo;$和$\tilde P(\mathbf Z^m)$的联合最大化，通过固定一个变量来最大化另外一个变量。固定$\theta&rsquo;$来对$\tilde P(\mathbf Z^m)$最大化可以证明是
-$$
-\tilde P(\mathbf Z^m) = Pr(\mathbf Z^m\mid \mathbf Z,\theta&rsquo;)\qquad (8.49)
-$$
+<script type="math/tex; mode=display">
+\tilde P(\mathbf Z^m) = Pr(\mathbf Z^m\mid \mathbf Z,\theta')\qquad (8.49)
+</script>
 （练习8.2）.这是在求期望的步骤E计算得到的分布，举个例子，如在混合的例子中计算得到的（8.42）。在最大化的步骤M，我们固定$\tilde P$来对$\theta&rsquo;$最大化$F(\theta&rsquo;,\tilde P)$：因为第二项不涉及$\theta&rsquo;$,所以这与最大化第一项$E_{\tilde P}[\ell_0(\theta&rsquo;;\mathbf T)\mid \mathbf Z,\theta]$是一样的。</p>
 <p><img alt="" src="../../img/08/fig8.7.png" /></p>
 <blockquote>
