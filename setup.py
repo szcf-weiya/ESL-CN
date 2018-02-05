@@ -4,7 +4,7 @@ VERSION = '0.0.1'
 
 
 setup(
-    name="mkdocs-yeti",
+    name="mkdocs-imaterial",
     version=VERSION,
     url='',
     license='',
@@ -15,7 +15,7 @@ setup(
     include_package_data=True,
     entry_points={
         'mkdocs.themes': [
-            'yeti = yeti',
+            'imaterial = material',
         ]
     },
     zip_safe=False

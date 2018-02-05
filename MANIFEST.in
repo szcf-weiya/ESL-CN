@@ -1,0 +1,3 @@
+recursive-include material *.js *.css *.html *.svg *.png *.yml
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

@@ -22,6 +22,7 @@
       {% elif config.site_author %}
         <meta name="author" content="{{ config.site_author }}">
       {% endif %}
+      {% if config.enable_search %}
       {% for key in [
         "clipboard.copy",
         "clipboard.copied",
@@ -34,9 +35,17 @@
         "search.tokenizer"
       ] %}
         <meta name="lang:{{ key }}" content="{{ lang.t(key) }}">
-      {% endfor %}
+	{% endfor %}
+	{% else %}
+	{% for key in [
+        "clipboard.copy",
+        "clipboard.copied"
+	] %}
+        <meta name="lang:{{ key }}" content="{{ lang.t(key) }}">
+	{% endfor %}
+      {% endif %}
       <link rel="shortcut icon" href="{{ base_url }}/{{ config.theme.favicon }}">
-      
+
       <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-2.6.0">
     {% endblock %}
     {% block htmltitle %}
@@ -57,7 +66,7 @@
     {% block libs %}
       <script src="{{ base_url }}/assets/javascripts/modernizr.js"></script>
     {% endblock %}
-    {% block disqus %}
+    {% block disqus_js %}
       {% if config.extra.disqus and not page.is_homepage %}
         <script src="{{ base_url }}/js/iDisqus.min.js"></script>
       {% endif %}
@@ -70,7 +79,9 @@
             }}">
         <style>body,input{font-family:"{{ font.text }}","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"{{ font.code }}","Courier New",Courier,monospace}</style>
       {% endif %}
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <style>body,input{font-family:"lucida grande", "lucida sans unicode", lucida, 'Open Sans', helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;}code,kbd,pre{font-family: Consolas, monospace;}blockquote{font-family: 'Palatino Linotype','Book Antiqua',Palatino,STKaiti,KaiTi,'楷体',SimKai,DFKai-SB,NSimSun,serif;}</style>
+      <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+      <link rel="stylesheet" href="{{ base_url }}/css/icon.css">
     {% endblock %}
     {% for path in extra_css %}
       <link rel="stylesheet" href="{{ path }}">
@@ -97,7 +108,9 @@
       </defs>
     </svg>
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    {% if config.enable_search %}
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    {% endif %}
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     {% if page.toc | first is defined %}
       <a href="{{ (page.toc | first).url }}" tabindex="1" class="md-skip">
@@ -159,7 +172,7 @@
                   {% endif %}
                 {% endblock %}
               {% endblock %}
-              {% block disqus %}
+              {% block disqus_free %}
                 {% if config.extra.disqus and not page.is_homepage %}
                   <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
                   {% include "partials/integrations/disqus_free.html" %}
@@ -174,7 +187,8 @@
       {% endblock %}
     </div>
     {% block scripts %}
-      <script src="{{ base_url }}/assets/javascripts/application.js"></script>
+          {% if config.enable_search %}
+    <script src="{{ base_url }}/assets/javascripts/application.js"></script>
       {% if lang.t("search.language") != "en" %}
         {% set languages = lang.t("search.language").split(",") %}
         {% if languages | length and languages[0] != "" %}
@@ -194,8 +208,10 @@
             <script src="{{ path }}/lunr.multi.js"></script>
           {% endif %}
         {% endif %}
-      {% endif %}
-      <script>app.initialize({version:"{{ mkdocs_version }}",url:{base:"{{ base_url }}"}})</script>
+	{% endif %}
+	    <script>app.initialize({version:"{{ mkdocs_version }}",url:{base:"{{ base_url }}"}})</script>
+	          {% endif %}
+
 	  <script>var base_url = '{{ base_url }}';</script>
       {% for path in extra_javascript %}
         <script src="{{ path }}"></script>

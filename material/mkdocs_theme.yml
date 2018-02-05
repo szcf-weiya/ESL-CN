@@ -37,10 +37,10 @@ feature:
 palette:
 
   # Primary color used for header, sidebar and links, default: indigo
-  primary:
+  primary: 
 
   # Accent color for highlighting user interaction, default: indigo
-  accent:
+  accent: 
 
 # Fonts used by Material, automatically loaded from Google Fonts - see the site
 # for a list of available fonts

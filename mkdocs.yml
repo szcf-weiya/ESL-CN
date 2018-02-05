@@ -263,19 +263,15 @@ extra_templates:
 theme:
   name: null
   custom_dir: material
-  language: 'zh'
+  language: 'en'
   feature:
     tabs: true
   logo: 'img/logo_white_24x24.svg'
-  search:
-    language: 'en, jp'
   favicon: 'img/favicon.ico'
   palette:
     primary: 'black'
     accent: 'red'
-  font:
-    text: Roboto
-    code: Roboto Mono
+  font: false
 #  custom_dir: yeti
 
 #theme_dir: 'yeti'
@@ -287,3 +283,7 @@ google_analytics:
   - 'auto'
 
 use_directory_urls: false
+
+enable_search: false
+
+plugins: []
