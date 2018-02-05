@@ -2,8 +2,11 @@
   color: red;
 }
 
-.md-typeset__table {
-  display: block !important;
+table {
+  display: table !important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }
 
 p img {
@@ -38,6 +41,7 @@ th a:hover {
 /* toc */
 label.md-nav__link {
   font-weight: 550;
+  font-size: 1.4em;
 }
 
 label.md-nav__title {
