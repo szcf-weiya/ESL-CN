@@ -7,6 +7,8 @@
   <head>
     
       <meta charset="utf-8">
+      <!--dns prefetch-->
+      <link rel="dns-prefetch" href="//cdn.mathjax.org" />
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
@@ -53,6 +55,7 @@
       <style>body,input{font-family:"lucida grande", "lucida sans unicode", lucida, 'Open Sans', helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;}code,kbd,pre{font-family: Consolas, monospace;}blockquote{font-family: 'Palatino Linotype','Book Antiqua',Palatino,STKaiti,KaiTi,'楷体',SimKai,DFKai-SB,NSimSun,serif;}</style>
       <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
       <link rel="stylesheet" href="../../css/icon.css">
+      <link rel="stylesheet" href="../../css/mini-awesome/font-awesome.css">
     
     
       <link rel="stylesheet" href="../../css/misc.css">
@@ -982,6 +985,13 @@
         <li class="md-nav__item">
   <a href="#b" title="B样条" class="md-nav__link">
     B样条
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="光滑样条的计算" class="md-nav__link">
+    光滑样条的计算
   </a>
   
 </li>
@@ -2826,6 +2836,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" title="光滑样条的计算" class="md-nav__link">
+    光滑样条的计算
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -2864,6 +2881,14 @@
 <td>时间</td>
 <td>2017-10-22</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-01-09</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
 <p>在附录里面，我们将要讨论表示多项式样条的$B$样条基。我们也讨论它们在光滑样条中计算的应用。</p>
@@ -2887,7 +2912,7 @@
 向后差商定义为
 <script type="math/tex; mode=display">
 [y_\nu]:=y_\nu,\;\nu\in\{0,\ldots, k\}\\
-[y_\nu,\ldots,y_{\nu-j}]:=\frac{[y_{\nu+1},\ldots,y_{\nu-j+}]-[y_{\nu-1},\ldots,y_{\nu-j}]}{x_{\nu}-x_{\nu-j}},\;\nu\in\{0,\ldots,k-j\},j\in\{1,\ldots,k\}
+[y_\nu,\ldots,y_{\nu-j}]:=\frac{[y_{\nu},\ldots,y_{\nu-j+1}]-[y_{\nu-1},\ldots,y_{\nu-j}]}{x_{\nu}-x_{\nu-j}},\;\nu\in\{0,\ldots,k-j\},j\in\{1,\ldots,k\}
 </script>
 </p>
 </div>
@@ -2910,10 +2935,32 @@ B_{i,1}(x)=\left\{
 B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}{\tau_{i+m}-\tau_{i+1}}B_{i+1,m-1}(x), \; i=1, \ldots,K+2M-m\qquad (5.78)
 </script>
 </p>
-<p>因此当$M=4,B_{i,4},i=1,\cdots,K+4$是结点序列$\xi$的$K+4$个立方样条基函数。这个递归可以继续，并且将会产生任意order样条的$B$样条基。图5.20显示了order至多为4的$B$样条序列，其中结点在$0.0,0.1,\ldots, 1.0$。因为我们构造了一些重复结点，所以需要注意避免分母为0。如果我们约定当$\tau_i=\tau_{i+1}$，有$B_{i,1}=0$，于是可以归纳法得到当$\tau_i=\tau_{i+1}=\ldots=\tau_{i+m}$，有$B_{i,m}=0$。注意到在上面的构造中，只要求子集$B_{i,m},i=M-m+1,\ldots, M+K$用作结点为$\xi$的order为$m&lt;M$的$B$样条基。</p>
+<p>因此当$M=4,B_{i,4},i=1,\cdots,K+4$是结点序列$\xi$的$K+4$个三次样条基函数。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>因为三次样条order为4，即$m=4$，所以$K+2M-m=K+4$。</p>
+</div>
+<p>这个递归可以继续，并且将会产生任意order样条的$B$样条基。</p>
 <p><img alt="" src="../../img/05/fig5.20.png" /></p>
+<p>图5.20显示了order至多为4的$B$样条序列，其中结点在$0.0,0.1,\ldots, 1.0$。因为我们构造了一些重复结点，所以需要注意避免分母为0。如果我们约定当$\tau_i=\tau_{i+1}$，有$B_{i,1}=0$，于是可以归纳法得到当$\tau_i=\tau_{i+1}=\ldots=\tau_{i+m}$，有$B_{i,m}=0$。注意到在上面的构造中，只要求子集$B_{i,m},i=M-m+1,\ldots, M+K$用作结点为$\xi$的order为$m&lt;M$的$B$样条基。</p>
 <p>为了全面理解这些函数的性质，并且为了证明它们确实张成了结点序列的三次样条空间，需要额外的数学知识，包括差商的性质。练习5.2探索了这些问题。</p>
-<p>TODO</p>
+<p>$B$样条的范围实际上比这里讨论的要大，而且与结点复制(knot duplication)有关。如果我们在上面的$\tau$序列的构造中复制一个内结点，则会产生和之前一样的$B$样条序列，得到的基在复制的结点处张成了低一阶的连续可导的分段多项式的空间。一般地，如果复制边界点，并且将内结点$\xi_j$复制$1\le r_j\le M$次，则点$x=\xi_j$处最低阶不连续的倒数为$M-r_j$。因此，对于无复制的三次样条，$r_j=1,j=1,\ldots,K$，并且在每个内结点处的三次微分($4-1$)都是不连续的。复制第$j$个结点三次，则一阶微分不连续；复制结点四次则零阶微分不连续，比如，在$x=\xi_j$处不连续。这正是在边界点处发生的；当我们复制结点$M$次，则样条在边界点处不连续（比如，在边界点外无定义）。</p>
+<p>$B$样条局部支撑有重要的计算应用，特别当结点数$K$很大时。$K+M$个变量的$N$个观测的最小二乘计算量为$O(N(K+M)^2+(K+M)^3)$次浮点运算(flops)。</p>
+<div class="admonition note">
+<p class="admonition-title">flops</p>
+<p>floating point operations的简称，浮点运算。</p>
+</div>
+<p>如果$K$是$N$的若干分之一(some appreciable fraction)，则得到$O(N^3)$的算法，这对于较大的$N$是不能接受的。如果$N$个观测已经排好序，则$K+M$个基函数在$N$个uance点上取值的$N\times (K+M)$的回归矩阵有许多0，可以利用这一点将甲酸复杂性降至$O(N)$。我们在下一节详细讨论这一点。</p>
+<h2 id="_2">光滑样条的计算<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>尽管自然样条(5.2.1节)给出了光滑样条的基，无约束的$B$样条在较大空间中操作计算上更方便。我们写成$f(x)=\sum_1^{N+4}\gamma_jB_j(x)$，其中$\gamma_j$是系数，$B_j$是三次$B$样条基函数。这个解与之前看起来很像，</p>
+<p>
+<script type="math/tex; mode=display">
+\hat\gamma = (\B^T\B+\lambda\ssigma_B)^{-1}\B^T\y\qquad (5.79)
+</script>
+</p>
+<p>只不过现在$N\times N$的矩阵$\N$用$N\times(N+4)$的矩阵$\B$来替换，类似地，$(N+4)\times (N+4)$的惩罚矩阵$\ssigma_B$替换$N\times N$的矩阵$\ssigma_N$。看上去似乎没有边界微分的约束，事实上通过对边界外任意非零的微分加上充分大的权重自动加上了惩罚项。实际中，$\hat\gamma$约束为惩罚总是有限的线性子空间。</p>
+<p>因为$\B$的列是从左到右在已经排序的$X$的值上进行赋值的$B$样条，并且三次$B$样条有局部支撑，$\B$是lower 4-banded。因此，矩阵$\M=(\B^T\B)+\lambda\Sigma$是4-banded，因此它的cholesky分解$\M=\L\L^T$可以很简单地计算。接着，通过向后替换(back-substitution)求解$\L\L^T\gamma=\B^T\y$得到$\gamma$，因此解$\hat f$是$O(N)$次运算量。</p>
+<p>实际中，当$N$很大，没必要使用所有的$N$个内结点，并且任何合理的thinning测量都会在计算量有改善，并且在拟合值上有不可忽略的影响。举个例子，S-PLUS中的<code>smooth.spline</code>函数采用近似的对数策略：如果$N &lt; 50$，采用所有结点，但是在$N=5000$时，只采用204个结点。</p>
                 
                   
                 
@@ -2995,7 +3042,7 @@ B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}
         
   <div class="md-footer-social">
     
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--> <link rel="stylesheet" href="../../css/mini-awesome/font-awesome.css">    
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--> <!--<link rel="stylesheet" href="../../css/mini-awesome/font-awesome.css">-->    
       <a href="https://github.com/szcf-weiya" class="md-footer-social__link fa fa-github"></a>
     
       <a href="https://tech.hohoweiya.xyz" class="md-footer-social__link fa fa-code"></a>

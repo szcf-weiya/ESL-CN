@@ -20,6 +20,9 @@ window.MathJax = {
       V: "{\\mathbf{V}}",
       W: "{\\mathbf{W}}",
 
+      y: "{\\mathbf{y}}",
+      f: "{\\mathbf{y}}",
+
       LOG: "{\\mathrm{log}\\;}",
       E: "{\\mathrm{E}\\;}",
       1: "{\\boldsymbol 1}",
@@ -34,7 +37,11 @@ window.MathJax = {
       sign: "{\\mathrm{sign}}",
       df: "{\\mathrm{df}}",
       tr: "{\\mathrm{tr}}",
-      Err: "{\\mathrm{Err}}"
+      Err: "{\\mathrm{Err}}",
+      logit: "{\\mathrm{logit}}",
+      trace: "{\\mathrm{trace}}",
+
+      ssigma: "{\\boldsymbol\\Sigma}"
     },
     entensions: ["color.js"]
   }
