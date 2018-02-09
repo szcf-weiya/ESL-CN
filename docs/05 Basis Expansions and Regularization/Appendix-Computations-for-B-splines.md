@@ -7,6 +7,8 @@
 | 更新 |2018-01-09|
 | 状态 | Done |
 
+!!! note "更新笔记"
+    @2018-01-09 gsl实现B样条拟合的例子[代码](https://github.com/szcf-weiya/ESL-CN/blob/master/docs/notes/BS/ex_bs.cpp)
 
 在附录里面，我们将要讨论表示多项式样条的$B$样条基。我们也讨论它们在光滑样条中计算的应用。
 
