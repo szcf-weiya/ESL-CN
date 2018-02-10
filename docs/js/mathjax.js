@@ -44,7 +44,8 @@ window.MathJax = {
       logit: "{\\mathrm{logit}}",
       trace: "{\\mathrm{trace}}",
 
-      ssigma: "{\\boldsymbol\\Sigma}"
+      ssigma: "{\\boldsymbol\\Sigma}",
+      oomega: "{\\boldsymbol\\Omega}"
     },
     entensions: ["color.js"]
   }
