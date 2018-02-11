@@ -74,7 +74,7 @@ $$
 
 !!! note "weiya注：Ex. 5.2"
     目前完成了练习5.2的前三问的证明，还要两小问的证明待完成，具体证明过程见[Issue: Ex. 5.2](https://github.com/szcf-weiya/ESL-CN/issues/66)。练习5.2的结论如下：
-    
+
     - 当$x\in [\tau_i, \tau_{i+M}], B_{i,M}(x)=0$;
     - 当$x\in (\tau_i,\tau_{i+M}), B_{i,M}(x) > 0$;
     - $\forall x\in [\xi_0,\xi_{K+1}], \sum_1^{K+M}B_{i,M}(x)=1$;
@@ -85,10 +85,17 @@ $B$样条实际上不仅限于这里讨论的内容，而且与结点复制(knot
 
 $B$样条局部支撑有重要的计算应用，特别当结点数$K$很大时。$K+M$个变量的$N$个观测的最小二乘计算量为$O(N(K+M)^2+(K+M)^3)$次浮点运算(flops)。
 
-!!! note "flops"
+!!! note "weiya注：flops"
     floating point operations的简称，浮点运算。
 
 如果$K$是$N$的若干分之一(some appreciable fraction)，则得到$O(N^3)$的算法，这对于较大的$N$是不能接受的。如果$N$个观测已经排好序，则$K+M$个基函数在$N$个点上取值的$N\times (K+M)$的回归矩阵有许多0，可以利用这一点将计算复杂性降至$O(N)$。我们在下一节详细讨论这一点。
+
+!!! note "weiya注：复杂度"
+    首先贴出[wiki: Computational complexity of mathematical operations](https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations)中给出的各种矩阵运算的复杂度：
+    
+    ![](../img/05/matrix_operations_complexity.png)
+
+    对于$N\times p$的设计矩阵$X$及$N\times 1$的响应变量向量$Y$，其最小二乘估计为$(X'X)^{-1}X'Y$，采用一般的Gauss-Jordan elimination的矩阵逆运算，则总复杂度为$O(Np^2+p^3)$，故$K+M$个变量的$N$个观测的最小二乘复杂度为$O(N(K+M)^2+(K+M)^3)$。
 
 ## 光滑样条的计算
 
