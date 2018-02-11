@@ -13,10 +13,11 @@ window.MathJax = {
       M: "{\\mathbf{M}}",
       N: "{\\mathbf{N}}",
       R: "{\\mathbf{R}}",
-      IR: "{\\mathrm{I\!R}}",
+      IR: "{\\mathrm{I\\!R}}",
       S: "{\\mathbf{S}}",
       I: "{\\mathbf{I}}",
       J: "{\\mathbf{J}}",
+      K: "{\\mathbf{K}}",
       X: "{\\mathbf{X}}",
       Y: "{\\mathbf{Y}}",
       U: "{\\mathbf{U}}",
@@ -43,9 +44,11 @@ window.MathJax = {
       Err: "{\\mathrm{Err}}",
       logit: "{\\mathrm{logit}}",
       trace: "{\\mathrm{trace}}",
+      diag: "{\\mathrm{trace}}",
 
       ssigma: "{\\boldsymbol\\Sigma}",
-      oomega: "{\\boldsymbol\\Omega}"
+      oomega: "{\\boldsymbol\\Omega}",
+      aalpha: "{\\boldsymbol\\alpha}"
     },
     entensions: ["color.js"]
   }
