@@ -74,6 +74,7 @@ $$
 
 !!! note "weiya注：Ex. 5.2"
     目前完成了练习5.2的前三问的证明，还要两小问的证明待完成，具体证明过程见[Issue: Ex. 5.2](https://github.com/szcf-weiya/ESL-CN/issues/66)。练习5.2的结论如下：
+    
     - 当$x\in [\tau_i, \tau_{i+M}], B_{i,M}(x)=0$;
     - 当$x\in (\tau_i,\tau_{i+M}), B_{i,M}(x) > 0$;
     - $\forall x\in [\xi_0,\xi_{K+1}], \sum_1^{K+M}B_{i,M}(x)=1$;
