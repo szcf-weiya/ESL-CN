@@ -2978,7 +2978,20 @@ B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}
 <p>对于$N\times p$的设计矩阵$X$及$N\times 1$的响应变量向量$Y$，其最小二乘估计为$(X&rsquo;X)^{-1}X&rsquo;Y$，采用一般的Gauss-Jordan elimination的矩阵逆运算，则总复杂度为$O(Np^2+p^3)$，故$K+M$个变量的$N$个观测的最小二乘复杂度为$O(N(K+M)^2+(K+M)^3)$。</p>
 </div>
 <h2 id="_2">光滑样条的计算<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>尽管自然样条(5.2.1节)给出了光滑样条的基，无约束的$B$样条在较大空间中操作计算上更方便。我们写成$f(x)=\sum_1^{N+4}\gamma_jB_j(x)$，其中$\gamma_j$是系数，$B_j$是三次$B$样条基函数。这个解与之前看起来很像，</p>
+<p>尽管自然样条(<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.2%20Piecewise%20Polynomials%20and%20Splines/index.html#_2">5.2.1节</a>)给出了光滑样条的基，无约束的$B$样条在较大空间中操作计算上更方便。</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>含$K$个结点的自然三次样条可以用$K$个基函数表示：
+<script type="math/tex; mode=display">
+N_1(X)=1,\;N_2(X)=X,\; N_{k+2}(X)=d_k(X)-d_{K-1}(X),\qquad (5.4)
+</script>
+其中，
+<script type="math/tex; mode=display">
+d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\qquad (5.5)
+</script>
+</p>
+</div>
+<p>我们写成$f(x)=\sum_1^{N+4}\gamma_jB_j(x)$，其中$\gamma_j$是系数，$B_j$是三次$B$样条基函数。这个解与之前看起来很像，</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\gamma = (\B^T\B+\lambda\oomega_B)^{-1}\B^T\y\qquad (5.79)
