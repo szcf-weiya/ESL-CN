@@ -2955,12 +2955,14 @@ B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}
 <p>为了全面理解这些函数的性质，并且为了证明它们确实张成了结点序列的三次样条空间，需要额外的数学知识，包括差商的性质。<a href="https://github.com/szcf-weiya/ESL-CN/issues/66">练习5.2</a>探索了这些问题。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：Ex. 5.2</p>
-<p>目前完成了练习5.2的前三问的证明，还要两小问的证明待完成，具体证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/66">Issue: Ex. 5.2</a>。练习5.2的结论如下：
-- 当$x\in [\tau_i, \tau_{i+M}], B_{i,M}(x)=0$;
-- 当$x\in (\tau_i,\tau_{i+M}), B_{i,M}(x) &gt; 0$;
-- $\forall x\in [\xi_0,\xi_{K+1}], \sum_1^{K+M}B_{i,M}(x)=1$;
-- $B_{i,M}$是$[\xi_0,\xi_{K+1}]$上order为$M$的分段多项式，断点仅为$\xi_1,\ldots, \xi_K$;
-- order为$M$的B样条基函数是$M$个均匀随机变量的卷积(convolution)的密度函数</p>
+<p>目前完成了练习5.2的前三问的证明，还要两小问的证明待完成，具体证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/66">Issue: Ex. 5.2</a>。练习5.2的结论如下：</p>
+<ul>
+<li>当$x\in [\tau_i, \tau_{i+M}], B_{i,M}(x)=0$;</li>
+<li>当$x\in (\tau_i,\tau_{i+M}), B_{i,M}(x) &gt; 0$;</li>
+<li>$\forall x\in [\xi_0,\xi_{K+1}], \sum_1^{K+M}B_{i,M}(x)=1$;</li>
+<li>$B_{i,M}$是$[\xi_0,\xi_{K+1}]$上order为$M$的分段多项式，断点仅为$\xi_1,\ldots, \xi_K$;</li>
+<li>order为$M$的B样条基函数是$M$个均匀随机变量的卷积(convolution)的密度函数</li>
+</ul>
 </div>
 <p>$B$样条实际上不仅限于这里讨论的内容，而且与结点复制(knot duplication)有关。如果我们在上面的$\tau$序列的构造中复制一个内结点，则会产生和之前一样的$B$样条序列，得到的基在复制的结点处张成了低一阶的连续可导的分段多项式的空间。一般地，如果复制边界点，并且将内结点$\xi_j$复制$1\le r_j\le M$次，则点$x=\xi_j$处不连续可导的最低阶为$M-r_j$。因此，对于无复制的三次样条，$r_j=1,j=1,\ldots,K$，并且在每个内结点处的三阶微分($4-1$)都是不连续的。复制第$j$个结点三次，则一阶微分不连续；复制结点四次则零阶微分不连续，比如，在$x=\xi_j$处不连续。这正是在边界点处发生的；当我们复制结点$M$次，则样条在边界点处不连续（比如，在边界点外无定义）。</p>
 <p>$B$样条局部支撑有重要的计算应用，特别当结点数$K$很大时。$K+M$个变量的$N$个观测的最小二乘计算量为$O(N(K+M)^2+(K+M)^3)$次浮点运算(flops)。</p>
