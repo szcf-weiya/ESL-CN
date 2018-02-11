@@ -4,7 +4,7 @@
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
 | 时间   | 2017-10-22                    |
-| 更新 |2018-01-09|
+| 更新 |2018-01-09； 2018-01-11|
 | 状态 | Done |
 
 !!! note "更新笔记"
@@ -131,10 +131,10 @@ $$
     对于矩阵$A=(a_{i,j})$，若
     
     $$
-    a_{i,j}=0\;if\;j < i-k_1\qquad or\qquad j > i + k_2;\; k_1,k_2\ge 0
+    a_{i,j}=0\;if\;j < i-k_1\; or\; j > i + k_2;\; k_1,k_2\ge 0
     $$
     则$k_1$和$k_2$分布被称为lower bandwidth和upper bandwidth。
 
-因此，矩阵$\M=(\B^T\B)+\lambda\oomega$是4-banded，因此可以很简单地计算它的cholesky分解$\M=\L\L^T$。接着，通过向后替换(back-substitution)求解$\L\L^T\gamma=\B^T\y$得到$\gamma$，则解$\hat f$是$O(N)$次运算量。
+因此，矩阵$\M=(\B^T\B)+\lambda\oomega$是4-banded，则可以很简单地计算它的cholesky分解$\M=\L\L^T$。接着，通过向后替换(back-substitution)求解$\L\L^T\gamma=\B^T\y$得到$\gamma$，则解$\hat f$是$O(N)$次运算量。
 
-实际中，当$N$很大，没必要使用所有的$N$个内结点，并且任何合理的thinning策略都会在计算量有改善，并且在拟合值上有不可忽略的影响。举个例子，S-PLUS中的`smooth.spline`函数采用近似的对数策略：如果$N < 50$，采用所有结点，但是在$N=5000$时，只采用204个结点。
+实际中，当$N$很大，没必要使用所有的$N$个内结点，并且任何合理的thinning策略都会在计算量有改善，并且在拟合值的影响可以忽略。举个例子，S-PLUS中的`smooth.spline`函数采用近似的对数策略：如果$N < 50$，采用所有结点，但是在$N=5000$时，只采用204个结点。
