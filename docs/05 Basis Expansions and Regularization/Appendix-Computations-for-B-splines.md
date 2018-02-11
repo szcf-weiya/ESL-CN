@@ -118,8 +118,23 @@ $$
 \hat\gamma = (\B^T\B+\lambda\oomega_B)^{-1}\B^T\y\qquad (5.79)
 $$
 
-只不过现在$N\times N$的矩阵$\N$用$N\times(N+4)$的矩阵$\B$来替换，类似地，$(N+4)\times (N+4)$的惩罚矩阵$\oomega_B$替换$N\times N$的矩阵$\oomega_N$。看上去似乎没有边界微分的约束，事实上通过对边界外任意非零的微分加上充分大的权重自动加上了惩罚项。实际中，$\hat\gamma$约束为惩罚总是有限的线性子空间。
+!!! note "weiya注"
+    $$
+    \hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\qquad (5.12)
+    $$
 
-因为$\B$的列是从左到右在已经排序的$X$的值上进行赋值的$B$样条，并且三次$B$样条有局部支撑，$\B$是lower 4-banded。因此，矩阵$\M=(\B^T\B)+\lambda\oomega$是4-banded，因此它的cholesky分解$\M=\L\L^T$可以很简单地计算。接着，通过向后替换(back-substitution)求解$\L\L^T\gamma=\B^T\y$得到$\gamma$，则解$\hat f$是$O(N)$次运算量。
+只不过现在$N\times N$的矩阵$\N$用$N\times(N+4)$的矩阵$\B$来替换，类似地，$(N+4)\times (N+4)$的惩罚矩阵$\oomega_B$替换$N\times N$的矩阵$\oomega_N$。看上去似乎没有边界微分的约束，事实上通过对边界外的点的任意非零的微分加上了充分大的权重自动进行惩罚。实际中，$\hat\gamma$约束为惩罚总是有限的线性子空间。
+
+因为$\B$的列是从左到右在已经排序的$X$的值上进行赋值的$B$样条，并且三次$B$样条有局部支撑，$\B$是lower 4-banded。
+
+!!! note "weiya注：band matrix"
+    对于矩阵$A=(a_{i,j})$，若
+    
+    $$
+    a_{i,j}=0\;if\;j < i-k_1\qquad or\qquad j > i + k_2;\; k_1,k_2\ge 0
+    $$
+    则$k_1$和$k_2$分布被称为lower bandwidth和upper bandwidth。
+
+因此，矩阵$\M=(\B^T\B)+\lambda\oomega$是4-banded，因此可以很简单地计算它的cholesky分解$\M=\L\L^T$。接着，通过向后替换(back-substitution)求解$\L\L^T\gamma=\B^T\y$得到$\gamma$，则解$\hat f$是$O(N)$次运算量。
 
 实际中，当$N$很大，没必要使用所有的$N$个内结点，并且任何合理的thinning策略都会在计算量有改善，并且在拟合值上有不可忽略的影响。举个例子，S-PLUS中的`smooth.spline`函数采用近似的对数策略：如果$N < 50$，采用所有结点，但是在$N=5000$时，只采用204个结点。
