@@ -118,7 +118,7 @@ $$
 \hat\gamma = (\B^T\B+\lambda\oomega_B)^{-1}\B^T\y\qquad (5.79)
 $$
 
-!!! note "weiya注"
+!!! note "Recall"
     $$
     \hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\qquad (5.12)
     $$
