@@ -2947,6 +2947,10 @@ B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}
 </div>
 <p>这个递归可以继续，并且将会产生任意order样条的$B$样条基。</p>
 <p><img alt="" src="../../img/05/fig5.20.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>结合<a href="https://github.com/szcf-weiya/ESL-CN/issues/66#issue-296103785">Ex. 5.2</a>来看Fig. 5.20，更能加深对B样条基函数的理解。</p>
+</div>
 <p>图5.20显示了order至多为4的$B$样条序列，其中结点在$0.0,0.1,\ldots, 1.0$。因为我们构造了一些重复结点，所以需要注意避免分母为0。如果我们约定当$\tau_i=\tau_{i+1}$，有$B_{i,1}=0$，于是可以归纳得到当$\tau_i=\tau_{i+1}=\ldots=\tau_{i+m}$，有$B_{i,m}=0$。注意到在上面的构造中，只要求子集$B_{i,m},i=M-m+1,\ldots, M+K$用作结点为$\xi$的order为$m&lt;M$的$B$样条基。</p>
 <p>为了全面理解这些函数的性质，并且为了证明它们确实张成了结点序列的三次样条空间，需要额外的数学知识，包括差商的性质。<a href="https://github.com/szcf-weiya/ESL-CN/issues/66">练习5.2</a>探索了这些问题。</p>
 <div class="admonition note">
