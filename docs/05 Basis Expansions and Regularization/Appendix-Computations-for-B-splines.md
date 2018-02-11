@@ -99,7 +99,20 @@ $B$样条局部支撑有重要的计算应用，特别当结点数$K$很大时�
 
 ## 光滑样条的计算
 
-尽管自然样条(5.2.1节)给出了光滑样条的基，无约束的$B$样条在较大空间中操作计算上更方便。我们写成$f(x)=\sum_1^{N+4}\gamma_jB_j(x)$，其中$\gamma_j$是系数，$B_j$是三次$B$样条基函数。这个解与之前看起来很像，
+尽管自然样条([5.2.1节](https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.2%20Piecewise%20Polynomials%20and%20Splines/index.html#_2))给出了光滑样条的基，无约束的$B$样条在较大空间中操作计算上更方便。
+
+!!! note "Recall"
+    含$K$个结点的自然三次样条可以用$K$个基函数表示：
+    $$
+    N_1(X)=1,\;N_2(X)=X,\; N_{k+2}(X)=d_k(X)-d_{K-1}(X),\qquad (5.4)
+    $$
+    其中，
+    $$
+    d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\qquad (5.5)
+    $$
+
+
+我们写成$f(x)=\sum_1^{N+4}\gamma_jB_j(x)$，其中$\gamma_j$是系数，$B_j$是三次$B$样条基函数。这个解与之前看起来很像，
 
 $$
 \hat\gamma = (\B^T\B+\lambda\oomega_B)^{-1}\B^T\y\qquad (5.79)
