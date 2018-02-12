@@ -157,6 +157,7 @@ rocplot = function(pred, truth, ...) {
 svmfit.opt = svm(y~., data = dat[train, ], kernel = "radial",
                  gamma = 3, cost = 10, decision.values = T)
 fitted = attributes(predict(svmfit.opt, dat[train, ], decision.values = T))$decision.values
+png("roc.png")
 par(mfrow = c(1, 2))
 rocplot ( fitted , dat [ train ,"y"] , main ="Training Data")
 
@@ -170,3 +171,4 @@ fitted = attributes(predict(svmfit.opt, dat[-train, ], decision.values = T ) ) $
 rocplot(fitted, dat[-train, "y"] , main = "Test Data")
 fitted = attributes(predict(svmfit.flex, dat[-train, ], decision.values = T ) ) $decision.values
 rocplot(fitted, dat[-train, "y"] , add =T, col ="red")
+dev.off()
