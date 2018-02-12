@@ -191,6 +191,7 @@ pages:
       - 模拟Fig. 18.1: 'notes/HighDim/sim18_1.md'
     - 比较总结:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
+      - SVM处理线性和非线性类别边界: 'notes/SVM/e1071.md'
 
 
 site_name: 'ESL CN'
