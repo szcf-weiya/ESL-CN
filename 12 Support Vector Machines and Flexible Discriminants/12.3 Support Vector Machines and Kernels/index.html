@@ -2982,27 +2982,39 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017.12.12, 2017.12.18</td>
+<td>2017.12.12; 2017.12.18; 2018.02.12</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>InProgress</td>
 </tr>
 </tbody>
 </table>
-<p>至今所描述的支持向量机是在输入特征空间中寻找线性边界。通过其他的线性方法，我们可以用基展开的方式来增大特征空间，从而让这一过程更灵活，如多项式或者样条（第5章）。一般地，在增长的空间的线性边界能够达到更好的训练类别分割，从而转换为原始空间中的非线性边界。一旦基函数$h_m(x),m=1,\ldots,M$被选定，则该过程和之前一样。我们采用输入特征$h(x_i)=(h_1(x_i),h_2(x_i),\ldots,h_M(x_i)),i=1,\ldots,N$来拟合SV分类器，并且得到（非线性）函数$\hat f(x)=h(x)^T\hat\beta+\hat\beta_0$。分类器和之前一样为$\hat G(x)=sign(\hat f(x))$.</p>
-<p>支持向量机分类器是这个想法的拓展，其中增长空间的维数允许非常大，有时甚至可以是无限维的。似乎计算会变得难以承受。而且似乎当有了充分多的基函数，数据会变得可分，而且会发生过拟合。我们首先介绍SVM怎样处理这些问题。接着我们将看到实际中SVM分类器是采用特定的准则和正则化形式来求解函数拟合问题，而且这是包含第5章中光滑样条的更大类别的问题的一部分。读者可能希望参照5.8节，它提供了背景材料以及与接下来的两节会有一定的重复。</p>
+<p>至今所描述的支持向量机是在输入特征空间中寻找线性边界。和其他的线性方法一样，我们可以用基展开的方式来增大特征空间，从而让这一过程更灵活，如多项式或者样条（第5章）。一般地，在增长的空间的线性边界能够达到更好的训练类别分割的效果，进而转换为原始空间中的非线性边界。一旦选定基函数$h_m(x),m=1,\ldots,M$，则该过程和之前一样。我们采用输入特征$h(x_i)=(h_1(x_i),h_2(x_i),\ldots,h_M(x_i)),i=1,\ldots,N$拟合SV分类器，并且得到（非线性）函数$\hat f(x)=h(x)^T\hat\beta+\hat\beta_0$。分类器和之前一样，为$\hat G(x)=\sign(\hat f(x))$。</p>
+<p>支持向量机(support vector machine)分类器是这个想法的拓展，其中增长空间的维数允许非常大，有时甚至可以是无限维的。计算似乎会变得难以承受。而且似乎当有了充分多的基函数，数据会变得可分，同时也会发生过拟合。我们首先介绍SVM怎样处理这些问题。接着我们将看到实际中SVM分类器是采用特定的准则和正则化形式来解决函数拟合问题，而且这是包含第5章的光滑样条的更大类别的问题的一部分。读者可能希望参照<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>，它提供了背景材料并且与接下来的两节会有一定的重复。</p>
 <h2 id="svm">用于分类的SVM<a class="headerlink" href="#svm" title="Permanent link">&para;</a></h2>
-<p>我们可以以一种特殊的方式来表示优化问题(12.9)和它的解，这种方式只涉及通过内积来涉及输入特征。我们对这个变换后的特征向量$h(x_i)$直接进行这样的操作。则我们将看到对于特定选择的$h$，这些内积可以很方便地进行计算。</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
+<script type="math/tex; mode=display">
+L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\qquad (12.9)
+</script>
+</p>
+</div>
+<p>我们可以用一种特殊的方式来表示优化问题(12.9)和它的解，这种方式只涉及通过内积来涉及输入特征。我们对这个变换后的特征向量$h(x_i)$直接进行这样的操作。则我们将看到对于特定选择的$h$，这些内积可以很方便地进行计算。</p>
 <p>(12.13)的lagrange对偶函数有如下形式：</p>
 <p>
 <script type="math/tex; mode=display">
 L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}\langle h(x_i), h(x_{i'})\rangle\qquad (12.19)
 </script>
 </p>
-<p>从(12.10)中我们可以看到解函数$f(x)$可以写成</p>
+<p>从(12.10)中我们看到解函数$f(x)$可以写成</p>
 <p>
 <script type="math/tex; mode=display">
 f(x)=h(x)^T\beta+\beta_0=\sum\limits_{i=1}^N\alpha_iy_i\langle h(x),h(x_i) \rangle+\beta_0\qquad (12.20)
 </script>
 </p>
-<p>和之前一样，给定$\alpha_i$，当$0&lt;\alpha_i&lt;C$时，$\beta_0$可以通过对任意（或所有）$x_i$来求解$y_if(x_i)=1$</p>
+<p>和之前一样，给定$\alpha_i$，当$0 &lt; \alpha_i &lt; C$时，$\beta_0$可以通过对任意（或所有）$x_i$来求解$y_if(x_i)=1$来确定。</p>
 <p>所以(12.19)和(12.20)仅仅通过内积涉及$h(x)$。实际上，我们根本不需要明确变换关系$h(x)$，而仅仅要求知道在转换后的空间中计算内积的核函数</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3011,12 +3023,16 @@ K(x,x')=\langle h(x), h(x') \rangle\qquad (12.21)
 </p>
 <p>$K$应该是一个对称的(半)正定函数：见5.8.1节。</p>
 <p>在SVM中有三种流行的$K$可以选择</p>
-<ul>
-<li>$d$阶多项式：$K(x,x&rsquo;)=(1+\langle x,x&rsquo; \rangle)^d$</li>
-<li>径向基: $K(x, x&rsquo;)=exp(-\gamma \Vert x-x&rsquo;\Vert^2)$\qquad (12.22)</li>
-<li>神经网络：$K(x,x&rsquo;)=tanh(\kappa_1\langle x,x&rsquo; \rangle+\kappa_2)$</li>
-</ul>
-<p>考虑到含有两个输入变量$X_1$和$X_2$的特征空间，以及2阶的多项式。则</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{rl}
+d\text{阶多项式：} & K(x,x')=(1+\langle x,x' \rangle)^d\\
+\text{径向基：} & K(x, x')=exp(-\gamma \Vert x-x'\Vert^2)\qquad (12.22)\\
+\text{神经网络：} & K(x,x')=tanh(\kappa_1\langle x,x' \rangle+\kappa_2)\\
+\end{array}
+</script>
+</p>
+<p>考虑含有两个输入变量$X_1$和$X_2$的特征空间，以及2阶的多项式。则</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
@@ -3026,14 +3042,14 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 \end{array}
 </script>
 </p>
-<p>则$M=6$，而且如果我们选择$h_1(X)=1,h_2(X)=\sqrt{2}X_1,h_3(X)=\sqrt{2}X_2,h_4(X)=X_1^2,h_5(X)=X_2^2$，以及$h_6(X)=\sqrt{2}X_1X_2$，则$K(X,X&rsquo;)=\langle h(X),h(X&rsquo;)\rangle$</p>
+<p>则$M=6$，而且如果我们选择$h_1(X)=1,h_2(X)=\sqrt{2}X_1,h_3(X)=\sqrt{2}X_2,h_4(X)=X_1^2,h_5(X)=X_2^2$，以及$h_6(X)=\sqrt{2}X_1X_2$，则$K(X,X&rsquo;)=\langle h(X),h(X&rsquo;)\rangle$。</p>
 <p>从$(12.20)$我们可以看出该解可以写成</p>
 <p>
 <script type="math/tex; mode=display">
 \hat f(x)=\sum\limits_{i=1}^N\hat \alpha_iy_iK(x,x_i)+\hat\beta_0\qquad (12.24)
 </script>
 </p>
-<p>在增广的特征空间中，参数$C$的角色更加清晰，因为在这里经常会存在完美的分割。较大的$C$会抑制任何正的$\xi_i$，并且在原始特征空间中过拟合的弯弯曲曲的边界；较小的$C$值会鼓励较小的$\Vert\beta\Vert$，反过来会导致$f(x)$以及边界更加地光滑。图12.3显示了应用到第2章中的混合模型的两个支持向量机。两种情形下的正则化参数都是为了实现更好的测试误差。对该例子而言，径向基得到类似贝叶斯最优边界；与图2.5进行比较。</p>
+<p>在增广的特征空间中，参数$C$的角色更加清晰，因为在这里经常会存在完美的分割。较大的$C$会抑制任何正的$\xi_i$，并且得到在原始特征空间中过拟合的弯弯曲曲的边界；较小的$C$值会鼓励较小的$\Vert\beta\Vert$，反过来会导致$f(x)$以及边界更加地光滑。图12.3显示了应用到第2章中的混合模型的两个支持向量机。两种情形下的正则化参数都是为了实现更好的测试误差。对该例子而言，径向基得到类似贝叶斯最优边界；与图2.5进行比较。</p>
 <p><img alt="" src="../../img/12/fig12.3.png" /></p>
 <p>在支持向量的早期研究中，有断言称，支持向量机的核性质是唯一的，并且允许对维数灾难进行巧妙地处理。</p>
 <p>这些断言都不是正确的，我们将在下一节详细讨论这些问题。</p>
@@ -3041,16 +3057,17 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <p>对于$f(x)=h(x)^T\beta+\beta_0$，考虑下列的优化问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta_0,\beta}{min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{2}{\lambda}\Vert\beta\Vert^2\qquad (12.25)
+\underset{\beta_0,\beta}{min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{\lambda}{2}\Vert\beta\Vert^2\qquad (12.25)
 </script>
 </p>
-<p>其中下标$+$表示正的部分。上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例。可以很简单地证明当$\lambda=1/C$时，(12.25)的解与(12.8)的解一致。</p>
-<p>对“hinge”损失函数$L(y,f)=[1-yf]<em>+$的检验证明对于二类别分类是很合理的。图12.4将之与逻辑斯蒂回归的对数似然进行比较，以及平方误差损失和其中的方差。（负）对数似然或者二项偏差与SVM损失有类似的尾分布，其中对margin中的点赋予0惩罚，对在错误一侧的边赋予线性惩罚。另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响。平方hinge损失$L(y,f)=[1-yf]</em>+^2$类似平方损失，除了对于各自margin中的点为0。在左尾中平方增长，而且对错误分类的观测的hinge或者偏差更加稳健。最近Rosset and Zhu (2007)提出平方hinge损失的“Huberized”版本，在$yf=-1$处将其平滑转换为了线性损失。</p>
+<p>其中下标“$+$”表示正的部分。上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例。可以很简单地证明当$\lambda=1/C$时，(12.25)的解与(12.8)的解一致。</p>
+<p>对“hinge”损失函数$L(y,f)=[1-yf]_+$的检验表明，它用于二类别分类是很合理的。图12.4将之与逻辑斯蒂回归的对数似然进行比较，以及平方误差损失和其中的方差。（负）对数似然或者二项偏差和SVM损失有着类似的尾分布，其中对margin中的点赋予0惩罚，对在错误一侧的边赋予线性惩罚。另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响。squared hinge损失$L(y,f)=[1-yf]_+^2$类似平方损失，除了对于各自margin中的点惩罚为0。在左尾中平方增长，而且对错误分类的观测的hinge或者偏差更加稳健。最近Rosset and Zhu (2007)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>提出squared hinge损失的“Huberized”版本，在$yf=-1$处将其平滑转换为了线性损失。</p>
 <p><img alt="" src="../../img/12/fig12.4.png" /></p>
-<p>我们可以用在总体水平上估计的形式来特征化损失函数。我们考虑最小化$EL(Y,f(x)$。表12.1总结了这些结果。然而hinge损失估计了分类器$G(x)$本身，而其他的都估计类别后验概率的某个变换。“Huberized”平方hinge损失有着与逻辑斯蒂回归相同的吸引人的性质（光滑的损失函数，估计概率），以及SVM的hinge损失（支撑点）。</p>
+<p>我们可以用在总体水平上用估计量来区分这些损失函数。我们考虑最小化$\E L(Y,f(x)$。</p>
 <p><img alt="" src="../../img/12/tab12.1.png" /></p>
-<p>形式(12.25)将SVM看成回归损失估计问题，其中线性展开$f(x)=\beta_0+h(x)^T\beta$的系数向0收缩（除了常值）。如果$h(x)$表示有相同的序结构（比如按粗糙程度排序）的分层核，如果在向量$h$中有更粗糙的元素$h_j$有更小的范数，则均一化收缩是有意义的。</p>
-<p>所有表12.1中的损失函数，除了平方误差，都称之为“margin maximizing loss-functions”（Rosset et al., 2004b）。这意味着如果数据是可分的，则当$\lambda\rightarrow 0$时，$\hat\beta_\lambda$的极限定义为最优分离超平面。</p>
+<p>表12.1总结了这些结果。然而hinge损失估计了分类器$G(x)$本身，而其他的都估计类别后验概率的某个变换。“Huberized” square hinge损失有着与逻辑斯蒂回归相同的吸引人的性质（光滑的损失函数，估计概率），以及SVM的hinge损失（支撑点）。</p>
+<p>形式(12.25)将SVM看成正则函数估计问题，其中线性展开$f(x)=\beta_0+h(x)^T\beta$的系数向0收缩（除了常值）。如果$h(x)$表示有相同的序结构（比如按粗糙程度排序）的分层核，如果在向量$h$中有更粗糙的元素$h_j$有更小的范数，则均一化收缩是有意义的。</p>
+<p>除了平方误差，表12.1中所有的损失函数，都称之为“margin maximizing loss-functions”（Rosset et al., 2004b<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。这意味着如果数据是可分的，则当$\lambda\rightarrow 0$时，$\hat\beta_\lambda$的极限定义为最优分离超平面。</p>
 <div class="admonition note">
 <p class="admonition-title">原作者注：</p>
 <p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$分散，但是$\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$收敛到最优分离超平面。</p>
@@ -3068,6 +3085,17 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <h2 id="_2">用于回归的支持向量机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h2 id="_3">回归和核<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h2 id="_4">讨论<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Rosset, S. and Zhu, J. (2007). Piecewise linear regularized solution paths, Annals of Statistics 35(3): 1012–1030.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Rosset, S., Zhu, J. and Hastie, T. (2004b). Margin maximizing loss functions, in S. Thrun, L. Saul and B. Schölkopf (eds), Advances in Neural Information Processing Systems 16, MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
