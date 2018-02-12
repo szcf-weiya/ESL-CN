@@ -37,7 +37,8 @@ window.MathJax = {
       arg: "{\\mathrm{arg}\\;}",
       max: "{\\mathrm{max}\\;}",
       min: "{\\mathrm{min}\\;}",
-
+      
+      inf: "{\\mathrm{inf}}",
       sign: "{\\mathrm{sign}}",
       df: "{\\mathrm{df}}",
       tr: "{\\mathrm{tr}}",
@@ -45,10 +46,13 @@ window.MathJax = {
       logit: "{\\mathrm{logit}}",
       trace: "{\\mathrm{trace}}",
       diag: "{\\mathrm{trace}}",
+      st: "{\\mathrm{subject\\; to}\\;}",
 
       ssigma: "{\\boldsymbol\\Sigma}",
       oomega: "{\\boldsymbol\\Omega}",
-      aalpha: "{\\boldsymbol\\alpha}"
+      aalpha: "{\\boldsymbol\\alpha}",
+
+      def: "{\\;\\overset{\\mathrm{def}}{=}\\;}"
     },
     entensions: ["color.js"]
   }
