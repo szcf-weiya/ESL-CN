@@ -2953,17 +2953,21 @@ RSS(\beta) = (y-\mathbf{X}\beta)^T(y-\mathbf{X}\beta)
 </p>
 <p>而且在第$i$个输入$x_i$的拟合值为$\hat{y}_i=\hat{y}(x_i)=x_i^T\hat{\beta}$。在任意输入$x_0$处，预测值为$\hat{y}(x_0)=x_0^T\hat{\beta}$。整个拟合曲面由$\hat{\beta}$的$p$个系数所决定。直观地，我们不需要非常多的数据集去拟合这样一个模型。</p>
 <p>让我们来看一个文本分类数据的线性模型的例子。图2.1显示了训练数据在一对输入$X_1$和$X_2$的散点图。数据是仿造的，而且现在模拟模型不是很重要。输出的类变量$G$取值为蓝色或橘黄色，而且正如散点图表示的那样。每个类里面都有100个点。线性回归模型是去拟合这些数据，蓝色时响应变量$Y$编码为0，橘黄色时编码为1。拟合值$\hat{Y}$根据下面规则转化为拟合的类变量$\hat{G}$</p>
-<p>$$
+<p>
+<script type="math/tex; mode=display">
 \hat{G}=
 \left\{
-<script type="math/tex; mode=display">\begin{array}{cc}
-\text{$\color{yellow}{ORANGE}$}\quad&\text{if }\hat{Y} > 0.5\\\
-\text{$\color{blue}{BLUE}$}\quad & \text{if }\hat{Y}\le 0.5
-\end{array}</script>
+\begin{array}{cc}
+\color{yellow}{ORANGE}\quad&\text{if }\hat{Y} > 0.5\\
+\color{blue}{BLUE}\quad & \text{if }\hat{Y}\le 0.5
+\end{array}
 \right.
-$$</p>
+</script>
+</p>
 <p><img alt="" src="../../img/02/fig2.1.png" /></p>
+<blockquote>
 <p>图2.1：两维分类的例子。类别被编码为二进制变量（蓝色为0，橘黄色为1），然后通过线性回归进行拟合。图中直线是判别边界，直线方程为$x^T\hat{\beta}=0.5$。橘黄色阴影区域表示这一部分输入区域被分成橘黄色，而蓝色阴影区域分成蓝色。</p>
+</blockquote>
 <p>在$\mathbf{R}^2$中被分成橘黄色类的点对应$\{x:x^T\hat{\beta}&gt;0.5\}$,在图2.1中显示的那样，而且两个预测的类被判别边界$\{x:x^T\hat{\beta}=0.5\}$分隔开，在这种情形下是线性的。我们可以看到在判别边界的两边都有被分错的点。或许我们的线性模型太严格了，又或者是这些错误无法避免？记住这些事在训练数据本身上的错误，而且我们没有说这些构造的数据从哪里来的。考虑下面两种可能的情境：</p>
 <p><strong>情境1：</strong>每一类的训练数据是从两个独立变量，不同均值的高斯分布。</p>
 <p><strong>情境2：</strong>每一类的训练数据是来自10个低方差的高斯分布的混合，每一个高斯分布都有各自的均值</p>

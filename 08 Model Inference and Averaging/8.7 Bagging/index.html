@@ -2930,12 +2930,12 @@
 <p><img alt="" src="../../img/08/fig8.10.png" /></p>
 <p>在这个例子中，由于预测变量间的相关性，树有很高的方差。Bagging成功光滑掉方差，也因此降低了测试误差。</p>
 <p>Bagging可以显著降低不稳定的过程的方差得到更好的预测，比如说树。一个简单的论据说明了为什么bagging在平方误差损失下有效果，简单来说是因为它保持偏差不变降低了方差。</p>
-<p>假设我们的训练样本$(x_i, y_i),i=1,\ldots,N$是从分布$\cal P$中独立采样的，并且考虑理想的整合估计器$f_{ag}(x)=E_{\cal P}\hat f^* (x)$。这里$x$是固定的，并且自助数据集$\mathbf Z^<em> $包含从$\cal P$中采样的的观测$x_i*, y_i^</em> $。注意到$f_{ag}(x)$是从实际总体$\cal P$中而不是数据中采样得到一个bagging估计。实际中这并不是我们可以用的估计，但是用于分析这是很方便的。我们可以写出如下关系</p>
+<p>假设我们的训练样本$(x_i, y_i),i=1,\ldots,N$是从分布$\cal P$中独立采样的，并且考虑理想的整合估计器$f_{ag}(x)=E_{\cal P}\hat f^* (x)$。这里$x$是固定的，并且自助数据集$\mathbf Z^*$包含从$\cal P$中采样的的观测$x_i^*, y_i^*$。注意到$f_{ag}(x)$是从实际总体$\cal P$中而不是数据中采样得到一个bagging估计。实际中这并不是我们可以用的估计，但是用于分析这是很方便的。我们可以写出如下关系</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-E_{\cal P}[Y-\hat f^\*(x)]^2 &= E_{\cal P}[Y-f_{ag}(x)+f_{ag}(x)-\hat f^\*(x)]^2\\
-& = E_{\cal P}[Y-f_{ag}(x)]^2+E_{\cal P}[\hat f^\*(x) - f_{ag}(x)]^2\\
+E_{\cal P}[Y-\hat f^*(x)]^2 &= E_{\cal P}[Y-f_{ag}(x)+f_{ag}(x)-\hat f^*(x)]^2\\
+& = E_{\cal P}[Y-f_{ag}(x)]^2+E_{\cal P}[\hat f^*(x) - f_{ag}(x)]^2\\
 & \ge E_{\cal P}[Y-f_{ag}(x)]^2\qquad (8.52)
 \end{align}
 </script>

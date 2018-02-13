@@ -2866,7 +2866,7 @@ f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
 </p>
 <p>以向前逐步的方式导出(算法10.2)。在向前逐步过程中的每一步, 给定当前树模型$f_{m-1}(x)$，求出下一棵树的区域和常数$\Theta_m=\{R_{jm},\gamma_{jm}\}^{J_m}_1$需要求解
 <script type="math/tex; mode=display">
-\hat\Theta_m = \text{arg }\underset{\Thtea_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
+\hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
 </script>
 </p>
 <p>给定区域$R_{jm}$，寻找每个区域的最优的常数值$\gamma_{jm}$是很直接的</p>

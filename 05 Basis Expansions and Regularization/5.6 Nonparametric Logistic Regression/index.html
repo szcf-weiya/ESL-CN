@@ -2848,7 +2848,7 @@ Pr(Y=1\mid X=x)=\frac{e^{f(x)}}{1+e^{f(x)}}\qquad (5.29)
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
-\ell(f;\lambda)&=\sum\limits_{i=1}^N[y_i\mathbrm{log}p(x_i)+(1-y_i)\mathrm{log}(1-p(x_i))]-\frac{1}{2}\lambda\int \{f''(t)\}^2dt\\
+\ell(f;\lambda)&=\sum\limits_{i=1}^N[y_i\LOG p(x_i)+(1-y_i)\mathrm{log}(1-p(x_i))]-\frac{1}{2}\lambda\int \{f''(t)\}^2dt\\
 &=\sum\limits_{i=1}^N[y_if(x_i)-log(1+e^{f(x_i)})]-\frac{1}{2}\lambda \int\{f''(t)\}^2dt\qquad (5.30)
 \end{array}
 </script>

@@ -3100,8 +3100,8 @@ F=\dfrac{(32.81-29.43)/(9-5)}{29.43/(67-9)}=1.67\qquad (3.16)
 <p>考虑$\mathbf{X}$固定，这是关于响应变量$\mathbf{y}$的线性函数$\mathbf{c}_0^T\mathbf{y}$。如果我们假设线性模型是正确的，$a^T\hat{\beta}$是无偏的，因为
 <script type="math/tex; mode=display">
 \begin{align}
-E(a^T\hat{\beta})&=E(a^T\mathbf{(X^TX)^{-1}X^Ty})\\\\
-&=a^T\mathbf{(X^TX)^{-1}X^TX}\beta\\\\
+E(a^T\hat{\beta})&=E(a^T\mathbf{(X^TX)^{-1}X^Ty})\\
+&=a^T\mathbf{(X^TX)^{-1}X^TX}\beta\\
 &=a^T\beta\qquad (3.18)
 \end{align}
 </script>
@@ -3117,7 +3117,7 @@ Var(a^T\hat{\beta})\le Var(\mathbf{c}^T\mathbf{y})\qquad (3.19)
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-MSE(\tilde{\theta})&=E(\tilde{\theta}-\theta)^2\\\\
+MSE(\tilde{\theta})&=E(\tilde{\theta}-\theta)^2\\
 &=Var(\tilde{\theta})+[E(\tilde{\theta})-\theta]^2\qquad (3.20)
 \end{align}
 </script>
@@ -3151,7 +3151,7 @@ Y=X\beta + \varepsilon \qquad (3.23)
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\hat{\beta}&=\dfrac{\sum_1^Nx_iy_i}{\sum_1^Nx_i^2}\\\\
+\hat{\beta}&=\dfrac{\sum_1^Nx_iy_i}{\sum_1^Nx_i^2}\\
 r_i &= y_i -x_i\hat{\beta}
 \end{align}
 \qquad (3.24)
@@ -3193,7 +3193,7 @@ r_i &= y_i -x_i\hat{\beta}
 <p>第一步对$\mathbf{x}$作关于$\mathbf{x}_0=\mathbf{1}$的正交化。第二步是一个利用正交预测变量$\mathbf{1}$和$\mathbf{z}$简单的单变量回归。图3.4展示了两个一般输入$\mathbf{x}_1$和$\mathbf{x}_2$的过程。正交化不会改变由$\mathbf{x}_1$和$\mathbf{x}_2$张成的子空间，它简单地产生一个正交基来表示子空间。</p>
 <p><img alt="" src="../../img/03/fig3.4.png" /></p>
 <p>正交输入的最小二乘回归。向量$\mathbf{x}_2$在向量$\mathbf{x}_1$上回归，得到残差向量$\mathbf{z}$。$\mathbf{y}$在$\mathbf{z}$上的回归给出$\mathbf{x}_2$的系数。把$\mathbf{y}$在$\mathbf{x}_1$和$\mathbf{z}$上的投影加起来给出了最小二乘拟合$\mathbf{\hat{y}}$.</p>
-<p>这个方法可以推广到$p$个输入的情形，如算法3.1所示。注意到第二步的输入$\mathbf{z}<em>0,\ldots,\mathbf{z}</em>{j-1}$是正交的，因此这里计算得到的简单回归的系数实际上是多重回归的系数。</p>
+<p>这个方法可以推广到$p$个输入的情形，如算法3.1所示。注意到第二步的输入$\mathbf{z}_0,\ldots,\mathbf{z}_{j-1}$是正交的，因此这里计算得到的简单回归的系数实际上是多重回归的系数。</p>
 <p><img alt="" src="../../img/03/Alg3.1.png" /></p>
 <!--
 ****
@@ -3228,10 +3228,10 @@ Var(\hat{\beta}_p)=\dfrac{\sigma^2}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}=\
 \mathbf{X=Z\Gamma}\qquad (3.30)
 </script>
 </p>
-<p>其中$\mathbf{Z}$是$\mathbf{z_j}$（按顺序）作为列向量的矩阵，$\mathbf{\Gamma}$是值为$\hat{\gamma}<em>{kj}$的上三角矩阵。引入第$j$个对角元$D</em>{jj}=\Vert \mathbf{z}_j \Vert$的对角矩阵$\mathbf{D}$，我们有
+<p>其中$\mathbf{Z}$是$\mathbf{z_j}$（按顺序）作为列向量的矩阵，$\mathbf{\Gamma}$是值为$\hat\gamma_{kj}$的上三角矩阵。引入第$j$个对角元$D_{jj}=\Vert \mathbf{z}_j \Vert$的对角矩阵$\mathbf{D}$，我们有
 <script type="math/tex; mode=display">
 \begin{align}
-\mathbf{X}&=\mathbf{ZD^{-1}D\Gamma}\\\\
+\mathbf{X}&=\mathbf{ZD^{-1}D\Gamma}\\
 &=\mathbf{QR}\qquad (3.31)
 \end{align}
 </script>
@@ -3240,7 +3240,7 @@ Var(\hat{\beta}_p)=\dfrac{\sigma^2}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}=\
 <p>$\mathbf{QR}$分解表示了$\mathbf{X}$列空间的一组方便的正交基。举个例子，很容易可以看到，最小二乘的解由下式给出
 <script type="math/tex; mode=display">
 \begin{align}
-\hat{\beta}&=\mathbf{R^{-1}Q^Ty}\qquad (3.32) \\\\
+\hat{\beta}&=\mathbf{R^{-1}Q^Ty}\qquad (3.32) \\
 \hat{\mathbf{y}}&=\mathbf{QQ^Ty}\qquad (3.33)
 \end{align}
 </script>
