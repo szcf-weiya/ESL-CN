@@ -45,8 +45,9 @@ window.MathJax = {
       Err: "{\\mathrm{Err}}",
       logit: "{\\mathrm{logit}}",
       trace: "{\\mathrm{trace}}",
-      diag: "{\\mathrm{trace}}",
+      diag: "{\\mathrm{diag}}",
       st: "{\\mathrm{subject\\; to}\\;}",
+      pr: "{\\mathrm{Pr}}",
 
       ssigma: "{\\boldsymbol\\Sigma}",
       oomega: "{\\boldsymbol\\Omega}",
