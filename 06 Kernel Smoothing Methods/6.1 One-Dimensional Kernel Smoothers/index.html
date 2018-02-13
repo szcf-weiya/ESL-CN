@@ -1015,9 +1015,42 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        6.1 一维核光滑器
+      </label>
+    
     <a href="index.html" title="6.1 一维核光滑器" class="md-nav__link md-nav__link--active">
       6.1 一维核光滑器
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="局部线性回归" class="md-nav__link">
+    局部线性回归
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -2801,6 +2834,26 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="局部线性回归" class="md-nav__link">
+    局部线性回归
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2905,24 +2958,27 @@ K_\lambda(x_0,x)=D(\frac{\vert x-x_0\vert}{h_\lambda(x_0)})\qquad (6.5)
 <blockquote>
 <p>图6.2 局部光滑的三个流行的核的比较。每个都已经经过校准使得积分为1。三次立方核是紧的并且在支撑集的边界有二阶连续微分，而Epanechnikov没有。高斯核是连续可微的，但是有无限的支撑集。</p>
 </blockquote>
-<p>## 局部线性回归</p>
+<h2 id="_2">局部线性回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们已经从原始的滑动平均进步到通过使用核权重实现的光滑变化局部加权平均。然而，光滑核拟合仍然有问题，正如图6.3（左）显示的那样。局部加权平均会在定义域边界处有严重的偏差，因为这个区域内核的不对称性。通过拟合直线而不是局部的常值，我们可以将偏差降至一阶；见图6.3（右）。实际上，如果$X$值不是相等的间隔（基于同样的原因，但是通常没有那么严重），偏差也可以表现在定义域的中间。再一次局部加权线性回归会纠正为一阶误差。</p>
 <p><img alt="" src="../../img/06/fig6.3.png" /></p>
 <blockquote>
 <p>图6.3. 局部加权平均在定义域处或附近有着偏差问题。真实的函数在这里近似线性，但是邻域中大部分观测比目标点有更高的均值，所以尽管进行了加权，但是它们的均值将会向上偏。通过拟合局部的加权线性回归（右），这个偏差会降到一阶。</p>
 </blockquote>
-<p>局部加权回归解决了在每个目标点处独立的加权最小二乘问题：
-  <script type="math/tex; mode=display">
-  \underset{\alpha(x_0),\beta(x_0)}{min}\sum\limits_{i=1}^NK_\lambda(x_0,x_i)[y_i-\alpha(x_0)-\beta(x_0)x_i]^2\qquad (6.7)
-  </script>
-  于是估计为$\hat f(x_0)=\hat\alpha(x_0)+\hat\beta(x_0)x_0$。注意到尽管我们对区域内的数据拟合整个线性模型，但是我们只用它来确定单点$x_0$处的函数值。</p>
-<p>定义向量值函数为$b(x)^T=(1,x)$。令$\mathbf B$为$N\times 2$的回归矩阵，第$i$行为$b(x_i)^T$，并且$\mathbf W(x_0)$为$N\times N$的对角矩阵，其中第$i$个对角元为$K_\lambda(x_0,x_i)$。于是
-  <script type="math/tex; mode=display">
+<p>局部加权回归解决了在每个目标点处独立的加权最小二乘问题：</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\alpha(x_0),\beta(x_0)}{min}\sum\limits_{i=1}^NK_\lambda(x_0,x_i)[y_i-\alpha(x_0)-\beta(x_0)x_i]^2\qquad (6.7)
+</script>
+</p>
+<p>于是估计为$\hat f(x_0)=\hat\alpha(x_0)+\hat\beta(x_0)x_0$。注意到尽管我们对区域内的数据拟合整个线性模型，但是我们只用它来确定单点$x_0$处的函数值。</p>
+<p>定义向量值函数为$b(x)^T=(1,x)$。令$\mathbf B$为$N\times 2$的回归矩阵，第$i$行为$b(x_i)^T$，并且$\mathbf W(x_0)$为$N\times N$的对角矩阵，其中第$i$个对角元为$K_\lambda(x_0,x_i)$。于是</p>
+<p>
+<script type="math/tex; mode=display">
   \begin{align}
   \hat f(x_0)&= b(x_0)^T(\mathbf {B^TW}(x_0)\mathbf B)^{-1}\mathbf B^T\mathbf W(x_0)\mathbf y\qquad (6.8)\\
   &=\sum\limits_{i=1}^Nl_i(x_0)y_i\qquad (6.9)
   \end{align}
-  </script>
+</script>
 </p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注</p>
