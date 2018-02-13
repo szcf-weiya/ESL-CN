@@ -2982,11 +2982,11 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017.12.12; 2017.12.18; 2018.02.12</td>
+<td>2017.12.12; 2017.12.18; 2018.02.12; 2018.02.13</td>
 </tr>
 <tr>
 <td>状态</td>
-<td>InProgress</td>
+<td>In Progress</td>
 </tr>
 </tbody>
 </table>
@@ -3073,7 +3073,72 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$分散，但是$\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$收敛到最优分离超平面。</p>
 </div>
 <h2 id="_1">函数估计和重生核<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
+<p>这里我们用重生核希尔伯特空间的函数估计来描述SVM，其中有许多的核性质。这里讨论的内容在<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>有详细讨论。这里给出支持向量分类器的另一个视角，并且帮助理清它如何实现。</p>
+<p>假设基$h$来自与正定核$K$的（可能是有限的）特征展开，</p>
+<p>
+<script type="math/tex; mode=display">
+K(x, x')=\sum\limits_{m=1}^{\infty}\phi_m(x)\phi_m(x')\delta_m\qquad (12.26)
+</script>
+</p>
+<p>并且$h_m(x)=\sqrt{\delta_m}\phi_m(x)$。则当$\theta_m=\sqrt{\delta_m}\beta_m$，我们可以把(12.25)写成</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\beta_0, \theta}{\min}\sum\limits_{i=1}^N\Big[
+    1-y_i(\beta_0+\sum\limits_{m=1}^{\infty}\theta_m\phi_m(x_i))
+    \Big]_+ + \frac{\lambda}{2}\sum\limits_{m=1}^{\infty}\frac{\theta_m^2}{\delta_m}
+    \qquad (12.27)
+</script>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\{c_j\}_1^\infty}{\min}\Big[\sum\limits_{i=1}^NL(y_i, \sum\limits_{j=1}^\infty c_j\phi_j(x_i))+\lambda \sum\limits_{j=1}^\infty c_j^2/\gamma_j\Big]\qquad (5.49)
+</script>
+<script type="math/tex; mode=display">
+\underset{\alpha_0,\aalpha}{\min}\Big\{
+\sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \frac{\lambda}{2}\aalpha^T\K\aalpha
+\Big\}\qquad (5.67)
+</script>
+</p>
+</div>
+<p>现在(12.27)与5.8节中的(5.49)形式相同，并且重生希尔伯特空间的理论保证了形如下面的有限维的解</p>
+<p>
+<script type="math/tex; mode=display">
+f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\qquad (12.28)
+</script>
+</p>
+<p>特别地，我们看到存在等价的优化准则[5.8.2节的式(5.67)；也可以参见Wahba et al. (2000)]</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\beta_0, \alpha}{\min}\sum\limits_{i=1}^N(1-y_if(x_i))_++\frac{\lambda}{2}\alpha^T\K\alpha\qquad (12.29)
+</script>
+</p>
+<p>其中$\K$是所有成对训练特征的核的赋值（练习12.2）。</p>
+<p>这些模型非常一般，举个例子，包含第5和第9章中讨论的整个光滑样条族，可加和交叉样条模型，更多细节参见Wahba (1990)和Hastie and Tibshirani (1990)。它们可以更一般地表示为</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{f\in{\cal H}}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \lambda J(f)\qquad (12.30)
+</script>
+</p>
+<p>其中$\cal H$是函数的结构空间(the structured space of functions)，并且$J(f)$是在该空间上合适的正则器。举个例子，假设$\cal H$是可加函数$f(x)=\sum_{j=1}^pf_j(x_j)$，并且$J(f)=\sum_j\int\{f^{(2)}_j(x_j)\}^2dx_j$。则(12.30)的解为可加三次样条，并且有核表示$K(x,x&rsquo;)=\sum_{j=1}^pK_j(x_j,x_j&rsquo;)$。每个$K_j$是关于$x_j$的合适的单变量光滑样条的核(Wahba, 1990)。</p>
+<p>反过来，这个讨论也表明，举个例子，任意(12.22)中提到的核都可以和凸损失函数一起使用，并且将会得到形如(12.28)的有限维表示。图12.5采用和图12.3同样的核函数，除了采用二项对数似然作为损失函数。因此拟合函数是log-odds的估计</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat f(x) &=\LOG \frac{\hat\pr (Y=+1\mid x)}{\hat\pr (Y=-1\mid x)}\\
+&=\hat\beta_0+\sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\qquad (12.31)
+\end{align}
+</script>
+</p>
+<p>或者反过来，我们得到类别概率的估计</p>
+<p>
+<script type="math/tex; mode=display">
+\hat\pr(Y=+1\mid x)=\frac{1}{1+e^{-\hat\beta_0-\sum_{i=1}^N\hat\alpha_iK(x,x_i}}\qquad (12.32)
+</script>
+</p>
+<p>这些拟合的模型在形状和表现效果上都非常相似。5.8节给出了例子以及更多的细节。</p>
+<p>对于SVM也是一样，$N$个$\alpha_i$中的一部分可以为0（非支持点）。在图12.3的两个例子中，这些比例分布为42%和45%。这是准则(12.25)的第一部分分段线性的本质。（在训练数据上）类别重叠越少，这个比例越大。降低$\lambda$一般会降低重叠（允许更灵活的$f$）。较少的支持点意味着$\hat f(x)$可以更快地进行赋值，这在查找时很重要。当然，过分降低重叠会导致泛化能力太差。</p>
 <h2 id="svm_2">SVM和维数灾难<a class="headerlink" href="#svm_2" title="Permanent link">&para;</a></h2>
 <p>在这一节，我们提出问题，SVMs是否存在维数灾难。注意到在展开式(12.23)中，我们不允许在幂和乘积的空间中有完全一般的内积。举个例子，所有形如$2X_jX_j&rsquo;$赋予相同的权重，并且核不能自动更新来集中到子空间中。如果特征的数量$p$很大，但是类别分类仅仅发生在$X_1$和$X_2$张成的子空间，这个核不会简单地被找到其结构并且需要在很多维度下搜寻。必须将子空间的信息考虑进核中；也就是，忽略除了前两个的输入。如果有信息能够得到先验，大多数统计学习会变得很简单。自适应方法的主要目标是发现类似的结构。</p>
 <p>我们用一个例子来支持上面的陈述。我们在两个类别中产生100个观测值。第一类有4个标准正态独立特征$X_1,X_2,X_3,X_4$。第二类也有四个标准正态独立特征，但是条件为$9\le \sum X_j^2\le 16$。这是个相对简单的问题。作为第二个更难的问题，我们用6个标准高斯噪声特征来增广特征。因此第二类完全包围了第一类，类似在四维子空间中外皮包围着橘子。该问题的贝叶斯误差率为0.029（不考虑维数）。我们产生1000个测试观测量来比较不同的过程。在有无噪声特征的情况下，平均测试误差在50个模拟中得到，如表12.2所示。</p>
@@ -3083,7 +3148,76 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <h2 id="svm_3">SVM分类器的路径算法<a class="headerlink" href="#svm_3" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
 <h2 id="_2">用于回归的支持向量机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在这一节，我们将要展示SVMs可以适用于定量响应变量的回归问题，其中采用继承SVM分类器的某些性质的方式。我们首先讨论线性回归模型</p>
+<p>
+<script type="math/tex; mode=display">
+f(x)=x^T\beta+\beta_0\qquad (12.35)
+</script>
+</p>
+<p>接下来处理非线性的推广情形。为了估计$\beta$，我们考虑下式的最小化</p>
+<p>
+<script type="math/tex; mode=display">
+H(\beta, \beta_0) = \sum\limits_{i=1}^N V(y_i-f(x_i)) + \frac{\lambda}{2}\Vert \beta\Vert^2\qquad (12.36)
+</script>
+</p>
+<p>其中</p>
+<p>
+<script type="math/tex; mode=display">
+V_{\epsilon}(r)=
+\left\{
+\begin{array}{ll}
+0 & \text{if}\; \vert r\vert < \epsilon\\
+\vert r\vert -\epsilon, &\text{otherwise}
+\end{array}
+\right.
+\qquad (12.37)
+</script>
+</p>
+<p>这是一种“$\epsilon$-insensitive”的误差度量，它忽略了大小小于$\epsilon$的误差（图12.8的左图）。这一点类似支持向量机在分类问题中的设定，处于判别边界正确一侧的点以及远离边界的点在优化过程中都被忽略了。在回归中，这些“low error”的点是残差较小的点。</p>
+<p>将这个误差度量与统计中鲁棒回归中采用的误差度量比较是很有趣的。图12.8的右图展示了鲁棒回归中误差度量的最受欢迎的形式(Huber (1964))：</p>
+<p>
+<script type="math/tex; mode=display">
+V_{H}(r)=
+\left\{
+\begin{array}{ll}
+r^2/2 & \text{if}\; \vert r\vert \le c\\
+c\vert r\vert -c^2/2, &\vert r\vert > c
+\end{array}
+\right.
+\qquad (12.38)
+</script>
+</p>
+<p>当绝对残差大于预先给定的某个常值$c$时，函数将观测的贡献从二次降至一次。这使得拟合对离群点更加不敏感。支持向量误差衡量(12.37)也有线性尾(tail)（大于$\epsilon$），但是除此之外，它压缩了小偏差情形下观测点的贡献。</p>
+<p>如果$\hat\beta,\; \hat\beta_0$是$H$的最小值点，则解函数有如下形式</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat\beta & = \sum\limits_{i=1}^N(\hat\alpha_i^*-\hat\alpha_i)x_i & (12.39)\\
+\hat f(x) & = \sum\limits_{i=1}^N(\hat\alpha_i^*-\hat\alpha_i)\langle x, x_i\rangle+\beta_0 & (12.40)
+\end{align}
+</script>
+</p>
+<p>其中$\hat\alpha_i,\; \hat\alpha_i^*$是正的，且是下列的二次规划问题的解</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\alpha_i,\alpha_i^*}{\min}\epsilon \sum\limits_{i=1}^N(\alpha_i^*+\alpha_i)-\sum\limits_{i=1}^Ny_i(\hat\alpha_i^*-\alpha_i)+\frac 12(\alpha_i^*-\alpha_i)(\alpha_{i'}^*-\alpha_{i'})\langle x_i, x_{i'}\rangle
+</script>
+</p>
+<p>约束条件如下</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+0\le \alpha_i,\alpha_i^*\le \frac{1}{\lambda}\\
+\sum\limits_{i=1}^N(\alpha_i^*-\alpha_i)=0\\
+\alpha_i\alpha_i^*=0
+\end{align}
+\qquad (12.41)
+</script>
+</p>
+<p>考虑到这些约束的本质，一般仅仅有部分的解$(\hat \alpha_i^*-\hat\alpha_i)$非零， 并且对应的数据称为支持向量。和分类问题中的设定一样，解仅仅通过内积$\langle x_i, x_{i&rsquo;}\rangle$。因此我们可以通过定义合适的内积将这个方法推广到高维空间，举个例子，采用(12.22)中定义的其中一个。</p>
+<p>注意到参数$\epsilon$和$\lambda$与准则(12.36)有关。它们似乎扮演不同的角色，$\epsilon$是损失函数$V_{\epsilon}$的参数，和$c$是$V_H$的参数一样。注意到$V_{\epsilon}$和$V_H$都依赖$y$的尺度，以及$r$。如果我们对响应变量进行缩放（也因此需要用$V_H(r/\sigma)$和$V_\epsilon(r/\sigma)$），则我们可能考虑采用预先设定的$c$和$\epsilon$（对于高斯情形，取$c=1.345$能达到$95\%$的有效度）。$\lambda$是更传统的正则参数，并且可以通过交叉验证来估计。</p>
 <h2 id="_3">回归和核<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>正如12.3.3节讨论的一样，这个核性质</p>
 <h2 id="_4">讨论<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
