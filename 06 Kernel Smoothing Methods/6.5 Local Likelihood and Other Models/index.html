@@ -2857,14 +2857,20 @@ l(\theta(z_0))=\sum\limits_{i=1}^NK_\lambda(z_0,z_i)l(y_i,\eta(x_i,\theta(z_0)))
 <script type="math/tex; mode=display">
 Pr(G=j\mid X=x)=\frac{e^{\beta_{i0}+\beta_j^Tx}}{1+\sum_{k=1}^{J-1}e^{\beta_{k0+\beta_k^Tx}}}\qquad (6.18)
 </script>
-第$J$类的局部对数似然模型可以写成
+</p>
+<p>第$J$类的局部对数似然模型可以写成</p>
+<p>
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^NK_\lambda(x_0,x_i)\{beta_{g_i0}(x_0)+\beta_{g_i}(x_0)^T(x_i-x_0)-log[1+\sum\limits_{k=1}^{J-1}exp(\beta_{k0}(x_0)+\beta_k(x_0)^T(x_i-x_0))]\}\qquad (6.19)
+\sum\limits_{i=1}^NK_\lambda(x_0,x_i)\Big\{\beta_{g_i0}(x_0)+\beta_{g_i}(x_0)^T(x_i-x_0)-\LOG[1+\sum\limits_{k=1}^{J-1}exp(\beta_{k0}(x_0)+\beta_k(x_0)^T(x_i-x_0))]\Big\}\qquad (6.19)
 </script>
-注意到
-- 我们使用$g_i$作为下标来选择合适的分子。
-- 由模型定义得$\beta_{J0}=0,\beta_J=0$
-- 我们已经对$x_0$处的局部回归进行了标准化，所以在$x_0$处的拟合后验概率简化为
+</p>
+<p>注意到</p>
+<ul>
+<li>我们使用$g_i$作为下标来选择合适的分子。</li>
+<li>由模型定义得$\beta_{J0}=0,\beta_J=0$</li>
+<li>我们已经对$x_0$处的局部回归进行了标准化，所以在$x_0$处的拟合后验概率简化为</li>
+</ul>
+<p>
 <script type="math/tex; mode=display">
 \widehat{Pr}(G=j\mid X=x_0)=\frac{e^{\hat \beta_{j0}(x_0)}}{1+\sum_{k=1}^{J-1}e^{\hat\beta_{k0}(x_0)}}\qquad (6.20)
 </script>
@@ -2875,7 +2881,7 @@ Pr(G=j\mid X=x)=\frac{e^{\beta_{i0}+\beta_j^Tx}}{1+\sum_{k=1}^{J-1}e^{\beta_{k0+
 <blockquote>
 <p>对于南非心脏病数据，每张图显示了二值响应变量CHD（冠状心脏病）作为风险因子的函数。对于每张图我们采用局部线性逻辑斯蒂回归模型来计算拟合的CHD患病率。在定义域的底端处CHD患病率的意想不到的增加是因为它们是后面的数据，并且一些主题已经经历了降低血压和体重的处理方式。图中的阴影区域表明逐点估计的标准误差带。</p>
 </blockquote>
-<p>因为CHD是二值指示变量，所以我们可以通过直接地光滑二值响应变量来估计条件患病率$Pr(G=j\mid x_0)$，而不是采取似然的组成。这意味着拟合局部常值逻辑斯蒂回归模型(练习6.5)。为了享受局部线性拟合的偏差纠正，在无限制的逻辑斯蒂尺度上操作更加自然。</p>
+<p>因为CHD是二值指示变量，所以我们可以通过直接地光滑二值响应变量来估计条件患病率$Pr(G=j\mid x_0)$，而不是采取似然的组成。这意味着拟合局部常值逻辑斯蒂回归模型（练习6.5）。为了享受局部线性拟合的偏差纠正，在无限制的逻辑斯蒂尺度上操作更加自然。</p>
 <p>一般地，我们用逻辑斯蒂回归来计算参数估计和它们的标准差。这个也可以局部实现，因为我们可以得到如图中所示的关于我们拟合的患病率的逐点标准误差带。</p>
                 
                   
