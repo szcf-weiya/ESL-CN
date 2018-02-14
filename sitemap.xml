@@ -2,29 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     
-    <url>
-     <loc>https://esl.hohoweiya.xyz/index.html</loc>
-     <lastmod>2018-02-14</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
         
           
             <url>
-             <loc>https://esl.hohoweiya.xyz/Preface/2016-07-20-Preface-to-the-Second-Edition/index.html</loc>
+             <loc>https://esl.hohoweiya.xyz/index.html</loc>
              <lastmod>2018-02-14</lastmod>
              <changefreq>daily</changefreq>
             </url>
           
         
           
-            <url>
-             <loc>https://esl.hohoweiya.xyz/Preface/2016-07-21-Preface-to-the-First-Edition/index.html</loc>
-             <lastmod>2018-02-14</lastmod>
-             <changefreq>daily</changefreq>
-            </url>
+            
+              <url>
+               <loc>https://esl.hohoweiya.xyz/Preface/2016-07-20-Preface-to-the-Second-Edition/index.html</loc>
+               <lastmod>2018-02-14</lastmod>
+               <changefreq>daily</changefreq>
+              </url>
+            
+              <url>
+               <loc>https://esl.hohoweiya.xyz/Preface/2016-07-21-Preface-to-the-First-Edition/index.html</loc>
+               <lastmod>2018-02-14</lastmod>
+               <changefreq>daily</changefreq>
+              </url>
+            
           
         
     
