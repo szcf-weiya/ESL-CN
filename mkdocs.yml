@@ -1,9 +1,9 @@
 pages:
   - 主页: 'index.md'
+  - 序言:
+    - 第二版序言: 'Preface/2016-07-20-Preface-to-the-Second-Edition.md'
+    - 第一版序言: 'Preface/2016-07-21-Preface-to-the-First-Edition.md'
   - 上篇:
-    - 序言:
-      - 第二版序言: 'Preface/2016-07-20-Preface-to-the-Second-Edition.md'
-      - 第一版序言: 'Preface/2016-07-21-Preface-to-the-First-Edition.md'
     - 1 简介:
       - 1.1 导言: '01 Introduction/2016-07-26-Chapter-1-Introduction.md'
     - 2 监督学习概要:
