@@ -4,9 +4,12 @@
       ---|---
 翻译     | szcf-weiya
 时间     | 2016-07-21
+更新 | 2018-02-14
+状态| Done
 
 > We are drowning in information and starving for knowledge.
 –Rutherford D. Roger
+
 
 我们沉浸在信息中并且渴望知识。
 —— 卢瑟福 D.罗杰
@@ -34,13 +37,13 @@
 ideas in learning, and explain them in a statistical framework. While some mathematical details are needed, we emphasize the methods and their conceptual underpinnings rather than their theoretical properties. As a result, we hope that this book will appeal not just to statisticians but also to researchers and practitioners in a wide variety of fields.
 -->
 
-这本书是我们对把在“学习”中许多重要的想法聚集起来用统计学的框架来解释的一种尝试。尽管一些数学细节是必要的，我们更多地强调方法以及基础的概念，而不是理论性质。因此，我们希望这本书不仅吸引统计学家，同时能够吸引更多领域的研究者们。
+这本书是我们对把在“学习”中许多重要的想法聚集起来用统计学的框架来解释的一种尝试。尽管一些数学细节是必要的，但是我们更多地强调方法以及基础的概念，而不是理论性质。因此，我们希望这本书不仅吸引统计学家，同时能够吸引更多领域的研究者们。
 
 <!--
 > Just as we have learned a great deal from researchers outside of the field of statistics, our statistical viewpoint may help others to better understand different aspects of learning:
 -->
 
-正如我们从不是统计学领域的研究者们那里学到了很多，我们统计学的观点或许帮助其他领域的研究者们更好地理解学习的不同方面。
+正如我们从非统计学领域的研究者们那里学到了很多，我们统计学的观点或许帮助其他领域的研究者们更好地理解学习的不同方面。
 
 <!--
 > There is no true interpretation of anything; interpretation is a
@@ -63,13 +66,18 @@ Jerome Friedman
 Stanford, California
 May 2001
 -->
-我想为对这本书的概念以及完成做出贡献的人表示感谢。David Andrews, Leo Breiman, Andreas Buja, John Chambers, Bradley Efron, Geoffrey Hinton, Werner Stuetzle, 和 John Tukey 很大程度上影响了我的职业。Balasubramanian Narasimhan 给了我建议以及在很多计算问题上给予帮助，而且维持了一个很好的计算环境。Shin-Ho Bang在一系列图片的绘制上帮了很大的忙。Lee Wilkinson在色彩方面给了很多有价值的建议。Ilana Belitskaya, Eva Cantoni, Maya Gupta, Michael Jordan, Shanti Gopatam, Radford Neal, Jorge Picazo, Bogdan Popescu, Olivier Renaud, Saharon Rosset, John Storey, Ji Zhu, Mu Zhu,两个校订者以及许多学生阅读了部分手稿并且提出很多帮助性的建议。 John Kimmel每时每刻都在支持我，很耐心地帮助我；MaryAnn Brickner 和 Frank Ganz带领了手下一流的团队在出版社完成工作。Trevor Hastie想要感谢开普敦大学的统计学院在书的最后阶段的款待。我们对NSF和NIH的支持非常感谢。最后，我们要感谢我们的家庭和父母的爱与支持。
+我想为对这本书的概念以及完成做出贡献的人表示感谢。David Andrews, Leo Breiman, Andreas Buja, John Chambers, Bradley Efron, Geoffrey Hinton, Werner Stuetzle, 和 John Tukey 很大程度上影响了我的职业。Balasubramanian Narasimhan 给了我建议以及在很多计算问题上给予帮助，而且维持了一个很好的计算环境。Shin-Ho Bang在一系列图片的绘制上帮了很大的忙。Lee Wilkinson在色彩方面给了很多有价值的建议。Ilana Belitskaya, Eva Cantoni, Maya Gupta, Michael Jordan, Shanti Gopatam, Radford Neal, Jorge Picazo, Bogdan Popescu, Olivier Renaud, Saharon Rosset, John Storey, Ji Zhu, Mu Zhu，两个校订者以及许多学生阅读了部分手稿并且提出很多帮助性的建议。 John Kimmel每时每刻都在支持我，很耐心地帮助我；MaryAnn Brickner 和 Frank Ganz带领了手下一流的团队在出版社完成工作。Trevor Hastie想要感谢开普敦大学的统计学院在书的最后阶段的款待。我们对NSF和NIH的支持非常感谢。最后，我们要感谢我们的家庭和父母的爱与支持。
 
-Trevor Hastie
-Robert Tibshirani
-Jerome Friedman
-Stanford, California
-May 2001
+_Trevor Hastie_
+
+_Robert Tibshirani_
+
+_Jerome Friedman_
+
+_Stanford, California_
+
+_May 2001_
+
 
 <!--
 > The quiet statisticians have changed our world; not by discovering new facts or technical developments, but by changing the ways that we reason, experiment and form our opinions ....
