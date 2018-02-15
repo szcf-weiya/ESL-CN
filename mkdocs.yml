@@ -147,7 +147,7 @@ pages:
       - 14.4 自组织图: '14 Unsupervised Learning/14.4 Self-Organizing Maps.md'
       - 14.5 主成分，主曲线以及主曲面: '14 Unsupervised Learning/14.5-Principal-Components-Curves-and-Surfaces.md'
       - 14.6 非负矩阵分解: '14 Unsupervised Learning/14.6 Non-negative Matrix Factorization.md'
-      - 14.7 独立成分分析和探索投射寻踪: '14 Unsupervised Learning/14.7 Independent Component Analysis and Exploratory Projection Pursuit.md'
+      - 14.7 独立成分分析和探索投影寻踪: '14 Unsupervised Learning/14.7 Independent Component Analysis and Exploratory Projection Pursuit.md'
       - 14.8 多维缩放: '14 Unsupervised Learning/14.8 Multidimensional Scaling.md'
       - 14.9 非线性降维和局部多维缩放: '14 Unsupervised Learning/14.9 Nonlinear Dimension Reduction and Local Multidimensional Scaling.md'
       - 14.10 谷歌的PageRank算法: '14 Unsupervised Learning/14.10 The Google PageRank Algorithm.md'
