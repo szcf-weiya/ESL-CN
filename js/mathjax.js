@@ -28,6 +28,7 @@ window.MathJax = {
       f: "{\\mathbf{y}}",
 
       LOG: "{\\mathrm{log}\\;}",
+      log: "{\\mathrm{log}\\;}",
       E: "{\\mathrm{E}\\;}",
       1: "{\\boldsymbol 1}",
       Cov: "{\\mathrm{Cov}\\;}",
@@ -48,6 +49,7 @@ window.MathJax = {
       diag: "{\\mathrm{diag}}",
       st: "{\\mathrm{subject\\; to}\\;}",
       pr: "{\\mathrm{Pr}}",
+      Pr: "{\\mathrm{Pr}}",
 
       ssigma: "{\\boldsymbol\\Sigma}",
       oomega: "{\\boldsymbol\\Omega}",
