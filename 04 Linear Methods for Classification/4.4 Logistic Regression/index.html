@@ -3147,11 +3147,15 @@ z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\qquad (4.29)
 </blockquote>
 <p>坐标下降方法（3.8.6节）对于计算$\lambda$网格上的值的系数曲线是很有效的。<code>R</code>语言<code>glmnet</code>包(Friedman et al., 2010<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)对于非常大的逻辑斯蒂回归问题拟合系数路径是非常有效的（$N$或$p$很大时）。他们的算法可以利用预测变量矩阵$X$的稀疏性，以至于对于大规模问题也适用。18.4节有更详细的解释，而且将会讨论$L_1$正则多项分布模型。</p>
 <h2 id="lda">逻辑斯蒂回归或者LDA？<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>基于本小节内容，回答了<a href="https://www.zhihu.com/question/61101057/answer/324078106">Logistic回归模型和判别分析之间的关系？ - 知乎</a>。</p>
+</div>
 <p>在4.3节我们发现类别$k$和$K$类关于$x$线性函数的后验概率odds的对数（4.9）：</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
-log\dfrac{Pr(G=k\mid X=x)}{Pr(G=K\mid X=x)}&=log\dfrac{\pi_k}{\pi_K}-\frac{1}{2}(\mu_k+\mu_K)^T\Sigma^{-1}(\mu_k-\mu_K)\\
+\log\dfrac{\Pr(G=k\mid X=x)}{\Pr(G=K\mid X=x)}&=\log\dfrac{\pi_k}{\pi_K}-\frac{1}{2}(\mu_k+\mu_K)^T\Sigma^{-1}(\mu_k-\mu_K)\\
 &=\alpha_{k0}+\alpha_k^Tx\qquad\qquad (4.33)
 \end{array}
 </script>
@@ -3168,21 +3172,30 @@ log\dfrac{Pr(G=k\mid X=x)}{Pr(G=K\mid X=x)}&=log\dfrac{\pi_k}{\pi_K}-\frac{1}{2}
 \Pr(X,G=k)=\Pr(X)\Pr(G=k\mid X)\qquad (4.35)
 </script>
 </p>
-<p>其中$\Pr(X)$为输入$X$的边缘概率密度。对于LDA和逻辑斯蒂回归，右边的第二项有线性logit形式</p>
+<p>其中$\Pr(X)$为$X$的边缘概率密度。对于LDA和逻辑斯蒂回归，右边的第二项有线性logit形式</p>
 <p>
 <script type="math/tex; mode=display">
 \Pr(G=k\mid X=x)=\dfrac{e^{\beta_{k0}+\beta_k^Tx}}{1+\sum_{\ell=1}^{K-1}e^{\beta_{\ell0+\beta_\ell^Tx}}}\qquad (4.36)
 </script>
 </p>
 <p>我们再一次任意地选择最后一类作为标准。</p>
-<p>逻辑斯蒂回归模型中，$X$的边缘概率密度可以取任意的边界密度函数$\Pr(X)$，然后通过最大化条件概率（$\Pr(G=k\mid X)$的多项式概率）来拟合$\Pr(G\mid X)$的参数。尽管可以完全抵消掉$\Pr(X)$，但我们可以把边缘密度看成在全部非参和无约束情形下的估计，该估计是在每个观测值上采用权重为$1/N$的经验分布函数。</p>
+<p>逻辑斯蒂回归模型中，$X$的边缘概率密度可以取任意的边界密度函数$\Pr(X)$，然后通过最大化条件概率（$\Pr(G=k\mid X)$的多项式概率）来拟合$\Pr(G\mid X)$的参数。尽管可以完全忽略掉$\Pr(X)$，但我们可以把边缘密度看成在全部非参和无约束情形下的估计，该估计是在每个观测值上采用权重为$1/N$的经验分布函数。</p>
 <p>进行LDA时，我们通过基于下面的联合密度来最大化对数似然进行拟合参数</p>
 <p>
 <script type="math/tex; mode=display">
 \Pr(X,G=k)=\phi(X;\mu_k,\Sigma)\pi_k\qquad (4.37)
 </script>
 </p>
-<p>其中$\phi$是高斯密度函数。用标准正态的理论可以更容易估计4.3节的$\hat\mu_k,\hat\Sigma$和$\hat\pi_k$。因为(4.3)形式的逻辑斯蒂回归的线性参数是高斯分布参数的函数，我们通过插入对应的估计得到它们的极大似然估计。然而，与条件概率密度不同，边缘密度$\Pr(X)$起着重要作用。它是一个混合密度</p>
+<p>其中$\phi$是高斯密度函数。用标准正态的理论可以更容易估计4.3节的$\hat\mu_k,\hat\Sigma$和$\hat\pi_k$。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：Recall</p>
+<p>
+<script type="math/tex; mode=display">
+\mathbf{ \hat Y = {X(X^TX)^{-1}X^TY}} \qquad (4.3)
+</script>
+</p>
+</div>
+<p>因为(4.3)形式的逻辑斯蒂回归的线性参数是高斯分布参数的函数，我们通过插入对应的估计得到它们的极大似然估计。然而，与条件概率密度不同，边缘密度$\Pr(X)$起着重要作用。它是一个混合密度</p>
 <p>
 <script type="math/tex; mode=display">
 \Pr(X)=\sum\limits_{k=1}^K\pi_k\phi(X;\mu_k,\Sigma)\qquad (4.38)
