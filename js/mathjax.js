@@ -45,6 +45,7 @@ window.MathJax = {
       tr: "{\\mathrm{tr}}",
       Err: "{\\mathrm{Err}}",
       logit: "{\\mathrm{logit}}",
+      probit: "{\\mathrm{probit}}",
       trace: "{\\mathrm{trace}}",
       diag: "{\\mathrm{diag}}",
       st: "{\\mathrm{subject\\; to}\\;}",
