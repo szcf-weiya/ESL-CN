@@ -2967,7 +2967,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-02-04</td>
+<td>2018-02-04; 2018-02-21</td>
 </tr>
 </tbody>
 </table>
@@ -2982,22 +2982,21 @@
 </script>
 并作出箱线图。</p>
 <h2 id="_2">几个问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ol>
-<li>估计$\sigma_\epsilon^2$</li>
-</ol>
-<p>原书中提到
+<ul>
+<li>
+<p>估计$\sigma_\epsilon^2$。原书中提到
 <script type="math/tex; mode=display">
 [N/(N-d)]\cdot \overline{err}
 </script>
 </p>
-<ol>
-<li>k最近邻的有效参数个数</li>
-</ol>
-<p>原书有介绍：$N/k$。</p>
-<ol>
-<li>$k=1$如何求训练误差
-因为$k=1$得到0训练误差，故最小$k$取5。</li>
-</ol>
+</li>
+<li>
+<p>k最近邻的有效参数个数。原书有介绍：$N/k$。</p>
+</li>
+<li>
+<p>$k=1$如何求训练误差。因为$k=1$得到0训练误差，故最小$k$取5。</p>
+</li>
+</ul>
 <h2 id="_3">生成数据<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><span class="c1"># generate dataset</span>
 genX <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>n <span class="o">=</span> <span class="m">80</span><span class="p">,</span> p <span class="o">=</span> <span class="m">20</span><span class="p">){</span>
