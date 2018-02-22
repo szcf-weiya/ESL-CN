@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/18 High-Dimensional Problems/18.2 Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -33,7 +33,7 @@
     
     
       
-        <title>18.2 对角线性判别分析和最近收缩重心 - ESL CN</title>
+        <title>18.4 一次正则的线性分类器 - ESL CN</title>
       
     
     
@@ -101,7 +101,7 @@
     
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#182" tabindex="1" class="md-skip">
+      <a href="#184-l_1" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -127,7 +127,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                18.2 对角线性判别分析和最近收缩重心
+                18.4 一次正则的线性分类器
               </span>
             
           
@@ -2546,8 +2546,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../18.1%20When%20p%20is%20Much%20Bigger%20than%20N/index.html" title="18.1 当p大于N" class="md-nav__link">
+    <a href="../18.1-When-p-is-Much-Bigger-than-N/index.html" title="18.1 当p大于N" class="md-nav__link">
       18.1 当p大于N
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../18.2-Diagonal-Linear-Discriminant-Analysis-and-Nearest-Shrunken-Centroids/index.html" title="18.2 对角线性判别分析和最近收缩重心" class="md-nav__link">
+      18.2 对角线性判别分析和最近收缩重心
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html" title="18.3 二次正则的线性分类器" class="md-nav__link">
+      18.3 二次正则的线性分类器
     </a>
   </li>
 
@@ -2566,9 +2590,49 @@
       
     
     
-    <a href="index.html" title="18.2 对角线性判别分析和最近收缩重心" class="md-nav__link md-nav__link--active">
-      18.2 对角线性判别分析和最近收缩重心
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        18.4 一次正则的线性分类器
+      </label>
+    
+    <a href="index.html" title="18.4 一次正则的线性分类器" class="md-nav__link md-nav__link--active">
+      18.4 一次正则的线性分类器
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lasso" title="应用lasso的方法到蛋白质质谱" class="md-nav__link">
+    应用lasso的方法到蛋白质质谱
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fused-lasso" title="对于功能型数据的Fused Lasso" class="md-nav__link">
+    对于功能型数据的Fused Lasso
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -2579,31 +2643,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../18.3%20Linear%20Classifiers%20with%20Quadratic%20Regularization/index.html" title="18.3 二次正则的线性分类器" class="md-nav__link">
-      18.3 二次正则的线性分类器
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../18.4%20Linear%20Classifiers%20with%20L1%20Regularization/index.html" title="18.4 一次正则的线性分类器" class="md-nav__link">
-      18.4 一次正则的线性分类器
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../18.5%20Classification%20When%20Features%20are%20Unavailable/index.html" title="18.5 当特征不可用时的分类" class="md-nav__link">
+    <a href="../18.5-Classification-When-Features-are-Unavailable/index.html" title="18.5 当特征不可用时的分类" class="md-nav__link">
       18.5 当特征不可用时的分类
     </a>
   </li>
@@ -2615,7 +2655,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../18.6%20High-Dimensional%20Regression/index.html" title="18.6 有监督的主成分" class="md-nav__link">
+    <a href="../18.6-High-Dimensional-Regression/index.html" title="18.6 有监督的主成分" class="md-nav__link">
       18.6 有监督的主成分
     </a>
   </li>
@@ -2627,7 +2667,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../18.7%20Feature%20Assessment%20and%20the%20Multiple-Testing%20Problem/index.html" title="18.7 特征评估和多重检验问题" class="md-nav__link">
+    <a href="../18.7-Feature-Assessment-and-the-Multiple-Testing-Problem/index.html" title="18.7 特征评估和多重检验问题" class="md-nav__link">
       18.7 特征评估和多重检验问题
     </a>
   </li>
@@ -2639,7 +2679,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bioliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bioliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2828,6 +2868,33 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lasso" title="应用lasso的方法到蛋白质质谱" class="md-nav__link">
+    应用lasso的方法到蛋白质质谱
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fused-lasso" title="对于功能型数据的Fused Lasso" class="md-nav__link">
+    对于功能型数据的Fused Lasso
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2839,7 +2906,7 @@
               
                 
                 
-                <h1 id="182">18.2 对角线性判别分析和最近收缩重心<a class="headerlink" href="#182" title="Permanent link">&para;</a></h1>
+                <h1 id="184-l_1">18.4 $L_1$正则的线性分类器<a class="headerlink" href="#184-l_1" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2854,101 +2921,57 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-03-14:2017-03-14</td>
-</tr>
-<tr>
-<td>更新</td>
-<td>2017-08-09, 2017-12-29</td>
+<td>2017-04-27:2017-04-27</td>
 </tr>
 </tbody>
 </table>
-<p>基因表达阵列是生物中一项重要的新的技术，并且在第1章和第14章有讨论。我们下一个例子的数据构造了2308个基因（列）和63个样本（行）的矩阵，从一系列微阵列实验中得到。每个表达值是对数比率$log(R/G)$。 $R$为目标样本中基因特异性RNA的数目，目标样本混合到微阵列上特定（基因特异性）的位点，而$G$是参考样本中对应的RNA数目。从在孩子上发现的小、圆蓝色细胞肿瘤(SRBCT)得到样本，并且分成4个主要的类别：BL (Burkitt lymphoma), EWS (Ewing’s sarcoma), NB (neuroblastoma), 和RMS (rhabdomyosarcoma)。另外有包含20个观测的额外数据集。我们将不再讨论其背景。</p>
-<p>因为$p&gt;&gt;N$，我们不可以对数据采用全线性判别分析(LDA)；需要进行一些正则化。我们这里描述的方法类似在第4.3.1节中描述的方法，但是为了达到特征选择有更重要的改动。正则化的最简单的形式假设特征在每一类中独立，也就是，类间协方差阵是对角阵。尽管事实上特征很少在一个类别中独立，当$p&gt;&gt;N$时，我们没有充足的数据来估计它们的依赖性。独立性的假设很大程度上降低了模型中参数的个数，并且经常导出更有效和更有解释性的分类器。</p>
-<p>因此我们考虑对角协方差LDA准则来对类别分类。类别$k$的判别得分[p110的式(4.12)]是</p>
-<p>
-<script type="math/tex; mode=display">
-\delta_k(x^*)=-\sum\limits_{j=1}^p\frac{(x_j^*-\bar x_{kj})^2}{s_j^2}+2log\pi_k\qquad (18.2)
-</script>
-</p>
+<p>18.3节的方法使用$L_2$惩罚来对参数进行正则化，正如在岭回归中一样。所有的估计参数是非零的，因此没有应用到特征选择。在这一节我们讨论采用$L_1$惩罚的正则，也因此提供了自动的特征选择。</p>
 <div class="admonition note">
-<p class="admonition-title">Recall</p>
-<p>
-<script type="math/tex; mode=display">
-\delta_k(x)=-\frac{1}{2}log\vert\Sigma_k\vert-\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)+log\pi_k\qquad (4.12)
-</script>
+<p class="admonition-title">weiya 注<p>特征选择意味着选择变量（特征），在$L_2$正则化中，没有参数的系数为0，也就是没有剔除任何参数，所以说没有用到特征选择；而在$L_1$正则中，存在参数的系数为0，也就是会对特征进行选择。换句话说，特征选择的效果就是取部分的特征，于是那部分的特征所对应的系数为0。</p>
 </p>
 </div>
-<p>这里$x^*=(x_1^*,x_2^*,\ldots,x_p^*)^T$是测试观测的表达值的向量，$s_j$为第$j$个基因的混合类间标准误差，并且$\bar x_{kj}=\sum_{i\in C_k}x_{ij}/N_k$是$N_k$个属于类别$k$的基因$j$的平均，其中$C_k$是类别$k$的索引集。我们称$\tilde x_k=(\bar x_{k1},\bar x_{k2},\ldots,\bar x_{kp})^T$为类别$k$的重心。式(18.2)的第一部分是$x^*$到第$k$个类别重心的（负）标准平方距离。第二部分是基于类别先验概率$\pi_k$的矫正，其中$\sum_{k=1}^K\pi_k=1$。分类规则于是为</p>
+<p>回忆3.4.2节的lasso，</p>
 <p>
 <script type="math/tex; mode=display">
-C(x^\*)=\ell\text{ if } \delta_{\ell}(x^\*)=max_k\delta_k(x^\*)\qquad (18.3)
+\underset{\beta}{min}\frac{1}{2}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert\qquad (18.18)
 </script>
 </p>
-<p>我们看到对角LDA分类器经过合适的标准化后等价于最近重心分类器。这也是朴素贝叶斯分类器的一个特殊情形，正如在第6.6.3节中描述的那样。假设每个类别的特征有相同方差的独立高斯分布。</p>
-<p>对角LDA分类器通常在高维设定中很有效。在Bickel and Levina(2004)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>等人的工作中称为独立规则，理论上证明了在高维问题中经常比标准线性回归表现要好。这里对角LDA分类器对20个测试样本产生5个误分类误差。这种对角LDA分类器的缺点是使用所有的特征 （基因），因此对于解释不是很方便的。进一步正则化，我们可以做得更好——不管是关于测试误差和解释性。</p>
-<p>我们想通过某种方式自动去掉对类别预测不再起作用的项来正则化。为了实现这一点，我们分别对每个特征，将每个类的均值收缩到整体均值。这个结果是最近重心分类器(nearest centroid classifer)的正则化版本，或者等价为对角协方差形式的LDA的正则化版本。我们称这个过程为最近收缩重心(NSC)。</p>
-<p>收缩过程按如下定义。令</p>
+<p>我们写成了(3.52)的拉格朗日形式。这里讨论的，使用充分大的调整参数$\lambda$，使用$L_1$惩罚导致部分的解参数$\hat\beta_j$恰恰为0。</p>
+<p>在3.8.1节我们已经讨论了LARS算法，一个计算所有的$\lambda$的lasso解的有效过程。当$p&gt;N$时（正如本章中），当$\lambda$趋于0，lasso恰巧拟合了训练数据。事实上，通过凸对偶，可以证明当$p&gt;N$时，非零参数的个数对于所有$\lambda$至多为$N$（举个例子，Rosset和Zhu在2007年的工作）。因此lasso提供了特征选择的形式。</p>
+<p>lasso回归可以通过对输出编码为$\pm 1$应用到两类别分类问题中，并且对预测变量加上一个截距（通常为0）。对于多余两个的类别，有许多可能的方式，包括在18.3.3节讨论的ova和ovo方法。我们在18.3节中对癌症数据应用ova方法。结果显示在表18.1的第4行中。它的效果是最好的。</p>
+<p>分类问题的更自然的方式是使用lasso惩罚来正则化逻辑斯底回归。文献中已经提出一些实现方法，包括类似LARS(Park和Hastie，2007)的路径算法。因为路径是分段光滑但是非线性，精确的算法比LARS算法更慢，并且当$p$很大时不是很适用。</p>
+<p>Friedman等人(2010)提供了用于拟合$L_1$惩罚的逻辑斯底和多项式回归模型。他们应用18.3.2节中(18.10)中的对称多项式逻辑斯底回归模型，并且最大化带惩罚的对数似然</p>
 <p>
 <script type="math/tex; mode=display">
-d_{kj}=\frac{\bar x_{kj}-\bar x_j}{m_k(s_j+s_0)}\qquad (18.4)
+\underset{\{\beta_{0k},\beta_k\in R^p\}_1^K}{max}[\sum\limits_{i=1}^NlogPr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p\vert\beta_{kj}\vert]\qquad (18.19)
 </script>
 </p>
-<p>其中$\bar x_j$是基因$j$的整体均值，$m_k^2=1/N_k-1/N$，且$s_0$是一个小的正值，一般取为$s_j$的中值。这个常值防止因为分母接近0导致太大的$d_{kj}$。常值类间方差$\sigma^2$，分子中差异$\bar x_{kj}-\bar x_j$的方差为$m_k^2\sigma^2$，因此便有了如分母中的标准化。如图，我们采用软阈值将$d_{kj}$收缩到0</p>
-<p>
-<script type="math/tex; mode=display">
-d_{kj}'=sign(d_{kj})(\vert d_{kj}\vert-\Delta)_+\qquad (18.5)
-</script>
-</p>
-<p>这里$\Delta$是需要确定的参数；我们在例子中采取10折交叉验证（见图18.4的上图）。每个$d_{kj}$减少$\Delta$的绝对值的量，比起如果值小于0则设为0。图18.2显示了软阈值函数；同样的阈值也用在了5.9节的小波系数中。另一种方式是采用硬阈值</p>
-<p>
-<script type="math/tex; mode=display">
-d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\qquad (18.6)
-</script>
-</p>
-<p><img alt="" src="../../img/18/fig18.2.png" /></p>
+<p>这与式子(18.11)相对应。他们的算法通过坐标轮换(cyclical coordinate descent)（3.8.6节），并且利用$p&gt;&gt;N$时解是稀疏的事实，以及$\lambda$邻域的解趋向于非常相似。这个方法用在表18.1的第7行中，通过交叉验证来选取全局调整参数$\lambda$。它的表现与最优方法很相似，除了自动特征选择一起选择了269个基因。类似的方法在Genkin等人(2007)的工作中使用了；尽管它们从贝叶斯角度提出它们的模型，事实上他们计算后验概率，解决了惩罚的最大似然问题。</p>
+<p><img alt="" src="../../images/18/fig18.5.png" /></p>
 <blockquote>
-<p>软阈值函数$sign(x)(\vert x\vert-\Delta)_+$用橘黄色显示，并且图中也画出了$45^o$的直线。</p>
+<p>白血病数据的正则化逻辑斯底回归路径。左图是lasso路径，右图是$\alpha=0.8$的弹性网路径。在路径的终端（最左端），lasso有19个非零系数，弹性网有39个非零系数。弹性网的平均效应导致比lasso更多的非零系数，但是规模更小。</p>
 </blockquote>
-<p>我们倾向于软阈值，因为这是一个更光滑的处理并且一般效果更好。$\bar x_{kj}$的收缩版本接着通过反解(18.4)的转换得到</p>
+<p>在基因应用中，变量间通常有强相关关系；基因趋向于在分子通路上起作用。lasso惩罚在某种程度上与不受强相关的变量集的选择的影响（练习3.28）。另一方面，岭惩罚趋向于将相关变量的系数收缩（p99的练习3.29）。弹性网惩罚（Zou和Hastie,2005）是一种妥协的方式，并且有形式</p>
 <p>
 <script type="math/tex; mode=display">
-\bar x_{kj}'=\bar x_j'+m_k(s_j+s_0)d_{kj}'\qquad (18.7)
+\sum\limits_{i=1}^p(\alpha\vert\beta_j\vert+(1-\alpha)\beta_j^2)\qquad (18.20)
 </script>
 </p>
-<p>我们用收缩重心$\bar x_{kj}&rsquo;$代替判别得分（18.2）的原始$x_{kj}$。估计（18.7）可以认为是类别均值的lasso风格（练习18.2）。</p>
-<p>注意到只有对于至少有一个类，其对应的$d&rsquo;_{kj}$非零，该基因才会在分类规则中起作用，因此大量的基因经常被丢弃。这个例子中，除了43个基因其他的都被丢弃了，这剩下的小基因集能够表征类别，且具有可解释性。图8.13在热图中展示出这些基因。</p>
-<p><img alt="" src="../../img/18/fig18.3.png" /></p>
-<p>图18.4（上图）演示了收缩的影响。没有收缩时我们在测试数据上有5/20的误差，并且在训练和CV数据上有一些误差。当$\Delta$在相当宽的区域中，收缩重心达到零测试误差。图18.4的下图显示了SRBCT数据（灰色）的四个重心，这是相对整体重心来说。蓝色条状是这些重心的收缩版本，这是通过取$\Delta=4.3$对灰色条状进行软阈值得到的。判别分数(18.2)可以用来构造类别概率估计：</p>
+<p>第二项鼓励高相关的特征进行平均，而第一项促进在平均特征系数中的稀疏解。弹性网惩罚可以用到任何线性模型中，特别是用于回归或分类中。</p>
+<p>因此上述的带弹性网惩罚的多项式问题变成</p>
 <p>
 <script type="math/tex; mode=display">
-\hat p_k(x^\*)=\frac{e^{\frac{1}{2}\delta_k(x^\*)}}{\sum_{\ell=1}^Ke^{\frac{1}{2}\delta_\ell(x^\*)}}\qquad (18.8)
+\underset{\{\beta_{0k,\beta_k\in R^p}\}_1^K}{max}[\sum\limits_{i=1}^NlogPr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p(\alpha\vert\beta_{kj}\vert)+(1-\alpha)\beta_{kj}^2]\qquad (18.21)
 </script>
 </p>
-<div class="admonition note">
-<p class="admonition-title">Recall</p>
-<p>
-<script type="math/tex; mode=display">
-\hat\gamma_{im}=\frac{\hat\alpha_m\phi(x_i;\hat\mu_m,\hat\Sigma_m)}{\sum_{k=1}^M\hat\alpha_k\phi(x_i;\hat\mu_k,\hat\Sigma_k)}\qquad (6.33)
-</script>
-</p>
-</div>
-<p>这些可以用来对类别排序，或者决定不需要对整个样本分类。</p>
-<p><img alt="" src="../../img/18/fig18.4.png" /></p>
-<blockquote>
-<p>图18.4. （上）：SRBCT数据的误差曲线。图中显示了训练，10折交叉验证和测试误分类率随着阈值参数$\Delta$变化的曲线。通过CV选择的值$\Delta=4.34$，得到43个所选基因的一个子集。（下）：SRBCT数据（灰色）的四个重心轨迹$d_{kj}$，这是相对于整体重心来说。每个重心有2308个组分，并且我们看到相当大的噪声。蓝色的条状是这些重心的收缩版本$d_{kj}&rsquo;$，这是通过对灰色的条状软阈值得到的，采用$\Delta=4.3$。</p>
-</blockquote>
-<p>注意到特征选择的其它形式可以用在这种设定中，包括硬阈值。Fan and Fan (2008)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>理论上证明了高维问题中对角线性判别分析的特征选择的重要性。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Bickel, P. J., Ritov, Y. and Tsybakov, A. (2008). Simultaneous analysis of lasso and Dantzig selector, Annals of Statistics. to appear.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Fan, J. and Fan, Y. (2008). High dimensional classification using features annealed independence rules, Annals of Statistics. to appear.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<p>参数$\alpha$确定了惩罚的混合，并且经常在qualitative grounds上预先选取。当$p&gt;N$时，弹性网得到多于$N$个的非零参数，这是相比于lasso的潜在优点。表18.1的第8行采用这个模型，通过交叉验证选择$\alpha$和 $\lambda$。我们采用0.05到1.0之间的20个$\alpha$值，以及在整个值域的对数尺度下均匀分布的100个$\lambda$值。位于$\alpha\in [0.75,0.80]$
+之间的值给出了最小的CV误差，对于所有的tied solution，$\lambda&lt;0.001$。尽管在所有方法中有最低的测试误差，但是边界分布（？）是小的并且不显著。有趣的是，当CV对每个$\alpha$单独计算，在$\alpha=0.10$时达到最小的测试误差，但是这不是在2维CV中选择的值。</p>
+<p><img alt="" src="../../img/18/18.6.png" /></p>
+<p>TODO</p>
+<h2 id="lasso">应用lasso的方法到蛋白质质谱<a class="headerlink" href="#lasso" title="Permanent link">&para;</a></h2>
+<p>TODO</p>
+<h2 id="fused-lasso">对于功能型数据的Fused Lasso<a class="headerlink" href="#fused-lasso" title="Permanent link">&para;</a></h2>
+<p>TODO</p>
                 
                   
                 
@@ -2980,7 +3003,7 @@ d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\qquad (18.6)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../18.1%20When%20p%20is%20Much%20Bigger%20than%20N/index.html" title="18.1 当p大于N" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html" title="18.3 二次正则的线性分类器" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2989,19 +3012,19 @@ d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\qquad (18.6)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                18.1 当p大于N
+                18.3 二次正则的线性分类器
               </span>
             </div>
           </a>
         
         
-          <a href="../18.3%20Linear%20Classifiers%20with%20Quadratic%20Regularization/index.html" title="18.3 二次正则的线性分类器" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../18.5-Classification-When-Features-are-Unavailable/index.html" title="18.5 当特征不可用时的分类" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                18.3 二次正则的线性分类器
+                18.5 当特征不可用时的分类
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

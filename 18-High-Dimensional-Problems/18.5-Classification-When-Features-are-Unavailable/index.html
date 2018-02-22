@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/18 High-Dimensional Problems/18.3 Linear Classifiers with Quadratic Regularization/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/18-High-Dimensional-Problems/18.5-Classification-When-Features-are-Unavailable/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -33,7 +33,7 @@
     
     
       
-        <title>18.3 二次正则的线性分类器 - ESL CN</title>
+        <title>18.5 当特征不可用时的分类 - ESL CN</title>
       
     
     
@@ -101,7 +101,7 @@
     
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#183" tabindex="1" class="md-skip">
+      <a href="#185" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -127,7 +127,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                18.3 二次正则的线性分类器
+                18.5 当特征不可用时的分类
               </span>
             
           
@@ -2546,7 +2546,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../18.1%20When%20p%20is%20Much%20Bigger%20than%20N/index.html" title="18.1 当p大于N" class="md-nav__link">
+    <a href="../18.1-When-p-is-Much-Bigger-than-N/index.html" title="18.1 当p大于N" class="md-nav__link">
       18.1 当p大于N
     </a>
   </li>
@@ -2558,8 +2558,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../18.2%20Diagonal%20Linear%20Discriminant%20Analysis%20and%20Nearest%20Shrunken%20Centroids/index.html" title="18.2 对角线性判别分析和最近收缩重心" class="md-nav__link">
+    <a href="../18.2-Diagonal-Linear-Discriminant-Analysis-and-Nearest-Shrunken-Centroids/index.html" title="18.2 对角线性判别分析和最近收缩重心" class="md-nav__link">
       18.2 对角线性判别分析和最近收缩重心
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html" title="18.3 二次正则的线性分类器" class="md-nav__link">
+      18.3 二次正则的线性分类器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../18.4-Linear-Classifiers-with-L1-Regularization/index.html" title="18.4 一次正则的线性分类器" class="md-nav__link">
+      18.4 一次正则的线性分类器
     </a>
   </li>
 
@@ -2579,11 +2603,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        18.3 二次正则的线性分类器
+        18.5 当特征不可用时的分类
       </label>
     
-    <a href="index.html" title="18.3 二次正则的线性分类器" class="md-nav__link md-nav__link--active">
-      18.3 二次正则的线性分类器
+    <a href="index.html" title="18.5 当特征不可用时的分类" class="md-nav__link md-nav__link--active">
+      18.5 当特征不可用时的分类
     </a>
     
       
@@ -2597,36 +2621,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="正则化判别分析" class="md-nav__link">
-    正则化判别分析
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="二次正则的逻辑斯底回归" class="md-nav__link">
-    二次正则的逻辑斯底回归
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="支持向量分类器" class="md-nav__link">
-    支持向量分类器
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="特征选择" class="md-nav__link">
-    特征选择
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pn" title="当$p&gt;&gt;N$时的计算捷径" class="md-nav__link">
-    当$p&gt;&gt;N$时的计算捷径
+  <a href="#_1" title="例子：字符串核和蛋白质分类" class="md-nav__link">
+    例子：字符串核和蛋白质分类
   </a>
   
 </li>
@@ -2652,31 +2648,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../18.4%20Linear%20Classifiers%20with%20L1%20Regularization/index.html" title="18.4 一次正则的线性分类器" class="md-nav__link">
-      18.4 一次正则的线性分类器
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../18.5%20Classification%20When%20Features%20are%20Unavailable/index.html" title="18.5 当特征不可用时的分类" class="md-nav__link">
-      18.5 当特征不可用时的分类
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../18.6%20High-Dimensional%20Regression/index.html" title="18.6 有监督的主成分" class="md-nav__link">
+    <a href="../18.6-High-Dimensional-Regression/index.html" title="18.6 有监督的主成分" class="md-nav__link">
       18.6 有监督的主成分
     </a>
   </li>
@@ -2688,7 +2660,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../18.7%20Feature%20Assessment%20and%20the%20Multiple-Testing%20Problem/index.html" title="18.7 特征评估和多重检验问题" class="md-nav__link">
+    <a href="../18.7-Feature-Assessment-and-the-Multiple-Testing-Problem/index.html" title="18.7 特征评估和多重检验问题" class="md-nav__link">
       18.7 特征评估和多重检验问题
     </a>
   </li>
@@ -2700,7 +2672,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bioliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bioliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2893,36 +2865,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="正则化判别分析" class="md-nav__link">
-    正则化判别分析
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="二次正则的逻辑斯底回归" class="md-nav__link">
-    二次正则的逻辑斯底回归
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="支持向量分类器" class="md-nav__link">
-    支持向量分类器
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="特征选择" class="md-nav__link">
-    特征选择
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pn" title="当$p&gt;&gt;N$时的计算捷径" class="md-nav__link">
-    当$p&gt;&gt;N$时的计算捷径
+  <a href="#_1" title="例子：字符串核和蛋白质分类" class="md-nav__link">
+    例子：字符串核和蛋白质分类
   </a>
   
 </li>
@@ -2948,7 +2892,7 @@
               
                 
                 
-                <h1 id="183">18.3 二次正则化的线性分类器<a class="headerlink" href="#183" title="Permanent link">&para;</a></h1>
+                <h1 id="185">18.5 当特征不可用时的分类<a class="headerlink" href="#185" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2963,131 +2907,38 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-04-27:2017-04-27</td>
-</tr>
-<tr>
-<td>更新</td>
-<td>2017-08-09, 2017-12-29</td>
+<td>2017-08-10</td>
 </tr>
 </tbody>
 </table>
-<p>Ramaswamy et al. (2001)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>提出一个更加困难的微阵列分类问题，涉及144个病人的14种癌症类型的训练集，以及含有54个病人的测试集。已知16063个基因的表达值。</p>
-<p><img alt="" src="../../img/18/table18.1.png" /></p>
-<p>表18.1显示了通过8个不同的分类方法得到的预测结果。每个病人的数据首先经过标准化后使得均值为0，方差为1；似乎提高了整个例子的预测正确性，表明每个基因表达谱的形状是很重要的，而不是表达的绝对水平。在每种情形中，正则参数的选取使得交叉验证误差最小，并且展现了每个参数值的测试误差。当有多余一个的正则参数得到最小的交叉验证误差，报告该值对应的测试误差的平均值。</p>
-<p>RDA(正则判别分析)，正则多元逻辑斯底回归，以及支持向量机是更复杂的方法，试图研究数据的多变量信息。我们依次描述每个方法，以及一系列正则化方法，包括$L_1$和 $L_2$，以及两个都有的方法。</p>
-<h2 id="_1">正则化判别分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>正则化判别分析(RDA)在4.3.1节已经描述。线性判别分析涉及$p\times p$类间协方差阵的逆。当$p &gt;&gt; N$，该矩阵可以很大，秩至多为$N &lt; p$，因此是奇异矩阵。RDA克服了对类间协方差矩阵的估计$\hat\Sigma$正则化的问题。这里我们采用一个将$\hat\Sigma$收缩到其对角阵版本的RDA：</p>
-<p>
-<script type="math/tex; mode=display">
-\hat\Sigma(\gamma) = \gamma\hat\Sigma + (1-\gamma) diag(\hat\Sigma), \;\text{with}\; \gamma\in [0,1]\qquad (18.9)
-</script>
-</p>
 <div class="admonition note">
-<p class="admonition-title">Recall</p>
-<p>
-<script type="math/tex; mode=display">
-\hat\Sigma_k(\alpha)=\alpha\hat\Sigma_k+(1-\alpha)\hat\Sigma\qquad (4.13)
-</script>
-<script type="math/tex; mode=display">
-\hat\Sigma(\gamma)=\gamma\hat\Sigma+(1-\gamma)\hat\sigma^2I\qquad (4.14)
-</script>
-</p>
+<p class="admonition-title">proximity matrix</p>
+<p>关系矩阵，近似性矩阵，样品间的相似性矩阵。</p>
 </div>
-<p>注意到$\gamma = 0$对应对角LDA，也是最近收缩重心的“无收缩”版本。(18.9)的收缩形式很像岭回归(3.4.1节)，将整个特征的协方差矩阵收缩到对角（标量值）矩阵。实际上，将线性判别分析看成是类别响应变量的最优得分的线性回归（见12.6节的(12.57)），这个等价性变得更加精确。</p>
-<p>求大型$p\times p$矩阵逆的计算负担通过采用18.3.5节的方法可以克服。$\gamma$的值通过交叉验证取为表18.1中第二行的值；所有$\gamma\in(0.002,0.550)$给出了相同的CV和测试误差。RDA进一步的发展，除了协方差矩阵还包括重心的收缩，可以在Guo et al. (2006)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的工作中找到。</p>
-<h2 id="_2">二次正则的逻辑斯底回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>逻辑斯底回归(4.4节)可以用相似的方式进行改进用来处理$p &gt;&gt; N$的情形。在$K$个类别的情形下，我们采用p119的多类别逻辑斯底回归模型(4.17):</p>
+<p>现实中很多研究对象都很抽象，定义一个特征向量不是很显然的。但是只要我们能够得到$N\times N$的相似性矩阵，我们就可以将相似性解释为内积，这样许多分类器都可以用上去了。</p>
+<h2 id="_1">例子：字符串核和蛋白质分类<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本节主要讲衡量成对蛋白质模块之间的相似性。</p>
+<p>为了构造特征，统计字符串中给定长度为$m$的序列出现的次数，并且计算长度为$m$的所以可能序列的个数。正式的表述是，对于字符串$x$，我们定义特征映射</p>
 <p>
 <script type="math/tex; mode=display">
-Pr(G=k\mid X=x)=\frac{exp(\beta_{k0}+x^T\beta_k)}{\sum_{\ell=1}^Kexp(\beta_{\ell0}+x^T\beta_\ell)}\qquad (18.10)
+\Phi_m(x)=\{\phi_a\}_{a\in\cal A_m}\qquad (18.25)
 </script>
 </p>
-<p>这有$K$个对数几率参数$\beta_1,\beta_2,\ldots,\beta_K$的系数向量。我们通过最大化惩罚的对数似然来正则化拟合</p>
+<p>其中$\cal A_m$ 是长度为$m$的子序列的集合，而$\phi_a(x)$为“a”出现在字符串$x$出现的次数。应用这个，我们定义内积</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\beta_{0k},\beta_k\}_1^K}{max}[\sum\limits_{i=1}^NlogPr(g_i\mid x_i)-\frac{\lambda}{2}\sum\limits_{k=1}^K\Vert\beta_k\Vert]_2^2\qquad (18.11)
+K_m(x_1,x_2)=\langle \Phi_m(x_1),\Phi_m(x_2) \rangle\qquad (18.26)
 </script>
 </p>
-<p>正则化自动解决了参数化中的冗余，并且使得$\sum_{k=1}^K\hat\beta_{kj}=0,j=1,\ldots,p$(练习18.3)。注意到常数项$\beta_{k0}$没有正则化（并且应该被设成0）。结果得到的优化问题是凸的，而且可以通过牛顿算法或者其他数值技巧求解。详细细节在Zhu and Hastie(2004)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>的工作中给出。Friedman et al.(2010)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>提供了计算两个和多个类别逻辑斯底回归模型的正则化路径的软件。表18.1，第6行报告了多重类别逻辑斯底回归模型的结果，称之为“多项式”。可以证明(Rosset et al., 2004a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>)，对于可分数据，当$\lambda\rightarrow 0$，正则（两个类别）逻辑斯底回归估计（重标准化）收敛到最大边界分类器(maximal margin classifier)(12.2节)。这给出了支持向量机的一种受欢迎的替代方式，特别是在多重类别的情形中，这将在下面讨论。</p>
-<h2 id="_3">支持向量分类器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>两个类别情形的支持向量机在12.2节中讨论。当$p &gt; N$时，特别受欢迎， 因为一般情形下类别是可以被超平面完全可分的，除非在不同类别中有相同的特征向量。没有任何正则化，支持向量分类器寻找具有最大空白的分离超平面；也就是，超平面得到训练数据之间最大的间距。有点吃惊的是，当$p &gt;&gt; N$时未正则化的支持向量机通常和最优正则版本表现得一样好。过拟合经常似乎不是一个问题，部分是因为误分类损失的不敏感性。</p>
-<p>有许多不同的方式将两个类别的支持向量分类器推广为$K &gt; 2$个类别的情形。在一对一方法(ovo)中，我们计算所有的$\binom{K}{2}$成对分类器。对每个测试点，预测类别是在大多数成对比较中获胜的那个。在一对多方法(ova)中，每个类别与所有的其他类别在K次两类别比较中进行比较。为了对某个测试点分类，我们计算$K$个分类器中的每一个计算置信度（到超平面的符号距离）。胜利者是有最高置信度的类别。最后，Vapnik(1998)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>，Weston and Watins(1999)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>提出推广两类别准则(12.7)的（有点复杂）多重类别准则。</p>
-<p>Tibshirani and Hastie（2007）<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>提出边际树(margin tree)分类器，这是支持向量分类器用在二叉树中，很像在CART（第9章）中一样。类别以分层形式进行组织，举个例子，对于将病人分类成不同的癌症类型是很有用的。</p>
-<p>表18.1的第三行显示了支持向量机采用ova方法的结果，Ramaswamy et al. (2001)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>报告了（并且我们证实了）这个方法对于这个问题表现得很好。误差与第6行的误差很相似，正如我们在上一节的最后做出的评论那样。误差率对$C$的选择不是很敏感[p420中式(12.8)的正则化参数]，对于值$C &gt; 0.001$.因为$p &gt; N$，支持向量超平面可以通过设置$C=\infty$完美地分离训练数据。</p>
-<h2 id="_4">特征选择<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>当$p$值很大时，特征选择对于分类器来说是很重要的科学要求。判别分析、逻辑斯底回归，以及支持向量分类器都不能自动表现出特征选择，因为它们都用到了二次正则化。在这些模型中所有特征都有非零权重。举个例子，已经提出的用于特征选择的Ad-hoc方法，除掉系数较小的基因，然后重新拟合分类器。这可以用一种向后逐步的方式进行，以最小的权重开始，然后移动到较大的权重上去。这被称作递归特征消去(recursive feature elimination)(Guyon et. al，2002<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。在这个例子中，不是很成功；Ramaswamy et al.（2001）<sup id="fnref4:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>称，举个例子，支持向量分类器的正确性随着基因数目（从全集16063开始）的下降而退化。这是非常重要的，因为训练样本的数目只有44个。我们对这个表现病没有一个解释。</p>
-<p>本节讨论的三个方法（RDA，LR，SVM）可以修改为用核来拟合非线性判别边界。通常这种方法的目的是增加模型的复杂度。当$p &gt; &gt; N$，模型已经充分复杂，并且过拟合通常是很危险的。然而尽管高维度，径向核（12.3.3节）有时在这些高纬问题中表现出更好的结果。径向核趋向于抑制相距很远的点之间的内积，反过来导致离群点很鲁棒。这通常发生在高纬的情形中，并且或许可以解释积极的结果。我们在表18.1中对svm试了一种径向核，但是这种情形下表现不好。</p>
-<h2 id="pn">当$p&gt;&gt;N$时的计算捷径<a class="headerlink" href="#pn" title="Permanent link">&para;</a></h2>
-<p>这一节中讨论的计算技巧可以应用到任何对参数二次正则化的线性模型拟合中。这包含这节中讨论的所有方法，以及其他更多的方法。当$p &gt; N$时，通过在14.5节中介绍的奇异值分解方法，计算可以在$N$维空间中进行，而不是$p$。这里是几何上的直观：恰恰像三维空间中两点总是在一条直线上一样，在$p$维空间中的$N$个点位于$(N-1)$维仿射子空间中。</p>
-<p>给定$N\times p$的数据矩阵$\mathbf X$，令</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-\mathbf X & = \mathbf {UDV^T}\quad (18.12)\\
-& = \mathbf{RV^T}\qquad (18.13)
-\end{array}
-</script>
-</p>
-<p>为$\mathbf X$的奇异值分解；也就是，$\mathbf V$是有着正交列的$p\times N$矩阵，$\mathbf U$是 $N\times N$正交矩阵，$\mathbf D$是元素为$d_1\ge d_2\ge d_N\ge 0$的对角矩阵。矩阵$\mathbf R$是 $N\times N$的，列为$r_i^T$.</p>
-<p>举个简单的例子，我们首先考虑岭回归估计</p>
-<p>
-<script type="math/tex; mode=display">
-\hat\beta = (\mathbf{X^TX}+\lambda\mathbf I)^{-1}\mathbf{X^Ty}\qquad (18.14)
-</script>
-</p>
-<p>用$\mathbf RV^T$替换$\mathbf X$，并且进行一些运算，可以证明它等于</p>
-<p>
-<script type="math/tex; mode=display">
-\hat\beta = \mathbf{V(R^TR+\lambda I)^{-1}\mathbf{R^Ty}}\qquad (18.15)
-</script>
-</p>
-<p>（练习18.4）。因此$\hat\beta = \mathbf V\hat\theta$，其中$\hat\theta$是采用$N$个观测$(r_i,y_i),i=1,2,\ldots,N$的岭回归估计。换句话说，我们可以简单地将数据矩阵从$\mathbf X$降维成$\mathbf R$，并且对$\mathbf R$的行进行操作。这个技巧将$p &gt; N$时的计算花费从$O(p^3)$降为$O(pN^2)$</p>
-<p>这些结果可以推广到所有参数为线性并且有二次惩罚的模型。考虑任意的监督学习问题，我们采用线性函数$f(X)=\beta_0+X^T\beta$来建立条件分布$Y\mid X$的参数模型。我们通过在数据上最小化损失函数$\sum_{i=1}^NL(y_i,f(x_i))$和 $\beta$上的二次惩罚来拟合参数$\beta$。逻辑斯底回归是个很有用的例子。接着我们有下面简单的定理：</p>
-<blockquote>
-<p>令$f^*(r_i)=\theta_0+r_i^T\theta$， $r_i$ 如(18.13)定义，并且考虑成对优化问题：</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-(\hat\beta_0,\hat\beta) &= arg\underset{\beta_0,\beta\in R^p}{min}\sum\limits_{i=1}^NL(y_i,\beta_0+x_i^T\beta)+\lambda\beta^T\beta\qquad (18.16)\\
-(\hat\theta_0,\hat\theta) &= arg\underset{\theta_0,\theta\in R^N}{min}\sum\limits_{i=1}^NL(y_i,\theta_0+r_i^T\theta)+\lambda\theta^T\theta\qquad (18.17)
-\end{array}
-</script>
-于是有$\hat\beta_0=\hat\theta_0, \hat\beta=\mathbf V\hat\theta$.</p>
-</blockquote>
-<p>这个定理说我们可以用$N$维的向量替换$p$维向量，并且像之前一样进行带惩罚的拟合，但是有更少的预测变量。$N$维向量的解$\hat\theta$接着通过简单的矩阵运算转化为$p$维向量的解。这个结果是统计学传说之一，理应当被广泛知道——更多细节详见Hastie and Tibshirani(2004)等人的工作。</p>
-<p>几何上，我们把特征旋转到除了前$N$个坐标分量其余分量都为0的坐标系中。这个旋转是允许的，因为二次惩罚在旋转下是不变的，并且线性模型是等价的。</p>
-<p>这个结果可以应用到本章中讨论的许多学习算法，比如正则化（多类别）逻辑斯底回归，线性判别分析（练习18.6），以及支持向量机。这也应用到有二次正则化的神经网络（11.5.2节）。然而，注意到，这并不应用到类似lasso的方法中，这些方法对系数加的是非平方惩罚（$L_1$）。</p>
-<p>一般地，我们采用交叉验证去选择参数$\lambda$。可以看到（练习18.12）我们仅需要对原始数据构造一次$\mathbf R$，并且用这个作为每个CV折的数据。</p>
-<p>12.3.7节中的支持向量机的“核技巧”在不同的情形下利用了这节中的降维。假设我们有$N\times N$的（内积）矩阵$\mathbf{K=XX^T}$。由（18.12）我们有$\mathbf{K=UD^2U^T}$，所以$\mathbf K$捕捉了与$\mathbf R$一样的信息。练习18.13显示了我们怎样在这节中利用这个想法用$\mathbf K$和它的SVD分解来拟合岭逻辑斯底回归。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Ramaswamy, S., Tamayo, P., Rifkin, R., Mukherjee, S., Yeang, C., Angelo, M., Ladd, C., Reich, M., Latulippe, E., Mesirov, J., Poggio, T., Gerald, W., Loda, M., Lander, E. and Golub, T. (2001). Multiclass cancer diagnosis using tumor gene expression signature, PNAS 98: 15149–15154.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Guo, Y., Hastie, T. and Tibshirani, R. (2006). Regularized linear discriminant analysis and its application in microarrays, Biostatistics 8: 86–100.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>Zhu, J. and Hastie, T. (2004). Classification of gene microarrays by penalized logistic regression, Biostatistics 5(2): 427–443.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-<li id="fn:4">
-<p>Friedman, J., Hastie, T. and Tibshirani, R. (2010). Regularization paths for generalized linear models via coordinate descent, Journal of Statistical Software 33(1): 1–22.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
-</li>
-<li id="fn:5">
-<p>Rosset, S., Zhu, J. and Hastie, T. (2004a). Boosting as a regularized path to a maximum margin classifier, Journal of Machine Learning Research 5: 941–973.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
-</li>
-<li id="fn:6">
-<p>Vapnik, V. (1998). Statistical Learning Theory, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
-</li>
-<li id="fn:7">
-<p>Weston, J. and Watkins, C. (1999). Multiclass support vector machines, in M. Verleysen (ed.), Proceedings of ESANN99, D. Facto Press, Brussels.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
-</li>
-<li id="fn:8">
-<p>Tibshirani, R. and Hastie, T. (2007). Margin trees for high-dimensional classification, Journal of Machine Learning Research 8: 637–652.&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
-</li>
-</ol>
+<p>它衡量了两个字符串$x_1$和$x_2$的相似性。举个例子，这个用到导出用于将字符串分到不同蛋白质类中的支持向量机。</p>
+<p>现在可能序列$a$的个数为$\cal A_m=20^m$，对于适当的$m$，这个值可以非常大，并且大部分子序列与我们训练集中的子序列并不匹配。结果是我们可以高效地运用树结构来计算$N\times N$的内积矩阵或者字符串核$\mathbf K_m$(18.26)，而不用实际计算单个向量。这个方法，以及接下来的数据，来着Leslie等人（2003）的工作。</p>
+<p>数据中包含两个类别的1708个蛋白质——阴性（1663）和阳性（45）。下面这两个该数据集中的例子，称为$x_1$和$x_2$，这两条字符串中已经标出LQE的子序列。可能存在$20^3$的子序列，所以$\Phi_3(x)$是一个长度为8000的向量。对于这个例子，$\phi_{LQE}=1,\phi_{LQE}=2$。</p>
+<div class="admonition note">
+<p class="admonition-title">ROC curve</p>
+<p>ROC是receiver operating characteristics的首字母缩写，用来同时展现分类器的specificity和sensitivity，横轴一般为specificity (或false positive rate， 其中specificity = 1 - false positive rate)，纵轴一般为sensitivity (或true positive rate，其中sensitivity = true positive rate)，通过在不同的阈值下计算这两个值，就可以得到ROC曲线。分类器的整体表现可以由ROC曲线下的面积AUC (area under the curve)给出。</p>
 </div>
+<p>使用Leslie等人（2003）的软件，我们计算$m=4$时的核，它可以用在支持向量分类器中来在$20^4=160000$维特征空间中寻找最大边缘解(maximal margin solution)。我们采用10折交叉验证来计算在所有训练数据中的SVM预测值。图18.9中的橘黄色曲线显示了支持向量分类器的ROC曲线，通过改变交叉验证的支持向量分类器的预测变量的阈值计算得到。曲线下的面积为0.84。</p>
+<p><img alt="" src="../../img/18/fig18.9.png" /></p>
                 
                   
                 
@@ -3119,7 +2970,7 @@ Pr(G=k\mid X=x)=\frac{exp(\beta_{k0}+x^T\beta_k)}{\sum_{\ell=1}^Kexp(\beta_{\ell
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../18.2%20Diagonal%20Linear%20Discriminant%20Analysis%20and%20Nearest%20Shrunken%20Centroids/index.html" title="18.2 对角线性判别分析和最近收缩重心" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../18.4-Linear-Classifiers-with-L1-Regularization/index.html" title="18.4 一次正则的线性分类器" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3128,19 +2979,19 @@ Pr(G=k\mid X=x)=\frac{exp(\beta_{k0}+x^T\beta_k)}{\sum_{\ell=1}^Kexp(\beta_{\ell
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                18.2 对角线性判别分析和最近收缩重心
+                18.4 一次正则的线性分类器
               </span>
             </div>
           </a>
         
         
-          <a href="../18.4%20Linear%20Classifiers%20with%20L1%20Regularization/index.html" title="18.4 一次正则的线性分类器" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../18.6-High-Dimensional-Regression/index.html" title="18.6 有监督的主成分" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                18.4 一次正则的线性分类器
+                18.6 有监督的主成分
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

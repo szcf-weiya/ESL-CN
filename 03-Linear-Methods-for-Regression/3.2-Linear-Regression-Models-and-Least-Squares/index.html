@@ -2609,7 +2609,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../18%20High-Dimensional%20Problems/18.1%20When%20p%20is%20Much%20Bigger%20than%20N/index.html" title="18.1 当p大于N" class="md-nav__link">
+    <a href="../../18-High-Dimensional-Problems/18.1-When-p-is-Much-Bigger-than-N/index.html" title="18.1 当p大于N" class="md-nav__link">
       18.1 当p大于N
     </a>
   </li>
@@ -2621,7 +2621,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../18%20High-Dimensional%20Problems/18.2%20Diagonal%20Linear%20Discriminant%20Analysis%20and%20Nearest%20Shrunken%20Centroids/index.html" title="18.2 对角线性判别分析和最近收缩重心" class="md-nav__link">
+    <a href="../../18-High-Dimensional-Problems/18.2-Diagonal-Linear-Discriminant-Analysis-and-Nearest-Shrunken-Centroids/index.html" title="18.2 对角线性判别分析和最近收缩重心" class="md-nav__link">
       18.2 对角线性判别分析和最近收缩重心
     </a>
   </li>
@@ -2633,7 +2633,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../18%20High-Dimensional%20Problems/18.3%20Linear%20Classifiers%20with%20Quadratic%20Regularization/index.html" title="18.3 二次正则的线性分类器" class="md-nav__link">
+    <a href="../../18-High-Dimensional-Problems/18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html" title="18.3 二次正则的线性分类器" class="md-nav__link">
       18.3 二次正则的线性分类器
     </a>
   </li>
@@ -2645,7 +2645,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../18%20High-Dimensional%20Problems/18.4%20Linear%20Classifiers%20with%20L1%20Regularization/index.html" title="18.4 一次正则的线性分类器" class="md-nav__link">
+    <a href="../../18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization/index.html" title="18.4 一次正则的线性分类器" class="md-nav__link">
       18.4 一次正则的线性分类器
     </a>
   </li>
@@ -2657,7 +2657,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../18%20High-Dimensional%20Problems/18.5%20Classification%20When%20Features%20are%20Unavailable/index.html" title="18.5 当特征不可用时的分类" class="md-nav__link">
+    <a href="../../18-High-Dimensional-Problems/18.5-Classification-When-Features-are-Unavailable/index.html" title="18.5 当特征不可用时的分类" class="md-nav__link">
       18.5 当特征不可用时的分类
     </a>
   </li>
@@ -2669,7 +2669,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../18%20High-Dimensional%20Problems/18.6%20High-Dimensional%20Regression/index.html" title="18.6 有监督的主成分" class="md-nav__link">
+    <a href="../../18-High-Dimensional-Problems/18.6-High-Dimensional-Regression/index.html" title="18.6 有监督的主成分" class="md-nav__link">
       18.6 有监督的主成分
     </a>
   </li>
@@ -2681,7 +2681,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../18%20High-Dimensional%20Problems/18.7%20Feature%20Assessment%20and%20the%20Multiple-Testing%20Problem/index.html" title="18.7 特征评估和多重检验问题" class="md-nav__link">
+    <a href="../../18-High-Dimensional-Problems/18.7-Feature-Assessment-and-the-Multiple-Testing-Problem/index.html" title="18.7 特征评估和多重检验问题" class="md-nav__link">
       18.7 特征评估和多重检验问题
     </a>
   </li>
@@ -2693,7 +2693,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../18%20High-Dimensional%20Problems/Bioliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../../18-High-Dimensional-Problems/Bioliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3027,8 +3027,8 @@ RSS(\beta)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)\qquad (3.3
 <blockquote>
 <p>图3.2 含两个预测的最小二乘回归的$N$维几何图形。输出向量$\mathbf{y}$正交投影在输入向量$\mathbf{x}_1$和$\mathbf{x}_2$张成的超平面中。投影向量$\hat{\mathbf{y}}$表示最小二乘法的预测值。</p>
 </blockquote>
-<p>图3.2展示了在$\IR^N$中最小二乘估计的的不同几何表示。我们记$\mathbf{X}$的列向量为$\mathbf(x_0,x_1,\ldots,x_p)$,其中$x_0 \equiv 1$。下文中第一列都是这样假设。这些向量张成了$R^N$的子空间，也被称作$\mathbf{X}$的列空间。我们通过选择$\hat{\beta}$来最小化$RSS(\beta)=\lVert(\mathbf{y}-\mathbf{X}\beta)\rVert^2$，则残差向量$\mathbf{y-\hat{y}}$正交于子空间。(3.5)式描述了这种正交，然后估计值$\hat{y}$因此可以看成是$\mathbf{y}$在子空间中的正交投影。帽子矩阵$\mathbf{H}$计算了正交投影，因此也被称作投影矩阵。</p>
-<p>可能会出现$\mathbf{X}$的列不是线性独立的，则$\mathbf{X}$不是满秩的。举个例子，如果两个输入是完全相关的，（比如，$x_2=3x_1$）。则矩阵$\mathbf{X^TX}$是奇异的，并且最小二乘的系数$\hat{\beta}$不是唯一的。然而，拟合值$\mathbf{\hat{y}}=\mathbf{X}\hat{\beta}$仍然是$\mathbf{y}$在列空间$\mathbf{X}$的投影；对于$\mathbf{X}$的列向量有多种方式表达这种投射。当一个或多个定性输入用一种冗余的方式编码时经常出现非满秩的情形。通过重编码或去除$\mathbf{X}$中冗余的列这些自然的方式去解决非唯一表示的问题。大多数回归软件包会监测这些冗余并且自动采用一些策略去除冗余项。秩缺失在信号和图像分析中经常发生，输入的个数$p$可以大于训练的情形$N$。在这种情形下，特征经常通过滤波来降维或者对拟合进行正则化。（5.2.3节和第18章）</p>
+<p>图3.2展示了在$\IR^N$中最小二乘估计的另一种几何表示。我们记$\mathbf{X}$的列向量为$\x_0,\x_1,\ldots,\x_p$，其中$\x_0 \equiv \1$。下文中第一列都是这样假设。这些向量张成了$\IR^N$的子空间，也被称作$\mathbf{X}$的列空间。我们通过选择$\hat{\beta}$来最小化$\RSS(\beta)=\lVert(\mathbf{y}-\mathbf{X}\beta)\rVert^2$，则残差向量$\mathbf{y-\hat{y}}$正交于子空间。(3.5)式描述了这种正交，然后估计值$\hat{\y}$因此可以看成是$\mathbf{y}$在子空间中的正交投影。帽子矩阵$\mathbf{H}$计算了正交投影，因此也被称作投影矩阵。</p>
+<p>可能会出现$\mathbf{X}$的列不是线性独立的，则$\mathbf{X}$不是满秩的。举个例子，如果两个输入是完全相关的，（比如，$x_2=3x_1$）。则矩阵$\mathbf{X^TX}$是奇异的，并且最小二乘的系数$\hat{\beta}$不是唯一的。然而，拟合值$\mathbf{\hat{y}}=\mathbf{X}\hat{\beta}$仍然是$\mathbf{y}$在列空间$\mathbf{X}$的投影；用$\mathbf{X}$的列向量来表示这种投射的方式不止一种。当一个或多个定性输入用一种冗余的方式编码时经常出现非满秩的情形。通过重编码或去除$\mathbf{X}$中冗余的列等方式可以解决非唯一表示的问题。大多数回归软件包会监测这些冗余并且自动采用一些策略去除冗余项。信号和图像分析中经常发生秩缺失，其中输入的个数$p$可以大于训练的情形个数$N$。在这种情形下，特征经常通过滤波来降维或者对拟合进行正则化。（<a href="https://esl.hohoweiya.xyz/05-Basis-Expansions-and-Regularization/5.2-Piecewise-Polynomials-and-Splines/index.html#_4">5.2.3节</a>和第18章）</p>
 <p>截至目前我们已经对数据的真实分布做了很少的假设。为了约束$\hat{\beta}$的取样特点，我们现在假设观测值$y_i$不相关，且有固定的方差$\sigma^2$，并且$x_i$是固定的（非随机）。最小二乘法的参数估计的方差-协方差阵可以很容易从式(3.6)导出：
 <script type="math/tex; mode=display">
 Var(\hat{\beta})=(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\qquad (3.8)
