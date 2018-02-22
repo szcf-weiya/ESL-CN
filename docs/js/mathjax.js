@@ -26,6 +26,8 @@ window.MathJax = {
 
       y: "{\\mathbf{y}}",
       f: "{\\mathbf{y}}",
+      x: "{\\mathbf{x}}",
+      z: "{\\mathbf{z}}",
 
       LOG: "{\\mathrm{log}\\;}",
       log: "{\\mathrm{log}\\;}",
@@ -38,6 +40,7 @@ window.MathJax = {
       arg: "{\\mathrm{arg}\\;}",
       max: "{\\mathrm{max}\\;}",
       min: "{\\mathrm{min}\\;}",
+      RSS: "{\\mathrm{RSS}\\;}",
       
       inf: "{\\mathrm{inf}}",
       sign: "{\\mathrm{sign}}",

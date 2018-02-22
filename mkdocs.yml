@@ -174,14 +174,14 @@ pages:
       - 文献笔记: '17 Undirected Graphical Models/Bibliographic Notes.md'
 
     - 18 高维问题:
-      - 18.1 当p大于N: '18 High-Dimensional Problems/18.1 When p is Much Bigger than N.md'
-      - 18.2 对角线性判别分析和最近收缩重心: '18 High-Dimensional Problems/18.2 Diagonal Linear Discriminant Analysis and Nearest Shrunken Centroids.md'
-      - 18.3 二次正则的线性分类器: '18 High-Dimensional Problems/18.3 Linear Classifiers with Quadratic Regularization.md'
-      - 18.4 一次正则的线性分类器: '18 High-Dimensional Problems/18.4 Linear Classifiers with L1 Regularization.md'
-      - 18.5 当特征不可用时的分类: '18 High-Dimensional Problems/18.5 Classification When Features are Unavailable.md'
-      - 18.6 有监督的主成分: '18 High-Dimensional Problems/18.6 High-Dimensional Regression.md'
-      - 18.7 特征评估和多重检验问题: '18 High-Dimensional Problems/18.7 Feature Assessment and the Multiple-Testing Problem.md'
-      - 文献笔记: '18 High-Dimensional Problems/Bioliographic Notes.md'
+      - 18.1 当p大于N: '18-High-Dimensional-Problems/18.1-When-p-is-Much-Bigger-than-N.md'
+      - 18.2 对角线性判别分析和最近收缩重心: '18-High-Dimensional-Problems/18.2-Diagonal-Linear-Discriminant-Analysis-and-Nearest-Shrunken-Centroids.md'
+      - 18.3 二次正则的线性分类器: '18-High-Dimensional-Problems/18.3-Linear-Classifiers-with-Quadratic-Regularization.md'
+      - 18.4 一次正则的线性分类器: '18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization.md'
+      - 18.5 当特征不可用时的分类: '18-High-Dimensional-Problems/18.5-Classification-When-Features-are-Unavailable.md'
+      - 18.6 有监督的主成分: '18-High-Dimensional-Problems/18.6-High-Dimensional-Regression.md'
+      - 18.7 特征评估和多重检验问题: '18-High-Dimensional-Problems/18.7-Feature-Assessment-and-the-Multiple-Testing-Problem.md'
+      - 文献笔记: '18-High-Dimensional-Problems/Bioliographic-Notes.md'
 
   - 个人笔记:
     - 模拟实验:
@@ -252,10 +252,14 @@ extra:
     - type: 'envelope'
       link: 'mailto:szcfweiya@gmail.com'
 
-extra_javascript:
-  - js/mathjax.js
-  - 'https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-  - js/baiduzhanzhang.js
+# in order to avoid loading search.js and require.js
+# ~~replace default extra_javascript with extra_javascripts~~
+# disable extra_javascript
+
+#extra_javascript:
+#  - js/mathjax.js
+#  - 'https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+#  - js/baiduzhanzhang.js
 
 #docs_dir: 'docs'
 
@@ -286,6 +290,6 @@ google_analytics:
 
 use_directory_urls: false
 
-enable_search: false
+enable_search: true
 
-plugins: []
+#plugins: []

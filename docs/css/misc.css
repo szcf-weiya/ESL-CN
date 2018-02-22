@@ -1,13 +1,20 @@
+.md-typeset__table {
+  display: block!important;
+}
+
 .md-typeset__table a {
   color: red;
 }
 
+/*
 table {
   display: table !important;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
 }
+*/
+
 
 p img {
 	display: block;
