@@ -646,63 +646,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        3.2 线性回归模型和最小二乘法
-      </label>
-    
     <a href="index.html" title="3.2 线性回归模型和最小二乘法" class="md-nav__link md-nav__link--active">
       3.2 线性回归模型和最小二乘法
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="例子：前列腺癌" class="md-nav__link">
-    例子：前列腺癌
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#guass-markov" title="Guass-Markov定理" class="md-nav__link">
-    Guass-Markov定理
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="从简单单变量回归到多重回归" class="md-nav__link">
-    从简单单变量回归到多重回归
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="多重输出" class="md-nav__link">
-    多重输出
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -2882,47 +2828,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="例子：前列腺癌" class="md-nav__link">
-    例子：前列腺癌
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#guass-markov" title="Guass-Markov定理" class="md-nav__link">
-    Guass-Markov定理
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="从简单单变量回归到多重回归" class="md-nav__link">
-    从简单单变量回归到多重回归
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="多重输出" class="md-nav__link">
-    多重输出
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3029,7 +2934,7 @@ RSS(\beta)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)\qquad (3.3
 </blockquote>
 <p>图3.2展示了在$\IR^N$中最小二乘估计的另一种几何表示。我们记$\mathbf{X}$的列向量为$\x_0,\x_1,\ldots,\x_p$，其中$\x_0 \equiv \1$。下文中第一列都是这样假设。这些向量张成了$\IR^N$的子空间，也被称作$\mathbf{X}$的列空间。我们通过选择$\hat{\beta}$来最小化$\RSS(\beta)=\lVert(\mathbf{y}-\mathbf{X}\beta)\rVert^2$，则残差向量$\mathbf{y-\hat{y}}$正交于子空间。(3.5)式描述了这种正交，然后估计值$\hat{\y}$因此可以看成是$\mathbf{y}$在子空间中的正交投影。帽子矩阵$\mathbf{H}$计算了正交投影，因此也被称作投影矩阵。</p>
 <p>可能会出现$\mathbf{X}$的列不是线性独立的，则$\mathbf{X}$不是满秩的。举个例子，如果两个输入是完全相关的，（比如，$x_2=3x_1$）。则矩阵$\mathbf{X^TX}$是奇异的，并且最小二乘的系数$\hat{\beta}$不是唯一的。然而，拟合值$\mathbf{\hat{y}}=\mathbf{X}\hat{\beta}$仍然是$\mathbf{y}$在列空间$\mathbf{X}$的投影；用$\mathbf{X}$的列向量来表示这种投射的方式不止一种。当一个或多个定性输入用一种冗余的方式编码时经常出现非满秩的情形。通过重编码或去除$\mathbf{X}$中冗余的列等方式可以解决非唯一表示的问题。大多数回归软件包会监测这些冗余并且自动采用一些策略去除冗余项。信号和图像分析中经常发生秩缺失，其中输入的个数$p$可以大于训练的情形个数$N$。在这种情形下，特征经常通过滤波来降维或者对拟合进行正则化。（<a href="https://esl.hohoweiya.xyz/05-Basis-Expansions-and-Regularization/5.2-Piecewise-Polynomials-and-Splines/index.html#_4">5.2.3节</a>和第18章）</p>
-<p>截至目前我们已经对数据的真实分布做了很少的假设。为了约束$\hat{\beta}$的取样特点，我们现在假设观测值$y_i$不相关，且有固定的方差$\sigma^2$，并且$x_i$是固定的（非随机）。最小二乘法的参数估计的方差-协方差阵可以很容易从式(3.6)导出：
+<p>截至目前我们已经对数据的真实分布做的假设非常少。为了约束$\hat{\beta}$的取样特点，我们现在假设观测值$y_i$不相关，且有固定的方差$\sigma^2$，并且$x_i$是固定的（非随机）。最小二乘法的参数估计的方差-协方差阵可以很容易从式(3.6)导出：
 <script type="math/tex; mode=display">
 Var(\hat{\beta})=(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\qquad (3.8)
 </script>
@@ -3040,7 +2945,7 @@ Var(\hat{\beta})=(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\qquad (3.8)
 </script>
 </p>
 <p>之所以分母是$N-p-1$而不是$N$，是因为$N-p-1$使得$\hat{\sigma}^2$为无偏估计：$E(\hat{\sigma}^2)=\sigma^2$</p>
-<p>为了对参数和模型进行推断，需要一些额外的假设。我们现在假设式$(3.1)$是均值的正确模型；则$Y$的条件期望关于$X_1,X_2,\ldots,X_p$是线性的。我们也假设$Y$与其期望的偏差是可加的且是正态的。因此
+<p>为了对参数和模型进行推断，需要一些额外的假设。我们现在假设式$(3.1)$是关于均值的正确模型；则$Y$的条件期望关于$X_1,X_2,\ldots,X_p$是线性的。我们也假设$Y$与其期望的偏差是可加的且是正态的。因此
 <script type="math/tex; mode=display">
 \begin{align}
 Y&=E(Y\mid X_1,\ldots,X_p)+\varepsilon\\
@@ -3069,22 +2974,31 @@ Y&=E(Y\mid X_1,\ldots,X_p)+\varepsilon\\
 z_j=\dfrac{\hat{\beta}_j}{\hat{\sigma}\sqrt{v_j}}\qquad  (3.12)
 </script>
 </p>
-<p>其中$v_j$是$(\mathbf{X}^T\mathbf{X})^{-1}$的第$j$个对角元。零假设为$\beta_j=0$,$z_j$分布为$t_{N-p-1}$(自由度为$N-p-1$的$t$分布)，因此当$z_j$的绝对值较大时会拒绝零假设。如果用已知的$\sigma$值替换$\hat{\sigma}$，则$z_j$服从标准正态分布。$t$分布和标准正态分布在尾概率之间的差异随着样本规模增大可以忽略，因此我们一般使用正态的分位数（图3.3）。</p>
+<p>其中$v_j$是$(\mathbf{X}^T\mathbf{X})^{-1}$的第$j$个对角元。零假设为$\beta_j=0$,$z_j$分布为$t_{N-p-1}$（自由度为$N-p-1$的$t$分布），因此当$z_j$的绝对值较大时会拒绝零假设。如果用已知的$\sigma$值替换$\hat{\sigma}$，则$z_j$服从标准正态分布。$t$分布和标准正态分布在尾概率之间的差异随着样本规模增大可以忽略，因此我们一般使用正态的分位数（图3.3）。</p>
 <p>我们经常需要同时检验多个系数(groups of coefficients)的显著性。举个例子，检验有$k$个水平的分类变量是否要从模型中排除，我们需要检验用来表示水平的虚拟变量的系数是否可以全部设为0。这里我们利用$F$统计量</p>
 <p>
 <script type="math/tex; mode=display">
-F=\dfrac{(RSS_0-RSS_1)/(p_1-p_0)}{RSS_1/(N-p_1-1)}\qquad (3.13)
+F=\dfrac{(\RSS_0-\RSS_1)/(p_1-p_0)}{\RSS_1/(N-p_1-1)}\qquad (3.13)
 </script>
 </p>
-<p>其中$RSS_1$是有$p_1+1$个参数的大模型的最小二乘法拟合的残差平方和，$RSS_0$是有$p_0+1$参数的小模型的最小二乘法拟合的残差平方和，其有$p_1-p_0$个参数约束为0。$F$统计量衡量了在大模型中每个增加的系数对残差平方和的改变，而且用$\sigma^2$的估计值进行标准化。在高斯分布以及小模型的零假设为正确的情况下，$F$统计量服从$F_{p_1-p_0,N-p_1-1}$分布。可以证明（习题3.1）（3.12）式中的$z_j$等于从模型中去除单系数$\beta_j$的$F$统计量，当$N$足够大时，$F_{p_1-p_0,N-p_1-1}$近似$\chi^2_{p_1-p_0}$</p>
+<p>其中$\RSS_1$是有$p_1+1$个参数的大模型的最小二乘法拟合的残差平方和，$\RSS_0$是有$p_0+1$参数的小模型的最小二乘法拟合的残差平方和，其有$p_1-p_0$个参数约束为0。$F$统计量衡量了在大模型中每个增加的系数对残差平方和的改变，而且用$\sigma^2$的估计值进行标准化。在高斯分布以及小模型的零假设为正确的情况下，$F$统计量服从$F_{p_1-p_0,N-p_1-1}$分布。可以证明(3.12)式中的$z_j$等于从模型中去除单系数$\beta_j$的$F$统计量（<a href="https://github.com/szcf-weiya/ESL-CN/issues/69">习题3.1</a>），当$N$足够大时，$F_{p_1-p_0,N-p_1-1}$近似$\chi^2_{p_1-p_0}$</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
-<p>在R语言中，可以采用pwr包来进行power analysis。这里举一个实际例子来说明如何在线性回归模型中进行power analysis。</p>
-<p>假设我们要研究老板的领导风格对公司员工满意度的影响，同时员工满意度还与薪酬有关，其中薪酬用3个变量来衡量，而老板领导风格用4个变量来衡量。根据以往经验，薪酬能够解释员工满意度方差的30\%，现在问题是确定多少的调查个体，使得显著度为.05，而power为.90。求解代码如下
-<script src="https://gist.github.com/szcf-weiya/e5f95b84b53f8eb1dd7d67dad9887323.js"></script>
-其中u和v分别被称为分子、分母自由度。结合(3.13)式，我们可以看出$p_1-p_0=u, N-p_1-1=v$，并且这里$p_0=4, p_1=7$。换个角度看，其实式(3.13)就是用于power analysis的检验统计量，原假设为可以将领导力水平的四个变量系数设为0，若F足够大，则会拒绝原假设。</p>
+<p>在R语言中，可以采用<code>pwr</code>包来进行power analysis。这里举一个实际例子来说明如何在线性回归模型中进行power analysis。</p>
+<p>假设我们要研究老板的领导风格对公司员工满意度的影响，同时员工满意度还与薪酬有关，其中薪酬用3个变量来衡量，而老板领导风格用4个变量来衡量。根据以往经验，薪酬能够解释员工满意度方差的30%，现在问题是确定多少的调查个体，使得显著度为.05，而且power为.90。求解代码如下</p>
+<p>```r
+pwr.f2.test(u=3, f2=0.0769, sig.level=0.05, power=0.90)</p>
+<h1 id="multiple-regression-power-calculation">Multiple regression power calculation<a class="headerlink" href="#multiple-regression-power-calculation" title="Permanent link">&para;</a></h1>
+<h1 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="u-3">u = 3<a class="headerlink" href="#u-3" title="Permanent link">&para;</a></h1>
+<h1 id="v-1842426">v = 184.2426<a class="headerlink" href="#v-1842426" title="Permanent link">&para;</a></h1>
+<h1 id="f2-00769">f2 = 0.0769<a class="headerlink" href="#f2-00769" title="Permanent link">&para;</a></h1>
+<h1 id="siglevel-005">sig.level = 0.05<a class="headerlink" href="#siglevel-005" title="Permanent link">&para;</a></h1>
+<h1 id="power-09">power = 0.9<a class="headerlink" href="#power-09" title="Permanent link">&para;</a></h1>
+<p><code>``
+其中</code>u<code>和</code>v`分别被称为分子、分母自由度。结合(3.13)式，我们可以看出$p_1-p_0=u, N-p_1-1=v$，并且这里$p_0=4, p_1=7$。换个角度看，其实式(3.13)就是用于power analysis的检验统计量，原假设为可以将领导力水平的四个变量系数设为0，若F足够大，则会拒绝原假设。</p>
 </div>
-<p>类似地，我们可以分离式（3.10）中的$\beta_j$得到$\beta_j$的置信水平为$1-2\alpha$的置信区间</p>
+<p>类似地，我们可以分离式(3.10)中的$\beta_j$得到$\beta_j$的置信水平为$1-2\alpha$的置信区间</p>
 <p>
 <script type="math/tex; mode=display">
 (\hat{\beta}_j-z^{1-\alpha}v_j^{1/2}\hat{\sigma},\hat{\beta}_j+z^{1-\alpha}v_j^{1/2}\hat{\sigma})\qquad (3.14)
@@ -3106,20 +3020,19 @@ C_{\beta} = \{\beta \mid (\hat{\beta}-\beta\mathbf\bf{X^TX}(\hat{\beta}-\beta)\l
 </script>
 </p>
 <p>其中，$\chi_\ell^{2^{(1-\alpha)}}$是$\ell$个自由度的卡方分布的$1-\alpha$的分位数：举个例子，$\chi^{2^{(1-0.05)}}_5=11.1,\chi^{2^{(1-0.1)}}_5=9.2$。这个关于$\beta$的置信集导出关于真函数$f(x)=x^T\beta$对应的置信集，记作${x^T\beta\mid \beta \in C_\beta}$（练习3.2；并见5.2.2节中函数置信带的例子图5.4）</p>
-<h2 id="_1">例子：前列腺癌<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>这个例子的数据来自Stamey et al. (1989)[^1]。他们检验即将接受彻底前列腺切除术男性的前列腺特定抗原水平和一系列临床措施之间的相关性。变量有癌体积的对数值(lcavol)、前列腺重量的对数值(lweight)、良性前列腺增生数量(lbph)、精囊浸润(svi)、包膜浸透的对数值(lcp)、Gleason得分(gleason)、Gleason得分为4或5的比例(pgg45)。表3.1中给出的预测变量的相关性矩阵显示了很多强相关性。第1章的图1.1（第3页）是散点图矩阵，显示了变量两两间的图像。我们看到svi是二进制变量，gleason是有序分类变量。举个例子，我们看到lcavol和lcp都与响应变量lpsa有强的相关性。我们需要联合拟合这些影响来解开预测变量和响应变量之间的关系。</p>
+<h2 id="_2">例子：前列腺癌<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>这个例子的数据来自Stamey et al. (1989)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。他们检验即将接受彻底前列腺切除术的男性的前列腺特定抗原水平和一系列临床措施之间的相关性。变量有癌体积的对数值(lcavol)、前列腺重量的对数值(lweight)、良性前列腺增生数量(lbph)、精囊浸润(svi)、包膜浸透的对数值(lcp)、Gleason得分(gleason)、Gleason得分为4或5的比例(pgg45)。表3.1中给出的预测变量的相关性矩阵显示了很多强相关性。第1章的图1.1（第3页）是散点图矩阵，显示了变量两两间的图象。我们看到svi是二进制变量，gleason是有序分类变量。举个例子，我们看到lcavol和lcp都与响应变量lpsa有强的相关性。我们需要联合拟合这些影响来解开预测变量和响应变量之间的关系。</p>
 <p><img alt="" src="../../img/03/tab3.1.png" /></p>
 <blockquote>
-<p>表3.1 前列腺癌数据中预测变量的相关系数
-表3.2 前列腺癌数据的线性模型拟合。$Z$分数为系数除以标准误差（3.12）。大体上，$Z$分数绝对值大于2表示在$p=0.05$的水平下显著不为零。</p>
+<p>表3.1 前列腺癌数据中预测变量的相关系数；表3.2 前列腺癌数据的线性模型拟合。$Z$分数为系数除以标准误差（3.12）。大体上，$Z$分数绝对值大于2表示在$p=0.05$的水平下显著不为零。</p>
 </blockquote>
-<p>我们对前列腺特定抗原的对数值lpsa和经过一次标准化有单位方差的预测变量进行线性模型拟合。我们随机将数据集分离得到规模为67的训练集以及规模为30的测试集。我们对训练集应用最小二乘估计得到表3.2中的估计值、标准误差以及$Z$分数。$Z$分数定义式为(3.12)，并且衡量了从模型中去掉该变量的影响。在$5\%$的水平下，$Z$分数的绝对值大于2近似显著。（在我们的例子中，我们有9个参数，$t_{67-9}$的分布的0.025尾分位数是$\pm 2.002$!） 预测变量lcavol显示了最强的影响，lweight和svi的影响同样显著。注意到一旦lcavol在模型中，lcp便不显著（当使用一个没有lcavol的模型，lcp是强显著的）。我们也可以用$F$统计量（3.13）一次除去一些项。举个例子，我们考虑除掉表3.2中所有不显著的项，age,lcp,gleason以及pgg45。我们得到</p>
+<p>我们对前列腺特定抗原的对数值lpsa和经过一次标准化有单位方差的预测变量进行线性模型拟合。我们随机将数据集分离得到规模为67的训练集以及规模为30的测试集。我们对训练集应用最小二乘估计得到表3.2中的估计值、标准误差以及$Z$分数。$Z$分数定义式为(3.12)，并且衡量了从模型中去掉该变量的影响。在$5\%$的水平下，$Z$分数的绝对值大于2近似显著。（在我们的例子中，我们有9个参数，$t_{67-9}$的分布的0.025尾分位数是$\pm 2.002$!） 预测变量lcavol显示了最强的影响，lweight和svi的影响同样显著。注意到一旦lcavol在模型中，lcp便不显著（当使用一个没有lcavol的模型，lcp是强显著的）。我们也可以用$F$统计量(3.13)一次除去一些项。举个例子，我们考虑除掉表3.2中所有不显著的项，age，lcp，gleason以及pgg45。我们得到</p>
 <p>
 <script type="math/tex; mode=display">
 F=\dfrac{(32.81-29.43)/(9-5)}{29.43/(67-9)}=1.67\qquad (3.16)
 </script>
 </p>
-<p>其中，$p$值为0.17（$Pr(F_{4,58}&gt;1.67)=0.17$）,因此不是显著的。</p>
+<p>其中，$p$值为0.17（$\Pr(F_{4,58}&gt;1.67)=0.17$），因此不是显著的。</p>
 <p>测试数据的平均预测误差为0.521。相反地，使用lpsa训练数据的平均值预测的测试误差为1.057，称作“基本误差阶”。因此线性模型将基本误差阶降低了大概$50\%$。下文中我们将要回到这个例子来比较不同的选择和收缩方法。</p>
 <h2 id="guass-markov">Guass-Markov定理<a class="headerlink" href="#guass-markov" title="Permanent link">&para;</a></h2>
 <p>统计学中一个很有名的结论称参数$\beta$的最小二乘估计在所有的线性无偏估计中有最小的方差。我们将要严谨地说明这一点，并且说明约束为无偏估计不是明智的选择。这个结论导致我们考虑本章中像Ridge回归的有偏估计。我们考虑任意参数$\theta = a^T\beta$的线性组合，举个例子，预测值$f(x_0)=x_0^T\beta$是这种形式。$a^T\beta$的最小二乘估计为</p>
@@ -3128,7 +3041,7 @@ F=\dfrac{(32.81-29.43)/(9-5)}{29.43/(67-9)}=1.67\qquad (3.16)
 \hat{\theta}=a^T\hat{\beta}=a^T\mathbf{(X^TX)^{-1}X^Ty}\qquad (3.17)
 </script>
 </p>
-<p>考虑$\mathbf{X}$固定，这是关于响应变量$\mathbf{y}$的线性函数$\mathbf{c}_0^T\mathbf{y}$。如果我们假设线性模型是正确的，$a^T\hat{\beta}$是无偏的，因为
+<p>考虑固定$\mathbf{X}$，则上式是关于响应变量$\mathbf{y}$的线性函数$\mathbf{c}_0^T\mathbf{y}$。如果我们假设线性模型是正确的，则$a^T\hat{\beta}$是无偏的，因为
 <script type="math/tex; mode=display">
 \begin{align}
 E(a^T\hat{\beta})&=E(a^T\mathbf{(X^TX)^{-1}X^Ty})\\
@@ -3137,13 +3050,13 @@ E(a^T\hat{\beta})&=E(a^T\mathbf{(X^TX)^{-1}X^Ty})\\
 \end{align}
 </script>
 </p>
-<p>Gauss-Markov定理说如果我们有$a^T\beta$的其它无偏估计$\tilde{\theta}=\mathbf{c}^T\mathbf{y}$,也就是$E(\mathbf{c}^T\mathbf{y})=a^T\beta$,则</p>
+<p>Gauss-Markov定理说如果$a^T\beta$存在其它无偏估计$\tilde{\theta}=\mathbf{c}^T\mathbf{y}$，即$E(\mathbf{c}^T\mathbf{y})=a^T\beta$，则</p>
 <p>
 <script type="math/tex; mode=display">
 Var(a^T\hat{\beta})\le Var(\mathbf{c}^T\mathbf{y})\qquad (3.19)
 </script>
 </p>
-<p>该证明（习题3.3）运用三角不等式。为了简化我们已经用单个参数$a^T\beta$估计来叙述结果，但是再加点新的定义我们可以用整个参数向量$\beta$来说明（练习3.3）</p>
+<p>该证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/70">习题3.3a</a>）运用三角不等式。为了简化我们已经用单个参数$a^T\beta$估计来叙述结果，但是再加点新的定义我们可以用整个参数向量$\beta$来说明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/71">习题3.3b</a>）</p>
 <p>考虑$\theta$估计$\tilde{\theta}$的均方误差</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3170,8 +3083,8 @@ E(Y_0-\tilde{f}(x_0))^2 &=\sigma^2+E(x_0^T\tilde{\beta}-f(x_0))^2\\
 </script>
 </p>
 <p>因此，预测误差的估计值和均方误差只有常数值$\sigma^2$的差别，$\sigma^2$表示了新观测$y_0$的方差。</p>
-<h2 id="_2">从简单单变量回归到多重回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>有$p&gt;1$个输入的线性模型（3.1）称作多重线性回归模型。模型（3.6）的最小二乘估计用单（$p=1$）变量线性模型的估计最好理解，我们将在这部分指出。</p>
+<h2 id="_3">从简单单变量回归到多重回归<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>有$p &gt; 1$个输入的线性模型(3.1)称作多重线性回归模型。模型(3.6)的最小二乘估计用单（$p=1$）变量线性模型的估计最好理解，我们将在这部分指出。</p>
 <p>首先假设我们有一个没有截距的单变量模型，也就是</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3277,7 +3190,7 @@ Var(\hat{\beta}_p)=\dfrac{\sigma^2}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}=\
 </script>
 </p>
 <p>等式（3.32）很容易求解，因为$\mathbf{R}$为上三角（练习3.4）</p>
-<h2 id="_3">多重输出<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">多重输出<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>假设我们有多重输出$Y_1,Y_2,\ldots,Y_K$，我们希望通过我们的输入$X_0,X_1,X_2,\ldots,X_p$去预测。我们假设对于每一个输出有线性模型</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3316,6 +3229,14 @@ RSS(\mathbf{B;\Sigma})=\sum\limits_{i=1}^N(y_i-f(x_i))^T\Sigma^{-1}(y_i-f(x_i))\
 </p>
 <p>由多变量高斯定理自然得出。这里$f(x)$为向量函数$(f_1(x),\ldots,f_K(x))$,而且$y_i$为观测值$i$的$K$维响应向量。然而，可以证明解由式（3.39）给出；$K$个分离的回归忽略了相关性（练习3.11）。如果$\Sigma_i$不同观测为不同值，则不再是这种情形，而且关于$\mathbf{B}$的解不再退化(decouple).</p>
 <p>在3.7节我们继续讨论多重输出的问题，并且考虑需要合并回归的情形。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Stamey, T., Kabalin, J., McNeal, J., Johnstone, I., Freiha, F., Redwine, E. and Yang, N. (1989). Prostate specific antigen in the diagnosis and treatment of adenocarcinoma of the prostate II radical prostatectomy treated patients, Journal of Urology 16: 1076–1083.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
