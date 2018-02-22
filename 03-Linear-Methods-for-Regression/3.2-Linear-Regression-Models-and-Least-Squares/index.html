@@ -3003,7 +3003,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-10-31, 2017-12-27</td>
+<td>2017-10-31, 2017-12-27, 2018-02-22</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3297,17 +3297,17 @@ r_i &= y_i -x_i\hat{\beta}
 </script>
 </p>
 <p>对第二步中的残差进行重排列，我们可以看到每个$\mathbf x_j​$是$\mathbf z_k,k\le j​$的线性组合。因为$\mathbf z_j​$是正交的，它们形成了$\mathbf{X}​$列空间的基，从而得到最小二乘在该子空间上投影为$\hat{\mathbf{y}}​$。因为$\mathbf z_p​$仅与<span class="critic comment">$\X$中的</span>$\mathbf x_p​$有关（系数为1），则式(3.28)确实是$\mathbf{y}​$在$\mathbf x_p​$上多重回归的系数。</p>
-<p>这一重要结果揭示了在多重回归中相关输入的影响。注意到通过对$\mathbf x_j​$重排列，任何其中一个都有可能是最后一个，然后得到一个类似的结果。因此一般来说，我们已经展示了多重回归的第$j​$个系数是$\mathbf{y}​$在$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$的单变量回归，$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$是$\mathbf x_j​$ 在$\mathbf x_0,\mathbf x_1,&hellip;,\mathbf x_{j-1},\mathbf{j+1},&hellip;,\mathbf{x}_p​$回归后的残差向量：</p>
+<p>这一重要结果揭示了在多重回归中输入变量相关性的影响。注意到通过对$\mathbf x_j​$重排列，其中的任何一个都有可能成为最后一个，然后得到一个类似的结果。因此一般来说，我们已经展示了多重回归的第$j​$个系数是$\mathbf{y}​$在$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$的单变量回归，$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$是$\mathbf x_j​$ 在$\mathbf x_0,\mathbf x_1,&hellip;,\mathbf x_{j-1},\mathbf{j+1},&hellip;,\mathbf{x}_p​$回归后的残差向量：</p>
 <blockquote>
 <p>多重回归系数$\hat\beta_j​$表示$\mathbf x_j​$经过$\mathbf x_0,\mathbf x_1,\ldots,\mathbf x_{j-1},\mathbf x_{j+1},\ldots,\mathbf x_p​$调整后$\mathbf x_j​$对$\mathbf y​$额外的贡献</p>
 </blockquote>
-<p>如果$\mathbf{x}_p$与某些$\mathbf{x}_k$高度相关，残差向量$\mathbf{z}_p$会近似等于0，而且由(3.28)得到的系数$\hat{\beta}_p$会非常不稳定。在相关集对于所有的变量都是正确的。在这些情形下我们可能得到所有的Z分数（表3.2所示）都很小——集中的任何一个都可以删掉——然而我们不可能删掉所有。由（3.28）我们也得到估计方差（3.8）的另一种方法
+<p>如果$\mathbf{x}_p$与某些$\mathbf{x}_k$高度相关，残差向量$\mathbf{z}_p$会近似等于0，而且由(3.28)得到的系数$\hat{\beta}_p$会非常不稳定。对于相关变量集中所有的变量都是正确的。在这些情形下我们可能得到所有的Z分数（如表3.2所示）都很小——相关变量集中的任何一个变量都可以删掉——然而我们不可能删掉所有的变量。由(3.28)我们也得到估计方差(3.8)的另一种方法
 <script type="math/tex; mode=display">
-Var(\hat{\beta}_p)=\dfrac{\sigma^2}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}=\dfrac{\sigma^2}{\Vert\mathbf{z}_p\Vert ^2}\qquad (3.29)
+\Var(\hat{\beta}_p)=\dfrac{\sigma^2}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}=\dfrac{\sigma^2}{\Vert\mathbf{z}_p\Vert ^2}\qquad (3.29)
 </script>
 </p>
-<p>换句话说，我们估计$\hat{\beta}_p$的精度取决于残差向量$\mathbf{z}_p$的长度;它表示$\mathbf{x}_p$不能被其他$\mathbf{x}_k$解释的程度。</p>
-<p>算法3.1被称作多重回归的Gram-Schmidt正交化，也是一个计算估计的有用的数值策略。我们不仅从中不仅可以得到$\hat{\beta}_p$,而且可以得到整个多重最小二乘拟合，如练习3.4所示。</p>
+<p>换句话说，我们估计$\hat{\beta}_p$的精度取决于残差向量$\mathbf{z}_p$的长度；它表示$\mathbf{x}_p$不能被其他$\mathbf{x}_k$解释的程度。</p>
+<p>算法3.1被称作多重回归的Gram-Schmidt正交化，也是一个计算估计的有用的数值策略。我们从中不仅可以得到$\hat{\beta}_p$，而且可以得到整个多重最小二乘拟合，如<a href="https://github.com/szcf-weiya/ESL-CN/issues/72">练习3.4</a>所示。</p>
 <p>我们可以用矩阵形式来表示算法3.1的第二步：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3351,8 +3351,8 @@ Y_k&=\beta_{0k}+\sum\limits_{j=1}^pX_j\beta_{jk}+\varepsilon_k \qquad (3.34)\\\\
 <p>这里$\mathbf{Y}$为$N\times K$的响应矩阵，$ik$处值为$y_{ik}$，$\mathbf{X}$为$N\times (p+1)$的输入矩阵，$\mathbf{B}$为$(p+1)\times K$的系数矩阵 $\mathbf{E}$为$N\times K$的误差矩阵。单变量损失函数（3.2）的直接推广为
 <script type="math/tex; mode=display">
 \begin{align}
-RSS(\mathbf{B})&=\sum\limits_{k=1}^K\sum\limits_{i=1}^N(y_{ik}-f_k(x_i))^2\qquad (3.37)\\
-&= tr[\mathbf{(Y-XB)^T(Y-XB)}]\qquad (3.38)
+\RSS(\mathbf{B})&=\sum\limits_{k=1}^K\sum\limits_{i=1}^N(y_{ik}-f_k(x_i))^2\qquad (3.37)\\
+&= \tr[\mathbf{(Y-XB)^T(Y-XB)}]\qquad (3.38)
 \end{align}
 </script>
 </p>
@@ -3363,13 +3363,13 @@ RSS(\mathbf{B})&=\sum\limits_{k=1}^K\sum\limits_{i=1}^N(y_{ik}-f_k(x_i))^2\qquad
 </script>
 </p>
 <p>因此第$k$个输出的系数恰恰是$\mathbf{y}_k$在$\mathbf{x}_0,\mathbf{x}_1,\ldots,\mathbf{x}_p$上回归的最小二乘估计。多重输出不影响其他的最小二乘估计。</p>
-<p>如果式（3.34）中的误差$\varepsilon = (\varepsilon_1,\ldots,\varepsilon_K)$相关，则似乎修正（3.37）有利于多重变量版本更加恰当。特别地，假设$Cov(\varepsilon)=\Sigma$,则多重变量加权准则为</p>
+<p>如果式(3.34)中的误差$\varepsilon = (\varepsilon_1,\ldots,\varepsilon_K)$相关，则似乎更恰当的方式是修正(3.37)来改善多重变量版本。特别地，假设$Cov(\varepsilon)=\Sigma$，则<strong>多重变量加权准则</strong>为</p>
 <p>
 <script type="math/tex; mode=display">
-RSS(\mathbf{B;\Sigma})=\sum\limits_{i=1}^N(y_i-f(x_i))^T\Sigma^{-1}(y_i-f(x_i))\qquad (3.40)
+\RSS(\mathbf{B;\Sigma})=\sum\limits_{i=1}^N(y_i-f(x_i))^T\Sigma^{-1}(y_i-f(x_i))\qquad (3.40)
 </script>
 </p>
-<p>由多变量高斯定理自然得出。这里$f(x)$为向量函数$(f_1(x),\ldots,f_K(x))$,而且$y_i$为观测值$i$的$K$维响应向量。然而，可以证明解由式（3.39）给出；$K$个分离的回归忽略了相关性（练习3.11）。如果$\Sigma_i$不同观测为不同值，则不再是这种情形，而且关于$\mathbf{B}$的解不再退化(decouple).</p>
+<p>这可以由<strong>多变量高斯定理</strong>自然得出。这里$f(x)$为向量函数$(f_1(x),\ldots,f_K(x))$，而且$y_i$为观测值$i$的$K$维响应向量。然而，可以证明解也是由式(3.39)给出；$K$个分离的回归忽略了相关性（<a href="https://github.com/szcf-weiya/ESL-CN/issues/73">练习3.11</a>）。如果$\Sigma_i$不同观测为不同值，则不再是这种情形，而且关于$\mathbf{B}$的解不再退化(decouple).</p>
 <p>在3.7节我们继续讨论多重输出的问题，并且考虑需要合并回归的情形。</p>
 <div class="footnote">
 <hr />
