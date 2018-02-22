@@ -2955,12 +2955,16 @@
 <td>更新</td>
 <td>2017-10-31, 2017-12-27</td>
 </tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
-<blockquote>
-<p>更新笔记</p>
+<div class="admonition note">
+<p class="admonition-title">更新笔记</p>
 <p>@2017-12-27　最近在看power analysis的有关内容，R in Action一书中举了了例子来讨论对于不同模型如何进行power analysis，但其中关于线性模型的部分没有想清楚。后来在这一节的式(3.13)找到答案，为丰富本节内容，遂更新与式3.13有关的power analysis.</p>
-</blockquote>
+</div>
 <p>正如第二章介绍的那样，我们有输入向量$X^T=(X_1,X_2,\ldots,X_p)$，而且想要预测实值输出变量$Y$。线性回归模型有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3021,9 +3025,9 @@ RSS(\beta)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)\qquad (3.3
 <p>其中，$\hat y_i=\hat f(x_i)$。在式(3.7)中出现的矩阵$\mathbf{H=X(X^TX)^{-1}X^T}$有时称之为“帽子”矩阵，因为其为$\mathbf y$戴了一顶帽子。</p>
 <p><img alt="" src="../../img/03/fig3.2.png" /></p>
 <blockquote>
-<p>图3.2 含两个预测的最小二乘回归的$N$维几何图形。输出向量$\mathbf{y}$正交投影在输入向量$\mathbf{x}_1$和$\mathbf{x}_2$张成的超空间中。投影向量$\hat{\mathbf{y}}$表示最小二乘法的预测值</p>
+<p>图3.2 含两个预测的最小二乘回归的$N$维几何图形。输出向量$\mathbf{y}$正交投影在输入向量$\mathbf{x}_1$和$\mathbf{x}_2$张成的超平面中。投影向量$\hat{\mathbf{y}}$表示最小二乘法的预测值。</p>
 </blockquote>
-<p>图3.2展示了在$R^N$中最小二乘估计的的不同几何表示。我们记$\mathbf{X}$的列向量为$\mathbf(x_0,x_1,\ldots,x_p)$,其中$x_0 \equiv 1$。下文中第一列都是这样假设。这些向量张成了$R^N$的子空间，也被称作$\mathbf{X}$的列空间。我们通过选择$\hat{\beta}$来最小化$RSS(\beta)=\lVert(\mathbf{y}-\mathbf{X}\beta)\rVert^2$，则残差向量$\mathbf{y-\hat{y}}$正交于子空间。(3.5)式描述了这种正交，然后估计值$\hat{y}$因此可以看成是$\mathbf{y}$在子空间中的正交投影。帽子矩阵$\mathbf{H}$计算了正交投影，因此也被称作投影矩阵。</p>
+<p>图3.2展示了在$\IR^N$中最小二乘估计的的不同几何表示。我们记$\mathbf{X}$的列向量为$\mathbf(x_0,x_1,\ldots,x_p)$,其中$x_0 \equiv 1$。下文中第一列都是这样假设。这些向量张成了$R^N$的子空间，也被称作$\mathbf{X}$的列空间。我们通过选择$\hat{\beta}$来最小化$RSS(\beta)=\lVert(\mathbf{y}-\mathbf{X}\beta)\rVert^2$，则残差向量$\mathbf{y-\hat{y}}$正交于子空间。(3.5)式描述了这种正交，然后估计值$\hat{y}$因此可以看成是$\mathbf{y}$在子空间中的正交投影。帽子矩阵$\mathbf{H}$计算了正交投影，因此也被称作投影矩阵。</p>
 <p>可能会出现$\mathbf{X}$的列不是线性独立的，则$\mathbf{X}$不是满秩的。举个例子，如果两个输入是完全相关的，（比如，$x_2=3x_1$）。则矩阵$\mathbf{X^TX}$是奇异的，并且最小二乘的系数$\hat{\beta}$不是唯一的。然而，拟合值$\mathbf{\hat{y}}=\mathbf{X}\hat{\beta}$仍然是$\mathbf{y}$在列空间$\mathbf{X}$的投影；对于$\mathbf{X}$的列向量有多种方式表达这种投射。当一个或多个定性输入用一种冗余的方式编码时经常出现非满秩的情形。通过重编码或去除$\mathbf{X}$中冗余的列这些自然的方式去解决非唯一表示的问题。大多数回归软件包会监测这些冗余并且自动采用一些策略去除冗余项。秩缺失在信号和图像分析中经常发生，输入的个数$p$可以大于训练的情形$N$。在这种情形下，特征经常通过滤波来降维或者对拟合进行正则化。（5.2.3节和第18章）</p>
 <p>截至目前我们已经对数据的真实分布做了很少的假设。为了约束$\hat{\beta}$的取样特点，我们现在假设观测值$y_i$不相关，且有固定的方差$\sigma^2$，并且$x_i$是固定的（非随机）。最小二乘法的参数估计的方差-协方差阵可以很容易从式(3.6)导出：
 <script type="math/tex; mode=display">
