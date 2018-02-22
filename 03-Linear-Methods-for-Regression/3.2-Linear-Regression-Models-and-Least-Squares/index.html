@@ -20,13 +20,28 @@
       
         <meta name="author" content="szcf-weiya">
       
+      <!--
       
-	
+      
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
-	
+	    
         <meta name="lang:clipboard.copied" content="Copied to clipboard">
-	
-      
+	    
+        <meta name="lang:search.language" content="en">
+	    
+        <meta name="lang:search.pipeline.stopwords" content="True">
+	    
+        <meta name="lang:search.pipeline.trimmer" content="True">
+	    
+        <meta name="lang:search.result.none" content="No matching documents">
+	    
+        <meta name="lang:search.result.one" content="1 matching document">
+	    
+        <meta name="lang:search.result.other" content="# matching documents">
+	    
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+	    
+	-->
       <link rel="shortcut icon" href="../../img/favicon.ico">
 
       <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.0">
@@ -97,9 +112,15 @@
         
       </defs>
     </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
     
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <!--
+    
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    
+    -->
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
     
       <a href="#32" tabindex="1" class="md-skip">
         Skip to content
@@ -134,9 +155,38 @@
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
+        <!--
         
           
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          
         
+        -->
       </div>
       
         <div class="md-flex__cell md-flex__cell--shrink">
@@ -3141,8 +3191,12 @@ E(a^T\hat{\beta})&=E(a^T\mathbf{(X^TX)^{-1}X^Ty})\\
 Var(a^T\hat{\beta})\le Var(\mathbf{c}^T\mathbf{y})\qquad (3.19)
 </script>
 </p>
-<p>该证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/70">习题3.3a</a>）运用三角不等式。为了简化我们已经用单个参数$a^T\beta$估计来叙述结果，但是再加点新的定义我们可以用整个参数向量$\beta$来说明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/71">习题3.3b</a>）</p>
-<p>考虑$\theta$估计$\tilde{\theta}$的均方误差</p>
+<p>该证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/70">习题3.3a</a>）运用三角不等式。为了简化我们已经用单个参数$a^T\beta$估计来叙述结果，但若额外增加<a href="https://github.com/szcf-weiya/ESL-CN/issues/71">习题3.3b</a>中的定义，则可以用整个参数向量$\beta$来说明Gauss-Markov定理。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：Ex. 3.3</p>
+<p>已完成(a)问的证明，详细过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/70">Issue 70: Ex. 3.3a</a></p>
+</div>
+<p>考虑$\theta$的估计值$\tilde{\theta}$的均方误差</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3151,14 +3205,14 @@ MSE(\tilde{\theta})&=E(\tilde{\theta}-\theta)^2\\
 \end{align}
 </script>
 </p>
-<p>第一项为方差，第二项为平方偏差。Gauss-Markov定理表明最小二乘估计在所有无偏线性估计中有最小的均方误差。然而，或许存在有较小均方误差的有偏估计。这样的估计用小的偏差来换取方差大幅度的降低。有偏估计经常使用。任何收缩或者将最小二乘的一些参数设为0的方法都可能导致有偏估计。我们将在章节的后面讨论许多例子，包括变量子集选择和岭回归。从一个更加实际的观点来看，许多模型是对事实的曲解，因此是有偏的；挑选一个合适的模型意味着要在偏差和方差之间创造某种良好的平衡。我们将在第7章中详细讨论这些问题。</p>
-<p>正如在第2章中讨论的那样，均方误差与预测的正确性紧密相关。考虑在输入$x_0$处的新响应的预测</p>
+<p>第一项为方差，第二项为平方偏差。Gauss-Markov定理表明最小二乘估计在所有无偏线性估计中有最小的均方误差。然而，或许存在有较小均方误差的有偏估计。这样的估计用小的偏差来换取方差大幅度的降低。实际中也会经常使用有偏估计。任何收缩或者将最小二乘的一些参数设为0的方法都可能导致有偏估计。我们将在这章的后半部分讨论许多例子，包括<strong>变量子集选择</strong>和<strong>岭回归</strong>。从一个更加实际的观点来看，许多模型是对事实的曲解，因此是有偏的；挑选一个合适的模型意味着要在偏差和方差之间创造某种良好的平衡。我们将在第7章中详细讨论这些问题。</p>
+<p>正如在第2章中讨论的那样，均方误差与预测的正确性紧密相关。考虑在输入$x_0$处的新的响应变量</p>
 <p>
 <script type="math/tex; mode=display">
 Y_0=f(x_0)+\varepsilon_0 \qquad (3.21)
 </script>
 </p>
-<p>则估计$\tilde{f}(x_0)=x_0^T\tilde{\beta}$的预测误差期望值为</p>
+<p>其估计量$\tilde{f}(x_0)=x_0^T\tilde{\beta}$的期望预测误差为</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3169,7 +3223,7 @@ E(Y_0-\tilde{f}(x_0))^2 &=\sigma^2+E(x_0^T\tilde{\beta}-f(x_0))^2\\
 </p>
 <p>因此，预测误差的估计值和均方误差只有常数值$\sigma^2$的差别，$\sigma^2$表示了新观测$y_0$的方差。</p>
 <h2 id="_2">从简单单变量回归到多重回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>有$p &gt; 1$个输入的线性模型(3.1)称作多重线性回归模型。模型(3.6)的最小二乘估计用单（$p=1$）变量线性模型的估计最好理解，我们将在这部分指出。</p>
+<p>有$p &gt; 1$个输入的线性模型(3.1)称作<strong>多重线性回归模型</strong>。用单($p=1$)变量线性模型的估计能更好理解模型(3.6)的最小二乘估计，我们将在这节中指出。</p>
 <p>首先假设我们有一个没有截距的单变量模型，也就是</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3205,20 +3259,22 @@ r_i &= y_i -x_i\hat{\beta}
 </script>
 </p>
 <div class="admonition note">
-<p class="admonition-title">作者注</p>
+<p class="admonition-title">weiya注：原书脚注</p>
 <p>The inner-product notation is suggestive of generalizations of linear regression to different metric spaces, as well as to probability spaces. 内积表示是线性回归模型一般化到不同度量空间（包括概率空间）建议的方式。</p>
 </div>
-<p>正如我们所看到的，这个简单的单变量回归提供了多重线性回归的框架（building block）。进一步假设输入变量$\mathbf{x}_1,\mathbf{x_2,\ldots,x_p}$（数据矩阵$\mathbf{X}$的列）是正交的；也就是对于所有的$j\neq k$有$\langle x_j,x_k\rangle=0$。于是很容易得到多重最小二乘估计$\hat{\beta}_j$等于$\langle \mathbf{x}_j,\mathbf{y}\rangle/\langle\mathbf{x}_j,\mathbf{x}_j\rangle $——单变量估计。换句话说，当输入变量为正交的，它们对模型中其它的参数估计没有影响。</p>
+<p>正如我们所看到的，这个简单的单变量回归提供了多重线性回归的框架(building block)。进一步假设输入变量$\mathbf{x}_1,\mathbf{x_2,\ldots,x_p}$（数据矩阵$\mathbf{X}$的列）是正交的；也就是对于所有的$j\neq k$有$\langle \x_j,\x_k\rangle=0$。于是很容易得到多重最小二乘估计$\hat{\beta}_j$等于$\langle \mathbf{x}_j,\mathbf{y}\rangle/\langle\mathbf{x}_j,\mathbf{x}_j\rangle $——单变量估计。换句话说，当输入变量为正交的，它们对模型中其它的参数估计没有影响。</p>
 <p>正交输入变量经常发生于平衡的、设定好的实验（强制了正交），但是对于实验数据几乎不会发生。因此为了后面实施这一想法我们将要对它们进行正交化。进一步假设我们有一个截距和单输入$\bf{x}$。则$\bf{x}$的最小二乘系数有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
 \hat{\beta}_1=\dfrac{\langle \mathbf{x}-\bar{x}\mathbf{1},\mathbf{y}\rangle}{\langle \mathbf{x}-\bar{x}\mathbf{1},\mathbf{x}-\bar{x}\mathbf{1}\rangle}\qquad (3.27)
 </script>
 </p>
-<p>其中，$\bar{x}=\sum_ix_i/N$,且$N$维单位向量$\mathbf{1}=x_0$。我们可以将式（3.27）的估计看成简单回归（3.26）的两次应用。这些步骤是：
-1. 在$\bf{1}$上回归$\bf{x}$产生残差$\mathbf{z}=\mathbf{x}-\bar{x}\mathbf{1}$;
-2. 在残差$\bf{z}$上回归$\bf{y}$得到系数$\hat{\beta}_1$
-   在这个过程中，“在$\bf{a}$上回归$\bf{b}$”意思是$\bf{b}$在$\bf{a}$上的无截距的简单单变量回归，产生系数$\hat{\gamma}=\langle\mathbf{a,b}\rangle/\langle\mathbf{a,a}\rangle$以及残差向量$\mathbf{b}-\hat{\gamma}\mathbf{a}$。我们称$\bf{b}$由$\bf{a}$校正[^adjusted for],或者关于$\bf{a}$正交化。</p>
+<p>其中，$\bar{x}=\sum_ix_i/N$,且$N$维单位向量$\mathbf{1}=x_0$。我们可以将式(3.27)的估计看成简单回归(3.26)的两次应用。这两步是：</p>
+<ol>
+<li>在$\bf{1}$上回归$\bf{x}$产生残差$\mathbf{z}=\mathbf{x}-\bar{x}\mathbf{1}$;</li>
+<li>在残差$\bf{z}$上回归$\bf{y}$得到系数$\hat{\beta}_1$
+   在这个过程中，“在$\bf{a}$上回归$\bf{b}$”意思是$\bf{b}$在$\bf{a}$上的无截距的简单单变量回归，产生系数$\hat{\gamma}=\langle\mathbf{a,b}\rangle/\langle\mathbf{a,a}\rangle$以及残差向量$\mathbf{b}-\hat{\gamma}\mathbf{a}$。我们称$\bf{b}$由$\bf{a}$校正(adjusted)，或者关于$\bf{a}$正交化。</li>
+</ol>
 <p>第一步对$\mathbf{x}$作关于$\mathbf{x}_0=\mathbf{1}$的正交化。第二步是一个利用正交预测变量$\mathbf{1}$和$\mathbf{z}$简单的单变量回归。图3.4展示了两个一般输入$\mathbf{x}_1$和$\mathbf{x}_2$的过程。正交化不会改变由$\mathbf{x}_1$和$\mathbf{x}_2$张成的子空间，它简单地产生一个正交基来表示子空间。</p>
 <p><img alt="" src="../../img/03/fig3.4.png" /></p>
 <p>正交输入的最小二乘回归。向量$\mathbf{x}_2$在向量$\mathbf{x}_1$上回归，得到残差向量$\mathbf{z}$。$\mathbf{y}$在$\mathbf{z}$上的回归给出$\mathbf{x}_2$的系数。把$\mathbf{y}$在$\mathbf{x}_1$和$\mathbf{z}$上的投影加起来给出了最小二乘拟合$\mathbf{\hat{y}}$.</p>
@@ -3240,7 +3296,8 @@ r_i &= y_i -x_i\hat{\beta}
 \hat{\beta}_p=\dfrac{\langle \mathbf{z}_p,\mathbf{y} \rangle}{\langle \mathbf{z}_p,\mathbf{z}_p \rangle}\qquad (3.28)
 </script>
 </p>
-<p>对第二步中的残差进行重排列，我们可以看到每个$\mathbf x_j​$是$\mathbf z_k,k\le j​$的线性组合。因为$\mathbf z_j​$是正交的，它们形成了$\mathbf{X}​$列空间的基，从而得到最小二乘在子空间上投影为$\hat{\mathbf{y}}​$。因为$\mathbf z_p​$仅与$\mathbf x_p​$有关(系数为1)，我们可以看到系数(3.28)确实是$\mathbf{y}​$在$\mathbf x_p​$上多重回归的系数。这一重要结果揭示了在多重回归中相关输入的影响。注意到通过对$\mathbf x_j​$重排列，任何其中一个都有可能是最后一个，然后得到一个类似的结果。因此一般来说，我们已经展示了多重回归的第$j​$个系数是$\mathbf{y}​$在$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$的单变量回归，$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$是$\mathbf x_j​$ 在$\mathbf x_0,\mathbf x_1,&hellip;,\mathbf x_{j-1},\mathbf{j+1},&hellip;,\mathbf{x}_p​$回归后的残差向量：</p>
+<p>对第二步中的残差进行重排列，我们可以看到每个$\mathbf x_j​$是$\mathbf z_k,k\le j​$的线性组合。因为$\mathbf z_j​$是正交的，它们形成了$\mathbf{X}​$列空间的基，从而得到最小二乘在该子空间上投影为$\hat{\mathbf{y}}​$。因为$\mathbf z_p​$仅与<span class="critic comment">$\X$中的</span>$\mathbf x_p​$有关（系数为1），则式(3.28)确实是$\mathbf{y}​$在$\mathbf x_p​$上多重回归的系数。</p>
+<p>这一重要结果揭示了在多重回归中相关输入的影响。注意到通过对$\mathbf x_j​$重排列，任何其中一个都有可能是最后一个，然后得到一个类似的结果。因此一般来说，我们已经展示了多重回归的第$j​$个系数是$\mathbf{y}​$在$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$的单变量回归，$\mathbf x_{j\cdot 012&hellip;(j-1)(j+1)&hellip;,p}​$是$\mathbf x_j​$ 在$\mathbf x_0,\mathbf x_1,&hellip;,\mathbf x_{j-1},\mathbf{j+1},&hellip;,\mathbf{x}_p​$回归后的残差向量：</p>
 <blockquote>
 <p>多重回归系数$\hat\beta_j​$表示$\mathbf x_j​$经过$\mathbf x_0,\mathbf x_1,\ldots,\mathbf x_{j-1},\mathbf x_{j+1},\ldots,\mathbf x_p​$调整后$\mathbf x_j​$对$\mathbf y​$额外的贡献</p>
 </blockquote>
@@ -3425,15 +3482,15 @@ RSS(\mathbf{B;\Sigma})=\sum\limits_{i=1}^N(y_i-f(x_i))^T\Sigma^{-1}(y_i-f(x_i))\
       
     </div>
     
-          
+          <!---->
+    <script src="../../assets/javascripts/application.js"></script>
+    <!--
+      
+    -->
+	    <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
+	          <!---->
 
 	  <script>var base_url = '../..';</script>
-      
-        <script src="../../js/mathjax.js"></script>
-      
-        <script src="https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      
-        <script src="../../js/baiduzhanzhang.js"></script>
       
     
     
