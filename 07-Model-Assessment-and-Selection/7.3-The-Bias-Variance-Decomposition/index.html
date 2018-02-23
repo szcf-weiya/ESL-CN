@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/07 Model Assessment and Selection/7.1 Introduction/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/07-Model-Assessment-and-Selection/7.3-The-Bias-Variance-Decomposition/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>7.1 导言 - ESL CN</title>
+        <title>7.3 偏差-方差分解 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#71" tabindex="1" class="md-skip">
+      <a href="#73-" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                7.1 导言
+                7.3 偏差-方差分解
               </span>
             
           
@@ -271,7 +271,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="index.html" title="中篇" class="md-tabs__link md-tabs__link--active">
+        <a href="../7.1-Introduction/index.html" title="中篇" class="md-tabs__link md-tabs__link--active">
           中篇
         </a>
       
@@ -1250,6 +1250,30 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../7.1-Introduction/index.html" title="7.1 导言" class="md-nav__link">
+      7.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.2-Bias-Variance-and-Model-Complexity/index.html" title="7.2 偏差，方差和模型复杂度" class="md-nav__link">
+      7.2 偏差，方差和模型复杂度
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -1260,9 +1284,42 @@
       
     
     
-    <a href="index.html" title="7.1 导言" class="md-nav__link md-nav__link--active">
-      7.1 导言
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        7.3 偏差-方差分解
+      </label>
+    
+    <a href="index.html" title="7.3 偏差-方差分解" class="md-nav__link md-nav__link--active">
+      7.3 偏差-方差分解
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-" title="例子： 方差-偏差之间的权衡" class="md-nav__link">
+    例子： 方差-偏差之间的权衡
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1273,31 +1330,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.2%20Bias%2C%20Variance%20and%20Model%20Complexity/index.html" title="7.2 偏差，方差和模型复杂度" class="md-nav__link">
-      7.2 偏差，方差和模型复杂度
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.3%20The%20Bias-Variance%20Decomposition/index.html" title="7.3 偏差-方差分解" class="md-nav__link">
-      7.3 偏差-方差分解
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.4%20Optimism%20of%20the%20Training%20Error%20Rate/index.html" title="7.4 测试误差率的optimism" class="md-nav__link">
+    <a href="../7.4-Optimism-of-the-Training-Error-Rate/index.html" title="7.4 测试误差率的optimism" class="md-nav__link">
       7.4 测试误差率的optimism
     </a>
   </li>
@@ -1309,7 +1342,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.5%20Estimates%20of%20In-Sample%20Prediction%20Error/index.html" title="7.5 样本内预测误差的估计" class="md-nav__link">
+    <a href="../7.5-Estimates-of-In-Sample-Prediction-Error/index.html" title="7.5 样本内预测误差的估计" class="md-nav__link">
       7.5 样本内预测误差的估计
     </a>
   </li>
@@ -1321,7 +1354,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.6%20The%20Effective%20Number%20of%20Parameters/index.html" title="7.6 参数的有效个数" class="md-nav__link">
+    <a href="../7.6-The-Effective-Number-of-Parameters/index.html" title="7.6 参数的有效个数" class="md-nav__link">
       7.6 参数的有效个数
     </a>
   </li>
@@ -1333,7 +1366,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.7%20The%20Bayesian%20Approach%20and%20BIC/index.html" title="7.7 贝叶斯方法和BIC" class="md-nav__link">
+    <a href="../7.7-The-Bayesian-Approach-and-BIC/index.html" title="7.7 贝叶斯方法和BIC" class="md-nav__link">
       7.7 贝叶斯方法和BIC
     </a>
   </li>
@@ -1345,7 +1378,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.8%20Minimum%20Description%20Length/index.html" title="7.8 最小描述长度" class="md-nav__link">
+    <a href="../7.8-Minimum-Description-Length/index.html" title="7.8 最小描述长度" class="md-nav__link">
       7.8 最小描述长度
     </a>
   </li>
@@ -1357,7 +1390,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.9%20Vapnik-Chervonenkis%20Dimension/index.html" title="7.9 VC维" class="md-nav__link">
+    <a href="../7.9-Vapnik-Chervonenkis-Dimension/index.html" title="7.9 VC维" class="md-nav__link">
       7.9 VC维
     </a>
   </li>
@@ -1369,7 +1402,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.10%20Cross-Validation/index.html" title="7.10 交叉验证" class="md-nav__link">
+    <a href="../7.10-Cross-Validation/index.html" title="7.10 交叉验证" class="md-nav__link">
       7.10 交叉验证
     </a>
   </li>
@@ -1381,7 +1414,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.11%20Bootstrap%20Methods/index.html" title="7.11 自助法" class="md-nav__link">
+    <a href="../7.11-Bootstrap-Methods/index.html" title="7.11 自助法" class="md-nav__link">
       7.11 自助法
     </a>
   </li>
@@ -1393,7 +1426,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.12%20Conditional%20or%20Expected%20Test%20Error/index.html" title="7.12 条件测试误差或期望测试误差" class="md-nav__link">
+    <a href="../7.12-Conditional-or-Expected-Test-Error/index.html" title="7.12 条件测试误差或期望测试误差" class="md-nav__link">
       7.12 条件测试误差或期望测试误差
     </a>
   </li>
@@ -1405,7 +1438,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2878,6 +2911,26 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-" title="例子： 方差-偏差之间的权衡" class="md-nav__link">
+    例子： 方差-偏差之间的权衡
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2889,7 +2942,7 @@
               
                 
                 
-                <h1 id="71">7.1 导言<a class="headerlink" href="#71" title="Permanent link">&para;</a></h1>
+                <h1 id="73-">7.3 偏差-方差分解<a class="headerlink" href="#73-" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2904,28 +2957,114 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-01-28</td>
+<td>2017-02-18:2017-02-18</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-01-04; 2018-02-12</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
+<td>2018-01-04&amp;2018-01-06</td>
 </tr>
 </tbody>
 </table>
-<p>学习方法的泛化(<em>generalization</em>)效果与它在独立的测试集上的预测能力有关。评估这些表现在实际中特别重要，因为它指导着如何选择学习方法或模型，而且给了我们一种对最后选择的模型的质量(quality)的一个度量。</p>
-<p>这章中我们描述和举例说明评估表现的重要方法，而且展示它们怎么应用到选择模型。我们以对偏差、方差和模型复杂性的相互作用的讨论作为本章的开始。</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>在第一章导言中，这一章被看成是预备知识，要求同前四章一样先阅读。</p>
-<blockquote>
-<p>We recommend that Chapters 1–4 be first read in sequence. Chapter 7 should also be considered mandatory, as it covers central concepts that pertain to all learning methods. With this in mind, the rest of the book can be read sequentially, or sampled, depending on the reader’s interest.</p>
-<p>我们建议按顺序先阅读第1-4章，第7章也应该当作强制阅读，因为它介绍了关于所有学习方法的中心概念。有了这些概念，这本书的其他章节根据读者的兴趣可以按照顺序读，或选读。</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">更新笔记</p>
+<p>@2018-01-06 完成了图7.3的模拟，<a href="http://rmd.hohoweiya.xyz/sim7_3.html">这个R Notebook</a>记录了具体模拟过程，很好地重现了图中曲线的变化趋势。</p>
 </div>
+<p>像第2章一样，如果我们假设$Y=f(X)+\varepsilon$，其中$E(\varepsilon)=0$，并且$Var(\epsilon)=\sigma_\varepsilon^2$，我们可以导出在使用平方误差损失的情形下，输入点$X=x_0$处回归拟合$\hat f(X)$的取值的期望预测误差。
+<script type="math/tex; mode=display">
+\begin{align}
+Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
+&=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2\\
+&=\sigma_\varepsilon^2+Bias^2(\hat f(x_0))+Var(\hat f(x_0))\\
+&=\text{Irreducible Error} + \text{Bias}^2+\text{Variance}\qquad (7.9)
+\end{align}
+</script>
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：推导(7.9)</p>
+<p>(7.9)其实暗含$Ef(x_0)E\hat f(x_0)=E(f(x_0)\hat f(x_0))$，这显然成立，因为我们训练$\hat f$时，完全不知道真实的$f$，故它们独立。
+<script type="math/tex; mode=display">
+\begin{align}
+Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
+&=E[(f(x_0)+\varepsilon-\hat f(x_0))^2\mid X=x_0]\\
+&=\sigma_\varepsilon^2 + E[f(x_0)-E\hat f(x_0)+E\hat f(x_0)-\hat f(x_0)]^2\\
+&=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2+Ef(x_0)E\hat f(x_0)-E(f(x_0)\hat f(x_0))\\
+&=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2\\
+&=\sigma_\varepsilon^2+Bias^2(\hat f(x_0))+Var(\hat f(x_0))\\
+&=\text{Irreducible Error} + \text{Bias}^2+\text{Variance}
+\end{align}
+</script>
+</p>
+</div>
+<p>第一项是目标在真实均值$f(x_0)$处的方差，无论我们对$f(x_0)$的估计有多好，这是不可避免的，除非$\sigma_\varepsilon^2=0$。第二项是偏差的平方，是我们估计的均值与真实的均值间的偏差量；最后一项是方差，是估计的$\hat f(x_0)$在其均值处的平方偏差的期望值（即均方误差）。一般地，我们建立的模型$\hat f$越复杂，（平方）偏差越低但是方差越大。</p>
+<p>对于$k$-最近邻回归拟合，这些表达式有简单的形式
+<script type="math/tex; mode=display">
+\begin{align}
+Err(x_0)&=E[(Y-\hat f_k(x_0))^2\mid X=x_0]\\
+&= \sigma_\varepsilon^2+[f(x_0)-\frac{1}{k}\sum\limits_{\ell=1}^k f(x_{(\ell)})]^2+\frac{\sigma_\varepsilon^2}{k}\qquad (7.10)
+\end{align}
+</script>
+这里为了简单我们假设训练输入$x_i$为固定的，则随机性来自$y_i$。邻居的个数$k$与模型复杂度负相关。对于较小的$k$，估计出的$\hat f_k(x)$可以对潜在的函数$f(x)$可能有更好的适应性。当$k$增大，偏差——$f(x_0)$与$k$-最近邻中的$f(x)$平均值的差的平方——一般会增大，而方差会降低。</p>
+<p>对于线性模型拟合$\hat f_p(x)=x^T\hat\beta$，其中含有$p$个组分的参数向量$\beta$通过最小二乘拟合的，我们有
+<script type="math/tex; mode=display">
+\begin{align}
+Err(x_0)&=E[(Y-\hat f_p(x_0))^2\mid X=x_0]\\
+&=\sigma^2_\varepsilon+[f(x_0)-E\hat f_p(x_0)]^2+\Vert\mathbf h(x_0)\Vert^2\sigma_\varepsilon^2\qquad (7.11)
+\end{align}
+</script>
+这里$\mathbf h(x_0)=\mathbf{X(X^TX)^{-1}}x_0$，是得到拟合$\hat f_p(x_0)=x_0^T\mathbf{(X^TX)^{-1}X^Ty}$的$N$维线性权重，因此$\mathrm{Var}[\hat f_p(x_0)]=\Vert \mathbf h(x_0)\Vert^2\sigma_\varepsilon^2$。尽管方差随着$x_0$变化，但它的平均（当$x_0$取遍样本值$x_i$）为$(p/N)\sigma^2_\varepsilon$，</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注</p>
+<p>记$X=(x_1,x_2,\ldots,x_N)&rsquo;$，则
+<script type="math/tex; mode=display">
+\begin{align}
+\sum\limits_{i=1}^N\Vert\mathbf h(x_i)\Vert^2
+&=\sum\limits_{i=1}^N\mathbf h^T(x_i)\mathbf h^T(x_i)\\
+&=\sum\limits_{i=1}^Nx_i^T(\mathbf{X^TX})^{-1}x_i\\
+&=trace[X(X^TX)^{-1}X^T]\\
+&=trace[(x^TX)^{-1}X^TX]\\
+&=p
+\end{align}
+</script>
+则方差的平均为$(p/N)\sigma_\epsilon^2$。</p>
+</div>
+<p>因此有
+<script type="math/tex; mode=display">
+\frac{1}{N}\sum\limits_{i=1}^N\mathrm{Err}(x_i)=\sigma_\varepsilon^2+\frac{1}{N}\sum\limits_{i=1}^N[f(x_i)-E\hat f(x_i)]^2+\frac{p}{N}\sigma_\varepsilon^2\qquad (7.12)
+</script>
+这称作样本内（in-sample）误差。这里模型复杂度直接与参数个数$p$有关。</p>
+<p>对于岭回归估计$\hat f_\alpha(x_0)$的测试误差$Err(x_0)$与（7.11）式相同，除了方差项的线性系数不一样：$\mathbf h(x_0)=\mathbf X(\mathbf {X^TX}+\alpha\mathbf I)^Tx_0$。偏差项也会不一样。</p>
+<p>对于线性模型族比如岭回归，我们可以更精细地分解偏差。令$\beta_*$为$f$的最优线性估计的参数：
+<script type="math/tex; mode=display">
+\beta_*=\mathrm{arg}\;\underset{\beta}{\mathrm{min}}\;E(f(X)-X^T\beta)^2\qquad (7.13)
+</script>
+这里期望是对输入变量$X$的分布取的。接着我们可以将平均偏差的平均(average squared bias)写成
+<script type="math/tex; mode=display">
+\begin{align}
+&E_{x_0}[f(x_0)-E\hat f_\alpha(x_0)]^2\\
+&=E_{x_0}[f(x_0)-x_0^T\beta_*]^2+E_{x_0}[x_0^T\beta_*-Ex_0^T\hat\beta_\alpha]^2\\
+&=\text{Ave[Model Bias]}^2+\text{Ave[Estimation Bias]}^2\qquad (7.14)
+\end{align}
+</script>
+右侧的第一项是模型偏差（model bias）平方的平均，它是最优线性近似和真实函数之间的误差。第二项是估计偏差（estimation bias）平方的平均，它是估计的平均值$E(x_0^T\hat\beta)$与最优线性近似之间的误差。</p>
+<p>对于通过普通最小二乘拟合的线性模型，estimation bias值为0。对于约束的拟合，比如岭回归，它是正的，而且我们用减小方差的好处进行交易。模型偏差仅仅可以通过将线性模型类扩大为更广的模型类才能降低，或者通过在模型中加入变量的交叉项以及转换项（通过变量的变换得到的）来降低。</p>
+<p>图7.2 显示了偏差和方差之间的权衡的原理图。在线性模型的情形下，模型空间是从$p$个输入的所有线性预测的集合，并且标记为“closest fit”的黑点是$x^T\beta_*$。蓝色阴影部分区域表示训练样本中与真实值（图中的truth）之间的误差$\sigma_\varepsilon$ 。</p>
+<p><img alt="" src="../../img/07/fig7.2.png" /></p>
+<blockquote>
+<p>图7.2. 偏差和方差行为的原理图。模型空间是模型的所有可能的预测的集合，“closest fit”用黑点标出。图中显示了偏离真实值的模型偏差，以及用圆心在标记为“closest fit in population”的黑点处的黄色的大圆来表示方差。图中也显示了收缩或者正则化的拟合，它们有额外的估计偏差，但是因为方差的减小导致了更小的预测误差。</p>
+</blockquote>
+<p>图中也显示了最小二乘的方差，用圆心在标记为“closest fit in population”的黑点处的黄色大圆来表示。现在如果我们用更少的预测变量来拟合模型，或者通过将它们向0收缩来正则化系数，我们会得到图中的“shrunken fit”。这个拟合有额外的估计偏差，因为它不是模型空间的最近拟合(closest fit)。另一方面，它有更小的方差。如果方差的减少大于（平方）偏差的增大，则是值得的。</p>
+<h2 id="-">例子： 方差-偏差之间的权衡<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../../img/07/fig7.3.png" /></p>
+<blockquote>
+<p>图7.3. 某模拟例子的预测误差的期望（橘黄色），平方偏差（绿色）以及方差（蓝色）。上面两张图为平方误差损失的回归；下面两张图为0-1损失的分类。模型是$k$最近邻（左边）以及大小为$p$的最优子集回归（右）。在回归和分类中的方差和偏差曲线是一样的，但是预测误差曲线是不同的。</p>
+</blockquote>
+<p>图7.3. 显示了两个模拟例子的偏差-方差之间的权衡。有80个观测，20个预测变量，在超立方体$[0,1]^{20}$中均匀分布。这些情形如下：</p>
+<p><strong>左图：</strong> 若$X_1\le 1/2$，$Y=0$，且若$X_1&gt;1/2$，$Y=1$，而且应用$k$-最近邻模型。</p>
+<p><strong>右图：</strong> 若$\sum_{j=1}^{10}X_j&gt;5$，$Y=1$，否则$Y=0$，且采用大小为$p$的最优子集回归。</p>
+<p>上面一行的图是平方误差损失的回归；下面一行的图是0-1损失的分类。图中显示了预测误差（红色）、平方误差（绿色）和方差（蓝色），所有都是用大的测试样本来计算的。</p>
+<p>在回归问题中，偏差和方差相加得到预测误差曲线，对于$k$最近邻在$k=5$处有最小值，对于线性模型$p\ge 10$有最小值。对于分类损失（下图），可以看到一些有趣的现象。偏差和方差曲线与上面的图象相同，而且预测误差指的是误分类比率。我们看到预测误差不再是偏差平方与方差的和。对于$k$最近邻分类器，当邻居个数增长到20，预测误差降低或者保持不变，尽管偏差平方仍在增大。对与线性模型分类器最小值和回归一样出现在$p\ge 10$，但是在$p=1$处模型的改进是很显著的。我们看到偏差和方差是相互影响来确定预测误差。</p>
+<p>为什么会这样？第一个现象可以很简单的解释。假设在一个给定的输入点，类别1的真实概率为0.9，而我们估计出的期望值为0.6。则偏差平方——$(0.6-0.9)^2$——是相当大的，但是预测误差为0，因为我们作出了正确的判断。换句话说，使得我们处于判别边界正确一侧的估计误差是没有影响的。练习7.2从分析角度论证这个现象，而且展示了偏差与方差之间的相互影响。</p>
+<p>整体思想是偏差方差间的权衡在0-1损失的表现与在平方误差损失的表现不一样。反过来意味着调整参数的最优选择可能在两种设定下本质上不同。我们应该将调整参数的选择建立于对预测误差的估计之上，正如下面章节中描述的那样。</p>
                 
                   
                 
@@ -2957,7 +3096,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../06-Kernel-Smoothing-Methods/Bibliographic-Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../7.2-Bias-Variance-and-Model-Complexity/index.html" title="7.2 偏差，方差和模型复杂度" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2966,19 +3105,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                文献笔记
+                7.2 偏差，方差和模型复杂度
               </span>
             </div>
           </a>
         
         
-          <a href="../7.2%20Bias%2C%20Variance%20and%20Model%20Complexity/index.html" title="7.2 偏差，方差和模型复杂度" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../7.4-Optimism-of-the-Training-Error-Rate/index.html" title="7.4 测试误差率的optimism" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                7.2 偏差，方差和模型复杂度
+                7.4 测试误差率的optimism
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

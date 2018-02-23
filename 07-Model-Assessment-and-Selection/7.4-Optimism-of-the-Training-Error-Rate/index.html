@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/07 Model Assessment and Selection/7.6 The Effective Number of Parameters/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/07-Model-Assessment-and-Selection/7.4-Optimism-of-the-Training-Error-Rate/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>7.6 参数的有效个数 - ESL CN</title>
+        <title>7.4 测试误差率的optimism - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#76" tabindex="1" class="md-skip">
+      <a href="#74-optimism" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                7.6 参数的有效个数
+                7.4 测试误差率的optimism
               </span>
             
           
@@ -271,7 +271,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../7.1%20Introduction/index.html" title="中篇" class="md-tabs__link md-tabs__link--active">
+        <a href="../7.1-Introduction/index.html" title="中篇" class="md-tabs__link md-tabs__link--active">
           中篇
         </a>
       
@@ -1252,7 +1252,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.1%20Introduction/index.html" title="7.1 导言" class="md-nav__link">
+    <a href="../7.1-Introduction/index.html" title="7.1 导言" class="md-nav__link">
       7.1 导言
     </a>
   </li>
@@ -1264,7 +1264,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.2%20Bias%2C%20Variance%20and%20Model%20Complexity/index.html" title="7.2 偏差，方差和模型复杂度" class="md-nav__link">
+    <a href="../7.2-Bias-Variance-and-Model-Complexity/index.html" title="7.2 偏差，方差和模型复杂度" class="md-nav__link">
       7.2 偏差，方差和模型复杂度
     </a>
   </li>
@@ -1276,32 +1276,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.3%20The%20Bias-Variance%20Decomposition/index.html" title="7.3 偏差-方差分解" class="md-nav__link">
+    <a href="../7.3-The-Bias-Variance-Decomposition/index.html" title="7.3 偏差-方差分解" class="md-nav__link">
       7.3 偏差-方差分解
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.4%20Optimism%20of%20the%20Training%20Error%20Rate/index.html" title="7.4 测试误差率的optimism" class="md-nav__link">
-      7.4 测试误差率的optimism
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.5%20Estimates%20of%20In-Sample%20Prediction%20Error/index.html" title="7.5 样本内预测误差的估计" class="md-nav__link">
-      7.5 样本内预测误差的估计
     </a>
   </li>
 
@@ -1320,8 +1296,8 @@
       
     
     
-    <a href="index.html" title="7.6 参数的有效个数" class="md-nav__link md-nav__link--active">
-      7.6 参数的有效个数
+    <a href="index.html" title="7.4 测试误差率的optimism" class="md-nav__link md-nav__link--active">
+      7.4 测试误差率的optimism
     </a>
     
   </li>
@@ -1333,7 +1309,31 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.7%20The%20Bayesian%20Approach%20and%20BIC/index.html" title="7.7 贝叶斯方法和BIC" class="md-nav__link">
+    <a href="../7.5-Estimates-of-In-Sample-Prediction-Error/index.html" title="7.5 样本内预测误差的估计" class="md-nav__link">
+      7.5 样本内预测误差的估计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.6-The-Effective-Number-of-Parameters/index.html" title="7.6 参数的有效个数" class="md-nav__link">
+      7.6 参数的有效个数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.7-The-Bayesian-Approach-and-BIC/index.html" title="7.7 贝叶斯方法和BIC" class="md-nav__link">
       7.7 贝叶斯方法和BIC
     </a>
   </li>
@@ -1345,7 +1345,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.8%20Minimum%20Description%20Length/index.html" title="7.8 最小描述长度" class="md-nav__link">
+    <a href="../7.8-Minimum-Description-Length/index.html" title="7.8 最小描述长度" class="md-nav__link">
       7.8 最小描述长度
     </a>
   </li>
@@ -1357,7 +1357,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.9%20Vapnik-Chervonenkis%20Dimension/index.html" title="7.9 VC维" class="md-nav__link">
+    <a href="../7.9-Vapnik-Chervonenkis-Dimension/index.html" title="7.9 VC维" class="md-nav__link">
       7.9 VC维
     </a>
   </li>
@@ -1369,7 +1369,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.10%20Cross-Validation/index.html" title="7.10 交叉验证" class="md-nav__link">
+    <a href="../7.10-Cross-Validation/index.html" title="7.10 交叉验证" class="md-nav__link">
       7.10 交叉验证
     </a>
   </li>
@@ -1381,7 +1381,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.11%20Bootstrap%20Methods/index.html" title="7.11 自助法" class="md-nav__link">
+    <a href="../7.11-Bootstrap-Methods/index.html" title="7.11 自助法" class="md-nav__link">
       7.11 自助法
     </a>
   </li>
@@ -1393,7 +1393,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.12%20Conditional%20or%20Expected%20Test%20Error/index.html" title="7.12 条件测试误差或期望测试误差" class="md-nav__link">
+    <a href="../7.12-Conditional-or-Expected-Test-Error/index.html" title="7.12 条件测试误差或期望测试误差" class="md-nav__link">
       7.12 条件测试误差或期望测试误差
     </a>
   </li>
@@ -1405,7 +1405,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2889,7 +2889,7 @@
               
                 
                 
-                <h1 id="76">7.6 参数的有效个数<a class="headerlink" href="#76" title="Permanent link">&para;</a></h1>
+                <h1 id="74-optimism">7.4 训练误差率的optimism<a class="headerlink" href="#74-optimism" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2908,53 +2908,78 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-09-17&amp; 2018-01-05</td>
+<td>2017-09-17</td>
 </tr>
 </tbody>
 </table>
-<p>“参数个数”概念可以推广，特别是推广到在拟合中使用了正则的模型中。假设我们将输出$y_1,y_2,\ldots,y_N$压栈到向量$\mathbf y$中，类似地对预测值进行同样操作得到$\hat{\mathbf y}$。于是我们可以将线性拟合模型写成</p>
+<p>讨论误差率的估计可能令人困惑，因为我们必须弄清楚哪些量是固定的哪些量是随机的。在我们继续之前，我们需要一些定义，详细阐述第7.2节的内容。给出训练集$\cal{T}=\{(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)\}$，模型$\hat f$的泛化误差为</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf{\hat y=Sy}\qquad (7.31)
+\Err_{\cal T} = \mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid {\cal T}]\qquad (7.15)
 </script>
 </p>
-<p>其中$\mathbf S$为依赖于输入向量$x_i$但不依赖于输出$y_i$的 $N\times N$阶矩阵。线性拟合方法包括在原始特征或在导出基的集合中运用的线性回归，以及采用平方收缩的光滑化方法，比如岭回归和三次光滑样条。则有效参数个数（effective number of parameters）定义为</p>
+<p>注意到在表达式（7.15）中训练集$\cal T$是固定的。点$(X^0,Y^0)$是新的测试点，从数据的联合分布$F$中取的。对数据集平均得到期望误差</p>
 <p>
 <script type="math/tex; mode=display">
-df(\mathbf S)=trace(\mathbf S)\qquad (7.32)
+\mathrm{Err} = \mathrm E_{\cal T}\mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid {\cal T}]\qquad (7.16)
 </script>
 </p>
-<p>是$\mathbf S$对角元之和（也被称作有效自由度effective degrees-of-freedom）。注意到如果$\mathbf S$为投影到由$M$个特征张开的基础集（basis set）上的正交投影矩阵，则$trace(\mathbf S)=M$。事实证明$trace(\mathbf S)$恰巧是$C_p$统计量（7.26）中替换掉$d$作为参数个数的那个值。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注： Recall (7.26)</p>
+<p>它更适合于统计分析。正如之前提到的，事实证明大部分方法能够有效估计期望误差而非$E_{\cal T}$；这一点详见7.12节。</p>
+<p>现在一般地，训练误差</p>
 <p>
 <script type="math/tex; mode=display">
-C_p=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon\qquad (7.26)
+\overline{err} = \frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f(x_i))\qquad (7.17)
 </script>
 </p>
-</div>
-<p>如果$\mathbf y$是从加性误差模型$Y=f(X)+\varepsilon$中产生的，$Var(\varepsilon)=\sigma_\epsilon^2$，则可以证明$\sum_{i=1}^NCov(\hat y_i,y_i)=trace(\mathbf S)\sigma_{\varepsilon}^2$，导出了更一般的定义</p>
+<p>会比真实误差$\mathrm{Err}_{\cal T}$小，因为数据被同时用来拟合方法并且评估误差（见练习2.9）。拟合方法一般适应于训练数据，因此训练误差$\overline{err}$是过度乐观估计的泛化误差$\mathrm {Err}_{\cal T}$。</p>
+<p>部分差异是因为取值点的选取。值$\mathrm {Err}_{\cal T}$可以看成是样本外（extra-sample）误差，因为测试输入向量不需要与训练输入向量一致。当我们去关注样本内（in-sample）误差，可以很简单地理解$\overline{err}$乐观估计的本质</p>
 <p>
 <script type="math/tex; mode=display">
-df(\hat {\mathbf y})=\frac{\sum_{i=1}^NCov(\hat y_i,y_i)}{\sigma_\varepsilon^2}\qquad (7.33)
+\Err_{in}=\frac{1}{N}\sum\limits_{i=1}^N\mathrm E_{Y^0}[L(Y_i^0,\hat f(x_i))\mid \cal T]\qquad (7.18)
 </script>
 </p>
-<p>（练习7.4和7.5）。153页的5.4.1节给出了在光滑样条情形下$df=trace(\mathbf S)$更直观的定义。</p>
-<p>对于像神经网络的模型，我们用系数衰减（正则化）$\alpha\sum_m w_m^2$来最小化误差函数$R(w)$，有效参数个数有如下形式</p>
+<p>$Y^0$表示我们在每个训练点$x_i,i=1,2,\ldots,N$处观测$N$个新响应变量的值。我们定义$\mathrm{Err}_{in}$与训练误差$\overline{err}$的差为乐观（optimism）：</p>
 <p>
 <script type="math/tex; mode=display">
-df(\alpha)=\sum\limits_{i=1}^M\frac{\theta_m}{\theta_m+\alpha}\qquad (7.34)
+\mathrm {op}\equiv \mathrm{Err}_{in}-\overline{err}\qquad (7.19)
 </script>
 </p>
-<p>其中$\theta_m$是Hessian矩阵$\partial^2R(w)/\partial w\partial w^T$的特征值。如果我们对解的误差函数做二次近似便可由式（7.32）导出式（7.34）（Bishop，1995<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Bishop, C. (1995). Neural Networks for Pattern Recognition, Clarendon Press, Oxford.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<p>一般情形下这是正的，因为$\overline{err}$经常是预测误差的向下有偏估计。最后，平均乐观是在训练集上乐观的期望</p>
+<p>
+<script type="math/tex; mode=display">
+\omega \equiv E_{\mathbf y}(\mathrm{op})\qquad (7.20)
+</script>
+</p>
+<p>这里训练集中的预测变量是固定的，期望在对训练集的输出值上的；因此我们已经用记号$E_{\mathbf y}$而不是$E_{\cal T}$。我们通常仅仅估计期望误差$\omega$而不是op，同样的方式我们可以估计期望误差$Err$而不是条件误差$\mathrm {Err}_{\cal T}$。</p>
+<p>对于平方误差，0-1，以及其他损失函数，可以证明一般性的结论</p>
+<p>
+<script type="math/tex; mode=display">
+\omega=\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad (7.21)
+</script>
+</p>
+<p>其中$Cov$表示协方差。因此$\overline{err}$低估真实误差的程度取决于$y_i$影响它本身估计的程度。数据越难拟合，$Cov(\hat y_i,y_i)$将越大，因此增大了乐观。练习7.4证明了平方损失函数时的结果，其中$\hat y_i$为根据回归拟合好的值。对于0-1损失，$\hat y_i\in\{0,1\}$是在$x_i$处的分类，另外对于熵损失，$\hat y_i\in[0,1]$是在$x_i$处类别1的拟合概率。</p>
+<p>总结一下，我们有重要的关系式</p>
+<p>
+<script type="math/tex; mode=display">
+E_{\mathbf y}(Err_{in})=E_{\mathbf y}(\overline{err})+\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad (7.22)
+</script>
+</p>
+<p>如果$\hat y_i$通过含$d$个输入或者基函数的线性拟合得到，上面表达式可以简化。例如，对于可加误差模型$Y=f(X)+\varepsilon$，</p>
+<p>
+<script type="math/tex; mode=display">
+\sum\limits_{i=1}^NCov(\hat y_i,y_i) = d\sigma_{\varepsilon}^2\qquad (7.23）
+</script>
+</p>
+<p>因此</p>
+<p>
+<script type="math/tex; mode=display">
+E_{\mathbf y}(Err_{in})=E_{\mathbf y}(\overline{err})+2\cdot\frac{d}{N}\sigma_\varepsilon^2\qquad (7.24)
+</script>
+</p>
+<p>表达式（7.23）是将在7.6节讨论的有效参数个数（effective number of parameters）的定义的基础。optimism随着我们使用的输入或基函数的个数$d$线性增长，但是当训练样本大小增大时会降低。（7.24）的其它版本对其它误差模型也近似成立，比如二值数据和熵损失。</p>
+<p>估计预测误差的一种明显方法是先估计optimism然后加到训练误差$\overline{err}$上。下一节将要描述的方法——$C_p$，AIC，BIC以及其它方法——对于估计关于参数是线性的特殊估计类，都是通过这种方式实现。</p>
+<p>相反地，将在本章后面描述的交叉验证以及自助法是对样本外（extra-sample）误差Err直接估计的方法。这些一般工具可以用于任意损失函数以及非线性自适应拟合技巧。</p>
+<p>样本内误差通常不是直接感兴趣的，因为特征的未来值不可能与它们训练集值一致。但是为了模型之间的比较，样本内误差是很方便的，并且经常能够有效地模型选择。原因在于误差的相对（而不是绝对）大小是我们所关心的。</p>
                 
                   
                 
@@ -2986,7 +3011,7 @@ df(\alpha)=\sum\limits_{i=1}^M\frac{\theta_m}{\theta_m+\alpha}\qquad (7.34)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../7.5%20Estimates%20of%20In-Sample%20Prediction%20Error/index.html" title="7.5 样本内预测误差的估计" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../7.3-The-Bias-Variance-Decomposition/index.html" title="7.3 偏差-方差分解" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2995,19 +3020,19 @@ df(\alpha)=\sum\limits_{i=1}^M\frac{\theta_m}{\theta_m+\alpha}\qquad (7.34)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                7.5 样本内预测误差的估计
+                7.3 偏差-方差分解
               </span>
             </div>
           </a>
         
         
-          <a href="../7.7%20The%20Bayesian%20Approach%20and%20BIC/index.html" title="7.7 贝叶斯方法和BIC" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../7.5-Estimates-of-In-Sample-Prediction-Error/index.html" title="7.5 样本内预测误差的估计" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                7.7 贝叶斯方法和BIC
+                7.5 样本内预测误差的估计
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

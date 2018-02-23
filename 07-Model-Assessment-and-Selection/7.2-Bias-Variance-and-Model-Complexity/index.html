@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/07 Model Assessment and Selection/7.9 Vapnik-Chervonenkis Dimension/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/07-Model-Assessment-and-Selection/7.2-Bias-Variance-and-Model-Complexity/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>7.9 VC维 - ESL CN</title>
+        <title>7.2 偏差，方差和模型复杂度 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#79-vc" tabindex="1" class="md-skip">
+      <a href="#72" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                7.9 VC维
+                7.2 偏差，方差和模型复杂度
               </span>
             
           
@@ -271,7 +271,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../7.1%20Introduction/index.html" title="中篇" class="md-tabs__link md-tabs__link--active">
+        <a href="../7.1-Introduction/index.html" title="中篇" class="md-tabs__link md-tabs__link--active">
           中篇
         </a>
       
@@ -1252,92 +1252,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.1%20Introduction/index.html" title="7.1 导言" class="md-nav__link">
+    <a href="../7.1-Introduction/index.html" title="7.1 导言" class="md-nav__link">
       7.1 导言
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.2%20Bias%2C%20Variance%20and%20Model%20Complexity/index.html" title="7.2 偏差，方差和模型复杂度" class="md-nav__link">
-      7.2 偏差，方差和模型复杂度
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.3%20The%20Bias-Variance%20Decomposition/index.html" title="7.3 偏差-方差分解" class="md-nav__link">
-      7.3 偏差-方差分解
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.4%20Optimism%20of%20the%20Training%20Error%20Rate/index.html" title="7.4 测试误差率的optimism" class="md-nav__link">
-      7.4 测试误差率的optimism
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.5%20Estimates%20of%20In-Sample%20Prediction%20Error/index.html" title="7.5 样本内预测误差的估计" class="md-nav__link">
-      7.5 样本内预测误差的估计
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.6%20The%20Effective%20Number%20of%20Parameters/index.html" title="7.6 参数的有效个数" class="md-nav__link">
-      7.6 参数的有效个数
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.7%20The%20Bayesian%20Approach%20and%20BIC/index.html" title="7.7 贝叶斯方法和BIC" class="md-nav__link">
-      7.7 贝叶斯方法和BIC
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../7.8%20Minimum%20Description%20Length/index.html" title="7.8 最小描述长度" class="md-nav__link">
-      7.8 最小描述长度
     </a>
   </li>
 
@@ -1356,42 +1272,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        7.9 VC维
-      </label>
-    
-    <a href="index.html" title="7.9 VC维" class="md-nav__link md-nav__link--active">
-      7.9 VC维
+    <a href="index.html" title="7.2 偏差，方差和模型复杂度" class="md-nav__link md-nav__link--active">
+      7.2 偏差，方差和模型复杂度
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="例子（继续）" class="md-nav__link">
-    例子（继续）
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -1402,7 +1285,91 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.10%20Cross-Validation/index.html" title="7.10 交叉验证" class="md-nav__link">
+    <a href="../7.3-The-Bias-Variance-Decomposition/index.html" title="7.3 偏差-方差分解" class="md-nav__link">
+      7.3 偏差-方差分解
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.4-Optimism-of-the-Training-Error-Rate/index.html" title="7.4 测试误差率的optimism" class="md-nav__link">
+      7.4 测试误差率的optimism
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.5-Estimates-of-In-Sample-Prediction-Error/index.html" title="7.5 样本内预测误差的估计" class="md-nav__link">
+      7.5 样本内预测误差的估计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.6-The-Effective-Number-of-Parameters/index.html" title="7.6 参数的有效个数" class="md-nav__link">
+      7.6 参数的有效个数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.7-The-Bayesian-Approach-and-BIC/index.html" title="7.7 贝叶斯方法和BIC" class="md-nav__link">
+      7.7 贝叶斯方法和BIC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.8-Minimum-Description-Length/index.html" title="7.8 最小描述长度" class="md-nav__link">
+      7.8 最小描述长度
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.9-Vapnik-Chervonenkis-Dimension/index.html" title="7.9 VC维" class="md-nav__link">
+      7.9 VC维
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.10-Cross-Validation/index.html" title="7.10 交叉验证" class="md-nav__link">
       7.10 交叉验证
     </a>
   </li>
@@ -1414,7 +1381,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.11%20Bootstrap%20Methods/index.html" title="7.11 自助法" class="md-nav__link">
+    <a href="../7.11-Bootstrap-Methods/index.html" title="7.11 自助法" class="md-nav__link">
       7.11 自助法
     </a>
   </li>
@@ -1426,7 +1393,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.12%20Conditional%20or%20Expected%20Test%20Error/index.html" title="7.12 条件测试误差或期望测试误差" class="md-nav__link">
+    <a href="../7.12-Conditional-or-Expected-Test-Error/index.html" title="7.12 条件测试误差或期望测试误差" class="md-nav__link">
       7.12 条件测试误差或期望测试误差
     </a>
   </li>
@@ -1438,7 +1405,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2911,26 +2878,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="例子（继续）" class="md-nav__link">
-    例子（继续）
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2942,7 +2889,7 @@
               
                 
                 
-                <h1 id="79-vc">7.9 VC维<a class="headerlink" href="#79-vc" title="Permanent link">&para;</a></h1>
+                <h1 id="72">7.2 偏差，方差和模型复杂度<a class="headerlink" href="#72" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2957,65 +2904,96 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-19:2017-02-19</td>
+<td>2017-02-18:2017-02-18</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-01-05&amp;2018-01-07</td>
+<td>2017-09-17, 2018-01-04</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">更新笔记</p>
-<p>@2018-01-07 完成了图7.7的部分模拟，即AIC和BIC下kNN回归与分类的情形，其它情形待完成。具体模拟细节记录在了<a href="http://rmd.hohoweiya.xyz/sim7_7.html">这个R Notebook</a>中。</p>
+<p>@2018-01-04 增加信噪比的笔记。</p>
 </div>
-<p>使用样本内误差估计的困难在于需要确定在拟合中使用的参数（或复杂度）个数$d$。尽管7.6节引入的有效参数个数对部分非线性模型是有用的，但是不太普遍。Vapnik-Chervonenkis（VC）理论提供了对复杂度更一般的度量，而且给出了相应的optimism估计。这里我们简短回顾这个理论。</p>
-<p>假设我们有由参数$\alpha$编码的函数类$\{f(x,\alpha)\},x\in R^p$。现在假设$f$为指示函数，也就是取值为0或1。如果$\alpha=(\alpha_0,\alpha_1)$，且$f$为线性指示函数$I(\alpha_0+\alpha_1^Tx&gt;0)$，于是说函数$f$的复杂度是参数个数$p+1$似乎是合理的。但是如果$f(x,\alpha)=I(sin\alpha\cdot x),x\in R$， $\alpha$为任意实数会怎么样呢？图7.5显示了函数$sin(50\cdot x)$的图象。</p>
-<p><img alt="" src="../../img/07/fig7.5.png" /></p>
+<p><img alt="" src="../../img/07/fig7.1.png" /></p>
 <blockquote>
-<p>实线是函数$sin(50x),x\in [0,1]$。绿点（实心）和蓝色（空心点）说明了相应的指示函数$I(sin(\alpha x)&gt;0)$如何通过选择合适高的频率$\alpha$来打散（分离）任意多的点。</p>
+<p>图7.1. 当模型复杂度变化时测试样本和训练样本的误差。浅蓝色曲线显示了当模型复杂度增加时训练误差$\overline{err}$的变化，而浅红色曲线显示了当模型复杂度增加时100个大小为50的训练集的条件测试误差$Err_{\cal T}$的变化。实（粗）线显示了对应的期望测试误差Err和期望训练误差$E[\overline{err}]$</p>
 </blockquote>
-<p>这是个非常弯曲的函数，当频率$\alpha$增大变得更粗糙，但是它仅仅有一个参数$\alpha$：尽管这样，它比$p=1$时的线性指示函数$I(\alpha_0+\alpha_1x)$复杂度更低的结论似乎是不合理的。</p>
-<p>Vapnik-Chervonenkis维度是衡量函数类的复杂度的一种方式，它通过评估函数类中的成员的弯曲程度实现的。</p>
-<blockquote>
-<p>函数类$\{f(x,\alpha)\}$的VC维定位为可以被$\{f(x,\alpha)\}$的成员打散的点的最多数目（在一定条件下）。</p>
-</blockquote>
-<p>点集被函数类打散是指无论我们对每个点如何赋予二值标签，都有类中的一个函数完美地将它们分隔开。</p>
-<p><img alt="" src="../../img/07/fig7.6.png" /></p>
-<blockquote>
-<p>图7.6. 前三张图显示了平面中的直线类可以打散3个点。最后一张图显示了这个类不能打散4个点，因为没有直线可以使得空心点在一侧而实心点在另一侧。因此平面中直线类的VC维是3.注意到非线性曲线类可以打散4个点，也因此有比3更高的VC维。</p>
-</blockquote>
-<p>图7.6显示了在平面中线性指示函数的VC维是3而非4，因为没有4个点可以被直线集打散。一般地，$p$维线性指示函数的VC维为$p+1$，这也是自由参数的个数。另一方面，可以证明$sin(\alpha x)$函数类有无穷的VC维，正如图7.5显示的那样。通过合适的$\alpha$，任何点集都可以被这个函数类打散（练习7.8）。</p>
-<p>至今我们仅仅讨论了指示函数的VC维，但这个可以推广到实值函数中。实值函数类$\{g(x,\alpha)\}$的VC维定义为指示类${I(g(x,\alpha)-\beta)}$的VC维，其中$\beta$在$g$的值域中取值。</p>
-<p>可以使用VC维来构造（样本外）预测误差的估计；不同类型的结果都是可以的。当使用函数类时，采用VC维的概念，可以证明训练误差的乐观（optimisim）的结果。这样的结果的例子如下。如果我们采用VC维为$h$的类函数$\{f(x,\alpha)\}$来拟合$N$个训练点，于是在训练集上至少以$1-\eta$的概率成立下式：</p>
-<p>
+<p>图7.1说明了评估某学习方法泛化能力中的一个重要问题。首先考虑一个定量或者间隔尺度响应变量的情形。我们有目标变量$Y$，输入向量$X$，以及从训练集$\cal T$估计出来的预测模型$\hat f(X)$。衡量$Y$与$\hat f(X)$间误差的损失函数记为$L(Y,\hat f(X))$。一般的选择是
+<script type="math/tex; mode=display">
+L(Y,\hat f(X))=\left\{
+\begin{array}{cc}
+(Y-\hat f(X))^2&\text{平方误差}\\
+\vert Y-\hat f(X)\vert &\text{绝对误差}
+\end{array}
+\right.
+\qquad (7.1)
+</script>
+测试误差（test error），也被称作泛化误差（generalization error），它是在独立的测试样本上的预测误差
+<script type="math/tex; mode=display">
+Err_{\cal T}=E[L(Y,\hat f(X))\mid {\cal T}]\qquad (7.2)
+</script>
+其中$X$和$Y$都是随机从它们的联合分布（总体）中选取的。这里训练集$\cal T$是固定的，测试误差指的是对该特定训练集的误差。一个相关的量是预测误差的期望值（或者期望测试误差）
+<script type="math/tex; mode=display">
+Err = E[L(Y,\hat f(X))]=E[Err_{\cal T}]\qquad (7.3)
+</script>
+注意到这个期望平均的任何项都是随机的，包括训练集产生$\hat f$的随机性。</p>
+<p>图7.1显示了大小为50的100个训练集的预测误差（浅红色曲线）$Err_{\cal T}$。使用lasso（3.4.2节）来得到拟合模型序列。实心红色曲线是平均值，因此是$Err$的一个估计。</p>
+<p>估计$Err_{\cal T}$将是我们的目标，尽管我们将会看到$Err$更适合于统计分析，而且大部分方法能有效地估计出期望误差。如果仅仅给出同一个训练集的信息，有效地估计条件误差似乎不可能。这点的一些讨论将在7.12节给出。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>对于给定的训练集$\cal T$，我们能得到模型，此时我们关心的是由训练集$\cal T$训练得到的模型的误差率$Err_{\cal T}$；而非重复从总体中抽取训练集，在这些训练集上求期望得到期望测试误差$Err$。</p>
+</div>
+<p>训练误差（Training error）是在训练样本上的平均损失。
+<script type="math/tex; mode=display">
+\overline{err}=\frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f(x_i))\qquad (7.4)
+</script>
+我们想要知道我们估计模型$\hat f$的测试误差的期望值。当模型越来越复杂时，它使用更多的训练数据并且可以适应于更复杂的潜在结构。因此偏差会有降低而方差会有增大。一些中等程度的模型复杂度给出了最小的测试误差期望值。</p>
+<p>不幸的是，正如我们在图7.1中看到的那样训练误差不是测试误差一个良好的估计。训练误差随着模型复杂度增大不断降低，一般地如果我们将模型复杂性增到充分大它会降为0。然而，0训练误差的模型对训练数据是过拟合的并且一般泛化性很差。</p>
+<p>对于定性或者类别型响应变量$G$也有类似的情况，$G$在含有$K$个值的$\cal G$中取值，为了方便记$K$个值编号为$1,2,\ldots,K$。一般地，我们对概率$p_k(X)=Pr(G=k\mid X)$（或者其他单调变换$f_k(X)$）进行建模，然后$\hat G(X)=\mathrm{arg\; max} \hat p_k(X)$。某些情形下，比如1-最近邻分类（第2和第13章）我们直接得到$\hat G(X)$.一般地，损失函数为
 <script type="math/tex; mode=display">
 \begin{align}
-Err_{\cal T}&\le \overline{err} + \frac{\epsilon}{2}(1+\sqrt{1+\frac{4\cdot\overline{err}}{\epsilon}})\;(\text{二分类})\\
-Err_{\cal T}&\le \frac{\overline{err}}{(1-c\sqrt{\epsilon})_+}\; (\text{回归})\\
-& \text{其中 }\epsilon=a_1\frac{h[log(a_2N/h)+1]-log(\eta/4)}{N}\\
-& 0<a_1\le 4,\;0<a_2\le 2
+L(G,\hat G(X))&=I(G\neq \hat G(X))\quad (0-1\; \mathrm {loss})\qquad \qquad (7.5)\\
+L(G,\hat p(X))&=-2\sum\limits_{k=1}^K\mathrm{log}\hat p_k(X)\\
+&=-2\mathrm{log}\hat p_G(X)\quad (-2\times \text{log-likelihood})\qquad (7.6)
 \end{align}
-\qquad (7.46)
+</script>
+$-2\times \text{log-likelihood}$值有时也被称为偏差（deviance）</p>
+<p>同样，这里测试误差为$Err_{\cal T}=E[L(G,\hat G(X))\mid \cal T]$，这是在$\cal T$上训练的分类器的总体误分类率，且$Err$是误分类错误率的期望值。</p>
+<p>类似前面的定量变量情形，训练误差也是关于样本的，例如，模型的样本对数似然
+<script type="math/tex; mode=display">
+\overline{err}=-\frac{2}{N}\sum\limits_{i=1}^N\mathrm{log}\hat p_{g_i}(x_i)\qquad (7.7)
 </script>
 </p>
-<p>这些界对$\{f(x,\alpha)\}$的所有成员都同时成立，而且选自Cherkassky and Mulier（2007）。他们建议$c=1$。对于回归他们建议$a_1=a_2=1$，对于分类他们没有给出推荐，因为$a_1=4,a_2=2$对应最坏的情形。它们也给出了回归的另一个实用（practical）的界
+<p>对数似然可以作为一般响应密度的损失函数，比如Poisson，gamma，指数，对数正态以及其它的。如果$Pr_{\theta(X)}(Y)$为$Y$的密度，由取决于预测变量的参数$\theta(X)$来编号，则
 <script type="math/tex; mode=display">
-Err_{\cal T}\le \overline{err}(1-\sqrt{\rho-\rho \mathrm{log}\rho}+\frac{\mathrm{log}N}{2N})^{-1}_+\qquad (7.47)
+L(Y,\theta(X))=-2\cdot \mathrm{log\; Pr}_{\theta(X)}(Y)\qquad (7.8)
 </script>
-其中$\rho=\frac{h}{N}$，不含调整常数。这个界表明随着$h$增大$N$减小，optimism会增大，这与式（7.24）给出的AIC调整值$d/N$数值上是一致的。然而，（7.46）结果更强：不是给出每个固定函数$f(x,\alpha)$的optimism的期望值，而是给出对于所有函数$f(x,\alpha)$的概率上限，也因此可以对函数类进行搜索。</p>
-<p>Vapnik的结构风险最小化（SRM）方法拟合嵌套的VC维递增$h_1&lt;h_2&lt;\cdots$的模型序列，接着选择有最小上界的模型。</p>
-<p>我们注意到类似（7.46）中的上界通常是非常不精确的，但是这并不会妨碍它们成为模型选择的良好准则，其中相对（不是绝对）的测试误差的大小是重要的。这种方法的主要不足是计算类函数的VC维的困难。通常只能得到粗糙的VC维上界，这可能不是充分的。结构风险最小化程序可以成功运行的例子是支持向量分类器，将在12.2节讨论。</p>
-<h2 id="_1">例子（继续）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p><img alt="" src="../../img/07/fig7.7.png" /></p>
-<blockquote>
-<p>图7.7. 在图7.3的四种情形下，用箱线图显示相对误差$100\times [Err_{\cal T}(\hat\alpha)-min_\alpha Err_{\cal T}(\alpha)]/[max_\alpha Err_{\cal T}(\alpha)-min_\alpha Err_{\cal T}(\alpha)]$的分布。这是选择的模型相对于最优模型的误差。每个箱线图表示大小为80的100个训练集，误差是在大小为10000的测试集上计算的。</p>
-</blockquote>
-<p>图7.7显示了当采用AIC，BIC和SRM来对图7.3的例子来选择模型大小的结果。对于标着KNN的例子，模型指标$\alpha$指的是邻居的个数，而对于标着REG的来说$\alpha$为子集大小。采用每个选择方法（例如，AIC），我们估计最优模型$\hat \alpha$并且在测试集上找到真实的预测误差$Err_{\cal T}(\hat\alpha)$。对于同样的训练集，我们计算最优和最坏可能的模型选择的预测误差：$min_\alpha Err_{\cal T}(\alpha)$和$max_\alpha Err_{\cal T}(\alpha)$。箱线图显示了下面值的分布
+定义中的“-2”使得高斯分布的对数似然损失会与平方误差损失匹配。</p>
+<p>为了表达的简洁，本章的剩余部分我们将用$Y$和$f(X)$来表示上述的所有情形，因为我们主要集中在定量响应变量（平方误差损失）的设定上。对于其它的情形，合适的转换是很显然的。</p>
+<p>这章中我们描述一系列估计模型的期望测试误差($Err$)的方法。一般地我们的模型会有一个调整参数(tunning parameter)或者参数$\alpha$，所以我们可以把预测写成$\hat f_\alpha(x)$。调整参数会随着我们模型的复杂度而变，而且我们希望找到$\alpha$值来最小化误差，也就是，得到图7.1的平均测试误差曲线的最小值。说完这些，为了简洁我们经常默认$\hat f(x)$对$\alpha$的依赖性。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>这里原文为，“for brevity we will often suppress the dependence of $f^(x)$ on $\alpha$.” 关键词为&rdquo;suppress&rdquo;，意为“抑制；压制；阻止；控制”。不过结合上下文，此处想表达的是省略$\hat f_\alpha(x)$中的$\alpha$。</p>
+</div>
+<p>重要的是要注意，事实上我们可能有两个单独的目标：</p>
+<p><strong>模型选择：</strong> 估计不同模型的表现来选择最好的那个</p>
+<p><strong>模型评估：</strong> 已经选择好了最终模型，估计它在新数据上的预测误差（泛化误差）</p>
+<p>如果我们处在有充足数据的情形中，对于这两个问题的最好的方式是将数据集随机地分成3个部分：训练集，验证集，以及测试集。训练集用来拟合模型；验证集用来估计预测误差来进行模型选择；测试集用来评估最终选择的模型的推广误差。理想情形下，测试集应保存在“黑箱（valut）”中，并且只在数据分析结束时才会显示出来。相反地，假设我们重复采用测试集，选择具有最小测试误差的模型。则最终选择模型的测试误差会低估真实的测试误差，有时候偏差是相当大的。</p>
+<p>在三个部分的每一个中如何选取观测的个数很难给出一个一般性的规则，因为这取决于数据的信噪比和训练样本的规模。一般的分割是50%用于训练，25%用于验证，25%用于测试：</p>
+<p><img alt="" src="../../img/07/pic2.png" /></p>
+<p>本章中的方法是为了没有足够的数据来分成3部分的情形设计的。同样地，给出多少的训练数据是足够的一般规则太难了；此外(among other things)，这取决于潜在函数的信噪比以及根据数据拟合出的模型的复杂度。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注： 信噪比</p>
+<p>在<a href="https://esl.hohoweiya.xyz/11%20Neural%20Networks/11.6%20Example%20of%20Simulated%20Data/index.html">11.6 例子：模拟数据</a>有提到信噪比为
 <script type="math/tex; mode=display">
-100\times \frac{Err_{\cal T}(\hat \alpha)-min_\alpha Err_{\cal T}(\alpha)}{max_\alpha Err_{\cal T}(\alpha)-min_\alpha Err_{\cal T}(\alpha)}
+\frac{Var(E(Y\mid X))}{Var(Y-E(Y\mid X))}=\frac{Var(f(X))}{Var(\varepsilon)}
 </script>
-它表示选定的模型相对于最优模型的误差。对于线性回归，模型复杂度由特征的个数度量；正如在7.5节提到的那样，它低估了$df​$，因为它没有考虑该大小下对最优模型的搜索。这对线性分类器的VC维也同样适用。对于$k​$最近邻，模型复杂度取$N/k​$。在加性误差模型回归模型下，这个可以证明为真正的有效自由度个数（练习7.6）；我们不知道它是否对应VC维。我们取（7.46）中常数为$a_1=a_2=1​$；SRM的结果随着不同的常数值而变化，而且这个选择给出了最有利的结果。我们运用另一个实用的界（7.47）来重复SRM的选择过程，并且得到几乎一样的结果。对于误分类误差，我们在最少限制的模型上（对于KNN取$k=5​$，因为$k=1​$会导致0训练误差）采用$\hat\sigma_\varepsilon^2=[N/(N-d)]\cdot \overline{err}(\alpha)​$。AIC准则对于四种情形都适用，尽管在0-1损失时缺少理论支撑。BIC表现也近似一样，但SRM的表现很混合。</p>
+另外<a href="https://esl.hohoweiya.xyz/18%20High-Dimensional%20Problems/18.1%20When%20p%20is%20Much%20Bigger%20than%20N/index.html">18.1 当p远大于N</a>中也涉及信噪比。</p>
+</div>
+<p>本章的方法有两类，第一类通过分析的手段（AIC，BIC，MDL，SRM），第二类通过有效的样本重利用（交叉验证和自助法）来近似验证过程（验证过程即比较候选模型选出最优的模型）。除了在模型选择使用它们，我们也检验了每个方法对最终选择的模型的测试误差的估计的可靠性程度。</p>
+<p>在讨论这些之前，我们首先进一步探究测试误差的本质与偏差-方差之间的权衡（the bias-variance tradeoff）。</p>
                 
                   
                 
@@ -3047,7 +3025,7 @@ Err_{\cal T}\le \overline{err}(1-\sqrt{\rho-\rho \mathrm{log}\rho}+\frac{\mathrm
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../7.8%20Minimum%20Description%20Length/index.html" title="7.8 最小描述长度" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../7.1-Introduction/index.html" title="7.1 导言" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3056,19 +3034,19 @@ Err_{\cal T}\le \overline{err}(1-\sqrt{\rho-\rho \mathrm{log}\rho}+\frac{\mathrm
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                7.8 最小描述长度
+                7.1 导言
               </span>
             </div>
           </a>
         
         
-          <a href="../7.10%20Cross-Validation/index.html" title="7.10 交叉验证" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../7.3-The-Bias-Variance-Decomposition/index.html" title="7.3 偏差-方差分解" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                7.10 交叉验证
+                7.3 偏差-方差分解
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
