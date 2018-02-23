@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/06 Kernel Smoothing Methods/6.7 Radial Basis Functions and Kernels/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/06-Kernel-Smoothing-Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>6.7 径向基函数和核 - ESL CN</title>
+        <title>6.8 混合模型的密度估计和分类 - ESL CN</title>
       
     
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                6.7 径向基函数和核
+                6.8 混合模型的密度估计和分类
               </span>
             
           
@@ -1072,7 +1072,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.0%20Introduction/index.html" title="6.0 导言" class="md-nav__link">
+    <a href="../6.0-Introduction/index.html" title="6.0 导言" class="md-nav__link">
       6.0 导言
     </a>
   </li>
@@ -1084,7 +1084,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.1%20One-Dimensional%20Kernel%20Smoothers/index.html" title="6.1 一维核光滑器" class="md-nav__link">
+    <a href="../6.1-One-Dimensional-Kernel-Smoothers/index.html" title="6.1 一维核光滑器" class="md-nav__link">
       6.1 一维核光滑器
     </a>
   </li>
@@ -1096,7 +1096,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.2%20Selecting%20the%20Width%20of%20the%20Kernel/index.html" title="6.2 选择核的宽度" class="md-nav__link">
+    <a href="../6.2-Selecting-the-Width-of-the-Kernel/index.html" title="6.2 选择核的宽度" class="md-nav__link">
       6.2 选择核的宽度
     </a>
   </li>
@@ -1108,7 +1108,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.3%20Local%20Regression%20in%20R%5Ep/index.html" title="6.3 $R^p$中的局部回归" class="md-nav__link">
+    <a href="../6.3-Local-Regression-in-Rp/index.html" title="6.3 $R^p$中的局部回归" class="md-nav__link">
       6.3 $R^p$中的局部回归
     </a>
   </li>
@@ -1120,7 +1120,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.4%20Structured%20Local%20Regression%20Models%20in%20R%5Ep/index.html" title="6.4 $R^p$中的结构化局部回归模型" class="md-nav__link">
+    <a href="../6.4-Structured-Local-Regression-Models-in-Rp/index.html" title="6.4 $R^p$中的结构化局部回归模型" class="md-nav__link">
       6.4 $R^p$中的结构化局部回归模型
     </a>
   </li>
@@ -1132,7 +1132,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.5%20Local%20Likelihood%20and%20Other%20Models/index.html" title="6.5 局部似然和其他模型" class="md-nav__link">
+    <a href="../6.5-Local-Likelihood-and-Other-Models/index.html" title="6.5 局部似然和其他模型" class="md-nav__link">
       6.5 局部似然和其他模型
     </a>
   </li>
@@ -1144,8 +1144,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.6%20Kernel%20Density%20Estimation%20and%20Classification/index.html" title="6.6 核密度估计和分类" class="md-nav__link">
+    <a href="../6.6-Kernel-Density-Estimation-and-Classification/index.html" title="6.6 核密度估计和分类" class="md-nav__link">
       6.6 核密度估计和分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6.7-Radial-Basis-Functions-and-Kernels/index.html" title="6.7 径向基函数和核" class="md-nav__link">
+      6.7 径向基函数和核
     </a>
   </li>
 
@@ -1164,22 +1176,10 @@
       
     
     
-    <a href="index.html" title="6.7 径向基函数和核" class="md-nav__link md-nav__link--active">
-      6.7 径向基函数和核
-    </a>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html" title="6.8 混合模型的密度估计和分类" class="md-nav__link">
+    <a href="index.html" title="6.8 混合模型的密度估计和分类" class="md-nav__link md-nav__link--active">
       6.8 混合模型的密度估计和分类
     </a>
+    
   </li>
 
         
@@ -1201,7 +1201,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2889,7 +2889,7 @@
               
                 
                 
-                <h1 id="_1">径向基函数和核<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+                <h1 id="_1">混合模型的密度估计和分类<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2904,31 +2904,43 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-03-06：2017-03-06</td>
+<td>2017-12-29</td>
 </tr>
 </tbody>
 </table>
-<p>在第五章中，函数表示成基函数展开的形式：$f(x)=\sum_{j=1}^M\beta_jh_j(x)$。采用基函数展开的灵活建模的艺术包含选取合适的基函数族，并且接着控制由选择，正则化，或者两者都有的表示的复杂度。部分基函数族的元素是局部定义的，比如，B样条在$R$中局部定义。如果在特定区域中需要更多的灵活性，接着这个区域需要用更多的基函数来表示（在B样条转换为更多结点的情形中）。$R$局部基函数的张量积实现了$R^p$中的局部基函数。不是所有的基函数都是局部的——举个例子，对于样条的截断幂基，或者在神经网络中使用的S型基函数$\sigma(\alpha_0+\alpha x)$（见第11章）。虽然如此，复合函数$f(x)$可以显示出局部行为，因为参数的特定符号和值造成全局影响的抵消。举个例子，对于同样的函数空间截断幂基有等价的B样条基；取消恰恰就是这种情形。</p>
-<p>核方法通过在目标点$x_0$局部的区域中拟合简单的模型来实现灵活性。局部化通过加权核$K_\lambda$来实现，并且单个观测权重为$K_\lambda(x_0,x_i)$。</p>
-<p>通过将核函数$K_\lambda(\xi,x)$作为基函数，径向基函数结合这些想法。这得到模型
+<p>混合模型是用于密度估计的有用工具，而且可以看成一种核方法。高斯混合模型有如下形式</p>
+<p>
 <script type="math/tex; mode=display">
-\begin{align}
-f(x) &= \sum\limits_{j=1}^MK_{\lambda_j}(\xi_j,x)\beta_j\\
-&= \sum\limits_{j=1}^MD(\frac{\Vert x-\xi_j\Vert}{\lambda_j})\beta_j\qquad (6.28)
-\end{align}
+f(x)=\sum\limits_{m=1}^M\alpha_m\phi(x;\mu_m,\Sigma_m)\qquad (6.32)
 </script>
-其中每个基元素由位置或者原型参数$\xi_j$以及缩放参数$\lambda_j$。 $D$的一个流行的选择是标准高斯密度函数。有许多方式来学习参数${\lambda_j,\xi_j,\beta_j},j=1,\ldots,M$。为了简化，我们关注回归的最小二乘方法，并且采用高斯核。</p>
+</p>
+<p>其中混合比例$\alpha_m$满足$\sum_m\alpha_m=1$，并且每个高斯密度均值为$\mu_m$，协方差阵为$\Sigma_m$。一般地，混合模型可以用任意组分来替换式(6.32)的高斯密度：高斯混合模型是至今最受欢迎的。</p>
+<p>这些参数通常用极大似然法，采用第8章中描述的EM算法。下面是一些特殊情形：</p>
 <ul>
-<li>有关关于所有参数的平方和
+<li>如果协方差阵约束为标量：$\Sigma_m=\sigma_mI$，则式(6.32)有径向基展开的形式。</li>
+<li>如果另外固定$\sigma_m=\sigma&gt;0$，并且$M\uparrow N$，则(6.32)的极大似然估计会近似当$\hat\alpha_m=1/N,\hat\mu_m=x_m$的核密度估计(6.22)。</li>
+</ul>
+<p>利用贝叶斯定理，将每个类别的混合密度分离开，则得到$Pr(G\mid X)$的灵活模型；这将在第12章详细讨论。</p>
+<p><img alt="" src="../../img/06/fig6.17.png" /></p>
+<p>图6.17展示了混合模型应用到心脏病风险因子研究中。最上面一行是<code>no CHD</code>、<code>CHD</code>关于<code>Age</code>的直方图，然后结合起来得到最右边的直方图。采用结合后的数据，我们拟合形如(6.32)的两组分混合模型，其中（标量）协方差阵$\Sigma_1$和$\Sigma_2$不要求相等。通过EM算法来拟合：注意到过程中没用到<code>CHD</code>标签的信息。结果得到</p>
+<p>
 <script type="math/tex; mode=display">
-\underset{\{\lambda_j,\xi_j,\beta_j\}_1^M}{min}\sum\limits_{i=1}^M(y_i-\beta_0-\sum\limits_{j=1}^M\beta_jexp\{-\frac{(x_i-\xi_j)^T(x_i-\xi_j)}{\lambda_j^2}\})^2\qquad (6.29)
+\begin{array}{lll}
+\hat\mu_1=36.4,&\hat\Sigma_1=157.7,&\hat\alpha_1=0.7\\
+\hat\mu_2=58.0,&\hat\Sigma_2=15.6,&\hat\alpha_2=0.3
+\end{array}
 </script>
-</li>
-</ul>
-<p>​       这个模型一般称为RBF网络，这是一个S型神经网络的另一个选择，将在第11章讨论；$\xi_j$和$\lambda_j$在参数中有重要作用。这个准则是有着多重局部最小点的非凸函数，并且优化的算法类似神经网络中的算法。</p>
-<ul>
-<li>分开估计$\beta_j$和${\lambda_j,\xi_j}$。给定前者，后者的估计是简单的最小二乘问题。通常单独给出$X$的分布，以非监督的方式选择核参数$\lambda_j$和$\xi_j$。其中一种方式是在给定中心$\xi_j$和缩放$\lambda_j$，对训练$x_i$拟合高斯混合密度模型。其特征更特别指定（adhoc）的方式使用聚类方法来确定原型$\xi_j$，并且将$\lambda_j=\lambda$看成是超参数。这些方式的显然缺点是条件分布$Pr(Y\mid X)$，并且特别地，$E(Y\mid X)$在集中的地方是没有作用的。在正的一边，可以更简单地实现。</li>
-</ul>
+</p>
+<p>组分密度$\phi(\hat\mu_1,\hat\Sigma_1)$和$\phi(\hat\mu_2,\hat\Sigma_2)$展示在图6.17中第二行的前两幅图中。右下角的图展示了组分密度(橘黄色和蓝色)以及估计的混合密度(绿色)。</p>
+<p>混合模型同样给出了观测$i$属于组分$m$的概率的估计</p>
+<p>
+<script type="math/tex; mode=display">
+\hat\gamma_{im}=\frac{\hat\alpha_m\phi(x_i;\hat\mu_m,\hat\Sigma_m)}{\sum_{k=1}^M\hat\alpha_k\phi(x_i;\hat\mu_k,\hat\Sigma_k)}\qquad (6.33)
+</script>
+</p>
+<p>其中在我们例子中$x_i$是<code>Age</code>。假设对每个$\hat\gamma_{i2}$设阈值，并且定义$\hat\delta_i=I(\hat\gamma_{i2}&gt;0.5)$。接着我们比较根据<code>CHD</code>和混合模型分类的结果</p>
+<p><img alt="" src="../../img/06/res.p215.png" /></p>
+<p>尽管混合模型没有用到<code>CHD</code>标签，但还是较好地发现了两个<code>CHD</code>子总体。线性逻辑斯底回归当采用<code>CHD</code>作为响应变量，用极大似然拟合数据达到相同的误差率(32%)。</p>
                 
                   
                 
@@ -2960,7 +2972,7 @@ f(x) &= \sum\limits_{j=1}^MK_{\lambda_j}(\xi_j,x)\beta_j\\
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../6.6%20Kernel%20Density%20Estimation%20and%20Classification/index.html" title="6.6 核密度估计和分类" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../6.7-Radial-Basis-Functions-and-Kernels/index.html" title="6.7 径向基函数和核" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2969,19 +2981,19 @@ f(x) &= \sum\limits_{j=1}^MK_{\lambda_j}(\xi_j,x)\beta_j\\
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                6.6 核密度估计和分类
+                6.7 径向基函数和核
               </span>
             </div>
           </a>
         
         
-          <a href="../6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html" title="6.8 混合模型的密度估计和分类" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../6.9-Computational-Consoderations/index.html" title="6.9 计算上的考虑" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                6.8 混合模型的密度估计和分类
+                6.9 计算上的考虑
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

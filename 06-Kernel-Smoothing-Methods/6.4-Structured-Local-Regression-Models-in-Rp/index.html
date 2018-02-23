@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/06 Kernel Smoothing Methods/6.2 Selecting the Width of the Kernel/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/06-Kernel-Smoothing-Methods/6.4-Structured-Local-Regression-Models-in-Rp/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>6.2 选择核的宽度 - ESL CN</title>
+        <title>6.4 $R^p$中的结构化局部回归模型 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#rp" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                6.2 选择核的宽度
+                6.4 $R^p$中的结构化局部回归模型
               </span>
             
           
@@ -1072,7 +1072,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.0%20Introduction/index.html" title="6.0 导言" class="md-nav__link">
+    <a href="../6.0-Introduction/index.html" title="6.0 导言" class="md-nav__link">
       6.0 导言
     </a>
   </li>
@@ -1084,8 +1084,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.1%20One-Dimensional%20Kernel%20Smoothers/index.html" title="6.1 一维核光滑器" class="md-nav__link">
+    <a href="../6.1-One-Dimensional-Kernel-Smoothers/index.html" title="6.1 一维核光滑器" class="md-nav__link">
       6.1 一维核光滑器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6.2-Selecting-the-Width-of-the-Kernel/index.html" title="6.2 选择核的宽度" class="md-nav__link">
+      6.2 选择核的宽度
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6.3-Local-Regression-in-Rp/index.html" title="6.3 $R^p$中的局部回归" class="md-nav__link">
+      6.3 $R^p$中的局部回归
     </a>
   </li>
 
@@ -1104,9 +1128,55 @@
       
     
     
-    <a href="index.html" title="6.2 选择核的宽度" class="md-nav__link md-nav__link--active">
-      6.2 选择核的宽度
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        6.4 $R^p$中的结构化局部回归模型
+      </label>
+    
+    <a href="index.html" title="6.4 $R^p$中的结构化局部回归模型" class="md-nav__link md-nav__link--active">
+      6.4 $R^p$中的结构化局部回归模型
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="结构核" class="md-nav__link">
+    结构核
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="结构回归函数" class="md-nav__link">
+    结构回归函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1117,31 +1187,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.3%20Local%20Regression%20in%20R%5Ep/index.html" title="6.3 $R^p$中的局部回归" class="md-nav__link">
-      6.3 $R^p$中的局部回归
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../6.4%20Structured%20Local%20Regression%20Models%20in%20R%5Ep/index.html" title="6.4 $R^p$中的结构化局部回归模型" class="md-nav__link">
-      6.4 $R^p$中的结构化局部回归模型
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../6.5%20Local%20Likelihood%20and%20Other%20Models/index.html" title="6.5 局部似然和其他模型" class="md-nav__link">
+    <a href="../6.5-Local-Likelihood-and-Other-Models/index.html" title="6.5 局部似然和其他模型" class="md-nav__link">
       6.5 局部似然和其他模型
     </a>
   </li>
@@ -1153,7 +1199,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.6%20Kernel%20Density%20Estimation%20and%20Classification/index.html" title="6.6 核密度估计和分类" class="md-nav__link">
+    <a href="../6.6-Kernel-Density-Estimation-and-Classification/index.html" title="6.6 核密度估计和分类" class="md-nav__link">
       6.6 核密度估计和分类
     </a>
   </li>
@@ -1165,7 +1211,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.7%20Radial%20Basis%20Functions%20and%20Kernels/index.html" title="6.7 径向基函数和核" class="md-nav__link">
+    <a href="../6.7-Radial-Basis-Functions-and-Kernels/index.html" title="6.7 径向基函数和核" class="md-nav__link">
       6.7 径向基函数和核
     </a>
   </li>
@@ -1201,7 +1247,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2878,6 +2924,39 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="结构核" class="md-nav__link">
+    结构核
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="结构回归函数" class="md-nav__link">
+    结构回归函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2889,7 +2968,7 @@
               
                 
                 
-                <h1 id="_1">选择核的宽度<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+                <h1 id="rp">$R^p$中结构化局部回归<a class="headerlink" href="#rp" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2904,24 +2983,45 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-03-01：2017-03-01</td>
+<td>2017-03-03：2017-03-03</td>
 </tr>
 </tbody>
 </table>
-<p>在每个核$K_\lambda$中，$\lambda$为控制宽度的参数：</p>
-<ul>
-<li>对于有度量宽度的Epanechnikov或三次立方核，$\lambda$为支撑域的半径。</li>
-<li>对于高斯核，$\lambda$为标准误差</li>
-<li>$\lambda$为$k$-最近邻中最近邻的数目$k$，经常表达成分数或者整个训练样本的跨距$k/N$。</li>
-</ul>
-<p>当我们改变平均窗口的宽度，存在一个自然的平均窗口宽度，对于局部平均是最显然的：
-- 如果窗口较窄，$\hat f(x_0)$是离$x_0$近的一小部分$y_i$值的平均，并且它的方差相对较大——与单个$y_i$的方差相近。偏差会趋向于较小，再一次是因为$E(y_i)=f(x_i)$中的每一个应该与$f(x_0)$相近。
-- 如果窗口较宽，$\hat f(x_0)$的方差相对与任意$y_i$的方差较小，因为平均的效应。偏差会较高，因为我们现在采用的是与$x_0$离得较远的观测$x_i$，而且不保证$f(x_i)$离 $f(x_0)$较近。</p>
-<p>相似的变量应用到局部回归估计，比如局部线性：当宽度趋于0，估计则近似为对训练数据插值得到的分段线性函数；当宽度趋于无穷大，则拟合近似为对数据的整体最小二乘拟合。</p>
-<p>这里应用第五章中选择光滑样条的正规化参数的讨论。局部回归光滑器是线性估计器；$\mathbf{\hat f=S_\lambda y}$中的光滑矩阵由等价核（6.8）来建立，并且第$ij$个元素值为${\mathbf S_\lambda}_{ij}=l_{i}(x_{j})$。舍一法交叉验证特别地简单（练习6.7），广义交叉验证，$C_p$（练习6.10），以及$k$折交叉验证也很简单。有效自由度再一次定义为$trace(\mathbf S_\lambda)$，并且可以用来校准光滑的程度。图6.7比较了光滑样条和局部线性回归的等价核。局部线性光滑器有$40\%$的跨度(span)，得到$df=trace(\mathbf S_\lambda)=5.86$.光滑样条进行校准后得到同样的$df$，并且它们的等价核非常相似。</p>
-<p><img alt="" src="../../img/06/fig6.7.png" /></p>
+<p>当维度与样本大小的比率不是很好，则局部回归对我们没有太大帮助，除非我们想要对模型做出一些结构化的假设。这本书的很多部分是关于结构化回归和分类模型的。这里我们关注一些与核方法直接相关的方法。</p>
+<h2 id="_1">结构核<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>一种方式是修改核。默认的球面核(6.13)对每个坐标给出了相等的权重，所以一种自然的默认策略是对每个变量标准化得到单位标准误差。更一般的方式是使用半正定矩阵$\mathbf A$来对不同的坐标进行赋权：</p>
+<p>
+<script type="math/tex; mode=display">
+K_{\lambda, A}(x_0,x)=D(\frac{(x-x_0^T\mathbf A(x-x_0))}{\lambda})\qquad (6.14)
+</script>
+</p>
+<p>整个坐标或者方向可以通过在$\mathbf A$上加入合适的限制来降低或者忽略。举个例子，如果$\mathbf A$为对角矩阵，则我们可以通过增加或者减小$A_{jj}$来增大或者减小单个预测变量$X_j$的影响。预测变量很多通常都是高度相关的，比如从相似的数字信号或者图像中得到。预测变量的协方差函数可以用来修改矩阵$\mathbf A$，使得在高频对比中关注更少（练习6.4）。已经提出了多维核参数训练的方法。举个例子，第11章中讨论的投影寻踪回归模型是合适的，其中$\mathbf A$的低阶形式表示$\hat f(X)$的岭回归。关于$\mathbf A$的更一般的模型是累赘的，相反地，我们支持接下来讨论的结构形式的回归函数。</p>
+<h3 id="_2">结构回归函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>我们试着在$R^p$中拟合回归函数$E(Y\mid X)=f(X_1,X_2,\ldots,X_p)$，交叉的每一层次潜在地表现出来了。自然考虑到下列形式的方差分析(ANOVA)分解：
+<script type="math/tex; mode=display">
+f(X_1,X_2,\ldots,X_p)=\alpha+\sum\limits_jg_j(X_j)+\sum\limits_{k<\ell}g_{k\ell}(X_k,X_\ell)+\cdots\qquad (6.15)
+</script>
+并且接着介绍消除一些高阶项的结构。可加性模型假设只有主要影响项$f(X)=\alpha+\sum\limits_{j=1}^pg_j(X_j)$，二阶模型会有次数至多为2的交叉项，一次类推。在第9章中，我们描述了对于拟合这样低阶交叉模型的迭代向后拟合算法。在加性模型中，举个例子，如果所有但除了第$k$项是一致的，则我们可以用在$X_k$上的局部回归$Y-\sum_{j\neq k}g_j(X_j)$来估计$g_k$。这个依次对每个函数重复进行，直到收敛。重要的细节是，在每一步，一维局部回归是所有都需要的。同样的思想可以用来拟合低维ANOVA分解。</p>
+<p>这些结构模型的一个重要的特殊情形是可变系数模型(varying coefficient models)类。举个例子，假设我们将$X$中的$p$个预测变量分成集合$(X_1,X_2,\ldots,X_q),q&lt;p$，以及我们集中在向量$Z$中的剩余的变量。接着我们假设条件线性模型</p>
+<p>
+<script type="math/tex; mode=display">
+f(X)=\alpha(Z)+\beta_1(Z)X_1+\cdots+\beta_q(Z)X_q\qquad (6.16)
+</script>
+</p>
+<p>对于给定的$Z$，这是线性模型，但是每个参数可以随着$Z$而改变。很自然地可以通过局部加权最小二乘来捏这个模型：</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\alpha(z_0),\beta(z_0)}{min}\sum\limits_{i=1}^NK_\lambda(z_0,z_i)(y_i-\alpha(z_0)-x_{1i}\beta(z_0)-\cdots - x_{qi}\beta_q(z_0))^2\qquad (6.17)
+</script>
+</p>
+<p>图6.10说明了在人类大动脉测量数据上的想法。一个持续很久（？？）的单元说大动脉会随着age变厚。这里我们将大动脉的diameter建立为age的线性函数，但是允许系数随着gender和depth的变化而变化。我们对男性和女性分别采用局部回归模型。尽管大动脉确实很明显地在大动脉高区域中随着年龄而变粗，这种关系随着到大动脉的距离而减弱。图6.11显示了截距和斜率作为深度的函数。</p>
+<p><img alt="" src="../../img/06/fig6.10.png" /></p>
 <blockquote>
-<p>图6.7.相同自由度下， 局部线性回归光滑器的等价核（三次立方核；橘黄色）以及光滑样条（蓝色）。竖直的钉表示目标点。</p>
+<p>图6.11. 每张图中aorta diameter建立为age的线性函数模型。这个模型的系数随着gender和到aorta的depth（左边靠近顶端，右边靠近底端）变化。在线性模型中的系数有着明显的趋势。</p>
+</blockquote>
+<p><img alt="" src="../../img/06/fig6.11.png" /></p>
+<blockquote>
+<p>图6.11. 在男性和女性情形下，age作为到aorta的distance的函数的截距和斜率。黄色带状表示一个标准误差。</p>
 </blockquote>
                 
                   
@@ -2954,7 +3054,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../6.1%20One-Dimensional%20Kernel%20Smoothers/index.html" title="6.1 一维核光滑器" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../6.3-Local-Regression-in-Rp/index.html" title="6.3 $R^p$中的局部回归" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2963,19 +3063,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                6.1 一维核光滑器
+                6.3 $R^p$中的局部回归
               </span>
             </div>
           </a>
         
         
-          <a href="../6.3%20Local%20Regression%20in%20R%5Ep/index.html" title="6.3 $R^p$中的局部回归" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../6.5-Local-Likelihood-and-Other-Models/index.html" title="6.5 局部似然和其他模型" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                6.3 $R^p$中的局部回归
+                6.5 局部似然和其他模型
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
