@@ -42,11 +42,13 @@ window.MathJax = {
       min: "{\\mathrm{min}\\;}",
       RSS: "{\\mathrm{RSS}\\;}",
       
+      
       inf: "{\\mathrm{inf}}",
       sign: "{\\mathrm{sign}}",
       df: "{\\mathrm{df}}",
       tr: "{\\mathrm{tr}}",
       Err: "{\\mathrm{Err}}",
+      err: "{\\mathrm{err}}",
       logit: "{\\mathrm{logit}}",
       probit: "{\\mathrm{probit}}",
       trace: "{\\mathrm{trace}}",
