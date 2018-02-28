@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.6 Loss Functions and Robustness/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.6-Loss-Functions-and-Robustness/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -2987,54 +2987,80 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-08-27</td>
+<td>2017-08-27, 2018-02-28</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<p>在这一节我们进一步讨论用于分类和回归的损失函数的不同，并且根据它们对极端数据的鲁棒性来描述它们。</p>
+<p>这一节我们进一步讨论分类和回归中不同的损失函数，并且用它们对极端数据的鲁棒性来描述。</p>
 <h2 id="_1">鲁棒的分类损失函数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">weiya注: Recall</p>
 <p>
 <script type="math/tex; mode=display">
-L(y,f(x))=exp(-yf(x))\qquad (10.8)
+L(y,f(x))=\exp(-yf(x))\qquad (10.8)
 </script>
 </p>
 <p>
 <script type="math/tex; mode=display">
--l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\qquad (10.18)
+-l(Y,f(x))=\log(1+e^{-2Yf(x)})\qquad (10.18)
 </script>
 </p>
-<p>尽管指数损失(10.8)和二项偏差(10.18)当应用到总体的联合分布时会得到同样的解，但对于有限的数据集并不一样。两个准则都是“边缘(margin)”$yf(x)$的单调递减函数。在分类问题中（响应变量为-1/1），$yf(x)$与回归中的残差$y-f(x)$起着类似的作用。分类准则$G(x)=\mathrm{sign}[f(x)]$表明有正边缘$y_if(x_i)&gt;0$的观测被分类正确，而有负边缘$y_if(x_i)&lt;0$的观测被错误分类。判别边界定义为$f(x)=0$。分类算法的目标是得到尽可能频繁的正边缘。任何用于分类的损失标准应该惩罚负边缘比正边缘更重，因为正边缘的观测值已经被正确分类。</p>
-<p>图10.4显示了指数（10.8）和二项偏差的标准作为边缘$y\cdot f(x)$的函数。也显示了误分类损失$L(y,f(x))=I(y\cdot f(x)&lt;0)$，它给出了负边缘的单位惩罚，而对所有的正值没有惩罚。指数损失和二项偏差都可以看成是误分类损失的单调连续近似。它们不断地惩罚越来越大的负边际值，惩罚力度比它们回报越来越大的正边际值更重。它们的区别在于程度上。二项偏差的惩罚对于大的增加的负边缘线性增长，而指数标准对这样观测的影响指数增长。</p>
+</div>
+<p>尽管指数损失(10.8)和二项偏差(10.18)当应用到总体的联合分布时会得到同样的解，但对于有限的数据集并不一样。两个准则都是“边缘(margin)”$yf(x)$的单调递减函数。在分类问题中（响应变量为$-1/1$），$yf(x)$类似回归中的残差$y-f(x)$。分类准则$G(x)=\mathrm{sign}[f(x)]$表明有正边缘$y_if(x_i)&gt;0$的观测被分类正确，而有负边缘$y_if(x_i)&lt;0$的观测被错误分类。判别边界定义为$f(x)=0$。分类算法的目标是得到尽可能频繁的正边缘。任何用于分类的损失标准应该惩罚负边缘比正边缘更重，因为正边缘的观测值已经被正确分类。</p>
+<p>图10.4显示了指数(10.8)和二项偏差的标准作为边缘$y\cdot f(x)$的函数的图象。也显示了误分类损失$L(y,f(x))=I(y\cdot f(x) &lt; 0)$，它给出了负边缘的单位惩罚，而对所有的正值没有惩罚。指数损失和二项偏差都可以看成是误分类损失的单调连续近似。它们不断地惩罚越来越大的负边际值，惩罚力度比它们回报越来越大的正边际值更重。它们的区别在于程度上。二项偏差的惩罚对于大的增加的负边缘线性增长，而指数标准对这样观测的影响指数增长。</p>
 <p><img alt="" src="../../img/10/fig10.4.png" /></p>
 <blockquote>
-<p>图10.4. 两个类别分类的损失函数。响应变量为$y=\pm 1$;预测值是$f$，类别的预测为$sign(f)$。错误分类的损失：$I(sign(f)\neq y)$;指数型：$exp(-yf)$;二项偏差:$log(1+exp(-2yf))$;平方误差:$(y-f)^2$;以及支持向量：$(1-yf)_+$(见12.3节)。每个函数已经进行了按照比例缩放使得过点(0,1)</p>
+<p>图10.4. 两个类别分类的损失函数。响应变量为$y=\pm 1$；预测值是$f$，类别的预测为$\sign(f)$。错误分类的损失：$I(\sign(f)\neq y)$；指数型：$\exp(-yf)$；二项偏差:$\log(1+exp(-2yf))$；平方误差:$(y-f)^2$；以及支持向量：$(1-yf)_+$（见12.3节）。每个函数已经进行了按照比例缩放使得过点(0,1)。</p>
 </blockquote>
 <p>在训练过程的任一个时刻，指数标准对具有大的负边际的观测值上有更大的影响。二项偏差相对地在这些观测上影响较小，在所有数据上的影响分散更均匀。也因此在白噪声设定（贝叶斯误差率不接近于0）中更加鲁棒，特别在训练数据中存在误分类标签的情形中。在这些情形下，AdaBoost的表现从经验上看显著退化。</p>
-<p>图中也显示了平方误差损失。在总体上对应风险的最小值为
+<p>图中也显示了平方误差损失。在总体上对应风险的最小值点为
 <script type="math/tex; mode=display">
-f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid x}(Y-f(x))^2=E(Y\mid x)=2\cdot Pr(Y=1\mid x)-1\qquad (10.19)
+f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}\E_{Y\mid x}(Y-f(x))^2=\E(Y\mid x)=2\cdot \Pr(Y=1\mid x)-1\qquad (10.19)
 </script>
 </p>
-<p>和前面一样，分类的规则为$G(x)=sign[f(x)]$.平方误差损失不是误分类误差很好的表示。如图10.4所示，它不是关于增加的$yf(x)$的单调递减函数。对于边界值$y_if(x_i)&gt;1$平方增长，从而对正确分类为增加确定性的观测结果产生越来越大的影响（误差），从而降低了未正确分类的$y_if(x_i)&lt;0$的相对影响。因此，如果目标是类别划分，则单调下降的准则充当一个更好的损失函数。第12章p426的图2.4包括对平方损失的一个改动，“Huberized”平方铰链损失（Rosset等人，2004b）,结合了二项偏差、平方损失和SVM铰链损失优良的性质。它与平方损失（10.19）有相同的总体最小值，对于$y\cdot f(x)&gt;1$为0，对于$y\cdot f(x)&lt;-1$变成线性。因为二项函数比指数更容易计算，我们的经验表明这是二项偏差的一个有用替代。</p>
-<p>在$K$个类别的分类问题中，响应变量$Y$在无序集$\cal G=\{\cal G_1,\ldots,\cal G_k\}$。我们已经在$\cal G$中寻找到了一个分类器$G(x)$. 足以知道类别条件概率为$p_k(x)=Pr(Y={\cal G}_k\mid x),k=1,2,\ldots,K$，则贝叶斯分类器为
+<p>和前面一样，分类的规则为$G(x)=\sign[f(x)]$。平方误差损失不是误分类误差很好的选择。如图10.4所示，它不是关于增加的$yf(x)$的单调递减函数。对于边界值$y_if(x_i)&gt;1$平方增长，从而对正确分类为增加确定性的观测结果产生越来越大的影响（误差），从而降低了未正确分类的$y_if(x_i) &lt; 0$的相对影响。因此，如果目标是类别划分，则一个更好的损失函数要满足单调下降的准则。第12章p426的图2.4包括对平方损失的一个改动，“Huberized”平方铰链损失(Rosset et al.，2004b<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)，结合了二项偏差、平方损失和SVM铰链损失优良的性质。它与平方损失(10.19)有相同的总体最小值，当$y\cdot f(x) &gt; 1$为0，当$y\cdot f(x) &lt; -1$变成线性。因为二项函数比指数更容易计算，我们的经验表明这是二项偏差的一个有用替代。</p>
+<p>在$K$个类别的分类问题中，响应变量$Y$在无序集$\cal G=\{\cal G_1,\ldots,\cal G_k\}$中取值。我们已经在$\cal G$中寻找到了一个分类器$G(x)$。若知道类别条件概率为$p_k(x)=\Pr(Y={\cal G}_k\mid x),k=1,2,\ldots,K$，则贝叶斯分类器为
 <script type="math/tex; mode=display">
 G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\ell(x)\qquad (10.12)
 </script>
-尽管原则上我们不需要知道$p_k(x)$,只需要知道哪个最大。然而，在数据挖掘应用中，我们感兴趣的经常是类别概率$p_\ell(x),\ell=1,\ldots,K$本身，而不是进行类别划分。像在4.4节中那样，逻辑斯蒂回归可以很自然地推广到$K$个类别的情形，</p>
+尽管原则上我们不需要知道$p_k(x)$，只需要知道哪个最大。然而，在数据挖掘应用中，我们感兴趣的经常是类别概率$p_\ell(x),\ell=1,\ldots,K$本身，而不是进行类别划分。像在4.4节中那样，逻辑斯蒂回归可以很自然地推广到$K$个类别的情形，</p>
 <p>
 <script type="math/tex; mode=display">
 p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\qquad (10.21)
 </script>
 </p>
-<p>其中保证$0\le p_k(x)\le 1$且和为1.注意到这里我们有$K$个函数，每个类别一个函数。函数$f_k(x)$存在一个冗余，因为对每个加上任意函数$h(x)$不改变模型。传统地，其中一个设为0：举个例子，$f_K(x)=0$，就像（4.17）式一样。这里我们更喜欢保持对称性，而且加上约束条件$\sum_{k=1}^Kf_k(x)=0$。二项偏差自然地扩展到$K$个类别的多项式偏差损失函数：
+<p>其中保证$0\le p_k(x)\le 1$且和为1。注意到这里我们有$K$个函数，每个类别一个函数。函数$f_k(x)$存在一个冗余，因为对每个加上任意函数$h(x)$，模型不会改变。传统地，设其中一个为0：举个例子，$f_K(x)=0$，就像(4.17)式一样。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：Recall</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\log\dfrac{\Pr(G=1\mid X=x)}{\Pr(G=K\mid X=x)}&=\beta_{10}+\beta_1^Tx\\
+\log\dfrac{\Pr(G=2\mid X=x)}{\Pr(G=K\mid X=x)}&=\beta_{20}+\beta_2^Tx\\
+&\ldots\\
+\log\dfrac{\Pr(G=K-1\mid X=x)}{\Pr(G=K\mid X=x)}&=\beta_{(K-1)0}+\beta_{K-1}^Tx\\
+\end{array}
+\qquad (4.17)
+</script>
+</p>
+</div>
+<p>这里我们更喜欢保持对称性，而且加上约束条件$\sum_{k=1}^Kf_k(x)=0$。二项偏差可以自然地扩展到$K$个类别的<strong>多项偏差(multinomial deviance)</strong>损失函数：
 <script type="math/tex; mode=display">
 \begin{align}
 L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
 &=-\sum\limits_{k=1}^KI(y={\cal G_k})f_k(x)+\mathrm{log}(\sum\limits_{\ell=1}^Ke^{f_\ell(x)})\qquad (10.22)
 \end{align}
 </script>
-在两个类别的情形中，标准(10.22)对不正确预测的惩罚仅仅与不正确的程度是线性的。</p>
-<p>Zhu等人（2005）一般化了$K$类别问题的指数损失。更多细节见练习10.5.</p>
+和在两个类别的情形中一样，标准(10.22)对不正确预测的惩罚关于不正确的程度仅仅是线性的。</p>
+<p>Zhu et al. (2005)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>一般化了$K$类别问题的指数损失。更多细节见<a href="https://github.com/szcf-weiya/ESL-CN/issues/74">练习10.5</a>。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya注：Ex. 10.5</p>
+<p>详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/74">Issue 74: Ex. 10.5</a></p>
+</div>
 <h2 id="_2">鲁棒的回归损失函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在回归问题中，类似指数损失和二项对数似然的关系是平方误差$L(y,f(x))=(y-f(x))^2$和绝对值损失$L(y,f(x))=\vert y-f(x)\vert$之间的关系。对于平方误差的总体解为$f(x)=E(Y\mid x)$,而对于绝对值损失的总体解为$f(x)=\mathrm{median}(Y\mid x)$;对于对称的误差分布这是一样的。然而，在有限样本上拟合过程中，平方误差损失更多地强调具有大的绝对值残差$\vert y_i-f(x_i)\vert$的观测值上。因此它更不鲁棒，而且它的表现对于长尾误差分布严重退化，特别是对于总体错误策略的$y$值（异常点）。其它更鲁棒的标准，比如绝对损失，在这些情形下表现得很好。在统计鲁棒性领域里，已经提出各种不同的回归损失标准，这些标准对总体异常点表现强烈的抵抗性（不是绝对的免疫），尽管这些异常点近似最小二乘的高斯误差。它们经常比任一适度的重尾的误差分布要好。其中一个这样的标准是用于$M$回归（Huber，1964）的Huber损失标准
 <script type="math/tex; mode=display">
@@ -3053,6 +3079,17 @@ L(y,f(x))=
 <p>图10.5. 回归的三种损失函数的比较，画出作为边缘$y-f$的函数的图象。Huber损失函数结合了平方误差损失在0处和绝对误差损失当$\vert y-f\vert$很大时的优点</p>
 </blockquote>
 <p>这些考虑表明当考虑鲁棒性，特别是在数据挖掘的应用中（见10.7节），回归的平方误差损失和分类的指数损失从统计的角度来看不是最好的标准。然而，它们都得到向前逐步加性建模中优美的模块化boosting算法。对于平方误差损失，在每一步从当前模型的残差$y_i-f_{m-1}(x_i)$来拟合基学习器。对于指数损失，对输出值$y_i$进行加权的基本学习者拟合，权重系数为$w_i=exp(-y_if_{m-1}(x_i))$.直接采用一个更加鲁棒的标准并不能在可行的boosting算法上面得到提高。然而，在10.10.2节我们证明怎么从任意可微的损失标准得到简单优美的boosting算法，从而得到高鲁棒性的boosting过程来进行数据挖掘。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Rosset, S., Zhu, J. and Hastie, T. (2004b). Margin maximizing loss functions, in S. Thrun, L. Saul and B. Sch¨olkopf (eds), Advances in Neural Information Processing Systems 16, MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Zhu, J., Zou, H., Rosset, S. and Hastie, T. (2005). Multiclass adaboost, Unpublished. <a href="../../references/samme.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
