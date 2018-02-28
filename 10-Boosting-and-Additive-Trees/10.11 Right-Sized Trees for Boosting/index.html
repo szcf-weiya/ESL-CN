@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.1 Boosting Methods/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.11 Right-Sized Trees for Boosting/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>10.1 boosting方法 - ESL CN</title>
+        <title>10.11 大小合适的boosting树 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#101-boosting" tabindex="1" class="md-skip">
+      <a href="#1011-boosting" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.1 boosting方法
+                10.11 大小合适的boosting树
               </span>
             
           
@@ -1706,53 +1706,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        10.1 boosting方法
-      </label>
-    
-    <a href="index.html" title="10.1 boosting方法" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../10.1-Boosting-Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
       10.1 boosting方法
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="本章概要" class="md-nav__link">
-    本章概要
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1762,7 +1720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.2%20Boosting%20Fits%20an%20Additive%20Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
+    <a href="../10.2-Boosting-Fits-an-Additive-Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
       10.2 boosting拟合可加模型
     </a>
   </li>
@@ -1774,7 +1732,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.3%20Forward%20Stagewise%20Additive%20Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
+    <a href="../10.3-Forward-Stagewise-Additive-Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
       10.3 向前逐步加性建模
     </a>
   </li>
@@ -1786,7 +1744,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.4%20Exponential%20Loss%20and%20AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
+    <a href="../10.4-Exponential-Loss-and-AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
       10.4 指数损失和AdaBoost
     </a>
   </li>
@@ -1798,7 +1756,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.5%20Why%20Exponential%20Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
+    <a href="../10.5-Why-Exponential-Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
       10.5 为什么是指数损失
     </a>
   </li>
@@ -1868,11 +1826,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../10.11%20Right-Sized%20Trees%20for%20Boosting/index.html" title="10.11 大小合适的boosting树" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="index.html" title="10.11 大小合适的boosting树" class="md-nav__link md-nav__link--active">
       10.11 大小合适的boosting树
     </a>
+    
   </li>
 
         
@@ -2836,6 +2803,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/sim-eq-10-2/index.html" title="模拟Eq. 10.2" class="md-nav__link">
+      模拟Eq. 10.2
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2911,26 +2890,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="本章概要" class="md-nav__link">
-    本章概要
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2942,7 +2901,7 @@
               
                 
                 
-                <h1 id="101-boosting">10.1 boosting方法<a class="headerlink" href="#101-boosting" title="Permanent link">&para;</a></h1>
+                <h1 id="1011-boosting">10.11 大小合适的boosting树<a class="headerlink" href="#1011-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2957,78 +2916,38 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-06</td>
-</tr>
-<tr>
-<td>更新</td>
-<td>2017-08-26, 2018-01-02</td>
+<td>2017-10-07 &amp; 2017-10-08  &amp;   2017-10-09</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">更新笔记</p>
-<p>@2017.08.26 很早以前，略读了杨灿学长的<a href="https://cosx.org/2011/12/stories-about-statistical-learning/">《统计学习那些事》</a>，但其实没什么感受，因为当时也没看到boosting，对lasso了解也不多。而当我早早完成boosting的翻译后，又一直搁着没有再次阅读学长的文章。杨灿学长用风趣的笔墨从lasso和boosting的发展来看统计学习的那些事，个人觉得对于了解统计大佬们开创这些“绝世武功”的历史进程是很有帮助的。杨灿学长的<a href="https://cosx.org/2014/04/lmmandme">《昔日因，今日意》</a>和<a href="https://cosx.org/2012/05/chase-after-eb/">《那些年，我们一起追的 EB》</a>，我也是非常喜欢的，相信看了这么有趣的标题，不去拜读都不行啊hhh<img alt="😀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f600.svg" title=":grinning:" />在今年北京R会议上还听了杨灿学长的汇报，报告的主题也是跟boosting有关，当时还激动地跟他互动了一下，提了几个问题 <img alt="✋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/270b.svg" title=":raised_hand:" />。也是从那时候才知道，杨灿学长原来还是校友。</p>
-</div>
-<p>boosting是在最近20年内提出的最有力的学习方法。最初是为了分类问题而设计的，但是我们将在这章中看到，它也可以很好地扩展到回归问题上。boosting的动机是集合许多弱学习的结果来得到有用的“committee”。从这点看boosting与bagging以及其他的基于committee的方式（8.8节）类似。然而，我们应该看到这种联系最多是表面上的，boosting在根本上存在不同。</p>
-<p>我们以最流行的被称为“AdaBoost.M1”的boosting算法开始，这归功于Freund and Schapire (1997)。考虑两个类别的分类问题，输入变量编码为$Y\in\{-1,1\}$。给定预报向量$X$，分类器$G(X)$在二值$\{-1,1\}$中取一个值得到一个预测。在训练样本上的误差率是</p>
+<p>曾经，boosting被认为是结合模型的技巧，在这里模型是树。同样地，生成树的算法可看成是产生用于boosting进行结合的模型的原型。在这种情形下，在生成树的时候以通常的方式分别进行估计每棵树的最优大小（9.2节）。首先诱导出非常大（过大的）的一棵树，接着应用自下而上的过程剪枝得到估计的最优终止结点个数的树。这种方式隐含地假设了每棵树是式子(10.28)的最后一棵。</p>
+<blockquote>
 <p>
 <script type="math/tex; mode=display">
-\overline{err}=\frac{1}{N}\sum\limits_{i=1}^NI(y_i\neq G(x_i))
-</script>
-</p>
-<p>在未来预测值上的期望误差率为$E_{XY}I(Y\neq G(X))$</p>
-<p>弱分类器是误差率仅仅比随机猜测要好一点的分类器。boosting的目的是依次对反复修改的数据引用弱分类器算法，因此得到弱分类器序列$G_m(x),m=1,2,\ldots,M$ 根据它们得到的预测再通过一个加权来得到最终的预测</p>
+f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
+</script>, 详见10.9节。</p>
+</blockquote>
+<p>除了真正的最后一棵树，这显然是个很差的假设。结果是树都趋向于很大，特别是前几步迭代中。这显著降低了模型的效果，并且增大了计算量。</p>
+<p>避免这个问题最简单的策略是限制所有树为相同的大小， $J_m=J\forall m$。在每次迭代中，得到$J$个终止结点的回归树。因此$J$成为了整个boosting过程的元参数(meta-parameter)，根据手头上的数据来调整该参数以期最大化估计的效果。</p>
+<p>可以通过考虑目标函数的性质得到$J$的有用值的想法</p>
 <p>
 <script type="math/tex; mode=display">
-G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\qquad (10.1)
+\eta = \mathrm{arg }\underset{f}{\mathrm{min}} E_{XY}L(Y, f(X))\qquad (10.39)
 </script>
 </p>
-<p>这里$\alpha_1,\alpha_2,\ldots,\alpha_M$通过boosting算法进行计算，它们对每个单独的$G_m(x)$的贡献度赋予权重。它们的作用是赋予分类器序列中更精确的分类器更大的影响力。图10.1显示了AdaBoost过程的概要图。</p>
-<p><img alt="" src="../../img/10/fig10.1.png" /></p>
-<blockquote>
-<p>图10.1. AdaBoost的概要图。分类器在加权的数据集上进行训练，接着结合起来产生最终的预测。</p>
-</blockquote>
-<p>在每步boosting的数据修改时，对每个训练观测$(x_i,y_i),i=1,2,\ldots,N$赋予权重$w_1,w_2,\ldots,w_N$。初始化所有的权重设为$w_i=1/N$，使得第一步以通常的方式对数据进行训练分类器。对每个接下来的迭代$m=2,3,\ldots,M$，单独修改观测的权重，然后将分类算法重新应用到加权观测值上。在第$m$步，上一步中被分类器$G_{m-1}(x)$的误分类的观测值增大了权重，而正确分类的观测值权重降低了。因此当迭代继续，很难正确分类的观测受到越来越大的影响。每个相继的分类器因此被强制集中在上一步误分类的训练数据上。</p>
-<p>算法10.1显示了AdaBoost.M1算法的详细细节。当前的分类器$G_m(x)$由第2(a)行的加权观测值得到。在第2(b)行计算加权误差率。第2(c)行计算赋予$G_m(x)$的权重$\alpha_m$来得到最终的分类器$G(x)$(第3行)。每个观测的个体权重在第2(d)行进行更新。在导出序列中下一个分类器$G_{m+1}(x)$时，被分类器$G(x)$错误分类的观测值的权重被因子$exp(\alpha_m)$进行缩放以提高它们的相对影响。</p>
-<p><img alt="" src="../../img/10/alg10.1.png" /></p>
-<p>在Firedman et al.(2000) 的工作中，AdaBoost.M1算法也称作“离散 AdaBoost”，因为基分类器$G_m(x)$返回一个离散的类别标签。如果基分类器返回实值预测（如映射到[-1,1]的概率），AdaBoost可以合适地修改（见Firedman et al. (2000) 的“Real AdaBoost”）</p>
-<p>AdaBoost显著提高非常弱的分类器的效果的能力展现在图10.2中。特征$X_1,\ldots,X_{10}$是标准独立高斯分布，目标$Y$定义如下
+<p>这里期望值是对$(X,Y)$的总体联合分布而言。目标函数$\eta(x)$是在未来数据上有最小预测风险的函数。这是我们试图近似的函数。</p>
+<p>$\eta(X)$一个相关的性质是坐标变量$X^T=(X_1,X_2,\ldots, X_p)$间交叉项的阶。这个可以通过它的ANOVA展开式得到</p>
+<p>
 <script type="math/tex; mode=display">
-Y=
-\left\{
-\begin{array}{ll}
-1&\text{if } \sum_{j=1}^{10}X_j^2>\chi_{10}^2(0.5)\\
--1 & \text{otherwise}
-\end{array}
-\right.
-\qquad (10.2)
+\eta(X)=\sum\limits_{j}\eta_j(X_j)+\sum\limits_{jk}\eta_{jk}(X_j,X_k)+\sum\limits_{jkl}\eta_{jkl}(X_j,X_k, X_l)+\cdots\qquad (10.40)
 </script>
-这里$\chi_{10}^2(0.5)=9.34$是自由度为10的卡方随机变量的中位数（10个标准的高斯分布的平方和）。有2000个训练情形，每个类别大概有1000个情形，以及10000个测试观测值。这里的弱分类器仅仅是一个“stump”：含两个终止结点的分类树。仅仅对训练数据应用分类器会得到非常差的测试集误差率（45.8%），与50%的随机猜测相差不多。然而，当不断进行boosting迭代，误差率将稳定下降，直到400次迭代之后达到5.8%。因此，对这一简单的非常弱的分类器进行boosting，其预测误差率可以几乎降低四分之一。它也比单个的大规模分类树（误差率为24.7%）表现得要好。自从它的提出，有很多理论来解释AdaBoost能成功得到正确分类器。很多工作集中在用分类树作为“基学习者(base learner)”G(x)，改善经常是非常显著的。事实上，Breiman(NIPS Workshop，1996)将树的AdaBoost作为“世界上最好的现成分类器”(best off-the-shelf classifier in
-the world)。这对于数据挖掘方面的应用尤其如此，本章的后面将更全面地讨论。</p>
-<p><img alt="" src="../../img/10/fig10.2.png" /></p>
-<blockquote>
-<p>图10.2. （10.2）的模拟数据：对stumps进行boosting的测试误差率作为迭代次数的函数。图中也显示了单个stump和244个结点的分类树的测试误差率。</p>
-</blockquote>
-<div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>下面是用Julia语言实现的模拟
-<script src="https://gist.github.com/szcf-weiya/1c2759b0b748f083c80126a64b56253a.js"></script>
-得到结果如下所示
-<img alt="" src="../../img/10/res_adaboost_jl.png" />
-可以发现，随着迭代次数的增加，误差率不断下降，与图10.2的结果是一致的。
-此外，还有一个<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/boosting">R语言实现的版本</a>，但是运行速度要比Julia的慢很多。</p>
-</div>
-<h2 id="_1">本章概要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>下面是本章的概要：</p>
-<ul>
-<li>我们展示AdaBoost对基学习器拟合加性模型，优化一个新的指数损失函数。这个损失函数与（负）二项分布对数概率（见10.2-10.4节）非常相似</li>
-<li>指数损失函数的受欢迎的最小化证明是类别概率odds的对数（10.5节）</li>
-<li>我们描述对于回归与分类的损失函数比平方误差或者指数损失更加稳定（10.6节）</li>
-<li>有人认为决策树是boosting用于数据挖掘应用理想的基础学习者。（10.7和10.9节）</li>
-<li>我们发展一类梯度增强模型（GBMs）,用于提升具有任何损失函数的树。（10.10节）</li>
-<li>强调“慢学习”的重要性，并且通过对每个新加进模型的项进行收缩而实现（10.12节），以及随机化（10.12.2节）。</li>
-<li>描述拟合模型的解释工具（10.13节）</li>
-</ul>
+</p>
+<p>式子(10.40)中的第一项是只有一个预测变量$X_j$的函数和。这些函数$\eta_j(X_j)$是在所采用的误差损失准则下联合起来最能近似$\eta(X)$的项。每一个$\eta_j(X_j)$称为$X_j$的主影响。式中第二项是那些加入到主影响中将$\eta(X)$拟合得最好的含两个变量的函数。这些函数被称为每个变量对$(X_j,X_k)$的二阶交叉项。式中第三项表示三阶交叉项，以此类推。对于许多实际的问题，低阶交叉影响占主要地位。如果模型得到强烈的高阶交叉影响，比如大型的决策树，则可能正确性不好。</p>
+<p>基于树的近似的交叉性阶数被树的大小$J$所限制。也就是，不存在大于$J-1$阶数的交叉项。因为(10.28)的boosted模型关于树是可加的，这个限制对于它也适用。$J=2$时（单个分割点的“decision stump”），则只能得到仅主影响的boosted模型，其中不允许有交叉项。当$J=3$时，可以允许有含两个变量的交叉项，以此类推。这表明选择的$J$值应该反映$\eta(x)$占优势的交叉项的阶数。当然这在一般情形下是未知的，但是在大部分情况下往往很低。</p>
+<p><img alt="" src="../../img/10/fig10.9.png" /></p>
+<p>图10.9说明了交叉项阶数（$J$的选择）在仿真例子(10.2)上的影响。生成函数是可加的（二次单项式的和），所以$J&gt;2$的boosting模型产生多余的方差，也因此更高的测试误差。图10.10比较了用真实函数构造的boosted stump的坐标函数。</p>
+<p><img alt="" src="../../img/10/fig10.10.png" /></p>
+<p>尽管在很多应用中，$J=2$是不够的，但也不太可能要求$J&gt;10$。经验表明$4\le J\le 8$在boosting的情况下会取得很好的效果，这个范围内的具体取值对结果的影响并不敏感。我们可以通过尝试不同的值，然后选择一个在验证样本上低风险的$J$值。然而，使用$J\simeq 6$并不能得到显著的改善。</p>
                 
                   
                 
@@ -3060,7 +2979,7 @@ the world)。这对于数据挖掘方面的应用尤其如此，本章的后面�
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../09%20Additive%20Models%2C%20Trees%2C%20and%20Related%20Methods/Bibliographic%20Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10.10%20Numerical%20Optimization%20via%20Gradient%20Boosting/index.html" title="10.10 利用梯度boosting的数值优化" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3069,19 +2988,19 @@ the world)。这对于数据挖掘方面的应用尤其如此，本章的后面�
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                文献笔记
+                10.10 利用梯度boosting的数值优化
               </span>
             </div>
           </a>
         
         
-          <a href="../10.2%20Boosting%20Fits%20an%20Additive%20Model/index.html" title="10.2 boosting拟合可加模型" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../10.12%20Regularization/index.html" title="10.12 正则化" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                10.2 boosting拟合可加模型
+                10.12 正则化
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

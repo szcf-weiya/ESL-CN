@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.5 Why Exponential Loss/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.9 Boosting Trees/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>10.5 为什么是指数损失 - ESL CN</title>
+        <title>10.9 boosting树 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#105" tabindex="1" class="md-skip">
+      <a href="#109-boosting" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.5 为什么是指数损失
+                10.9 boosting树
               </span>
             
           
@@ -1708,7 +1708,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.1%20Boosting%20Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
+    <a href="../10.1-Boosting-Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
       10.1 boosting方法
     </a>
   </li>
@@ -1720,7 +1720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.2%20Boosting%20Fits%20an%20Additive%20Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
+    <a href="../10.2-Boosting-Fits-an-Additive-Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
       10.2 boosting拟合可加模型
     </a>
   </li>
@@ -1732,7 +1732,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.3%20Forward%20Stagewise%20Additive%20Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
+    <a href="../10.3-Forward-Stagewise-Additive-Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
       10.3 向前逐步加性建模
     </a>
   </li>
@@ -1744,7 +1744,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.4%20Exponential%20Loss%20and%20AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
+    <a href="../10.4-Exponential-Loss-and-AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
       10.4 指数损失和AdaBoost
     </a>
   </li>
@@ -1754,20 +1754,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="index.html" title="10.5 为什么是指数损失" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../10.5-Why-Exponential-Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
       10.5 为什么是指数损失
     </a>
-    
   </li>
 
         
@@ -1811,11 +1802,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../10.9%20Boosting%20Trees/index.html" title="10.9 boosting树" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="index.html" title="10.9 boosting树" class="md-nav__link md-nav__link--active">
       10.9 boosting树
     </a>
+    
   </li>
 
         
@@ -2803,6 +2803,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/sim-eq-10-2/index.html" title="模拟Eq. 10.2" class="md-nav__link">
+      模拟Eq. 10.2
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2889,7 +2901,7 @@
               
                 
                 
-                <h1 id="105">10.5 为什么是指数损失？<a class="headerlink" href="#105" title="Permanent link">&para;</a></h1>
+                <h1 id="109-boosting">10.9 boosting树<a class="headerlink" href="#109-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2904,78 +2916,56 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-06</td>
+<td>2017-08-27</td>
 </tr>
 </tbody>
 </table>
-<p>AdaBoost.M1算法最初是从一个非常不一样的角度出发得到的，而不是上一节中提出的。它与基于指数损失的向前逐步加性建模的等价性仅在其提出后五年后才被发现。通过研究指数损失函数准则的性质，可以深入了解这个过程并且找出可能改善的方式。</p>
-<p>在加性模型中指数损失的主要吸引点在于计算上的方便；它导出简单的模块化重加权的AdaBoost算法。然而，研究它的统计性质也是我们关注的。它估计什么，估计有多么好？第一个问题可以通过寻找总体最小化来回答。</p>
-<p>可以很简单地证明（Friedman等人，2000）
-<script type="math/tex; mode=display">
-f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{1}{2}\mathrm{log}\frac{Pr(Y=1\mid X)}{Pr(Y=-1\mid X)}\qquad (10.16)
-</script>
-或者等价地，
-<script type="math/tex; mode=display">
-Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
-</script>
-因此，由AdaBoost得到的加性展开是估计二分之一log的$P(Y=1\mid x)$比率。这证明使用它的符号作为（10.1）的分类规则是合理的。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>此处$f^*(x)$相当于$\sum\alpha_mG_m$，当其大于0，表明$P(Y=1\mid x)&gt;P(Y=-1\mid x)$，所以称使用其符号作为分类规则是合理的。</p>
-</div>
-<p>另外一个有着同样的总体最小化的损失准则为二项分布负对数似然(the binomial negative log-likelihood)或者偏差(deviance)（也称为交叉熵），将$f$解释为logit变换。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>考虑
-<script type="math/tex; mode=display">
-z = logit(p) = log\frac{p}{1-p}
-</script>
-我们有$p=\frac{1}{1+e^{-z}}$，则二项分布似然函数为
-<script type="math/tex; mode=display">
-f=p^y(1-p)^{1-y},\; y=0,1
-</script>
-其负对数似然为
-<script type="math/tex; mode=display">
-L(p, y) = -log(f)=-(y\mathrm{log}p+(1-y)\mathrm{log}(1-p))
-</script>
-也称为logit损失函数。</p>
-</div>
-<p>令
-<script type="math/tex; mode=display">
-p(x)=Pr(Y=1\mid x)=\frac{e^{f(x)}}{e^{-f(x)}+e^{f(x)}}=\frac{1}{1+e^{-2f(x)}}\qquad (10.17)
-</script>
-并且定义$Y&rsquo;=(Y+1)/2\in \{0,1\}$.则二项对数概率损失函数为</p>
+<p>回归和分类树在第9.2节已经详细讨论了。它们将所有联合预测变量的空间划分为分类的区域$R_j,j=1,2,\ldots,J$，这些区域用树的终止结点表示。常数值$\gamma_j$赋予到每个区域中，预测规则为</p>
 <p>
 <script type="math/tex; mode=display">
-l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
+x\in R_j\Rightarrow f(x) = \gamma_j
 </script>
 </p>
-<!--
-!!! note "weiya注"
-    个人觉得，上式写成
-    $$
-    l(Y,f(x))=Y'\mathrm{log}f(x)+(1-Y')\mathrm{log}(1-f(x))
-    $$
-    不会引起误解，当$f(x)=p(x)$时，达到最大值。
--->
-
-<p>或者等价地，偏差为
+<p>因此，一棵树可以正式地表达成</p>
+<p>
 <script type="math/tex; mode=display">
--l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\qquad (10.18)
+T(x;\Theta)=\sum\limits_{j=1}^J\gamma_jI(x\in R_j)\qquad (10.25)
 </script>
 </p>
-<!--
-!!! note "weiya注"
-    $$
-    l(Y,f(x))=Yf(x)-f(x)-log(1+e^{-2Yf(x)})
-    $$
-    又
-    $$
-    Y=1
-    $$
--->
-
-<p>因为对数概率的总体最大在真实概率$p(x)=Pr(Y=1\mid x)$处，我们从（10.17）看到偏差$E_{Y\mid x}[-l(Y,f(x))]$和$E_{Y\mid x}[e^{-Yf(x)}]$的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到$e^{-Yf}$本身不是一个合适的对数似然函数，因为它不是一个二项随机变量$Y\in \{-1,1\}$的任意概率密度函数的对数。<span class="critic comment">也就是说，不存在一个二项随机变量的密度函数，使得$e^{-Yf}$称为对数似然函数。</span></p>
+<p>其中参数为$\Theta={R_j,\gamma_j}_1^J$。$J$通常看成是元参数。通过最小化经验风险来确定
+<script type="math/tex; mode=display">
+\hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{j=1}^J\sum\limits_{x_i\in R_j}L(y_i,\gamma_j)\qquad (10.26)
+</script>
+</p>
+<p>这是个艰巨的组合优化问题，我们通常去寻求近似次优解。将该优化问题分成两个部分是很有用的：</p>
+<ol>
+<li><strong>给定$R_j$求$\gamma_j$:</strong> 给定$R_j$，估计$\gamma_j$是小菜一碟，而且通常有$\hat\gamma_j=\bar y_j$，是那些落在区域$R_j$的$y_i$的均值。对于误分类损失，$\gamma_j$是落在区域$R_j$的观测值的modal class.</li>
+<li><strong>求R_j:</strong> 对于求近似解，这是很困难的一部分。注意到寻找$R_j$意味着也估计$\gamma_j$。一个典型的策略是使用贪婪的，自上而下的递归划分算法来寻找$R_j$。另外，为了优化$R_j$，有时也需要通过一个更光滑以及更方便的准则来近似(10.26):
+<script type="math/tex; mode=display">
+\hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{i=1}^N\tilde L(y_i,T(x_i,\Theta))\qquad (10.27)
+</script>
+接着给定$\hat R_j=\tilde R_j$，$\gamma_j$可以运用原来的准则精确估计出。</li>
+</ol>
+<p>在9.2节我们讨论了用于分类树的这样一个策略。在增长树的过程（确定$R_j$）中用Gini指数替换误分类损失。</p>
+<p>boosted树模型是这些树的和</p>
+<p>
+<script type="math/tex; mode=display">
+f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
+</script>
+</p>
+<p>以向前逐步的方式导出(算法10.2)。在向前逐步过程中的每一步, 给定当前树模型$f_{m-1}(x)$，求出下一棵树的区域和常数$\Theta_m=\{R_{jm},\gamma_{jm}\}^{J_m}_1$需要求解
+<script type="math/tex; mode=display">
+\hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
+</script>
+</p>
+<p>给定区域$R_{jm}$，寻找每个区域的最优的常数值$\gamma_{jm}$是很直接的</p>
+<p>
+<script type="math/tex; mode=display">
+\hat \gamma_{jm}=\text{arg }\underset{\gamma_{jm}}{\text{min}}\sum\limits_{x_i\in R_{jm}}L(y_i,f_{m-1}(x_i)+\gamma_{jm})\qquad (10.30)
+</script>
+</p>
+<p>寻找区域是很困难的，甚至比寻找单棵树的区域还有困难。对于一些特殊情形，这个问题可以进行简化。</p>
+<p>TODO</p>
                 
                   
                 
@@ -3007,7 +2997,7 @@ l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../10.4%20Exponential%20Loss%20and%20AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10.8%20Spam%20Data/index.html" title="10.8 垃圾邮件的例子" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3016,19 +3006,19 @@ l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                10.4 指数损失和AdaBoost
+                10.8 垃圾邮件的例子
               </span>
             </div>
           </a>
         
         
-          <a href="../10.6%20Loss%20Functions%20and%20Robustness/index.html" title="10.6 损失函数和鲁棒性" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../10.10%20Numerical%20Optimization%20via%20Gradient%20Boosting/index.html" title="10.10 利用梯度boosting的数值优化" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                10.6 损失函数和鲁棒性
+                10.10 利用梯度boosting的数值优化
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

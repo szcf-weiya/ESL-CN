@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.12 Regularization/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.8 Spam Data/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>10.12 正则化 - ESL CN</title>
+        <title>10.8 垃圾邮件的例子 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#1012" tabindex="1" class="md-skip">
+      <a href="#108" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.12 正则化
+                10.8 垃圾邮件的例子
               </span>
             
           
@@ -1708,7 +1708,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.1%20Boosting%20Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
+    <a href="../10.1-Boosting-Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
       10.1 boosting方法
     </a>
   </li>
@@ -1720,7 +1720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.2%20Boosting%20Fits%20an%20Additive%20Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
+    <a href="../10.2-Boosting-Fits-an-Additive-Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
       10.2 boosting拟合可加模型
     </a>
   </li>
@@ -1732,7 +1732,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.3%20Forward%20Stagewise%20Additive%20Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
+    <a href="../10.3-Forward-Stagewise-Additive-Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
       10.3 向前逐步加性建模
     </a>
   </li>
@@ -1744,7 +1744,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.4%20Exponential%20Loss%20and%20AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
+    <a href="../10.4-Exponential-Loss-and-AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
       10.4 指数损失和AdaBoost
     </a>
   </li>
@@ -1756,7 +1756,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.5%20Why%20Exponential%20Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
+    <a href="../10.5-Why-Exponential-Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
       10.5 为什么是指数损失
     </a>
   </li>
@@ -1790,11 +1790,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../10.8%20Spam%20Data/index.html" title="10.8 垃圾邮件的例子" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="index.html" title="10.8 垃圾邮件的例子" class="md-nav__link md-nav__link--active">
       10.8 垃圾邮件的例子
     </a>
+    
   </li>
 
         
@@ -1838,60 +1847,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        10.12 正则化
-      </label>
-    
-    <a href="index.html" title="10.12 正则化" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../10.12%20Regularization/index.html" title="10.12 正则化" class="md-nav__link">
       10.12 正则化
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="收缩" class="md-nav__link">
-    收缩
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="子采样" class="md-nav__link">
-    子采样
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -2843,6 +2803,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/sim-eq-10-2/index.html" title="模拟Eq. 10.2" class="md-nav__link">
+      模拟Eq. 10.2
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2918,33 +2890,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="收缩" class="md-nav__link">
-    收缩
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="子采样" class="md-nav__link">
-    子采样
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2956,7 +2901,7 @@
               
                 
                 
-                <h1 id="1012">10.12 正则化<a class="headerlink" href="#1012" title="Permanent link">&para;</a></h1>
+                <h1 id="108">10.8 例子: 垃圾邮件<a class="headerlink" href="#108" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2971,41 +2916,11 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-10-09    &amp;  2017-10-15 &amp; 2017-10-16</td>
+<td>2017-08-27</td>
 </tr>
 </tbody>
 </table>
-<p>除了候选树的大小$J$，梯度boosting的另一个元参数(meta-parameter)是boosting的迭代次数$M$。每一次迭代通常会降低训练风险$L(f_M)$，所以对于充分大的$M$，误差可以达到任意小。然而，对训练数据拟合得太好会导致过拟合，它会降低预测未来数据的效果。因此，存在一个最小话未来预测风险的最优$M^*$，它依赖于具体应用。估计$M^*$的一个方便方式是检测在验证样本上关于$M$的函数的预测风险。最小化风险的$M$值作为$M^*$的一个估计。这类似于经常用在神经网络中的早停(early stopping)策略（11.4节）。</p>
-<h2 id="_1">收缩<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>控制$M$的值并不是唯一正则化的策略。与岭回归和神经网络一样，也可以应用收缩策略（见3.4.1节和11.5节）。boosting中收缩最简单的实现方式是使用因子$0&lt;\nu&lt;1$来收缩每棵树的贡献。也就是，算法10.3的第2(d)行用下式代替</p>
-<p>
-<script type="math/tex; mode=display">
-f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\qquad (10.41)
-</script>
-</p>
-<p>参数$\nu$可以看成是控制boosting过程的学习速率。较小的$\nu$（更多的收缩）会导致同样大小的迭代次数$M$下更大的训练风险。因此，$\nu$和$M$都控制了训练数据的预测风险。然而，这些参数并不单独作用。对于同样的训练风险较小的$\nu$会导致较大的$M$，所以它们之间存在权衡。</p>
-<p>经验上，(Friedman, 2001<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)已经发现较小的$\nu$会得到更好的测试误差，并且需要更大的$M$与之对应。事实上，最好的策略是将$\nu$设得很小($\nu&lt;0.1$)，然后通过早停(early stopping)来选择$M$。这会给回归和概率估计带来重大的改善（与没有收缩时相比，$\nu=1$）。通过（10.20）式改善对应的误分类风险虽然很小，但是仍然显著。这个改善的代价是计算上的：较小的$\nu$得到较大的$M$，并且计算量与后者成比例。然而，将在下面看到，许多迭代的计算即使是在非常大的数据集上也是可行的。这部分也是因为在每一步生成的树是没有剪枝的。</p>
-<p><img alt="" src="../../img/10/fig10.11.png" /></p>
-<p>图10.11显示了图10.2的模拟例子(10.2)的测试误差曲线。梯度boosted模型(MART)通过采用二项偏差来训练，分stump和6个终止结点树的情况讨论，以及分有无收缩进行讨论。收缩的好处是很显然的，特别是当跟踪二项偏差时。有了收缩，每个测试误差曲线达到较低的值，并且在许多迭代中保持不变。</p>
-<p>16.2.1节将boosting的向前逐步收缩和为了正则化模型参数使用的$L_1$惩罚(lasso)联系起来。我们认为$L_1$惩罚可能会比用在一些方法（比如支持向量机）中的$L_2$惩罚要更好。</p>
-<h2 id="_2">子采样<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>我们在8.7节看到bootstrap averaging (bagging) 通过averaging提高了噪声分类器的表现效果。第15章详细讨论了通过平均实现的降低方差的机制。我们也可以在gradient boosting中采用这一方法，同时提高了效果和计算效率。</p>
-<p>采用stochastic gradient boosting (Friedman, 1999<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)，在每一步我们采样$\eta$倍的训练观测值（无放回），并且采用这种子采样来生成下一棵树。剩下的算法同样。一般可以取$\eta$为$\frac{1}{2}$，尽管对于大的$N$，$\eta$可以比$\frac{1}{2}$小很多。</p>
-<p>这种采样不仅仅降低了$\eta$倍的计算时间，在很多情况下也实际上得到了更精确的模型。</p>
-<p><img alt="" src="../../img/10/fig10.12.png" /></p>
-<p>图10.12说明了采用模拟例子(10.2)的子采样的效果，既可以看成是分类的例子，也可以看成是回归的例子。我们看到这两种情形下，采用收缩的的子采样比剩下的表现要好。似乎没有收缩的子采样会表现得很差。</p>
-<p>缺点是我们现在需要设置四个参数：$J,M,\nu$和$\eta$。一般地，通过前期的尝试确定合适的$J,\nu$和$\eta$，将$M$留作主要的参数。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Friedman, J. (2001). Greedy function approximation: A gradient boosting machine, Annals of Statistics 29(5): 1189–1232.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Friedman, J. (1999). Stochastic gradient boosting, Technical report, Stanford University.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<p>TODO</p>
                 
                   
                 
@@ -3037,7 +2952,7 @@ f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\qquad (1
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../10.11%20Right-Sized%20Trees%20for%20Boosting/index.html" title="10.11 大小合适的boosting树" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10.7%20Off-the-Shelf%20Procedures%20for%20Data%20Mining/index.html" title="10.7 数据挖掘的现货方法" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3046,19 +2961,19 @@ f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\qquad (1
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                10.11 大小合适的boosting树
+                10.7 数据挖掘的现货方法
               </span>
             </div>
           </a>
         
         
-          <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../10.9%20Boosting%20Trees/index.html" title="10.9 boosting树" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                文献笔记
+                10.9 boosting树
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.2-Boosting-Fits-an-Additive-Model/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>10.3 向前逐步加性建模 - ESL CN</title>
+        <title>10.2 boosting拟合可加模型 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#103" tabindex="1" class="md-skip">
+      <a href="#102-boosting" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.3 向前逐步加性建模
+                10.2 boosting拟合可加模型
               </span>
             
           
@@ -1708,20 +1708,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.1%20Boosting%20Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
+    <a href="../10.1-Boosting-Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
       10.1 boosting方法
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../10.2%20Boosting%20Fits%20an%20Additive%20Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
-      10.2 boosting拟合可加模型
     </a>
   </li>
 
@@ -1740,8 +1728,8 @@
       
     
     
-    <a href="index.html" title="10.3 向前逐步加性建模" class="md-nav__link md-nav__link--active">
-      10.3 向前逐步加性建模
+    <a href="index.html" title="10.2 boosting拟合可加模型" class="md-nav__link md-nav__link--active">
+      10.2 boosting拟合可加模型
     </a>
     
   </li>
@@ -1753,7 +1741,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.4%20Exponential%20Loss%20and%20AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
+    <a href="../10.3-Forward-Stagewise-Additive-Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
+      10.3 向前逐步加性建模
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10.4-Exponential-Loss-and-AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
       10.4 指数损失和AdaBoost
     </a>
   </li>
@@ -1765,7 +1765,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.5%20Why%20Exponential%20Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
+    <a href="../10.5-Why-Exponential-Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
       10.5 为什么是指数损失
     </a>
   </li>
@@ -2803,6 +2803,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/sim-eq-10-2/index.html" title="模拟Eq. 10.2" class="md-nav__link">
+      模拟Eq. 10.2
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2889,7 +2901,7 @@
               
                 
                 
-                <h1 id="103">10.3 向前逐步加法建模<a class="headerlink" href="#103" title="Permanent link">&para;</a></h1>
+                <h1 id="102-boosting">10.2 boosting拟合可加模型<a class="headerlink" href="#102-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2908,30 +2920,53 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-08-26</td>
+<td>2017-08-26, 2018-02-28</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<p>通过依次向展开式中加入新的基函数且不调整已经加入模型中的参数和系数来向前逐步建立模型，这能够得到(10.4)的近似解。</p>
+<p>boosting的成功真的不是很神秘。关键在于(10.1)式。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：Recall</p>
 <p>
+<script type="math/tex; mode=display">
+G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\qquad (10.1)
+</script>
+</p>
+</div>
+<p>boosting是在一组基本的“基”函数集合中拟合加性展开(additive expansions)的方法。这里基函数是单个的分类器$G_m(x)\in \{-1,1\}$。更一般地，基函数展开式采用下列形式</p>
+<p>
+<script type="math/tex; mode=display">
+f(x)=\sum\limits_{m=1}^M\beta_mb(x;\gamma_m)\qquad (10.3)
+</script>
+</p>
+<p>其中$\beta_m,m=1,2,\ldots,M$是展开的系数，$b(x;\gamma)\in \IR$是普通的关于多元变量$x$的简单函数，$\gamma$是其参数。我们在第5章中详细讨论了基的展开。</p>
+<p>类似的加性展开是本书介绍的许多学习方法的核心：</p>
+<ul>
+<li>在单层神经网络中（第11章），$b(x;\gamma)=\sigma(\gamma_0+\gamma_1^Tx)$，其中$\sigma(t)=1/(1+e^{-t})$是sigmoid函数，并且$\gamma$参量化输入变量的线性组合。</li>
+<li>在信号处理中，微波（5.9.1节）用$\gamma$参量化“母”微波的位置和偏移量是很流行的选择。多元自适应回归样条（9.4节）采用截断幂样条基函数，其中$\gamma$对变量和结点的值进行参量化。</li>
+<li>对于树，$\gamma$对中间结点的分离变量和分离点以及终止结点的预测值进行参量化。</li>
+</ul>
+<p>一般地，通过使训练数据上的平均损失函数最小化来拟合这些模型，比如平方误差或者基于概率的损失函数，
 <script type="math/tex; mode=display">
 \underset{\{\beta_m,\gamma_m\}_1^M}{\mathrm {min}}\;\sum\limits_{i=1}^NL(y_i,\sum\limits_{m=1}^M\beta_mb(x_i;\gamma_m))\qquad (10.4)
 </script>
+对于许多损失函数$L(y,f(x))$和/或基函数$b(x;\gamma)$，这需要计算密集型的(computationally intensive)数值优化技术。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：computationally intensive</p>
+<p>引用<a href="https://www.zhihu.com/question/23243435">什么是计算密集型（computationally intensive）？ - 知乎</a>的回答</p>
+<blockquote>
+<p>程序系统大部分在做计算、逻辑判断、循环导致cpu占用率很高的情况，称之为计算密集型；频繁网络传输、读取硬盘及其他io设备称之为io密集型</p>
+</blockquote>
+</div>
+<p>然而，当可以快速求解只有一个单一的基函数的子问题时，经常可以找到简单的替代方案，单一的基函数为
+<script type="math/tex; mode=display">
+\underset{\beta,\gamma}{\mathrm{min}}\sum\limits_{i=1}^NL(y_i,\beta b(x_i;\gamma))\qquad (10.5)
+</script>
 </p>
-<p>在下图算法10.2中概述了这一过程。在每次迭代$m$,求解加入到当前展开$f_{m-1}(x)$的基函数$b(x;\gamma_m)$和对应的系数。这得到$f_m(x)$,这一过程重复进行。之前加入的项不做修改。</p>
-<p><img alt="" src="../../img/10/alg10.2.png" /></p>
-<p>对于平方误差损失
-<script type="math/tex; mode=display">
-L(y,f(x))=(y-f(x))^2\qquad (10.6)
-</script>
-我们有
-<script type="math/tex; mode=display">
-\begin{align}
-L(y_i,f_{m-1}(x)+\beta b(x_i;\gamma))&=(y_i-f_{m-1}(x)-\beta b(x_i;\gamma))^2\\
-&=(\gamma_{im}-\beta b(x_i;\gamma))^2\qquad\qquad (10.7)
-\end{align}
-</script>
-其中$\gamma_{im}=y_i-f_{m-1}(x_i)$是当前模型在第$i$个观测值上的残差。因此，对于平方误差损失，每一步中对当前残差最好的拟合项$\beta_m b(x;\gamma_m)$加到展开式中。这个想法是将在10.10.2节中讨论的最小二乘回归boosting的依据。然而，正如我们将在下一节最后展示的那样，平方误差损失通常不是一个用于分类的良好选择；因此需要考虑其他的损失准则。</p>
                 
                   
                 
@@ -2963,7 +2998,7 @@ L(y_i,f_{m-1}(x)+\beta b(x_i;\gamma))&=(y_i-f_{m-1}(x)-\beta b(x_i;\gamma))^2\\
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../10.2%20Boosting%20Fits%20an%20Additive%20Model/index.html" title="10.2 boosting拟合可加模型" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10.1-Boosting-Methods/index.html" title="10.1 boosting方法" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2972,19 +3007,19 @@ L(y_i,f_{m-1}(x)+\beta b(x_i;\gamma))&=(y_i-f_{m-1}(x)-\beta b(x_i;\gamma))^2\\
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                10.2 boosting拟合可加模型
+                10.1 boosting方法
               </span>
             </div>
           </a>
         
         
-          <a href="../10.4%20Exponential%20Loss%20and%20AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../10.3-Forward-Stagewise-Additive-Modeling/index.html" title="10.3 向前逐步加性建模" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                10.4 指数损失和AdaBoost
+                10.3 向前逐步加性建模
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

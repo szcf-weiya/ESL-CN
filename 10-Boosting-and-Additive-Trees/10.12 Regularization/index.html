@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.10 Numerical Optimization via Gradient Boosting/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.12 Regularization/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>10.10 利用梯度boosting的数值优化 - ESL CN</title>
+        <title>10.12 正则化 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#1010-boosting" tabindex="1" class="md-skip">
+      <a href="#1012" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.10 利用梯度boosting的数值优化
+                10.12 正则化
               </span>
             
           
@@ -1708,7 +1708,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.1%20Boosting%20Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
+    <a href="../10.1-Boosting-Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
       10.1 boosting方法
     </a>
   </li>
@@ -1720,7 +1720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.2%20Boosting%20Fits%20an%20Additive%20Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
+    <a href="../10.2-Boosting-Fits-an-Additive-Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
       10.2 boosting拟合可加模型
     </a>
   </li>
@@ -1732,7 +1732,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.3%20Forward%20Stagewise%20Additive%20Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
+    <a href="../10.3-Forward-Stagewise-Additive-Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
       10.3 向前逐步加性建模
     </a>
   </li>
@@ -1744,7 +1744,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.4%20Exponential%20Loss%20and%20AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
+    <a href="../10.4-Exponential-Loss-and-AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
       10.4 指数损失和AdaBoost
     </a>
   </li>
@@ -1756,7 +1756,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.5%20Why%20Exponential%20Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
+    <a href="../10.5-Why-Exponential-Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
       10.5 为什么是指数损失
     </a>
   </li>
@@ -1814,67 +1814,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        10.10 利用梯度boosting的数值优化
-      </label>
-    
-    <a href="index.html" title="10.10 利用梯度boosting的数值优化" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../10.10%20Numerical%20Optimization%20via%20Gradient%20Boosting/index.html" title="10.10 利用梯度boosting的数值优化" class="md-nav__link">
       10.10 利用梯度boosting的数值优化
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="最速下降" class="md-nav__link">
-    最速下降
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#boosting" title="梯度boosting" class="md-nav__link">
-    梯度boosting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#boosting_1" title="梯度boosting的实现" class="md-nav__link">
-    梯度boosting的实现
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1894,11 +1838,60 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../10.12%20Regularization/index.html" title="10.12 正则化" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        10.12 正则化
+      </label>
+    
+    <a href="index.html" title="10.12 正则化" class="md-nav__link md-nav__link--active">
       10.12 正则化
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="收缩" class="md-nav__link">
+    收缩
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="子采样" class="md-nav__link">
+    子采样
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -2850,6 +2843,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/sim-eq-10-2/index.html" title="模拟Eq. 10.2" class="md-nav__link">
+      模拟Eq. 10.2
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2929,22 +2934,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="最速下降" class="md-nav__link">
-    最速下降
+  <a href="#_1" title="收缩" class="md-nav__link">
+    收缩
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#boosting" title="梯度boosting" class="md-nav__link">
-    梯度boosting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#boosting_1" title="梯度boosting的实现" class="md-nav__link">
-    梯度boosting的实现
+  <a href="#_2" title="子采样" class="md-nav__link">
+    子采样
   </a>
   
 </li>
@@ -2970,7 +2968,7 @@
               
                 
                 
-                <h1 id="1010-boosting">10.10 利用梯度boosting进行数值优化<a class="headerlink" href="#1010-boosting" title="Permanent link">&para;</a></h1>
+                <h1 id="1012">10.12 正则化<a class="headerlink" href="#1012" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2985,141 +2983,41 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-08-27</td>
+<td>2017-10-09    &amp;  2017-10-15 &amp; 2017-10-16</td>
 </tr>
 </tbody>
 </table>
+<p>除了候选树的大小$J$，梯度boosting的另一个元参数(meta-parameter)是boosting的迭代次数$M$。每一次迭代通常会降低训练风险$L(f_M)$，所以对于充分大的$M$，误差可以达到任意小。然而，对训练数据拟合得太好会导致过拟合，它会降低预测未来数据的效果。因此，存在一个最小话未来预测风险的最优$M^*$，它依赖于具体应用。估计$M^*$的一个方便方式是检测在验证样本上关于$M$的函数的预测风险。最小化风险的$M$值作为$M^*$的一个估计。这类似于经常用在神经网络中的早停(early stopping)策略（11.4节）。</p>
+<h2 id="_1">收缩<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>控制$M$的值并不是唯一正则化的策略。与岭回归和神经网络一样，也可以应用收缩策略（见3.4.1节和11.5节）。boosting中收缩最简单的实现方式是使用因子$0&lt;\nu&lt;1$来收缩每棵树的贡献。也就是，算法10.3的第2(d)行用下式代替</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
+f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\qquad (10.41)
 </script>
 </p>
-<p>采用任意可导损失准则的(10.29)的快速近似算法可以类比数值模拟导出。</p>
-<p>在训练数据上用$f(x)$来预测$y$的损失为</p>
-<p>
-<script type="math/tex; mode=display">
-L(f) = \sum\limits_{i=1}^NL(y_i, f(x_i))\qquad (10.33)
-</script>
-</p>
-<p>目标是最小化关于$f$的函数$L(f)$，其中$f(x)$限定为树的和，即
-<script type="math/tex; mode=display">
-f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
-</script>
-</p>
-<p>忽略这个限定，最小化(10.33)可以看成数值优化</p>
-<p>
-<script type="math/tex; mode=display">
-\hat{\mathbf f} = \text{arg }\underset{\mathbf f}{min}L(\mathbf f)\qquad (10.34)
-</script>
-</p>
-<p>其中参数$\mathbf f\in R^N$ 是在$N$个数据点$x_i$的近似的函数值$f(x_i)$：</p>
-<p>
-<script type="math/tex; mode=display">
-\mathbf f=\{f(x_1),f(x_2),\ldots,f(x_N)))\}^T
-</script>
-</p>
-<p>数值优化过程是将(10.34)看成向量的和来求解</p>
-<p>
-<script type="math/tex; mode=display">
-\mathbf f_M=\sum\limits_{m=1}^M\mathbf h_m,\qquad \mathbf h_m\in R^N
-</script>
-</p>
-<p>其中$\mathbf f_0=\mathbf h_0$是初识化的猜测，并且每个接下来的$\mathbf f_m$基于当前的参数向量$\mathbf f_{m-1}$来导出。<!--，而$\mathbf f_{m-1}$为此前已经更新的和。-->数值优化方法的区别在于它们采用不同的方法来计算每个增长向量$\mathbf h_m$。</p>
-<h2 id="_1">最速下降<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>最速下降选择$\mathbf h_m=-\rho_m \mathbf g_m$，其中$\rho_m$为标量值，$\mathbf g_m\in R^N$是在$\mathbf f=\mathbf f_{m-1}$取值的$L(\mathbf f)$的梯度。$\mathbf g_m$的组分为</p>
-<p>
-<script type="math/tex; mode=display">
-g_{im}=\Big[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \Big]_{f(x_i)=f_{m-1}(x_i)}\qquad (10.35)
-</script>
-</p>
-<p>步长$\rho_m$是下式的解
-<script type="math/tex; mode=display">
-\rho_m = \text{arg }\underset{\rho}{\text{min}}L(\mathbf f_{m-1}-\rho \mathbf g_m)\qquad (10.36)
-</script>
-当前的解则更新为</p>
-<p>
-<script type="math/tex; mode=display">
-\mathbf f_m = \mathbf f_{m-1}-\rho_m\mathbf g_m
-</script>
-</p>
-<p>这个过程一直重复直到下一次迭代。最速下降可以看成是非常贪婪的策略，因为$-\mathbf g_m$是$R^N$空间中$L(\mathbf f)$在$\mathbf f= \mathbf f_{m-1}$处最速下降的局部方向。</p>
-<h2 id="boosting">梯度boosting<a class="headerlink" href="#boosting" title="Permanent link">&para;</a></h2>
-<p>向前逐步boosting(算法10.2)也是非常贪婪的策略。每一步中，在给定当前模型$f_{m-1}$以及其拟合值$f_{m-1}(x_i)$下，得到的解是在最大程度上降低(10.29)的树。
-<script type="math/tex; mode=display">
-\hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
-</script>
-</p>
-<p>因此，树的预测值$T(x_i;\Theta_m)$与负梯度(10.35)的组分类似。本质区别在于树的组分$\mathbf t_m=\{T(x_1;\Theta_m),\ldots,T(x_N;\Theta_m)\}$ 不是独立的。它们限定为终止结点个数为$J_m$的树的预测值，然而负梯度是没有任何限制的最速下降方向。</p>
-<p>
-<script type="math/tex; mode=display">
-\hat \gamma_{jm}=\text{arg }\underset{\gamma_{jm}}{\text{min}}\sum\limits_{x_i\in R_{jm}}L(y_i,f_{m-1}(x_i)+\gamma_{jm})\qquad (10.30)
-</script>
-</p>
-<p>在向前逐步方法中(10.30)的解类比于在最速下降方向对(10.36)进行线搜索。区别在于(10.30)中对$\mathbf t_m$的组分进行单独的线搜索，这里的组分是对应每个单独的终止结点$\{T(x_i;\Theta_m)\}_{x_i\in R_{jm}}$，换句话说，就是对每个终止结点应用一次线搜索。</p>
-<p>如果在训练数据上最小化损失(10.33)是唯一的目标，则最速下降是更好的策略。梯度(10.35)对于任意可导的损失函数$L(y,f(x))$是很容易计算的，然而对于10.6节中讨论的鲁棒的准则来求解(10.29)是很困难的。很不幸的是梯度(10.35)仅仅在训练数据点$x_i$处有定义，然而最终的目标是将$f_M(x)$一般化到新数据，而不是仅仅是出现在训练集中的数据。</p>
-<p>解决这个困境的一种可能方案是在第$m$次迭代中构造$T(x;\Theta_m)$，其预测值$\mathbf t_m$与负梯度尽可能接近。采用平方误差来衡量近似程度，则有</p>
-<p>
-<script type="math/tex; mode=display">
-\hat\Theta_m = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{i=1}^N(-g_{im}-T(x_i;\Theta))^2\qquad (10.37)
-</script>
-</p>
-<p>也就是，用最小二乘对负梯度值(10.35)进行拟合。如10.9节提到的，对于最小二乘决策树生长(induction)存在快速算法。尽快(10.37)的解$\hat R_{jm}$会与求解(10.29)得到的$R_{jm}$不同，但一般而言它们已经足够近似来实现同样的目的。在任何情形下，向前逐步boosting过程，自上而下决策树生长(induction)，都是近似过程。当构造完树(10.37)，对应的每个区域的常数值由(10.30)给出。</p>
-<p>表10.2总结了通常使用的损失函数的梯度。对于平方误差损失，负梯度恰恰是普通的残差$-g_{im}=y_i-f_{m-1}(x_i)$，所以(10.37)等价于标准的最小二乘boosting。在绝对值损失下，负梯度为残差的符号，所以在每次迭代，(10.37)利用最小二乘对当前的残差的符号进行拟合。对于Huber M-回归，负梯度是这两者的综合（详见表10.2）。</p>
-<p><img alt="" src="../../img/10/tab10.2.png" /></p>
-<p>对于分类，损失函数是多项式偏差</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
-&=-\sum\limits_{k=1}^KI(y={\cal G_k})f_k(x)+\mathrm{log}(\sum\limits_{\ell=1}^Ke^{f_\ell(x)})
-\end{align}
-</script>
-</p>
-<p>并且在每次迭代过程中构造$K$个最小二乘树。每个树$T_{km}$是对各自负梯度向量$g_{km}$的拟合，</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
--g_{ikm} &= \Big[\frac{\partial L(y_i, f_1(x_i),\ldots, f_K(x_i))}{\partial f_k(x_i)}\Big]_{\mathbf f(x_i)=\mathbf f_{m-1}(x_i)}\\
-&=I(y_i=\cal G_k)-p_k(x_i)\qquad (10.38)
-\end{align}
-</script>
-</p>
-<p>其中$p_k(x)$由(10.21)给出。尽管在每次迭代时，构造$K$个独立的树，但是它们通过式(10.21)关联起来。</p>
-<p>
-<script type="math/tex; mode=display">
-p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\qquad (10.21)
-</script>
-</p>
-<p>对于二值分类($K=2$)，仅仅需要一棵树。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>对于二值分类，多项式偏差简单化为logit损失函数
-考虑
-<script type="math/tex; mode=display">
-z = logit(p) = log\frac{p}{1-p}
-</script>
-我们有$p=\frac{1}{1+e^{-z}}$，则二项分布似然函数为
-<script type="math/tex; mode=display">
-f=p^y(1-p)^{1-y},\; y=0,1
-</script>
-其负对数似然为
-<script type="math/tex; mode=display">
-L(p, y) = -log(f)=-(y\mathrm{log}p+(1-y)\mathrm{log}(1-p))
-</script>
-也称为logit损失函数。
-logit损失函数的负梯度为
-<script type="math/tex; mode=display">
--\frac{y-p}{p(1-p)}
-</script>
-</p>
+<p>参数$\nu$可以看成是控制boosting过程的学习速率。较小的$\nu$（更多的收缩）会导致同样大小的迭代次数$M$下更大的训练风险。因此，$\nu$和$M$都控制了训练数据的预测风险。然而，这些参数并不单独作用。对于同样的训练风险较小的$\nu$会导致较大的$M$，所以它们之间存在权衡。</p>
+<p>经验上，(Friedman, 2001<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)已经发现较小的$\nu$会得到更好的测试误差，并且需要更大的$M$与之对应。事实上，最好的策略是将$\nu$设得很小($\nu&lt;0.1$)，然后通过早停(early stopping)来选择$M$。这会给回归和概率估计带来重大的改善（与没有收缩时相比，$\nu=1$）。通过（10.20）式改善对应的误分类风险虽然很小，但是仍然显著。这个改善的代价是计算上的：较小的$\nu$得到较大的$M$，并且计算量与后者成比例。然而，将在下面看到，许多迭代的计算即使是在非常大的数据集上也是可行的。这部分也是因为在每一步生成的树是没有剪枝的。</p>
+<p><img alt="" src="../../img/10/fig10.11.png" /></p>
+<p>图10.11显示了图10.2的模拟例子(10.2)的测试误差曲线。梯度boosted模型(MART)通过采用二项偏差来训练，分stump和6个终止结点树的情况讨论，以及分有无收缩进行讨论。收缩的好处是很显然的，特别是当跟踪二项偏差时。有了收缩，每个测试误差曲线达到较低的值，并且在许多迭代中保持不变。</p>
+<p>16.2.1节将boosting的向前逐步收缩和为了正则化模型参数使用的$L_1$惩罚(lasso)联系起来。我们认为$L_1$惩罚可能会比用在一些方法（比如支持向量机）中的$L_2$惩罚要更好。</p>
+<h2 id="_2">子采样<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>我们在8.7节看到bootstrap averaging (bagging) 通过averaging提高了噪声分类器的表现效果。第15章详细讨论了通过平均实现的降低方差的机制。我们也可以在gradient boosting中采用这一方法，同时提高了效果和计算效率。</p>
+<p>采用stochastic gradient boosting (Friedman, 1999<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)，在每一步我们采样$\eta$倍的训练观测值（无放回），并且采用这种子采样来生成下一棵树。剩下的算法同样。一般可以取$\eta$为$\frac{1}{2}$，尽管对于大的$N$，$\eta$可以比$\frac{1}{2}$小很多。</p>
+<p>这种采样不仅仅降低了$\eta$倍的计算时间，在很多情况下也实际上得到了更精确的模型。</p>
+<p><img alt="" src="../../img/10/fig10.12.png" /></p>
+<p>图10.12说明了采用模拟例子(10.2)的子采样的效果，既可以看成是分类的例子，也可以看成是回归的例子。我们看到这两种情形下，采用收缩的的子采样比剩下的表现要好。似乎没有收缩的子采样会表现得很差。</p>
+<p>缺点是我们现在需要设置四个参数：$J,M,\nu$和$\eta$。一般地，通过前期的尝试确定合适的$J,\nu$和$\eta$，将$M$留作主要的参数。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Friedman, J. (2001). Greedy function approximation: A gradient boosting machine, Annals of Statistics 29(5): 1189–1232.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Friedman, J. (1999). Stochastic gradient boosting, Technical report, Stanford University.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
 </div>
-<p>将上述几种损失函数及其梯度用如下的Julia程序表达出来。</p>
-<script src="https://gist.github.com/szcf-weiya/cc6eaee677a027af5451f9fd17930543.js"></script>
-
-<h2 id="boosting_1">梯度boosting的实现<a class="headerlink" href="#boosting_1" title="Permanent link">&para;</a></h2>
-<p><img alt="" src="../../img/10/alg10.3.png" /></p>
-<p>上图中的算法10.3展示了用于回归的树的梯度boosting的通用算法。特定的算法可以通过插入不同的损失准则$L(y, f(x))$得到。算法第一行初始化为最优的常数模型，也就是单终止结点的树。第2(a)行的负梯度计算的组分被称为广义残差或伪残差，$r$。通常使用的损失函数的梯度已经总结在表10.2中。用于分类的算法是类似的。第2(a)-(d)行在第$m$次迭代重复$K$次，每次对每个类采用(10.38)计算负梯度。第3行的结果是$K$个不同的树的展开$f_{kM}(x), k=1,2,\ldots, K$。这通过(10.21)得到概率或者像(10.20)一样做分类。两个基本的调整参数为迭代次数$M$和每个组分树的大小$J_m,m=1,2\ldots,M$.</p>
-<p>这个算法原始实现称为MART，指的是“多重可加回归树(multiple additive regression trees)”。原书的这章中很多图是用MART得到的。这里描述的梯度boosting在R语言的gbm包中有实现(Ridgeway, 1999, “Gradient Boosted Models”)，可以免费使用。10.14.2节中用了<code>gbm</code>包，在第16章和第15章有详细介绍。另外，还有个boosting算法的R语言实现是<code>mboost</code>(Hothorn and Bühlmann, 2006)。有个梯度boosting/MART的商业实现称为TreeNet (Salford Systems, Inc.)</p>
                 
                   
                 
@@ -3151,7 +3049,7 @@ logit损失函数的负梯度为
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../10.9%20Boosting%20Trees/index.html" title="10.9 boosting树" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10.11%20Right-Sized%20Trees%20for%20Boosting/index.html" title="10.11 大小合适的boosting树" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3160,19 +3058,19 @@ logit损失函数的负梯度为
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                10.9 boosting树
+                10.11 大小合适的boosting树
               </span>
             </div>
           </a>
         
         
-          <a href="../10.11%20Right-Sized%20Trees%20for%20Boosting/index.html" title="10.11 大小合适的boosting树" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                10.11 大小合适的boosting树
+                文献笔记
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

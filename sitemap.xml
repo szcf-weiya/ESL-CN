@@ -560,79 +560,79 @@
           
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.1 Boosting Methods/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.1-Boosting-Methods/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.2 Boosting Fits an Additive Model/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.2-Boosting-Fits-an-Additive-Model/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.3 Forward Stagewise Additive Modeling/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.3-Forward-Stagewise-Additive-Modeling/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.4 Exponential Loss and AdaBoost/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.4-Exponential-Loss-and-AdaBoost/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.5 Why Exponential Loss/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.5-Why-Exponential-Loss/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.6 Loss Functions and Robustness/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.6 Loss Functions and Robustness/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.7 Off-the-Shelf Procedures for Data Mining/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.7 Off-the-Shelf Procedures for Data Mining/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.8 Spam Data/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.8 Spam Data/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.9 Boosting Trees/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.9 Boosting Trees/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.10 Numerical Optimization via Gradient Boosting/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.10 Numerical Optimization via Gradient Boosting/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.11 Right-Sized Trees for Boosting/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.11 Right-Sized Trees for Boosting/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.12 Regularization/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.12 Regularization/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/Bibliographic Notes/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/Bibliographic Notes/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>
@@ -1013,6 +1013,12 @@
             
               <url>
                <loc>https://esl.hohoweiya.xyz/notes/HighDim/sim18_1/index.html</loc>
+               <lastmod>2018-02-28</lastmod>
+               <changefreq>daily</changefreq>
+              </url>
+            
+              <url>
+               <loc>https://esl.hohoweiya.xyz/notes/boosting/sim-eq-10-2/index.html</loc>
                <lastmod>2018-02-28</lastmod>
                <changefreq>daily</changefreq>
               </url>

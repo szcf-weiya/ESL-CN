@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10 Boosting and Additive Trees/10.7 Off-the-Shelf Procedures for Data Mining/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.6 Loss Functions and Robustness/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>10.7 数据挖掘的现货方法 - ESL CN</title>
+        <title>10.6 损失函数和鲁棒性 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#107" tabindex="1" class="md-skip">
+      <a href="#106" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.7 数据挖掘的现货方法
+                10.6 损失函数和鲁棒性
               </span>
             
           
@@ -1708,7 +1708,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.1%20Boosting%20Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
+    <a href="../10.1-Boosting-Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
       10.1 boosting方法
     </a>
   </li>
@@ -1720,7 +1720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.2%20Boosting%20Fits%20an%20Additive%20Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
+    <a href="../10.2-Boosting-Fits-an-Additive-Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
       10.2 boosting拟合可加模型
     </a>
   </li>
@@ -1732,7 +1732,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.3%20Forward%20Stagewise%20Additive%20Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
+    <a href="../10.3-Forward-Stagewise-Additive-Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
       10.3 向前逐步加性建模
     </a>
   </li>
@@ -1744,7 +1744,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.4%20Exponential%20Loss%20and%20AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
+    <a href="../10.4-Exponential-Loss-and-AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
       10.4 指数损失和AdaBoost
     </a>
   </li>
@@ -1756,20 +1756,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.5%20Why%20Exponential%20Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
+    <a href="../10.5-Why-Exponential-Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
       10.5 为什么是指数损失
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../10.6%20Loss%20Functions%20and%20Robustness/index.html" title="10.6 损失函数和鲁棒性" class="md-nav__link">
-      10.6 损失函数和鲁棒性
     </a>
   </li>
 
@@ -1788,10 +1776,62 @@
       
     
     
-    <a href="index.html" title="10.7 数据挖掘的现货方法" class="md-nav__link md-nav__link--active">
-      10.7 数据挖掘的现货方法
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        10.6 损失函数和鲁棒性
+      </label>
+    
+    <a href="index.html" title="10.6 损失函数和鲁棒性" class="md-nav__link md-nav__link--active">
+      10.6 损失函数和鲁棒性
     </a>
     
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="鲁棒的分类损失函数" class="md-nav__link">
+    鲁棒的分类损失函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="鲁棒的回归损失函数" class="md-nav__link">
+    鲁棒的回归损失函数
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10.7%20Off-the-Shelf%20Procedures%20for%20Data%20Mining/index.html" title="10.7 数据挖掘的现货方法" class="md-nav__link">
+      10.7 数据挖掘的现货方法
+    </a>
   </li>
 
         
@@ -2803,6 +2843,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/sim-eq-10-2/index.html" title="模拟Eq. 10.2" class="md-nav__link">
+      模拟Eq. 10.2
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2878,6 +2930,33 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="鲁棒的分类损失函数" class="md-nav__link">
+    鲁棒的分类损失函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="鲁棒的回归损失函数" class="md-nav__link">
+    鲁棒的回归损失函数
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2889,7 +2968,7 @@
               
                 
                 
-                <h1 id="107">10.7 数据挖掘的现货方法<a class="headerlink" href="#107" title="Permanent link">&para;</a></h1>
+                <h1 id="106">10.6 损失函数和鲁棒性<a class="headerlink" href="#106" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2904,18 +2983,76 @@
 </tr>
 <tr>
 <td>时间</td>
+<td>2017-02-06</td>
+</tr>
+<tr>
+<td>更新</td>
 <td>2017-08-27</td>
 </tr>
 </tbody>
 </table>
-<p>预测学习(predictive learning)是数据挖掘中很重要的一部分。正如在这本书中看到的一样，发展了大量的方法用于对数据学习，进行预测。对于每个特定的方法，有些情形特别适用，但在其他情形表现得很差。作者已经试图在每个方法的讨论中明确合适的应用情形。然而，对于给定的问题，我们不会事先知道哪个过程表现得最好。表10.1总结了一些学习方法的特点。</p>
-<p><img alt="" src="../../img/10/tab10.1.png" /></p>
-<p>工业和商业数据挖掘应用在学习过程的要求往往特别具有挑战性。数据集在观测值的个数以及在每个观测值上衡量的变量个数往往都非常大。因此，需要注意计算上的考虑。并且，数据经常是混乱的(messy)：输入往往是定量，二值以及类别型变量的混合，而且类别型变量往往有很多层次。一般还会有许多缺失值，完整的观测值是很稀少的。预测变量和响应变量的分布经常是长尾并且高偏的。垃圾邮件的数据就是这种情形(9.12节)；当拟合一个广义可加模型，我们首先对每个预测变量进行对数变换以期得到合理的拟合。另外，它们通常会包含很大一部分的严重的误测量值(离群值)。预测变量通常在非常不同的尺度下进行测量。</p>
-<p>在数据挖掘应用中，通常只有大量预测变量中的一小部分真正与预测值相关的变量才被包含在分析中。另外，不同于很多应用的是，比如模式识别，很少有可信的专业知识来创建相关的特征，或者过滤掉不相关的， 这些不相关的特征显著降低了很多方法的效果。</p>
-<p>另外，数据挖掘应用一般需要可解释性的模型。简单地得到预测值是不够的。提供定性(qualitative)理解输入变量和预测的响应变量之间的关系的信息是迫切的。因此，黑箱方法(black box)，比如神经网络，在单纯的预测情形，比如模式识别中是很有用的，但在数据挖掘中不是很有用。</p>
-<p>这些速度、可解释性以及数据的混乱本性严重限制了许多学习过程作为数据挖掘的“现货”(off-the-shelf)方法。现货方法指的是可以直接应用到数据中而不需要大量时间进行数据预处理或者学习过程的精心调参。</p>
-<p>在所有的有名的学习方法中，决策树最能达到数据挖掘的现货方法的要求。它们相对很快得构造模型并且得到可解释的模型(如果树很小)。如9.2中讨论的，它们自然地包含数值型和类别型预测变量以及缺失值的混合。它们在对单个预测变量的(严格来说，是单调)的变换中保持不变。结果是，尺寸变换和（或）更一般的变换不是问题，并且它们不受预测变量中的离群值的影响。它们将中间的特征选择作为过程的积分过程。从而它们抑制(如果不是完全不受影响)包含许多不相关预测变量。 决策树的这些性质在很大程度上是它们成为数据挖掘中最受欢迎的学习方法的原因。</p>
-<p>有一个方面导致树称为预测学习的最理想的工具，那就是不够准确。它们很少达到那个将数据训练得最好的方法的准确性。正如在10.1节看到的，boosting决策树提高了它们的准确性，经常是显著提高。同时它保留着数据挖掘中所需要的性质。一些树的优势被boosting牺牲的是速度、可解释性，以及对于AdaBoost而言，对重叠类的鲁棒性，特别是训练数据的误分类。梯度boosted模型(GBM)是tree boosting的一般化，它试图减轻这些问题，以便为数据挖掘产生准确且有效的现货方法。</p>
+<p>在这一节我们进一步讨论用于分类和回归的损失函数的不同，并且根据它们对极端数据的鲁棒性来描述它们。</p>
+<h2 id="_1">鲁棒的分类损失函数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>
+<script type="math/tex; mode=display">
+L(y,f(x))=exp(-yf(x))\qquad (10.8)
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+-l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\qquad (10.18)
+</script>
+</p>
+<p>尽管指数损失(10.8)和二项偏差(10.18)当应用到总体的联合分布时会得到同样的解，但对于有限的数据集并不一样。两个准则都是“边缘(margin)”$yf(x)$的单调递减函数。在分类问题中（响应变量为-1/1），$yf(x)$与回归中的残差$y-f(x)$起着类似的作用。分类准则$G(x)=\mathrm{sign}[f(x)]$表明有正边缘$y_if(x_i)&gt;0$的观测被分类正确，而有负边缘$y_if(x_i)&lt;0$的观测被错误分类。判别边界定义为$f(x)=0$。分类算法的目标是得到尽可能频繁的正边缘。任何用于分类的损失标准应该惩罚负边缘比正边缘更重，因为正边缘的观测值已经被正确分类。</p>
+<p>图10.4显示了指数（10.8）和二项偏差的标准作为边缘$y\cdot f(x)$的函数。也显示了误分类损失$L(y,f(x))=I(y\cdot f(x)&lt;0)$，它给出了负边缘的单位惩罚，而对所有的正值没有惩罚。指数损失和二项偏差都可以看成是误分类损失的单调连续近似。它们不断地惩罚越来越大的负边际值，惩罚力度比它们回报越来越大的正边际值更重。它们的区别在于程度上。二项偏差的惩罚对于大的增加的负边缘线性增长，而指数标准对这样观测的影响指数增长。</p>
+<p><img alt="" src="../../img/10/fig10.4.png" /></p>
+<blockquote>
+<p>图10.4. 两个类别分类的损失函数。响应变量为$y=\pm 1$;预测值是$f$，类别的预测为$sign(f)$。错误分类的损失：$I(sign(f)\neq y)$;指数型：$exp(-yf)$;二项偏差:$log(1+exp(-2yf))$;平方误差:$(y-f)^2$;以及支持向量：$(1-yf)_+$(见12.3节)。每个函数已经进行了按照比例缩放使得过点(0,1)</p>
+</blockquote>
+<p>在训练过程的任一个时刻，指数标准对具有大的负边际的观测值上有更大的影响。二项偏差相对地在这些观测上影响较小，在所有数据上的影响分散更均匀。也因此在白噪声设定（贝叶斯误差率不接近于0）中更加鲁棒，特别在训练数据中存在误分类标签的情形中。在这些情形下，AdaBoost的表现从经验上看显著退化。</p>
+<p>图中也显示了平方误差损失。在总体上对应风险的最小值为
+<script type="math/tex; mode=display">
+f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid x}(Y-f(x))^2=E(Y\mid x)=2\cdot Pr(Y=1\mid x)-1\qquad (10.19)
+</script>
+</p>
+<p>和前面一样，分类的规则为$G(x)=sign[f(x)]$.平方误差损失不是误分类误差很好的表示。如图10.4所示，它不是关于增加的$yf(x)$的单调递减函数。对于边界值$y_if(x_i)&gt;1$平方增长，从而对正确分类为增加确定性的观测结果产生越来越大的影响（误差），从而降低了未正确分类的$y_if(x_i)&lt;0$的相对影响。因此，如果目标是类别划分，则单调下降的准则充当一个更好的损失函数。第12章p426的图2.4包括对平方损失的一个改动，“Huberized”平方铰链损失（Rosset等人，2004b）,结合了二项偏差、平方损失和SVM铰链损失优良的性质。它与平方损失（10.19）有相同的总体最小值，对于$y\cdot f(x)&gt;1$为0，对于$y\cdot f(x)&lt;-1$变成线性。因为二项函数比指数更容易计算，我们的经验表明这是二项偏差的一个有用替代。</p>
+<p>在$K$个类别的分类问题中，响应变量$Y$在无序集$\cal G=\{\cal G_1,\ldots,\cal G_k\}$。我们已经在$\cal G$中寻找到了一个分类器$G(x)$. 足以知道类别条件概率为$p_k(x)=Pr(Y={\cal G}_k\mid x),k=1,2,\ldots,K$，则贝叶斯分类器为
+<script type="math/tex; mode=display">
+G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\ell(x)\qquad (10.12)
+</script>
+尽管原则上我们不需要知道$p_k(x)$,只需要知道哪个最大。然而，在数据挖掘应用中，我们感兴趣的经常是类别概率$p_\ell(x),\ell=1,\ldots,K$本身，而不是进行类别划分。像在4.4节中那样，逻辑斯蒂回归可以很自然地推广到$K$个类别的情形，</p>
+<p>
+<script type="math/tex; mode=display">
+p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\qquad (10.21)
+</script>
+</p>
+<p>其中保证$0\le p_k(x)\le 1$且和为1.注意到这里我们有$K$个函数，每个类别一个函数。函数$f_k(x)$存在一个冗余，因为对每个加上任意函数$h(x)$不改变模型。传统地，其中一个设为0：举个例子，$f_K(x)=0$，就像（4.17）式一样。这里我们更喜欢保持对称性，而且加上约束条件$\sum_{k=1}^Kf_k(x)=0$。二项偏差自然地扩展到$K$个类别的多项式偏差损失函数：
+<script type="math/tex; mode=display">
+\begin{align}
+L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
+&=-\sum\limits_{k=1}^KI(y={\cal G_k})f_k(x)+\mathrm{log}(\sum\limits_{\ell=1}^Ke^{f_\ell(x)})\qquad (10.22)
+\end{align}
+</script>
+在两个类别的情形中，标准(10.22)对不正确预测的惩罚仅仅与不正确的程度是线性的。</p>
+<p>Zhu等人（2005）一般化了$K$类别问题的指数损失。更多细节见练习10.5.</p>
+<h2 id="_2">鲁棒的回归损失函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在回归问题中，类似指数损失和二项对数似然的关系是平方误差$L(y,f(x))=(y-f(x))^2$和绝对值损失$L(y,f(x))=\vert y-f(x)\vert$之间的关系。对于平方误差的总体解为$f(x)=E(Y\mid x)$,而对于绝对值损失的总体解为$f(x)=\mathrm{median}(Y\mid x)$;对于对称的误差分布这是一样的。然而，在有限样本上拟合过程中，平方误差损失更多地强调具有大的绝对值残差$\vert y_i-f(x_i)\vert$的观测值上。因此它更不鲁棒，而且它的表现对于长尾误差分布严重退化，特别是对于总体错误策略的$y$值（异常点）。其它更鲁棒的标准，比如绝对损失，在这些情形下表现得很好。在统计鲁棒性领域里，已经提出各种不同的回归损失标准，这些标准对总体异常点表现强烈的抵抗性（不是绝对的免疫），尽管这些异常点近似最小二乘的高斯误差。它们经常比任一适度的重尾的误差分布要好。其中一个这样的标准是用于$M$回归（Huber，1964）的Huber损失标准
+<script type="math/tex; mode=display">
+L(y,f(x))=
+\left\{
+  \begin{array}{ll}
+  [y-f(x)]^2&\text{for }\vert y-f(x)\vert \le\delta\\
+  2\delta(\vert y-f(x)\vert-\delta^2)&\text{otherwise}
+  \end{array}
+\right.
+\qquad (10.23)
+</script>
+图10.5比较了这三个损失函数。</p>
+<p><img alt="" src="../../img/10/fig10.5.png" /></p>
+<blockquote>
+<p>图10.5. 回归的三种损失函数的比较，画出作为边缘$y-f$的函数的图象。Huber损失函数结合了平方误差损失在0处和绝对误差损失当$\vert y-f\vert$很大时的优点</p>
+</blockquote>
+<p>这些考虑表明当考虑鲁棒性，特别是在数据挖掘的应用中（见10.7节），回归的平方误差损失和分类的指数损失从统计的角度来看不是最好的标准。然而，它们都得到向前逐步加性建模中优美的模块化boosting算法。对于平方误差损失，在每一步从当前模型的残差$y_i-f_{m-1}(x_i)$来拟合基学习器。对于指数损失，对输出值$y_i$进行加权的基本学习者拟合，权重系数为$w_i=exp(-y_if_{m-1}(x_i))$.直接采用一个更加鲁棒的标准并不能在可行的boosting算法上面得到提高。然而，在10.10.2节我们证明怎么从任意可微的损失标准得到简单优美的boosting算法，从而得到高鲁棒性的boosting过程来进行数据挖掘。</p>
                 
                   
                 
@@ -2947,7 +3084,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../10.6%20Loss%20Functions%20and%20Robustness/index.html" title="10.6 损失函数和鲁棒性" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10.5-Why-Exponential-Loss/index.html" title="10.5 为什么是指数损失" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2956,19 +3093,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                10.6 损失函数和鲁棒性
+                10.5 为什么是指数损失
               </span>
             </div>
           </a>
         
         
-          <a href="../10.8%20Spam%20Data/index.html" title="10.8 垃圾邮件的例子" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../10.7%20Off-the-Shelf%20Procedures%20for%20Data%20Mining/index.html" title="10.7 数据挖掘的现货方法" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                10.8 垃圾邮件的例子
+                10.7 数据挖掘的现货方法
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
