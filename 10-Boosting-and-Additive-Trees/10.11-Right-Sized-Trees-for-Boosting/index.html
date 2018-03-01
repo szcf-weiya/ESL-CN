@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.12 Regularization/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.11-Right-Sized-Trees-for-Boosting/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>10.12 正则化 - ESL CN</title>
+        <title>10.11 大小合适的boosting树 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#1012" tabindex="1" class="md-skip">
+      <a href="#1011-boosting" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.12 正则化
+                10.11 大小合适的boosting树
               </span>
             
           
@@ -1826,18 +1826,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../10.11%20Right-Sized%20Trees%20for%20Boosting/index.html" title="10.11 大小合适的boosting树" class="md-nav__link">
-      10.11 大小合适的boosting树
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -1848,49 +1836,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        10.12 正则化
-      </label>
-    
-    <a href="index.html" title="10.12 正则化" class="md-nav__link md-nav__link--active">
-      10.12 正则化
+    <a href="index.html" title="10.11 大小合适的boosting树" class="md-nav__link md-nav__link--active">
+      10.11 大小合适的boosting树
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="收缩" class="md-nav__link">
-    收缩
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="子采样" class="md-nav__link">
-    子采样
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -1901,7 +1849,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../10.12-Regularization/index.html" title="10.12 正则化" class="md-nav__link">
+      10.12 正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2942,33 +2902,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="收缩" class="md-nav__link">
-    收缩
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="子采样" class="md-nav__link">
-    子采样
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2980,7 +2913,7 @@
               
                 
                 
-                <h1 id="1012">10.12 正则化<a class="headerlink" href="#1012" title="Permanent link">&para;</a></h1>
+                <h1 id="1011-boosting">10.11 大小合适的boosting树<a class="headerlink" href="#1011-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2995,41 +2928,47 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-10-09    &amp;  2017-10-15 &amp; 2017-10-16</td>
+<td>2017-10-07 &amp; 2017-10-08  &amp;   2017-10-09</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>2018-03-01</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<p>除了候选树的大小$J$，梯度boosting的另一个元参数(meta-parameter)是boosting的迭代次数$M$。每一次迭代通常会降低训练风险$L(f_M)$，所以对于充分大的$M$，误差可以达到任意小。然而，对训练数据拟合得太好会导致过拟合，它会降低预测未来数据的效果。因此，存在一个最小话未来预测风险的最优$M^*$，它依赖于具体应用。估计$M^*$的一个方便方式是检测在验证样本上关于$M$的函数的预测风险。最小化风险的$M$值作为$M^*$的一个估计。这类似于经常用在神经网络中的早停(early stopping)策略（11.4节）。</p>
-<h2 id="_1">收缩<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>控制$M$的值并不是唯一正则化的策略。与岭回归和神经网络一样，也可以应用收缩策略（见3.4.1节和11.5节）。boosting中收缩最简单的实现方式是使用因子$0&lt;\nu&lt;1$来收缩每棵树的贡献。也就是，算法10.3的第2(d)行用下式代替</p>
+<p>曾经，boosting被认为是一种将模型结合起来(combing models)的技巧，在这里模型是树。同样地，生成树的算法可看成是产生用于boosting进行结合的模型的<strong>原型(primitive)</strong>。这种情形下，在生成树的时候以通常的方式分别估计每棵树的最优大小（9.2节）。首先诱导出非常大（过大的）的一棵树，接着应用自下而上的过程剪枝得到估计的最优终止结点个数的树。这种方式隐含地假设了每棵树是式(10.28)中的最后一棵。</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\qquad (10.41)
+f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
+</script>, 详见10.9节。</p>
+</div>
+<p>除了真正的最后一棵树，这显然是个很差的假设。结果导致树都趋向于很大，特别是前几步迭代中。这显著降低了模型的效果，并且增大了计算量。</p>
+<p>避免这个问题最简单的策略是将所有树限制为相同的大小， $J_m=J\forall m$。在每次迭代中，得到$J$个终止结点的回归树。因此$J$成为了整个boosting过程的<strong>元参数(meta-parameter)</strong>，根据手头上的数据来调整该参数以期最大化估计的效果。</p>
+<p>可以考虑下式的<strong>目标函数(target function)</strong>的性质来得到$J$的有用值</p>
+<p>
+<script type="math/tex; mode=display">
+\eta = \mathrm{arg }\;\underset{f}{\mathrm{min}} E_{XY}L(Y, f(X))\qquad (10.39)
 </script>
 </p>
-<p>参数$\nu$可以看成是控制boosting过程的学习速率。较小的$\nu$（更多的收缩）会导致同样大小的迭代次数$M$下更大的训练风险。因此，$\nu$和$M$都控制了训练数据的预测风险。然而，这些参数并不单独作用。对于同样的训练风险较小的$\nu$会导致较大的$M$，所以它们之间存在权衡。</p>
-<p>经验上，(Friedman, 2001<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)已经发现较小的$\nu$会得到更好的测试误差，并且需要更大的$M$与之对应。事实上，最好的策略是将$\nu$设得很小($\nu&lt;0.1$)，然后通过早停(early stopping)来选择$M$。这会给回归和概率估计带来重大的改善（与没有收缩时相比，$\nu=1$）。通过（10.20）式改善对应的误分类风险虽然很小，但是仍然显著。这个改善的代价是计算上的：较小的$\nu$得到较大的$M$，并且计算量与后者成比例。然而，将在下面看到，许多迭代的计算即使是在非常大的数据集上也是可行的。这部分也是因为在每一步生成的树是没有剪枝的。</p>
-<p><img alt="" src="../../img/10/fig10.11.png" /></p>
-<p>图10.11显示了图10.2的模拟例子(10.2)的测试误差曲线。梯度boosted模型(MART)通过采用二项偏差来训练，分stump和6个终止结点树的情况讨论，以及分有无收缩进行讨论。收缩的好处是很显然的，特别是当跟踪二项偏差时。有了收缩，每个测试误差曲线达到较低的值，并且在许多迭代中保持不变。</p>
-<p>16.2.1节将boosting的向前逐步收缩和为了正则化模型参数使用的$L_1$惩罚(lasso)联系起来。我们认为$L_1$惩罚可能会比用在一些方法（比如支持向量机）中的$L_2$惩罚要更好。</p>
-<h2 id="_2">子采样<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>我们在8.7节看到bootstrap averaging (bagging) 通过averaging提高了噪声分类器的表现效果。第15章详细讨论了通过平均实现的降低方差的机制。我们也可以在gradient boosting中采用这一方法，同时提高了效果和计算效率。</p>
-<p>采用stochastic gradient boosting (Friedman, 1999<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)，在每一步我们采样$\eta$倍的训练观测值（无放回），并且采用这种子采样来生成下一棵树。剩下的算法同样。一般可以取$\eta$为$\frac{1}{2}$，尽管对于大的$N$，$\eta$可以比$\frac{1}{2}$小很多。</p>
-<p>这种采样不仅仅降低了$\eta$倍的计算时间，在很多情况下也实际上得到了更精确的模型。</p>
-<p><img alt="" src="../../img/10/fig10.12.png" /></p>
-<p>图10.12说明了采用模拟例子(10.2)的子采样的效果，既可以看成是分类的例子，也可以看成是回归的例子。我们看到这两种情形下，采用收缩的的子采样比剩下的表现要好。似乎没有收缩的子采样会表现得很差。</p>
-<p>缺点是我们现在需要设置四个参数：$J,M,\nu$和$\eta$。一般地，通过前期的尝试确定合适的$J,\nu$和$\eta$，将$M$留作主要的参数。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Friedman, J. (2001). Greedy function approximation: A gradient boosting machine, Annals of Statistics 29(5): 1189–1232.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Friedman, J. (1999). Stochastic gradient boosting, Technical report, Stanford University.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<p>这里期望值是对$(X,Y)$的总体联合分布而言。目标函数$\eta(x)$是在未来数据上有最小预测风险的函数。这是我们试图近似的函数。</p>
+<p>$\eta(X)$一个相关的性质是坐标变量$X^T=(X_1,X_2,\ldots, X_p)$间交叉项的阶。这个可以通过它的ANOVA展开式得到</p>
+<p>
+<script type="math/tex; mode=display">
+\eta(X)=\sum\limits_{j}\eta_j(X_j)+\sum\limits_{jk}\eta_{jk}(X_j,X_k)+\sum\limits_{jkl}\eta_{jkl}(X_j,X_k, X_l)+\cdots\qquad (10.40)
+</script>
+</p>
+<p>式子(10.40)中的第一项是只有一个预测变量$X_j$的函数和。这些函数$\eta_j(X_j)$是在所采用的误差损失准则下联合起来最能近似$\eta(X)$的项。每一个$\eta_j(X_j)$称为$X_j$的主影响。式中第二项是那些加入到主影响中将$\eta(X)$拟合得最好的含两个变量的函数。这些函数被称为每个变量对$(X_j,X_k)$的二阶交叉项。式中第三项表示三阶交叉项，以此类推。对于许多实际的问题，低阶交叉影响占主要地位。如果模型得到强烈的高阶交叉影响，比如大型的决策树，则可能正确性不好。</p>
+<p>基于树的近似的交叉性阶数被树的大小$J$所限制。也就是，不存在大于$J-1$阶数的交叉项。因为(10.28)的boosted模型关于树是可加的，这个限制对于它也适用。$J=2$时（单个分割点的“decision stump”），则只能得到仅主影响的boosted模型，其中不允许有交叉项。当$J=3$时，可以允许有含两个变量的交叉项，以此类推。这表明选择的$J$值应该反映$\eta(x)$占优势的交叉项的阶数。当然这在一般情形下是未知的，但是在大部分情况下往往很低。</p>
+<p><img alt="" src="../../img/10/fig10.9.png" /></p>
+<p>图10.9说明了交叉项阶数（$J$的选择）在仿真例子(10.2)上的影响。生成函数是可加的（二次单项式的和），所以$J&gt;2$的boosting模型产生多余的方差，也因此更高的测试误差。图10.10比较了用真实函数构造的boosted stump的坐标函数。</p>
+<p><img alt="" src="../../img/10/fig10.10.png" /></p>
+<p>尽管在很多应用中，$J=2$是不够的，但也不太可能要求$J&gt;10$。经验表明$4\le J\le 8$在boosting的情况下会取得很好的效果，这个范围内的具体取值对结果的影响并不敏感。我们可以通过尝试不同的值，然后选择一个在验证样本上低风险的$J$值。然而，使用$J\simeq 6$并不能得到显著的改善。</p>
                 
                   
                 
@@ -3061,7 +3000,7 @@ f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\qquad (1
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../10.11%20Right-Sized%20Trees%20for%20Boosting/index.html" title="10.11 大小合适的boosting树" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10.10-Numerical-Optimization-via-Gradient-Boosting/index.html" title="10.10 Gradient Boosting的数值优化" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3070,19 +3009,19 @@ f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\qquad (1
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                10.11 大小合适的boosting树
+                10.10 Gradient Boosting的数值优化
               </span>
             </div>
           </a>
         
         
-          <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../10.12-Regularization/index.html" title="10.12 正则化" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                文献笔记
+                10.12 正则化
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
