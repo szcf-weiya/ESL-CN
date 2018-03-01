@@ -3062,7 +3062,8 @@ L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
 <p>详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/74">Issue 74: Ex. 10.5</a></p>
 </div>
 <h2 id="_2">鲁棒的回归损失函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>在回归问题中，类似指数损失和二项对数似然的关系是平方误差$L(y,f(x))=(y-f(x))^2$和绝对值损失$L(y,f(x))=\vert y-f(x)\vert$之间的关系。对于平方误差的总体解为$f(x)=E(Y\mid x)$,而对于绝对值损失的总体解为$f(x)=\mathrm{median}(Y\mid x)$;对于对称的误差分布这是一样的。然而，在有限样本上拟合过程中，平方误差损失更多地强调具有大的绝对值残差$\vert y_i-f(x_i)\vert$的观测值上。因此它更不鲁棒，而且它的表现对于长尾误差分布严重退化，特别是对于总体错误策略的$y$值（异常点）。其它更鲁棒的标准，比如绝对损失，在这些情形下表现得很好。在统计鲁棒性领域里，已经提出各种不同的回归损失标准，这些标准对总体异常点表现强烈的抵抗性（不是绝对的免疫），尽管这些异常点近似最小二乘的高斯误差。它们经常比任一适度的重尾的误差分布要好。其中一个这样的标准是用于$M$回归（Huber，1964）的Huber损失标准
+<p>在回归问题中，平方误差$L(y,f(x))=(y-f(x))^2$和绝对值损失$L(y,f(x))=\vert y-f(x)\vert$之间的关系类似指数损失和二项对数似然的关系。平方误差的总体解为$f(x)=E(Y\mid x)$，而绝对值损失的总体解为$f(x)=\mathrm{median}(Y\mid x)$；对于对称的误差分布这些是一样的。然而，在有限样本上拟合过程中，平方误差损失更多地强调具有大的绝对值残差$\vert y_i-f(x_i)\vert$的观测值上。因此它更不鲁棒，而且它的表现对于长尾误差分布严重退化，特别是对于总体错误测量的$y$值（异常点）。其它更鲁棒的标准，比如绝对损失，在这些情形下表现得很好。在统计鲁棒性领域里，已经提出各种不同的回归损失标准，这些标准对总体异常点表现强烈的抵抗性（不是绝对的免疫），尽管这些异常点近似最小二乘的高斯误差。它们经常比任一适度的重尾的误差分布要好。其中一个这样的标准是用于<strong>$M$回归</strong>(Huber，1964)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>的Huber损失标准</p>
+<p>
 <script type="math/tex; mode=display">
 L(y,f(x))=
 \left\{
@@ -3076,9 +3077,9 @@ L(y,f(x))=
 图10.5比较了这三个损失函数。</p>
 <p><img alt="" src="../../img/10/fig10.5.png" /></p>
 <blockquote>
-<p>图10.5. 回归的三种损失函数的比较，画出作为边缘$y-f$的函数的图象。Huber损失函数结合了平方误差损失在0处和绝对误差损失当$\vert y-f\vert$很大时的优点</p>
+<p>图10.5. 回归的三种损失函数的比较，画出作为边缘$y-f$的函数的图象。Huber损失函数结合了平方误差损失在0附近和绝对误差损失当$\vert y-f\vert$很大时的优点</p>
 </blockquote>
-<p>这些考虑表明当考虑鲁棒性，特别是在数据挖掘的应用中（见10.7节），回归的平方误差损失和分类的指数损失从统计的角度来看不是最好的标准。然而，它们都得到向前逐步加性建模中优美的模块化boosting算法。对于平方误差损失，在每一步从当前模型的残差$y_i-f_{m-1}(x_i)$来拟合基学习器。对于指数损失，对输出值$y_i$进行加权的基本学习者拟合，权重系数为$w_i=exp(-y_if_{m-1}(x_i))$.直接采用一个更加鲁棒的标准并不能在可行的boosting算法上面得到提高。然而，在10.10.2节我们证明怎么从任意可微的损失标准得到简单优美的boosting算法，从而得到高鲁棒性的boosting过程来进行数据挖掘。</p>
+<p>这些考虑表明当需要关注鲁棒性时，特别是在数据挖掘的应用中（见10.7节），回归的平方误差损失和分类的指数损失从统计的角度来看都不是最好的标准。然而，它们都得到向前逐步加性建模中优美的模块化boosting算法。对于平方误差损失，每一步从当前模型的残差$y_i-f_{m-1}(x_i)$来拟合基学习器。对于指数损失，对输出值$y_i$进行加权的基学习器拟合，权重系数为$w_i=exp(-y_if_{m-1}(x_i))$。直接采用一个更加鲁棒的标准并不能在可行的boosting算法上面得到提高。然而，在10.10.2节我们证明从任意可微的损失函数都可以得到简单优美的boosting算法，从而得到高鲁棒性的boosting过程来进行数据挖掘。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3087,6 +3088,9 @@ L(y,f(x))=
 </li>
 <li id="fn:2">
 <p>Zhu, J., Zou, H., Rosset, S. and Hastie, T. (2005). Multiclass adaboost, Unpublished. <a href="../../references/samme.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Huber, P. (1964). Robust estimation of a location parameter, Annals of Mathematical Statistics 53: 73–101.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
