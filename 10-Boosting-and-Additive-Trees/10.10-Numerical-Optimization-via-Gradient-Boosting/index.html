@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.10 Numerical Optimization via Gradient Boosting/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>10.10 利用梯度boosting的数值优化 - ESL CN</title>
+        <title>10.10 Gradient Boosting的数值优化 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#1010-boosting" tabindex="1" class="md-skip">
+      <a href="#1010-gradient-boosting" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.10 利用梯度boosting的数值优化
+                10.10 Gradient Boosting的数值优化
               </span>
             
           
@@ -1825,11 +1825,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        10.10 利用梯度boosting的数值优化
+        10.10 Gradient Boosting的数值优化
       </label>
     
-    <a href="index.html" title="10.10 利用梯度boosting的数值优化" class="md-nav__link md-nav__link--active">
-      10.10 利用梯度boosting的数值优化
+    <a href="index.html" title="10.10 Gradient Boosting的数值优化" class="md-nav__link md-nav__link--active">
+      10.10 Gradient Boosting的数值优化
     </a>
     
       
@@ -1850,15 +1850,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#boosting" title="梯度boosting" class="md-nav__link">
-    梯度boosting
+  <a href="#gradient-boosting" title="gradient boosting" class="md-nav__link">
+    gradient boosting
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#boosting_1" title="梯度boosting的实现" class="md-nav__link">
-    梯度boosting的实现
+  <a href="#gradient-boosting_1" title="gradient boosting的实现" class="md-nav__link">
+    gradient boosting的实现
   </a>
   
 </li>
@@ -2910,6 +2910,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/summary-loss-function/index.html" title="损失函数的梯度总结及Julia实现" class="md-nav__link">
+      损失函数的梯度总结及Julia实现
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2948,15 +2960,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#boosting" title="梯度boosting" class="md-nav__link">
-    梯度boosting
+  <a href="#gradient-boosting" title="gradient boosting" class="md-nav__link">
+    gradient boosting
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#boosting_1" title="梯度boosting的实现" class="md-nav__link">
-    梯度boosting的实现
+  <a href="#gradient-boosting_1" title="gradient boosting的实现" class="md-nav__link">
+    gradient boosting的实现
   </a>
   
 </li>
@@ -2982,7 +2994,7 @@
               
                 
                 
-                <h1 id="1010-boosting">10.10 利用梯度boosting进行数值优化<a class="headerlink" href="#1010-boosting" title="Permanent link">&para;</a></h1>
+                <h1 id="1010-gradient-boosting">10.10 Gradient Boosting的数值优化<a class="headerlink" href="#1010-gradient-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2999,32 +3011,47 @@
 <td>时间</td>
 <td>2017-08-27</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-03-01</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
 </script>
 </p>
-<p>采用任意可导损失准则的(10.29)的快速近似算法可以类比数值模拟导出。</p>
+</div>
+<p>采用任意可导损失准则的(10.29)的快速近似算法可以类比数值优化导出。</p>
 <p>在训练数据上用$f(x)$来预测$y$的损失为</p>
 <p>
 <script type="math/tex; mode=display">
 L(f) = \sum\limits_{i=1}^NL(y_i, f(x_i))\qquad (10.33)
 </script>
 </p>
-<p>目标是最小化关于$f$的函数$L(f)$，其中$f(x)$限定为树的和，即
+<p>目标是最小化关于$f$的函数$L(f)$，其中$f(x)$限定为树的和(10.28)，</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
 <script type="math/tex; mode=display">
 f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
 </script>
 </p>
+</div>
 <p>忽略这个限定，最小化(10.33)可以看成数值优化</p>
 <p>
 <script type="math/tex; mode=display">
-\hat{\mathbf f} = \text{arg }\underset{\mathbf f}{min}L(\mathbf f)\qquad (10.34)
+\hat{\mathbf f} = \text{arg }\underset{\mathbf f}{\min}L(\mathbf f)\qquad (10.34)
 </script>
 </p>
-<p>其中参数$\mathbf f\in R^N$ 是在$N$个数据点$x_i$的近似的函数值$f(x_i)$：</p>
+<p>其中参数$\mathbf f\in \IR^N$ 是在$N$个数据点$x_i$的近似的函数值$f(x_i)$：</p>
 <p>
 <script type="math/tex; mode=display">
 \mathbf f=\{f(x_1),f(x_2),\ldots,f(x_N)))\}^T
@@ -3033,18 +3060,18 @@ f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
 <p>数值优化过程是将(10.34)看成向量的和来求解</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf f_M=\sum\limits_{m=1}^M\mathbf h_m,\qquad \mathbf h_m\in R^N
+\mathbf f_M=\sum\limits_{m=1}^M\mathbf h_m,\qquad \mathbf h_m\in \IR^N
 </script>
 </p>
 <p>其中$\mathbf f_0=\mathbf h_0$是初识化的猜测，并且每个接下来的$\mathbf f_m$基于当前的参数向量$\mathbf f_{m-1}$来导出。<!--，而$\mathbf f_{m-1}$为此前已经更新的和。-->数值优化方法的区别在于它们采用不同的方法来计算每个增长向量$\mathbf h_m$。</p>
 <h2 id="_1">最速下降<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>最速下降选择$\mathbf h_m=-\rho_m \mathbf g_m$，其中$\rho_m$为标量值，$\mathbf g_m\in R^N$是在$\mathbf f=\mathbf f_{m-1}$取值的$L(\mathbf f)$的梯度。$\mathbf g_m$的组分为</p>
+<p><strong>最速下降(steepest descent)</strong>选择$\mathbf h_m=-\rho_m \mathbf g_m$，其中$\rho_m$为标量值，$\mathbf g_m\in R^N$是在$\mathbf f=\mathbf f_{m-1}$取值的$L(\mathbf f)$的梯度。$\mathbf g_m$的组分为</p>
 <p>
 <script type="math/tex; mode=display">
 g_{im}=\Big[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \Big]_{f(x_i)=f_{m-1}(x_i)}\qquad (10.35)
 </script>
 </p>
-<p>步长$\rho_m$是下式的解
+<p><strong>步长(step length)</strong>$\rho_m$是下式的解
 <script type="math/tex; mode=display">
 \rho_m = \text{arg }\underset{\rho}{\text{min}}L(\mathbf f_{m-1}-\rho \mathbf g_m)\qquad (10.36)
 </script>
@@ -3054,20 +3081,27 @@ g_{im}=\Big[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \Big]_{f(x_i)=f_{m-1
 \mathbf f_m = \mathbf f_{m-1}-\rho_m\mathbf g_m
 </script>
 </p>
-<p>这个过程一直重复直到下一次迭代。最速下降可以看成是非常贪婪的策略，因为$-\mathbf g_m$是$R^N$空间中$L(\mathbf f)$在$\mathbf f= \mathbf f_{m-1}$处最速下降的局部方向。</p>
-<h2 id="boosting">梯度boosting<a class="headerlink" href="#boosting" title="Permanent link">&para;</a></h2>
-<p>向前逐步boosting(算法10.2)也是非常贪婪的策略。每一步中，在给定当前模型$f_{m-1}$以及其拟合值$f_{m-1}(x_i)$下，得到的解是在最大程度上降低(10.29)的树。
+<p>这个过程一直重复直到下一次迭代。最速下降可以看成是非常贪婪的策略，因为$-\mathbf g_m$是$\IR^N$空间中$L(\mathbf f)$在$\mathbf f= \mathbf f_{m-1}$处最速下降的局部方向。</p>
+<h2 id="gradient-boosting">gradient boosting<a class="headerlink" href="#gradient-boosting" title="Permanent link">&para;</a></h2>
+<p><strong>Forward stagewise boosting</strong>（算法10.2）也是非常贪婪的策略。每一步中，在给定当前模型$f_{m-1}$以及其拟合值$f_{m-1}(x_i)$下，得到的解是在最大程度上降低(10.29)的树。</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
 <script type="math/tex; mode=display">
 \hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
 </script>
 </p>
+</div>
 <p>因此，树的预测值$T(x_i;\Theta_m)$与负梯度(10.35)的组分类似。本质区别在于树的组分$\mathbf t_m=\{T(x_1;\Theta_m),\ldots,T(x_N;\Theta_m)\}$ 不是独立的。它们限定为终止结点个数为$J_m$的树的预测值，然而负梯度是没有任何限制的最速下降方向。</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
 \hat \gamma_{jm}=\text{arg }\underset{\gamma_{jm}}{\text{min}}\sum\limits_{x_i\in R_{jm}}L(y_i,f_{m-1}(x_i)+\gamma_{jm})\qquad (10.30)
 </script>
 </p>
-<p>在向前逐步方法中(10.30)的解类比于在最速下降方向对(10.36)进行线搜索。区别在于(10.30)中对$\mathbf t_m$的组分进行单独的线搜索，这里的组分是对应每个单独的终止结点$\{T(x_i;\Theta_m)\}_{x_i\in R_{jm}}$，换句话说，就是对每个终止结点应用一次线搜索。</p>
+</div>
+<p>向前逐步方法中(10.30)的解类似于在最速下降方向对(10.36)进行<strong>线搜索(line search)</strong>。区别在于(10.30)中对$\mathbf t_m$的组分进行单独的线搜索，这里的组分是对应每个单独的终止结点$\{T(x_i;\Theta_m)\}_{x_i\in R_{jm}}$，换句话说，就是对每个终止结点应用一次线搜索。</p>
 <p>如果在训练数据上最小化损失(10.33)是唯一的目标，则最速下降是更好的策略。梯度(10.35)对于任意可导的损失函数$L(y,f(x))$是很容易计算的，然而对于10.6节中讨论的鲁棒的准则来求解(10.29)是很困难的。很不幸的是梯度(10.35)仅仅在训练数据点$x_i$处有定义，然而最终的目标是将$f_M(x)$一般化到新数据，而不是仅仅是出现在训练集中的数据。</p>
 <p>解决这个困境的一种可能方案是在第$m$次迭代中构造$T(x;\Theta_m)$，其预测值$\mathbf t_m$与负梯度尽可能接近。采用平方误差来衡量近似程度，则有</p>
 <p>
@@ -3075,10 +3109,10 @@ g_{im}=\Big[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \Big]_{f(x_i)=f_{m-1
 \hat\Theta_m = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{i=1}^N(-g_{im}-T(x_i;\Theta))^2\qquad (10.37)
 </script>
 </p>
-<p>也就是，用最小二乘对负梯度值(10.35)进行拟合。如10.9节提到的，对于最小二乘决策树生长(induction)存在快速算法。尽快(10.37)的解$\hat R_{jm}$会与求解(10.29)得到的$R_{jm}$不同，但一般而言它们已经足够近似来实现同样的目的。在任何情形下，向前逐步boosting过程，自上而下决策树生长(induction)，都是近似过程。当构造完树(10.37)，对应的每个区域的常数值由(10.30)给出。</p>
+<p>也就是，用最小二乘对负梯度值(10.35)进行拟合。如10.9节提到的，对于最小二乘决策树生长(induction)存在快速算法。尽管(10.37)的解$\hat R_{jm}$会与求解(10.29)得到的$R_{jm}$不同，但一般而言它们已经足够近似来实现同样的目的。在任何情形下，向前逐步boosting过程，自上而下决策树生长(induction)，都是近似过程。当构造完树(10.37)，对应的每个区域的常数值由(10.30)给出。</p>
 <p>表10.2总结了通常使用的损失函数的梯度。对于平方误差损失，负梯度恰恰是普通的残差$-g_{im}=y_i-f_{m-1}(x_i)$，所以(10.37)等价于标准的最小二乘boosting。在绝对值损失下，负梯度为残差的符号，所以在每次迭代，(10.37)利用最小二乘对当前的残差的符号进行拟合。对于Huber M-回归，负梯度是这两者的综合（详见表10.2）。</p>
 <p><img alt="" src="../../img/10/tab10.2.png" /></p>
-<p>对于分类，损失函数是多项式偏差</p>
+<p>对于分类，损失函数是多项偏差</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3092,7 +3126,7 @@ L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
 <script type="math/tex; mode=display">
 \begin{align}
 -g_{ikm} &= \Big[\frac{\partial L(y_i, f_1(x_i),\ldots, f_K(x_i))}{\partial f_k(x_i)}\Big]_{\mathbf f(x_i)=\mathbf f_{m-1}(x_i)}\\
-&=I(y_i=\cal G_k)-p_k(x_i)\qquad (10.38)
+&=I(y_i={\cal G_k})-p_k(x_i)\qquad (10.38)
 \end{align}
 </script>
 </p>
@@ -3125,13 +3159,32 @@ logit损失函数的负梯度为
 </script>
 </p>
 </div>
-<p>将上述几种损失函数及其梯度用如下的Julia程序表达出来。</p>
-<script src="https://gist.github.com/szcf-weiya/cc6eaee677a027af5451f9fd17930543.js"></script>
+<!--
+将上述几种损失函数及其梯度用如下的Julia程序表达出来。
 
-<h2 id="boosting_1">梯度boosting的实现<a class="headerlink" href="#boosting_1" title="Permanent link">&para;</a></h2>
+<script src="https://gist.github.com/szcf-weiya/cc6eaee677a027af5451f9fd17930543.js"></script>
+-->
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>笔记<a href="../../notes/boosting/summary-loss-function/index.html">损失函数的梯度总结及Julia实现</a>用Julia表达了表10.2中的各个损失函数及其梯度。</p>
+</div>
+<h2 id="gradient-boosting_1">gradient boosting的实现<a class="headerlink" href="#gradient-boosting_1" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../../img/10/alg10.3.png" /></p>
-<p>上图中的算法10.3展示了用于回归的树的梯度boosting的通用算法。特定的算法可以通过插入不同的损失准则$L(y, f(x))$得到。算法第一行初始化为最优的常数模型，也就是单终止结点的树。第2(a)行的负梯度计算的组分被称为广义残差或伪残差，$r$。通常使用的损失函数的梯度已经总结在表10.2中。用于分类的算法是类似的。第2(a)-(d)行在第$m$次迭代重复$K$次，每次对每个类采用(10.38)计算负梯度。第3行的结果是$K$个不同的树的展开$f_{kM}(x), k=1,2,\ldots, K$。这通过(10.21)得到概率或者像(10.20)一样做分类。两个基本的调整参数为迭代次数$M$和每个组分树的大小$J_m,m=1,2\ldots,M$.</p>
-<p>这个算法原始实现称为MART，指的是“多重可加回归树(multiple additive regression trees)”。原书的这章中很多图是用MART得到的。这里描述的梯度boosting在R语言的gbm包中有实现(Ridgeway, 1999, “Gradient Boosted Models”)，可以免费使用。10.14.2节中用了<code>gbm</code>包，在第16章和第15章有详细介绍。另外，还有个boosting算法的R语言实现是<code>mboost</code>(Hothorn and Bühlmann, 2006)。有个梯度boosting/MART的商业实现称为TreeNet (Salford Systems, Inc.)</p>
+<p>上图中的算法10.3展示了用于回归的<strong>gradient tree-boosting</strong>的通用算法。特定的算法可以通过插入不同的损失准则$L(y, f(x))$得到。算法第一行初始化为最优的常数模型，也就是单终止结点的树。第2(a)行的负梯度计算的组分被称为广义残差或<strong>伪残差(pseudo residuals)</strong>，$r$。通常使用的损失函数的梯度已经总结在表10.2中。</p>
+<p>用于分类的算法是类似的。第2(a)-(d)行每次迭代时重复$K$次，每次对每个类用(10.38)计算负梯度。第3行的结果是$K$个不同的树的展开$f_{kM}(x), k=1,2,\ldots, K$。这通过(10.21)得到概率或者像(10.20)一样做分类。细节在<a href="https://github.com/szcf-weiya/ESL-CN/issues/76">练习10.9</a>中给出，两个基本的调整参数为迭代次数$M$和每个组分树的大小$J_m,m=1,2\ldots,M$.</p>
+<p>这个算法原始实现称为MART，指的是“<strong>多重可加回归树(multiple additive regression trees)</strong>”。这章中很多图是用MART得到的。这里描述的<strong>gradient boosting</strong>在<code>R</code>语言的<code>gbm</code>包中有实现(Ridgeway, 1999<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>, “Gradient Boosted Models”)，可以免费使用。10.14.2节中用了<code>gbm</code>包，在第16章和第15章有详细介绍。另外，还有个boosting算法的<code>R</code>语言实现是<code>mboost</code>(Hothorn and Bühlmann, 2006<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)。有个gradient boosting/MART的商业实现称为TreeNet (Salford Systems, Inc.)</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Ridgeway, G. (1999). The state of boosting, Computing Science and Statistics 31: 172–181.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Hothorn, T. and B¨uhlmann, P. (2006). Model-based boosting in high dimensions, Bioinformatics 22(22): 2828–2829.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 

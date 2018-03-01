@@ -614,7 +614,7 @@
               </url>
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.10 Numerical Optimization via Gradient Boosting/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting/index.html</loc>
                <lastmod>2018-03-01</lastmod>
                <changefreq>daily</changefreq>
               </url>
@@ -1035,6 +1035,12 @@
             
               <url>
                <loc>https://esl.hohoweiya.xyz/notes/SVM/e1071/index.html</loc>
+               <lastmod>2018-03-01</lastmod>
+               <changefreq>daily</changefreq>
+              </url>
+            
+              <url>
+               <loc>https://esl.hohoweiya.xyz/notes/boosting/summary-loss-function/index.html</loc>
                <lastmod>2018-03-01</lastmod>
                <changefreq>daily</changefreq>
               </url>
