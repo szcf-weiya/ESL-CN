@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.9 Boosting Trees/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.9-Boosting-Trees/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -1792,7 +1792,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.8%20Spam%20Data/index.html" title="10.8 垃圾邮件的例子" class="md-nav__link">
+    <a href="../10.8-Spam-Data/index.html" title="10.8 垃圾邮件的例子" class="md-nav__link">
       10.8 垃圾邮件的例子
     </a>
   </li>
@@ -2918,9 +2918,17 @@
 <td>时间</td>
 <td>2017-08-27</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-03-01</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>In Progress</td>
+</tr>
 </tbody>
 </table>
-<p>回归和分类树在第9.2节已经详细讨论了。它们将所有联合预测变量的空间划分为分类的区域$R_j,j=1,2,\ldots,J$，这些区域用树的终止结点表示。常数值$\gamma_j$赋予到每个区域中，预测规则为</p>
+<p>回归和分类树在第9.2节已经详细讨论了。它们将所有联合预测变量的空间划分为不相交的区域$R_j,j=1,2,\ldots,J$，这些区域用树的终止结点表示。常数值$\gamma_j$赋予到每个区域中，预测规则为</p>
 <p>
 <script type="math/tex; mode=display">
 x\in R_j\Rightarrow f(x) = \gamma_j
@@ -2932,7 +2940,7 @@ x\in R_j\Rightarrow f(x) = \gamma_j
 T(x;\Theta)=\sum\limits_{j=1}^J\gamma_jI(x\in R_j)\qquad (10.25)
 </script>
 </p>
-<p>其中参数为$\Theta={R_j,\gamma_j}_1^J$。$J$通常看成是元参数。通过最小化经验风险来确定
+<p>其中参数为$\Theta=\{R_j,\gamma_j\}_1^J$。$J$通常看成是元参数。通过最小化<strong>经验风险(empirical risk)</strong>来确定
 <script type="math/tex; mode=display">
 \hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{j=1}^J\sum\limits_{x_i\in R_j}L(y_i,\gamma_j)\qquad (10.26)
 </script>
@@ -2940,7 +2948,7 @@ T(x;\Theta)=\sum\limits_{j=1}^J\gamma_jI(x\in R_j)\qquad (10.25)
 <p>这是个艰巨的组合优化问题，我们通常去寻求近似次优解。将该优化问题分成两个部分是很有用的：</p>
 <ol>
 <li><strong>给定$R_j$求$\gamma_j$:</strong> 给定$R_j$，估计$\gamma_j$是小菜一碟，而且通常有$\hat\gamma_j=\bar y_j$，是那些落在区域$R_j$的$y_i$的均值。对于误分类损失，$\gamma_j$是落在区域$R_j$的观测值的modal class.</li>
-<li><strong>求R_j:</strong> 对于求近似解，这是很困难的一部分。注意到寻找$R_j$意味着也估计$\gamma_j$。一个典型的策略是使用贪婪的，自上而下的递归划分算法来寻找$R_j$。另外，为了优化$R_j$，有时也需要通过一个更光滑以及更方便的准则来近似(10.26):
+<li><strong>求$R_j$:</strong> 对于求近似解，这是很困难的一部分。注意到寻找$R_j$意味着也估计$\gamma_j$。一个典型的策略是使用贪婪的，自上而下的递归划分算法来寻找$R_j$。另外，为了优化$R_j$，有时也需要通过一个更光滑以及更方便的准则来近似(10.26):
 <script type="math/tex; mode=display">
 \hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{i=1}^N\tilde L(y_i,T(x_i,\Theta))\qquad (10.27)
 </script>
@@ -2953,7 +2961,7 @@ T(x;\Theta)=\sum\limits_{j=1}^J\gamma_jI(x\in R_j)\qquad (10.25)
 f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
 </script>
 </p>
-<p>以向前逐步的方式导出(算法10.2)。在向前逐步过程中的每一步, 给定当前树模型$f_{m-1}(x)$，求出下一棵树的区域和常数$\Theta_m=\{R_{jm},\gamma_{jm}\}^{J_m}_1$需要求解
+<p>以向前逐步的方式导出（算法10.2）。在向前逐步过程中的每一步, 给定当前树模型$f_{m-1}(x)$，求出下一棵树的区域和常数$\Theta_m=\{R_{jm},\gamma_{jm}\}^{J_m}_1$需要求解
 <script type="math/tex; mode=display">
 \hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\qquad (10.29)
 </script>
@@ -2997,7 +3005,7 @@ f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\qquad (10.28)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../10.8%20Spam%20Data/index.html" title="10.8 垃圾邮件的例子" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10.8-Spam-Data/index.html" title="10.8 垃圾邮件的例子" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
