@@ -108,12 +108,12 @@ pages:
       - 10.5 为什么是指数损失: '10-Boosting-and-Additive-Trees/10.5-Why-Exponential-Loss.md'
       - 10.6 损失函数和鲁棒性: '10-Boosting-and-Additive-Trees/10.6-Loss-Functions-and-Robustness.md'
       - 10.7 数据挖掘的现货方法: '10-Boosting-and-Additive-Trees/10.7-Off-the-Shelf-Procedures-for-Data-Mining.md'
-      - 10.8 垃圾邮件的例子: '10-Boosting-and-Additive-Trees/10.8 Spam Data.md'
-      - 10.9 boosting树: '10-Boosting-and-Additive-Trees/10.9 Boosting Trees.md'
-      - 10.10 利用梯度boosting的数值优化: '10-Boosting-and-Additive-Trees/10.10 Numerical Optimization via Gradient Boosting.md'
-      - 10.11 大小合适的boosting树: '10-Boosting-and-Additive-Trees/10.11 Right-Sized Trees for Boosting.md'
-      - 10.12 正则化: '10-Boosting-and-Additive-Trees/10.12 Regularization.md'
-      - 文献笔记: '10-Boosting-and-Additive-Trees/Bibliographic Notes.md'
+      - 10.8 垃圾邮件的例子: '10-Boosting-and-Additive-Trees/10.8-Spam-Data.md'
+      - 10.9 boosting树: '10-Boosting-and-Additive-Trees/10.9-Boosting-Trees.md'
+      - 10.10 Gradient Boosting的数值优化: '10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting.md'
+      - 10.11 大小合适的boosting树: '10-Boosting-and-Additive-Trees/10.11-Right-Sized-Trees-for-Boosting.md'
+      - 10.12 正则化: '10-Boosting-and-Additive-Trees/10.12-Regularization.md'
+      - 文献笔记: '10-Boosting-and-Additive-Trees/Bibliographic-Notes.md'
 
     - 11 神经网络:
       - 11.1 导言: '11 Neural Networks/11.1 Introduction.md'
@@ -126,10 +126,10 @@ pages:
       - 文献笔记: '11 Neural Networks/Bibliographic Notes.md'
 
     - 12 支持向量机和灵活的判别方法:
-      - 12.1 导言: '12 Support Vector Machines and Flexible Discriminants/12.1 Introduction.md'
-      - 12.2 支持向量分类器: '12 Support Vector Machines and Flexible Discriminants/12.2 The Support Vector Classifier.md'
-      - 12.3 支持向量机和核: '12 Support Vector Machines and Flexible Discriminants/12.3 Support Vector Machines and Kernels.md'
-      - 文献笔记: '12 Support Vector Machines and Flexible Discriminants/Bibliographic Notes.md'
+      - 12.1 导言: '12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction.md'
+      - 12.2 支持向量分类器: '12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier.md'
+      - 12.3 支持向量机和核: '12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels.md'
+      - 文献笔记: '12-Support-Vector-Machines-and-Flexible-Discriminants/Bibliographic-Notes.md'
 
   - 下篇:
     - 13 原型方法和最近邻:
@@ -194,6 +194,7 @@ pages:
     - 比较总结:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
       - SVM处理线性和非线性类别边界: 'notes/SVM/e1071.md'
+      - 损失函数的梯度总结及Julia实现: 'notes/boosting/summary-loss-function.md'
 
 
 site_name: 'ESL CN'
