@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/12 Support Vector Machines and Flexible Discriminants/12.3 Support Vector Machines and Kernels/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>12.3 支持向量机和核 - ESL CN</title>
+        <title>12.2 支持向量分类器 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#123" tabindex="1" class="md-skip">
+      <a href="#122" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                12.3 支持向量机和核
+                12.2 支持向量分类器
               </span>
             
           
@@ -2008,20 +2008,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../12.1%20Introduction/index.html" title="12.1 导言" class="md-nav__link">
+    <a href="../12.1-Introduction/index.html" title="12.1 导言" class="md-nav__link">
       12.1 导言
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../12.2%20The%20Support%20Vector%20Classifier/index.html" title="12.2 支持向量分类器" class="md-nav__link">
-      12.2 支持向量分类器
     </a>
   </li>
 
@@ -2041,11 +2029,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        12.3 支持向量机和核
+        12.2 支持向量分类器
       </label>
     
-    <a href="index.html" title="12.3 支持向量机和核" class="md-nav__link md-nav__link--active">
-      12.3 支持向量机和核
+    <a href="index.html" title="12.2 支持向量分类器" class="md-nav__link md-nav__link--active">
+      12.2 支持向量分类器
     </a>
     
       
@@ -2059,57 +2047,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#svm" title="用于分类的SVM" class="md-nav__link">
-    用于分类的SVM
+  <a href="#_1" title="计算支持向量分类器" class="md-nav__link">
+    计算支持向量分类器
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#svm_1" title="SVM作为惩罚的方法" class="md-nav__link">
-    SVM作为惩罚的方法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="函数估计和重生核" class="md-nav__link">
-    函数估计和重生核
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#svm_2" title="SVM和维数灾难" class="md-nav__link">
-    SVM和维数灾难
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#svm_3" title="SVM分类器的路径算法" class="md-nav__link">
-    SVM分类器的路径算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="用于回归的支持向量机" class="md-nav__link">
-    用于回归的支持向量机
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="回归和核" class="md-nav__link">
-    回归和核
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="讨论" class="md-nav__link">
-    讨论
+  <a href="#_2" title="混合例子（继续）" class="md-nav__link">
+    混合例子（继续）
   </a>
   
 </li>
@@ -2135,7 +2081,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../12.3-Support-Vector-Machines-and-Kernels/index.html" title="12.3 支持向量机和核" class="md-nav__link">
+      12.3 支持向量机和核
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2988,57 +2946,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#svm" title="用于分类的SVM" class="md-nav__link">
-    用于分类的SVM
+  <a href="#_1" title="计算支持向量分类器" class="md-nav__link">
+    计算支持向量分类器
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#svm_1" title="SVM作为惩罚的方法" class="md-nav__link">
-    SVM作为惩罚的方法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="函数估计和重生核" class="md-nav__link">
-    函数估计和重生核
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#svm_2" title="SVM和维数灾难" class="md-nav__link">
-    SVM和维数灾难
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#svm_3" title="SVM分类器的路径算法" class="md-nav__link">
-    SVM分类器的路径算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="用于回归的支持向量机" class="md-nav__link">
-    用于回归的支持向量机
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="回归和核" class="md-nav__link">
-    回归和核
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="讨论" class="md-nav__link">
-    讨论
+  <a href="#_2" title="混合例子（继续）" class="md-nav__link">
+    混合例子（继续）
   </a>
   
 </li>
@@ -3064,7 +2980,7 @@
               
                 
                 
-                <h1 id="123">12.3 支持向量机和核<a class="headerlink" href="#123" title="Permanent link">&para;</a></h1>
+                <h1 id="122">12.2 支持向量分类器<a class="headerlink" href="#122" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3083,251 +2999,202 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017.12.12; 2017.12.18; 2018.02.12; 2018.02.13</td>
+<td>2017.10.15; 2018.02.12</td>
 </tr>
 <tr>
 <td>状态</td>
-<td>In Progress</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<p>至今所描述的支持向量机是在输入特征空间中寻找线性边界。和其他的线性方法一样，我们可以用基展开的方式来增大特征空间，从而让这一过程更灵活，如多项式或者样条（第5章）。一般地，在增长的空间的线性边界能够达到更好的训练类别分割的效果，进而转换为原始空间中的非线性边界。一旦选定基函数$h_m(x),m=1,\ldots,M$，则该过程和之前一样。我们采用输入特征$h(x_i)=(h_1(x_i),h_2(x_i),\ldots,h_M(x_i)),i=1,\ldots,N$拟合SV分类器，并且得到（非线性）函数$\hat f(x)=h(x)^T\hat\beta+\hat\beta_0$。分类器和之前一样，为$\hat G(x)=\sign(\hat f(x))$。</p>
-<p>支持向量机(support vector machine)分类器是这个想法的拓展，其中增长空间的维数允许非常大，有时甚至可以是无限维的。计算似乎会变得难以承受。而且似乎当有了充分多的基函数，数据会变得可分，同时也会发生过拟合。我们首先介绍SVM怎样处理这些问题。接着我们将看到实际中SVM分类器是采用特定的准则和正则化形式来解决函数拟合问题，而且这是包含第5章的光滑样条的更大类别的问题的一部分。读者可能希望参照<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>，它提供了背景材料并且与接下来的两节会有一定的重复。</p>
-<h2 id="svm">用于分类的SVM<a class="headerlink" href="#svm" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
-<p class="admonition-title">Recall</p>
+<p class="admonition-title">更新笔记</p>
+<p>@2017.10.15 关于SVM的具体应用，我写了一篇博客展示了使用R来实现SVM分类，以及通过ROC、AUC来评估分类的好坏。博客链接为<a href="https://stats.hohoweiya.xyz//2017/05/18/Support-Vector-Classifier/">Illustrations of Support Vector Machines</a></p>
+<p>@2018.02.12 将博客<a href="https://stats.hohoweiya.xyz//2017/05/18/Support-Vector-Classifier/">Illustrations of Support Vector Machines</a>整理到<a href="https://esl.hohoweiya.xyz/notes/SVM/e1071/index.html">SVM处理线性和非线性类别边界</a>。</p>
+</div>
+<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面。我们先复习一下，然后推广到不可分的情形下（类别可能不会被线性边界分离）。</p>
+<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in \{-1,1\}$。定义超平面</p>
+<p>
+<script type="math/tex; mode=display">
+\{x:f(x)=x^T\beta+\beta_0=0\}\qquad (12.1)
+</script>
+</p>
+<p>其中$\beta$是单位向量$\Vert \beta\Vert=1$。由$f(x)$导出的分类准则为</p>
+<p>
+<script type="math/tex; mode=display">
+G(x)=sign[x^T\beta+\beta_0]\qquad (12.2)
+</script>
+</p>
+<p>超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$，满足$y_if(x_i)&gt;0,\forall i$。因此我们可以找到超平面在类别1和-1的训练点之间创造最大的margin（图12.1）。</p>
+<p><img alt="" src="../../img/12/fig12.1.png" /></p>
+<blockquote>
+<p>图12.1. 支持向量分类器。左图显示了可分情形。判别边界是实线，而虚线确定了边缘空白（阴影部分）的最大宽度为$2M=2/\Vert\beta\Vert$。右图中显示了不可分（重叠）情形。标记为$\xi_j^*$的点是在边缘空白错误的一边，且$\xi_j^*=M\xi_j$；在正确一侧的点有$\xi_j^*=0.$ 最大化空白边界是要满足总代价$\sum\xi_i\le constant$.因此，$\sum\xi_j^*$是在空白边界中点的距离总和。</p>
+</blockquote>
+<p>优化问题是</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\underset{\beta,\beta_0,\Vert \beta\Vert=1}{\max}\; M\\
+s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
+\end{array}
+\qquad (12.3)
+</script>
+</p>
+<p>图中的条纹宽度为$M$，它是分离超平面到其中一边的距离，因此总共宽度为$2M$。这称为margin。</p>
+<p>我们已经证明了这个问题可以更方便地写成</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+&\underset{\beta,\beta_0}{min}\;\Vert\beta\Vert\\
+s.t.&\; y_i(x_i^T\beta+\beta_0)\ge 1,\; i=1,\ldots,N
+\end{array}
+\qquad (12.4)
+</script>
+</p>
+<p>我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$。表达式(12.4)是稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解在4.5.2节已经讨论了。</p>
+<p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$，但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$。有两种自然的方式去修改（12.3）中的约束：</p>
+<p>
+<script type="math/tex; mode=display">
+y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\qquad (12.5)
+</script>
+</p>
+<p>或者</p>
+<p>
+<script type="math/tex; mode=display">
+y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\qquad (12.6)
+</script>
+</p>
+<p>$\forall i,\xi_i\ge 0,\sum_{i=1}^N\xi_i\le constant$。这两个选择会导出不同的解。第一个选择似乎更加自然，因为它衡量了到margin的实际距离；第二个选择衡量了相对距离，它会随着margin的宽度$M$的改变而改变。然而，第一个选择是一个非凸的优化问题，而第二个是凸的；因此(12.6)导出标准的支持向量分类器，我们从这里开始使用它。</p>
+<p>下面介绍该想法的形成过程。约束条件$y_i(x_i^T\beta+\beta_0)\ge M(1-\xi_i)$中的$\xi_i$与通过$f(x_i)=x_i^T\beta+\beta_0$预测得到的错误分类总数成比例。因此通过约束$\sum\xi_i$，我们约束了错误预测总数的比例。当$\xi_i&gt;1$则为错误分类，所以在$K$的水平下约束$\sum\xi_i$表示为限制训练集中错分类个数小于$K$.</p>
+<p>类似<a href="https://esl.hohoweiya.xyz/04%20Linear%20Methods%20for%20Classification/4.5%20Separating%20Hyperplanes/index.html#452">4.5.2节</a>中的(4.48)，我们可以去掉在$\beta$上的约束，定义$M=1/\Vert\beta\Vert$，然后将（12.4）写成下面的等价形式</p>
+<p>
+<script type="math/tex; mode=display">
+min\;\Vert\beta\Vert\qquad s.t.\;\left\{\begin{array}{ll}y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i\;\forall i,\\
+\xi_i\ge 0,\sum\xi_i\le constant.\end{array}\right.\qquad (12.7)
+</script>
+</p>
+<p>这是非分离情形下支持向量分类器定义的通常方式。然而我们会对约束$y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i$中的固定常数1感到误解，更喜欢使用(12.6)式。图12.1的右图说明了重叠的情形。</p>
+<p>从准则(12.7)可以看出，在类别里面的点不会对边界的形成有太大的影响。这似乎是个很吸引人的性质，这与线性判别边界(4.3节)不同。LDA中，判别边界是由类别的分布的协方差和重心来决定。我们将在<a href="https://esl.hohoweiya.xyz/12%20Support%20Vector%20Machines%20and%20Flexible%20Discriminants/12.3%20Support%20Vector%20Machines%20and%20Kernels/index.html#_1">12.3.3节</a>看到逻辑斯蒂回归在这点上很像。</p>
+<h2 id="_1">计算支持向量分类器<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>问题(12.7)是带有线性不等值约束的二次问题，因此这是一个凸优化问题。我们描述一种采用Lagrange乘子的二次规划解法。将式(12.7)重新表达成下面的等价形式是很方便的</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\underset{\beta,\beta_0}{min}&\;\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i\\
+s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
+\end{array}
+\qquad (12.8)
+</script>
+</p>
+<p>其中“代价”参数$C$替换（12.7）中的常数；可分情况下对应$C=\infty$</p>
+<p>Lagrange函数（原问题）为</p>
 <p>
 <script type="math/tex; mode=display">
 L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\qquad (12.9)
 </script>
 </p>
-</div>
-<p>我们可以用一种特殊的方式来表示优化问题(12.9)和它的解，这种方式只涉及通过内积来涉及输入特征。我们对这个变换后的特征向量$h(x_i)$直接进行这样的操作。则我们将看到对于特定选择的$h$，这些内积可以很方便地进行计算。</p>
-<p>(12.13)的lagrange对偶函数有如下形式：</p>
+<p>我们需要关于$\beta,\beta_0$和$\xi_i$求最小值。令对应的微分为0，我们有</p>
 <p>
 <script type="math/tex; mode=display">
-L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}\langle h(x_i), h(x_{i'})\rangle\qquad (12.19)
+\begin{align}
+\beta&=\sum\limits_{i=1}^N\alpha_iy_ix_i& (12.10)\\
+0&= \sum\limits_{i=1}^N\alpha_iy_i& (12.11)\\
+\alpha_i&=C-\mu_i,\;\forall i,& (12.12)
+\end{align}
 </script>
 </p>
-<p>从(12.10)中我们看到解函数$f(x)$可以写成</p>
+<p>同样有正值约束$\alpha_i,\mu_i,\xi_i\ge 0\;\forall i$。把(12.10)-(12.12)代入(12.9)，我们得到Lagrangian(Wolfe)对偶目标函数</p>
 <p>
 <script type="math/tex; mode=display">
-f(x)=h(x)^T\beta+\beta_0=\sum\limits_{i=1}^N\alpha_iy_i\langle h(x),h(x_i) \rangle+\beta_0\qquad (12.20)
-</script>
-</p>
-<p>和之前一样，给定$\alpha_i$，当$0 &lt; \alpha_i &lt; C$时，$\beta_0$可以通过对任意（或所有）$x_i$来求解$y_if(x_i)=1$来确定。</p>
-<p>所以(12.19)和(12.20)仅仅通过内积涉及$h(x)$。实际上，我们根本不需要明确变换关系$h(x)$，而仅仅要求知道在转换后的空间中计算内积的核函数</p>
-<p>
-<script type="math/tex; mode=display">
-K(x,x')=\langle h(x), h(x') \rangle\qquad (12.21)
-</script>
-</p>
-<p>$K$应该是一个对称的(半)正定函数：见5.8.1节。</p>
-<p>在SVM中有三种流行的$K$可以选择</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{array}{rl}
-d\text{阶多项式：} & K(x,x')=(1+\langle x,x' \rangle)^d\\
-\text{径向基：} & K(x, x')=exp(-\gamma \Vert x-x'\Vert^2)\qquad (12.22)\\
-\text{神经网络：} & K(x,x')=tanh(\kappa_1\langle x,x' \rangle+\kappa_2)\\
-\end{array}
-</script>
-</p>
-<p>考虑含有两个输入变量$X_1$和$X_2$的特征空间，以及2阶的多项式。则</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{array}{ll}
-K(x,x')&=(1+\langle X,X' \rangle)^2\\
-&=(1+X_1X_1'+X_2X_2')^2\\
-&=1+2X_1X_1'+2X_2X_2'+(X_1X_1')^2+(X_2X_2')^2+2X_1X_1'X_2X_2'\quad (12.23)
-\end{array}
-</script>
-</p>
-<p>则$M=6$，而且如果我们选择$h_1(X)=1,h_2(X)=\sqrt{2}X_1,h_3(X)=\sqrt{2}X_2,h_4(X)=X_1^2,h_5(X)=X_2^2$，以及$h_6(X)=\sqrt{2}X_1X_2$，则$K(X,X&rsquo;)=\langle h(X),h(X&rsquo;)\rangle$。</p>
-<p>从$(12.20)$我们可以看出该解可以写成</p>
-<p>
-<script type="math/tex; mode=display">
-\hat f(x)=\sum\limits_{i=1}^N\hat \alpha_iy_iK(x,x_i)+\hat\beta_0\qquad (12.24)
-</script>
-</p>
-<p>在增广的特征空间中，参数$C$的角色更加清晰，因为在这里经常会存在完美的分割。较大的$C$会抑制任何正的$\xi_i$，并且得到在原始特征空间中过拟合的弯弯曲曲的边界；较小的$C$值会鼓励较小的$\Vert\beta\Vert$，反过来会导致$f(x)$以及边界更加地光滑。图12.3显示了应用到第2章中的混合模型的两个支持向量机。两种情形下的正则化参数都是为了实现更好的测试误差。对该例子而言，径向基得到类似贝叶斯最优边界；与图2.5进行比较。</p>
-<p><img alt="" src="../../img/12/fig12.3.png" /></p>
-<p>在支持向量的早期研究中，有断言称，支持向量机的核性质是唯一的，并且允许对维数灾难进行巧妙地处理。</p>
-<p>这些断言都不是正确的，我们将在下一节详细讨论这些问题。</p>
-<h2 id="svm_1">SVM作为惩罚的方法<a class="headerlink" href="#svm_1" title="Permanent link">&para;</a></h2>
-<p>对于$f(x)=h(x)^T\beta+\beta_0$，考虑下列的优化问题</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{\beta_0,\beta}{min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{\lambda}{2}\Vert\beta\Vert^2\qquad (12.25)
-</script>
-</p>
-<p>其中下标“$+$”表示正的部分。上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例。可以很简单地证明当$\lambda=1/C$时，(12.25)的解与(12.8)的解一致。</p>
-<p>对“hinge”损失函数$L(y,f)=[1-yf]_+$的检验表明，它用于二类别分类是很合理的。图12.4将之与逻辑斯蒂回归的对数似然进行比较，以及平方误差损失和其中的方差。（负）对数似然或者二项偏差和SVM损失有着类似的尾分布，其中对margin中的点赋予0惩罚，对在错误一侧的边赋予线性惩罚。另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响。squared hinge损失$L(y,f)=[1-yf]_+^2$类似平方损失，除了对于各自margin中的点惩罚为0。在左尾中平方增长，而且对错误分类的观测的hinge或者偏差更加稳健。最近Rosset and Zhu (2007)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>提出squared hinge损失的“Huberized”版本，在$yf=-1$处将其平滑转换为了线性损失。</p>
-<p><img alt="" src="../../img/12/fig12.4.png" /></p>
-<p>我们可以用在总体水平上用估计量来区分这些损失函数。我们考虑最小化$\E L(Y,f(x)$。</p>
-<p><img alt="" src="../../img/12/tab12.1.png" /></p>
-<p>表12.1总结了这些结果。然而hinge损失估计了分类器$G(x)$本身，而其他的都估计类别后验概率的某个变换。“Huberized” square hinge损失有着与逻辑斯蒂回归相同的吸引人的性质（光滑的损失函数，估计概率），以及SVM的hinge损失（支撑点）。</p>
-<p>形式(12.25)将SVM看成正则函数估计问题，其中线性展开$f(x)=\beta_0+h(x)^T\beta$的系数向0收缩（除了常值）。如果$h(x)$表示有相同的序结构（比如按粗糙程度排序）的分层核，如果在向量$h$中有更粗糙的元素$h_j$有更小的范数，则均一化收缩是有意义的。</p>
-<p>除了平方误差，表12.1中所有的损失函数，都称之为“margin maximizing loss-functions”（Rosset et al., 2004b<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。这意味着如果数据是可分的，则当$\lambda\rightarrow 0$时，$\hat\beta_\lambda$的极限定义为最优分离超平面。</p>
-<div class="admonition note">
-<p class="admonition-title">原作者注：</p>
-<p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$分散，但是$\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$收敛到最优分离超平面。</p>
-</div>
-<h2 id="_1">函数估计和重生核<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>这里我们用重生核希尔伯特空间的函数估计来描述SVM，其中有许多的核性质。这里讨论的内容在<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>有详细讨论。这里给出支持向量分类器的另一个视角，并且帮助理清它如何实现。</p>
-<p>假设基$h$来自与正定核$K$的（可能是有限的）特征展开，</p>
-<p>
-<script type="math/tex; mode=display">
-K(x, x')=\sum\limits_{m=1}^{\infty}\phi_m(x)\phi_m(x')\delta_m\qquad (12.26)
-</script>
-</p>
-<p>并且$h_m(x)=\sqrt{\delta_m}\phi_m(x)$。则当$\theta_m=\sqrt{\delta_m}\beta_m$，我们可以把(12.25)写成</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{\beta_0, \theta}{\min}\sum\limits_{i=1}^N\Big[
-    1-y_i(\beta_0+\sum\limits_{m=1}^{\infty}\theta_m\phi_m(x_i))
-    \Big]_+ + \frac{\lambda}{2}\sum\limits_{m=1}^{\infty}\frac{\theta_m^2}{\delta_m}
-    \qquad (12.27)
+L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\qquad (12.13)
 </script>
 </p>
 <div class="admonition note">
-<p class="admonition-title">Recall</p>
+<p class="admonition-title">weiya注：对偶问题</p>
+<p>对于无等值约束的优化问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{c_j\}_1^\infty}{\min}\Big[\sum\limits_{i=1}^NL(y_i, \sum\limits_{j=1}^\infty c_j\phi_j(x_i))+\lambda \sum\limits_{j=1}^\infty c_j^2/\gamma_j\Big]\qquad (5.49)
-</script>
-<script type="math/tex; mode=display">
-\underset{\alpha_0,\aalpha}{\min}\Big\{
-\sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \frac{\lambda}{2}\aalpha^T\K\aalpha
-\Big\}\qquad (5.67)
+\underset{x\in\IR^n}{\min}f(x)\; \st c_i(x)\ge 0,\; i=1,2,\ldots,m
 </script>
 </p>
+<p>记
+<script type="math/tex; mode=display">
+c(x)\def(c_1(x), c_2(x),\ldots, c_m(x))^T
+</script>
+则原问题写为
+<script type="math/tex; mode=display">
+\underset{x\in\IR^n}{\min}f(x)\; \st c(x)\ge 0
+</script>
+Lagrangian函数为
+<script type="math/tex; mode=display">
+{\cal L}(x,\lambda)=f(x)-\lambda^Tc(x)
+</script>
+定义对偶目标函数$q:\IR^n\rightarrow \IR$：
+<script type="math/tex; mode=display">
+q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
+</script>
+其定义域为
+<script type="math/tex; mode=display">
+\cal D\def\{\lambda\mid q(\lambda)>-\infty\}
+</script>
+<strong>若$f$和$-c_i$均为凸函数</strong>，则$\cal L(\cdot, \lambda)$也为凸函数，则可以很容易计算$q(\lambda)$。</p>
+<p>参考资料: <a href="../../references/opbook2.pdf">Wright S, Nocedal J. Numerical optimization (Second Edition). Springer Science.</a></p>
 </div>
-<p>现在(12.27)与5.8节中的(5.49)形式相同，并且重生希尔伯特空间的理论保证了形如下面的有限维的解</p>
-<p>
-<script type="math/tex; mode=display">
-f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\qquad (12.28)
-</script>
-</p>
-<p>特别地，我们看到存在等价的优化准则[5.8.2节的式(5.67)；也可以参见Wahba et al. (2000)]</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{\beta_0, \alpha}{\min}\sum\limits_{i=1}^N(1-y_if(x_i))_++\frac{\lambda}{2}\alpha^T\K\alpha\qquad (12.29)
-</script>
-</p>
-<p>其中$\K$是所有成对训练特征的核的赋值（练习12.2）。</p>
-<p>这些模型非常一般，举个例子，包含第5和第9章中讨论的整个光滑样条族，可加和交叉样条模型，更多细节参见Wahba (1990)和Hastie and Tibshirani (1990)。它们可以更一般地表示为</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{f\in{\cal H}}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \lambda J(f)\qquad (12.30)
-</script>
-</p>
-<p>其中$\cal H$是函数的结构空间(the structured space of functions)，并且$J(f)$是在该空间上合适的正则器。举个例子，假设$\cal H$是可加函数$f(x)=\sum_{j=1}^pf_j(x_j)$，并且$J(f)=\sum_j\int\{f^{(2)}_j(x_j)\}^2dx_j$。则(12.30)的解为可加三次样条，并且有核表示$K(x,x&rsquo;)=\sum_{j=1}^pK_j(x_j,x_j&rsquo;)$。每个$K_j$是关于$x_j$的合适的单变量光滑样条的核(Wahba, 1990)。</p>
-<p>反过来，这个讨论也表明，举个例子，任意(12.22)中提到的核都可以和凸损失函数一起使用，并且将会得到形如(12.28)的有限维表示。图12.5采用和图12.3同样的核函数，除了采用二项对数似然作为损失函数。因此拟合函数是log-odds的估计</p>
-<p>
+<p>它给出了目标函数(12.8)对于任意可行解的一个下界。我们在满足$0\le \alpha_i\le C$和$\sum_{i=1}^N\alpha_iy_i=0$的条件下最大化$L_D$。再加上(12.10)-(12.12)条件，Karush-Kuhn-Tucker条件包含下列约束：对于$i=1,\ldots,N$，
 <script type="math/tex; mode=display">
 \begin{align}
-\hat f(x) &=\LOG \frac{\hat\pr (Y=+1\mid x)}{\hat\pr (Y=-1\mid x)}\\
-&=\hat\beta_0+\sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\qquad (12.31)
+\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]&=0& (12.14)\\
+\mu_i\xi_i&=0& (12.15)\\
+y_i(x_i^T\beta+\beta_0)-(1-\xi_i)&\ge 0& (12.16)
 \end{align}
 </script>
 </p>
-<p>或者反过来，我们得到类别概率的估计</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：KKT条件</p>
+<p>对于带约束的优化问题
+<img alt="" src="../../img/12/def12.1.png" />
+一阶必要条件为
+<img alt="" src="../../img/12/KKT.png" />
+图片来源：<a href="../../references/opbook2.pdf">Wright S, Nocedal J. Numerical optimization (Second Edition). Springer Science.</a></p>
+</div>
+<p>结合(12.10)-(12.16)我们得到原问题和对偶问题的唯一解</p>
+<p>从(12.10)我们看到$\beta$的解有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\pr(Y=+1\mid x)=\frac{1}{1+e^{-\hat\beta_0-\sum_{i=1}^N\hat\alpha_iK(x,x_i}}\qquad (12.32)
+\hat\beta=\sum\limits_{i=1}^N\hat\alpha_iy_ix_i\qquad (12.17)
 </script>
 </p>
-<p>这些拟合的模型在形状和表现效果上都非常相似。5.8节给出了例子以及更多的细节。</p>
-<p>对于SVM也是一样，$N$个$\alpha_i$中的一部分可以为0（非支持点）。在图12.3的两个例子中，这些比例分布为42%和45%。这是准则(12.25)的第一部分分段线性的本质。（在训练数据上）类别重叠越少，这个比例越大。降低$\lambda$一般会降低重叠（允许更灵活的$f$）。较少的支持点意味着$\hat f(x)$可以更快地进行赋值，这在查找时很重要。当然，过分降低重叠会导致泛化能力太差。</p>
-<h2 id="svm_2">SVM和维数灾难<a class="headerlink" href="#svm_2" title="Permanent link">&para;</a></h2>
-<p>在这一节，我们提出问题，SVMs是否存在维数灾难。注意到在展开式(12.23)中，我们不允许在幂和乘积的空间中有完全一般的内积。举个例子，所有形如$2X_jX_j&rsquo;$赋予相同的权重，并且核不能自动更新来集中到子空间中。如果特征的数量$p$很大，但是类别分类仅仅发生在$X_1$和$X_2$张成的子空间，这个核不会简单地被找到其结构并且需要在很多维度下搜寻。必须将子空间的信息考虑进核中；也就是，忽略除了前两个的输入。如果有信息能够得到先验，大多数统计学习会变得很简单。自适应方法的主要目标是发现类似的结构。</p>
-<p>我们用一个例子来支持上面的陈述。我们在两个类别中产生100个观测值。第一类有4个标准正态独立特征$X_1,X_2,X_3,X_4$。第二类也有四个标准正态独立特征，但是条件为$9\le \sum X_j^2\le 16$。这是个相对简单的问题。作为第二个更难的问题，我们用6个标准高斯噪声特征来增广特征。因此第二类完全包围了第一类，类似在四维子空间中外皮包围着橘子。该问题的贝叶斯误差率为0.029（不考虑维数）。我们产生1000个测试观测量来比较不同的过程。在有无噪声特征的情况下，平均测试误差在50个模拟中得到，如表12.2所示。</p>
-<p><img alt="" src="../../img/12/tab12.2.png" /></p>
-<p>表中第一行在原特征空间中使用支持向量分类器。第2到第4行表示使用2，5和10维多项式核的支持向量机。对于所有的支持向量过程，我们选择代价参数$C$来最小化测试误差，使得对这个方法尽可能公平。第5行采用可加模型的BRUTO算法（Hastie and Tibshirani (1990)），通过最小二乘对$(-1,+1)$响应变量拟合可加样条模型。第6行采用MARS（多变量自适应回归样条）允许任意阶的交叉影响，在第9章中有介绍；同样地，其与SVM/poly 10进行比较。BRUTO和MARS算法均有能力忽略冗余变量。第5和第6行并不采用测试误差来选择光滑参数。</p>
-<p>在原始特征空间中，超平面不能分离类别，而且支持向量分类器（第一行）表现很差。多项式支持向量机在测试误差率方面取得显著改善，但同时也被6个噪声特征严重影响。这对核的选择非常敏感：二阶多项式核（第2行）表现最好，因为真实的判别边界就是二阶多项式。然而，高阶多项式（第3和第4行）表现很差。BRUTO表现得很好，因为其边界是可加的。BRUTO和MARS自适应得很好：因为噪声的存在，所以它们的表现不会退化太大。</p>
-<h2 id="svm_3">SVM分类器的路径算法<a class="headerlink" href="#svm_3" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
-<h2 id="_2">用于回归的支持向量机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>在这一节，我们将要展示SVMs可以适用于定量响应变量的回归问题，其中采用继承SVM分类器的某些性质的方式。我们首先讨论线性回归模型</p>
-<p>
+<p>非负系数$\hat\alpha_i$只针对约束(12.16)等号成立的观测（由于(12.14)）。因为$\hat\beta$用这些观测单独表示，所以把它们称之为<strong>支持向量</strong>。在这些支持点中，有些会在margin的边缘处($\hat\xi_i=0$)，因此根据式(12.15)，式(12.12)可以用$0 &lt; \hat\alpha_i &lt; C$来表示；剩余部分($\hat \xi_i &gt; 0$)有$\hat\alpha_i=C$（由(12.15)式得到）。从(12.14)我们可以看到每个边缘点($0 &lt; \hat\alpha_i,\;\hat \xi_i = 0$)都可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值。</p>
+<p>最大化对偶问题(12.13)是比原问题(12.9)更简单的凸优化问题，而且可以用标准的方法进行求解（举个例子，Murray et al., 1981<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）</p>
+<p>给定解$\hat\beta_0$和$\beta$，判别函数可以写成
 <script type="math/tex; mode=display">
-f(x)=x^T\beta+\beta_0\qquad (12.35)
-</script>
-</p>
-<p>接下来处理非线性的推广情形。为了估计$\beta$，我们考虑下式的最小化</p>
-<p>
-<script type="math/tex; mode=display">
-H(\beta, \beta_0) = \sum\limits_{i=1}^N V(y_i-f(x_i)) + \frac{\lambda}{2}\Vert \beta\Vert^2\qquad (12.36)
-</script>
-</p>
-<p>其中</p>
-<p>
-<script type="math/tex; mode=display">
-V_{\epsilon}(r)=
-\left\{
 \begin{array}{ll}
-0 & \text{if}\; \vert r\vert < \epsilon\\
-\vert r\vert -\epsilon, &\text{otherwise}
+\hat G(x)&=sign[\hat f(x)]\\
+&=sign[x^T\hat\beta+\hat\beta_0]\qquad (12.18)
 \end{array}
-\right.
-\qquad (12.37)
 </script>
-</p>
-<p>这是一种“$\epsilon$-insensitive”的误差度量，它忽略了大小小于$\epsilon$的误差（图12.8的左图）。这一点类似支持向量机在分类问题中的设定，处于判别边界正确一侧的点以及远离边界的点在优化过程中都被忽略了。在回归中，这些“low error”的点是残差较小的点。</p>
-<p>将这个误差度量与统计中鲁棒回归中采用的误差度量比较是很有趣的。图12.8的右图展示了鲁棒回归中误差度量的最受欢迎的形式(Huber (1964))：</p>
-<p>
-<script type="math/tex; mode=display">
-V_{H}(r)=
-\left\{
-\begin{array}{ll}
-r^2/2 & \text{if}\; \vert r\vert \le c\\
-c\vert r\vert -c^2/2, &\vert r\vert > c
-\end{array}
-\right.
-\qquad (12.38)
-</script>
-</p>
-<p>当绝对残差大于预先给定的某个常值$c$时，函数将观测的贡献从二次降至一次。这使得拟合对离群点更加不敏感。支持向量误差衡量(12.37)也有线性尾(tail)（大于$\epsilon$），但是除此之外，它压缩了小偏差情形下观测点的贡献。</p>
-<p>如果$\hat\beta,\; \hat\beta_0$是$H$的最小值点，则解函数有如下形式</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-\hat\beta & = \sum\limits_{i=1}^N(\hat\alpha_i^*-\hat\alpha_i)x_i & (12.39)\\
-\hat f(x) & = \sum\limits_{i=1}^N(\hat\alpha_i^*-\hat\alpha_i)\langle x, x_i\rangle+\beta_0 & (12.40)
-\end{align}
-</script>
-</p>
-<p>其中$\hat\alpha_i,\; \hat\alpha_i^*$是正的，且是下列的二次规划问题的解</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{\alpha_i,\alpha_i^*}{\min}\epsilon \sum\limits_{i=1}^N(\alpha_i^*+\alpha_i)-\sum\limits_{i=1}^Ny_i(\hat\alpha_i^*-\alpha_i)+\frac 12(\alpha_i^*-\alpha_i)(\alpha_{i'}^*-\alpha_{i'})\langle x_i, x_{i'}\rangle
-</script>
-</p>
-<p>约束条件如下</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-0\le \alpha_i,\alpha_i^*\le \frac{1}{\lambda}\\
-\sum\limits_{i=1}^N(\alpha_i^*-\alpha_i)=0\\
-\alpha_i\alpha_i^*=0
-\end{align}
-\qquad (12.41)
-</script>
-</p>
-<p>考虑到这些约束的本质，一般仅仅有部分的解$(\hat \alpha_i^*-\hat\alpha_i)$非零， 并且对应的数据称为支持向量。和分类问题中的设定一样，解仅仅通过内积$\langle x_i, x_{i&rsquo;}\rangle$。因此我们可以通过定义合适的内积将这个方法推广到高维空间，举个例子，采用(12.22)中定义的其中一个。</p>
-<p>注意到参数$\epsilon$和$\lambda$与准则(12.36)有关。它们似乎扮演不同的角色，$\epsilon$是损失函数$V_{\epsilon}$的参数，和$c$是$V_H$的参数一样。注意到$V_{\epsilon}$和$V_H$都依赖$y$的尺度，以及$r$。如果我们对响应变量进行缩放（也因此需要用$V_H(r/\sigma)$和$V_\epsilon(r/\sigma)$），则我们可能考虑采用预先设定的$c$和$\epsilon$（对于高斯情形，取$c=1.345$能达到$95\%$的有效度）。$\lambda$是更传统的正则参数，并且可以通过交叉验证来估计。</p>
-<h2 id="_3">回归和核<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>正如12.3.3节讨论的一样，这个核性质</p>
-<h2 id="_4">讨论<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+这个过程的调整参数是代价参数$C$。</p>
+<h2 id="_2">混合例子（继续）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../../img/12/fig12.2.png" /></p>
+<blockquote>
+<p>图12.2 对于两个不同$C$值，有两个重叠类别的混合数据例子的线性支持向量边界。虚线表示margin，其中$f(x)=\pm 1$。支持点（$\alpha_i&gt;0$）是在它们margin的错误一侧的点。黑色实心点是恰巧落在margin边界上（$\xi_i=0,\alpha_i&gt;0$）的点。在上面板中，$62\%$的观测点都是支持点，而下面的图$85\%$的点都是。紫色虚线是贝叶斯判别边界。</p>
+</blockquote>
+<p>图12.2显示了21页图2.5混合例子对于两个不同代价参数$C$的支持向量边界，这里有两个重叠的类别。这些分类器的表现很相似。在边界的错误一侧是支持向量。另外，在判别边界附近正确一侧的点也是支持向量。$C=0.01$时的margin比$C=10,000$时的大。因此大的$C$值更加注意（正确分类）靠近判别边界的点，而较小的$C$涉及离判别边界更远的点。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>$C$越大，margin越窄；$C$越小，margin越宽。这对应R的<code>e1071</code>包<code>svm()</code>函数中的<code>cost</code>参数。</p>
+</div>
+<p>任意一种方式，错分类的点都被赋予了权重，不管离多远。由于判别边界的刚性(rigidity)，在这个例子中这个过程对$C$的取值不敏感。</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>怎么理解判别边界的刚性(the rigidity of a linear boundary)</p>
+</div>
+<p>最优的$C$可以通过交叉验证来确定，如第7章中讨论的那样。有趣的是，舍一交叉验证误差可以通过数据中支持向量的点的比例来约束。原因是当舍去的不是支持向量的时候不会改变解。因此这些观测点在原始边界中正确分类的点在交叉验证中也能正确分类。然而，这个界趋向于偏高，而且一般不适用于选择$C$(在我们的例子中分别是62%和85%)。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Rosset, S. and Zhu, J. (2007). Piecewise linear regularized solution paths, Annals of Statistics 35(3): 1012–1030.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Rosset, S., Zhu, J. and Hastie, T. (2004b). Margin maximizing loss functions, in S. Thrun, L. Saul and B. Schölkopf (eds), Advances in Neural Information Processing Systems 16, MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Murray, W., Gill, P. and Wright, M. (1981). Practical Optimization, Academic Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3362,7 +3229,7 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../12.2%20The%20Support%20Vector%20Classifier/index.html" title="12.2 支持向量分类器" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../12.1-Introduction/index.html" title="12.1 导言" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3371,19 +3238,19 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                12.2 支持向量分类器
+                12.1 导言
               </span>
             </div>
           </a>
         
         
-          <a href="../Bibliographic%20Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../12.3-Support-Vector-Machines-and-Kernels/index.html" title="12.3 支持向量机和核" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                文献笔记
+                12.3 支持向量机和核
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
