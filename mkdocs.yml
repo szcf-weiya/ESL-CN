@@ -191,6 +191,7 @@ pages:
       - 模拟Fig. 14.42: 'notes/ICA/sim14_42.md'
       - 模拟Fig. 18.1: 'notes/HighDim/sim18_1.md'
       - 模拟Eq. 10.2: 'notes/boosting/sim-eq-10-2.md'
+      - 模拟Tab. 12.2: 'notes/SVM/skin-of-the-orange.md'
     - 比较总结:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
       - SVM处理线性和非线性类别边界: 'notes/SVM/e1071.md'
