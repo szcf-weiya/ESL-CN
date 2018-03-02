@@ -145,4 +145,4 @@ $$
     可以参考[probability - Calculating the error of Bayes classifier analytically - Cross Validated](https://stats.stackexchange.com/questions/4949/calculating-the-error-of-bayes-classifier-analytically)
 
 !!! tip
-    完整代码可以参见[]()
+    完整代码可以参见[skin-of-the-orange.R](https://github.com/szcf-weiya/ESL-CN/blob/master/docs/notes/SVM/skin-of-the-orange.R)
