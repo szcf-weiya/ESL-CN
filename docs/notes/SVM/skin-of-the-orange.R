@@ -162,7 +162,6 @@ calcErr(sv$best.model, num_noise = 6)
 calcErr(poly2$best.model, num_noise = 6) 
 calcErr(poly5$best.model, num_noise = 6) 
 calcErr(poly10$best.model, num_noise = 6) 
-calcErr(mars, num_noise = 6, method = "MARS")
 calcErr(brutofit, num_noise = 6, method = "BRUTO")
 calcErr(marsfit, num_noise = 6, method = "MARS")
 
