@@ -9,6 +9,7 @@ window.MathJax = {
       B: "{\\mathbf{B}}",
       C: "{\\mathbf{C}}",
       D: "{\\mathbf{D}}",
+      H: "{\\mathbf{H}}",
       L: "{\\mathbf{L}}",
       M: "{\\mathbf{M}}",
       N: "{\\mathbf{N}}",
