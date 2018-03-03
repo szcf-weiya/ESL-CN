@@ -184,6 +184,8 @@ pages:
       - 文献笔记: '18-High-Dimensional-Problems/Bioliographic-Notes.md'
 
   - 个人笔记:
+    - Ipython Notebook: 
+      - 列表: 'notes/ipynb/list.md'
     - 模拟实验:
       - 模拟Fig. 7.3: 'notes/ModelSelection/sim7_3.md'
       - 模拟Fig. 7.7: 'notes/ModelSelection/sim7_7.md'
