@@ -22,4 +22,8 @@ from urllib.parse import unquote
 print(unquote("%CE%B1%CE%BB%20"))
 ```
 
+## convert bytes to string
+
+https://stackoverflow.com/questions/606191/convert-bytes-to-a-string
+
 ## test multi-commits
