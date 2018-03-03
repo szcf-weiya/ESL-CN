@@ -4,7 +4,7 @@
 
 Solved! (forget to remove `payload=` before `json.loads()`)
 
-## %7B character
+## unquote %7B character
 
 参考https://stackoverflow.com/questions/11768070/transform-url-string-into-normal-string-in-python-20-to-space-etc
 
