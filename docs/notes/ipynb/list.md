@@ -4,7 +4,7 @@
 | ---- | ---------------------------------------- |
 | 时间   | 2018-03-03                               |
 
-为了方便浏览，用`nbviewer`展示Ipython Notebook，下面列出具体的链接
+为了方便浏览，用`nbviewer`展示Ipython Notebook，下面列出具体的链接（点击图片即可访问）
 
 ## [Notebook for Simple Neural Network](http://nbviewer.jupyter.org/github/szcf-weiya/TFnotes/blob/master/nn/nn.ipynb)
 
