@@ -2,7 +2,7 @@
 
 ## json error
 
-Solved! (forget to remove `payload=` before `json.loads()`)
+Solved! (dont forget to remove `payload=` before `json.loads()`)
 
 ## unquote %7B character
 
