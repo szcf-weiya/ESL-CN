@@ -26,4 +26,8 @@ print(unquote("%CE%B1%CE%BB%20"))
 
 https://stackoverflow.com/questions/606191/convert-bytes-to-a-string
 
+```python
+b"abcde".decode("utf-8") 
+```
+
 ## test multi-commits
