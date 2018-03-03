@@ -32,4 +32,5 @@ b"abcde".decode("utf-8")
 
 ## test multi-commits
 
-first commits
+first commit
+second commit
