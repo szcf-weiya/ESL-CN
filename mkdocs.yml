@@ -6,7 +6,7 @@ pages:
       - 第一版序言: 'Preface/2016-07-21-Preface-to-the-First-Edition.md'
   - 上篇:
     - 1 简介:
-      - 1.1 导言: '01 Introduction/2016-07-26-Chapter-1-Introduction.md'
+      - 1.1 导言: '01-Introduction/2016-07-26-Chapter-1-Introduction.md'
     - 2 监督学习概要:
       - 2.1 导言: '02 Overview of Supervised Learning/2.1 Introduction.md'
       - 2.2 变量类型和术语: '02 Overview of Supervised Learning/2.2 Variable Types and Terminology.md'
