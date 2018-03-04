@@ -42,3 +42,32 @@ second commit
 ## test new weibo
 
 finished!
+
+## 测试发送含图片的微博
+
+参考[requests 如何模拟提交 multipart/form-data 的表单](https://segmentfault.com/q/1010000004690074/a-1020000004691198)
+
+```python
+url = 'http://example.com/post'
+files = {'file': open('gitradio.png', 'rb')} # 文件 
+datat = {'name':'szcfweiya'} # 其他表单
+r = requests.post(url, files=files, data=data)
+```
+
+## phantimjs截图
+
+1. 加上参数`--ssl-protocol=any`，参考[PhantomJS failing to open HTTPS site](https://stackoverflow.com/questions/12021578/phantomjs-failing-to-open-https-site)
+
+如
+
+```cmd
+phantomjs --ssl-protocol=any screenshot.js https://esl.hohoweiya.xyz/notes/ipynb/list/index.html tes.png
+```
+
+2. 设置背景为白色，参考[Tips and Tricks](http://phantomjs.org/tips-and-tricks.html)
+
+```js
+page.evaluate(function() {
+  document.body.bgColor = 'white';
+});
+```
