@@ -2989,11 +2989,11 @@ f(x) &= \sum\limits_{j=1}^MK_{\lambda_j}(\xi_j,x)\beta_j\\
 &= \sum\limits_{j=1}^MD(\frac{\Vert x-\xi_j\Vert}{\lambda_j})\beta_j\qquad (6.28)
 \end{align}
 </script>
-其中每个基元素由位置或者原型参数$\xi_j$以及缩放参数$\lambda_j$。 $D$的一个流行的选择是标准高斯密度函数。有许多方式来学习参数${\lambda_j,\xi_j,\beta_j},j=1,\ldots,M$。为了简化，我们关注回归的最小二乘方法，并且采用高斯核。</p>
+其中每个基元素由位置或者原型参数$\xi_j$以及缩放参数$\lambda_j$。 $D$的一个流行的选择是标准高斯密度函数。有许多方式来学习参数$\{\lambda_j,\xi_j,\beta_j\},j=1,\ldots,M$。为了简化，我们关注回归的最小二乘方法，并且采用高斯核。</p>
 <ul>
 <li>有关关于所有参数的平方和
 <script type="math/tex; mode=display">
-\underset{\{\lambda_j,\xi_j,\beta_j\}_1^M}{min}\sum\limits_{i=1}^M(y_i-\beta_0-\sum\limits_{j=1}^M\beta_jexp\{-\frac{(x_i-\xi_j)^T(x_i-\xi_j)}{\lambda_j^2}\})^2\qquad (6.29)
+\underset{\{\lambda_j,\xi_j,\beta_j\}_1^M}{\min}\sum\limits_{i=1}^M(y_i-\beta_0-\sum\limits_{j=1}^M\beta_jexp\{-\frac{(x_i-\xi_j)^T(x_i-\xi_j)}{\lambda_j^2}\})^2\qquad (6.29)
 </script>
 </li>
 </ul>
