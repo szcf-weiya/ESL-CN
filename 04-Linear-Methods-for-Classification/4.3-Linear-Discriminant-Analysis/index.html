@@ -3159,10 +3159,10 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\
 对于$\gamma\in[0,1]$。用$\hat\Sigma(\gamma)$替换掉(4.13)的$\hat\Sigma$导出了一个更加一般的协方差阵族$\hat\Sigma(\alpha,\gamma)$,这是由一对参数来表示的。</p>
 <p>在12章，我们将讨论LDA的另一种正则化版本，当数据来自数字化的相似的信号和图像时更加地合适。在这些情形下特征是高维的且相关的，LDA系数可以通过正则化在原始信号域变得光滑和稀疏。这导出了更好的一般化并且对于这些系数有着简单的解释。在第18章中我们也处理非常高维的问题，举个例子如微阵列研究中基因表达测量的特征。这里方法集中在(4.14)中$\gamma=0$的情形，以及其它LDA的正则化版本。</p>
 <h2 id="lda">LDA的计算<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
-<p>作为下一主题的介绍，我们简单地岔开去讨论LDA的计算特别是QDA。这些计算可以通过对角化$\hat{\boldsymbol\Sigma}$或$\hat\Sigma_k$来简化。对于后者，假设我们对每一个计算特征值分解$\hat{\boldsymbol\Sigma}<em>k=U_kD_kU_k^T$，其中$U_k$是$p\times p$的对角矩阵，$D_k$是正的特征值$d</em>{k\ell}$组成的对角矩阵。则$\delta_k(x)$(4.12)的组成成分是</p>
+<p>作为下一主题的介绍，我们简单地岔开去讨论LDA的计算特别是QDA。这些计算可以通过对角化$\hat\ssigma$或$\hat\ssigma_k$来简化。对于后者，假设我们对每一个计算特征值分解$\hat\ssigma_k=U_kD_kU_k^T$，其中$U_k$是$p\times p$的对角矩阵，$D_k$是正的特征值$d_{k\ell}$组成的对角矩阵。则$\delta_k(x)$(4.12)的组成成分是</p>
 <ul>
-<li>$(x-\hat\mu_k)^T\hat{\boldsymbol\Sigma}_k^{-1}(x-\hat\mu_k)=[U_k^T(x-\hat\mu_k)]^TD_k^{-1}[U_k^T(x-\hat\mu_k)]$</li>
-<li>$\log\vert \hat{\boldsymbol\Sigma}<em>k\vert=\sum</em>{\ell}\logd_{k\ell}$</li>
+<li>$(x-\hat\mu_k)^T\hat\ssigma_k^{-1}(x-\hat\mu_k)=[U_k^T(x-\hat\mu_k)]^TD_k^{-1}[U_k^T(x-\hat\mu_k)]$</li>
+<li>$\log\vert \hat\ssigma_k\vert=\sum_{\ell}\logd_{k\ell}$</li>
 </ul>
 <p>按照上面列出的计算步骤，LDA分类器可以通过下面的步骤来实现</p>
 <ul>
