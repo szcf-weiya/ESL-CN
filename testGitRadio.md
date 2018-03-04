@@ -71,3 +71,7 @@ page.evaluate(function() {
   document.body.bgColor = 'white';
 });
 ```
+
+## 自动发送带图微博
+
+done！
