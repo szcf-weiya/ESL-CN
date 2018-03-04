@@ -3099,8 +3099,8 @@ s.t.&\; y_i(x_i^T\beta+\beta_0)\ge 1,\; i=1,\ldots,N
 \qquad (12.4)
 </script>
 </p>
-<p>我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$。表达式(12.4)是稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解在4.5.2节已经讨论了。</p>
-<p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$，但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$。有两种自然的方式去修改（12.3）中的约束：</p>
+<p>我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$。表达式(12.4)是稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解在<a href="../../04-Linear-Methods-for-Classification/4.5-Separating-Hyperplanes/index.html#452">4.5.2节</a>已经讨论了。</p>
+<p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$，但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$。有两种自然的方式去修改(12.3)中的约束：</p>
 <p>
 <script type="math/tex; mode=display">
 y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\qquad (12.5)
