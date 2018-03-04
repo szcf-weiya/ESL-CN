@@ -55,3 +55,10 @@ label.md-nav__title {
   font-weight: lighter;
   font-size: 2em;
 }
+
+
+/* link in list */
+
+.md-typeset ul li a {
+  color: blue!important;
+}
