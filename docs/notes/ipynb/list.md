@@ -14,4 +14,4 @@
 
 [![](screenshot2.png)](http://nbviewer.jupyter.org/github/szcf-weiya/ESL-CN/blob/master/code/nn/Implementation-for-Section-6.ipynb)
 
-test modified
+test modified 
