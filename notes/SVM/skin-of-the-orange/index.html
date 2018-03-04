@@ -3120,30 +3120,31 @@
 <h2 id="_1">背景重述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在两个类别中产生100个观测值。第一类有4个标准正态独立特征$X_1,X_2,X_3,X_4$。第二类也有四个标准正态独立特征，但是条件为$9\le \sum X_j^2\le 16$。这是个相对简单的问题。同时考虑第二个更难的问题，用6个标准高斯噪声特征作为增广特征。</p>
 <h2 id="_2">生成数据<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-r">## #####################################
-## generate dataset
-## 
-## `No Noise Features`: num_noise = 0
-## `Six Noise Features`: num_noise = 6
-## #####################################
-genXY &lt;- function(n = 100, num_noise = 0)
-{
-  ## class 1
-  m1 = matrix(rnorm(n*(4+num_noise)), ncol = 4 + num_noise)
-  ## class 2
-  m2 = matrix(nrow = n, ncol = 4 + num_noise)
-  for (i in 1:n) {
-    while (TRUE) {
-      m2[i, ] = rnorm(4 + num_noise)
-      tmp = sum(m2[i, 1:4]^2)
-      if(tmp &gt;= 9 &amp; tmp &lt;= 16)
-        break
-    }
-  }
-  X = rbind(m1, m2)
-  Y = rep(c(1, 2), each = n)
-  return(data.frame(X = X, Y = as.factor(Y)))
-}</code></pre>
+<div class="codehilite"><pre><span></span><span class="c1">## #####################################</span>
+<span class="c1">## generate dataset</span>
+<span class="c1">## </span>
+<span class="c1">## `No Noise Features`: num_noise = 0</span>
+<span class="c1">## `Six Noise Features`: num_noise = 6</span>
+<span class="c1">## #####################################</span>
+genXY <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>n <span class="o">=</span> <span class="m">100</span><span class="p">,</span> num_noise <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">## class 1</span>
+  m1 <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span>n<span class="o">*</span><span class="p">(</span><span class="m">4</span><span class="o">+</span>num_noise<span class="p">)),</span> ncol <span class="o">=</span> <span class="m">4</span> <span class="o">+</span> num_noise<span class="p">)</span>
+  <span class="c1">## class 2</span>
+  m2 <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>nrow <span class="o">=</span> n<span class="p">,</span> ncol <span class="o">=</span> <span class="m">4</span> <span class="o">+</span> num_noise<span class="p">)</span>
+  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n<span class="p">)</span> <span class="p">{</span>
+    <span class="kr">while</span> <span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span> <span class="p">{</span>
+      m2<span class="p">[</span>i<span class="p">,</span> <span class="p">]</span> <span class="o">=</span> rnorm<span class="p">(</span><span class="m">4</span> <span class="o">+</span> num_noise<span class="p">)</span>
+      tmp <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>m2<span class="p">[</span>i<span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">]</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+      <span class="kr">if</span><span class="p">(</span>tmp <span class="o">&gt;=</span> <span class="m">9</span> <span class="o">&amp;</span> tmp <span class="o">&lt;=</span> <span class="m">16</span><span class="p">)</span>
+        <span class="kr">break</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  X <span class="o">=</span> <span class="kp">rbind</span><span class="p">(</span>m1<span class="p">,</span> m2<span class="p">)</span>
+  Y <span class="o">=</span> <span class="kp">rep</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> each <span class="o">=</span> n<span class="p">)</span>
+  <span class="kr">return</span><span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span>X <span class="o">=</span> X<span class="p">,</span> Y <span class="o">=</span> <span class="kp">as.factor</span><span class="p">(</span>Y<span class="p">)))</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <h2 id="_3">模型训练<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -3159,17 +3160,19 @@ genXY &lt;- function(n = 100, num_noise = 0)
 <li>细分：在上一步选取的最优值附近进行细分</li>
 </ol>
 <p>注意避免最优值取在边界值。以SVM/poly5为例进行说明，其他类似</p>
-<pre class="codehilite"><code class="language-r">## SVM/poly5
-set.seed(123)
-poly5 = tune.svm(Y~., data = dat, kernel = &quot;polynomial&quot;, degree = 5, cost = 2^(-4:8))
-summary(poly5)</code></pre>
+<div class="codehilite"><pre><span></span><span class="c1">## SVM/poly5</span>
+<span class="kp">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+poly5 <span class="o">=</span> tune.svm<span class="p">(</span>Y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">,</span> kernel <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> degree <span class="o">=</span> <span class="m">5</span><span class="p">,</span> cost <span class="o">=</span> <span class="m">2</span><span class="o">^</span><span class="p">(</span><span class="m">-4</span><span class="o">:</span><span class="m">8</span><span class="p">))</span>
+<span class="kp">summary</span><span class="p">(</span>poly5<span class="p">)</span>
+</pre></div>
 
 
 <p><img alt="" src="../poly5_cv_1.PNG" /></p>
 <p>此时选取的最优$C$为32，进一步细化</p>
-<pre class="codehilite"><code class="language-r">set.seed(1234)
-poly5 = tune.svm(Y~., data = dat, kernel = &quot;polynomial&quot;, degree = 5, cost = seq(16, 64, by = 2))
-summary(poly5)</code></pre>
+<div class="codehilite"><pre><span></span><span class="kp">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+poly5 <span class="o">=</span> tune.svm<span class="p">(</span>Y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">,</span> kernel <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> degree <span class="o">=</span> <span class="m">5</span><span class="p">,</span> cost <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">16</span><span class="p">,</span> <span class="m">64</span><span class="p">,</span> by <span class="o">=</span> <span class="m">2</span><span class="p">))</span>
+<span class="kp">summary</span><span class="p">(</span>poly5<span class="p">)</span>
+</pre></div>
 
 
 <p><img alt="" src="../poly5_cv_2.PNG" /></p>
@@ -3206,29 +3209,30 @@ summary(poly5)</code></pre>
 <p>当然，实际中我们并不需要重新设置参数来训练模型，因为<code>tune.svm()</code>的返回结果就包含了最优模型，直接调用，比如<code>poly5$best.model</code></p>
 </div>
 <h2 id="_4">计算测试误差<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-r">predict.mars2 &lt;- function(model, newdata)
-{
-  pred = predict(model, newdata)
-  ifelse(pred &lt; 1.5, 1, 2)
-}
+<div class="codehilite"><pre><span></span>predict.mars2 <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>model<span class="p">,</span> newdata<span class="p">)</span>
+<span class="p">{</span>
+  pred <span class="o">=</span> predict<span class="p">(</span>model<span class="p">,</span> newdata<span class="p">)</span>
+  <span class="kp">ifelse</span><span class="p">(</span>pred <span class="o">&lt;</span> <span class="m">1.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="p">}</span>
 
-calcErr &lt;- function(model, n = 1000, nrep = 50, num_noise = 0, method = &quot;SVM&quot;)
-{
-  err = sapply(1:nrep, function(i){
-    dat = genXY(n, num_noise = num_noise)
-    datX = dat[, -ncol(dat)]
-    datY = dat[, ncol(dat)]
-    if (method == &quot;SVM&quot;)
-      pred = predict(model, newdata = datX)
-    else if (method == &quot;MARS&quot;)
-      pred = predict.mars2(model, newdata = datX)
-    else if (method == &quot;BRUTO&quot;)
-      pred = predict.mars2(model, newdata = as.matrix(datX))
-    sum(pred != datY)/(2*n) # Attention!! The total number of observations is 2n, not n
-  })
-  return(list(TestErr = mean(err),
-              SE = sd(err)))
-}</code></pre>
+calcErr <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>model<span class="p">,</span> n <span class="o">=</span> <span class="m">1000</span><span class="p">,</span> nrep <span class="o">=</span> <span class="m">50</span><span class="p">,</span> num_noise <span class="o">=</span> <span class="m">0</span><span class="p">,</span> method <span class="o">=</span> <span class="s">&quot;SVM&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+  err <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span>nrep<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">){</span>
+    dat <span class="o">=</span> genXY<span class="p">(</span>n<span class="p">,</span> num_noise <span class="o">=</span> num_noise<span class="p">)</span>
+    datX <span class="o">=</span> dat<span class="p">[,</span> <span class="o">-</span><span class="kp">ncol</span><span class="p">(</span>dat<span class="p">)]</span>
+    datY <span class="o">=</span> dat<span class="p">[,</span> <span class="kp">ncol</span><span class="p">(</span>dat<span class="p">)]</span>
+    <span class="kr">if</span> <span class="p">(</span>method <span class="o">==</span> <span class="s">&quot;SVM&quot;</span><span class="p">)</span>
+      pred <span class="o">=</span> predict<span class="p">(</span>model<span class="p">,</span> newdata <span class="o">=</span> datX<span class="p">)</span>
+    <span class="kr">else</span> <span class="kr">if</span> <span class="p">(</span>method <span class="o">==</span> <span class="s">&quot;MARS&quot;</span><span class="p">)</span>
+      pred <span class="o">=</span> predict.mars2<span class="p">(</span>model<span class="p">,</span> newdata <span class="o">=</span> datX<span class="p">)</span>
+    <span class="kr">else</span> <span class="kr">if</span> <span class="p">(</span>method <span class="o">==</span> <span class="s">&quot;BRUTO&quot;</span><span class="p">)</span>
+      pred <span class="o">=</span> predict.mars2<span class="p">(</span>model<span class="p">,</span> newdata <span class="o">=</span> <span class="kp">as.matrix</span><span class="p">(</span>datX<span class="p">))</span>
+    <span class="kp">sum</span><span class="p">(</span>pred <span class="o">!=</span> datY<span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">2</span><span class="o">*</span>n<span class="p">)</span> <span class="c1"># Attention!! The total number of observations is 2n, not n</span>
+  <span class="p">})</span>
+  <span class="kr">return</span><span class="p">(</span><span class="kt">list</span><span class="p">(</span>TestErr <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>err<span class="p">),</span>
+              SE <span class="o">=</span> sd<span class="p">(</span>err<span class="p">)))</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>值得说明的是，对于BRUTO和MARS，因为程序是将其视为回归模型处理的，需要进一步转换为类别标签。因为程序中类别用1和2编号，所以判断拟合值是否大于1.5，大于则划为第二类，否则第一类。</p>

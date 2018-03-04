@@ -2984,130 +2984,133 @@
 <p><img alt="" src="../../../img/10/tab10.2.png" /></p>
 <p>将上述几种损失函数及其梯度用如下的Julia程序表达出来。</p>
 <p>首先声明<code>LossFunction</code>抽象类</p>
-<pre class="codehilite"><code class="language-julia">abstract type LossFunction end</code></pre>
+<div class="codehilite"><pre><span></span><span class="k">abstract</span> <span class="k">type</span> <span class="n">LossFunction</span> <span class="k">end</span>
+</pre></div>
 
 
 <p>然后依次声明平方误差损失类<code>SquareLoss</code>、绝对值损失类<code>AbsLoss</code>、Huber损失类<code>HuberLoss</code>。以及用于logistic回归的<code>LogisticLoss</code>。</p>
-<pre class="codehilite"><code class="language-julia">function sigmoid(x)
-    return 1./(1+exp.(-x))
-end
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">exp</span><span class="o">.</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+<span class="k">end</span>
 
-type SquareLoss &lt;: LossFunction
-    obj::Function
-    gradient::Function
+<span class="k">type</span> <span class="n">SquareLoss</span> <span class="o">&lt;:</span> <span class="n">LossFunction</span>
+    <span class="n">obj</span><span class="o">::</span><span class="kt">Function</span>
+    <span class="n">gradient</span><span class="o">::</span><span class="kt">Function</span>
 
-    function obj(y::Array, y_pred::Array)
-        return 0.5 * sum(abs2, y - y_pred)
-    end
+    <span class="k">function</span> <span class="n">obj</span><span class="p">(</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sum</span><span class="p">(</span><span class="n">abs2</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="k">end</span>
 
-    function gradient(y::Array, y_pred::Array)
-        return (y_pred - y)
-    end
+    <span class="k">function</span> <span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">end</span>
 
-    function SquareLoss()
-        loss = new(obj, gradient)
-        return loss
-    end
-end
+    <span class="k">function</span> <span class="n">SquareLoss</span><span class="p">()</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">gradient</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 
-type AbsLoss &lt;: LossFunction
-    obj::Function
-    gradient::Function
+<span class="k">type</span> <span class="n">AbsLoss</span> <span class="o">&lt;:</span> <span class="n">LossFunction</span>
+    <span class="n">obj</span><span class="o">::</span><span class="kt">Function</span>
+    <span class="n">gradient</span><span class="o">::</span><span class="kt">Function</span>
 
-    function obj(y::Array, y_pred::Array)
-        return sum(abs, y - y_pred)
-    end
+    <span class="k">function</span> <span class="n">obj</span><span class="p">(</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="p">(</span><span class="n">abs</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="k">end</span>
 
-    function gradient(y::Array, y_pred::Array)
-        return sign.(y_pred - y)
-    end
+    <span class="k">function</span> <span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sign</span><span class="o">.</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">end</span>
 
-    function AbsLoss()
-        loss = new(obj, gradient)
-        return loss
-    end
-end
+    <span class="k">function</span> <span class="n">AbsLoss</span><span class="p">()</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">gradient</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 
-type HuberLoss &lt;: LossFunction
-    obj::Function
-    gradient::Function
+<span class="k">type</span> <span class="n">HuberLoss</span> <span class="o">&lt;:</span> <span class="n">LossFunction</span>
+    <span class="n">obj</span><span class="o">::</span><span class="kt">Function</span>
+    <span class="n">gradient</span><span class="o">::</span><span class="kt">Function</span>
 
-    function obj(y::Array, y_pred::Array; alpha::Float64 = 0.2)
-        delta = quantile(abs.(y-y_pred), alpha)
-        res = ones(size(y, 1))
-        for i=1:size(y,1)
-            if (abs(y[i]-y_pred[i]) &lt; delta)
-                res[i] = abs2(y[i]-y_pred[i])
-            else
-                res[i] = 2*delta*abs(y[i]-y_pred[i])-abs2(delta)
-            end
-        end
-        return sum(res)
-    end
+    <span class="k">function</span> <span class="n">obj</span><span class="p">(</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">::</span><span class="kt">Array</span><span class="p">;</span> <span class="n">alpha</span><span class="o">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">y_pred</span><span class="p">),</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">delta</span><span class="p">)</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">abs2</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">else</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">delta</span><span class="o">*</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="n">abs2</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="k">end</span>
 
-    function gradient(y::Array, y_pred::Array; alpha::Float64=0.2)
-        delta = quantile(abs.(y-y_pred), alpha)
-        res = ones(size(y, 1))
-        for i = 1:size(y, 1)
-            if (abs(y[i]-y_pred[i]) &lt; delta)
-                res[i] = y_pred[i]-y[i]
-            else
-                res[i] = delta*sign(y_pred[i]-y[i])
-            end
-        end
-        return res
-    end
+    <span class="k">function</span> <span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">::</span><span class="kt">Array</span><span class="p">;</span> <span class="n">alpha</span><span class="o">::</span><span class="kt">Float64</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">y_pred</span><span class="p">),</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">delta</span><span class="p">)</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">else</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span><span class="o">*</span><span class="n">sign</span><span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        <span class="k">return</span> <span class="n">res</span>
+    <span class="k">end</span>
 
-    function HuberLoss()
-        loss = new(obj, gradient)
-        return loss
-    end
-end
+    <span class="k">function</span> <span class="n">HuberLoss</span><span class="p">()</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">gradient</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 
-type LogisticLoss &lt;: LossFunction
-    obj::Function
-    gradient::Function
+<span class="k">type</span> <span class="n">LogisticLoss</span> <span class="o">&lt;:</span> <span class="n">LossFunction</span>
+    <span class="n">obj</span><span class="o">::</span><span class="kt">Function</span>
+    <span class="n">gradient</span><span class="o">::</span><span class="kt">Function</span>
 
-    function obj(y::Array, y_pred::Array)
-        logistic_pred = sigmoid(y_pred)
-        l = - y .* log.(logistic_pred)
-        r = - (1-y) .* log.(1-logistic_pred)
-        loss = sum(l+r)
-        return loss
-    end
+    <span class="k">function</span> <span class="n">obj</span><span class="p">(</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
+        <span class="n">logistic_pred</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="o">-</span> <span class="n">y</span> <span class="o">.*</span> <span class="n">log</span><span class="o">.</span><span class="p">(</span><span class="n">logistic_pred</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span> <span class="o">.*</span> <span class="n">log</span><span class="o">.</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">logistic_pred</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss</span>
+    <span class="k">end</span>
 
-    function gradient(y::Array, y_pred::Array)
-        p = sigmoid(y_pred)
-        return (p - y)./(p.*(1-p))
-    end
+    <span class="k">function</span> <span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">./</span><span class="p">(</span><span class="n">p</span><span class="o">.*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span>
+    <span class="k">end</span>
 
-    function LogisticLoss()
-        loss = new(obj, gradient)
-        return loss
-    end
-end</code></pre>
+    <span class="k">function</span> <span class="n">LogisticLoss</span><span class="p">()</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">gradient</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
 
 
 <p>测试代码如下</p>
-<pre class="codehilite"><code class="language-julia">## test
-x = randn(3)
-y = randn(3)
-println(&quot;## square loss&quot;)
-s = SquareLoss()
-sg = s.gradient(x, y)
-@printf(&quot;val = %.6f; gradient = [%.6f, %.6f, %.6f]\n&quot;, s.obj(x, y), sg[1], sg[2], sg[3])
-println(&quot;## abs loss&quot;)
-a = AbsLoss()
-ag = a.gradient(x, y)
-@printf(&quot;val = %.6f; gradient = [%.6f, %.6f, %.6f]\n&quot;, a.obj(x, y), ag[1], ag[2], ag[3])
-println(&quot;## huber loss&quot;)
-h = HuberLoss()
-hg = h.gradient(x, y)
-@printf(&quot;val = %.6f; gradient = [%.6f, %.6f, %.6f]\n&quot;, h.obj(x, y), hg[1], hg[2], hg[3])
-println(&quot;## logit loss&quot;)
-l = LogisticLoss()
-lg = l.gradient(x, y)
-@printf(&quot;val = %.6f; gradient = [%.6f, %.6f, %.6f]\n&quot;, l.obj(x, y), lg[1], lg[2], lg[3])</code></pre>
+<div class="codehilite"><pre><span></span><span class="c">## test</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;## square loss&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">SquareLoss</span><span class="p">()</span>
+<span class="n">sg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nd">@printf</span><span class="p">(</span><span class="s">&quot;val = </span><span class="si">%.6f</span><span class="s">; gradient = [</span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">obj</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">sg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sg</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">sg</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;## abs loss&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">AbsLoss</span><span class="p">()</span>
+<span class="n">ag</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nd">@printf</span><span class="p">(</span><span class="s">&quot;val = </span><span class="si">%.6f</span><span class="s">; gradient = [</span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">obj</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ag</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ag</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">ag</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;## huber loss&quot;</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">HuberLoss</span><span class="p">()</span>
+<span class="n">hg</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nd">@printf</span><span class="p">(</span><span class="s">&quot;val = </span><span class="si">%.6f</span><span class="s">; gradient = [</span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">obj</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">hg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">hg</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">hg</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;## logit loss&quot;</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">LogisticLoss</span><span class="p">()</span>
+<span class="n">lg</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nd">@printf</span><span class="p">(</span><span class="s">&quot;val = </span><span class="si">%.6f</span><span class="s">; gradient = [</span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">l</span><span class="o">.</span><span class="n">obj</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">lg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">lg</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">lg</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
 
 
 <p>结果如下</p>

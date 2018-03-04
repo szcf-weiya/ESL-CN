@@ -3117,138 +3117,149 @@ Y=I(\mathrm{sign}\Big\{\prod\limits_{j=1}^3(X_j-\frac 12)\Big\}>0)
 </p>
 <p>本模拟实验比较了k最近邻和k均值应用在上述两个问题的分类误差率随相应参数变化的曲线，结果表明与书中图13.5完美契合。</p>
 <h2 id="_2">生成数据<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-R">## generate dataset X
-genX &lt;- function(N, p = 10){
-  sapply(1:p, function(i) runif(N))
-}
-## generate dataset Y
-genY &lt;- function(X, id = 1){
-  if (id == 1){
-    apply(X, 1, function(x) ifelse(x[1] &lt; 0.5, 0, 1) )
-  }
-  else if (id == 2){
-    apply(X, 1, function(x) ifelse(prod(x[1:3]-0.5) &gt; 0, 1, 0) )
-  }
-  else{
-    cat(&quot;WARNING! Incorrect id for problems.&quot;)
-  }
-}</code></pre>
+<div class="codehilite"><pre><span></span><span class="c1">## generate dataset X</span>
+genX <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>N<span class="p">,</span> p <span class="o">=</span> <span class="m">10</span><span class="p">){</span>
+  <span class="kp">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span>p<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">)</span> runif<span class="p">(</span>N<span class="p">))</span>
+<span class="p">}</span>
+<span class="c1">## generate dataset Y</span>
+genY <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>X<span class="p">,</span> id <span class="o">=</span> <span class="m">1</span><span class="p">){</span>
+  <span class="kr">if</span> <span class="p">(</span>id <span class="o">==</span> <span class="m">1</span><span class="p">){</span>
+    <span class="kp">apply</span><span class="p">(</span>X<span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">ifelse</span><span class="p">(</span>x<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span> <span class="p">)</span>
+  <span class="p">}</span>
+  <span class="kr">else</span> <span class="kr">if</span> <span class="p">(</span>id <span class="o">==</span> <span class="m">2</span><span class="p">){</span>
+    <span class="kp">apply</span><span class="p">(</span>X<span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">ifelse</span><span class="p">(</span><span class="kp">prod</span><span class="p">(</span>x<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span><span class="m">-0.5</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span> <span class="p">)</span>
+  <span class="p">}</span>
+  <span class="kp">else</span><span class="p">{</span>
+    <span class="kp">cat</span><span class="p">(</span><span class="s">&quot;WARNING! Incorrect id for problems.&quot;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <h2 id="_3">参数设定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-R">n.train = 100
-n.test = 1000
-n.realization = 10</code></pre>
+<div class="codehilite"><pre><span></span>n.train <span class="o">=</span> <span class="m">100</span>
+n.test <span class="o">=</span> <span class="m">1000</span>
+n.realization <span class="o">=</span> <span class="m">10</span>
+</pre></div>
 
 
 <h2 id="k">k最近邻<a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-R">library(class)
-seq.knn = seq(1, 71, by = 7)
-n.knn = length(seq.knn)
-err = array(NA, c(n.knn, n.realization))</code></pre>
+<div class="codehilite"><pre><span></span><span class="kn">library</span><span class="p">(</span><span class="kp">class</span><span class="p">)</span>
+seq.knn <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">71</span><span class="p">,</span> by <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
+n.knn <span class="o">=</span> <span class="kp">length</span><span class="p">(</span>seq.knn<span class="p">)</span>
+err <span class="o">=</span> <span class="kt">array</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span>n.knn<span class="p">,</span> n.realization<span class="p">))</span>
+</pre></div>
 
 
 <p>编写在两个问题中k最近邻的模拟函数<code>knn.sim()</code></p>
-<pre class="codehilite"><code class="language-R">knn.sim &lt;- function(id){
-  for (j in 1:n.realization){
-    X.train = genX(n.train)
-    Y.train = genY(X.train, id)
-    X.test = genX(n.test)
-    Y.test = genY(X.test, id)
-    for (i in 1:n.knn){
-      Y.pred = knn(X.train, X.test, factor(Y.train), k = seq.knn[i])
-      err[i, j] = sum(Y.pred!=Y.test)/n.test
-    }
-  }
-  return(err)
-}</code></pre>
+<div class="codehilite"><pre><span></span>knn.sim <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>id<span class="p">){</span>
+  <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n.realization<span class="p">){</span>
+    X.train <span class="o">=</span> genX<span class="p">(</span>n.train<span class="p">)</span>
+    Y.train <span class="o">=</span> genY<span class="p">(</span>X.train<span class="p">,</span> id<span class="p">)</span>
+    X.test <span class="o">=</span> genX<span class="p">(</span>n.test<span class="p">)</span>
+    Y.test <span class="o">=</span> genY<span class="p">(</span>X.test<span class="p">,</span> id<span class="p">)</span>
+    <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n.knn<span class="p">){</span>
+      Y.pred <span class="o">=</span> knn<span class="p">(</span>X.train<span class="p">,</span> X.test<span class="p">,</span> <span class="kp">factor</span><span class="p">(</span>Y.train<span class="p">),</span> k <span class="o">=</span> seq.knn<span class="p">[</span>i<span class="p">])</span>
+      err<span class="p">[</span>i<span class="p">,</span> j<span class="p">]</span> <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>Y.pred<span class="o">!=</span>Y.test<span class="p">)</span><span class="o">/</span>n.test
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="kr">return</span><span class="p">(</span>err<span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>编写整个模拟实验中通用的绘图函数<code>myplot()</code></p>
-<pre class="codehilite"><code class="language-R">myplot &lt;- function(seq.knn, err, main, xlab, ylim){
-  ## calculate the mean and std of misclassification error
-  err.mean = apply(err, 1, mean)
-  err.std = apply(err, 1, sd)
+<div class="codehilite"><pre><span></span>myplot <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>seq.knn<span class="p">,</span> err<span class="p">,</span> main<span class="p">,</span> xlab<span class="p">,</span> ylim<span class="p">){</span>
+  <span class="c1">## calculate the mean and std of misclassification error</span>
+  err.mean <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>err<span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
+  err.std <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>err<span class="p">,</span> <span class="m">1</span><span class="p">,</span> sd<span class="p">)</span>
 
-  n.knn = length(seq.knn)
-  ## plot
-  plot(seq.knn, err.mean,
-       main = main,
-       ylab = &quot;Misclassification Error&quot;,
-       xlab = xlab,
-       col = &quot;blue&quot;, type = &quot;l&quot;,
-       ylim = ylim)
-  for(i in 1:n.knn){
-    lines(c(seq.knn[i], seq.knn[i]),
-          c(err.mean[i] - err.std[i], err.mean[i] + err.std[i]),
-          col = &quot;blue&quot;, pch = 3)
-    lines(c(seq.knn[i]-0.2, seq.knn[i]+0.2),
-          c(err.mean[i] - err.std[i], err.mean[i] - err.std[i]),
-          col = &quot;blue&quot;, pch = 3)
-    lines(c(seq.knn[i]-0.2, seq.knn[i]+0.2),
-          c(err.mean[i] + err.std[i], err.mean[i] + err.std[i]),
-          col = &quot;blue&quot;, pch = 3)
-  }
-}</code></pre>
+  n.knn <span class="o">=</span> <span class="kp">length</span><span class="p">(</span>seq.knn<span class="p">)</span>
+  <span class="c1">## plot</span>
+  plot<span class="p">(</span>seq.knn<span class="p">,</span> err.mean<span class="p">,</span>
+       main <span class="o">=</span> main<span class="p">,</span>
+       ylab <span class="o">=</span> <span class="s">&quot;Misclassification Error&quot;</span><span class="p">,</span>
+       xlab <span class="o">=</span> xlab<span class="p">,</span>
+       col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span>
+       ylim <span class="o">=</span> ylim<span class="p">)</span>
+  <span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n.knn<span class="p">){</span>
+    lines<span class="p">(</span><span class="kt">c</span><span class="p">(</span>seq.knn<span class="p">[</span>i<span class="p">],</span> seq.knn<span class="p">[</span>i<span class="p">]),</span>
+          <span class="kt">c</span><span class="p">(</span>err.mean<span class="p">[</span>i<span class="p">]</span> <span class="o">-</span> err.std<span class="p">[</span>i<span class="p">],</span> err.mean<span class="p">[</span>i<span class="p">]</span> <span class="o">+</span> err.std<span class="p">[</span>i<span class="p">]),</span>
+          col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+    lines<span class="p">(</span><span class="kt">c</span><span class="p">(</span>seq.knn<span class="p">[</span>i<span class="p">]</span><span class="m">-0.2</span><span class="p">,</span> seq.knn<span class="p">[</span>i<span class="p">]</span><span class="m">+0.2</span><span class="p">),</span>
+          <span class="kt">c</span><span class="p">(</span>err.mean<span class="p">[</span>i<span class="p">]</span> <span class="o">-</span> err.std<span class="p">[</span>i<span class="p">],</span> err.mean<span class="p">[</span>i<span class="p">]</span> <span class="o">-</span> err.std<span class="p">[</span>i<span class="p">]),</span>
+          col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+    lines<span class="p">(</span><span class="kt">c</span><span class="p">(</span>seq.knn<span class="p">[</span>i<span class="p">]</span><span class="m">-0.2</span><span class="p">,</span> seq.knn<span class="p">[</span>i<span class="p">]</span><span class="m">+0.2</span><span class="p">),</span>
+          <span class="kt">c</span><span class="p">(</span>err.mean<span class="p">[</span>i<span class="p">]</span> <span class="o">+</span> err.std<span class="p">[</span>i<span class="p">],</span> err.mean<span class="p">[</span>i<span class="p">]</span> <span class="o">+</span> err.std<span class="p">[</span>i<span class="p">]),</span>
+          col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>则Easy Problem的分类误差随邻居数变化的曲线为</p>
-<pre class="codehilite"><code class="language-R">err = knn.sim(1)
-myplot(seq.knn, err, &quot;Nearest Neighbors / Easy&quot;, &quot;Number of Neighbors&quot;, c(0.1, 0.5))</code></pre>
+<div class="codehilite"><pre><span></span>err <span class="o">=</span> knn.sim<span class="p">(</span><span class="m">1</span><span class="p">)</span>
+myplot<span class="p">(</span>seq.knn<span class="p">,</span> err<span class="p">,</span> <span class="s">&quot;Nearest Neighbors / Easy&quot;</span><span class="p">,</span> <span class="s">&quot;Number of Neighbors&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
 
 
 <p><img alt="" src="../knn_easy.png" /></p>
 <p>对于Difficult Problem，我们有</p>
-<pre class="codehilite"><code class="language-R">err = knn.sim(2)
-myplot(seq.knn, err, &quot;Nearest Neighbors / Difficult&quot;, &quot;Number of Neighbors&quot;, c(0.4, 0.6))</code></pre>
+<div class="codehilite"><pre><span></span>err <span class="o">=</span> knn.sim<span class="p">(</span><span class="m">2</span><span class="p">)</span>
+myplot<span class="p">(</span>seq.knn<span class="p">,</span> err<span class="p">,</span> <span class="s">&quot;Nearest Neighbors / Difficult&quot;</span><span class="p">,</span> <span class="s">&quot;Number of Neighbors&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span> <span class="m">0.6</span><span class="p">))</span>
+</pre></div>
 
 
 <p><img alt="" src="../knn_difficult.png" /></p>
 <h2 id="k-means">k-means聚类<a class="headerlink" href="#k-means" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-R">seq.kmeans = c(1, 2, 3, 5, seq(6, 31, by = 4))
-n.kmeans = length(seq.kmeans)
-err = array(NA, c(n.kmeans, n.realization))</code></pre>
+<div class="codehilite"><pre><span></span>seq.kmeans <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="kp">seq</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="m">31</span><span class="p">,</span> by <span class="o">=</span> <span class="m">4</span><span class="p">))</span>
+n.kmeans <span class="o">=</span> <span class="kp">length</span><span class="p">(</span>seq.kmeans<span class="p">)</span>
+err <span class="o">=</span> <span class="kt">array</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span>n.kmeans<span class="p">,</span> n.realization<span class="p">))</span>
+</pre></div>
 
 
 <p>编写两个问题中k-means的模拟函数<code>kmeans.sim()</code></p>
-<pre class="codehilite"><code class="language-R">## predict function for k-means
-predict.kmeans &lt;- function(cl0, cl1, newpoint){
-  center0 = cl0$centers
-  center1 = cl1$centers
-  res0 = apply(newpoint, 1, function(x) {
-    min(apply(center0, 1, function(xx) sum((xx-x)^2)))
-  })
-  res1 = apply(newpoint, 1, function(x) {
-    min(apply(center1, 1, function(xx) sum((xx-x)^2)))
-  })
-  ifelse(res0 &lt; res1, 0, 1)
-}
-kmeans.sim &lt;- function(id){
-  for (j in 1:n.realization){
-    X.train = genX(n.train)
-    Y.train = genY(X.train, id)
-    X.test = genX(n.test)
-    Y.test = genY(X.test, id)
-    for (i in 1:n.kmeans){
-      cl0 = kmeans(X.train[Y.train==0, ], seq.kmeans[i])
-      cl1 = kmeans(X.train[Y.train==1, ], seq.kmeans[i])
-      Y.pred = predict.kmeans(cl0, cl1, X.test)
-      err[i, j] = sum(Y.pred!=Y.test)/n.test
-    }
-  }
-  return(err)
-}</code></pre>
+<div class="codehilite"><pre><span></span><span class="c1">## predict function for k-means</span>
+predict.kmeans <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>cl0<span class="p">,</span> cl1<span class="p">,</span> newpoint<span class="p">){</span>
+  center0 <span class="o">=</span> cl0<span class="o">$</span>centers
+  center1 <span class="o">=</span> cl1<span class="o">$</span>centers
+  res0 <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>newpoint<span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+    <span class="kp">min</span><span class="p">(</span><span class="kp">apply</span><span class="p">(</span>center0<span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>xx<span class="p">)</span> <span class="kp">sum</span><span class="p">((</span>xx<span class="o">-</span>x<span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)))</span>
+  <span class="p">})</span>
+  res1 <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>newpoint<span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+    <span class="kp">min</span><span class="p">(</span><span class="kp">apply</span><span class="p">(</span>center1<span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>xx<span class="p">)</span> <span class="kp">sum</span><span class="p">((</span>xx<span class="o">-</span>x<span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)))</span>
+  <span class="p">})</span>
+  <span class="kp">ifelse</span><span class="p">(</span>res0 <span class="o">&lt;</span> res1<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+<span class="p">}</span>
+kmeans.sim <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>id<span class="p">){</span>
+  <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n.realization<span class="p">){</span>
+    X.train <span class="o">=</span> genX<span class="p">(</span>n.train<span class="p">)</span>
+    Y.train <span class="o">=</span> genY<span class="p">(</span>X.train<span class="p">,</span> id<span class="p">)</span>
+    X.test <span class="o">=</span> genX<span class="p">(</span>n.test<span class="p">)</span>
+    Y.test <span class="o">=</span> genY<span class="p">(</span>X.test<span class="p">,</span> id<span class="p">)</span>
+    <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n.kmeans<span class="p">){</span>
+      cl0 <span class="o">=</span> kmeans<span class="p">(</span>X.train<span class="p">[</span>Y.train<span class="o">==</span><span class="m">0</span><span class="p">,</span> <span class="p">],</span> seq.kmeans<span class="p">[</span>i<span class="p">])</span>
+      cl1 <span class="o">=</span> kmeans<span class="p">(</span>X.train<span class="p">[</span>Y.train<span class="o">==</span><span class="m">1</span><span class="p">,</span> <span class="p">],</span> seq.kmeans<span class="p">[</span>i<span class="p">])</span>
+      Y.pred <span class="o">=</span> predict.kmeans<span class="p">(</span>cl0<span class="p">,</span> cl1<span class="p">,</span> X.test<span class="p">)</span>
+      err<span class="p">[</span>i<span class="p">,</span> j<span class="p">]</span> <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>Y.pred<span class="o">!=</span>Y.test<span class="p">)</span><span class="o">/</span>n.test
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="kr">return</span><span class="p">(</span>err<span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>则Easy Problem的分类误差随原型个数变化的曲线为</p>
-<pre class="codehilite"><code class="language-R">err = kmeans.sim(1)
-myplot(seq.kmeans, err, &quot;K-means / Easy&quot;, &quot;Number of Prototypes per Class&quot;, c(0.1, 0.5))</code></pre>
+<div class="codehilite"><pre><span></span>err <span class="o">=</span> kmeans.sim<span class="p">(</span><span class="m">1</span><span class="p">)</span>
+myplot<span class="p">(</span>seq.kmeans<span class="p">,</span> err<span class="p">,</span> <span class="s">&quot;K-means / Easy&quot;</span><span class="p">,</span> <span class="s">&quot;Number of Prototypes per Class&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
 
 
 <p><img alt="" src="../kmeans_easy.png" /></p>
 <p>而Difficult Problem对应的图象为</p>
-<pre class="codehilite"><code class="language-R">err = kmeans.sim(2)
-myplot(seq.kmeans, err, &quot;K-means / Difficult&quot;, &quot;Number of Prototypes per Class&quot;, c(0.4, 0.6))</code></pre>
+<div class="codehilite"><pre><span></span>err <span class="o">=</span> kmeans.sim<span class="p">(</span><span class="m">2</span><span class="p">)</span>
+myplot<span class="p">(</span>seq.kmeans<span class="p">,</span> err<span class="p">,</span> <span class="s">&quot;K-means / Difficult&quot;</span><span class="p">,</span> <span class="s">&quot;Number of Prototypes per Class&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span> <span class="m">0.6</span><span class="p">))</span>
+</pre></div>
 
 
 <p><img alt="" src="../kmeans_difficult.png" /></p>

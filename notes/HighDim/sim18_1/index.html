@@ -3082,19 +3082,20 @@
 <p>本笔记是<a href="https://esl.hohoweiya.xyz/18%20High-Dimensional%20Problems/18.1%20When%20p%20is%20Much%20Bigger%20than%20N/index.html">ESL18.1节</a>例子的模拟。</p>
 <h2 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>生成$N$个样本，每个样本都是$p$个成对相关系数为0.2的标准高斯特征$X$.</p>
-<pre class="codehilite"><code class="language-R">genX &lt;- function(p, N = 100){
-  # mu
-  mu = numeric(p)
-  # due to var(x_j) = 1
-  # covariance matrix equals to correlation matrix
-  Sigma = matrix(0.2, nrow=p, ncol=p)
-  diag(Sigma) = 1
-  library(MASS)
-  X = mvrnorm(N, mu, Sigma)
-  if (is.null(dim(X)))
-    X = matrix(X, ncol = p)
-  return(X)
-}</code></pre>
+<div class="codehilite"><pre><span></span>genX <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>p<span class="p">,</span> N <span class="o">=</span> <span class="m">100</span><span class="p">){</span>
+  <span class="c1"># mu</span>
+  mu <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span>p<span class="p">)</span>
+  <span class="c1"># due to var(x_j) = 1</span>
+  <span class="c1"># covariance matrix equals to correlation matrix</span>
+  Sigma <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span> nrow<span class="o">=</span>p<span class="p">,</span> ncol<span class="o">=</span>p<span class="p">)</span>
+  <span class="kp">diag</span><span class="p">(</span>Sigma<span class="p">)</span> <span class="o">=</span> <span class="m">1</span>
+  <span class="kn">library</span><span class="p">(</span>MASS<span class="p">)</span>
+  X <span class="o">=</span> mvrnorm<span class="p">(</span>N<span class="p">,</span> mu<span class="p">,</span> Sigma<span class="p">)</span>
+  <span class="kr">if</span> <span class="p">(</span><span class="kp">is.null</span><span class="p">(</span><span class="kp">dim</span><span class="p">(</span>X<span class="p">)))</span>
+    X <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>X<span class="p">,</span> ncol <span class="o">=</span> p<span class="p">)</span>
+  <span class="kr">return</span><span class="p">(</span>X<span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>为了生成$Y$，根据下式</p>
@@ -3108,97 +3109,102 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
 \frac{Var[E(Y\mid X)]}{Var(\varepsilon)}=\frac{Var(f(X))}{Var(\varepsilon)}=2
 </script>
 来确定$\sigma$，从而确定误差项。</p>
-<pre class="codehilite"><code class="language-R">genY &lt;- function(X){
-  N = nrow(X)
-  p = ncol(X)
-  beta = rnorm(p, 0, 1)
-  fX = X %*% as.matrix(beta, ncol = 1)
-  #fX = rowSums(fX)
-  epsi.var = var(as.vector(fX))/2 # not for test, just for train
-  epsi = rnorm(N, 0, sqrt(epsi.var))
-  Y = fX + epsi
-  res = list(Y=Y, epsi.var=epsi.var)
-  return(res)
-}</code></pre>
+<div class="codehilite"><pre><span></span>genY <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>X<span class="p">){</span>
+  N <span class="o">=</span> <span class="kp">nrow</span><span class="p">(</span>X<span class="p">)</span>
+  p <span class="o">=</span> <span class="kp">ncol</span><span class="p">(</span>X<span class="p">)</span>
+  beta <span class="o">=</span> rnorm<span class="p">(</span>p<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+  fX <span class="o">=</span> X <span class="o">%*%</span> <span class="kp">as.matrix</span><span class="p">(</span><span class="kp">beta</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+  <span class="c1">#fX = rowSums(fX)</span>
+  epsi.var <span class="o">=</span> var<span class="p">(</span><span class="kp">as.vector</span><span class="p">(</span>fX<span class="p">))</span><span class="o">/</span><span class="m">2</span> <span class="c1"># not for test, just for train</span>
+  epsi <span class="o">=</span> rnorm<span class="p">(</span>N<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="kp">sqrt</span><span class="p">(</span>epsi.var<span class="p">))</span>
+  Y <span class="o">=</span> fX <span class="o">+</span> epsi
+  res <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>Y<span class="o">=</span>Y<span class="p">,</span> epsi.var<span class="o">=</span>epsi.var<span class="p">)</span>
+  <span class="kr">return</span><span class="p">(</span>res<span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <h2 id="_2">简单线性回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-R">for (p in c(20, 100, 1000)) {
-  X = genX(p)
-  Y = genY(X)$Y
-  model = lm(Y~X)
-  # count the number of significant terms
-  coef.mat = coef(summary(model))
-  sig.level = 0.05
-  coef.p = coef.mat[, 4]
-  # remove the intercept
-  if (names(coef.p)[1] == &quot;(Intercept)&quot;)
-    coef.p = coef.p[-1]
-  coef.p[which(is.nan(coef.p))] = 1 # replace NaN with 1
-  sig.num = sum(coef.p &lt; sig.level)
-  cat(&quot;p = &quot;, p, &quot; sig.num = &quot;, sig.num, &quot;\n&quot;)
-}</code></pre>
+<div class="codehilite"><pre><span></span><span class="kr">for</span> <span class="p">(</span>p <span class="kr">in</span> <span class="kt">c</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">1000</span><span class="p">))</span> <span class="p">{</span>
+  X <span class="o">=</span> genX<span class="p">(</span>p<span class="p">)</span>
+  Y <span class="o">=</span> genY<span class="p">(</span>X<span class="p">)</span><span class="o">$</span>Y
+  model <span class="o">=</span> lm<span class="p">(</span>Y<span class="o">~</span>X<span class="p">)</span>
+  <span class="c1"># count the number of significant terms</span>
+  coef.mat <span class="o">=</span> coef<span class="p">(</span><span class="kp">summary</span><span class="p">(</span>model<span class="p">))</span>
+  sig.level <span class="o">=</span> <span class="m">0.05</span>
+  coef.p <span class="o">=</span> coef.mat<span class="p">[,</span> <span class="m">4</span><span class="p">]</span>
+  <span class="c1"># remove the intercept</span>
+  <span class="kr">if</span> <span class="p">(</span><span class="kp">names</span><span class="p">(</span>coef.p<span class="p">)[</span><span class="m">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
+    coef.p <span class="o">=</span> coef.p<span class="p">[</span><span class="m">-1</span><span class="p">]</span>
+  coef.p<span class="p">[</span><span class="kp">which</span><span class="p">(</span><span class="kp">is.nan</span><span class="p">(</span>coef.p<span class="p">))]</span> <span class="o">=</span> <span class="m">1</span> <span class="c1"># replace NaN with 1</span>
+  sig.num <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>coef.p <span class="o">&lt;</span> sig.level<span class="p">)</span>
+  <span class="kp">cat</span><span class="p">(</span><span class="s">&quot;p = &quot;</span><span class="p">,</span> p<span class="p">,</span> <span class="s">&quot; sig.num = &quot;</span><span class="p">,</span> sig.num<span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>其实当$p=100,1000$时，进行简单线性回归通常会得到0残差，所以标准差的估计都是<code>NA</code>，这样看来统计其显著变量个数意义是不大的，故推测原文中其实是对单变量回归模型而言的。</p>
 <h2 id="_3">单变量线性回归<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-R">for (p in c(20, 100, 1000)){
-  num = 0
-  for (j in 1:100){
-    X = genX(p)
-    Y = genY(X)$Y
-    for (i in 1:p){
-      model = lm(Y~1+X[,i])
-      coef.mat = coef(summary(model))
-      #score = abs(coef.mat[2, 1]/coef.mat[2, 2])
-      if(coef.mat[2, 4] &lt; 0.05)
-        num = num + 1
-    }
-  }
-  num = num/100
-  cat(&quot;p = &quot;, p, &quot; num of significant term: &quot;, num ,&quot;\n&quot;)
-}</code></pre>
+<div class="codehilite"><pre><span></span><span class="kr">for</span> <span class="p">(</span>p <span class="kr">in</span> <span class="kt">c</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">1000</span><span class="p">)){</span>
+  num <span class="o">=</span> <span class="m">0</span>
+  <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">){</span>
+    X <span class="o">=</span> genX<span class="p">(</span>p<span class="p">)</span>
+    Y <span class="o">=</span> genY<span class="p">(</span>X<span class="p">)</span><span class="o">$</span>Y
+    <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>p<span class="p">){</span>
+      model <span class="o">=</span> lm<span class="p">(</span>Y<span class="o">~</span><span class="m">1</span><span class="o">+</span>X<span class="p">[,</span>i<span class="p">])</span>
+      coef.mat <span class="o">=</span> coef<span class="p">(</span><span class="kp">summary</span><span class="p">(</span>model<span class="p">))</span>
+      <span class="c1">#score = abs(coef.mat[2, 1]/coef.mat[2, 2])</span>
+      <span class="kr">if</span><span class="p">(</span>coef.mat<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span> <span class="o">&lt;</span> <span class="m">0.05</span><span class="p">)</span>
+        num <span class="o">=</span> num <span class="o">+</span> <span class="m">1</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  num <span class="o">=</span> num<span class="o">/</span><span class="m">100</span>
+  <span class="kp">cat</span><span class="p">(</span><span class="s">&quot;p = &quot;</span><span class="p">,</span> p<span class="p">,</span> <span class="s">&quot; num of significant term: &quot;</span><span class="p">,</span> num <span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
 
 <p>模拟100次，统计单变量回归系数显著的个数，分别为9.55, 29.82和290.9，与原文中的结果9, 33, 331非常接近。</p>
 <h2 id="_4">岭回归<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code class="language-R">test.err.full = matrix(0, nrow=0, ncol=3)
-epsi.var.full = c()
-for (p in c(20, 100, 1000)){
-  X = genX(p)
-  Y.res = genY(X)
-  Y = Y.res$Y
-  epsi.var = Y.res$epsi.var
-  epsi.var.full = c(epsi.var.full, epsi.var)
-  model = lm.ridge(Y~X, lambda=c(0.001, 100, 1000))
-  # calculate test error
-  #X.test = genX(p)
-  #Y.test = genY(X.test)
-  #pred = cbind(1, X.test) %*% t(coef(model))
-  #test.err = numeric(3)
-  #for (i in 1:ncol(pred))
-  #{
-  #  test.err[i] = sum((Y.test - pred[,i])^2)/nrow(pred)
-  #}
-  #test.err.full = rbind(test.err.full, test.err)
+<div class="codehilite"><pre><span></span>test.err.full <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> nrow<span class="o">=</span><span class="m">0</span><span class="p">,</span> ncol<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+epsi.var.full <span class="o">=</span> <span class="kt">c</span><span class="p">()</span>
+<span class="kr">for</span> <span class="p">(</span>p <span class="kr">in</span> <span class="kt">c</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">1000</span><span class="p">)){</span>
+  X <span class="o">=</span> genX<span class="p">(</span>p<span class="p">)</span>
+  Y.res <span class="o">=</span> genY<span class="p">(</span>X<span class="p">)</span>
+  Y <span class="o">=</span> Y.res<span class="o">$</span>Y
+  epsi.var <span class="o">=</span> Y.res<span class="o">$</span>epsi.var
+  epsi.var.full <span class="o">=</span> <span class="kt">c</span><span class="p">(</span>epsi.var.full<span class="p">,</span> epsi.var<span class="p">)</span>
+  model <span class="o">=</span> lm.ridge<span class="p">(</span>Y<span class="o">~</span>X<span class="p">,</span> lambda<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0.001</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">1000</span><span class="p">))</span>
+  <span class="c1"># calculate test error</span>
+  <span class="c1">#X.test = genX(p)</span>
+  <span class="c1">#Y.test = genY(X.test)</span>
+  <span class="c1">#pred = cbind(1, X.test) %*% t(coef(model))</span>
+  <span class="c1">#test.err = numeric(3)</span>
+  <span class="c1">#for (i in 1:ncol(pred))</span>
+  <span class="c1">#{</span>
+  <span class="c1">#  test.err[i] = sum((Y.test - pred[,i])^2)/nrow(pred)</span>
+  <span class="c1">#}</span>
+  <span class="c1">#test.err.full = rbind(test.err.full, test.err)</span>
 
-  for (j in 1:100){
-    x.test = genX(p, N=1)
-    y.test = sum(x.test * rnorm(p)) + rnorm(1, 0, sqrt(epsi.var))
-    pred = as.matrix(cbind(1, x.test)) %*% t(coef(model))
-    test.err = (pred - y.test)^2
-    test.err.full = rbind(test.err.full, test.err)
-  }
-}
-t1 = test.err.full[1:100, ]
-t2 = test.err.full[101:200, ]
-t3 = test.err.full[201:300, ]</code></pre>
+  <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">){</span>
+    x.test <span class="o">=</span> genX<span class="p">(</span>p<span class="p">,</span> N<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+    y.test <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>x.test <span class="o">*</span> rnorm<span class="p">(</span>p<span class="p">))</span> <span class="o">+</span> rnorm<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="kp">sqrt</span><span class="p">(</span>epsi.var<span class="p">))</span>
+    pred <span class="o">=</span> <span class="kp">as.matrix</span><span class="p">(</span><span class="kp">cbind</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> x.test<span class="p">))</span> <span class="o">%*%</span> <span class="kp">t</span><span class="p">(</span>coef<span class="p">(</span>model<span class="p">))</span>
+    test.err <span class="o">=</span> <span class="p">(</span>pred <span class="o">-</span> y.test<span class="p">)</span><span class="o">^</span><span class="m">2</span>
+    test.err.full <span class="o">=</span> <span class="kp">rbind</span><span class="p">(</span>test.err.full<span class="p">,</span> test.err<span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+t1 <span class="o">=</span> test.err.full<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="p">]</span>
+t2 <span class="o">=</span> test.err.full<span class="p">[</span><span class="m">101</span><span class="o">:</span><span class="m">200</span><span class="p">,</span> <span class="p">]</span>
+t3 <span class="o">=</span> test.err.full<span class="p">[</span><span class="m">201</span><span class="o">:</span><span class="m">300</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
 
 
 <p>作图</p>
-<pre class="codehilite"><code class="language-R">boxplot(t1/epsi.var.full[1], main = &quot;20 features&quot;, col = &quot;green&quot;)
-boxplot(t2/epsi.var.full[2], main = &quot;100 features&quot;, col = &quot;green&quot;)
-boxplot(t3/epsi.var.full[3], main = &quot;1000 features&quot;, col = &quot;green&quot;)</code></pre>
+<div class="codehilite"><pre><span></span>boxplot<span class="p">(</span>t1<span class="o">/</span>epsi.var.full<span class="p">[</span><span class="m">1</span><span class="p">],</span> main <span class="o">=</span> <span class="s">&quot;20 features&quot;</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+boxplot<span class="p">(</span>t2<span class="o">/</span>epsi.var.full<span class="p">[</span><span class="m">2</span><span class="p">],</span> main <span class="o">=</span> <span class="s">&quot;100 features&quot;</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+boxplot<span class="p">(</span>t3<span class="o">/</span>epsi.var.full<span class="p">[</span><span class="m">3</span><span class="p">],</span> main <span class="o">=</span> <span class="s">&quot;1000 features&quot;</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+</pre></div>
 
 
 <p><img alt="" src="../p20.png" /></p>
