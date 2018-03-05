@@ -2980,17 +2980,21 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-09-17&amp; 2018-01-05</td>
+<td>2017-09-17&amp; 2018-01-05&amp; 2018-03-05</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<p>贝叶斯信息准则（BIC）像AIC一样在通过极大似然得到的拟合的设定中是可行的。BIC一般形式为</p>
+<p>贝叶斯信息准则(BIC)像AIC一样在通过极大似然得到的拟合的设定中是可行的。BIC一般形式为</p>
 <p>
 <script type="math/tex; mode=display">
-BIC = -2\cdot loglik +(log N)\cdot d\qquad (7.35)
+BIC = -2\cdot \loglik +(\log N)\cdot d\qquad (7.35)
 </script>
 </p>
-<p>BIC 准则（乘以1/2）也被称作Schwarz准则（Schwarz，1978<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。</p>
+<p>BIC 准则（乘以1/2）也被称作Schwarz准则(Schwarz，1978<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。</p>
 <p>高斯模型下，假设方差$\sigma_\varepsilon^2$是已知的，$-2\cdot loglik$等于$\sum_i(y_i-\hat f(x_i))^2/(\sigma_\varepsilon^2)$乘以某个常数，对于平方误差损失等于$N\cdot\overline{err}/\sigma_\varepsilon^2$。因此我们可以写成
 <script type="math/tex; mode=display">
 BIC = \frac{N}{\sigma_\varepsilon^2}[\overline{err}+(logN)\cdot\frac{d}{N}\sigma_\varepsilon^2]\qquad (7.36)
