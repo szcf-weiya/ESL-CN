@@ -52,6 +52,7 @@ window.MathJax = {
       Err: "{\\mathrm{Err}}",
       err: "{\\mathrm{err}}",
       logit: "{\\mathrm{logit}}",
+      loglik: "{\\mathrm{loglik}}",
       probit: "{\\mathrm{probit}}",
       trace: "{\\mathrm{trace}}",
       diag: "{\\mathrm{diag}}",
