@@ -3297,7 +3297,7 @@ z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\qquad (4.29)
 <p>其中$\Pr(X)$为$X$的边缘概率密度。对于LDA和逻辑斯蒂回归，右边的第二项有线性logit形式</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr(G=k\mid X=x)=\dfrac{e^{\beta_{k0}+\beta_k^Tx}}{1+\sum_{\ell=1}^{K-1}e^{\beta_{\ell0+\beta_\ell^Tx}}}\qquad (4.36)
+\Pr(G=k\mid X=x)=\dfrac{e^{\beta_{k0}+\beta_k^Tx}}{1+\sum_{\ell=1}^{K-1}e^{\beta_{\ell0}+\beta_\ell^Tx}}\qquad (4.36)
 </script>
 </p>
 <p>我们再一次任意地选择最后一类作为标准。</p>
