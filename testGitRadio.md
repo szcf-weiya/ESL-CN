@@ -75,3 +75,11 @@ page.evaluate(function() {
 ## 自动发送带图微博
 
 done！
+
+## 短链接转换
+
+应用暂时未通过审核，调用短链转换api时报错
+
+> {'error': 'applications over the unaudited use restrictions!', 'error_code': 21321, 'request': '/2/short_url/shorten.json'}
+
+在[使用新浪API生成短连接](https://www.cnblogs.com/Jimmy-pan/p/5784611.html)找到可用的app_key: '2815391962'
