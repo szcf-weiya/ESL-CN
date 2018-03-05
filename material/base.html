@@ -186,7 +186,7 @@
               {% endblock %}
               {% block disqus_free %}
                 {% if config.extra.disqus and not page.is_homepage %}
-                  <h2 id="__comments">{{ lang.t("meta.comments") }}<wb:share-button appkey="4166288955" addition="number" type="button"></wb:share-button></h2>
+                  <h2 id="__comments">{{ lang.t("meta.comments") }} <wb:share-button appkey="4166288955" addition="number" type="button"></wb:share-button></h2>
                   {% include "partials/integrations/disqus_free.html" %}
                 {% endif %}
               {% endblock %}
