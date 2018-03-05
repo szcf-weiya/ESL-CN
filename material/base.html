@@ -3,7 +3,7 @@
 {% set palette = config.theme.palette %}
 {% set font = config.theme.font %}
 <!DOCTYPE html>
-<html lang="{{ lang.t('language') }}" class="no-js">
+<html lang="{{ lang.t('language') }}" class="no-js" xmlns:wb="http://open.weibo.com/wb">
   <head>
     {% block site_meta %}
       <meta charset="utf-8">
@@ -94,6 +94,7 @@
       <link rel="stylesheet" href="{{ path }}">
     {% endfor %}
     {% block extrahead %}{% endblock %}
+    <script src="//tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
   </head>
   {% if palette.primary or palette.accent %}
     {% set primary = palette.primary | replace(" ", "-") | lower %}
@@ -185,7 +186,7 @@
               {% endblock %}
               {% block disqus_free %}
                 {% if config.extra.disqus and not page.is_homepage %}
-                  <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
+                  <h2 id="__comments">{{ lang.t("meta.comments") }} <wb:share-button appkey="4166288955" addition="number" type="button"></wb:share-button></h2>
                   {% include "partials/integrations/disqus_free.html" %}
                 {% endif %}
               {% endblock %}
