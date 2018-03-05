@@ -2980,7 +2980,12 @@
 </tr>
 </tbody>
 </table>
-<p>局部回归和可变参数模型的概念非常广泛：如果拟合方法适合观测的权重系数，则任意参数模型可以变得局部。这里有一些例子：</p>
+<p><strong>局部回归(local regression)</strong>和<strong>可变参数模型(varying coefficient models)</strong>的概念非常广泛：如果拟合方法适合(accommodates)观测点的权重系数，则任意参数模型可以变得局部。</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>怎么理解“accommodate”？</p>
+</div>
+<p>这里有一些例子：</p>
 <ul>
 <li>与每个观测$y_i$有关的是与协变量$x_i$成线性的参数$\theta_i=\theta(x_i)=x_i^T\beta$，并且基于对数似然$l(\beta)=\sum_{i=1}^Nl(y_i,x_i^T\beta)$对　$\beta$进行推断。我们可以使用$x_0$局部的概率来灵活地建立$\theta(X)$的模型。这用来推断$\theta(x_0)=x_0^T\beta(x_0)$：</li>
 </ul>
