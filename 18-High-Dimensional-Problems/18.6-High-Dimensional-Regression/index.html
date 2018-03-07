@@ -2696,6 +2696,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" title="特征选择的预处理" class="md-nav__link">
+    特征选择的预处理
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3007,6 +3014,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" title="特征选择的预处理" class="md-nav__link">
+    特征选择的预处理
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3047,7 +3061,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-02-04</td>
+<td>2018-02-04, 2018-03-07</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3100,9 +3114,47 @@ X_j=\alpha_{0j}+\alpha_{1j}U+\epsilon_j\;j\in \cal P\qquad (18.33)
 </script>
 </p>
 <p>误差$\varepsilon$和$\epsilon_j$假设均值为零且在各自模型中与其它随机变量独立。</p>
-<p>我们也有许多额外的特征$X_k, k\in \cal P$是独立于$U$的。我们想要识别$\cal P$，估计$U$，因此拟合预测模型(18.32)。这是潜变量结构模型的特殊情形，或者说是单组分因子分析模型（(Mardia et al., 1979[^1]，也参见<a href="../../14%20Unsupervised%20Learning/14.7%20Independent%20Component%20Analysis%20and%20Exploratory%20Projection%20Pursuit/index.html">第14.7节</a>）</p>
+<p>我们也有许多额外的特征$X_k, k\in \cal P$是独立于$U$的。我们想要识别$\cal P$，估计$U$，因此拟合预测模型(18.32)。这是潜变量结构模型的特殊情形，或者说是单组分因子分析模型（(Mardia et al., 1979<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>，也参见<a href="../../14%20Unsupervised%20Learning/14.7%20Independent%20Component%20Analysis%20and%20Exploratory%20Projection%20Pursuit/index.html">第14.7节</a>）潜变量$U$是图18.13中概念化的细胞类型的连续版本。</p>
+<p>监督主成分算法可以看成是拟合这个模型的方法：</p>
+<ol>
+<li>第(1)步筛查估计集合$\cal P$。</li>
+<li>给定$\cal P$，第2(a)步中最大的主成分估计潜变量$U$。</li>
+<li>最后，第2(b)中的回归拟合估计模型(18.32)中的系数。</li>
+</ol>
+<p>第(1)步是自然的，因为平均而言，只有当$\alpha_{1j}$不为零时，回归系数才是非零的。因此这步应该会选出特征$j\in\cal P$。如果我们假设误差$\epsilon_j$有高斯分布且有相同的方差，则第(2a)步也是自然的。这种情形下主成分是单因子模型的极大似然估计(Mardia et al., 1979<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。第(2b)中的回归是很显然的。</p>
+<p>假设总共有$p$个特征，其中$p_1$个特征在相关集合$\cal P$中。则如果$p$和$p_1$都增长但$p_1$比$p$相对较小，可以证明（在合理的条件下）第一主成分对于潜因子是一致的。通常情形下的主成分可能不是一致的，因为它可能被大量的噪声特征所污染。</p>
+<p>最后，假设在监督主成分过程中的第(1)步使用的阈值产生大量的特征用于计算主成分。则为了解释性，也同样为了实际应用，我们会寻找降维后的子集特征来近似模型。预处理(Pre-conditioning)是其中的一种方式。</p>
 <h2 id="_2">与偏最小二乘的联系<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
+<p>....</p>
+<p>用一个模拟例子来数值比较这些方法。例子中有$N=100$个样本，$p=5000$个基因。按如下方式生成数据：</p>
+<p><img alt="" src="../../img/eq18.37.png" /></p>
+<p>其中$\epsilon_{ij}$和$\varepsilon_i$是均值为0标准差分别为1和1.5的独立正态随机变量。</p>
+<p>....</p>
+<h2 id="_3">特征选择的预处理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>正如图18.16展示的，监督主成分可以得到比其它方法更低的测试误差。</p>
+<p><img alt="" src="../../img/18/fig18.16.png" /></p>
+<p>然而，并不总是得到只涉及一小部分特征（基因）的稀疏模型。即使算法中的步骤(1)的阈值得到相对较少的特征，但可能部分被忽略的特征与监督主成分直接有不可忽略的内积（并且可以看成是较好的代表(surrogate)）。另外，高相关的特征会趋向于一起选，则在已经选择的特征中会造成较大程度的冗余。</p>
+<p>另一方面，lasso（18.4节和3.4.2节）从数据中得到稀疏的模型。应用到上一节中的模拟例子，这两个方法的测试误差会如何呢？图18.17显示了对于模型(18.37)，lasso、监督主成分和预处理lasso（下面描述）的测试误差。</p>
+<p><img alt="" src="../../img/18/fig18.17.png" /></p>
+<p>我们看到监督主成分（橘黄色曲线）当大概50个特征包含进模型中会达到最低误差，这个数字也是模拟例子中真实的个数。尽管关于前50个特征的线性模型是最优的，但是lasso（绿色）被大量噪声特征所严重影响，而且starts overfitting when far fewer are in the model.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>如何理解“starts overfitting when far fewer are in the model.”</p>
+</div>
+<p>我们能否得到监督主成分的低测试误差以及lasso的稀疏性？这是预处理(pre-conditioning)的目标(Paul et al., 2008<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)。在这种方法中，首先计算训练集中的每个观测的监督主成分的预测量$\hat y_i$（其中阈值通过交叉验证来选择）。接着我们将lasso应用到$\hat y_i$，其中$\hat y_i$被看成输出变量，它替换了通常情形下的$y_i$。这个想法是首先对输出变量进行去噪(denoising)，则lasso不会被大量噪声特征所影响。图18.17显示了预处理（紫色曲线）在这里取得了重要成功，比通常的lasso的测试误差要低很多，在这种情形下与监督主成分一样第。而且采用更少的特征便达到了最小测试误差。应用到原始输出变量的一般lasso比预处理lasso更快地过拟合。预处理lasso的过拟合不是问题，因为输出变量已经去噪了。对于预处理的lasso，我们经常用更主管的理由来选择调整参数，比如简约性(parsimony)。</p>
+<p>预处理可以应用到不同的设定中，采用除监督主成分外的初始估计和除lasso以外的后续估计。更多细节可以在Paul et al. (2008)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>中找到。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Paul, D., Bair, E., Hastie, T. and Tibshirani, R. (2008). “Pre-conditioning” for feature selection and regression in high-dimensional problems, Annals of Statistics 36(4): 1595–1618.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
