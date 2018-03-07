@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/14 Unsupervised Learning/14.1 Introduction/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.8 Multidimensional Scaling/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>14.1 导言 - ESL CN</title>
+        <title>14.8 多维缩放 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#141" tabindex="1" class="md-skip">
+      <a href="#148" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                14.1 导言
+                14.8 多维缩放
               </span>
             
           
@@ -2198,20 +2198,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="index.html" title="14.1 导言" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../14.1 Introduction/index.html" title="14.1 导言" class="md-nav__link">
       14.1 导言
     </a>
-    
   </li>
 
         
@@ -2281,7 +2272,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../14.7 Independent Component Analysis and Exploratory Projection Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
+    <a href="../14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
       14.7 独立成分分析和探索投影寻踪
     </a>
   </li>
@@ -2291,11 +2282,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../14.8 Multidimensional Scaling/index.html" title="14.8 多维缩放" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="index.html" title="14.8 多维缩放" class="md-nav__link md-nav__link--active">
       14.8 多维缩放
     </a>
+    
   </li>
 
         
@@ -2961,7 +2961,7 @@
               
                 
                 
-                <h1 id="141">14.1 导言<a class="headerlink" href="#141" title="Permanent link">&para;</a></h1>
+                <h1 id="148">14.8 多维缩放<a class="headerlink" href="#148" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2976,41 +2976,51 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-20:2017-02-20</td>
+<td>2017-09-04</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-09-10</td>
+<td>2018-01-22</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<p>前面的章节我们考虑了对于给出输入或预测变量$X^T=(X_1,\ldots,X_p)$来预测一个或多个输出或响应变量$Y=(Y_1,\ldots,Y_m)$的值。用$x_i^T=(x_{i1},\ldots,x_{ip})$记第$i$个训练情形的输入，令$y_i$是一个响应变量的测量值。预测是基于已经知道的训练样本$(x_1,y_1),\ldots,(x_N,y_N)$，其中所有变量的联合分布值是知道的。这称为监督学习（supervised learning）或者“有老师指导的学习”。在这个比喻下，“学生”表示在训练样本中每个$x_i$的一个回答$\hat y_i$，监督或者“老师”要么（不仅）提供正确的答案，要么（并且）给出该学生回答的误差。这通常用一些损失函数来表示$L(y,\hat y)$，举个例子，$L(y,\hat y)=(y-\hat y)^2$.</p>
-<p>如果我们假设$(X,Y)$是用某联合概率密度$Pr(X,Y)$表示的随机变量，则监督学习可以正式地表征为密度估计的问题，其中涉及确定条件密度$Pr(Y\mid X)$的性质。通常我们感兴趣的性质是在每个$x$处最小化期望误差的“位置”参数$\mu$，
+<p>自组织图和主曲线以及主曲面都是将$R^p$中的数据点映射到低维流形中。多维缩放(MDS)的目标也是类似的，但是是以一种不同的方式来解决这个问题。</p>
+<p>我们以观测值$x_1, x_2,\ldots, x_N\in R^p$开始，令$d_{ij}$为观测$i$和$j$之间的距离。通常我们选择欧式距离$d_{ij}=\Vert x_i-x_j\Vert$，但是也可能采用其它的距离。另外，在有些应用中，我们可能甚至没有数据点$x_i$，仅仅有不相似性的测量$d_{ij}$（见14.3.10节）。举个例子，在一项酒的口感的试验中，$d_{ij}$可能是某个体对酒$i$和$j$口感的不同的一个度量，并且该个体对所有酒$i$和$j$都采用这样的度量。MDS仅仅需要不相似性$d_{ij}$，这与需要数据点$x_i$的SOM和主曲线、主曲面不同。</p>
+<p>多维缩放寻找值$z_1,z_2,\ldots,z_N\in R^k$来最小化压力函数(stress function)</p>
+<p>
 <script type="math/tex; mode=display">
-\mu(x)=\underset{\theta}{\mathrm{argmin}}E_{Y\mid X}L(Y,\theta)\qquad (14.1)
+S_M(z_1,z_2,\ldots,z_N)=\sum\limits_{i\neq i'}(d_{ii'}-\Vert z_i-z_i'\Vert)^2\qquad (14.98)
 </script>
-加上条件有
+</p>
+<p>这被称为最小二乘缩放(least squares scaling)或者Kruskal-Shephard缩放。思想是寻找尽可能保持成对距离的数据的低维近似。注意到近似是对距离而言，而不是平方距离（这会导致计算有点复杂）。可以采用梯度下降法来进行最小化$S_M$。</p>
+<p>最小二乘缩放的一个变种被称为Sammon mapping，它是对下式进行最小化</p>
+<p>
 <script type="math/tex; mode=display">
-Pr(X,Y)=Pr(Y\mid X)\cdot Pr(X)
+S_{Sm}(z_1,z_2,\ldots,z_N)=\sum\limits_{i\neq i'}\frac{(d_{ii'}-\Vert z_i-z_i'\Vert)^2}{d_{ii'}}\qquad (14.99)
 </script>
-其中$Pr(X)$是仅仅关于$X$的边缘密度。在监督学习中，一般不直接关心$Pr(X)$。主要感兴趣的是条件密度的性质$Pr(Y\mid X)$。因为$Y$经常是低维（通常为1），并且只有它的位置$\mu(x)$是感兴趣的，问题大大简化了。正如在前面章节讨论的那样，在各种不同情形下都有许多方式成功进行监督学习。</p>
-<p>这章中我们讨论非监督学习（unsupervised learning）或者“无老师指导的学习”。这种情形下我们只有联合密度为$Pr(X)$的$p$维随机向量的$N$个观测的集合$(x_1,x_2,\ldots,x_N)$。我们的目标是在没有监督，或者老师不提供正确答案，又或者不提供每个观测的错误程度的情况下，直接推断该密度分布的性质。$X$的维度有时比监督学习中的高很多，而且我们关心的性质经常比简单的位置估计复杂得多。这些因素在某种程度上被以下事实所缓解：$X$表示所考虑的所有变量。我们不需要在其它变量的值改变的情况下推断$Pr(X)$的性质怎么改变。</p>
-<p>在低维问题中（$p\le 3$）,有各种有效的非参方法来在所有$X$值处直接估计密度$Pr(X)$本身，并且进行可视化表示（比如，Silverman, 1986<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。由于维度灾难，这些方法在高维中会失效。必须寻求估计比较粗糙的全局模型，例如高斯混合或者表征$Pr(X)$的各种简单描述性统计。</p>
-<p>一般地，这些描述性统计量试图表征$X$，或者这些值的集合，其中$Pr(X)$比较大。例如，主成分、多维缩放、自组织图，以及主曲线都尝试识别表示高数据密度的$X$空间内的低维流形（manifold）。这提供了这些变量之间的关联信息，以及它们是否可以看成更小的包含“潜（latent）”变量的集合的函数的信息。聚类分析试图寻找$X$空间中包含$Pr(X)$模型的多重凸区域。这可以判断$Pr(X)$是否可以表示成简单密度的混合，这些简单密度表示唯一的观测类型或者类别。混合模型有类似的目标。关联规则试图构造简单的描述（联合规则）来描述在非常高维的二值数据这一特情形中的高密度区域。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya 注</p>
-<p>流形（manifold）：数学上，流形是一个拓扑空间，在每一点附近局部地近似欧式空间。更精确地，$n$维流形的每个点与维度为$n$的欧式空间同态的邻域。</p>
-</div>
-<p>监督学习中，有一个明确的成功或不成功的量度，因此可用于判断特定情况下的充分性，并比较不同方法在各种情况下的有效性。成功的损失直接通过在联合分布$Pr(X,Y)$的期望损失来衡量。这个可以用各种方式来衡量，包括交叉验证。在非监督学习中，没有这些直接衡量成功的量度。从大部分非监督学习的算法的输出中得到的推断的有效性是很难确定的。必须诉诸于启发式参数，不仅用于激励算法，在监督学习也经常使用，而且为了评价结果的质量。因为有效性是主观问题，不能直接加以证实，这种不舒服(unconfortable)的情形导致提出的方法大量增加，</p>
-<p>在这章中，我们提出这些在实际中广泛使用的非监督学习技巧，以及另外一些作者认同的方法。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Silverman, B. (1986). Density Estimation for Statistics and Data Analysis, Chapman and Hall, London.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+</p>
+<p>这里更重视保留越小的成对距离。</p>
+<p>在经典缩放(classical scaling)中，我们从相似性$s_{ii&rsquo;}$开始：经常使用中心化后的内积$s_{ii&rsquo;}=\langle x_i-\bar x,x_{i&rsquo;}-\bar x\rangle$。问题则变成了在$z_1,z_2,\ldots,z_N\in R^k$上最小化下式</p>
+<p>
+<script type="math/tex; mode=display">
+S_C(z_1,z_2,\ldots, z_N)=\sum\limits_{i,i'}(s_{ii'}-\langle z_i-\bar z, z_{i'}-\bar z\rangle)^2\qquad (14.100)
+</script>
+</p>
+<p>这是很吸引人的，因为有个用特征向量表示的显式解：见练习14.11。如果我们有距离数据，而不是内积数据，并且是欧式距离，则可以将它们转换为中心化的内积，参见18章中的式(18.31)。如果事实上相似性为中心化的内积，则经典缩放正好与主成分等价，主成分本质上是线性降维技术。经典缩放不等价于最小二乘缩放；它们的损失函数不同，并且映射可以是非线性的。</p>
+<p>最小二乘缩放和经典缩放都被称作度量(metric)缩放方法，在某种意义下，实际的非相似性或者相似性是近似的。Shephard-Kruskal非度量缩放有效地仅仅使用了秩（排名）。非度量缩放在$z_i$和任意的递增函数$\theta$上最小化压力函数</p>
+<p>
+<script type="math/tex; mode=display">
+S_{NM}(z_1,z_2,\ldots, z_N)=\frac{\sum_{i\neq i'}[\Vert z_i-z_{i'}\Vert - \theta(d_{ii'})]^2}{\sum_{i\neq i'\Vert z_i-z_{i'}\Vert^2}}\qquad (14.101)
+</script>
+</p>
+<p>当$\theta$固定，我们通过梯度下降在$z_i$上最小化。当$z_i$固定，采用保序回归(isotonic regression)来寻找对$\Vert z_i-z_{i&rsquo;}\Vert$最好的单调近似$\theta(d_{ii&rsquo;})$。一直迭代这些步骤直到解达到稳定。</p>
+<p>和自组织图和主曲面一样，多维缩放也是在低维坐标系统中表示高维数据。主曲面和SOM则更进一步，采用低维的流形来近似原来的数据，在低维的坐标系统中进行参量化。在主曲面和SOM中，原特征空间中相离比较近的点在流形上也映射在一起，但是特征空间中距离远的点也可能映射到一起。这在多维缩放中不太可能发生，因为它明确地试图保持所有的成对距离。</p>
+<p>图14.43显示了对半球例子的经典缩放的前两个MDS坐标。簇之间的分类是很明显的，并且红色簇紧的特性也是显然的。</p>
+<p><img alt="" src="../../img/14/fig14.43.png" /></p>
                 
                   
                 
@@ -3042,7 +3052,7 @@ Pr(X,Y)=Pr(Y\mid X)\cdot Pr(X)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../13 Prototype Methods and Nearest-Neighbors/Bibliographic Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3051,19 +3061,19 @@ Pr(X,Y)=Pr(Y\mid X)\cdot Pr(X)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                文献笔记
+                14.7 独立成分分析和探索投影寻踪
               </span>
             </div>
           </a>
         
         
-          <a href="../14.2 Association Rules/index.html" title="14.2 关联规则" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../14.9 Nonlinear Dimension Reduction and Local Multidimensional Scaling/index.html" title="14.9 非线性降维和局部多维缩放" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                14.2 关联规则
+                14.9 非线性降维和局部多维缩放
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

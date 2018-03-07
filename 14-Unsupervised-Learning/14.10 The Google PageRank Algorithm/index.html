@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/14 Unsupervised Learning/14.7 Independent Component Analysis and Exploratory Projection Pursuit/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.10 The Google PageRank Algorithm/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>14.7 独立成分分析和探索投影寻踪 - ESL CN</title>
+        <title>14.10 谷歌的PageRank算法 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#147" tabindex="1" class="md-skip">
+      <a href="#1410-pagerank" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                14.7 独立成分分析和探索投影寻踪
+                14.10 谷歌的PageRank算法
               </span>
             
           
@@ -2270,107 +2270,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        14.7 独立成分分析和探索投影寻踪
-      </label>
-    
-    <a href="index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
       14.7 独立成分分析和探索投影寻踪
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="潜变量和因子分析" class="md-nav__link">
-    潜变量和因子分析
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="独立成分分析" class="md-nav__link">
-    独立成分分析
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" title="例子: 手写数字" class="md-nav__link">
-    例子: 手写数字
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" title="例子: 时序脑电图数据" class="md-nav__link">
-    例子: 时序脑电图数据
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" title="探索投影寻踪" class="md-nav__link">
-    探索投影寻踪
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" title="独立分量分析的一种直接方法" class="md-nav__link">
-    独立分量分析的一种直接方法
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" title="例子：模拟" class="md-nav__link">
-    例子：模拟
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -2402,11 +2306,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../14.10 The Google PageRank Algorithm/index.html" title="14.10 谷歌的PageRank算法" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="index.html" title="14.10 谷歌的PageRank算法" class="md-nav__link md-nav__link--active">
       14.10 谷歌的PageRank算法
     </a>
+    
   </li>
 
         
@@ -3037,80 +2950,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="潜变量和因子分析" class="md-nav__link">
-    潜变量和因子分析
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="独立成分分析" class="md-nav__link">
-    独立成分分析
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" title="例子: 手写数字" class="md-nav__link">
-    例子: 手写数字
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" title="例子: 时序脑电图数据" class="md-nav__link">
-    例子: 时序脑电图数据
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" title="探索投影寻踪" class="md-nav__link">
-    探索投影寻踪
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" title="独立分量分析的一种直接方法" class="md-nav__link">
-    独立分量分析的一种直接方法
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" title="例子：模拟" class="md-nav__link">
-    例子：模拟
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3122,7 +2961,7 @@
               
                 
                 
-                <h1 id="147">14.7 独立成分分析和探索投影寻踪<a class="headerlink" href="#147" title="Permanent link">&para;</a></h1>
+                <h1 id="1410-pagerank">14.10 谷歌的PageRank算法<a class="headerlink" href="#1410-pagerank" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3137,11 +2976,11 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-09-03</td>
+<td>2017-09-04</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-01-20 &amp; 2018-01-21 &amp; 2018-01-22</td>
+<td>2018-01-23</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3149,377 +2988,71 @@
 </tr>
 </tbody>
 </table>
-<p>多元数据经常被看成是从未知来源中多重间接测量的数据，一般不能直接测量。包括以下例子：</p>
-<ul>
-<li>在教育或心理学测试中，采用问卷的答案来衡量潜在的智商以及其他的心理特征。</li>
-<li>EEG脑扫描通过放置在头部的不同位置的感受器的电子信号来间接衡量脑的不同部分的神经元活性。</li>
-<li>股票交易价格随着时间持续变化，并且反映了各种各样的未测量的因素，如市场信心，外部影响以及其他很难识别和测量的推动力。</li>
-</ul>
-<p><strong>因子分析(Factor Analysis)</strong>是统计学领域为了识别潜在因素的一个经典方法。因子分析模型通常是用在高斯分布中，某种程度上阻碍了它的适用性。最近，<strong>独立成分分析(Independent Component Analysis)</strong>成为了因子分析的强劲对手，我们将会看到，它对非高斯分布的依赖是其成功的根本来源。</p>
-<h2 id="_1">潜变量和因子分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>奇异值分解(14.54)$\mathbf X=\mathbf{UDV}^T$有潜变量的表示。记$\mathbf S=\sqrt{N}\mathbf U$，以及$\mathbf A^T=\mathbf{DV}^T/\sqrt{N}$，我们有$\mathbf{X=SA}^T$，因此$\mathbf X$的每一列是$\mathbf S$的列的线性组合。现在因为$\mathbf U$是正交的，并且和之前一样假设$\mathbf X$的列均值为0（因此$\mathbf U$也是），这意味着$\mathbf S$列均值为0，而且不相关，有单位方差。用随机变量表示，我们可以把SVD或者对应的主成分分析看成是下列潜变量模型的一个估计</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_p\\
-X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p\\
-\vdots &\qquad\vdots\\
-X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p
-\end{align}
-\qquad (14.78)
-</script>
-</p>
-<p>或者简单地写成$X=\A S$。相关的$X_j$都表示成不相关的、单位方差的变量$S_\ell$的线性展开。尽管这不是太满意，因为对于任意给定的$p\times p$的正交矩阵$\R$，我们可以写出</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-X&=\A S\\
-&=\A\R^T\R S
-&=\A^*S^*
-\end{align}
-\qquad (14.79)
-</script>
-</p>
-<p>并且$\Cov (S^*)=\R\Cov(S)\R^T=\I$。因此存在许多这样的分解，也因此不可能将任意特定的潜变量作为唯一的潜在来源。SVD分解确实有这样的性质，以最优的方式得到使得任意$q &lt; p$的截断分解。</p>
-<p>经典的因子分析模型，主要由心理测量学(psychometrics)的研究者发展而来。某种程度上缓解了这个问题；举个例子，Mardia et al. (1979)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。当$q &lt; p$，因子分析模型有如下形式</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1q}S_q+\varepsilon_1\\
-X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2q}S_q+\varepsilon_2\\
-\vdots &\qquad\vdots\\
-X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
-\end{align}
-\qquad (14.80)
-</script>
-</p>
-<p>或者写成$X=\A S+\epsilon$。这里$S$是 $q &lt; p$个揭示潜变量或者因子的向量，$\A$ 是$p\times q$的因子载荷(loadings)矩阵，$\varepsilon_j$是零均值不相干的扰动。想法是潜变量$S_\ell$是$X_j$公共方差的来源，意味着它们之间的相关性结构，而$\varepsilon_j$对每个$X_j$是唯一的，并且解释了剩下的方差。一般地，$S_\ell$和$\varepsilon_j$假设为高斯随机变量，并且采用极大似然法来拟合模型。参数都存在于下面的协方差阵中</p>
-<p>
-<script type="math/tex; mode=display">
-\Sigma=\A\A^T+\D_\varepsilon \qquad (14.81)
-</script>
-</p>
-<p>其中$\D_\varepsilon = \diag[\Var(\varepsilon_1),\ldots, \Var(\varepsilon_p)]$. $S_\ell$为高斯并且不相关，这使得它们在统计上是独立随机变量。因此一系列的教育考试成绩可以认为是有潜在独立的因子，比如智力(intelligence)，动机(drive)等等所决定的。 $\A$的列被称为<strong>因子载荷(factor loadings)</strong>，而且用来命名因子和解释因子。</p>
-<p>不幸的是, 唯一性问题(14.79)仍然存在, 因为在式(14.81)中, 对于任意$q\times q$的正交矩阵$\R$, $\A$和 $\A\R^T$是等价的. 这导致了因子分析中的主观性, 因为用户可以寻找因子更易解释的旋转版本. 这点使得许多分析学家对因子分析表示怀疑, 而且这可能是它在当代统计中不受欢迎的原因。尽管我们这里不继续讨论细节，但是SVD分解在(14.81)的估计上发挥重要作用。举个例子，假设$\Var(\varepsilon_j)$相等，SVD的前$q$个成分确定了由$\A$张成的子空间。</p>
-<p>因为每个$X_j$独立的扰动$\varepsilon_j$，因子分析可以看成是对$X_j$的相关结构进行建模，而非对协方差结构建模。这个可以通过对(14.81)的协方差结构进行标准化后得到（<a href="../(https://github.com/szcf-weiya/ESL-CN/issues/51)">练习14.14</a>）。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注: Ex. 14.14</p>
-<p>练习14.14表明，因子分析实质上是对相关矩阵进行分解。详见解答见<a href="https://github.com/szcf-weiya/ESL-CN/issues/51">Issue 51: Ex. 14.14</a></p>
+<p class="admonition-title">写在前面</p>
+<p>翻译这一节时，已经从多个地方了解到了PageRank算法。最初是在Tan Sir的数学建模课上，后来便是数院短学期有一节讲到PageRank算法，并且布置了相关的课后作业。在那个作业中，是对一个网络利用PageRank进行分析与讨论。翻译完此节，特意去整理了一下那个作业，开了一个仓库来放它，有兴趣的可以看看<img alt="😀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f600.svg" title=":grinning:" />。<a href="https://github.com/szcf-weiya/miniPR">传送门</a></p>
 </div>
-<p>这是因子分析与PCA的重要区别，尽管这不是我们讨论的重点。<a href="../(https://github.com/szcf-weiya/ESL-CN/issues/50)">练习14.15</a>讨论了一个简单的例子，因为这个差异，因子分析和主成分的解完全不同。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注: Ex. 14.15</p>
-<p>练习14.15用一个实际例子说明了，因子分析和主成分得到的第一因子和第一主成分完全不同。详细解答见<a href="https://github.com/szcf-weiya/ESL-CN/issues/50">Issue 50: Ex. 14.15</a></p>
-</div>
-<h2 id="_2">独立成分分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p><strong>独立成分分析(ICA)</strong>模型与(14.78)有相同的形式, 除了假设$S_\ell$是统计上独立而非不相关. </p>
-<div class="admonition note">
-<p class="admonition-title">weiya注: 独立与不相关</p>
-<p>统计上, 连续型随机变量$X$与 $Y$独立的定义为
-<script type="math/tex; mode=display">
-p(x, y)=p_X(x)p_Y(y)\;\forall x,y
-</script>
-而不相关的定义为
-<script type="math/tex; mode=display">
-Cov(X, Y)=0
-</script>
-独立意味着不相关，但反之不对。对于二元正态随机变量，两者等价。</p>
-</div>
-<p>直观上, 不相关确定了多元变量分布的二阶交叉矩（协方差）, 而一般地, 统计独立确定了所有的交叉矩. 这些额外的矩条件能让我们找到唯一的$\A$. 因为多元正态分布只要二阶矩就可以确定, 因此这是一个特例, 任意高斯独立成分可以像之前一样乘以一个旋转来确定. 因此如果假设$S_\ell$是独立且非高斯的, 则可以避免(14.78)和(14.80)的唯一性问题.</p>
-<p>这里我们将要讨论(14.78)中的全$p$个成分的模型, 其中$S_\ell$是独立的且有单位方差; 因子分析模型(14.80)的ICA版本也同样存在. 我们的处理基于Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的综述文章.</p>
-<p>我们希望恢复$X=\A S$中的混合矩阵$\A$。 不失一般性, 我们假设$X$已经白化(whitened)得到$\Cov(X)=\I$; 这一般可以通过前面描述的SVD实现. 反过来, 因为$S$的协方差也为$\I$, 这意味着$\A$是正交的。 所以求解ICA问题等价于寻找正交的$\A$使得随机变量向量$S=\A^T X$的组分是独立(且是非高斯的)。</p>
-<p><img alt="" src="../../img/14/fig14.37.png" /></p>
-<p>图14.37显示了在分离两个混合信号例子中ICA的能力。这也是经典的cocktail party problem的一个例子，不同的麦克风$X_j$接受来自不同独立源$S_\ell$(音乐、不同人说的话等等)的混合信号。 ICA通过利用原始信号源的独立性和非高斯性，能够进行盲信号分离(blind source separation)。</p>
-<p>ICA许多流行的方式是基于熵. 密度为$g(y)$的随机变量$Y$的相对熵(differential entropy) $H$由下式给出</p>
+<p>这一节我们给出谷歌搜索引擎所采用的最原始的PageRank算法，这是非监督学习的一个有趣的应用。</p>
+<p>我们假设有$N$个网页，并且希望对它们进行重要性排序。举个例子，这$N$个页面可能都匹配到字符串“statistical learning”，我们希望对页面按照其可能对浏览者的相关程度进行排序。</p>
+<p>PageRank算法考虑如果有很多其他的页面指向一个页面，则该页面是重要的。然而指向一个给定页面的链接网页并不会平等对待：算法考虑链接页面的重要性（PageRank）以及它们向外链接的个数。有高PageRank值的网页被赋予更大的权重，而有更多的向外链接的页面则赋予较小的权重。这个想法得到了PageRank的递归定义，细节如下。</p>
+<p>如果页面$j$指向页面$i$，令$L_{ij}=1$，否则为0。令$c_j=\sum_{i=1}^NL_{ij}$等于页面$j$指向的页面个数（向外链接的个数）。则谷歌的PageRank值$p_i$由递归关系定义</p>
 <p>
 <script type="math/tex; mode=display">
-H(Y)=-\int g(y)\LOG g(y)dy\qquad (14.82)
+p_i=(1-d)+d\sum\limits_{j=1}^N(\frac{L_{ij}}{c_j})p_j\qquad (14.107)
 </script>
 </p>
-<p>信息理论中一个著名的结论是在所有同方差的随机变量中，高斯随机变量有最大的熵。最后，随机向量$Y$的组分之间的<strong>互信息量(mutual information)</strong>$I(Y)$是独立性的一个自然度量:</p>
+<p>其中$d$为正的常数值（设定为0.85）。</p>
+<p>想法是页面$i$的重要性是指向该页面的重要性之和。它们的和赋予权重$1/c_j$，也就是，每个页面分配将总值为1的权重赋予其它页面。常数值$d$保证了每个页面至少得到$1-d$的PageRank值。采用矩阵表示为
+<script type="math/tex; mode=display">
+\mathbf p = (1-d)\mathbf e+d\cdot \mathbf {LD_c^{-1}p}\qquad (14.108)
+</script>
+其中$\mathbf e$是$N$个元素均为1的列向量，$\mathbf D_c = diag(\mathbf c)$是对角元素为$c_j$的对角矩阵。引入标准化$\mathbf{e^Tp}=N$，则(14.108)可以写成</p>
 <p>
 <script type="math/tex; mode=display">
-I(Y)=\sum\limits_{j=1}^pH(Y_j)-H(Y)\qquad (14.83)
+\begin{array}{ll}
+\mathbf p &= [(1-d)\mathbf{ee^T}/N+d\mathbf {LD_c^{-1}}]\mathbf p\\
+&= \mathbf{Ap}
+\end{array}
+\qquad (14.109)
 </script>
 </p>
-<p>值$I(Y)$称为$Y$的密度$g(y)$与其独立版本$\prod\limits_{j=1}^pg_j(y_j)$之间的Kullback-Leibler距离, 其中$g_j(y_j)$是 $Y_j$的边缘密度. 如果$X$有协方差$\I$, 且$Y=\A^TX$, 其中$\A$是正交, 则易证</p>
+<p>其中矩阵$\mathbf A$是方括号里面的表达式。</p>
+<p>利用与Markov链的联系（见下），可以证明矩阵$\mathbf A$有等于1的实值特征值，并且1是其最大的特征值。这意味着我们可以采用幂法来求出$\hat{\mathbf p}$：起始值为$\mathbf p = \mathbf p_0$，进行下面的迭代</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
-I(Y)&= \sum\limits_{j=1}^pH(X)-\LOG\vert \det\A\vert\qquad (14.84)\\
-&=\sum\limits_{j=1}^pH(Y_j)-H(X)\qquad (14.85)
-\end{align}
+\mathbf p_k \leftarrow\mathbf A\mathbf p_{k-1};\qquad \mathbf p_k \leftarrow N\frac{\mathbf p_k}{\mathbf e^T\mathbf p_k}\qquad (14.110)
 </script>
-</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注: (14.85)的证明</p>
-<p>只要证
-<script type="math/tex; mode=display">
-H(Y)=H(X)+\LOG \vert \det \A \vert
-</script>
-对(14.82)进行变量替换有
-<script type="math/tex; mode=display">
-H(Y)=-\int g(\A'x)\LOG g(\A'x)\cdot \vert \det \J\vert dx\qquad (*)
-</script>
-其中$\J_{ij}=\frac{\partial y_i}{\partial x_j}$.
-又
-<script type="math/tex; mode=display">
-y_i = \sum\limits_{j=1}^p (\A')_{ij}x_j
-</script>
-故
-<script type="math/tex; mode=display">
-\J_{ij}=(\A')_{ij}
-</script>
-所以$\det\J = \det \A&rsquo;=\det \A$.
-另外, $X$的密度函数为
-<script type="math/tex; mode=display">
-f(x)=g(\A'x)\cdot\vert \det\J\vert 
-</script>
-于是$(*)$式可以写成
-<script type="math/tex; mode=display">
-\begin{align}
-H(Y) &= -\int \frac{f(x)}{\vert\det\A\vert} \LOG\frac{f(x)}{\vert\det\A\vert}\cdot\vert\det\A\vert dx\\
-&=-\int f(x)[\LOG f(x)-\LOG\vert\det\A\vert]dx\\
-&=H(X)+\LOG\vert\det\A\vert
-\end{align}
-</script>
-证毕.</p>
-</div>
-<p>寻找$\A$来最小化$I(Y)=I(\A^TX)$也就是寻找使得组分间的独立性最强的正交变换。 考虑到式(14.84), 这等价于最小化$Y$的各组分的熵的和, 反过来意味着最大化它们与高斯分布的距离。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>因为高斯随机变量的交叉熵最大, 则让各组分熵之和最小, 意味着各组分远离高斯分布。</p>
-</div>
-<p>为了简便, 与其采用熵$H(Y_j)$, Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>采用负熵(negentropy)$J(Y_j)$</p>
+不动点$\hat{\mathbf p}$则是PageRanks。</p>
+<p>在Page et. al(1998)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>的原始论文中，作者将PageRank考虑成用户行为的模型，用户随机点击页面，而不去考虑内容。用户在网络上进行随机游走，随机选择有用的向外链接。因子$1-d$是他不去点击链接而直接跳到该页面的概率。</p>
+<p>有些PageRank的描述是将$(1-d)/N$作为定义(14.107)式中的第一项，这更符合随机浏览的解释。接着page rank的解(除以$N$)是不可约、非周期Markov链在$N$个网页上的平稳分布。</p>
+<p>定义(14.107)也对应一个不可约、非周期Markov链，但转移概率与$(1-d)/N$版本的不同。将PageRank看成Markov链能够更清楚地看出为什么$\mathbf A$有最大的实特征值1。因为$\mathbf A$的元素为正值，且每一列和为1，Markov链的理论告诉我们它有唯一的一个特征值为1的特征向量，对应该Markov链的平稳分布(Bremaud, 1999)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。</p>
+<p>图14.46为了说明展示了一个小型的网络。</p>
+<p><img alt="" src="../../img/14/fig14.46.png" /></p>
+<p>链接矩阵为</p>
 <p>
 <script type="math/tex; mode=display">
-J(Y_j) = H(Z_j)-H(Y_j)\qquad (14.86)
+\mathbf L=
+\left(
+  \begin{array}{llll}
+  0 & 0 & 1 & 0\\
+  1 & 0 & 0 & 0\\
+  1 & 1 & 0 & 1\\
+  0 & 0 & 0 & 0
+  \end{array}
+  \right)
+  \qquad (14.111)
 </script>
 </p>
-<p>其中$Z_j$是与$Y_j$同方差的高斯随机变量。 负熵是非负的, 它度量了$Y_j$与高斯随机变量之间的距离. 他们提出负熵的一个简单近似, 这个近似可以用来计算和优化数据. 图14.37至图14.39中的ICA都采用下面的近似</p>
-<p>
-<script type="math/tex; mode=display">
-J(Y_j)\approx [EG(Y_j) - EG(Z_j)]^2\qquad (14.87)
-</script>
-</p>
-<p>其中$G(u)=\frac 1a\LOG \cosh(au), 1\le a\le 2$. 当应用到实际数据时, 期望用数据的平均值代替。 这是这些作者们提供的<code>FastICA</code>软件中的一个选项. 更经典(以及不太鲁棒)的度量是基于四阶矩, 也因此可以通过峰度(kurtosis)来衡量与高斯分布的距离. 更多细节参见Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>. 在14.7.4节我们讨论他们寻找最优方向的近似牛顿算法.</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注:</p>
-<p>峰度是四阶标准矩
-<script type="math/tex; mode=display">
-Kurt(X)=\E\Big[
-\Big(
-\frac{X-\mu}{\sigma}
-\Big)^4
-\Big]
-</script>
-</p>
-</div>
-<p>总结一下, ICA应用到多元数据中, 来寻找一系列的正交投影, 使得投影数据尽可能远离高斯分布. 采用白化后的数据(协方差为$\I$), 这意味着寻找尽可能独立的组分.</p>
-<p>ICA本质上从因子分析的一个解出发, 并且寻找一个旋转得到独立组分. 从这点看, ICA与在心理测量学中采用的传统方法“varimax”和“quartimax”一样, 仅仅是因子旋转的一种方式.</p>
-<h3 id="_3">例子: 手写数字<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>我们再次讨论14.5.1 节用PCA分析的手写数字“3”。 </p>
-<p><img alt="" src="../../img/14/fig14.39.png" /></p>
-<p>图14.39比较了前五个主成分(标准化)和前五个ICA成分， 都显示在标准化后的同一单位尺度下。 注意到每张图都是256维空间的二维投影。 所有PCA组分看上去都服从联合高斯分布，而ICA组分都服从长尾分布。这并不是很奇怪，因为PCA主要考虑方差，而ICA特地寻找非高斯的分布。所有的组分都已经标准化，所以我们看不出主成分的方差降低。</p>
-<p><img alt="" src="../../img/14/fig14.40.png" /></p>
-<p>图14.40展示了每个ICA主成分的两个极端的数据点， 以及均值的两个极端点。 这解释了每个组分的实际意义。 举个例子， 第五个ICA成分捕捉具有长扫尾(long sweeping tailed)的“3”。</p>
-<h3 id="_4">例子: 时序脑电图数据<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>ICA已经成为脑动力学(brain dynamics)中的重要工具， 这里介绍的例子采用ICA来理清多频脑电图(EEG)数据中信号的组分(Onton and Makeig, 2006)。</p>
-<p>被试者戴上装有100个EEG电极的帽子， 这些用来记录头皮上不同部位的脑活动。</p>
-<p><img alt="" src="../../img/14/fig14.41.png" /></p>
-<p>图14.41(上图)显示了被试者在30分钟的周期内进行标准的&rdquo;two-back&rdquo;学习过程时， 这些电极中的9个电极在15秒内的输出结果。 大约间隔1500ms依次给被试者呈现一个字母(B, H, J, C, F或者K), 然后被试者通过按“是”或“否”的按钮来判断当前的字母与前两步出现的字母是否一致。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注: n-back</p>
-<p>参考<a href="https://en.wikipedia.org/wiki/N-back">wiki: $n$-back</a>, $n$-back是指给被试者连续的刺激, 要求其判断当前刺激与前$n$步的刺激是否一致. 举个例子, 在3-back测试中, 若给被试者如下刺激
-<img alt="" src="../../img/14/nback.png" />
-则当前刺激为高亮部分时, 被试者应当判断&rdquo;是&rdquo;, 因为在前3步出现了高亮部分相同的刺激.</p>
-</div>
-<p>根据被试者的回答，他们得分或者失分，并且偶尔赚取bonus或者额外惩罚。脑电图信号中这个时序的数据表现出空间上的相关性———邻近的信号感受器看起来非常相似。</p>
-<p>这里重要假设是每个头皮电极上记录的信号是从不同表皮活动以及非表皮区域的人工活动(如下文中提到的眨眼)中产生的独立的电势的混合。 更多ICA在这个领域的细节参见参考文献。</p>
-<p>图14.41的下半部分展示了ICA组分的选择. 彩色图象用(画在头皮上的)热图表示未混合的系数向量的估计值$\hat a_j$, 它表明了活性的位置. 对应的时序数据展示了ICA组分的活动.</p>
-<p>举个例子, 每次反馈信号之后被试者的眨眼(彩色的垂直直线), 它解释了IC1和IC3中的位置和人工信号. IC12是与心脏脉冲(cardiac pulse)有关的人工信号. IC4和IC7额骨(frontal)theta-band的活动, 而且这出现在回答正确后被试者身体的舒展. 更多细节参见Onton and Makeig (2006)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>中对这个例子的讨论, 以及ICA在脑电图模型中的应用.</p>
-<h2 id="_5">探索投影寻踪<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>Friedman and Tukey (1974)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>提出了探索投影寻踪(exploratory projection pursuit)，这是可视化高维数据的图象探索技巧。 他们的观点是高维数据的大多数低维（一维或二维）投影看起来是高斯分布的。 他们提出一系列projection indices的方法用于优化, 每个集中在与高斯分布的不同距离。自从他们最先提出该方法, 陆续有各种改进的建议(Huber, 1985<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>; Friedman, 1987<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>)， 以及交互式图形软件包Xgobi(Swayne et al., 1991<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>, 现在叫做GGobi)中实现的各种指标，包括熵。 这些投影指标与上文介绍的$J(Y_j)$形式一样， 其中$Y_j=a_j^TX$是$X$组分的标准化的线性组合。 实际上， 交叉熵的一些近似和替代与投影寻踪中提出的指标重合。 一般在投影寻踪中, 方向$a_j$不需要限制为正交。 Friedman (1987)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>将数据在选定的投影上转换使之看起来像高斯分布， 然后搜索接下来的方向。 尽管他们的出发点不一样， 但是ICA和探索投影寻踪非常相似， 至少这里描述的表示形式。</p>
-<h2 id="_6">独立分量分析的一种直接方法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>由定义知独立组分有如下联合乘积密度</p>
-<p>
-<script type="math/tex; mode=display">
-f_S(s)=\prod\limits_{j=1}^pf_j(s_j)\qquad (14.88)
-</script>
-</p>
-<p>所以这里展示一种采用广义可加模型(9.1节)来直接估计这个密度的方式. 全部细节可以在Hastie and Tibshirani (2003)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>中找到, 并且这个方法已经在<code>ProDenICA</code>的R包中实现了, 这可以在CRAN上下载.</p>
-<p>根据与高斯分布的距离的表示, 我们将每个$f_j$写成</p>
-<p>
-<script type="math/tex; mode=display">
-f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\qquad (14.89)
-</script>
-</p>
-<p>这是倾斜的高斯密度. 这里$\phi$是标准高斯分布密度, 并且$g_j$满足密度函数所要求的标准化条件. 和之前一样假设$X$已经预处理, 观测数据$X=\A S$的对数似然为</p>
-<p>
-<script type="math/tex; mode=display">
-\ell(\A, \{g_j\}_1^p;\X)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[\LOG \phi(a_j^Tx_i)+g_j(a_j^Tx_i)]\qquad (14.90)
-</script>
-</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注：</p>
-<p>(14.90)原书中$\phi$有下标$j$， 但是因为$\phi$为标准正态， 所以应该直接忽略下标， 原书中后面的(14.91)也确实没有下标。</p>
-</div>
-<p>我们希望在$\A$为正交且(14.89)定义的$g_j$的条件下, 最大化上式. 对$g_j$不添加额外的约束, 模型$(14.90)$是过参数化的, 所以我们最大化下面的正则化版本</p>
-<p>
-<script type="math/tex; mode=display">
-\sum\limits_{j=1}^p\Big[
-\frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
-\int \phi(t)e^{g_j(t)}dt - 
-\lambda_j\int\{g_j^{(3)}\}^2(t)dt
-\Big]\qquad (14.91)
-</script>
-</p>
-<p>受Silverman (1986)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>的启发, 在(14.91)中, 我们(对每个$j$)减去了两个惩罚项:</p>
-<ul>
-<li>第一个在任意解$\hat g_j$上强制要求密度约束$\int \phi(t)e^{\hat g_j(t)}dt=1$</li>
-<li>第二个是鲁棒性惩罚, 保证了解$\hat g_j$是结点在观测值$s_{ij}=a_j^Tx_i$的四次样条.</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">weiya注：</p>
-<p>下面说明为什么第一个惩罚项能够对$\phi(t)e^{\hat g_j(t)}$的密度进行约束。假设随机变量$X$的密度函数为$f(x)$， 其似然函数为$g(x)\propto \LOG f(x)$，这个问题归结为说明
-<script type="math/tex; mode=display">
-A_0(g)=\frac 1n\sum g(x_i)
-</script>
-在$\int e^g=1$的约束下的$\arg\max$等于
-<script type="math/tex; mode=display">
-A(g)=\frac 1n\sum g(x_i)-\int exp(g(x))dx
-</script>
-的$\arg\max$。
-考虑$g^*=g-\LOG \int e^g$
-则
-<script type="math/tex; mode=display">
-\int e^{g^*}=\int e^{g(x)}\cdot \frac{1}{\int e^{g(t)}dt}dx=1
-</script>
-于是
-<script type="math/tex; mode=display">
-A(g^*)=A(g)+\int e^{g(x)}dx-\LOG(\int e^{g(x)}dx)-1
-</script>
-因$t-\LOG t\ge 1, \forall t&gt;0$，当且仅当$t=1$取等号，
-则$A(g^*)\le A(g)$，也就是当且仅当$\int e^g = 1$时，$A(g)$会取得最大值，而这时候$A(g)=A_0(g)-1$，所以$A_0(g)$也会取得最大值。由此看出，$A_0(g)$在$\int e^g=1$的约束下的$\arg\max$等于（无约束的）$A(g)$的$\arg\max$。
-关于第二个点说得到四次样条，我想可以这样类比理解（但不严谨），我们知道四次样条有三阶连续的导函数，且对于<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.4%20Smoothing%20Splines/index.html">光滑样条（三次）</a>有如下形式
-<script type="math/tex; mode=display">
-RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\qquad (5.9)
-</script>
-可以类比看出第二个惩罚正是针对四次样条。</p>
-</div>
-<p>可以进一步证明每个解密度$\hat f_j=\phi e^{\hat g_j}$的均值为0, 方差为1(练习14.18). 当我们增大$\lambda_j$, 这些解近似标准高斯密度$\phi$. </p>
-<p><img alt="" src="../../img/14/alg14.3.png" /></p>
-<p>如在算法14.3中描述, 以一种轮换的方式优化(14.91)来拟合函数$g_i$和方向$a_j$.</p>
-<p>第2(a)步等价于半参密度估计，可以采用广义可加模型来求解。为了方便，我们取$p$个独立问题中的一个</p>
-<p>
-<script type="math/tex; mode=display">
-\frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
-\int \phi(t)e^{g_j(t)}dt - 
-\lambda_j\int\{g_j^{(3)}\}^2(t)dt\qquad (14.92)
-</script>
-</p>
-<p>尽管(14.92)的第二个积分导出光滑样条， 但第一个积分比较困难， 需要近似。 我们构造一个$L$个值为$s_\ell^*$的细网格，这些值间距为$\Delta$、覆盖观测值$s_i$的取值范围， 并且统计得到的小块中$s_i$的个数：</p>
-<p>
-<script type="math/tex; mode=display">
-y_\ell^*=\frac{\#s_i\in (s_\ell^*-\Delta/2, s_\ell^*+\Delta/2)}{N}\qquad (14.93)
-</script>
-</p>
-<p>一般我们取$L$为1000就已经足够了。 则(14.92)可以近似为</p>
-<p>
-<script type="math/tex; mode=display">
-\sum\limits_{\ell=1}^L\Big\{
-y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta\phi(s_\ell^*)e^{g(s_\ell^*)}-\lambda\int (g^{3})^2ds\qquad (14.94)
-\Big\}
-</script>
-</p>
-<p>这个表达是可以看成是与惩罚的possion对数似然成比例， 其中响应变量为$y_\ell^*/\Delta$， 惩罚参数为$\lambda/\Delta$， 均值为$\mu(s)=\phi(s)e^{g(s)}$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/54">Issue 54</a>）。 这是一个广义可加样条模型(generalized additive spline model)(Hastie and Tibshirani, 1990<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Efron and Tibshirani, 1996<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>)， 其中的offset项为$\LOG \phi(s)$， 并且可以以$O(L)$的复杂度用牛顿算法进行拟合。 尽管要求四次样条， 但是实际中我们发现三次样条就足够了。 我们有$p$个调整参数$\lambda_j$需要设定， 在实际中我们使得它们相等， 然后通过有效自由度$\df(\lambda)$来确定光滑的程度。 我们的软件采用$5\df$作为默认值。</p>
-<p>算法14.3的2(b)要求在给定$\hat g_j$， 对$\A$进行优化。和式中仅仅第一项有涉及$\A$，并且因为$\A$是正交的， 则涉及$\phi$的所有项的集合不依赖$\A$（练习14.19）。因此我们需要最大化</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-C(\A) &= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\qquad (14.95)\\
-&= \sum\limits_{j=1}^pC_j(a_j)
-\end{align}
-</script>
-</p>
-<p>$C(\A)$是拟合的密度与高斯密度间的对数似然比，而且可以看成是负熵(14.86)的一个估计， 其中每个$\hat g_j$就像(14.87)中的差异函数。第2(b)步中的固定点更新是修改后的牛顿法（练习14.20）：</p>
-<ol>
-<li>对于每个$j$，更新
-<script type="math/tex; mode=display">
-a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\qquad (14.96)
-</script>
-其中$\E$表示关于$x_i$的期望。因为$\hat g_j$是拟合的四次（或者三次）样条，则式中第一项和第二项已经计算好了。</li>
-<li>采用对称平方根变换将$\A$化为正交矩阵：$(\A\A^T)^{-\frac 12}\A$。如果$\A=\U\D\V^T$是$\A$的SVD分解，则易证$\A\leftarrow \U\V^T$。</li>
-</ol>
-<p>我们的<code>ProDenICA</code>算法和<code>FastICA</code>算法在图14.37中的模拟时间序列数据、图14.38的均匀分布数据的混合以及图14.39中的数字数据都表现得一样好。</p>
-<h3 id="_7">例子：模拟<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p><img alt="" src="../../img/14/fig14.42.png" /></p>
-<p>图14.42展示了比较<code>ProDenICA</code>与<code>FastICA</code>以及另外一个半参方法<code>KernelICA</code>(Bach and Jordan, 2002<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)的模拟的结果。左图展示了作为比较的基础的18个分布。对于每个分布，我们产生成对的独立组分($N=1024$)，以及随机的混合矩阵$\IR^2$，条件数为1到2之间。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注：条件数</p>
-<p>矩阵$A$的条件数为
-<script type="math/tex; mode=display">
-\kappa(A) = \Vert A^{-1}\Vert\cdot \Vert A\Vert\ge \Vert A^{-1}\cdot A\Vert=1
-</script>
-若$\Vert\cdot \Vert$为二范数
-<script type="math/tex; mode=display">
-\kappa(A) = \frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}
-</script>
-其中$\sigma_\max(A)$和$\sigma_\min(A)$分别为$A$的最大和最小的奇异值。
-对于正规矩阵，即满足
-<script type="math/tex; mode=display">
-A^TA=AA^T
-</script>
-有
-<script type="math/tex; mode=display">
-\kappa(A)=\frac{\vert\lambda_\max(A)\vert}{\vert \lambda_\min(A)\vert}
-</script>
-其中$\lambda$为特征值。
-当$A$为单位阵时，$\kappa(A)=1$。</p>
-</div>
-<p>我们采用<code>FastICA</code>的R语言实现，采用(14.87)的负熵准则，<code>ProDenICA</code>也是这样。对于<code>KernelICA</code>，我们采用作者的MATLAB代码。因为搜索准则是非凸的，我们对每种方法采用5个随机初始值。每个算法都传入正交的混合矩阵$\A$（数据已经进行了白化），这可以用来比较产生的正交混合矩阵$\A_0$。我们采用Amari距离(Bach and Jordan, 2002<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)来度量两个矩阵接近程度：</p>
-<p>
-<script type="math/tex; mode=display">
-d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)+
-\frac{1}{2p}\sum\limits_{j=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)\qquad (14.97)
-</script>
-</p>
-<p>其中$r_{ij}=(\A_o\A^{-1})_{ij}$。图14.42的右图比较了真实矩阵与估计的矩阵的Amari距离（对数尺度下）。<code>ProDenICA</code>在所有的情形都可以与<code>FastICA</code>和<code>KernelICA</code>进行比较，并且在大多数混合情形下表现最好。</p>
+<p>向外链接的个数为$\mathbf c = (2,1,1,1)$。</p>
+<p>PageRank的解为$\hat{\mathbf p}=(1.49, 0.78, 1.58, 0.15)$。注意到页面4没有进入的链接，因此得到最小的PageRank值0.15。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Page, L., Brin, S., Motwani, R. and Winograd, T. (1998). The pagerank citation ranking: bringing order to the web, Technical report, Stanford Digital Library Technologies Project. http://citeseer.ist.psu.edu/page98pagerank.html .&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Hyvärinen, A., Karhunen, J. and Oja, E. (2001). Independent Component Analysis, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>Friedman, J. and Tukey, J. (1974). A projection pursuit algorithm for exploratory data analysis, IEEE Transactions on Computers, Series C 23: 881–889.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-<li id="fn:4">
-<p>Huber, P. (1985). Projection pursuit, Annals of Statistics 13: 435–475.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
-</li>
-<li id="fn:5">
-<p>Friedman, J. (1987). Exploratory projection pursuit, Journal of the American Statistical Association 82: 249–266.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
-</li>
-<li id="fn:6">
-<p>Swayne, D., Cook, D. and Buja, A. (1991). Xgobi: Interactive dynamic graphics in the X window system with a link to S, ASA Proceedings of Section on Statistical Graphics, pp. 1–8.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
-</li>
-<li id="fn:7">
-<p>Hastie, T. and Tibshirani, R. (2003). Independent components analysis through product density estimation, in S. T. S. Becker and K. Obermayer (eds), Advances in Neural Information Processing Systems 15, MIT Press, Cambridge, MA, pp. 649–656.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
-</li>
-<li id="fn:8">
-<p>Silverman, B. (1986). Density Estimation for Statistics and Data Analysis, Chapman and Hall, London. <a href="../../references/Silverman1986.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
-</li>
-<li id="fn:9">
-<p>Hastie, T. and Tibshirani, R. (1990). Generalized Additive Models, Chapman and Hall, London.&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
-</li>
-<li id="fn:10">
-<p>Efron, B. and Tibshirani, R. (1996). Using specially designed exponential families for density estimation, Annals of Statistics 24(6): 2431–2461.&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
-</li>
-<li id="fn:11">
-<p>Bach, F. and Jordan, M. (2002). Kernel independent component analysis, Journal of Machine Learning Research 3: 1–48. <a href="http://www.di.ens.fr/~fbach/kernel-ica/index.htm">从作者主页下载代码和文章</a>，<a href="../../references/kernelICA-jmlr.pdf">备用下载</a>&#160;<a class="footnote-backref" href="#fnref:11" rev="footnote" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+<p>Bremaud, P. (1999). Markov Chains: Gibbs Fields, Monte Carlo Simulation, and Queues, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3554,7 +3087,7 @@ d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../14.6 Non-negative Matrix Factorization/index.html" title="14.6 非负矩阵分解" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../14.9 Nonlinear Dimension Reduction and Local Multidimensional Scaling/index.html" title="14.9 非线性降维和局部多维缩放" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3563,19 +3096,19 @@ d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                14.6 非负矩阵分解
+                14.9 非线性降维和局部多维缩放
               </span>
             </div>
           </a>
         
         
-          <a href="../14.8 Multidimensional Scaling/index.html" title="14.8 多维缩放" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                14.8 多维缩放
+                文献笔记
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

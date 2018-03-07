@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/14 Unsupervised Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>14.5 主成分，主曲线以及主曲面 - ESL CN</title>
+        <title>14.7 独立成分分析和探索投影寻踪 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#145" tabindex="1" class="md-skip">
+      <a href="#147" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                14.5 主成分，主曲线以及主曲面
+                14.7 独立成分分析和探索投影寻踪
               </span>
             
           
@@ -2246,101 +2246,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        14.5 主成分，主曲线以及主曲面
-      </label>
-    
-    <a href="index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
       14.5 主成分，主曲线以及主曲面
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="主成分" class="md-nav__link">
-    主成分
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" title="例子：手写数字" class="md-nav__link">
-    例子：手写数字
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#procrustes" title="例子：Procrustes转换和形状平均" class="md-nav__link">
-    例子：Procrustes转换和形状平均
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="主曲线和主曲面" class="md-nav__link">
-    主曲线和主曲面
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="谱聚类" class="md-nav__link">
-    谱聚类
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" title="核主成分" class="md-nav__link">
-    核主成分
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" title="稀疏主成分" class="md-nav__link">
-    稀疏主成分
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -2360,11 +2270,107 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../14.7 Independent Component Analysis and Exploratory Projection Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        14.7 独立成分分析和探索投影寻踪
+      </label>
+    
+    <a href="index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link md-nav__link--active">
       14.7 独立成分分析和探索投影寻踪
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="潜变量和因子分析" class="md-nav__link">
+    潜变量和因子分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="独立成分分析" class="md-nav__link">
+    独立成分分析
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="例子: 手写数字" class="md-nav__link">
+    例子: 手写数字
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="例子: 时序脑电图数据" class="md-nav__link">
+    例子: 时序脑电图数据
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="探索投影寻踪" class="md-nav__link">
+    探索投影寻踪
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="独立分量分析的一种直接方法" class="md-nav__link">
+    独立分量分析的一种直接方法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="例子：模拟" class="md-nav__link">
+    例子：模拟
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -3035,23 +3041,30 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="主成分" class="md-nav__link">
-    主成分
+  <a href="#_1" title="潜变量和因子分析" class="md-nav__link">
+    潜变量和因子分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="独立成分分析" class="md-nav__link">
+    独立成分分析
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" title="例子：手写数字" class="md-nav__link">
-    例子：手写数字
+  <a href="#_3" title="例子: 手写数字" class="md-nav__link">
+    例子: 手写数字
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#procrustes" title="例子：Procrustes转换和形状平均" class="md-nav__link">
-    例子：Procrustes转换和形状平均
+  <a href="#_4" title="例子: 时序脑电图数据" class="md-nav__link">
+    例子: 时序脑电图数据
   </a>
   
 </li>
@@ -3062,30 +3075,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="主曲线和主曲面" class="md-nav__link">
-    主曲线和主曲面
+  <a href="#_5" title="探索投影寻踪" class="md-nav__link">
+    探索投影寻踪
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="谱聚类" class="md-nav__link">
-    谱聚类
+  <a href="#_6" title="独立分量分析的一种直接方法" class="md-nav__link">
+    独立分量分析的一种直接方法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="例子：模拟" class="md-nav__link">
+    例子：模拟
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" title="核主成分" class="md-nav__link">
-    核主成分
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" title="稀疏主成分" class="md-nav__link">
-    稀疏主成分
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3110,7 +3122,7 @@
               
                 
                 
-                <h1 id="145">14.5 主成分，主曲线和主曲面<a class="headerlink" href="#145" title="Permanent link">&para;</a></h1>
+                <h1 id="147">14.7 独立成分分析和探索投影寻踪<a class="headerlink" href="#147" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3125,256 +3137,389 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-11-01:2016-10-21</td>
+<td>2017-09-03</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-01-18&amp;2018-01-19</td>
+<td>2018-01-20 &amp; 2018-01-21 &amp; 2018-01-22</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">更新笔记</p>
-<p>@2018-01-18 完成第一小节（不包含例子），并完成<a href="https://github.com/szcf-weiya/ESL-CN/issues/45">Ex. 14.7</a>
-@2018-01-19 完成主曲线（面）和谱聚类。</p>
-</div>
-<p>主成分已经在3.4.1节中讨论了，主成分阐释了岭回归的收缩机理。主成分是数据的投影序列，是互相不相关的且按照方差大小排序的序列。在下一节我们将要把主成分表示成N个点$x_i\in R^p$的多重线性逼近流形(nonlinear approximating manifolds)。接着在14.5.2节讨论非线性正则化。最近提出的关于多重非线性逼近流形的方法将在14.9节讨论。</p>
-<h2 id="_1">主成分<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>$R^p$中数据的主成分给出了这些数据在秩$q\le p$下最好的线性逼近。</p>
-<p>记观测值为$x_1,x_2,\ldots,x_N$，然后考虑用秩为$q$的线性模型来表示它们</p>
-<p>
-<script type="math/tex; mode=display">
-f(\lambda)=\mu+\mathbf V_q\lambda\qquad (14.49)
-</script>
-</p>
-<p>其中，$\mu$是$R^p$中的位置向量，$\mathbf V_q$是有$q$个正交单位列向量的$p\times q$的矩阵，$\lambda$是一个$q$维的系数向量。这是一个秩为$q$的仿射超平面的系数表示。图14.20和图14.21分别展示了$q=1$和$q=2$的情形。对数据进行最小二乘拟合这个模型等价最小化重构误差(reconstruction error)</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{\mu,\{\lambda_i\},\mathbf V_q}{min}\sum\limits_{i=1}^N\Vert x_i-\mu-\mathbf V_q\lambda_i\Vert^2\qquad (14.50)
-</script>
-</p>
-<p>我们可以对上式关于$\mu$和$\lambda_i$（练习14.7）求微分得到</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{array}{lll}
-\hat\mu&=&\bar x\qquad(14.51)\\
-\hat\lambda_i&=&\mathbf V_q^T(x_i-\bar x)\qquad (14.52)
-\end{array}
-</script>
-</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注: Ex. 14.7</p>
-<p>(14.51)和(14.52)的解并不是唯一的，只要满足
-<script type="math/tex; mode=display">
-\mathbf V_q^T\sum\limits_{i=1}^N\lambda_i=N(\bar x-\mu)
-</script>
-具体解题过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/45">Issue: Ex. 14.7</a></p>
-</div>
-<p>这促使我们去寻找正交矩阵$\mathbf V_q$:</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{\mathbf V_q}{min}\sum\limits_{i=1}^N\Vert (x_i-\bar x)-\mathbf V_q\mathbf V_q^T(x_i-\bar x)\Vert\qquad (14.53)
-</script>
-</p>
-<p>为了方便，我们假设$\bar x=0$（否则我们只需要简单地对数据进行中心化$\tilde x_i=x_i-\bar x$）。$p\times p$矩阵$\mathbf H_q=\mathbf V_q\mathbf V_q^T$是投影矩阵(projection matrix)，并且将每个点$x_i$投影到它的秩为$q$的重构$\mathbf H_qx_i$上，这是$x_i$在由$\mathbf V_q$的列张成的子空间上的正交投影。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注：投影矩阵</p>
-<p>投影是从一个向量空间到其自身的线性变换，并且投影矩阵满足$\mathbf P^2=\mathbf P$。
-首先，根据$\mathbf H_qx_i=\mathbf V_q\mathbf V^T_qx_i$可以得出投影点是在$\mathbf V_q$的列所张成的子空间中；其次，对于该子空间中任一点$y_i$，其在原空间的坐标为$\mathbf V_qy_i$，计算
-<script type="math/tex; mode=display">
-\begin{align}
-(x_i-\mathbf Px_i)\cdot \mathbf V_qy_i&=(\mathbf I-\mathbf P)x_i\cdot \mathbf V_qy_i\\
-&=x_i^T(\mathbf I-\mathbf P)^T\mathbf V_qy_i\\
-&=x_i^T\mathbf O_{p\times q}y_i\\
-&=0
-\end{align}
-</script>
-故为正交投影。</p>
-</div>
-<p>(14.53)的解可以按如下形式表示。将(中心化的)观测值放进$N\times p$的矩阵$\mathbf X$的行中。构造$X$的奇异值分解：</p>
-<p>
-<script type="math/tex; mode=display">
-\mathbf{X=UDV^T}\qquad (14.54)
-</script>
-</p>
-<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。这里$\mathbf U$是$N\times p$的正交矩阵($\mathbf{U^TU}=\mathbf I_p$)，它的列向量$\mathbf u_j$称为左奇异向量，$\mathbf V$是$p\times p$的正交矩阵($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量$\mathbf v_j$称之为右奇异向量。对每个秩$q$，(14.53)的解$\mathbf V_q$包含$\mathbf V$的前$q$列。$\mathbf{UD}$的列称为$X$的主成分（见3.5.1节）。(14.52)中$N$个最优的$\hat\lambda_i$由前$q$个主成分给出（$N\times q$的矩阵$\mathbf U_q\mathbf D_q$的$N$个行向量）。</p>
-<p>图14.20展示了$R^2$中的一维主成分分析。</p>
-<p><img alt="" src="../../img/14/fig14.20.png" /></p>
-<p>对于每个数据点$x_i$，在直线上有个离它最近的点，由$u_{i1}d_1v_1$给出。这里$v_1$是该直线的方向，并且$\hat \lambda_i=u_{i1}d_1$衡量了沿着直线离原点的距离。类似地，图14.21展示了拟合half-sphere数据的二维主成分曲面（左图）。右图显示了数据在前两个主成分上的投影。这个投影是之前介绍的SOM方法的初始化的基础。这个过程在分离簇方面表现得非常成功。因为half-sphere是非线性的，非线性的投影会做得更好，这将是下一节的主题。</p>
-<p><img alt="" src="../../img/14/fig14.21.png" /></p>
-<p>主成分还有许多其它的性质，举个例子，线性组合$\mathbf Xv_1$在特征的所有线性组合中有最大的方差；$\mathbf Xv_2$在满足$v_2$正交$v_1$的所有线性组合中有最大的方差，以此类推。</p>
-<h3 id="_2">例子：手写数字<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>主成分是降低和压缩维度的有效工具。我们用第一章中描述的手写数字的例子来说明这个特点。图14.22显示了从658个‘3’中抽取的130个‘3’的样本，每一个都是数字化的$16\times 16$的灰度图象。我们看到书写风格、字体粗细以及字体方向上有显著差异。我们将这些图象看成是$R^{256}$中的点$x_i$，并且通过SVD(14.54)来计算它们的主成分。</p>
-<p><img alt="" src="../../img/14/fig14.22.png" /></p>
-<p>图14.23显示了这些数据的前两个主成分。</p>
-<p><img alt="" src="../../img/14/fig14.23.png" /></p>
-<p>对于前两个主成分$u_{i1}d_1$和$u_{i2}d_2$，我们计算5%, 25%, 50%, 75%, 95%分位数，并且用它们去定义叠加在图中的长方形网格。圆点表明靠近网格的顶点的图象，而距离主要用这些投影点的坐标来衡量，但也给正交子空间中的组分一些权重。右图显示了对应这些圆点的图象。这帮助我们观察前两个主成分的本质。我们看到$v_1$（水平方向）主要与手写‘3’的下尾有关，而$v_2$（垂直方向）与字体粗细有关。用(14.49)的参数化模型表示，这两个组分的模型有如下形式</p>
-<!--
-$$
-\begin{align}
-\hat f(\lambda)&=\bar x+\lambda_1b_1+\lambda_2v_2\\
-&=\includegraphics[height=5.6ex]{../img/14/s1.png}+\lambda_1\cdot
-\includegraphics[height=5.6ex]{../img/14/s2.png}+\lambda_2\cdot
-\includegraphics[height=5.6ex]{../img/14/s3.png}
-\end{align}
-$$
--->
-
-<p><img alt="" src="../../img/14/eq1455.png" /></p>
-<p>这里我们以图象形式展示了前两个主成分的方向，$v_1$和$v_2$。尽管有256个可能的主成分，但大约50个主成分解释了90%的方差，12个主成分解释了63%的方差。</p>
-<p><img alt="" src="../../img/14/fig14.24.png" /></p>
-<p>图14.24比较了奇异值和相等大小的不相关数据的奇异值，后者通过对$\mathbf X$的每一列进行随机扰动得到。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注：奇异值</p>
-<p>在SVD分解中，$\mathbf{D}$为$p\times p$的对角矩阵，对角元$d_1\ge d_2 \ge \cdots \ge d_p \ge 0$称作$\mathbf{X}$的奇异值。如果一个或多个$d_j=0$,则$\mathbf{X}$为奇异的。</p>
-</div>
-<p>在数字图象中的像素点本质上是相关的，而且因为所有这些图象都是同一个数字，因此相关性甚至更强。（疑问：前者指像素点的相关，但后者似乎是不同点的相关，两者的联系？）相对小的主成分子集是表示高维数据的极好的低维特征。</p>
-<h3 id="procrustes">例子：Procrustes转换和形状平均<a class="headerlink" href="#procrustes" title="Permanent link">&para;</a></h3>
-<p><img alt="" src="../../img/14/fig14.25.png" /></p>
-<p>图14.25在同一张图中展示了两个集合的点，橘黄色和绿色。在这里例子中，这些点表示手写&rsquo;S&rsquo;的两个数字化版本，这是从&rdquo;Suresh&rdquo;签名中提取的。图14.26展示了整个签名（第三和第四幅图）。这些签名是采用touch-screen设备（超市中很常见的设备）动态采集的。每个$S$有$N=96$个点来表示，记为$N\times 2$的矩阵$\mathbf X_1$和$\mathbf X_2$。这些点之间存在对应关系，$\mathbf X_1$和$\mathbf X_2$的第$i$行表示沿着两个&rsquo;S&rsquo;的同一位置。用形态测量(morphometrics)的术语说就是这些点表示两个物体的landmarks。怎样寻找这样一个landmark一般是很困难的，而且因情况而异。在这里，我们采用沿着每个签名的速度信号的dynamic time warping(Hastie et al., 1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)，但是在这里不展开讨论。</p>
-<p>右图中，我们已经对绿色点已经采用了平移(translation)和旋转(rotation)的方式来尽可能与橘黄色点匹配——这称之为Procrustes变换（如，Mardia et al., 1979<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注：Procrustes变换</p>
-<p>普罗库鲁斯提斯(Procrustes)是希腊神话中非洲的一个土匪，他经常用一个铁床来折磨别人，把抓来的人绑在铁床上，然后根据铁床的长度来裁剪他们的身体长度：那些身材短的人被拉长，那些身材长的人被砍掉多余的部分。</p>
-</div>
-<p>考虑下面的问题：</p>
-<p>
-<script type="math/tex; mode=display">
-\underset{\mu, \mathbf R}{min}\Vert \mathbf X_2-(\mathbf X_1\mathbf R+\boldsymbol 1\mu^T)\Vert_F\qquad (14.56)
-</script>
-</p>
-<p>其中$\mathbf X_1$和$\mathbf X_2$都是对应点的$N\times p$矩阵，$\mathbf R$是标准正交$p\times p$的矩阵，$\mu$是$p$维的位置向量。</p>
-<div class="admonition note">
-<p class="admonition-title">原书注：$\mathbf R$</p>
-<p>为了简化问题，只考虑包含反射和旋转的正交矩阵（$O(p)$群）；尽管这里不可能有反射，这些方法可以进一步限制为只允许旋转（$SO(p)$群）。</p>
-</div>
-<p>这里$\Vert \mathbf X\Vert_F^2=trace(\mathbf X^T\mathbf X)$是Frobenius矩阵范数的平方。</p>
-<p>令$\bar x_1$和$\bar x_2$是矩阵的列均值向量，$\tilde{\mathbf X}_1$和$\tilde{\mathbf X}_2$是这些矩阵减去均值得到的。考虑SVD分解$\tilde {\mathbf X}_1^T\tilde{\mathbf X}_2=\mathbf U\mathbf D\mathbf V^T$。则(14.56)的解由下式给出(练习14.8)</p>
+<p>多元数据经常被看成是从未知来源中多重间接测量的数据，一般不能直接测量。包括以下例子：</p>
+<ul>
+<li>在教育或心理学测试中，采用问卷的答案来衡量潜在的智商以及其他的心理特征。</li>
+<li>EEG脑扫描通过放置在头部的不同位置的感受器的电子信号来间接衡量脑的不同部分的神经元活性。</li>
+<li>股票交易价格随着时间持续变化，并且反映了各种各样的未测量的因素，如市场信心，外部影响以及其他很难识别和测量的推动力。</li>
+</ul>
+<p><strong>因子分析(Factor Analysis)</strong>是统计学领域为了识别潜在因素的一个经典方法。因子分析模型通常是用在高斯分布中，某种程度上阻碍了它的适用性。最近，<strong>独立成分分析(Independent Component Analysis)</strong>成为了因子分析的强劲对手，我们将会看到，它对非高斯分布的依赖是其成功的根本来源。</p>
+<h2 id="_1">潜变量和因子分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>奇异值分解(14.54)$\mathbf X=\mathbf{UDV}^T$有潜变量的表示。记$\mathbf S=\sqrt{N}\mathbf U$，以及$\mathbf A^T=\mathbf{DV}^T/\sqrt{N}$，我们有$\mathbf{X=SA}^T$，因此$\mathbf X$的每一列是$\mathbf S$的列的线性组合。现在因为$\mathbf U$是正交的，并且和之前一样假设$\mathbf X$的列均值为0（因此$\mathbf U$也是），这意味着$\mathbf S$列均值为0，而且不相关，有单位方差。用随机变量表示，我们可以把SVD或者对应的主成分分析看成是下列潜变量模型的一个估计</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\hat{\mathbf R}&=\mathbf U\mathbf V^T\\
-\hat\mu&=\bar x_2-\hat{\mathbf R}\bar x_1
+X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1p}S_p\\
+X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p\\
+\vdots &\qquad\vdots\\
+X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p
 \end{align}
-\qquad （14.57)
+\qquad (14.78)
 </script>
 </p>
-<p>并且这个最小距离被称为Procrustes距离。从该解的形式来看，我们可以将每个矩阵在其列中心点处进行中心化，接着完全忽略掉位置向量。下文假设是这种情形。</p>
-<p>带尺度的Procrustes距离解决了更一般的问题</p>
+<p>或者简单地写成$X=\A S$。相关的$X_j$都表示成不相关的、单位方差的变量$S_\ell$的线性展开。尽管这不是太满意，因为对于任意给定的$p\times p$的正交矩阵$\R$，我们可以写出</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta,\mathbf R}{min}\Vert \mathbf X_2-\beta\mathbf X_1\mathbf R\Vert_F\qquad (14.58)
+\begin{align}
+X&=\A S\\
+&=\A\R^T\R S
+&=\A^*S^*
+\end{align}
+\qquad (14.79)
 </script>
 </p>
-<p>其中$\beta&gt;0$是正的标量值。$\mathbf R$的解和前面一样，$\hat\beta=trace(D)/\Vert \mathbf X_1\Vert_F^2$</p>
-<p>与Procrustes距离有关的是$L$个形状的Procrustes平均，它解决了下面的问题</p>
+<p>并且$\Cov (S^*)=\R\Cov(S)\R^T=\I$。因此存在许多这样的分解，也因此不可能将任意特定的潜变量作为唯一的潜在来源。SVD分解确实有这样的性质，以最优的方式得到使得任意$q &lt; p$的截断分解。</p>
+<p>经典的因子分析模型，主要由心理测量学(psychometrics)的研究者发展而来。某种程度上缓解了这个问题；举个例子，Mardia et al. (1979)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。当$q &lt; p$，因子分析模型有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\mathbf R_\ell\}_1^L,M}{min}\sum\limits_{\ell=1}^L\Vert \mathbf X_\ell \mathbf R_\ell -\mathbf M\Vert_F^2\qquad (14.59)
+\begin{align}
+X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1q}S_q+\varepsilon_1\\
+X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2q}S_q+\varepsilon_2\\
+\vdots &\qquad\vdots\\
+X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
+\end{align}
+\qquad (14.80)
 </script>
 </p>
-<p>也就是，在所有的形状中寻找Procrustes距离平方最近的形状$\mathbf X$。这可以通过简单的算法实现：</p>
+<p>或者写成$X=\A S+\epsilon$。这里$S$是 $q &lt; p$个揭示潜变量或者因子的向量，$\A$ 是$p\times q$的因子载荷(loadings)矩阵，$\varepsilon_j$是零均值不相干的扰动。想法是潜变量$S_\ell$是$X_j$公共方差的来源，意味着它们之间的相关性结构，而$\varepsilon_j$对每个$X_j$是唯一的，并且解释了剩下的方差。一般地，$S_\ell$和$\varepsilon_j$假设为高斯随机变量，并且采用极大似然法来拟合模型。参数都存在于下面的协方差阵中</p>
+<p>
+<script type="math/tex; mode=display">
+\Sigma=\A\A^T+\D_\varepsilon \qquad (14.81)
+</script>
+</p>
+<p>其中$\D_\varepsilon = \diag[\Var(\varepsilon_1),\ldots, \Var(\varepsilon_p)]$. $S_\ell$为高斯并且不相关，这使得它们在统计上是独立随机变量。因此一系列的教育考试成绩可以认为是有潜在独立的因子，比如智力(intelligence)，动机(drive)等等所决定的。 $\A$的列被称为<strong>因子载荷(factor loadings)</strong>，而且用来命名因子和解释因子。</p>
+<p>不幸的是, 唯一性问题(14.79)仍然存在, 因为在式(14.81)中, 对于任意$q\times q$的正交矩阵$\R$, $\A$和 $\A\R^T$是等价的. 这导致了因子分析中的主观性, 因为用户可以寻找因子更易解释的旋转版本. 这点使得许多分析学家对因子分析表示怀疑, 而且这可能是它在当代统计中不受欢迎的原因。尽管我们这里不继续讨论细节，但是SVD分解在(14.81)的估计上发挥重要作用。举个例子，假设$\Var(\varepsilon_j)$相等，SVD的前$q$个成分确定了由$\A$张成的子空间。</p>
+<p>因为每个$X_j$独立的扰动$\varepsilon_j$，因子分析可以看成是对$X_j$的相关结构进行建模，而非对协方差结构建模。这个可以通过对(14.81)的协方差结构进行标准化后得到（<a href="../(https://github.com/szcf-weiya/ESL-CN/issues/51)">练习14.14</a>）。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: Ex. 14.14</p>
+<p>练习14.14表明，因子分析实质上是对相关矩阵进行分解。详见解答见<a href="https://github.com/szcf-weiya/ESL-CN/issues/51">Issue 51: Ex. 14.14</a></p>
+</div>
+<p>这是因子分析与PCA的重要区别，尽管这不是我们讨论的重点。<a href="../(https://github.com/szcf-weiya/ESL-CN/issues/50)">练习14.15</a>讨论了一个简单的例子，因为这个差异，因子分析和主成分的解完全不同。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: Ex. 14.15</p>
+<p>练习14.15用一个实际例子说明了，因子分析和主成分得到的第一因子和第一主成分完全不同。详细解答见<a href="https://github.com/szcf-weiya/ESL-CN/issues/50">Issue 50: Ex. 14.15</a></p>
+</div>
+<h2 id="_2">独立成分分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><strong>独立成分分析(ICA)</strong>模型与(14.78)有相同的形式, 除了假设$S_\ell$是统计上独立而非不相关. </p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: 独立与不相关</p>
+<p>统计上, 连续型随机变量$X$与 $Y$独立的定义为
+<script type="math/tex; mode=display">
+p(x, y)=p_X(x)p_Y(y)\;\forall x,y
+</script>
+而不相关的定义为
+<script type="math/tex; mode=display">
+Cov(X, Y)=0
+</script>
+独立意味着不相关，但反之不对。对于二元正态随机变量，两者等价。</p>
+</div>
+<p>直观上, 不相关确定了多元变量分布的二阶交叉矩（协方差）, 而一般地, 统计独立确定了所有的交叉矩. 这些额外的矩条件能让我们找到唯一的$\A$. 因为多元正态分布只要二阶矩就可以确定, 因此这是一个特例, 任意高斯独立成分可以像之前一样乘以一个旋转来确定. 因此如果假设$S_\ell$是独立且非高斯的, 则可以避免(14.78)和(14.80)的唯一性问题.</p>
+<p>这里我们将要讨论(14.78)中的全$p$个成分的模型, 其中$S_\ell$是独立的且有单位方差; 因子分析模型(14.80)的ICA版本也同样存在. 我们的处理基于Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的综述文章.</p>
+<p>我们希望恢复$X=\A S$中的混合矩阵$\A$。 不失一般性, 我们假设$X$已经白化(whitened)得到$\Cov(X)=\I$; 这一般可以通过前面描述的SVD实现. 反过来, 因为$S$的协方差也为$\I$, 这意味着$\A$是正交的。 所以求解ICA问题等价于寻找正交的$\A$使得随机变量向量$S=\A^T X$的组分是独立(且是非高斯的)。</p>
+<p><img alt="" src="../../img/14/fig14.37.png" /></p>
+<p>图14.37显示了在分离两个混合信号例子中ICA的能力。这也是经典的cocktail party problem的一个例子，不同的麦克风$X_j$接受来自不同独立源$S_\ell$(音乐、不同人说的话等等)的混合信号。 ICA通过利用原始信号源的独立性和非高斯性，能够进行盲信号分离(blind source separation)。</p>
+<p>ICA许多流行的方式是基于熵. 密度为$g(y)$的随机变量$Y$的相对熵(differential entropy) $H$由下式给出</p>
+<p>
+<script type="math/tex; mode=display">
+H(Y)=-\int g(y)\LOG g(y)dy\qquad (14.82)
+</script>
+</p>
+<p>信息理论中一个著名的结论是在所有同方差的随机变量中，高斯随机变量有最大的熵。最后，随机向量$Y$的组分之间的<strong>互信息量(mutual information)</strong>$I(Y)$是独立性的一个自然度量:</p>
+<p>
+<script type="math/tex; mode=display">
+I(Y)=\sum\limits_{j=1}^pH(Y_j)-H(Y)\qquad (14.83)
+</script>
+</p>
+<p>值$I(Y)$称为$Y$的密度$g(y)$与其独立版本$\prod\limits_{j=1}^pg_j(y_j)$之间的Kullback-Leibler距离, 其中$g_j(y_j)$是 $Y_j$的边缘密度. 如果$X$有协方差$\I$, 且$Y=\A^TX$, 其中$\A$是正交, 则易证</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+I(Y)&= \sum\limits_{j=1}^pH(X)-\LOG\vert \det\A\vert\qquad (14.84)\\
+&=\sum\limits_{j=1}^pH(Y_j)-H(X)\qquad (14.85)
+\end{align}
+</script>
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: (14.85)的证明</p>
+<p>只要证
+<script type="math/tex; mode=display">
+H(Y)=H(X)+\LOG \vert \det \A \vert
+</script>
+对(14.82)进行变量替换有
+<script type="math/tex; mode=display">
+H(Y)=-\int g(\A'x)\LOG g(\A'x)\cdot \vert \det \J\vert dx\qquad (*)
+</script>
+其中$\J_{ij}=\frac{\partial y_i}{\partial x_j}$.
+又
+<script type="math/tex; mode=display">
+y_i = \sum\limits_{j=1}^p (\A')_{ij}x_j
+</script>
+故
+<script type="math/tex; mode=display">
+\J_{ij}=(\A')_{ij}
+</script>
+所以$\det\J = \det \A&rsquo;=\det \A$.
+另外, $X$的密度函数为
+<script type="math/tex; mode=display">
+f(x)=g(\A'x)\cdot\vert \det\J\vert 
+</script>
+于是$(*)$式可以写成
+<script type="math/tex; mode=display">
+\begin{align}
+H(Y) &= -\int \frac{f(x)}{\vert\det\A\vert} \LOG\frac{f(x)}{\vert\det\A\vert}\cdot\vert\det\A\vert dx\\
+&=-\int f(x)[\LOG f(x)-\LOG\vert\det\A\vert]dx\\
+&=H(X)+\LOG\vert\det\A\vert
+\end{align}
+</script>
+证毕.</p>
+</div>
+<p>寻找$\A$来最小化$I(Y)=I(\A^TX)$也就是寻找使得组分间的独立性最强的正交变换。 考虑到式(14.84), 这等价于最小化$Y$的各组分的熵的和, 反过来意味着最大化它们与高斯分布的距离。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>因为高斯随机变量的交叉熵最大, 则让各组分熵之和最小, 意味着各组分远离高斯分布。</p>
+</div>
+<p>为了简便, 与其采用熵$H(Y_j)$, Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>采用负熵(negentropy)$J(Y_j)$</p>
+<p>
+<script type="math/tex; mode=display">
+J(Y_j) = H(Z_j)-H(Y_j)\qquad (14.86)
+</script>
+</p>
+<p>其中$Z_j$是与$Y_j$同方差的高斯随机变量。 负熵是非负的, 它度量了$Y_j$与高斯随机变量之间的距离. 他们提出负熵的一个简单近似, 这个近似可以用来计算和优化数据. 图14.37至图14.39中的ICA都采用下面的近似</p>
+<p>
+<script type="math/tex; mode=display">
+J(Y_j)\approx [EG(Y_j) - EG(Z_j)]^2\qquad (14.87)
+</script>
+</p>
+<p>其中$G(u)=\frac 1a\LOG \cosh(au), 1\le a\le 2$. 当应用到实际数据时, 期望用数据的平均值代替。 这是这些作者们提供的<code>FastICA</code>软件中的一个选项. 更经典(以及不太鲁棒)的度量是基于四阶矩, 也因此可以通过峰度(kurtosis)来衡量与高斯分布的距离. 更多细节参见Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>. 在14.7.4节我们讨论他们寻找最优方向的近似牛顿算法.</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注:</p>
+<p>峰度是四阶标准矩
+<script type="math/tex; mode=display">
+Kurt(X)=\E\Big[
+\Big(
+\frac{X-\mu}{\sigma}
+\Big)^4
+\Big]
+</script>
+</p>
+</div>
+<p>总结一下, ICA应用到多元数据中, 来寻找一系列的正交投影, 使得投影数据尽可能远离高斯分布. 采用白化后的数据(协方差为$\I$), 这意味着寻找尽可能独立的组分.</p>
+<p>ICA本质上从因子分析的一个解出发, 并且寻找一个旋转得到独立组分. 从这点看, ICA与在心理测量学中采用的传统方法“varimax”和“quartimax”一样, 仅仅是因子旋转的一种方式.</p>
+<h3 id="_3">例子: 手写数字<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>我们再次讨论14.5.1 节用PCA分析的手写数字“3”。 </p>
+<p><img alt="" src="../../img/14/fig14.39.png" /></p>
+<p>图14.39比较了前五个主成分(标准化)和前五个ICA成分， 都显示在标准化后的同一单位尺度下。 注意到每张图都是256维空间的二维投影。 所有PCA组分看上去都服从联合高斯分布，而ICA组分都服从长尾分布。这并不是很奇怪，因为PCA主要考虑方差，而ICA特地寻找非高斯的分布。所有的组分都已经标准化，所以我们看不出主成分的方差降低。</p>
+<p><img alt="" src="../../img/14/fig14.40.png" /></p>
+<p>图14.40展示了每个ICA主成分的两个极端的数据点， 以及均值的两个极端点。 这解释了每个组分的实际意义。 举个例子， 第五个ICA成分捕捉具有长扫尾(long sweeping tailed)的“3”。</p>
+<h3 id="_4">例子: 时序脑电图数据<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>ICA已经成为脑动力学(brain dynamics)中的重要工具， 这里介绍的例子采用ICA来理清多频脑电图(EEG)数据中信号的组分(Onton and Makeig, 2006)。</p>
+<p>被试者戴上装有100个EEG电极的帽子， 这些用来记录头皮上不同部位的脑活动。</p>
+<p><img alt="" src="../../img/14/fig14.41.png" /></p>
+<p>图14.41(上图)显示了被试者在30分钟的周期内进行标准的&rdquo;two-back&rdquo;学习过程时， 这些电极中的9个电极在15秒内的输出结果。 大约间隔1500ms依次给被试者呈现一个字母(B, H, J, C, F或者K), 然后被试者通过按“是”或“否”的按钮来判断当前的字母与前两步出现的字母是否一致。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: n-back</p>
+<p>参考<a href="https://en.wikipedia.org/wiki/N-back">wiki: $n$-back</a>, $n$-back是指给被试者连续的刺激, 要求其判断当前刺激与前$n$步的刺激是否一致. 举个例子, 在3-back测试中, 若给被试者如下刺激
+<img alt="" src="../../img/14/nback.png" />
+则当前刺激为高亮部分时, 被试者应当判断&rdquo;是&rdquo;, 因为在前3步出现了高亮部分相同的刺激.</p>
+</div>
+<p>根据被试者的回答，他们得分或者失分，并且偶尔赚取bonus或者额外惩罚。脑电图信号中这个时序的数据表现出空间上的相关性———邻近的信号感受器看起来非常相似。</p>
+<p>这里重要假设是每个头皮电极上记录的信号是从不同表皮活动以及非表皮区域的人工活动(如下文中提到的眨眼)中产生的独立的电势的混合。 更多ICA在这个领域的细节参见参考文献。</p>
+<p>图14.41的下半部分展示了ICA组分的选择. 彩色图象用(画在头皮上的)热图表示未混合的系数向量的估计值$\hat a_j$, 它表明了活性的位置. 对应的时序数据展示了ICA组分的活动.</p>
+<p>举个例子, 每次反馈信号之后被试者的眨眼(彩色的垂直直线), 它解释了IC1和IC3中的位置和人工信号. IC12是与心脏脉冲(cardiac pulse)有关的人工信号. IC4和IC7额骨(frontal)theta-band的活动, 而且这出现在回答正确后被试者身体的舒展. 更多细节参见Onton and Makeig (2006)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>中对这个例子的讨论, 以及ICA在脑电图模型中的应用.</p>
+<h2 id="_5">探索投影寻踪<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Friedman and Tukey (1974)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>提出了探索投影寻踪(exploratory projection pursuit)，这是可视化高维数据的图象探索技巧。 他们的观点是高维数据的大多数低维（一维或二维）投影看起来是高斯分布的。 他们提出一系列projection indices的方法用于优化, 每个集中在与高斯分布的不同距离。自从他们最先提出该方法, 陆续有各种改进的建议(Huber, 1985<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>; Friedman, 1987<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>)， 以及交互式图形软件包Xgobi(Swayne et al., 1991<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>, 现在叫做GGobi)中实现的各种指标，包括熵。 这些投影指标与上文介绍的$J(Y_j)$形式一样， 其中$Y_j=a_j^TX$是$X$组分的标准化的线性组合。 实际上， 交叉熵的一些近似和替代与投影寻踪中提出的指标重合。 一般在投影寻踪中, 方向$a_j$不需要限制为正交。 Friedman (1987)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>将数据在选定的投影上转换使之看起来像高斯分布， 然后搜索接下来的方向。 尽管他们的出发点不一样， 但是ICA和探索投影寻踪非常相似， 至少这里描述的表示形式。</p>
+<h2 id="_6">独立分量分析的一种直接方法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>由定义知独立组分有如下联合乘积密度</p>
+<p>
+<script type="math/tex; mode=display">
+f_S(s)=\prod\limits_{j=1}^pf_j(s_j)\qquad (14.88)
+</script>
+</p>
+<p>所以这里展示一种采用广义可加模型(9.1节)来直接估计这个密度的方式. 全部细节可以在Hastie and Tibshirani (2003)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>中找到, 并且这个方法已经在<code>ProDenICA</code>的R包中实现了, 这可以在CRAN上下载.</p>
+<p>根据与高斯分布的距离的表示, 我们将每个$f_j$写成</p>
+<p>
+<script type="math/tex; mode=display">
+f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\qquad (14.89)
+</script>
+</p>
+<p>这是倾斜的高斯密度. 这里$\phi$是标准高斯分布密度, 并且$g_j$满足密度函数所要求的标准化条件. 和之前一样假设$X$已经预处理, 观测数据$X=\A S$的对数似然为</p>
+<p>
+<script type="math/tex; mode=display">
+\ell(\A, \{g_j\}_1^p;\X)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[\LOG \phi(a_j^Tx_i)+g_j(a_j^Tx_i)]\qquad (14.90)
+</script>
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：</p>
+<p>(14.90)原书中$\phi$有下标$j$， 但是因为$\phi$为标准正态， 所以应该直接忽略下标， 原书中后面的(14.91)也确实没有下标。</p>
+</div>
+<p>我们希望在$\A$为正交且(14.89)定义的$g_j$的条件下, 最大化上式. 对$g_j$不添加额外的约束, 模型$(14.90)$是过参数化的, 所以我们最大化下面的正则化版本</p>
+<p>
+<script type="math/tex; mode=display">
+\sum\limits_{j=1}^p\Big[
+\frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
+\int \phi(t)e^{g_j(t)}dt - 
+\lambda_j\int\{g_j^{(3)}\}^2(t)dt
+\Big]\qquad (14.91)
+</script>
+</p>
+<p>受Silverman (1986)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>的启发, 在(14.91)中, 我们(对每个$j$)减去了两个惩罚项:</p>
+<ul>
+<li>第一个在任意解$\hat g_j$上强制要求密度约束$\int \phi(t)e^{\hat g_j(t)}dt=1$</li>
+<li>第二个是鲁棒性惩罚, 保证了解$\hat g_j$是结点在观测值$s_{ij}=a_j^Tx_i$的四次样条.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">weiya注：</p>
+<p>下面说明为什么第一个惩罚项能够对$\phi(t)e^{\hat g_j(t)}$的密度进行约束。假设随机变量$X$的密度函数为$f(x)$， 其似然函数为$g(x)\propto \LOG f(x)$，这个问题归结为说明
+<script type="math/tex; mode=display">
+A_0(g)=\frac 1n\sum g(x_i)
+</script>
+在$\int e^g=1$的约束下的$\arg\max$等于
+<script type="math/tex; mode=display">
+A(g)=\frac 1n\sum g(x_i)-\int exp(g(x))dx
+</script>
+的$\arg\max$。
+考虑$g^*=g-\LOG \int e^g$
+则
+<script type="math/tex; mode=display">
+\int e^{g^*}=\int e^{g(x)}\cdot \frac{1}{\int e^{g(t)}dt}dx=1
+</script>
+于是
+<script type="math/tex; mode=display">
+A(g^*)=A(g)+\int e^{g(x)}dx-\LOG(\int e^{g(x)}dx)-1
+</script>
+因$t-\LOG t\ge 1, \forall t&gt;0$，当且仅当$t=1$取等号，
+则$A(g^*)\le A(g)$，也就是当且仅当$\int e^g = 1$时，$A(g)$会取得最大值，而这时候$A(g)=A_0(g)-1$，所以$A_0(g)$也会取得最大值。由此看出，$A_0(g)$在$\int e^g=1$的约束下的$\arg\max$等于（无约束的）$A(g)$的$\arg\max$。
+关于第二个点说得到四次样条，我想可以这样类比理解（但不严谨），我们知道四次样条有三阶连续的导函数，且对于<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.4%20Smoothing%20Splines/index.html">光滑样条（三次）</a>有如下形式
+<script type="math/tex; mode=display">
+RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\qquad (5.9)
+</script>
+可以类比看出第二个惩罚正是针对四次样条。</p>
+</div>
+<p>可以进一步证明每个解密度$\hat f_j=\phi e^{\hat g_j}$的均值为0, 方差为1(练习14.18). 当我们增大$\lambda_j$, 这些解近似标准高斯密度$\phi$. </p>
+<p><img alt="" src="../../img/14/alg14.3.png" /></p>
+<p>如在算法14.3中描述, 以一种轮换的方式优化(14.91)来拟合函数$g_i$和方向$a_j$.</p>
+<p>第2(a)步等价于半参密度估计，可以采用广义可加模型来求解。为了方便，我们取$p$个独立问题中的一个</p>
+<p>
+<script type="math/tex; mode=display">
+\frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
+\int \phi(t)e^{g_j(t)}dt - 
+\lambda_j\int\{g_j^{(3)}\}^2(t)dt\qquad (14.92)
+</script>
+</p>
+<p>尽管(14.92)的第二个积分导出光滑样条， 但第一个积分比较困难， 需要近似。 我们构造一个$L$个值为$s_\ell^*$的细网格，这些值间距为$\Delta$、覆盖观测值$s_i$的取值范围， 并且统计得到的小块中$s_i$的个数：</p>
+<p>
+<script type="math/tex; mode=display">
+y_\ell^*=\frac{\#s_i\in (s_\ell^*-\Delta/2, s_\ell^*+\Delta/2)}{N}\qquad (14.93)
+</script>
+</p>
+<p>一般我们取$L$为1000就已经足够了。 则(14.92)可以近似为</p>
+<p>
+<script type="math/tex; mode=display">
+\sum\limits_{\ell=1}^L\Big\{
+y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta\phi(s_\ell^*)e^{g(s_\ell^*)}-\lambda\int (g^{3})^2ds\qquad (14.94)
+\Big\}
+</script>
+</p>
+<p>这个表达是可以看成是与惩罚的possion对数似然成比例， 其中响应变量为$y_\ell^*/\Delta$， 惩罚参数为$\lambda/\Delta$， 均值为$\mu(s)=\phi(s)e^{g(s)}$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/54">Issue 54</a>）。 这是一个广义可加样条模型(generalized additive spline model)(Hastie and Tibshirani, 1990<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Efron and Tibshirani, 1996<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>)， 其中的offset项为$\LOG \phi(s)$， 并且可以以$O(L)$的复杂度用牛顿算法进行拟合。 尽管要求四次样条， 但是实际中我们发现三次样条就足够了。 我们有$p$个调整参数$\lambda_j$需要设定， 在实际中我们使得它们相等， 然后通过有效自由度$\df(\lambda)$来确定光滑的程度。 我们的软件采用$5\df$作为默认值。</p>
+<p>算法14.3的2(b)要求在给定$\hat g_j$， 对$\A$进行优化。和式中仅仅第一项有涉及$\A$，并且因为$\A$是正交的， 则涉及$\phi$的所有项的集合不依赖$\A$（练习14.19）。因此我们需要最大化</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+C(\A) &= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\qquad (14.95)\\
+&= \sum\limits_{j=1}^pC_j(a_j)
+\end{align}
+</script>
+</p>
+<p>$C(\A)$是拟合的密度与高斯密度间的对数似然比，而且可以看成是负熵(14.86)的一个估计， 其中每个$\hat g_j$就像(14.87)中的差异函数。第2(b)步中的固定点更新是修改后的牛顿法（练习14.20）：</p>
 <ol>
-<li>初始化$\mathbf M=\mathbf X_1$（举个例子）</li>
-<li>固定$\mathbf M$，求解$L$个Procrustes旋转问题，得到$\mathbf X_\ell&rsquo;\leftarrow \mathbf X\hat{\mathbf R_\ell}$</li>
-<li>令$\mathbf M\leftarrow \frac 1L\sum\limits_{\ell=1}^L\mathbf X_\ell&rsquo;$</li>
+<li>对于每个$j$，更新
+<script type="math/tex; mode=display">
+a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\qquad (14.96)
+</script>
+其中$\E$表示关于$x_i$的期望。因为$\hat g_j$是拟合的四次（或者三次）样条，则式中第一项和第二项已经计算好了。</li>
+<li>采用对称平方根变换将$\A$化为正交矩阵：$(\A\A^T)^{-\frac 12}\A$。如果$\A=\U\D\V^T$是$\A$的SVD分解，则易证$\A\leftarrow \U\V^T$。</li>
 </ol>
-<p>重复步骤2和3准则直至(14.59)收敛。</p>
-<p><img alt="" src="../../img/14/fig14.26.png" /></p>
-<p>图14.26显示了三个形状的简单例子。注意到我们仅仅希望得到旋转的一个解；另外，我们加上约束，使得$\mathbf M$是上三角形式，来强制解是唯一的。我们可以很简单地把缩放合并到定义(14.59)；见练习14.9。</p>
-<p>更一般地，我们可以通过下式来定义一系列形状的affine-invariant平均：</p>
+<p>我们的<code>ProDenICA</code>算法和<code>FastICA</code>算法在图14.37中的模拟时间序列数据、图14.38的均匀分布数据的混合以及图14.39中的数字数据都表现得一样好。</p>
+<h3 id="_7">例子：模拟<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../../img/14/fig14.42.png" /></p>
+<p>图14.42展示了比较<code>ProDenICA</code>与<code>FastICA</code>以及另外一个半参方法<code>KernelICA</code>(Bach and Jordan, 2002<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)的模拟的结果。左图展示了作为比较的基础的18个分布。对于每个分布，我们产生成对的独立组分($N=1024$)，以及随机的混合矩阵$\IR^2$，条件数为1到2之间。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：条件数</p>
+<p>矩阵$A$的条件数为
+<script type="math/tex; mode=display">
+\kappa(A) = \Vert A^{-1}\Vert\cdot \Vert A\Vert\ge \Vert A^{-1}\cdot A\Vert=1
+</script>
+若$\Vert\cdot \Vert$为二范数
+<script type="math/tex; mode=display">
+\kappa(A) = \frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}
+</script>
+其中$\sigma_\max(A)$和$\sigma_\min(A)$分别为$A$的最大和最小的奇异值。
+对于正规矩阵，即满足
+<script type="math/tex; mode=display">
+A^TA=AA^T
+</script>
+有
+<script type="math/tex; mode=display">
+\kappa(A)=\frac{\vert\lambda_\max(A)\vert}{\vert \lambda_\min(A)\vert}
+</script>
+其中$\lambda$为特征值。
+当$A$为单位阵时，$\kappa(A)=1$。</p>
+</div>
+<p>我们采用<code>FastICA</code>的R语言实现，采用(14.87)的负熵准则，<code>ProDenICA</code>也是这样。对于<code>KernelICA</code>，我们采用作者的MATLAB代码。因为搜索准则是非凸的，我们对每种方法采用5个随机初始值。每个算法都传入正交的混合矩阵$\A$（数据已经进行了白化），这可以用来比较产生的正交混合矩阵$\A_0$。我们采用Amari距离(Bach and Jordan, 2002<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)来度量两个矩阵接近程度：</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\mathbf A_\ell\}_1^L,\mathbf M}\sum\limits_{\ell=1}^L\Vert\mathbf X_\ell\mathbf A_\ell-\mathbf M\Vert_F^2\qquad (14.60)
+d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)+
+\frac{1}{2p}\sum\limits_{j=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)\qquad (14.97)
 </script>
 </p>
-<p>其中$\mathbf A_\ell$是任意$p\times p$的非奇异矩阵。这里我们要求标准化，使得$\mathbf M^T\mathbf M=\mathbf I$，来避免平凡解。这个解是吸引人的，并且可以不用迭代便可以计算（练习14.10）：</p>
-<ol>
-<li>令$\mathbf H_\ell=\mathbf X_\ell(\mathbf X_\ell^T\mathbf X_\ell)^{-1}\mathbf X_\ell^T$为由$\mathbf X_\ell$定义的秩为$p$的投影矩阵</li>
-<li>$\mathbf M$是$N\times p$的矩阵，其由$\bar{\mathbf H}=\frac{1}{L}\sum\limits_{\ell=1}^L\mathbf H_\ell$的最大$p$个特征向量所构成</li>
-</ol>
-<h2 id="_3">主曲线和主曲面<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>主曲线推广了主成分直线，它提供了对$\mathbf R^p$中一系列点的一维光滑曲线的近似。主曲线更一般化，它给出了二维或更高维的流形近似。</p>
-<p>我们首先定义随机变量$X\in R^p$的主曲线，并接着讨论有限数据的情形。令$f(\lambda)$为$R^p$中参数化的光滑曲线。因此$f(\lambda)$是有着$p$个坐标的向量函数，每个都是关于单参数$\lambda$的光滑函数。举个例子，可以选择参数$\lambda$为沿着曲线到固定原点的弧长。对于每个数据点$x$，令$\lambda_f(x)$为曲线上离$x$最近的点。如果满足</p>
-<p>
-<script type="math/tex; mode=display">
-f(\lambda) = E(X\mid \lambda_f(X)=\lambda)\qquad (14.61)
-</script>
-</p>
-<p>则$f(\lambda)$称为随机向量$X$的分布的主曲线。这也就是说$f(\lambda)$是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点。这也称作 self-consistency性质。尽管在实际中，连续多元分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣。图14.27显示了一个主曲线。</p>
-<p><img alt="" src="../../img/14/fig14.27.png" /></p>
-<p>主点(Principal points)是与之相关的一个有趣的概念。考虑$k$个原型的集合，对于在分布的支撑集中的每个点$x$，选出最近的原型，也就是，为之负责的那个原型。这导出了对特征空间的划分，得到Voronoi区域。这$k$个点最小化了$X$到其原型的期望距离，它们称为该分布的主点。每个主点是self-consistent，因为它等于其Voronoi区域的$X$的均值。举个例子，当$k=1$，一个圆形正态分布的主点是均值向量；当$k=2$时，成对的点对称排列在通过均值向量的射线上。主点类似$K$-means聚类中的重心的分布。主曲线可以看成是$k=\infty$时的主点，但是限制为光滑曲线，用类似的方式，包含K-means聚类中心的SOM落在一个光滑流形上。</p>
-<p>为了寻找某分布的主曲线$f(\lambda)$，我们考虑坐标函数$f(\lambda)=[f_1(\lambda),f_2(\lambda),\ldots, f_p(\lambda)]$，并且令$X^T=(X_1, X_2,\ldots, X_p)$。 考虑下面的轮换过程：</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-(a) & \hat f_j(\lambda)\leftarrow E(X_j\mid \lambda(X)=\lambda); \;j=1,2,\ldots, p\\
-(b) & \hat \lambda_f(x)\leftarrow argmin_{\lambda'}\Vert x-\hat f(\lambda')\Vert^2
-\end{align}
-\qquad （14.62）
-</script>
-</p>
-<p>第一个等式固定$\lambda$，并且加上self-consistentcy的要求(14.61)。第二个等式固定曲线，在曲线上寻找距离每个点最近的点。在有限的数据情形下，主曲线算法以线性主成分开始，迭代(14.62)中的两步直至收敛。散点图光滑器用于估计步骤(a)中的条件期望，这通过将每个$X_j$看成关于弧长$\hat \lambda(X)$的函数来光滑，而且(b)中的投影对于每个观测数据点来实现。证明一般情况下的收敛是很困难的，但是可以证明如果散点图光滑中采用线性最小二乘拟合，则该过程将会收敛至第一线性主成分，这等价寻找矩阵最大特征值的幂法。</p>
-<p>主曲面与主曲线有着完全相同的形式，不过是在更高维度下的。使用最普遍的是二维主曲面，其坐标函数为</p>
-<p>
-<script type="math/tex; mode=display">
-f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_2)]
-</script>
-</p>
-<p>上述步骤(a)中的估计通过二维曲面光滑器得到。维数大于2的主曲面很少用到，因为在高维光滑的可视化不是很吸引人。</p>
-<p><img alt="" src="../../img/14/fig14.28.png" /></p>
-<p>图14.28展示了对half-sphere数据进行主曲面光滑的结果。图象是作为估计的非线性坐标$\hat \lambda_1(x_i), \hat \lambda_2(x_i)$函数的数据点。图中的类别划分是很显然的。</p>
-<p>主曲面非常类似自组织图。如果我们采用核曲面光滑器来估计坐标函数$f_j(\lambda_1，\lambda_2)$，这与SOMs的batch版本(14.48)有着相同的形式。SOM的权重$w_k$恰恰是核的权重。然而，有一个区别，主曲面估计对每个数据点$x_i$估计单独的原型$f(\lambda_1(x_i),\lambda_2(x_i))$。结果是，SOM与主曲面仅仅当SOM原型的个数非常大时两者才一致。</p>
-<p>两者之间还有一个区别。主曲面给出了关于坐标函数的整个流形的光滑参量化，而SOMs是离散的并且仅仅产生近似数据的那些估计的原型。主曲面的光滑参量化保持局部的距离：在图14.28中，红色聚类点比绿色或蓝色聚类点更紧凑。在简单的例子中，估计的坐标函数本身是可以知道的：见练习14.13。</p>
-<h2 id="_4">谱聚类<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>像K-means这样传统的聚类方法采用spherical 或者elliptical度量来对数据点进行划分。因此当簇是非凸的时候，比如图14.29中左上角的同心圆。</p>
-<p><img alt="" src="../../img/14/fig14.29.png" /></p>
-<p>谱聚类是标准聚类方法的推广，而且也是为这些情形所设计的。它与局部多维缩放技巧有着紧密的联系（14.9节）。</p>
-<p>出发点是所有观测点对间的成对相似性为$s_{ii&rsquo;}\ge 0$的$N\times N$矩阵。我们将这些观测用无向相似性图$G=\langle V, E \rangle$来表示。$N$个顶点$v_i$表示观测值，如果成对顶点的相似性为正值（或者超出某个阈值），则它们之间用一条边相连。边的权重为$s_{ii&rsquo;}$。我们希望对这个图进行划分，使得不同类之间的边有较低的权重，而在类间有着较高的权重。在谱聚类中，思想是构造相似性图来表示观测点间的局部邻居关系。</p>
-<p>更精确地，考虑$N$个点$x_i\in R^p$，令$d_{ii&rsquo;}$为$x_i$和$x_{i&rsquo;}$间的欧几里得距离。我们将radical-kernel gram 矩阵作为我们的相似性矩阵；也就是 $s_{ii&rsquo;}=exp(-d_{ii&rsquo;}^2/c)$，其中$c &gt; 0$是缩放参数。</p>
-<p>有许多方式来定义相似性矩阵，并且其与反映局部行为的相似性图有关。最流行的方式是mutual K-nearest-neighbor graph。定义${\cal{N}}_K$为邻居点的对称子集；特别地，如果点$i$在$i&rsquo;$的最近邻中，则点对$(i,i&rsquo;)$在${\cal{N}}_K$中，反之亦然。接着我们连接所有的对称最近邻，然后给出边的权重$w_{ii&rsquo;}=s_{ii&rsquo;}$；否则边的权重为0。等价地，我们对不属于$\cal{N}_K$的点的成对相关性赋为0，然后画出这个修改版本的矩阵的图。</p>
-<p>另外，全连接图包含所有的成对边，权重为$w_{ii&rsquo;}=s_{ii&rsquo;}$，局部行为通过缩放参数$c$来控制。</p>
-<p>从相似图得到的边的矩阵$\mathbf W=\{w_{ii&rsquo;}\}$称为邻接矩阵。结点$i$的度为$g_i=\sum_iw_{ii&rsquo;}$，与该点相连的权重之和。令$\mathbf G$表示对角元为$g_i$的对角矩阵。</p>
-<p>最后，graph laplacian定义为</p>
-<p>
-<script type="math/tex; mode=display">
-\mathbf{L=G-W}\qquad (14.63)
-</script>
-</p>
-<p>这称为未标准化的graph lapacian，人们提出一系列标准化的版本——对laplacian关于结点的度进行标准化，举个例子，$\tilde{\mathbf L}=\mathbf I-\mathbf G^{-1}\mathbf W$。</p>
-<p>谱聚类寻找对应$\mathbf L$最小的$m$个特征值（忽略平方的常值特征向量）的$m$个特征向量$\mathbf Z_{N\times m}$。采用如K-means的标准方法，我们可以将$\mathbf Z$的行聚类得到原始数据点的聚类。</p>
-<p>图14.49展示了一个例子。左上图显示了在3个圆形类别中的450个模拟数据点。K-means聚类很明显对于簇外的点不容易进行分类。我们采用10最近邻相似图的谱聚类，并且右下图展示了对应graph laplacian的第二和第三最小特征值的特征向量。这两个特征向量找出了是哪个簇，并且特征向量矩阵$\mathbf Y$的行的散点图清晰地将簇分隔开。对变换后的点应用K-means聚类的过程同样能得到三个类。</p>
-<p>为什么谱聚类有效？对于任意向量$\hat{\mathbf f}$，我们有</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{align}
-\mathbf f^T\mathbf L\mathbf f&=\sum\limits_{i=1}^Ng_if_i^2-\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nf_if_{i'}w_{ii'}\\
-& = \frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nw_{ii'}(f_i-f_{i'})^2\qquad (14.64)
-\end{align}
-</script>
-公式(14.64)表明如果有较大邻接的数据对的坐标$f_i$和$f_{i&rsquo;}$很接近，则$\mathbf f^T\mathbf L\mathbf f$将达到较小的值。</p>
-<p>因为对于任意的图$\boldsymbol 1^T\mathbf L\boldsymbol 1=0$，常值向量是特征值为0的平凡解。如果图是连接的，这是唯一的0特征向量,这个结论并不是很显然（练习14.21）。推广这个结论，可以很简单地证明对于有$m$个连接组分的图，可以重新排列结点使得$\mathbf L$是成块对角的，其中每个块是连接的组分。于是$\mathbf L$有$m$个特征值为0的特征向量，并且特征值为0的特征空间由连接组分的指示向量张成。实际上，连接有强有弱，则零特征值也可以用较小的特征值代替。</p>
-<p>谱聚类是寻找非凸簇的一种很有趣的方法。当采用标准化后的graph laplacian定义，有另外一种方式来看这种方法。定义$\mathbf P=\mathbf G^{-1}\mathbf W$，我们考虑在图上以转移概率矩阵$\mathbf P$进行随机游走。则谱聚类得到随机游走中类与类之间不发生转移的点集。</p>
-<p>在实际中应用谱聚类时必须要处理一系列的问题。我们必须选择相似图的类型——比如，全连接或者最近邻，以及相关的参数比如最近邻的个数$k$或者核的缩放参数$c$。我们也必须选择从$\mathbf L$中提取的特征向量的个数，以及最后和所有聚类方法一样，选择簇的个数。在图14.29这一简单例子中，我们得到$k\in [5, 200]$中良好的结果，值为200的对应全连接图。当$k &lt; 5$，结果变坏。观测图14.29的右上图，我们看到最小的三个特征值与剩余部分没有强烈的分离。因此选择多少个特征向量并不清楚。</p>
-<h2 id="_5">核主成分<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p><img alt="" src="../../img/14/fig14.30.png" /></p>
-<h2 id="_6">稀疏主成分<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p><img alt="" src="../../img/14/fig14.31.png" /></p>
-<p><img alt="" src="../../img/14/fig14.32.png" /></p>
+<p>其中$r_{ij}=(\A_o\A^{-1})_{ij}$。图14.42的右图比较了真实矩阵与估计的矩阵的Amari距离（对数尺度下）。<code>ProDenICA</code>在所有的情形都可以与<code>FastICA</code>和<code>KernelICA</code>进行比较，并且在大多数混合情形下表现最好。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Golub, G. and Van Loan, C. (1983). Matrix Computations, Johns Hopkins University Press, Baltimore.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Hastie, T., Kishon, E., Clark, M. and Fan, J. (1992). A model for signature verification, Technical report, AT&amp;T Bell Laboratories. http://www-stat.stanford.edu/∼hastie/Papers/signature.pdf .&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Hyvärinen, A., Karhunen, J. and Oja, E. (2001). Independent Component Analysis, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Friedman, J. and Tukey, J. (1974). A projection pursuit algorithm for exploratory data analysis, IEEE Transactions on Computers, Series C 23: 881–889.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Duchamp, T. and Stuetzle, W. (1996). Extremal properties of principal curves in the plane, Annals of Statistics 24: 1511–1520.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Huber, P. (1985). Projection pursuit, Annals of Statistics 13: 435–475.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Friedman, J. (1987). Exploratory projection pursuit, Journal of the American Statistical Association 82: 249–266.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Swayne, D., Cook, D. and Buja, A. (1991). Xgobi: Interactive dynamic graphics in the X window system with a link to S, ASA Proceedings of Section on Statistical Graphics, pp. 1–8.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Hastie, T. and Tibshirani, R. (2003). Independent components analysis through product density estimation, in S. T. S. Becker and K. Obermayer (eds), Advances in Neural Information Processing Systems 15, MIT Press, Cambridge, MA, pp. 649–656.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Silverman, B. (1986). Density Estimation for Statistics and Data Analysis, Chapman and Hall, London. <a href="../../references/Silverman1986.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Hastie, T. and Tibshirani, R. (1990). Generalized Additive Models, Chapman and Hall, London.&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Efron, B. and Tibshirani, R. (1996). Using specially designed exponential families for density estimation, Annals of Statistics 24(6): 2431–2461.&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Bach, F. and Jordan, M. (2002). Kernel independent component analysis, Journal of Machine Learning Research 3: 1–48. <a href="http://www.di.ens.fr/~fbach/kernel-ica/index.htm">从作者主页下载代码和文章</a>，<a href="../../references/kernelICA-jmlr.pdf">备用下载</a>&#160;<a class="footnote-backref" href="#fnref:11" rev="footnote" title="Jump back to footnote 11 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3409,7 +3554,7 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../14.4 Self-Organizing Maps/index.html" title="14.4 自组织图" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../14.6 Non-negative Matrix Factorization/index.html" title="14.6 非负矩阵分解" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3418,19 +3563,19 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                14.4 自组织图
+                14.6 非负矩阵分解
               </span>
             </div>
           </a>
         
         
-          <a href="../14.6 Non-negative Matrix Factorization/index.html" title="14.6 非负矩阵分解" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../14.8 Multidimensional Scaling/index.html" title="14.8 多维缩放" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                14.6 非负矩阵分解
+                14.8 多维缩放
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

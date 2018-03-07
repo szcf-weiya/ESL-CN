@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/14 Unsupervised Learning/14.6 Non-negative Matrix Factorization/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.4 Self-Organizing Maps/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>14.6 非负矩阵分解 - ESL CN</title>
+        <title>14.4 自组织图 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#146" tabindex="1" class="md-skip">
+      <a href="#144" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                14.6 非负矩阵分解
+                14.4 自组织图
               </span>
             
           
@@ -2234,30 +2234,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../14.4 Self-Organizing Maps/index.html" title="14.4 自组织图" class="md-nav__link">
-      14.4 自组织图
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
-      14.5 主成分，主曲线以及主曲面
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -2269,11 +2245,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        14.6 非负矩阵分解
+        14.4 自组织图
       </label>
     
-    <a href="index.html" title="14.6 非负矩阵分解" class="md-nav__link md-nav__link--active">
-      14.6 非负矩阵分解
+    <a href="index.html" title="14.4 自组织图" class="md-nav__link md-nav__link--active">
+      14.4 自组织图
     </a>
     
       
@@ -2287,8 +2263,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="典型分析" class="md-nav__link">
-    典型分析
+  <a href="#_1" title="例子：文件组织与检索" class="md-nav__link">
+    例子：文件组织与检索
   </a>
   
 </li>
@@ -2314,7 +2290,31 @@
 
 
   <li class="md-nav__item">
-    <a href="../14.7 Independent Component Analysis and Exploratory Projection Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
+    <a href="../14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
+      14.5 主成分，主曲线以及主曲面
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../14.6 Non-negative Matrix Factorization/index.html" title="14.6 非负矩阵分解" class="md-nav__link">
+      14.6 非负矩阵分解
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
       14.7 独立成分分析和探索投影寻踪
     </a>
   </li>
@@ -2987,8 +2987,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="典型分析" class="md-nav__link">
-    典型分析
+  <a href="#_1" title="例子：文件组织与检索" class="md-nav__link">
+    例子：文件组织与检索
   </a>
   
 </li>
@@ -3014,7 +3014,7 @@
               
                 
                 
-                <h1 id="146">14.6 非负矩阵分解<a class="headerlink" href="#146" title="Permanent link">&para;</a></h1>
+                <h1 id="144">14.4 自组织图<a class="headerlink" href="#144" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3033,43 +3033,57 @@
 </tr>
 </tbody>
 </table>
-<p>非负矩阵分解(Lee and Seung,1999)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>是最近提出来的一个用来替代主成分分析的方法，这个方法中数据以及成分假定为非负的。这对于建立非负数据的模型很有用，比如图象数据。</p>
-<p>$N\times p$数据矩阵$\mathbf X$由下式近似
-<script type="math/tex; mode=display">
-\mathbf X \approx \mathbf W\mathbf H\qquad (14.72)
-</script>
-</p>
-<p>其中$\mathbf W$是$N\times r$，$\mathbf H$是$r\times p, r\le max(N,p)$的。我们假设$x_{ij}, w_{ik}, h_{kj}\ge 0$。</p>
-<p>通过最大化下式来确定$\mathbf W$ 和$\mathbf H$
-<script type="math/tex; mode=display">
-L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}log(\mathbf {WH}_{ij}-（\mathbf{WH})_{ij})]\qquad (14.73)
-</script>
-</p>
-<p>这是某模型的对数似然，模型中$x_{ij}$服从均值为$(\mathbf{WH}_{ij})$的Poisson分布——这个模型对于非负数据是合理的。</p>
-<p>下面的替代算法(Lee and Seung, 2001)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>收敛到$L(\mathbf W, \mathbf H)$的局部最大值：</p>
+<p>这个方法可以看成是$K$均值聚类的带约束的版本，其中原型落在特征空间的一维或二维流形中。因为原始的高纬观测可以映射到二维的坐标系统中, 所以得到的流形也被称作约束拓扑图(constrained topological map)。原始的SOM算法是online进行的——每次处理一个观测——后来提出了批量处理的版本。这个技巧也与主曲线和主曲面(principal curves and surfaces)有着密切的联系，这将在下一节中进行讨论。</p>
+<p>我们考虑$K$个原型$m_j\in R^p$的二维长方形网格的SOM（也有其它的选择，如六边形网格）。这$K$个原型用整数坐标对$\ell_j\in\cal Q_1\times \cal Q_2$进行参量化。这里$\cal Q_1=\{1,2,\ldots,q_1\}$，$\cal Q_2$也类似，并且$K=q_1\cdot q_2$。举个例子，$m_j$初始化后落在数据的二维主平面上（下一节进行讨论）。我们可以将这些原型看成是主平面上的“按键(button)”或者“线缝(sewn)”。SOM过程试图弯曲平面使得这些按键尽可能近似数据点。一旦模型拟合好，这些观测可以映射到二维网格中。</p>
+<p>每次处理一个观测$x_i$。我们在$R^p$中寻找离$x_i$的欧式距离最近的原型$m_j$，接着对于$m_j$所有的邻居$m_k$，通过下式将$m_k$向$x_i$移动</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{array}{ll}
-w_{ik}&\leftarrow w_{ik}\frac{\sum_{j=1}^ph_{kj}x_{ij}/(\mathbf{WH}_{ij})}{\sum_{j=1}^ph_{kj}}\\
-h_{kj}&\leftarrow h_{kj}\frac{\sum_{j=1}^pw_{ik}x_{ij}/(\mathbf{WH}_{ij})}{\sum_{j=1}^pw_{ik}}
-\end{array}\qquad (14.74)
+m_k\leftarrow m_k+\alpha (x_i-m_k)\qquad (14.46)
 </script>
 </p>
-<p>这个算法可以由最大化$L(\mathbf W, \mathbf H)$的最小过程来导出（练习14.23），并且与对数线性模型的迭代比例算法相关（练习14.24）。</p>
-<p>TODO</p>
-<h2 id="_1">典型分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Lee, D. and Seung, H. (1999). Learning the parts of objects by non-negative matrix factorization, Nature 401: 788.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Lee, D. and Seung, H. (2001). Algorithms for non-negative matrix factorization, Advances in Neural Information Processing Systems, (NIPS 2001), Vol. 13, Morgan Kaufman, Denver., pp. 556–562.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-</ol>
+<p>$m_j$的邻居定义为使得$\ell_j$和$\ell_k$间的距离小的所有$m_k$。最简单的方式是采用欧式距离，通过阈值$r$来决定“小”。邻域经常包含最近的原型$m_j$本身。</p>
+<p>注意到这里的距离是定义在原型的整数拓扑坐标中的$\cal Q_1\times \cal Q_2$的空间中。式(14.46)的更新是将原型往数据点移动，但也是用来维持原型间的光滑的二维空间的关系。</p>
+<p>SOM算法的效果取决于学习速率$\alpha$和距离阈值$r$。一般地，$\alpha$随着迭代的进行$\alpha$从1.0下降至0.0。类似地，随着迭代的进行，$r$从初始值$R$线性降至1。我们将在下面的例子中阐释一种用来选择$R$的方法。</p>
+<p>我们已经描述了SOM的最简单的版本。更加复杂的版本会根据距离来更新：</p>
+<p>
+<script type="math/tex; mode=display">
+m_k\leftarrow m_k + \alpha h(\Vert \ell_j-\ell_k\Vert)(x_i-m_k)\qquad (14.47)
+</script>
+其中邻居函数(neighborhood function)$h$会给距离$\ell_j$更近的$\ell_k$更多的权重。</p>
+<p>如果我们取足够小的距离$r$使得每个邻域只包含一个点，则丢失了原型之间的空间联系。在这种情形下，可以证明SOM算法是K均值聚类的online版本，并且最后用K均值对找到的局部最小值进行标准化。因为SOM是K均值聚类的约束版本，则检查约束在任意给定的问题中约束是否合理是很重要的。可以计算这两种方法的重构误差$\Vert x-m_j\Vert^2$，这需要对观测进行求和，于是就可以判断合理性。</p>
+<p>举个例子来说明，我们在三维空间中半径为1的半球体的表面附近生成90个数据点。数据点在各自的类中——红、绿和蓝——落在(0,1,0),(0,0,1)以及(1,0,0)附近。数据点显示在图14.15中了。</p>
+<p><img alt="" src="../../img/14/fig14.15.png" /></p>
+<p>根据我们的设定，红色的簇比绿色和蓝色的簇更加紧凑（生成数据的细节将在练习14.5中给出。）使用了$5\times 5$的原型网格，初识网格大小为$R=2$；这意味着接近1/3的原型初始化时落在各自的邻域内。我们对数据集中的90个观测总共进行了40次的pass，并且让$r$和$\alpha$在3600次迭代中线性降低。</p>
+<p><img alt="" src="../../img/14/fig14.16.png" /></p>
+<p>在图14.16中原型用圆圈来表示，映射到每个原型的数据点随机画在对于的圆圈中。左图显示了初始的配置，而右图显示了最终的结果。这个算法能够成功地将类别分开，然而，红色类别的分离表明流形在自身有折叠（图14.17)。因为没有使用二维的距离，没有什么迹象表明SOM投射中关于红色簇比其它的簇更紧。</p>
+<p><img alt="" src="../../img/14/fig14.17.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p><a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/SOM">这里</a>有我自己实现该模拟的R代码，画出类似14.16的图如下
+<img alt="" src="../../img/14/iter_0.png" />
+虽然类别的颜色与书中不一致，但是最后得到的分类图与图14.16还是一致的。</p>
 </div>
+<p>图14.18显示了重构误差，重构误差等于每个数据点距其原型的距离的平方的和。为了比较，我进行了有25个重心的K均值聚类，并且在图中用水平线表面其重构误差。我们可以看到SOM显著降低了误差，接近了K均值解的水平。这表明SOM使用的二维约束对于特定的数据集是合理的。</p>
+<p><img alt="" src="../../img/14/fig14.18.png" /></p>
+<p>在SOM的批量处理版本中，通过下式来更新$m_j$</p>
+<p>
+<script type="math/tex; mode=display">
+m_j=\frac{\sum w_kx_k}{\sum w_k}\qquad (14.48)
+</script>
+</p>
+<p>上式是对$m_j$的映射的邻居$m_k$的点$x_k$进行求和。权重函数可能是长方形的，也就是，$m_k$的邻居都等于1，或者像之前一样随着距离$\Vert \ell_k-\ell_j\Vert$光滑下降。如果邻域选得足够小，使得它仅仅包含$m_k$，在长方形权重下，这退化为前面描述的$K$均值聚类。可以看成是主曲线和主曲面（将在14.5节中讨论）的离散版本。</p>
+<h2 id="_1">例子：文件组织与检索<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>文件检索随着互联网以及Web的快速发展变得越来越重要，SOMs被证明是组织和索引大型的语料库的有用方法。这个例子取自WEBSOM的主页http://websom.hut.fi/ (Kohonen等人2000的工作)。图14.19展现了对12088篇新闻组<code>comp.ai.neural-nets</code>的文章进行SOM拟合的结果。标签是通过WEBSOM软件自动产生的，并且提供了结点的主要内容的指南。</p>
+<p><img alt="" src="../../img/14/fig14.19.png" /></p>
+<p>在像这样的应用中，文件需要预处理得到特征向量。构造了term-document的矩阵，其中每一行表示单篇的文章。每一行的值为预先定义的项的相对频率。这些项可以是一大套字典条目（50,000个单词），或者是更大的双字母组(单词对)的集合，或者是这些的子集。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>term-document矩阵示意图如下
+<img alt="" src="../../img/14/dtm1.png" />
+图中第一个每一行的值是每个单词的相对频率，而第二个每一行的值是双字母组的相对频率。</p>
+</div>
+<p>这些矩阵往往非常系数，因此经常预处理来降低特征(列)的个数。有时使用SVD来对矩阵降维；Kohonen等人在2000年采用SVD的随机的版本。这些降维后的向量作为SOM的输入。</p>
+<p>在这个应用中，作者发展出了“zoom”特征，它允许与图进行交互操作已得到更多的细节。zooming的最后一层检索到实际的新闻文章，接着便可以进行阅读。</p>
                 
                   
                 
@@ -3101,7 +3115,7 @@ h_{kj}&\leftarrow h_{kj}\frac{\sum_{j=1}^pw_{ik}x_{ij}/(\mathbf{WH}_{ij})}{\sum_
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../14.3 Cluster Analysis/index.html" title="14.3 聚类分析" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3110,19 +3124,19 @@ h_{kj}&\leftarrow h_{kj}\frac{\sum_{j=1}^pw_{ik}x_{ij}/(\mathbf{WH}_{ij})}{\sum_
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                14.5 主成分，主曲线以及主曲面
+                14.3 聚类分析
               </span>
             </div>
           </a>
         
         
-          <a href="../14.7 Independent Component Analysis and Exploratory Projection Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                14.7 独立成分分析和探索投影寻踪
+                14.5 主成分，主曲线以及主曲面
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
