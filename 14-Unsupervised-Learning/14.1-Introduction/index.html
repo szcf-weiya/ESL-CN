@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.9 Nonlinear Dimension Reduction and Local Multidimensional Scaling/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.1-Introduction/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>14.9 非线性降维和局部多维缩放 - ESL CN</title>
+        <title>14.1 导言 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#149" tabindex="1" class="md-skip">
+      <a href="#141" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                14.9 非线性降维和局部多维缩放
+                14.1 导言
               </span>
             
           
@@ -2198,11 +2198,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../14.1 Introduction/index.html" title="14.1 导言" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="index.html" title="14.1 导言" class="md-nav__link md-nav__link--active">
       14.1 导言
     </a>
+    
   </li>
 
         
@@ -2212,7 +2221,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../14.2 Association Rules/index.html" title="14.2 关联规则" class="md-nav__link">
+    <a href="../14.2-Association-Rules/index.html" title="14.2 关联规则" class="md-nav__link">
       14.2 关联规则
     </a>
   </li>
@@ -2224,7 +2233,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../14.3 Cluster Analysis/index.html" title="14.3 聚类分析" class="md-nav__link">
+    <a href="../14.3-Cluster-Analysis/index.html" title="14.3 聚类分析" class="md-nav__link">
       14.3 聚类分析
     </a>
   </li>
@@ -2236,7 +2245,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../14.4 Self-Organizing Maps/index.html" title="14.4 自组织图" class="md-nav__link">
+    <a href="../14.4-Self-Organizing-Maps/index.html" title="14.4 自组织图" class="md-nav__link">
       14.4 自组织图
     </a>
   </li>
@@ -2260,7 +2269,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../14.6 Non-negative Matrix Factorization/index.html" title="14.6 非负矩阵分解" class="md-nav__link">
+    <a href="../14.6-Non-negative-Matrix-Factorization/index.html" title="14.6 非负矩阵分解" class="md-nav__link">
       14.6 非负矩阵分解
     </a>
   </li>
@@ -2284,7 +2293,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../14.8 Multidimensional Scaling/index.html" title="14.8 多维缩放" class="md-nav__link">
+    <a href="../14.8-Multidimensional-Scaling/index.html" title="14.8 多维缩放" class="md-nav__link">
       14.8 多维缩放
     </a>
   </li>
@@ -2294,20 +2303,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="index.html" title="14.9 非线性降维和局部多维缩放" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../14.9-Nonlinear-Dimension-Reduction-and-Local-Multidimensional-Scaling/index.html" title="14.9 非线性降维和局部多维缩放" class="md-nav__link">
       14.9 非线性降维和局部多维缩放
     </a>
-    
   </li>
 
         
@@ -2317,7 +2317,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../14.10 The Google PageRank Algorithm/index.html" title="14.10 谷歌的PageRank算法" class="md-nav__link">
+    <a href="../14.10-The-Google-PageRank-Algorithm/index.html" title="14.10 谷歌的PageRank算法" class="md-nav__link">
       14.10 谷歌的PageRank算法
     </a>
   </li>
@@ -2329,7 +2329,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2961,7 +2961,7 @@
               
                 
                 
-                <h1 id="149">14.9 非线性降维和局部多维缩放<a class="headerlink" href="#149" title="Permanent link">&para;</a></h1>
+                <h1 id="141">14.1 导言<a class="headerlink" href="#141" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -2976,77 +2976,38 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-09-04</td>
+<td>2017-02-20:2017-02-20</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-01-22</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
+<td>2017-09-10</td>
 </tr>
 </tbody>
 </table>
-<p>最近有人提出了一些用于非线性降维的方法，类似主曲面的思想。想法是数据接近一个嵌在高维空间中的固有低维非线性流形(intrinsically low-dimensional nonlinear manifold)。这些方法可以看成是“压扁(flattening)”流形，因此将数据降低至表示流形中相对位置的低维坐标系统中。在信噪比非常高的问题中非常有用（比如，物理系统），而且对于有低信噪比的观测数据不是很有用。</p>
-<p><img alt="" src="../../img/14/fig14.44.png" /></p>
-<p>基本的目标在图14.44的左图中进行了说明。数据落在有较大曲率的抛物线附近。经典的MDS不能保持沿着这条曲线的点的顺序，因为它会将处于曲线两端的点看成离得非常近。右图显示了局部多维缩放(local multi-dimensional scaling)的结果，我们将在下面讨论非线性多维缩放的三个方法中的其中一个。这些方法仅仅使用$p$维中点的坐标，不需要流形的其它信息。局部MDS能够很好地保持沿着曲线的点的顺序。</p>
-<p>我们将简短地介绍用作非线性降维和流形映射的三个新方法。</p>
-<p><strong>等距特征映射算法(ISOMAP)</strong>（Tenenbaum et al. 2000<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）构造了一个图来近似沿着流形的点之间的测地线距离。具体地，对每个数据点，我们找到其邻居——距该点的某个欧式距离范围内的点。我们构造任意两个邻居点间用边相连的图。任意两点的测地线距离则用图中点的最短路径来近似。最终，对图的距离应用经典缩放，来得到低纬映射。</p>
-<p><strong>局部线性内嵌(LLE)</strong>(Roweis and Saul, 2000<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)采用完全不同的方式，它试图保持高维数据的局部仿射结构。每个数据点用邻居点的线性组合来近似。于是通过寻找保持局部近似的最优方式构造低维表示。细节非常有趣，所以在这里给出：</p>
-<ol>
-<li>对每个$p$维中的数据点$x_i$，寻找欧式距离的K最近邻$\cal N(i)$</li>
-<li>对每个点用邻居点的混合仿射来近似
+<p>前面的章节我们考虑了对于给出输入或预测变量$X^T=(X_1,\ldots,X_p)$来预测一个或多个输出或响应变量$Y=(Y_1,\ldots,Y_m)$的值。用$x_i^T=(x_{i1},\ldots,x_{ip})$记第$i$个训练情形的输入，令$y_i$是一个响应变量的测量值。预测是基于已经知道的训练样本$(x_1,y_1),\ldots,(x_N,y_N)$，其中所有变量的联合分布值是知道的。这称为监督学习（supervised learning）或者“有老师指导的学习”。在这个比喻下，“学生”表示在训练样本中每个$x_i$的一个回答$\hat y_i$，监督或者“老师”要么（不仅）提供正确的答案，要么（并且）给出该学生回答的误差。这通常用一些损失函数来表示$L(y,\hat y)$，举个例子，$L(y,\hat y)=(y-\hat y)^2$.</p>
+<p>如果我们假设$(X,Y)$是用某联合概率密度$Pr(X,Y)$表示的随机变量，则监督学习可以正式地表征为密度估计的问题，其中涉及确定条件密度$Pr(Y\mid X)$的性质。通常我们感兴趣的性质是在每个$x$处最小化期望误差的“位置”参数$\mu$，
 <script type="math/tex; mode=display">
-\underset{W_{ik}}\Vert x_i-\sum\limits_{k\in\cal N(i)}w_{ik}x_k\Vert^2\qquad (14.102)
+\mu(x)=\underset{\theta}{\mathrm{argmin}}E_{Y\mid X}L(Y,\theta)\qquad (14.1)
 </script>
-其中权重$w_{ik}$满足$w_{ik}=0, k\not\in \cal N(i), \sum_{k=1}^Nw_{ik}=1$。$w_{ik}$是点$k$对$i$点的重构的贡献。注意到为了得到唯一解，我们必须要求$K &lt; p$。</li>
-<li>最后，固定$w_{ik}$，在$d &lt; p$维空间中寻找点$y_i$来最小化
+加上条件有
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^N\Vert y_i-\sum\limits_{k=1}^Nw_{ik}y_k\Vert^2\qquad (14.103)
+Pr(X,Y)=Pr(Y\mid X)\cdot Pr(X)
 </script>
-</li>
-</ol>
-<p>在第三步，我们最小化</p>
-<p>
-<script type="math/tex; mode=display">
-\tr [(\Y-\W\Y)^T(\Y-\W\Y)] = \tr[\Y^T(\I-\W)^T(\I-\W)\Y)]\qquad (14.104)
-</script>
-</p>
-<p>其中$\W$是$N\times N$; $\Y$是$N\times d, d &lt; p$。$\hat \Y$的解是$\M=(\I-\W)^T(\I-\W)$的trailing eigenvectors(<a href="https://github.com/szcf-weiya/ESL-CN/issues/59">Issue 59</a>)。因为$\1$是特征值为0的平凡特征向量，所以我们舍弃它并且保留接下来的$d$个。这会产生额外的影响$\1^T\Y=0$，因此嵌入坐标(embedding coordinates)进行了中心化。</p>
-<p><strong>局部MDS</strong>（Chen and Buja, 2008<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>） 采用最简单的、而且可以说是最直接的方式。定义$\cal N$为邻居点的对称集；具体地，如果点$i$在$i&rsquo;$的$K$最近邻中，则点对$(i, i&rsquo;)$在$\cal N$中，反过来也是如此。</p>
+其中$Pr(X)$是仅仅关于$X$的边缘密度。在监督学习中，一般不直接关心$Pr(X)$。主要感兴趣的是条件密度的性质$Pr(Y\mid X)$。因为$Y$经常是低维（通常为1），并且只有它的位置$\mu(x)$是感兴趣的，问题大大简化了。正如在前面章节讨论的那样，在各种不同情形下都有许多方式成功进行监督学习。</p>
+<p>这章中我们讨论非监督学习（unsupervised learning）或者“无老师指导的学习”。这种情形下我们只有联合密度为$Pr(X)$的$p$维随机向量的$N$个观测的集合$(x_1,x_2,\ldots,x_N)$。我们的目标是在没有监督，或者老师不提供正确答案，又或者不提供每个观测的错误程度的情况下，直接推断该密度分布的性质。$X$的维度有时比监督学习中的高很多，而且我们关心的性质经常比简单的位置估计复杂得多。这些因素在某种程度上被以下事实所缓解：$X$表示所考虑的所有变量。我们不需要在其它变量的值改变的情况下推断$Pr(X)$的性质怎么改变。</p>
+<p>在低维问题中（$p\le 3$）,有各种有效的非参方法来在所有$X$值处直接估计密度$Pr(X)$本身，并且进行可视化表示（比如，Silverman, 1986<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。由于维度灾难，这些方法在高维中会失效。必须寻求估计比较粗糙的全局模型，例如高斯混合或者表征$Pr(X)$的各种简单描述性统计。</p>
+<p>一般地，这些描述性统计量试图表征$X$，或者这些值的集合，其中$Pr(X)$比较大。例如，主成分、多维缩放、自组织图，以及主曲线都尝试识别表示高数据密度的$X$空间内的低维流形（manifold）。这提供了这些变量之间的关联信息，以及它们是否可以看成更小的包含“潜（latent）”变量的集合的函数的信息。聚类分析试图寻找$X$空间中包含$Pr(X)$模型的多重凸区域。这可以判断$Pr(X)$是否可以表示成简单密度的混合，这些简单密度表示唯一的观测类型或者类别。混合模型有类似的目标。关联规则试图构造简单的描述（联合规则）来描述在非常高维的二值数据这一特情形中的高密度区域。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>在<a href="https://esl.hohoweiya.xyz/14%20Unsupervised%20Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html">14.7节</a>中的谱聚类的mutual K-nearest-neighbor graph也有用到$\cal N$。</p>
+<p class="admonition-title">weiya 注</p>
+<p>流形（manifold）：数学上，流形是一个拓扑空间，在每一点附近局部地近似欧式空间。更精确地，$n$维流形的每个点与维度为$n$的欧式空间同态的邻域。</p>
 </div>
-<p>于是我们构造压力函数</p>
-<p>
-<script type="math/tex; mode=display">
-S_L(z_1,z_2,\ldots, z_N) = \sum\limits_{(i,i')\in \cal N}(d_{ii'}-\Vert z_i-z_{i'}\Vert)^2 + \sum\limits_{(i,i')\not\in \cal N}w\cdot (D-\Vert z_i-z_{i'}\Vert)^2\qquad (14.105)
-</script>
-</p>
-<p>这里$D$是某个较大的常数，$w$是权重。想法是将不是邻居的点看成是距离非常远；这些点对被赋予小权重$w$使得它们不会主导整个压力函数。为了简化表达式，取$w\sim 1/D$，并令$D\rightarrow \infty$。展开式(14.105)，得到</p>
-<p>
-<script type="math/tex; mode=display">
-S_L(z_1,z_2,\ldots, z_N)=\sum\limits_{(i, i')\in\cal N}(d_{ii'}-\Vert z_i-z_{i'})^2-\tau \sum\limits_{(i,i')\not \in \cal N}\Vert z_i-z_{i'}\Vert\qquad (14.106)
-</script>
-</p>
-<p>其中$\tau =2wD$。式(14.106)试图保持数据的局部性质，而第二项促使非邻居对$(i, i&rsquo;)$的$z_i,z_{i&rsquo;}$更远。局部MDS在固定邻居个数$K$以及调整参数$\tau$的情况下，在$z_i$上最小化压力函数(14.106)。</p>
-<p>图14.44的右图显示了采用$k=2$个邻居和$\tau = 0.01$的局部MDS的结果。我们采用多个起始值的坐标下降来寻找(非凸)损失函数一个好的最小值。沿着曲线的点的顺序大部分都被保持了。</p>
-<p><img alt="" src="../../img/14/fig14.45.png" /></p>
-<p>图14.45显示了LLE方法的一个有趣的应用。数据包含1965张图象，数字化为$20\times 28$的灰白图象。图中展示了LLE的前两个坐标结果，它们解释了摆放位置以及表情的一些变异。类似的图象可以通过局部MDS得到。</p>
-<p>在Chen and Buja(2008)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>报告的实验中，局部MDS与ISOMAP和LLE相比表现得更好。他们也演示了局部MDS在图象布局方面很有用的应用。有些方法与这里讨论的方法有着紧密的联系，如谱聚类(14.5.3节)和核PCA(14.5.4节)。</p>
+<p>监督学习中，有一个明确的成功或不成功的量度，因此可用于判断特定情况下的充分性，并比较不同方法在各种情况下的有效性。成功的损失直接通过在联合分布$Pr(X,Y)$的期望损失来衡量。这个可以用各种方式来衡量，包括交叉验证。在非监督学习中，没有这些直接衡量成功的量度。从大部分非监督学习的算法的输出中得到的推断的有效性是很难确定的。必须诉诸于启发式参数，不仅用于激励算法，在监督学习也经常使用，而且为了评价结果的质量。因为有效性是主观问题，不能直接加以证实，这种不舒服(unconfortable)的情形导致提出的方法大量增加，</p>
+<p>在这章中，我们提出这些在实际中广泛使用的非监督学习技巧，以及另外一些作者认同的方法。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Tenenbaum, J. B., de Silva, V. and Langford, J. C. (2000). A global geometric framework for nonlinear dimensionality reduction, Science 290: 2319–2323.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Roweis, S. T. and Saul, L. K. (2000). Locally linear embedding, Science 290: 2323–2326.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>Chen, L. and Buja, A. (2008). Local multidimensional scaling for nonlinear dimension reduction, graph drawing and proximity analysis, Journal of the American Statistical Association.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Silverman, B. (1986). Density Estimation for Statistics and Data Analysis, Chapman and Hall, London.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3081,7 +3042,7 @@ S_L(z_1,z_2,\ldots, z_N)=\sum\limits_{(i, i')\in\cal N}(d_{ii'}-\Vert z_i-z_{i'}
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../14.8 Multidimensional Scaling/index.html" title="14.8 多维缩放" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../13 Prototype Methods and Nearest-Neighbors/Bibliographic Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3090,19 +3051,19 @@ S_L(z_1,z_2,\ldots, z_N)=\sum\limits_{(i, i')\in\cal N}(d_{ii'}-\Vert z_i-z_{i'}
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                14.8 多维缩放
+                文献笔记
               </span>
             </div>
           </a>
         
         
-          <a href="../14.10 The Google PageRank Algorithm/index.html" title="14.10 谷歌的PageRank算法" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../14.2-Association-Rules/index.html" title="14.2 关联规则" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                14.10 谷歌的PageRank算法
+                14.2 关联规则
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
