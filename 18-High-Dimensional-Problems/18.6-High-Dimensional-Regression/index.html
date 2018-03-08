@@ -3061,7 +3061,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-02-04, 2018-03-07</td>
+<td>2018-02-04, 2018-03-07, 2018-03-08</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3069,37 +3069,38 @@
 </tr>
 </tbody>
 </table>
-<p>这一节中我们将要描述一种实现回归和广义回归的简单方式, 在$p&gt;&gt;N$情形下特别有用. 我们用另外一个微阵列数据的例子来解释这一方法. 数据取自Rosenwald等人在2002年的工作, 其中包含240个患有DLBCL的病人, 有7399个基因表达水平的测量值. 输出变量为生存时间, 取值为&rdquo;observed&rdquo; 或者&rdquo;right censored.&rdquo; 我们将样本随机分成大小为160的训练集和大小为80的测试集.</p>
-<p>尽管有监督的主成分适合线性回归, 但是它最有趣的应用也许是生存分析, 这也将是这个例子所要关注的地方.</p>
+<p>这一节中我们将要描述一种在$p &gt;&gt; N$情形下特别有用的回归和广义回归的简单方法。 我们用另外一个微阵列数据的例子来解释这一方法。 数据取自 Rosenwald et al. (2002)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>，其中包含240个患有DLBCL的病人，有7399个基因表达水平的测量值。输出变量为生存时间，取值为“observed”或者“right censored”。我们将样本随机分成大小为160的训练集和大小为80的测试集。</p>
+<p>尽管有监督的主成分对线性回归很有用，但是它最有趣的应用也许是在生存分析中，这也是这个例子所要关注的地方。</p>
 <!--
 !!! note "censored survival data"
     个人理解是, 数据中无对应的记录值, 也就是只有部分个体有*生存时间*的记录值, 而其他个体没有记录值.[NEED VERIFIED!!]
 
 -->
 
-<p>我们还没有在这本书中讨论censored survival数据的回归问题; 它表示了一种回归的一般形式, 输出变量(生存时间)只对一部分个体有观测. 举个例子我们实施一项持续365天的医学研究, 为了简便起见, 所有的项目在第一天完成. 我们可能会观测到研究开始后有个体200天后死亡, 而也有个体当研究结束后还活着. 这个个体则称为365天&rdquo;right censored&rdquo;. 我们仅仅知道他/她至少活了365天. 尽管我们并不知道过了多久该个体会死去, 但&rdquo;censored&rdquo;观察值仍然很有意义. 图18.11 诠释了这一意义. 图18.12 显示了对测试集中的80个病人应用Kaplan–Meier方法估计得到的生存曲线. 关于Kaplan–Meier方法的描述可以参见Kalbfleisch and Prentice(1980)年的例子.</p>
+<p>我们还没有在这本书中讨论censored survival数据的回归问题；它表示了回归的一般形式，输出变量（生存时间）只对一部分个体有观测。举个例子我们实施一项持续365天的医学研究， 为了简便起见， 所有的项目在一天完成。 我们可能会观测到研究开始后有个体200天后就死亡，但也有个体研究结束后还活着。这个个体则称为365天“right censored”。我们仅仅知道他/她至少活了365天。 尽管我们并不知道过了多久该个体会死去, 但“censored”观察值仍然很有意义。 图18.11诠释了这一意义。图18.12显示了对测试集中的80个病人应用Kaplan–Meier方法估计得到的生存曲线。关于Kaplan–Meier方法的描述可以参见Kalbfleisch and Prentice(1980)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>中的例子。</p>
 <p><img alt="" src="../../img/18/fig18.11.png" /></p>
 <p><img alt="" src="../../img/18/fig18.12.png" /></p>
+<p>在这个例子中我们的目标是寻找可以预测一组独立病人个体的生存时间的特征（基因）集合。这个可以作为一个<strong>预后</strong>指示变量来帮助选择治疗方案, 或者帮助理解这个疾病的生理基础.</p>
 <div class="admonition note">
 <p class="admonition-title">预后(prognostic)</p>
-<p>预后是指预测疾病的可能病程和结局。它既包括判断疾病的特定后果（如康复，某种症状、体征和并发症等其它异常的出现或消失及死亡）；也包括提供时间线索，如预测某段时间内发生某种结局的可能性。由于预后是一种可能性，主要指病人群体而不是个人。从疾病演进过程的角度划分， 预后的量度有缓解率、 复发率、病残率等； 从疾病终极状态的角度划分， 预后的量度有治愈率、生存率、病死率等. (refer to www.bing.com)</p>
+<p>预后是指预测疾病的可能病程和结局。它既包括判断疾病的特定后果（如康复，某种症状、体征和并发症等其它异常的出现或消失及死亡）；也包括提供时间线索，如预测某段时间内发生某种结局的可能性。由于预后是一种可能性，主要指病人群体而不是个人。从疾病演进过程的角度划分，预后的量度有缓解率、复发率、病残率等；从疾病终极状态的角度划分，预后的量度有治愈率、生存率、病死率等。 (refer to www.bing.com)</p>
 </div>
-<p>这个例子中我们的目标是寻找可以预测一组独立病人个体的生存时间的特征(基因)集合. 这个可以作为一个预后指示变量来帮助选择治疗方案, 或者帮助理解这个疾病的生理基础.</p>
-<p>有监督的主成分的潜在概念模型如图18.13所示. 我们猜想存在两种类型的细胞, 拥有好细胞的病人平均会活得久一些. 然而, 两者之间存在相当大部分的重叠. 我们可能将存活时间作为细胞类型的有噪声的代理变量(&ldquo;noisy surrogate&rdquo;). 全监督方法会赋予那些与生存有关的基因最多的权重. 这些基因与细胞类型部分相关(但不是完全). 换种方式,如果我们能够发现病人潜在的细胞类型, 它经常受到在通路中相当多的基因一起作用的影响, 或许在预测病人的生存方面取得更好的结果.</p>
+<p>有监督的主成分的潜在概念模型如图18.13所示。</p>
 <p><img alt="" src="../../img/18/fig18.13.png" /></p>
-<p>尽管图18.13中的细胞类型是离散的, 但假设其为连续的是有用的, 它定义为特征的某些线性组合. 我们将会把细胞类型作为连续值来估计, 接着为了展示和解释的需要进行离散化.</p>
-<p>我们应该怎样寻找这个定义了潜在细胞类型的线性组合? 第14.5节的主成分分析是一个用来发现数据集中表现出大方差的特征的线性组合. 但是我们这里需要寻找的是高方差以及与响应变量有显著相关性的线性组合. 图18.14的右下图显示了在这个例子中应用标准的主成分的结果; 第一主成分与生存时间的相关性并不是很高.</p>
-<p>因此我们想要主成分分析寻找到与输出有高相关的特征的线性组合. 为了实现这一点, 我们限制在那些本身就与输出变量存在高相关性的变量上. 这已经总结在了算法18.1中, 并且在图18.14中做了解释.</p>
+<p>我们想象存在两种类型的细胞，拥有好细胞的病人平均会活得久一些。然而, 两者之间存在相当大部分的重叠。我们可能将存活时间作为细胞类型的有噪声的代理变量(&ldquo;noisy surrogate&rdquo;)。全监督方法会赋予那些与生存越有关的基因更多的权重。这些基因与细胞类型部分相关（但不是完全）。换种方式，如果我们能够发现病人潜在的细胞类型，它经常受到通路中相当多的基因一起作用的影响，或许在预测病人的生存方面会取得更好的结果。</p>
+<p>尽管图18.13中的细胞类型是离散的，但想象其为连续的是有帮助的，将它定义为特征的某些线性组合。我们将会把细胞类型作为连续值来估计，接着为了展示和解释的需要进行离散化。</p>
+<p>我们应该怎样寻找这个定义了潜在细胞类型的线性组合呢? <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html">第14.5节</a>的主成分分析是一个用来发现数据集中表现出大方差的特征的线性组合。但是我们这里需要寻找的是高方差<strong>以及</strong>与响应变量有显著相关性的线性组合。图18.14的右下图显示了在这个例子中应用标准的主成分的结果；第一主成分与生存时间的相关性并不是很高。</p>
+<p>因此我们想要主成分分析寻找到与输出有高相关的特征的线性组合。为了实现这一点，我们限制在那些本身就与输出变量存在高相关性的变量上。这已经总结在了算法18.1中，并且在图18.14中做了解释.</p>
 <p><img alt="" src="../../img/18/fig18.14.png" /></p>
 <p><img alt="" src="../../img/18/alg18.1.png" /></p>
-<p>算法中第(1)和第(2b)步的细节取决于输出变量的类型. 对于标准的回归问题, 我们在步骤(1)中采用单变量的线性最小二乘系数, 在第(2b)步采用线性的最小二乘模型. 对于生存分析问题, Cox的比例风险回归(proportional hazards regression) 被广泛使用; 因此这里在第(1)步, 我们采用模型的得分检验, 在第(2b)步中采用多变量Cox模型. 具体细节对于理解这一基本方法不重要; 它们可以在Bair等人在2006年的工作中找到.</p>
+<p>算法中第(1)和第(2b)步的细节取决于输出变量的类型。对于标准的回归问题，我们在步骤(1)中采用单变量的线性最小二乘系数，在第(2b)步采用线性的最小二乘模型。对于生存分析问题, 广泛使用<strong>Cox的比例风险回归(Cox&rsquo;s proportional hazards regression)</strong>；因此这里在第(1)步，我们采用得分检验，在第(2b)步中采用多变量Cox模型。具体细节对于理解这一基本方法不重要；它们可以在Bair et al. (2006)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>中找到。</p>
 <div class="admonition note">
 <p class="admonition-title">Cox Regression (proportional hazards regression)</p>
 <p>可以参见本人的英文博客，其中有对cox回归的介绍以及在R语言中利用cox回归研究实际中的survival analysis。</p>
 </div>
-<p>图18.14展示了这个例子中有监督的主成分的结果. 我们采用3.53作为Cox得分的分割点, 得到了27个基因, 其中3.53是通过10折交叉验证得到的. 接着我们仅利用这27个基因的训练集以及其所对应的测试集中的观测值来计算第一主成分(m=1). 我们将这些作为Cox回归模型的定量变量, 其似然比的显著程度为$p=0.005$. 当进行二值化(采用训练数据集的均值作为阈值), 它能够清晰地将测试集中的病人划分成了低风险和高风险的群体 (图18.14中右边中间的图, $p=0.006$).</p>
-<p>图18.14中右边最上面的图仅仅采用最高得分的基因作为生存的预测变量. 在测试集上不显著. 同样地, 右边最下面的图显示了采用所有训练数据的主成分的二值化, 这也是不显著的.</p>
-<p>我们的过程允许在第(2a)步中采用$m&gt;1$个主成分. 然而, 步骤(1)中的有监督使得主成分与输出变量一致, 也因此在大部分情形下, 只有第一或者前几个主成分对预测有用. 在下面的数学部分, 我们仅仅考虑第一主成分, 但是对多余一个主成分的拓展可以按照类似的方式进行.</p>
+<p>图18.14展示了这个例子中有监督的主成分的结果。我们采用3.53作为Cox得分的分割点，得到了27个基因，其中3.53是通过10折交叉验证得到的。接着我们仅利用这27个基因的训练集以及其所对应的测试集中的观测值来计算第一主成分$(m=1)$。我们将这些作为Cox回归模型的定量变量，其似然比的显著程度为$p=0.005$。当进行二值化（采用训练数据集的均值作为阈值），它能够清晰地将测试集中的病人划分成了低风险和高风险的群体 (图18.14中右边中间的图, $p=0.006$)。</p>
+<p>图18.14中右边最上面的图仅仅采用最高得分的基因作为生存的预测变量。在测试集上不显著。同样地，右边最下面的图显示了采用所有训练数据的主成分的二值化，这也是不显著的。</p>
+<p>我们的过程允许在第(2a)步中采用$m &gt; 1$个主成分。然而，步骤(1)中的有监督使得主成分与输出变量一致，也因此在大部分情形下，只有第一或者前几个主成分对预测有用。在下面的数学部分，我们仅仅考虑第一主成分，但是推广到多余一个主成分可以按照类似的方式进行。</p>
 <h2 id="_1">与潜变量模型的联系<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>监督主成分和潜在细胞类型之间的联系可疑通过数据的潜变量来体现。假设我们有响应变量$Y$。它通过线性模型与潜变量$U$关联起来</p>
 <p>
@@ -3121,7 +3122,7 @@ X_j=\alpha_{0j}+\alpha_{1j}U+\epsilon_j\;j\in \cal P\qquad (18.33)
 <li>给定$\cal P$，第2(a)步中最大的主成分估计潜变量$U$。</li>
 <li>最后，第2(b)中的回归拟合估计模型(18.32)中的系数。</li>
 </ol>
-<p>第(1)步是自然的，因为平均而言，只有当$\alpha_{1j}$不为零时，回归系数才是非零的。因此这步应该会选出特征$j\in\cal P$。如果我们假设误差$\epsilon_j$有高斯分布且有相同的方差，则第(2a)步也是自然的。这种情形下主成分是单因子模型的极大似然估计(Mardia et al., 1979<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。第(2b)中的回归是很显然的。</p>
+<p>第(1)步是自然的，因为平均而言，只有当$\alpha_{1j}$不为零时，回归系数才是非零的。因此这步应该会选出特征$j\in\cal P$。如果我们假设误差$\epsilon_j$有高斯分布且有相同的方差，则第(2a)步也是自然的。这种情形下主成分是单因子模型的极大似然估计(Mardia et al., 1979<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>)。第(2b)中的回归是很显然的。</p>
 <p>假设总共有$p$个特征，其中$p_1$个特征在相关集合$\cal P$中。则如果$p$和$p_1$都增长但$p_1$比$p$相对较小，可以证明（在合理的条件下）第一主成分对于潜因子是一致的。通常情形下的主成分可能不是一致的，因为它可能被大量的噪声特征所污染。</p>
 <p>最后，假设在监督主成分过程中的第(1)步使用的阈值产生大量的特征用于计算主成分。则为了解释性，也同样为了实际应用，我们会寻找降维后的子集特征来近似模型。预处理(Pre-conditioning)是其中的一种方式。</p>
 <h2 id="_2">与偏最小二乘的联系<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -3142,16 +3143,25 @@ X_j=\alpha_{0j}+\alpha_{1j}U+\epsilon_j\;j\in \cal P\qquad (18.33)
 <p class="admonition-title">Question</p>
 <p>如何理解“starts overfitting when far fewer are in the model.”</p>
 </div>
-<p>我们能否得到监督主成分的低测试误差以及lasso的稀疏性？这是预处理(pre-conditioning)的目标(Paul et al., 2008<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)。在这种方法中，首先计算训练集中的每个观测的监督主成分的预测量$\hat y_i$（其中阈值通过交叉验证来选择）。接着我们将lasso应用到$\hat y_i$，其中$\hat y_i$被看成输出变量，它替换了通常情形下的$y_i$。这个想法是首先对输出变量进行去噪(denoising)，则lasso不会被大量噪声特征所影响。图18.17显示了预处理（紫色曲线）在这里取得了重要成功，比通常的lasso的测试误差要低很多，在这种情形下与监督主成分一样第。而且采用更少的特征便达到了最小测试误差。应用到原始输出变量的一般lasso比预处理lasso更快地过拟合。预处理lasso的过拟合不是问题，因为输出变量已经去噪了。对于预处理的lasso，我们经常用更主管的理由来选择调整参数，比如简约性(parsimony)。</p>
+<p>我们能否得到监督主成分的低测试误差以及lasso的稀疏性？这是预处理(pre-conditioning)的目标(Paul et al., 2008<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>)。在这种方法中，首先计算训练集中的每个观测的监督主成分的预测量$\hat y_i$（其中阈值通过交叉验证来选择）。接着我们将lasso应用到$\hat y_i$，其中$\hat y_i$被看成输出变量，它替换了通常情形下的$y_i$。这个想法是首先对输出变量进行去噪(denoising)，则lasso不会被大量噪声特征所影响。图18.17显示了预处理（紫色曲线）在这里取得了重要成功，比通常的lasso的测试误差要低很多，在这种情形下与监督主成分一样第。而且采用更少的特征便达到了最小测试误差。应用到原始输出变量的一般lasso比预处理lasso更快地过拟合。预处理lasso的过拟合不是问题，因为输出变量已经去噪了。对于预处理的lasso，我们经常用更主管的理由来选择调整参数，比如简约性(parsimony)。</p>
 <p>预处理可以应用到不同的设定中，采用除监督主成分外的初始估计和除lasso以外的后续估计。更多细节可以在Paul et al. (2008)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>中找到。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Rosenwald, A., Wright, G., Chan, W. C., Connors, J. M., Campo, E., Fisher, R. I., Gascoyne, R. D., Muller-Hermelink, H. K., Smeland, E. B. and Staudt, L. M. (2002).  The use of molecular profiling to predict survival after chemotherapy for diffuse large b-cell lymphoma, The New England Journal of Medicine 346: 1937–1947&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Paul, D., Bair, E., Hastie, T. and Tibshirani, R. (2008). “Pre-conditioning” for feature selection and regression in high-dimensional problems, Annals of Statistics 36(4): 1595–1618.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Kalbfleisch, J. and Prentice, R. (1980). The Statistical Analysis of Failure Time Data, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Paul, D., Bair, E., Hastie, T. and Tibshirani, R. (2008). “Pre-conditioning” for feature selection and regression in high-dimensional problems, Annals of Statistics 36(4): 1595–1618.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Bair, E., Hastie, T., Paul, D. and Tibshirani, R. (2006). Prediction by supervised principal components, Journal of the American Statistical Association 101: 119–137.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
