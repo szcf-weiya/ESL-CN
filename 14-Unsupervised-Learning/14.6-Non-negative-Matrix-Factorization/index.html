@@ -3032,6 +3032,14 @@
 <td>时间</td>
 <td>2017-09-03</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-03-10</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>In Progress</td>
+</tr>
 </tbody>
 </table>
 <p><strong>非负矩阵分解</strong> (Lee and Seung, 1999)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>是最近提出来的一个用来替代主成分分析的方法，在这个方法中数据以及成分假定为非负的。这对于建立非负数据的模型很有用，比如图象数据。</p>
@@ -3067,10 +3075,18 @@ h_{kj}&\leftarrow h_{kj}\frac{\sum_{i=1}^Nw_{ik}x_{ij}/(\mathbf{WH})_{ij}}{\sum_
 \end{align}\qquad (14.74)
 </script>
 </p>
-<p>这个算法可以由最大化 $L(\mathbf W, \mathbf H)$ 的最小过程来导出（<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">练习14.23</a>）</p>
+<p>这个算法可以由最大化 $L(\mathbf W, \mathbf H)$ 的 <strong>minorization</strong> 过程来导出（<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">练习14.23</a>）</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>练习14.23已解答，详细过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">Issue 86: Ex. 14.23</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：minorization</p>
+<p><a href="https://github.com/szcf-weiya/ESL-CN/issues/86">练习14.23</a>中介绍了 minorization 的概念。对于函数$g(x, y)$和$f(x)$，若对于定义域中所有的 $x$ 和 $y$，若满足
+<script type="math/tex; mode=display">
+g(x,y)\le f(x),\qquad g(x,x)=f(x)
+</script>
+则称$g(x,y)$ minorize $f(x)$。</p>
 </div>
 <p>并且与对数线性模型的 <strong>迭代比例缩放算法 (iterative-proportional-scaling algorithm)</strong> 相关（<a href="https://github.com/szcf-weiya/ESL-CN/issues/87">练习14.24</a>）。</p>
 <p>TODO</p>
