@@ -19,6 +19,7 @@ m23 = lda(rbind(dm2, dm3), rep(c(2,3), each=N))
 calcY <- function(c, x) { return(-1*c[1]*x/c[2]) }
 
 #plot
+png("sim-fig-4-5-r.png")
 plot(dm1[, 1], dm1[, 2], col = "orange", pch="1", xlim = c(-5, 5), ylim = c(-5, 5), xaxt="n", yaxt="n", xlab = "", ylab = "")
 points(dm2[, 1], dm2[, 2], col = "blue", pch="2")
 points(dm3[, 1], dm3[, 2], col = "green", pch="3")
@@ -29,5 +30,5 @@ clip(-5,0,-5,5)
 abline(0, -1*m13$scaling[1]/m13$scaling[2])
 clip(0,5,-5,5)
 abline(0, -1*m23$scaling[1]/m23$scaling[2])
-
+dev.off()
 
