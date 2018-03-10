@@ -3045,7 +3045,7 @@
 <p>通过最大化下式来确定 $\mathbf W$ 和 $\mathbf H$</p>
 <p>
 <script type="math/tex; mode=display">
-L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}\log(\mathbf {WH}_{ij}-(\mathbf{WH})_{ij})]\qquad (14.73)
+L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}\log(\mathbf {WH})_{ij}-(\mathbf{WH})_{ij})]\qquad (14.73)
 </script>
 </p>
 <p>这是模型的对数似然，模型中 $x_{ij}$ 服从均值为 $(\mathbf{WH}_{ij})$ 的 Poisson 分布——这对于正值数据是很合理的。</p>
@@ -3062,12 +3062,17 @@ $$
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-w_{ik}&\leftarrow w_{ik}\frac{\sum_{j=1}^ph_{kj}x_{ij}/(\mathbf{WH}_{ij})}{\sum_{j=1}^ph_{kj}}\\
-h_{kj}&\leftarrow h_{kj}\frac{\sum_{j=1}^pw_{ik}x_{ij}/(\mathbf{WH}_{ij})}{\sum_{j=1}^pw_{ik}}
+w_{ik}&\leftarrow w_{ik}\frac{\sum_{j=1}^ph_{kj}x_{ij}/(\mathbf{WH})_{ij}}{\sum_{j=1}^ph_{kj}}\\
+h_{kj}&\leftarrow h_{kj}\frac{\sum_{i=1}^Nw_{ik}x_{ij}/(\mathbf{WH})_{ij}}{\sum_{i=1}^Nw_{ik}}
 \end{align}\qquad (14.74)
 </script>
 </p>
-<p>这个算法可以由最大化 $L(\mathbf W, \mathbf H)$ 的最小过程来导出（<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">练习14.23</a>），并且与对数线性模型的 <strong>迭代比例缩放算法 (iterative-proportional-scaling algorithm)</strong> 相关（<a href="https://github.com/szcf-weiya/ESL-CN/issues/87">练习14.24</a>）。</p>
+<p>这个算法可以由最大化 $L(\mathbf W, \mathbf H)$ 的最小过程来导出（<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">练习14.23</a>）</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>练习14.23已解答，详细过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">Issue 86: Ex. 14.23</a></p>
+</div>
+<p>并且与对数线性模型的 <strong>迭代比例缩放算法 (iterative-proportional-scaling algorithm)</strong> 相关（<a href="https://github.com/szcf-weiya/ESL-CN/issues/87">练习14.24</a>）。</p>
 <p>TODO</p>
 <h2 id="_1">典型分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
