@@ -3057,7 +3057,7 @@ L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}\log(\mathb
 </script>
 </p>
 <p>这是模型的对数似然，模型中 $x_{ij}$ 服从均值为 $(\mathbf{WH}_{ij})$ 的 Poisson 分布——这对于正值数据是很合理的。</p>
-<p>下面的替代算法 (Lee and Seung, 2001)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 收敛到 $L(\mathbf W, \mathbf H)$ 的局部最大值：</p>
+<p>下面的轮换 (alternating) 算法 (Lee and Seung, 2001)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 收敛到 $L(\mathbf W, \mathbf H)$ 的局部最大值：</p>
 <!-- 
 $$
 \begin{array}{ll}
