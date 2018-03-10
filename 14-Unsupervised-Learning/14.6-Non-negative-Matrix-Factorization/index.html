@@ -3056,7 +3056,7 @@
 L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}\log(\mathbf {WH})_{ij}-(\mathbf{WH})_{ij})]\qquad (14.73)
 </script>
 </p>
-<p>这是模型的对数似然，模型中 $x_{ij}$ 服从均值为 $(\mathbf{WH}_{ij})$ 的 Poisson 分布——这对于正值数据是很合理的。</p>
+<p>这是模型的对数似然，模型中 $x_{ij}$ 服从均值为 $(\mathbf{WH})_{ij}$ 的 Poisson 分布——这对于正值数据是很合理的。</p>
 <p>下面的轮换 (alternating) 算法 (Lee and Seung, 2001)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 收敛到 $L(\mathbf W, \mathbf H)$ 的局部最大值：</p>
 <!-- 
 $$
@@ -3077,8 +3077,8 @@ h_{kj}&\leftarrow h_{kj}\frac{\sum_{i=1}^Nw_{ik}x_{ij}/(\mathbf{WH})_{ij}}{\sum_
 </p>
 <p>这个算法可以由最大化 $L(\mathbf W, \mathbf H)$ 的 <strong>minorization</strong> 过程来导出（<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">练习14.23</a>）</p>
 <div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>练习14.23已解答，详细过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">Issue 86: Ex. 14.23</a></p>
+<p class="admonition-title">weiya 注：Ex. 14.23</p>
+<p>练习14.23已解答，详细过程参见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/86">Issue 86: Ex. 14.23</a></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：minorization</p>
@@ -3089,7 +3089,10 @@ g(x,y)\le f(x),\qquad g(x,x)=f(x)
 则称$g(x,y)$ minorize $f(x)$。</p>
 </div>
 <p>并且与对数线性模型的 <strong>迭代比例缩放算法 (iterative-proportional-scaling algorithm)</strong> 相关（<a href="https://github.com/szcf-weiya/ESL-CN/issues/87">练习14.24</a>）。</p>
-<p>TODO</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 14.24</p>
+<p>练习14.24已解答，详细过程参见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/87">Issue 87: Ex. 14.24</a></p>
+</div>
 <h2 id="_1">典型分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
 <div class="footnote">
