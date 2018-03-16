@@ -40,8 +40,8 @@ window.MathJax = {
       cosh: "{\\mathrm{cosh}\\;}",
       tanh: "{\\mathrm{tanh}}",
       arg: "{\\mathrm{arg}\\;}",
-      max: "{\\mathrm{max}\\;}",
-      min: "{\\mathrm{min}\\;}",
+      max: "{\\mathrm{max}}",
+      min: "{\\mathrm{min}}",
       RSS: "{\\mathrm{RSS}\\;}",
       
       
