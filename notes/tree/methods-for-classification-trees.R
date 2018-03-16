@@ -251,3 +251,22 @@ legend(.15, .2,
        col = c("black", "red"),
        pch = c(16, 3))
 dev.off()
+
+## ######################################################
+## Rule-based Models
+## 
+## refer to:
+##  1. http://topepo.github.io/caret/train-models-by-tag.html#Rule_Based_Model
+## ######################################################
+
+set.seed(476)
+partFit <- train(x = training[,fullSet], 
+                 y = training$Class,
+                 method = "PART",
+                 metric = "ROC",
+                 trControl = ctrl)
+partCM <- confusionMatrix(partFit, norm = "none")
+
+partRoc <- roc(response = partFit$pred$obs,
+               predictor = partFit$pred$successful,
+               levels = rev(levels(partFit$pred$obs)))
