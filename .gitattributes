@@ -2,4 +2,5 @@
 *.html linguist-vendored
 *.js linguist-vendored
 docs/notes/* linguist-documentation=false
-code/rbm/* linguist-vendored
+code/rbm/*.ipynb linguist-vendored
+code/rbm/*.py linguist-vendored
