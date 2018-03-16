@@ -3,4 +3,3 @@
 *.js linguist-vendored
 docs/notes/* linguist-documentation=false
 code/rbm/*.ipynb linguist-vendored
-code/rbm/*.py linguist-vendored
