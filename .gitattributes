@@ -2,3 +2,4 @@
 *.html linguist-vendored
 *.js linguist-vendored
 docs/notes/* linguist-documentation=false
+code/rbm/* linguist-vendored
