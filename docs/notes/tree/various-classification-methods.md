@@ -12,7 +12,7 @@
 - C5.0，包含在 `C50` 包中
 
 !!! tip 
-    当然，决策树有关的算法及其变种远不止这三种，在`caret`包中还可以实现其它算法，具体细节可以参见[The caret Package](http://topepo.github.io/caret)
+    当然，决策树有关的算法及其变种远不止这三种，在 `caret` 包中还可以实现其它算法，具体细节可以参见[The caret Package](http://topepo.github.io/caret)
 
 参考 [Applied Predictive Modeling](../../references/AppliedPredictiveModeling.2013.pdf) 的有关章节进行模拟实验，这里记录了详细的模拟过程。
 
