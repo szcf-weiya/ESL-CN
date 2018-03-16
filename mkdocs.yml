@@ -199,6 +199,7 @@ pages:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
       - SVM处理线性和非线性类别边界: 'notes/SVM/e1071.md'
       - 损失函数的梯度总结及Julia实现: 'notes/boosting/summary-loss-function.md'
+      - R语言中的多种决策树算法实现: 'notes/tree/various-classification-methods.md'
 
 
 site_name: 'ESL CN'
