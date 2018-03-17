@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/09 Additive Models, Trees, and Related Methods/9.1 Generalized Additive Models/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>9.1 广义可加模型 - ESL CN</title>
+        <title>9.2 基于树的方法 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#91" tabindex="1" class="md-skip">
+      <a href="#92-cart" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                9.1 广义可加模型
+                9.2 基于树的方法
               </span>
             
           
@@ -1576,8 +1576,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.0 Introduction/index.html" title="9.0 导言" class="md-nav__link">
+    <a href="../9.0-Introduction/index.html" title="9.0 导言" class="md-nav__link">
       9.0 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
+      9.1 广义可加模型
     </a>
   </li>
 
@@ -1597,11 +1609,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        9.1 广义可加模型
+        9.2 基于树的方法
       </label>
     
-    <a href="index.html" title="9.1 广义可加模型" class="md-nav__link md-nav__link--active">
-      9.1 广义可加模型
+    <a href="index.html" title="9.2 基于树的方法" class="md-nav__link md-nav__link--active">
+      9.2 基于树的方法
     </a>
     
       
@@ -1615,23 +1627,93 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="拟合可加模型" class="md-nav__link">
-    拟合可加模型
+  <a href="#_1" title="背景" class="md-nav__link">
+    背景
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="例子：可加逻辑斯蒂回归" class="md-nav__link">
-    例子：可加逻辑斯蒂回归
+  <a href="#_2" title="回归树" class="md-nav__link">
+    回归树
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="分类树" class="md-nav__link">
+    分类树
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="其他的问题" class="md-nav__link">
+    其他的问题
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" title="例子：预测垃圾邮件" class="md-nav__link">
-    例子：预测垃圾邮件
+  <a href="#_5" title="类别型预报变量" class="md-nav__link">
+    类别型预报变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="损失矩阵" class="md-nav__link">
+    损失矩阵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="缺失预报变量的值" class="md-nav__link">
+    缺失预报变量的值
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="为什么二值分割？" class="md-nav__link">
+    为什么二值分割？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="其他建树的过程" class="md-nav__link">
+    其他建树的过程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="线性组合分割" class="md-nav__link">
+    线性组合分割
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="树的不稳定性" class="md-nav__link">
+    树的不稳定性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" title="缺乏光滑性" class="md-nav__link">
+    缺乏光滑性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="捕捉加性结构的困难" class="md-nav__link">
+    捕捉加性结构的困难
   </a>
   
 </li>
@@ -1642,8 +1724,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="总结" class="md-nav__link">
-    总结
+  <a href="#_14" title="垃圾邮件的例子（继续）" class="md-nav__link">
+    垃圾邮件的例子（继续）
   </a>
   
 </li>
@@ -1669,8 +1751,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.2 Tree-Based Methods(CART)/index.html" title="9.2 基于树的方法" class="md-nav__link">
-      9.2 基于树的方法
+    <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-nav__link">
+      9.3 PRIM
     </a>
   </li>
 
@@ -1681,19 +1763,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.3 PRIM(Bump Hunting)/index.html" title="9.3 耐心规则归纳法" class="md-nav__link">
-      9.3 耐心规则归纳法
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.4 MARS(Multivariate Adaptive Regression Splines)/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
+    <a href="../9.4-MARS/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
       9.4 多变量自适应回归样条
     </a>
   </li>
@@ -1705,7 +1775,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.5 Hierarchical Mixtures of Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
+    <a href="../9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
       9.5 专家的系统混合
     </a>
   </li>
@@ -1717,7 +1787,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.6 Missing Data/index.html" title="9.6 缺失数据" class="md-nav__link">
+    <a href="../9.6-Missing-Data/index.html" title="9.6 缺失数据" class="md-nav__link">
       9.6 缺失数据
     </a>
   </li>
@@ -1729,7 +1799,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.7 Computational Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
+    <a href="../9.7-Computational-Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
       9.7 计算上的考虑
     </a>
   </li>
@@ -1741,7 +1811,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3038,23 +3108,93 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="拟合可加模型" class="md-nav__link">
-    拟合可加模型
+  <a href="#_1" title="背景" class="md-nav__link">
+    背景
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="例子：可加逻辑斯蒂回归" class="md-nav__link">
-    例子：可加逻辑斯蒂回归
+  <a href="#_2" title="回归树" class="md-nav__link">
+    回归树
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="分类树" class="md-nav__link">
+    分类树
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="其他的问题" class="md-nav__link">
+    其他的问题
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" title="例子：预测垃圾邮件" class="md-nav__link">
-    例子：预测垃圾邮件
+  <a href="#_5" title="类别型预报变量" class="md-nav__link">
+    类别型预报变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="损失矩阵" class="md-nav__link">
+    损失矩阵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="缺失预报变量的值" class="md-nav__link">
+    缺失预报变量的值
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="为什么二值分割？" class="md-nav__link">
+    为什么二值分割？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="其他建树的过程" class="md-nav__link">
+    其他建树的过程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="线性组合分割" class="md-nav__link">
+    线性组合分割
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="树的不稳定性" class="md-nav__link">
+    树的不稳定性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" title="缺乏光滑性" class="md-nav__link">
+    缺乏光滑性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="捕捉加性结构的困难" class="md-nav__link">
+    捕捉加性结构的困难
   </a>
   
 </li>
@@ -3065,8 +3205,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="总结" class="md-nav__link">
-    总结
+  <a href="#_14" title="垃圾邮件的例子（继续）" class="md-nav__link">
+    垃圾邮件的例子（继续）
   </a>
   
 </li>
@@ -3092,7 +3232,7 @@
               
                 
                 
-                <h1 id="91">9.1 广义可加模型<a class="headerlink" href="#91" title="Permanent link">&para;</a></h1>
+                <h1 id="92-cart">9.2 基于树的方法(CART)<a class="headerlink" href="#92-cart" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3107,11 +3247,11 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-04</td>
+<td>2017-02-05</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-02-21</td>
+<td>2018-03-15</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3119,146 +3259,146 @@
 </tr>
 </tbody>
 </table>
-<p>回归模型在许多数据分析中起着重要的作用，提供了预测和分类的规则、以及理解不同输入变量的重要性的数据分析工具。</p>
-<p>尽管非常简单，但是传统的线性模型经常在这些情形下失效：实际生活中，变量的影响往往不是线性的。在前面的章节中我们讨论使用预定义的基函数来实现非线性的技巧。这部分描述更多自动灵活(automatic flexible)的统计方法来识别和表征非线性回归的影响。这些方法被称为“广义加性模型”。</p>
-<p>在回归的设定中，广义加性模型有如下形式</p>
-<p>
-<script type="math/tex; mode=display">
-\E(Y\mid X_1,X_2,\ldots,X_p) = \alpha+f_1(X_1)+f_2(X_2)+\cdots+f_p(X_p).\qquad (9.1)
-</script>
-</p>
-<p>和通常一样，$X_1,X_2,\ldots,X_p$代表预报变量，$Y$表示输出；$f_j$是未定义的（非参）光滑函数。如果我们用基函数的展开（第5章）对每个函数进行建模，则最终的模型可以通过简单的最小二乘实现。我们这里的方式有些不同：我们用散点图光滑器来拟合每个函数（比如，三次光滑样条或核光滑），并且提供了同时估计所有$p$个函数的算法（<a href="#_1">9.1.1节</a>）</p>
-<p>对于两个类别的分类，回忆在<a href="https://esl.hohoweiya.xyz/04%20Linear%20Methods%20for%20Classification/4.4%20Logistic%20Regression/index.html">4.4节</a>中讨论的二值数据的逻辑斯蒂回归模型。我们通过一个线性回归模型和logit链接函数将预报变量与二进制响应变量的均值$\mu(X)=Pr(Y=1\mid X)$关联起来：</p>
-<p>
-<script type="math/tex; mode=display">
-\log(\frac{\mu(X)}{1-\mu(X)})=\alpha+\beta_1X_1+\cdots+\beta_pX_p\qquad (9.2)
-</script>
-</p>
-<p>可加逻辑斯蒂回归模型将每个线性项换成更一般的函数形式</p>
-<p>
-<script type="math/tex; mode=display">
-\log(\frac{\mu(X)}{1-\mu(X)})=\alpha+f_1(X_1)+f_2(X_2)+\cdots+f_p(X_p)\qquad (9.3)
-</script>
-</p>
-<p>其中每个$f_j$也是未定义的光滑函数。尽管函数$f_j$的非参形式使得模型更加灵活，但是仍然保留着可加性，而且允许我们用前面一样的方式来解读模型。可加逻辑斯蒂回归模型是广义加性模型的一个例子。一般地，响应变量$Y$的条件均值$\mu(X)$通过一个链接函数$g$将预报变量的加性函数联系起来：</p>
-<p>
-<script type="math/tex; mode=display">
-g[\mu(X)]=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.4)
-</script>
-</p>
-<p>典型的链接函数的例子如下：</p>
-<ul>
-<li>$g(\mu)=\mu$是等值链接，对高斯响应数据使用线性和可加模型</li>
-<li>如上面所示，$g(\mu)=\logit(\mu)$，或者$g(\mu)=\probit(\mu)$，是对二项概率建模的probit链接函数。probit函数是高斯累计分布函数的反函数：$\probit(\mu)=\Phi^{-1}(\mu)$</li>
-<li>$g(\mu)=\log(\mu)$应用于处理泊松计数数据的对数线性或者对数加性模型。</li>
-</ul>
-<p>上面的三种情形都是来自指数族采样模型，另外也包括gamma分布和负二项分布。这个分布族产生著名的广义线性模型类，它们都是以同样的方式扩展为广义可加模型。</p>
-<p>使用基本构造块(basic building block)为散点图平滑器(scatterplot smoother)的算法来灵活地估计函数$f_j$。估计函数$\hat f_j$然后可以揭示$X_j$可能的非线性影响。并不是所有的函数$f_j$需要是非线性。我们可以简单地将线性项和其它带非线性项的参数形式混合，当一些输入变量是定性的（或者说是因子）时这个混合是必要的。非线性项也没有约束为主要影响(main effect)；可以存在关于两个或更多个变量的非线性成分，或者因子$X_k$的每个层次关于$X_j$的单一曲线。因此下列的每种情形都有可能：</p>
-<ul>
-<li>$g(\mu)=X^T\beta+\alpha_k+f(Z)$，这是一个半参模型，其中$X$是需要线性建模的预测变量的向量，$\alpha_k$是定性输入变量$V$的第$k$个层次的影响，而且非参数地建模预测变量$Z$的影响。</li>
-<li>$g(\mu)=f(X)+g_k(Z)$，同样$k$对定性输入$V$的层次进行编号，因此构造出一个关于$V$和$Z$影响的交叉项$g(V,Z)=g_k(Z)$</li>
-<li>$g(\mu)=f(X)+g(Z,W)$，其中$g$是关于两个特征的非参数函数。</li>
-</ul>
-<p>可加模型可以用各种设置来替换线性模型，举个例子，时间序列的可加性分解：</p>
-<p>
-<script type="math/tex; mode=display">
-Y_t=S_t+T_t+\varepsilon_t\qquad (9.5)
-</script>
-</p>
-<p>其中，$S_t$是季节项，$T_t$是趋势项，$\varepsilon$是误差项。</p>
-<h2 id="_1">拟合可加模型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>在这一节我们讨论拟合加性模型和它们的一般形式的标准算法。building block是用一种灵活的方式拟合非线性影响的散点图光滑器。具体地，我们将在第五章中讨论的三次光滑样条作为我们的散点图光滑器。</p>
-<p>可加模型有如下形式</p>
-<p>
-<script type="math/tex; mode=display">
-Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
-</script>
-</p>
-<p>其中误差项$\varepsilon$均值为0。给定观测值$x_i,y_i$，可以确定出该问题的类似5.4节中讨论的惩罚平方和(5.9)的准则，</p>
-<p>
-<script type="math/tex; mode=display">
-\mathrm{PRSS}(\alpha,f_1,f_2,\ldots,f_p)=\sum\limits_{i=1}^N(y_i-\alpha-\sum\limits_{j=1}^pf_j(x_{ij}))^2+\sum\limits_{j=1}^p\lambda_j\int f_j''(t_j)^2dt_j\quad (9.7)
-</script>
-</p>
-<p>其中$\lambda_j\ge 0$是调整参数。可以证明(9.7)的最小值是可加三次样条模型；每个函数$f_j$是一个关于组分$X_j$的三次样条，结点在每个唯一的$x_{ij},i=1,\ldots,N$值处。然而，如果没有对模型有进一步的约束，解不是唯一的。常数$\alpha$不是唯一的，因为我们可以对每个函数$f_j$进行加减任意常数，然后因此调整$\alpha$。标准的规定是假设$\sum_1^Nf_j(x_{ij})=0,\forall j$——这些函数在数据上均值为0。可以很简单地证明得到在这种情形下$\hat\alpha=\mathrm {ave}(y_i)$。如果再加上这条约束，输入矩阵（第$ij$位置值为$x_{ij}$）列满秩，则(9.7)是严格凸准则并且最小化是唯一的。如果矩阵是奇异的，则不能唯一确定组分$f_j$的线性部分（尽管非线性部分可以！）(Buja et al., 1989<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)</p>
-<p>进一步，存在一个简单的迭代过程来寻找解。令$\hat\alpha=\mathrm {ave}(y_i)$，而且保持不变。我们对关于$x_{ij}$函数的目标$\{y_i-\hat\alpha-\sum_{k\neq j}\hat f_k(x_{ik})\}_1^N$应用三次光滑样条$\cal S_j$得到新估计$\hat f_j$。对每个预报变量轮流这样处理，当计算$y_i-\hat\alpha-\sum_{k\neq j}\hat f_k(x_{ik})$时使用其它函数的当前估计$\hat f_k$。重复这个过程直到估计值$\hat f_j$稳定。这个过程被称作“backfitting”（算法9.1中给出了详细细节），而且最后的拟合与对线性模型的多项式回归是相似的。</p>
-<p><img alt="" src="../../img/09/alg9.1.png" /></p>
-<p>原则上，算法9.1中的第(2)步不是必需的，因为光滑样条对0均值响应变量拟合均值为0（练习9.1）。实际中，机器舍入误差会导致下降，所以建议进行调整。</p>
-<p>当确定了合适的光滑算子$\cal S_j$，同样的算法可以用完全相同的方式适应其他的拟合方法：</p>
-<ul>
-<li>其它的单变量回归光滑器，比如局部多项式回归和核方法；</li>
-<li>线性回归算子，可以得到多项式拟合，分段常值拟合，参数化样条拟合，序列和傅里叶拟合；</li>
-<li>更加复杂的算子，比如对于二阶或者高阶交互项或者对于季节影响的周期光滑器。</li>
-</ul>
-<p>如果我们仅仅在训练集点上考虑光滑器算子$\cal S_j$，则可以用$N\times N$的算子矩阵$\mathbf S_j$来表示（见<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.4%20Smoothing%20Splines/index.html#_1">5.4.1节</a>）。则第$j$项的自由度（近似）是$\mathrm {df}_j=\mathrm{trace}[\mathbf S_j]-1$，这与第5和第6章中讨论的光滑器的自由度是类似的。</p>
-<p>对于一个大类别的线性光滑器$\mathbf S_j$，backfitting等价于求解确定线性系统的Gauss-Seidel算法。细节在<a href="https://github.com/szcf-weiya/ESL-CN/issues/68">练习9.2</a>中给出。</p>
-<p>对于逻辑斯蒂回归和其他广义加性模型，合适的准则是带惩罚的对数似然。为了最大化它，backfitting过程与概率最大化一起起作用。在广义线性模型中最大化对数似然的Newton-Raphson方法可以重新改造成一个IRLS（迭代重加权最小二乘）算法。这涉及在协变量上对工作中的响应变量重复进行加权线性回归；每个回归得到一个新的参数估计，反过来又给了新的工作相应变量和系数，而且这一过程迭代进行（见<a href="https://esl.hohoweiya.xyz/04%20Linear%20Methods%20for%20Classification/4.4%20Logistic%20Regression/index.html#_1">4.4.1节</a>）。在广义加性模型中，加权线性回归可以简单地用加权backfitting算法来替换。我们将在下面讨论逻辑斯蒂回归时该算法的细节，更一般的讨论在Hastie and Tibshirani(1990)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的第6章。</p>
-<h2 id="_2">例子：可加逻辑斯蒂回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>或许在医学研究中应用最广的模型是对二值数据的逻辑斯蒂回归模型。在这个模型中，输出$Y$可以编码成0或1，其中1代表事件发生（比如死亡，疾病复发），0代表没有事件发生。我们希望建立$\Pr(Y=1\mid X)$的模型，其中$\Pr(Y=1\mid X)$是给定预测因子$X^T=(X_1,\ldots,X_p)$后事件发生的概率。目标通常是确定预测因子的作用，而不是对新个体进行分类。逻辑斯蒂回归也应用到当对估计类别比例感兴趣的情况下，比如risk screening。除了医学上的应用，信用风险screening也是一个受欢迎的应用方面。</p>
-<p>广义加性模型有如下形式
-<script type="math/tex; mode=display">
-\log\frac{\Pr(Y=1\mid X)}{\Pr(Y=0\mid X)}=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.8)
-</script>
-</p>
-<p>函数$f_1,f_2,\ldots,f_p$是通过在Newton-Raphson过程中运用backfitting算法估计得到的，算法9.2中显示了具体过程。</p>
-<p><img alt="" src="../../img/09/alg9.2.png" /></p>
-<p>加性模型在算法9.2中的第(2)步拟合需要一个带权重的散点图光滑器。许多光滑过程可以接受观测值权重（练习5.12）；更多细节参见Hastie and Tibshirani (1990)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的第三章。</p>
-<p>可加逻辑斯蒂回归模型可以进一步推广为解决超过两个类别的情形，通过采用在4.4节中列出的多维逻辑斯蒂公式。尽管这个形式是(9.8)式的直接展开，但拟合这些模型的算法更加复杂。更多细节参加Yee and Wild(1996)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>，并且VGAM软件可以从下面网站中得到</p>
-<p><a href="http://www.stat.auckland.ac.nz/∼yee">http://www.stat.auckland.ac.nz/∼yee</a></p>
-<h3 id="_3">例子：预测垃圾邮件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>我们对第一章的spam数据应用广义加性模型。数据包含4601条电子邮件信息，在一项研究中去扫描邮件来找出“spam”（比如，垃圾邮件）。数据可以在<a href="../ftp.ics.uci.edu">ftp.ics.uci.edu</a>上获得，而且接受了California的Palo Alto的Hewlett-Packard实验室中George Forman的捐赠。</p>
-<p>响应变量是二值数据，值为email或者spam，在下面描述了57个预报变量。</p>
-<ul>
-<li>48个定量预报变量——邮件中匹配给定单词的单词比例。举个例子，比如说有<code>business</code>，<code>address</code>，<code>internet</code>，<code>free</code>和<code>george</code>。这个想法是这些对不同用户会不一样。</li>
-<li>6个定量预报变量——邮件中匹配给定字符的字符比例。字符为<code>ch;</code>，<code>ch(</code>，<code>ch[</code>，<code>ch!</code>，<code>ch$</code>，和<code>ch#</code>。</li>
-<li>未间断的大写字符序列的平均长度：<code>CAPAVE</code></li>
-<li>未间断的大写字符序列的最长长度：<code>CAPMAX</code></li>
-<li>未间断的大写字符序列的总长度：<code>CAPTOT</code></li>
-</ul>
-<p>我们将spam编码成1，email编码成0。随机选取大小为1536的测试集，剩下的3065个测试集作为测试集。一个广义加性模型通过对每个预报变量用四个名义自由度的三次光滑样条。这意味着对于每个预报变量$X_j$，选择光滑样条的参数$\lambda_j$使得$\mathrm {trace}[\mathbf S_j(\lambda_j)]-1=4$，其中$\mathbf S_j(\lambda)$是使用观测数据$x_{ij},i=1,\ldots,N$构造处的光滑样条算子矩阵。这是在这样一个复杂模型中确定光滑数量的方便方式。</p>
-<p>大多数的spam预报变量服从一个非常长的长尾分布。在拟合GAM模型之前，对每个变量进行对数变换（实际上是$\log(x+0.1)$），但是在图9.1画出的是关于原始变量的函数。</p>
-<p><img alt="" src="../../img/09/fig9.1.png" /></p>
+<h2 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><strong>基于树 (Tree-based)</strong> 的方法将特征空间划分成一系列的长方形，然后对每个长方形拟合简单的模型（比如常数）。想法很简单但是很有用。我们首先描述一个基于树的回归和分类的方法，称为CART，后来与 C4.5 进行对比，这是它主要的一个对手。</p>
+<p>让我们考虑含连续响应变量 $Y$ 和输入变量 $X_1$ 和 $X_2$ 的回归问题，每个都在单位区间内取值。</p>
+<p><img alt="" src="../../img/09/fig9.2.png" /></p>
 <blockquote>
-<p>图9.1. 垃圾分析：对于显著性预报变量的估计函数。在每张图的横轴的须状图(rug plot)表示对应的预报变量。对于许多预报变量非线性是在0处的不连续性导致的。</p>
+<p>图9.2. 划分和CART。右上图显示了二维特征空间被一些模拟的值进行递归二值分割得到的一个划分，就像CART中使用的那样。左上图显示了一个不能通过递归二分得到的一般划分。左下图吓屎了对应右上图划分的树，右下图则画出了预测平面的透视图。</p>
 </blockquote>
-<p>表9.1显示了测试误差率；总体误差率为5.3%。为了对比，线性逻辑斯蒂回归有7.6%的测试误差。表9.2显示了在可加性模型中显著性强的预报变量。</p>
-<p><img alt="" src="../../img/09/tab9.1.png" /></p>
+<p>图 9.2 的左上图展示了用平行于坐标轴的直线对特征空间的一个划分。在每个划分元素里面我们可以用不同的常值来对 $Y$ 进行建模。然而，这里有个问题：尽管每个划分直线有个类似 $X_1=c$ 的简单表示，但有一些区域是很难描述的。</p>
+<p>为了简化问题，我们限制在如图 9.2 的右上图所示的递归二值划分。我们首先将空间分成两个区域，然后在每个区域里面用 $Y$ 的均值来对响应变量进行建模。我们选择变量和分离点以实现最优拟合。然后这些区域又被分成两个区域，这个过程一直进行下去，直到满足停止规则。举个例子，在图 9.2 的右上图，我们首先在 $X_1=t_1$ 处进行划分。然后在 $X_2=t_2$ 处对区域 $X_1\le t_1$ 进行划分，在$X_1=t_3$ 对区域 $X_1&gt; t_1$ 进行划分。最后，在 $X_2=t_4$ 处对区域 $X_1&gt;t_3$ 进行划分。这一过程的结果是得到如图所示的五个区域 $R_1,R_2,\ldots,R_5$ 的划分。对应的回归模型在区域 $R_m$ 中用常数 $c_m$ 来预测 $Y$，也就是</p>
+<p>
+<script type="math/tex; mode=display">
+\hat f(X)=\sum\limits_{m=1}^5c_mI\{(X_1,X_2\in R_m\}\qquad (9.9)
+</script>
+</p>
+<p>同样的模型也可以用图 9.2 的左下图的二叉树来表示。在树的顶端标出全数据集。在每个交叉点处满足条件的观测分配到左枝上去，其他的分到右枝上去。终止结点或者树的叶子对应区域 $R_1,R_2,\ldots, R_5$。图 9.2 的右下图是该模型回归表面的透视图。为了说明，我们选择结点均值 $c_1=-5,c_2=-7,c_3=0,c_4=2,c_5=4$ 来画这张图。</p>
+<p>递归二叉树一个重要的优点在于它的解释性。特征空间被一棵树完全描述。当超过两个输入，类似图 9.2 的右上图的划分很难画出来，但是二叉树表示能够仍然起作用。这种表示方法在医学科学家中很流行，或许它在模仿医生的思考方式。基于病人的特征，树将总体分成了高低不同的阶层。</p>
+<h2 id="_2">回归树<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>我们现在讨论怎样生成一个回归树的问题。我们的数据包含对$N$个观测值中的每一个的$p$个输入和1个输出：这就是，$(x_i,y_i),i=1,2,\ldots, N,$其中，$x_i=(x_{i1},x_{i2},\ldots,x_{ip})$.这个算法需要根据分离变量和分类点来自动确定，而且确定树应该有的拓扑结构（形状）。首先假设我们有一个分成$M$个区域$R_1,R_2,\ldots, R_M$的一个划分，而且我们在每个区域内用常数$c_m$来对响应变量来建立模型：
+<script type="math/tex; mode=display">
+f(x)=\sum\limits_{m=1}^Mc_mI(x\in R_m)\qquad (9.10)
+</script>
+如果我们采取最小化平方和$\sum(y_i-f(x_i))^2$的准则，则可以很简单地证明得到最好的$\hat c_m$恰巧是区域$R_m$中$y_i$的平均值：
+<script type="math/tex; mode=display">
+\hat c_m=\mathrm{ave}(y_i\mid x_i\in R_m)\qquad (9.11)
+</script>
+现在找出使得平方和最小的最优二分在计算上一般是不可行的。因此我们采用一种贪婪算法。从所有变量开始，考虑分离变量$j$和分离点$s$,定义半平面对
+<script type="math/tex; mode=display">
+R_1(j,s)=\{X\mid X_j\le s\}\;\text{and}\; R_2(j,s)=\{X\mid X_j>s\}\qquad (9.12)
+</script>
+于是我们寻找分离变量$j$和分离点$s$求解
+<script type="math/tex; mode=display">
+\underset{j,s}{\mathrm {min}}[\underset{c_1}{\mathrm{min}}\;\sum\limits_{x_i\in R_1(j,s)}(y_i-c_1)^2+\sum\limits_{x_i\in R_2(j,s)}(y_i-c_2)^2]\qquad (9.13)
+</script>
+对于每个选定的$j$和$s$，内部最小化通过下式来求解
+<script type="math/tex; mode=display">
+\hat c_1=\mathrm{ave}(y_i\mid x_i\in R_1(j,s))\;\text{and}\; \hat c_2=\mathrm{ave}(y_i\mid x_i\in R_2(j,s))\qquad (9.14)
+</script>
+对于每个分离变量，可以非常快地确定分离点$s$，因此对所有输入进行扫描，确定最优的对$(j,s)$是可行的。</p>
+<p>找到最优的分割之后，我们将数据分成两个区域，然后对每个区域重复分割过程。然后在对所有区域都重复同样的分割过程。</p>
+<p>我们应该生成多大的树？很显然，树太大会过拟合数据，而树太小则可能捕捉不了重要的结构。树的大小也是一个调整参数来控制模型复杂度，最优的树规模应该从数据中自适应选取。一种分割树结点的方式可能是仅仅如果由于分割超出一些阈值使得平方和降低。然而，这种策略太目光短浅了，因为看似无用的分割或许会导致下面得到很好的分割。</p>
+<p>更好的策略是生成一个大树$T_0$,仅仅当一些最小结点规模（比如5）达到停止分割过程。接着大树采用cost-complexity pruning来调整，我们现在讨论的内容。</p>
+<p>我们定义子树$T\subset T_0$为任何可以通过对$T_0$剪枝得到的树，也就是，压缩任意数目的中间（非终止）结点。我们用$m$表示终止结点，其中结点$m$表示区域$R_m$。令$\vert T\vert $为$T$中终止结点的个数。令
+<script type="math/tex; mode=display">
+\begin{align}
+N_m&=\#\{x_i\in R_m\}\\
+\hat c_m&=\frac{1}{N_m}\sum\limits_{x_i\in R_m}y_i\\
+Q_m(T)&=\frac{1}{N_m}\sum\limits_{x_i\in R_m}(y_i-\hat c_m)^2
+\end{align}
+\qquad (9.15)
+</script>
+定义复杂度代价准则
+<script type="math/tex; mode=display">
+C_\alpha(T)=\sum\limits_{m=1}^{\vert T\vert}N_mQ_m(T)+\alpha\vert T\vert\qquad (9.16)
+</script>
+想法是对于每个$\alpha$,寻找子树$T_\alpha\subset T_0$使得$C_\alpha(T)$最小化。调整参数$\alpha\ge 0$调整树的规模和它对数据拟合的成都之间的平衡。较大的$\alpha$值导致小规模的树$T_\alpha$,对于较小的$\alpha$情况反过来了。这种记号表明，当$\alpha=0$时，解为全树$T_0$.我们下面讨论怎么自适应地选择$\alpha$.</p>
+<p>对于每个$\alpha$,可以找到唯一最小的子树$T_\alpha$使得$C_\alpha(T)$最小化。为了寻找$T_\alpha$我们采用weakest link pruning：逐步压缩在$\sum_mN_mQ_m(T)$中单节点增长最小的中间结点，直到我们得到单结点（根）的树。这给出了子树的（有限）序列，而且可以证明这条序列一定包含$T_\alpha$.更多细节见Breiman等人（1984）或者Ripley（1996）年的工作。$\alpha$的估计可以通过五折或者十折交叉验证得到：我们选择$\hat\alpha$使得交叉验证平方和最小。我们最终的树为$T_{\hat \alpha}$</p>
+<h2 id="_3">分类树<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>如果目标是结果取值为 $1,2,\ldots,K$ 的分类问题，则在树的算法中唯一需要改变的是关于分离结点以及剪枝的准则。对于回归我们用 (9.15) 式定义的平方误差结点纯度，但是这对于分类便不适合了。在结点$m$,用 $N_m$ 个观测值表示区域 $R_m$，令
+<script type="math/tex; mode=display">
+\hat p_{mk} = \frac{1}{N_m}\sum\limits_{x_i\in R_m}I(y_i=k)
+</script>
+类别$k$的观测在结点$m$处的比例。我们将结点$m$处的观测划分为类别$k(m)=\mathrm{arg\; max}_k\hat p_{mk}$，结点$m$处最主要的类别。不同衡量结点纯度$Q_m(T)$的方法包括如下：
+<script type="math/tex; mode=display">
+\begin{align}
+\text{误分类误差：}& \frac{1}{N_m}\sum_{i\in R_m}I(y_i\neq k(m))=1-\hat p_{mk(m)}\\
+\text{Gini指数：}&\sum_{k\neq k'}\hat p_{mk}\hat p_{mk'}=\sum_{k=1}^K\hat p_{mk}(1-\hat p_{mk})\\
+\text{交叉熵或者偏差：}&-\sum_{k=1}^K\hat p_{mk}\mathbf{log} \hat p_{mk}
+\end{align}
+\qquad (9.17)
+</script>
+对于两个类别，如果$p$是第二类的比例，则这三个衡量指标分别为$1-max(p,1-p), 2p(1-p)$以及$-p\mathrm{log}p-(1-p)\mathrm{log}(1-p)$.图9.3 画出了它们的函数曲线。这三者都类似，但是交叉熵和Gini指数是可微的，因此更加适合数值优化。比较（9.13）和（9.15）,我们看到我们需要由分离结点$m$得到的两个子节点的观测数$N_{m_L}$和$N_{m_R}$来对结点纯度赋予权重。</p>
+<p><img alt="" src="../../img/09/fig9.3.png" /></p>
 <blockquote>
-<p>表9.1. 对垃圾训练数据的加性逻辑斯蒂回归模型拟合的混淆矩阵。整体测试误差率为5.5%.</p>
+<p>图9.3 两类别分类的结点纯度关于类别2比例$p$的函数。交叉熵已被缩放使能过点（0.5,0.5）</p>
 </blockquote>
-<p><img alt="" src="../../img/09/tab9.2.png" /></p>
-<blockquote>
-<p>表9.2. 对spam训练数据进行加性模型拟合的显著性预报变量。系数和它们的标准误差以及Z得分来表示$\hat f_j$的线性部分。非线性p值是对$\hat f_j$非线性的检验。</p>
-</blockquote>
-<p>为了解释的方便，表9.2中有每个变量分解成线性组分和剩余非线性组分的贡献。靠前的预测变量与spam正相关，而最后的预测变量负相关。线性组分是在预报变量上对拟合曲线的加权最小二乘线性拟合，而非线性部分是剩余部分。估计函数的线性部分是由系数、标准误差和$Z$得分来总结（表示）；后者（指Z得分）是系数除以它的标准误差，而且当它超过合适的标准正态分布的分位数认为是显著的。标签为nonlinear P-value的列是对估计函数非线性部分的测试。然而，注意到，每个预报变量的影响是根据其他变量的整体影响来调整的，而不仅仅是它们的线性部分。表中显示的预报变量通过在$p=0.01$水平下（双边）进行至少一个检验（线性或者非线性）来判断是否显著的。</p>
-<p>图9.1 显示了在表9.2中出现的显著预测变量的估计函数。许多非线性影响表明在0处的强不连续性。举个例子，当<code>george</code>的频率从0增长，<code>spam</code>的概率显著下降，但是此后没有太大改变。这表明或许会用一个表示计数为0的指示变量来替换每个频率预测变量，这样回到线性逻辑斯蒂回归。这给出7.4%的测试误差；包括频率的线性影响将测试误差降低到6.6%。看起来在加性模型中的非线性有着额外的预测力量。</p>
-<p>将真正的<code>email</code>分类成<code>spam</code>是很严重的，因为好邮件会被过滤掉而不能到达用户手中。我们可以通过改变损失来平衡类别误差率（见2.4节）。如果我们对将真实的类别0预测成类别1赋予损失$L_{01}$,$L_{10}$为将真实的类别1预测成类别0的损失，于是如果概率大于$L_{01}/(L_{01}+L_{10})$则估计的贝叶斯准则预测为类别1。举个例子，如果我们取$L_{01}=10,L_{10}=1$则（真实的）类别0和类别1误差率变成0.8%和8.7%。</p>
-<p>更ambitiously，我们通过对类别0的观测赋予权重$L_{01}$，对类别1的观测赋予权重$L_{10}$使得模型更好地对类别0中的数据进行拟合。像上面一样，我们接着运用贝叶斯准则来预测。在类别0和类别1中误差率分别为1.2%和8.0%。我们将在基于树的模型中讨论损失不相等的问题。</p>
-<p>拟合加性模型之后，应该检查一下加入交互关系之后是否显著性提高拟合。这可以通过插入一些或全部的显著性输入来“手动”完成，或者通过MARS过程来自动完成。（见<a href="https://esl.hohoweiya.xyz/09%20Additive%20Models%2C%20Trees%2C%20and%20Related%20Methods/9.4%20MARS%28Multivariate%20Adaptive%20Regression%20Splines%29/index.html">9.4节</a>）</p>
-<p>这个例子以一种自动的方式来使用加性模型。作为一个数据分析工具，加性模型经常以一种更交互的方式来使用，通过添加或者删除项来确定它们的影响。通过校准关于$df_j$的光滑数量，可以在线性模型($df_j=1$)和部分线性模型中移动，其中对一些项更加灵活地建模。更多细节见Hastie and Tibshirani(1990)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的工作。</p>
-<h2 id="_4">总结<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>加性模型提供一个有用的线性模型拓展，使得不仅保留着大部分的可解释性，也更加灵活。在线性模型中建模和推断熟悉的工具对于加性模型也是适用的，见表9.2的例子。拟合这些模型的backfitting过程是简单而有模式的，允许对于每个输入变量去选择合适的拟合方法。在统计领域它们越来越被广泛地应用。</p>
-<p>然而加性模型对于大的数据挖掘的应用是有限制的。backfitting算法拟合所有的预测变量，而大部分的预测变量是不可行的也不是必需的。BRUTO过程（Hastie and Tibshirani, 1990<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>，第9章）结合backfitting和输入选择，但是不是为了大规模的数据挖掘的问题。最近也有用lasso型惩罚来估计稀疏加性模型的工作，举个例子，Lin and Zhang (2006)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup> 提出的COSSO过程，以及Ravikumar et al., (2008)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>提出的SpAM。对于大型问题，向前逐步方法（比如第10章的boosting）更加地有效，而且允许交叉项包含进模型中。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>Buja, A., Hastie, T. and Tibshirani, R. (1989). Linear smoothers and additive models (with discussion), Annals of Statistics 17: 453–555&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Hastie, T. and Tibshirani, R. (1990). Generalized Additive Models, Chapman and Hall, London.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>Yee, T. and Wild, C. (1996). Vector generalized additive models, Journal of the Royal Statistical Society, Series B. 58: 481–493.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-<li id="fn:4">
-<p>Lin, Y. and Zhang, H. (2006). Component selection and smoothing in smoothing spline analysis of variance models, Annals of Statistics 34: 2272–2297.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
-</li>
-<li id="fn:5">
-<p>Ravikumar, P., Liu, H., Lafferty, J. and Wasserman, L. (2008). Spam: Sparse additive models, in J. Platt, D. Koller, Y. Singer and S. Roweis (eds), Advances in Neural Information Processing Systems 20, MIT Press, Cambridge, MA, pp. 1201–1208.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
-</li>
-</ol>
+<p>另外，交叉熵和Gini指数比误分类率对结点概率的改变更加敏感。举个例子，在每个类别都有400个观测的两个类别的问题中（记为（400,400）），假设一个分割得到得到结点（300,100）和结点（100,300），而另外一个分割得到结点（200,400）和结点（200，0）。两个分割过程的误分类误差率都是0.25，但是第二个分割产生一个纯结点，似乎更好一些。对于第二个分割，Gini指数和交叉熵都更低一点。基于这个原因，当生成一棵树时应该使用Gini指数或者交叉熵中的一个。为了引导复杂度代价剪枝，三种衡量指标的任意一个都可以使用，但是一般地是采用误分类误差率。</p>
+<p>Gini指数可以用两种方式来解读。与其将观测值划分到结点的主要类别中，我们可以以一定概率$\hat p_{mk}$将它们划分到类别$k$。于是该结点的这条规则的训练误差率是$\sum_{k\neq k&rsquo;}\hat p_{mk}\hat p_{mk&rsquo;}$——Gini指数。类似地，如果我们对类别$k$的观测编码为1，而对其它的观测编码为0，则该结点的0-1响应变量的方差为$\hat p_{mk}(1-\hat p_{mk})$.将$k$个类别的全部相加再一次得到Gini指数。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>下面看一下如何在R中实现CART算法，采用rpart包来完成，下面是一个很简单的例子。</p>
+<p>library(rpart)</p>
+<p>library(rpart.plot)</p>
+<p>fit &lt;- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)</p>
+<p>rpart.plot(fit)</p>
+<p>最终，我们得到
+<img alt="" src="../../img/09/ex_CART.png" /></p>
 </div>
+<h2 id="_4">其他的问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">类别型预报变量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>当对一个有着$q$个可能的无次序值的预报变量，则将这$q$个值分成两块有$2^{q-1}-1$种可能的划分，对于大的$q$值，计算变得很困难。然而，输出为0-1时，计算可以简化。我们根据落入类别1的比例对预报变量的类别进行排序。然后把预报变量看成是有序预报变量进行划分。可以证明这给出了在交叉熵或者Gini指数情形下$2^{q-1}-1$种可能分割的最优分割。这个结果对与定量输出和平方误差损失也一样成立——通过增加输出的均值对类别进行排序。尽管很直观，但是这些断言的证明不是很简单。二值输出的证明由Breiman等人（1984）和Ripley(1996)给出；定量输出的证明可以在Fisher（1958）的工作中找到。对于多重类别的输出，没有这样的简化，尽管已经提出不同的近似（Loh和Vanichsetakul,1988）</p>
+<p>这个划分算法趋向于偏爱有多个层次$q$的类别型预报变量；划分的种类关于$q$呈指数增长，而且我们有更多的选择，我们更有可能招待一个对于当前数据好的方法。如果$q$很大，这导致严重的过拟合，而且类似的变量应该被避免。</p>
+<h3 id="_6">损失矩阵<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>在分类问题中，某些类别的误分类的后果会比其他类别的误分类后果要严重。举个例子，当某人实际上会发生心脏病而预测他/她不会发生心脏病比反过来的情形要糟糕。为了说明这一点，我们定义$K\times K$的损失矩阵$\mathbf L$,其中$L_{kk&rsquo;}$为将类别$k$的观测划分为$k&rsquo;$的观测产生的损失。一般地，对于正确的分类不会带来损失，也就是$L_{kk}=0\;\forall k$.为了将损失结合到模型过程中，我们可以将Gini指数修改成$\sum_{k\neq k&rsquo;}L_{kk&rsquo;}\hat p_{mk}\hat p_{mk&rsquo;}$;这个可以成为由于随机规则引起的期望损失。这对于多重类别的情形也成立，但是对于两个类别的情形没有影响，因为$\hat p_{mk}\hat p_{mk&rsquo;}$的系数为$L_{kk&rsquo;}+L_{k&rsquo;k}$.对于两个类别的情形更好的方式是对类别$k$的观测赋予权重$L_{kk&rsquo;}$. 这个可以在多重类别情形下使用仅仅当关于$k$的函数$L_{kk&rsquo;}$不依赖$k&rsquo;$.观测的权重也可以同偏差一起使用。观测权重的影响是去更改类别的先验概率。在终止结点上，经验贝叶斯规则表明我们划分成类别$k(m)=\mathrm{arg\; min_k}\sum_\ell L_{\ell k}\hat p_{m\ell}$</p>
+<h3 id="_7">缺失预报变量的值<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>假设我们的数据在部分或全部变量中有一些缺失的预报变量的值。我们可能丢弃含有缺失数据的观测，但是这会导致训练集严重的消耗。另外我们或许试图填补缺失数据，如用非缺失观测的均值来填补。对于基于树的模型，有两种更好的方式。第一种是应用到类别型预报变量上：我们简单地新建一个“缺失”的类别。从这里我们可能发现含缺失值的观测在某些指标上的表现与其他不含缺失值的表现有不同。第二种更一般的方式是构造代理变量。当对一个分割考虑一个预报变量，我们仅仅考虑该变量未缺失的观测。选择好最优的（主要的）预报变量和分割点，我们构造代理预报变量和分离点的列表。第一个代理是最好模拟由初次分割得到的训练数据分割的预报变量和对应的分离点。第二代理是模仿的第二好的预报变量和对应的分离点，以此类推。当在训练阶段或者预测阶段使得观测在树中下降，我们依次采用代理分割，如果最初的分割预报变量缺失。代理分割探索预报变量之间的相关性来试图减轻丢失数据的影响。丢失预测变量和其他预测变量的相关度越高，则由于丢失数据造成信息丢失的影响越小。丢失数据的一般问题将在9.6节中讨论。</p>
+<h3 id="_8">为什么二值分割？<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>与其在每一步对每个结点只分割成两个群体（如上面讨论的），我们或许考虑多重分割成多于两个群体。尽管这个在某些情况下是有用的，但不是一个好的一般策略。问题在于多重分割将数据分得太快，以至于在下一层次没有充分多的数据。因此我们仅仅当需要的时候采用这种分割。因为多重分割可以通过一系列的二值分割实现，所以后者更好一点。</p>
+<h3 id="_9">其他建树的过程<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>上面的讨论集中在CART(分类和回归树)树的实现。其他流行的方法是ID3和后来的版本，C4.5和C5.0（Quinlan, 1993). 程序的早期版本只限制类别型变量，而且采用自上而下没有剪枝的规则。经过最近的发展，C5.0已经变得与CART很相似。C5.0独有的最显著的特征是用于导出规则集的方案。树建成之后，定义终止结点的分割规则有时可以被简化：这就是，不用改变落入结点里面的观测的子集删掉一个或多个条件。最终我们得到定义每个终止结点的简化规则集；这些不再遵循树的结构，但是它们的简化可能使得它们更加吸引人们使用。</p>
+<h3 id="_10">线性组合分割<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>与其将分割限制成$X_j\le s$的形式，可以允许线性组合形式的分割$\sum a_jX_j\le s$.优化权重$a_j$和分离点$s$使得有关的准则最小（比如Gini指数）。尽管这个可以提高树的预测能力，但这也会损害解释性。计算上，分离点搜索的分离性妨碍了对权重的光滑优化。更好地结合线性组合分割的方式是在专家系统混合模型中，这是9.5节的主题。</p>
+<h3 id="_11">树的不稳定性<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>树的一个主要问题是它们的高方差性。经常在数据中的一个小改动导致完全不同的分割点序列，使得解释不稳定。这种不稳定的主要原因是这个过程的层次性：上一个分割点的误差会传递到下面所有的分割点上。可以试图采取更加稳定的分离准则在某种程度上减轻这一影响，但是固有的不稳定性没有移除。这是从数据中估计一二简单的、基于树结构的代价。Bagging（8.7节）对很多树进行平均来降低方差。</p>
+<h3 id="_12">缺乏光滑性<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>树的另一个限制是预测表面缺乏光滑性，如在图9.2中的右下图中那样。在0/1损失的分类问题中，这不会有太大的损伤，因为类别概率估计的偏差的影响有限。然而，在回归问题中这会降低效果，正常情况下我们期望潜在的函数是光滑的。9.4节介绍的MARS过程可以看出是为了减轻CART缺乏光滑性而做的改动。</p>
+<h3 id="_13">捕捉加性结构的困难<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>另外一个树的问题是对加性结构建模的困难。举个例子，在回归问题中，假设$Y=c_1I(X_1&lt;t_1)+c_2I(X_2&lt;t_2)+\varepsilon$,其中$\varepsilon$是0均值噪声。则二叉树会在$t_1$附近对$X_1$做第一次分割。为了捕捉加性结构，下一层两个结点都需要在$t_2$处对$X_2$分割。在充足数据情况下这个或许可以发生，但是这个模型没有给予特别鼓励来找到这一结构。如果有10个而不是2个加性影响，需要花费很多偶然的分割来重造这个结构，并且在估计的树中，通过数据分析来识别它会变得非常困难。原因再一次可以归结为二叉树的结构，既有优点也有不足。为了捕捉加性结构，MARS方法（9.4节）再一次放弃树的结构。</p>
+<h2 id="_14">垃圾邮件的例子（继续）<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>前面我们已经对spam例子应用了分类树的方法。我们运用偏差来建树，用误分类率来剪枝。图9.4显示了根据10个复制数据的10折交叉验证误差率作为剪枝树的大小的函数，以及$\pm2$倍的均值的标准误差。测试误差曲线用橘黄色来表示。注意到交叉验证误差率是通过$\alpha$的序列而非树的大小来索引的；对于不同的复制数据建的树，一个$\alpha$可能对应不同的大小。在图的底部所示的大小指的是剪枝的原始树的大小$\vert T_\alpha\vert$.</p>
+<p><img alt="" src="../../img/09/tab9.3.png" /></p>
+<blockquote>
+<p>表9.3. 垃圾邮件数据：测试数据上17个结点（通过交叉验证选出来的）树的混淆比例。总的误差率为9.3%。</p>
+</blockquote>
+<p><img alt="" src="../../img/09/fig9.4.png" /></p>
+<blockquote>
+<p>图9.4. spam例子的结果。蓝色曲线是10折交叉验证误分类率的估计作为树大小的函数的曲线。最小值发生在含有17个终止结点的树处（采用“one-standard-error”规则）。橘黄色区显示测试误差，其非常接近地沿着CV误差。交叉验证由如上所示的$\alpha$值索引。下面显示的树的大小指的是由$\alpha$索引的原始树的大小$\vert T_\alpha\vert$。</p>
+</blockquote>
+<p>误差在大概17个终止结点处变平，给出了图9.5的剪枝树。在树的13个不同特征中，有11个与加性模型中16个显著特征重合（表9.2）.表9.3显示的整体误差率比表9.1显示的加性模型大概高出50%.</p>
+<p><img alt="" src="../../img/09/fig9.5.png" /></p>
+<blockquote>
+<p>图9.5. spam例子的剪枝树。分离变量在树枝上用蓝色显示，分类结果在每个结点处显示。在终止结点处的数目表示在测试数据上的错误分类率。</p>
+</blockquote>
+<p>考虑树的最右边分支，如果超过5.5%的字符是\$符号则将分到右边分支并且显示为垃圾邮件（spam）的警告。然而，另外如果词语hp经常出现，则很可能是公司事务并且我们分成email。在测试集里的所有22个情形满足正确分类的准则。如果第二个条件不满足，而且重复出现的大写字母平均长度CAPAVE大于2.9，则我们分成spam类。在227个测试情形中，只有7个被错误分类。</p>
+<p>在医学分类问题中，sensitivity和specificity经常用来衡量一个准则。它们按如下定义：</p>
+<p>Sensitivity：给定真实状态为患病预测为患病的概率</p>
+<p>Specificity：给定真实状态为未患病预测为未患病的概率</p>
+<p>如果我们将spam和email看成有无患病，则从表9.3我们有
+<script type="math/tex; mode=display">
+\begin{align}
+Sensitivity & = 100\times\frac{33.4}{33.4+5.3}=86.3\%\\
+Specificity &  = 100\times \frac{57.3}{57.3+4.0}=93.4\%
+\end{align}
+</script>
+在这个分析中我们使用了相等的损失。和之前一样令$L_{kk&rsquo;}$为将类别$k$预测成类别$k&rsquo;$对应的损失。通过改变损失$L_{01}$和$L_{10}$的相对大小，我们增大该规则的敏感性降低该规则的特异性，或者反过来。在这个例子中，我们想要避免将好的email预测成spam，因此我们希望确定性非常高。我们可以通过设置$L_{01}&gt;1,L_{10}=1$来实现。如果spam的比例$\ge L_{01}/(L_{10}+L_{01})$，则在每个终止结点处的贝叶斯规则将此结点归类为类别1，否则归为类别0.受试者工作特征曲线（ROC）是用于评估敏感性和特异性之间折中的常用概述。当我们改变分类规则的参数得到敏感性关于特异性的图像。在0.1和10之间改变损失$L_{01}$，然后对图9.4中选定的17个结点的贝叶斯规则，得到如图9.6所示的ROC曲线。每条曲线靠近0.9的标准误差近似为$\sqrt{0.9(1-0.9)/1536}=0.008$，因此差别的标准误差大概为0.01。我们为了实现接近100%的特异性，敏感性大致降低到了50%.曲线下面的面积是通常使用的定量概述；在曲线的两端线性扩张使得它在[0,100]上有定义，面积大概为0.95.为了比较，我们也画出了在9.2节对这些数据进行GAM模型拟合的ROC曲线；它给出了对于任意损失更好的分类规则，面积为0.98.</p>
+<p><img alt="" src="../../img/09/fig9.6.png" /></p>
+<blockquote>
+<p>图9.6. 对spam数据应用分类规则拟合的ROC曲线。越靠近东北角落的曲线表示越好的分类器。这种情形下，GAM分类器比树模型更好。加权树比未加权树在更高特异性情况下有更好的敏感性。图例中的数字表示曲线下面的面积。</p>
+</blockquote>
+<p>与其仅仅修改结点处的贝叶斯规则，在建树的时候将不相等的损失进行全面考虑更好，正如我们在9.2节做的那样。当只有两个类别0和1时，通过对类别$k$的观测赋予权重$L_{k,1-k}$将损失考虑到建树的过程中。这里我们选择$L_{01}=5,L_{10}=1$而且像前面一样拟合同样大小的树（$\vert T_\alpha\vert=17$）.这棵树在高特异性下比原树有更高的敏感性，但是在其它极端情况下表现得更差。前几层的分割与原树是一样的，但是接着就变不同了。因为这个应用通过$L_{01}=5$建的树显然好于原来的树。</p>
+<p>上面使用的ROC曲线下的面积有时被称作$c$统计量。有趣地是，对于两个群体中预测得分差异的中位数（Hanley和McNeil，1982），可以证明ROC曲线下的面积等于Mann-Whitney U统计量（或者 Wilcoxon 秩和检验）.当额外的预报变量加入到标准模型中时衡量该预报变量的贡献度，$c$统计量或许不是一个有信息的衡量。新预报变量可以对模型偏差改变很显著，但是$c$统计量却只有很小的增大。举个例子，从表9.2中移除高显著项george会导致$c$统计量的增长小于0.01.相反地，基于个体样本基来检查额外的预测变量怎样改变分类是有用的。这点将在Cook(2007)中进行充分讨论。</p>
                 
                   
                 
@@ -3290,7 +3430,7 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../9.0 Introduction/index.html" title="9.0 导言" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3299,19 +3439,19 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                9.0 导言
+                9.1 广义可加模型
               </span>
             </div>
           </a>
         
         
-          <a href="../9.2 Tree-Based Methods(CART)/index.html" title="9.2 基于树的方法" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                9.2 基于树的方法
+                9.3 PRIM
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

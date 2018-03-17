@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/09 Additive Models, Trees, and Related Methods/9.7 Computational Considerations/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.0-Introduction/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>9.7 计算上的考虑 - ESL CN</title>
+        <title>9.0 导言 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#97" tabindex="1" class="md-skip">
+      <a href="#90" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                9.7 计算上的考虑
+                9.0 导言
               </span>
             
           
@@ -1574,11 +1574,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../9.0 Introduction/index.html" title="9.0 导言" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="index.html" title="9.0 导言" class="md-nav__link md-nav__link--active">
       9.0 导言
     </a>
+    
   </li>
 
         
@@ -1588,7 +1597,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.1 Generalized Additive Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
+    <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
       9.1 广义可加模型
     </a>
   </li>
@@ -1600,7 +1609,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.2 Tree-Based Methods(CART)/index.html" title="9.2 基于树的方法" class="md-nav__link">
+    <a href="../9.2-Tree-Based-Methods/index.html" title="9.2 基于树的方法" class="md-nav__link">
       9.2 基于树的方法
     </a>
   </li>
@@ -1612,8 +1621,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.3 PRIM(Bump Hunting)/index.html" title="9.3 耐心规则归纳法" class="md-nav__link">
-      9.3 耐心规则归纳法
+    <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-nav__link">
+      9.3 PRIM
     </a>
   </li>
 
@@ -1624,7 +1633,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.4 MARS(Multivariate Adaptive Regression Splines)/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
+    <a href="../9.4-MARS/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
       9.4 多变量自适应回归样条
     </a>
   </li>
@@ -1636,7 +1645,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.5 Hierarchical Mixtures of Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
+    <a href="../9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
       9.5 专家的系统混合
     </a>
   </li>
@@ -1648,7 +1657,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.6 Missing Data/index.html" title="9.6 缺失数据" class="md-nav__link">
+    <a href="../9.6-Missing-Data/index.html" title="9.6 缺失数据" class="md-nav__link">
       9.6 缺失数据
     </a>
   </li>
@@ -1658,20 +1667,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="index.html" title="9.7 计算上的考虑" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../9.7-Computational-Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
       9.7 计算上的考虑
     </a>
-    
   </li>
 
         
@@ -1681,7 +1681,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2985,7 +2985,7 @@
               
                 
                 
-                <h1 id="97">9.7 计算的考虑<a class="headerlink" href="#97" title="Permanent link">&para;</a></h1>
+                <h1 id="90">9.0 导言<a class="headerlink" href="#90" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3000,14 +3000,19 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-03-13</td>
+<td>2017-01-28</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>2018-02-21</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<p>在$N$个观测和$p$个预测变量的情形下，加性模型拟合需要$mp$个一维光滑器或回归方法的应用。backfitting算法的要求的圈数$m$通常小于20，并且经常小于10，而且取决于输入中的相关性大小。举个例子，三次光滑样条下，对于初始的排序需要$NlogN$次操作，以及对样条拟合的$N$操作。因此对于加性模型拟合总共的操作数为$pNlogN+mpN$.</p>
-<p>对每个预测变量的初始排序，树需要$pNlogN$次操作，并且一般地对分割计算需要$pNlogN$次操作。如果分割在预测变量值域附近的边上，这个数目可能增大到$N^2p$.</p>
-<p>MARS需要$Nm^2+pmN$次操作从$p$个预测变量中，往已经存在$m$项的模型中加入基函数。因此建立一个$M$项的模型需要$NM^3+pM^2N$次操作，如果$M$是 $N$中合理的一部分，则可能是相当禁止的。</p>
-<p>HME的每一个组分在每个$M$步一般不需要花费太多来拟合：对于回归需要$Np^2$次，对于$K$个类别的逻辑斯蒂回归需要$Np^2K^2$次。然而，EM算法需要更长时间来收敛，因此较大的HME模型需要相当大的花费去拟合。</p>
+<p>这章中我们开始对监督学习中一些特定的方法进行讨论。这些技巧中的每一个都假设了未知回归函数（不同的）结构形式，而且通过这样处理巧妙地解决了维数灾难。当然，它们为错误地确定模型类型要付出可能的代价，所以在每种情形下都需要做出一个权衡。第3-6章留下的问题都将继续讨论。我们描述5个相关的技巧：广义可加模型，树，多元自适应回归样条(MARS)，病人规则归纳法(PRIM)，以及混合层次专家。</p>
                 
                   
                 
@@ -3039,7 +3044,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../9.6 Missing Data/index.html" title="9.6 缺失数据" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../08-Model-Inference-and-Averaging/Bibliographic-Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3048,19 +3053,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                9.6 缺失数据
+                文献笔记
               </span>
             </div>
           </a>
         
         
-          <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                文献笔记
+                9.1 广义可加模型
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

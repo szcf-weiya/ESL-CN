@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/09 Additive Models, Trees, and Related Methods/9.2 Tree-Based Methods(CART)/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.4-MARS/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>9.2 基于树的方法 - ESL CN</title>
+        <title>9.4 多变量自适应回归样条 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#92-cart" tabindex="1" class="md-skip">
+      <a href="#94-mars" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                9.2 基于树的方法
+                9.4 多变量自适应回归样条
               </span>
             
           
@@ -1576,7 +1576,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.0 Introduction/index.html" title="9.0 导言" class="md-nav__link">
+    <a href="../9.0-Introduction/index.html" title="9.0 导言" class="md-nav__link">
       9.0 导言
     </a>
   </li>
@@ -1588,8 +1588,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.1 Generalized Additive Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
+    <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
       9.1 广义可加模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.2-Tree-Based-Methods/index.html" title="9.2 基于树的方法" class="md-nav__link">
+      9.2 基于树的方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-nav__link">
+      9.3 PRIM
     </a>
   </li>
 
@@ -1609,11 +1633,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        9.2 基于树的方法
+        9.4 多变量自适应回归样条
       </label>
     
-    <a href="index.html" title="9.2 基于树的方法" class="md-nav__link md-nav__link--active">
-      9.2 基于树的方法
+    <a href="index.html" title="9.4 多变量自适应回归样条" class="md-nav__link md-nav__link--active">
+      9.4 多变量自适应回归样条
     </a>
     
       
@@ -1627,93 +1651,37 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="背景" class="md-nav__link">
-    背景
+  <a href="#_1" title="垃圾邮件的例子（继续）" class="md-nav__link">
+    垃圾邮件的例子（继续）
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="回归树" class="md-nav__link">
-    回归树
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="分类树" class="md-nav__link">
-    分类树
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="其他的问题" class="md-nav__link">
-    其他的问题
+  <a href="#_2" title="例子（模拟数据）" class="md-nav__link">
+    例子（模拟数据）
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" title="类别型预报变量" class="md-nav__link">
-    类别型预报变量
+  <a href="#1" title="情形1：" class="md-nav__link">
+    情形1：
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" title="损失矩阵" class="md-nav__link">
-    损失矩阵
+  <a href="#2" title="情形2：" class="md-nav__link">
+    情形2：
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" title="缺失预报变量的值" class="md-nav__link">
-    缺失预报变量的值
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" title="为什么二值分割？" class="md-nav__link">
-    为什么二值分割？
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" title="其他建树的过程" class="md-nav__link">
-    其他建树的过程
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" title="线性组合分割" class="md-nav__link">
-    线性组合分割
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" title="树的不稳定性" class="md-nav__link">
-    树的不稳定性
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" title="缺乏光滑性" class="md-nav__link">
-    缺乏光滑性
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" title="捕捉加性结构的困难" class="md-nav__link">
-    捕捉加性结构的困难
+  <a href="#3" title="情形3：" class="md-nav__link">
+    情形3：
   </a>
   
 </li>
@@ -1724,9 +1692,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" title="垃圾邮件的例子（继续）" class="md-nav__link">
-    垃圾邮件的例子（继续）
+  <a href="#_3" title="其他的问题" class="md-nav__link">
+    其他的问题
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mars" title="MARS用于分类" class="md-nav__link">
+    MARS用于分类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marscart" title="MARS和CART的关系" class="md-nav__link">
+    MARS和CART的关系
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="混合输入" class="md-nav__link">
+    混合输入
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1751,31 +1746,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.3 PRIM(Bump Hunting)/index.html" title="9.3 耐心规则归纳法" class="md-nav__link">
-      9.3 耐心规则归纳法
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.4 MARS(Multivariate Adaptive Regression Splines)/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
-      9.4 多变量自适应回归样条
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.5 Hierarchical Mixtures of Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
+    <a href="../9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
       9.5 专家的系统混合
     </a>
   </li>
@@ -1787,7 +1758,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.6 Missing Data/index.html" title="9.6 缺失数据" class="md-nav__link">
+    <a href="../9.6-Missing-Data/index.html" title="9.6 缺失数据" class="md-nav__link">
       9.6 缺失数据
     </a>
   </li>
@@ -1799,7 +1770,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.7 Computational Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
+    <a href="../9.7-Computational-Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
       9.7 计算上的考虑
     </a>
   </li>
@@ -1811,7 +1782,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3108,93 +3079,37 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="背景" class="md-nav__link">
-    背景
+  <a href="#_1" title="垃圾邮件的例子（继续）" class="md-nav__link">
+    垃圾邮件的例子（继续）
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="回归树" class="md-nav__link">
-    回归树
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="分类树" class="md-nav__link">
-    分类树
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="其他的问题" class="md-nav__link">
-    其他的问题
+  <a href="#_2" title="例子（模拟数据）" class="md-nav__link">
+    例子（模拟数据）
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" title="类别型预报变量" class="md-nav__link">
-    类别型预报变量
+  <a href="#1" title="情形1：" class="md-nav__link">
+    情形1：
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" title="损失矩阵" class="md-nav__link">
-    损失矩阵
+  <a href="#2" title="情形2：" class="md-nav__link">
+    情形2：
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" title="缺失预报变量的值" class="md-nav__link">
-    缺失预报变量的值
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" title="为什么二值分割？" class="md-nav__link">
-    为什么二值分割？
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" title="其他建树的过程" class="md-nav__link">
-    其他建树的过程
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" title="线性组合分割" class="md-nav__link">
-    线性组合分割
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" title="树的不稳定性" class="md-nav__link">
-    树的不稳定性
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" title="缺乏光滑性" class="md-nav__link">
-    缺乏光滑性
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" title="捕捉加性结构的困难" class="md-nav__link">
-    捕捉加性结构的困难
+  <a href="#3" title="情形3：" class="md-nav__link">
+    情形3：
   </a>
   
 </li>
@@ -3205,9 +3120,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" title="垃圾邮件的例子（继续）" class="md-nav__link">
-    垃圾邮件的例子（继续）
+  <a href="#_3" title="其他的问题" class="md-nav__link">
+    其他的问题
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mars" title="MARS用于分类" class="md-nav__link">
+    MARS用于分类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#marscart" title="MARS和CART的关系" class="md-nav__link">
+    MARS和CART的关系
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="混合输入" class="md-nav__link">
+    混合输入
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3232,7 +3174,7 @@
               
                 
                 
-                <h1 id="92-cart">9.2 基于树的方法(CART)<a class="headerlink" href="#92-cart" title="Permanent link">&para;</a></h1>
+                <h1 id="94-mars">9.4 MARS: 多变量自适应回归样条<a class="headerlink" href="#94-mars" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3247,158 +3189,197 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-05</td>
+<td>2017-03-13</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-03-15</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
+<td>2017-08-25</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p><strong>基于树 (Tree-based)</strong> 的方法将特征空间划分成一系列的长方形，然后对每个长方形拟合简单的模型（比如常数）。想法很简单但是很有用。我们首先描述一个基于树的回归和分类的方法，称为CART，后来与 C4.5 进行对比，这是它主要的一个对手。</p>
-<p>让我们考虑含连续响应变量 $Y$ 和输入变量 $X_1$ 和 $X_2$ 的回归问题，每个都在单位区间内取值。</p>
-<p><img alt="" src="../../img/09/fig9.2.png" /></p>
 <blockquote>
-<p>图9.2. 划分和CART。右上图显示了二维特征空间被一些模拟的值进行递归二值分割得到的一个划分，就像CART中使用的那样。左上图显示了一个不能通过递归二分得到的一般划分。左下图吓屎了对应右上图划分的树，右下图则画出了预测平面的透视图。</p>
+<p>写在前面</p>
+<p>MARS应该算是我接触得比较早的统计学习方法，大二的时候曾经在医学院某实验室搬砖，是关于基因数据的项目，具体项目记不太清，毕竟最后这个项目夭折了。但记得很清楚的是，我尝试使用MARS来建模，那时我还没有开始看ESL，是在Max Kuhn • Kjell Johnson的Applied Predictive Modeling这本书中初识了MARS。这本书介绍了一系列统计学习方法，以及如何利用R语言来实现。然后我就依葫芦画瓢学习了其中的例子，应用到了基因数据中，但基因数据实在太大了，跑啊跑啊，最后还是不了了之。。。由于种种原因，这个项目不了了之，与MARS挥手告别。</p>
+<p>第二次与MARS相见就是着手翻译这一章节，必须得承认，首次翻译实在太粗糙，既没有好好理解MARS的精髓，也没有好好注意译文的语句。</p>
+<p>第三次是在处理soda项目的时候，用到MARS，以及与其它方法的对比，跟Professor Liu的soda还真是有异曲同工之妙。</p>
+<p>今天更新MARS这一章节算是第四次与MARS的正式重逢吧。@2017.08.25</p>
 </blockquote>
-<p>图 9.2 的左上图展示了用平行于坐标轴的直线对特征空间的一个划分。在每个划分元素里面我们可以用不同的常值来对 $Y$ 进行建模。然而，这里有个问题：尽管每个划分直线有个类似 $X_1=c$ 的简单表示，但有一些区域是很难描述的。</p>
-<p>为了简化问题，我们限制在如图 9.2 的右上图所示的递归二值划分。我们首先将空间分成两个区域，然后在每个区域里面用 $Y$ 的均值来对响应变量进行建模。我们选择变量和分离点以实现最优拟合。然后这些区域又被分成两个区域，这个过程一直进行下去，直到满足停止规则。举个例子，在图 9.2 的右上图，我们首先在 $X_1=t_1$ 处进行划分。然后在 $X_2=t_2$ 处对区域 $X_1\le t_1$ 进行划分，在$X_1=t_3$ 对区域 $X_1&gt; t_1$ 进行划分。最后，在 $X_2=t_4$ 处对区域 $X_1&gt;t_3$ 进行划分。这一过程的结果是得到如图所示的五个区域 $R_1,R_2,\ldots,R_5$ 的划分。对应的回归模型在区域 $R_m$ 中用常数 $c_m$ 来预测 $Y$，也就是</p>
+<p>MARS是回归的自适应过程，非常适合高维问题（比如，存在大量的输入）。可以从两个角度来理解它，首先，它可以看成是逐步线性回归的推广，其次，也可以看成是为了提高CART在回归中的效果而进行的改进。我们从第一种观点引入MARS，接着与CART联系起来。</p>
+<p>MARS采用形式为$(x-t)_+, (t-x)_+$的分段线性基函数的展开。“+”表示正的部分，所以</p>
 <p>
 <script type="math/tex; mode=display">
-\hat f(X)=\sum\limits_{m=1}^5c_mI\{(X_1,X_2\in R_m\}\qquad (9.9)
+(x-t)_+=\left\{
+\begin{array}{ll}
+x-t& \text{if }x>t\\
+0&\text{otherwise}
+\end{array}
+\right.
+\text{  and  }
+(t-x)_+=\left\{
+\begin{array}{ll}
+t-x& \text{if }x<t\\
+0&\text{otherwise}
+\end{array}
+\right.
 </script>
 </p>
-<p>同样的模型也可以用图 9.2 的左下图的二叉树来表示。在树的顶端标出全数据集。在每个交叉点处满足条件的观测分配到左枝上去，其他的分到右枝上去。终止结点或者树的叶子对应区域 $R_1,R_2,\ldots, R_5$。图 9.2 的右下图是该模型回归表面的透视图。为了说明，我们选择结点均值 $c_1=-5,c_2=-7,c_3=0,c_4=2,c_5=4$ 来画这张图。</p>
-<p>递归二叉树一个重要的优点在于它的解释性。特征空间被一棵树完全描述。当超过两个输入，类似图 9.2 的右上图的划分很难画出来，但是二叉树表示能够仍然起作用。这种表示方法在医学科学家中很流行，或许它在模仿医生的思考方式。基于病人的特征，树将总体分成了高低不同的阶层。</p>
-<h2 id="_2">回归树<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>我们现在讨论怎样生成一个回归树的问题。我们的数据包含对$N$个观测值中的每一个的$p$个输入和1个输出：这就是，$(x_i,y_i),i=1,2,\ldots, N,$其中，$x_i=(x_{i1},x_{i2},\ldots,x_{ip})$.这个算法需要根据分离变量和分类点来自动确定，而且确定树应该有的拓扑结构（形状）。首先假设我们有一个分成$M$个区域$R_1,R_2,\ldots, R_M$的一个划分，而且我们在每个区域内用常数$c_m$来对响应变量来建立模型：
-<script type="math/tex; mode=display">
-f(x)=\sum\limits_{m=1}^Mc_mI(x\in R_m)\qquad (9.10)
-</script>
-如果我们采取最小化平方和$\sum(y_i-f(x_i))^2$的准则，则可以很简单地证明得到最好的$\hat c_m$恰巧是区域$R_m$中$y_i$的平均值：
-<script type="math/tex; mode=display">
-\hat c_m=\mathrm{ave}(y_i\mid x_i\in R_m)\qquad (9.11)
-</script>
-现在找出使得平方和最小的最优二分在计算上一般是不可行的。因此我们采用一种贪婪算法。从所有变量开始，考虑分离变量$j$和分离点$s$,定义半平面对
-<script type="math/tex; mode=display">
-R_1(j,s)=\{X\mid X_j\le s\}\;\text{and}\; R_2(j,s)=\{X\mid X_j>s\}\qquad (9.12)
-</script>
-于是我们寻找分离变量$j$和分离点$s$求解
-<script type="math/tex; mode=display">
-\underset{j,s}{\mathrm {min}}[\underset{c_1}{\mathrm{min}}\;\sum\limits_{x_i\in R_1(j,s)}(y_i-c_1)^2+\sum\limits_{x_i\in R_2(j,s)}(y_i-c_2)^2]\qquad (9.13)
-</script>
-对于每个选定的$j$和$s$，内部最小化通过下式来求解
-<script type="math/tex; mode=display">
-\hat c_1=\mathrm{ave}(y_i\mid x_i\in R_1(j,s))\;\text{and}\; \hat c_2=\mathrm{ave}(y_i\mid x_i\in R_2(j,s))\qquad (9.14)
-</script>
-对于每个分离变量，可以非常快地确定分离点$s$，因此对所有输入进行扫描，确定最优的对$(j,s)$是可行的。</p>
-<p>找到最优的分割之后，我们将数据分成两个区域，然后对每个区域重复分割过程。然后在对所有区域都重复同样的分割过程。</p>
-<p>我们应该生成多大的树？很显然，树太大会过拟合数据，而树太小则可能捕捉不了重要的结构。树的大小也是一个调整参数来控制模型复杂度，最优的树规模应该从数据中自适应选取。一种分割树结点的方式可能是仅仅如果由于分割超出一些阈值使得平方和降低。然而，这种策略太目光短浅了，因为看似无用的分割或许会导致下面得到很好的分割。</p>
-<p>更好的策略是生成一个大树$T_0$,仅仅当一些最小结点规模（比如5）达到停止分割过程。接着大树采用cost-complexity pruning来调整，我们现在讨论的内容。</p>
-<p>我们定义子树$T\subset T_0$为任何可以通过对$T_0$剪枝得到的树，也就是，压缩任意数目的中间（非终止）结点。我们用$m$表示终止结点，其中结点$m$表示区域$R_m$。令$\vert T\vert $为$T$中终止结点的个数。令
-<script type="math/tex; mode=display">
-\begin{align}
-N_m&=\#\{x_i\in R_m\}\\
-\hat c_m&=\frac{1}{N_m}\sum\limits_{x_i\in R_m}y_i\\
-Q_m(T)&=\frac{1}{N_m}\sum\limits_{x_i\in R_m}(y_i-\hat c_m)^2
-\end{align}
-\qquad (9.15)
-</script>
-定义复杂度代价准则
-<script type="math/tex; mode=display">
-C_\alpha(T)=\sum\limits_{m=1}^{\vert T\vert}N_mQ_m(T)+\alpha\vert T\vert\qquad (9.16)
-</script>
-想法是对于每个$\alpha$,寻找子树$T_\alpha\subset T_0$使得$C_\alpha(T)$最小化。调整参数$\alpha\ge 0$调整树的规模和它对数据拟合的成都之间的平衡。较大的$\alpha$值导致小规模的树$T_\alpha$,对于较小的$\alpha$情况反过来了。这种记号表明，当$\alpha=0$时，解为全树$T_0$.我们下面讨论怎么自适应地选择$\alpha$.</p>
-<p>对于每个$\alpha$,可以找到唯一最小的子树$T_\alpha$使得$C_\alpha(T)$最小化。为了寻找$T_\alpha$我们采用weakest link pruning：逐步压缩在$\sum_mN_mQ_m(T)$中单节点增长最小的中间结点，直到我们得到单结点（根）的树。这给出了子树的（有限）序列，而且可以证明这条序列一定包含$T_\alpha$.更多细节见Breiman等人（1984）或者Ripley（1996）年的工作。$\alpha$的估计可以通过五折或者十折交叉验证得到：我们选择$\hat\alpha$使得交叉验证平方和最小。我们最终的树为$T_{\hat \alpha}$</p>
-<h2 id="_3">分类树<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>如果目标是结果取值为 $1,2,\ldots,K$ 的分类问题，则在树的算法中唯一需要改变的是关于分离结点以及剪枝的准则。对于回归我们用 (9.15) 式定义的平方误差结点纯度，但是这对于分类便不适合了。在结点$m$,用 $N_m$ 个观测值表示区域 $R_m$，令
-<script type="math/tex; mode=display">
-\hat p_{mk} = \frac{1}{N_m}\sum\limits_{x_i\in R_m}I(y_i=k)
-</script>
-类别$k$的观测在结点$m$处的比例。我们将结点$m$处的观测划分为类别$k(m)=\mathrm{arg\; max}_k\hat p_{mk}$，结点$m$处最主要的类别。不同衡量结点纯度$Q_m(T)$的方法包括如下：
-<script type="math/tex; mode=display">
-\begin{align}
-\text{误分类误差：}& \frac{1}{N_m}\sum_{i\in R_m}I(y_i\neq k(m))=1-\hat p_{mk(m)}\\
-\text{Gini指数：}&\sum_{k\neq k'}\hat p_{mk}\hat p_{mk'}=\sum_{k=1}^K\hat p_{mk}(1-\hat p_{mk})\\
-\text{交叉熵或者偏差：}&-\sum_{k=1}^K\hat p_{mk}\mathbf{log} \hat p_{mk}
-\end{align}
-\qquad (9.17)
-</script>
-对于两个类别，如果$p$是第二类的比例，则这三个衡量指标分别为$1-max(p,1-p), 2p(1-p)$以及$-p\mathrm{log}p-(1-p)\mathrm{log}(1-p)$.图9.3 画出了它们的函数曲线。这三者都类似，但是交叉熵和Gini指数是可微的，因此更加适合数值优化。比较（9.13）和（9.15）,我们看到我们需要由分离结点$m$得到的两个子节点的观测数$N_{m_L}$和$N_{m_R}$来对结点纯度赋予权重。</p>
-<p><img alt="" src="../../img/09/fig9.3.png" /></p>
+<p>举个例子，图9.9显示了函数$(x-0.5)_+, (0.5-x)_+$的图象。</p>
+<p><img alt="" src="../../img/09/fig9.9.png" /></p>
 <blockquote>
-<p>图9.3 两类别分类的结点纯度关于类别2比例$p$的函数。交叉熵已被缩放使能过点（0.5,0.5）</p>
+<p>图9.9. MARS采用的基函数$(x-t)_+$(实心橘黄色)和$(t-x)_+$(蓝色虚线)</p>
 </blockquote>
-<p>另外，交叉熵和Gini指数比误分类率对结点概率的改变更加敏感。举个例子，在每个类别都有400个观测的两个类别的问题中（记为（400,400）），假设一个分割得到得到结点（300,100）和结点（100,300），而另外一个分割得到结点（200,400）和结点（200，0）。两个分割过程的误分类误差率都是0.25，但是第二个分割产生一个纯结点，似乎更好一些。对于第二个分割，Gini指数和交叉熵都更低一点。基于这个原因，当生成一棵树时应该使用Gini指数或者交叉熵中的一个。为了引导复杂度代价剪枝，三种衡量指标的任意一个都可以使用，但是一般地是采用误分类误差率。</p>
-<p>Gini指数可以用两种方式来解读。与其将观测值划分到结点的主要类别中，我们可以以一定概率$\hat p_{mk}$将它们划分到类别$k$。于是该结点的这条规则的训练误差率是$\sum_{k\neq k&rsquo;}\hat p_{mk}\hat p_{mk&rsquo;}$——Gini指数。类似地，如果我们对类别$k$的观测编码为1，而对其它的观测编码为0，则该结点的0-1响应变量的方差为$\hat p_{mk}(1-\hat p_{mk})$.将$k$个类别的全部相加再一次得到Gini指数。</p>
+<p>每个函数是分段线性的，在值$t$处有一个结点。用第五章的术语说它们是线性样条。在下面的讨论中我们将这两个函数称为反射对(reflected pair)。想法是，对于每个输入变量$X_j$，将该输入变量的所有观测值作为结点。因此，基函数集合为</p>
+<p>
+<script type="math/tex; mode=display">
+{\cal C}=\{(X_j-t)_+,(t-X_j)_+\}_{t\in\{x_{1j},x_{2j},\ldots,x_{Nj}\},j=1,2,\ldots,p}\qquad (9.18)
+</script>
+</p>
+<p>如果所有的输入变量的观测值都不同，则总共有$2Np$个基函数。注意到尽管每个基函数仅仅取决于单个的$X_j$，举个例子，$h(X)=(X_j-t)_+$，但还是被看成是整个输入空间$R^p$中的函数。</p>
+<p>建立模型的策略类似向前逐步线性回归，但是不是使用原始输入，允许使用集合$\cal C$中的基函数及其基函数间的乘积。因此模型有如下形式</p>
+<p>
+<script type="math/tex; mode=display">
+f(X)=\beta_0+\sum\limits_{m=1}^M\beta_mh_m(X)\qquad (9.19)
+</script>
+</p>
+<p>其中每个$h_m(X)$是 $\cal C$ 中的基函数，也可能是两个或者更多这样基函数的乘积。</p>
+<p>给定$h_m$，通过最小残差平方和来估计系数$\beta_m$，也就是，通过标准线性回归。然而，函数$h_m(x)$的构造是“真正的艺术”。在我们的模型中以常数函数$h_0(X)=1$开始，集合$\cal C$中的所有函数都是候选函数。图9.10说明了这一过程</p>
+<p><img alt="" src="../../img/09/fig9.10.png" /></p>
+<blockquote>
+<p>图9.10. MARS向前建模的过程示意图。左边是已经在模型中的基函数：初始时，是常值函数$h(X)=1$。右图中是所有考虑加进模型的候选基函数。这些候选基函数是如图9.9所示的成对分段线性基函数，其中结点$t$为每个输入变量$X_j$的所有观测值$x_{ij}$。在每一步，我们考虑模型中的基函数和候选反射对间的所有乘积。将使得残差下降最多的乘积加进当前模型中。图中显示了这个过程的前三步，被选择的函数用红色标出。</p>
+</blockquote>
+<p>在每一步我们将模型集合$\cal M$中函数$h_m$的与$\cal C$中某个反射对的所有乘积看成是新的基函数。我们往模型$\cal M$中加入如下形式的项，该项使得训练误差有最大下降。</p>
+<p>
+<script type="math/tex; mode=display">
+\hat\beta_{M+1}h_\ell(X)\cdot (X_j-t)_++\hat\beta_{M+2}h_\ell(X)\cdot(t-X_j)_+,h_\ell\in \cal M
+</script>
+</p>
+<p>这里$\hat\beta_{M+1}$和$\hat \beta_{M+2}$是由最小二乘估计的系数，和模型中其他的$M+1$个系数一样。接着使得训练误差有最大下降的乘积被加入到模型中，这个过程不断继续直到模型集合$\cal M$中项的个数达到预设的最大值。</p>
+<p>举个例子，在第一步我们考虑往模型中加入形如$\beta_1(X_j-t)_++\beta_2(t-X_j)_+;t\in\{x_{ij}\}$的函数，因为乘以常数仅仅得到函数本身。假设最优选择为$\hat\beta_1(X_2-x_{72})_++\hat\beta_2(x_{72}-X_2)_+$。则这个基函数对加入到模型$\cal M$中，并且在下一步我们考虑加入如下形式的乘积对</p>
+<p>
+<script type="math/tex; mode=display">
+h_m(X)\cdot(X_j-t)_+\text{     and    }h_m(X)\cdot (t-X_j)_+,t\in\{x_{ij}\}
+</script>
+</p>
+<p>其中对于$h_m$我们有如下选择
+<script type="math/tex; mode=display">
+\begin{align}
+h_0(X)&=1\\
+h_1(X)&=(X_2-x_{72})_+\\
+h_2(X)&=(x_{72}-X_2)_+
+\end{align}
+</script>
+</p>
+<p>第三个选择得到形如$(X_1-x_{51})_+\cdot (x_{72}-X_2)_+$的函数，如图9.11所示。</p>
+<p><img alt="" src="../../img/09/fig9.11.png" /></p>
+<blockquote>
+<p>图9.11. 函数$h(X_1,X_2)=(X_1-x_{51})_+\cdot (x_{72}-X_2)_+$，从两个分段线性的MARS基函数相乘得到。</p>
+</blockquote>
+<p>这个过程的最后我们有形如(9.19)的大模型。这些模型一般对数据过拟合，所以应用向后删除过程。每一步中，删掉的项使得残差平方和增长最小，得到每个$\lambda$（项的个数）下的最优模型的估计$\hat f_\lambda$。可以采用交叉验证来估计最优的$\lambda$，但是为了节省计算，MARS过程采用的是广义交叉验证。广义交叉验证准则定义为
+<script type="math/tex; mode=display">
+GCV(\lambda)=\frac{\sum_{i=1}^N(y_i-\hat f_\lambda(x_i))^2}{(1-M(\lambda)/N)^2}\qquad (9.20)
+</script>
+$M(\lambda)$是模型中有效参数的个数：它等于模型中项的个数，加上在选择最优结点位置的参数个数。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>下面看一下如何在R中实现CART算法，采用rpart包来完成，下面是一个很简单的例子。</p>
-<p>library(rpart)</p>
-<p>library(rpart.plot)</p>
-<p>fit &lt;- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)</p>
-<p>rpart.plot(fit)</p>
-<p>最终，我们得到
-<img alt="" src="../../img/09/ex_CART.png" /></p>
+<p class="admonition-title">weiya 注</p>
+<p>7.10节中也有广义交叉验证的讨论。在那里，是针对平方误差损失下的线性拟合而言的。线性拟合方法可以写成<script type="math/tex; mode=display">\mathbf{\hat y=Sy}\qquad (7.50)</script>
+</p>
 </div>
-<h2 id="_4">其他的问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h3 id="_5">类别型预报变量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>当对一个有着$q$个可能的无次序值的预报变量，则将这$q$个值分成两块有$2^{q-1}-1$种可能的划分，对于大的$q$值，计算变得很困难。然而，输出为0-1时，计算可以简化。我们根据落入类别1的比例对预报变量的类别进行排序。然后把预报变量看成是有序预报变量进行划分。可以证明这给出了在交叉熵或者Gini指数情形下$2^{q-1}-1$种可能分割的最优分割。这个结果对与定量输出和平方误差损失也一样成立——通过增加输出的均值对类别进行排序。尽管很直观，但是这些断言的证明不是很简单。二值输出的证明由Breiman等人（1984）和Ripley(1996)给出；定量输出的证明可以在Fisher（1958）的工作中找到。对于多重类别的输出，没有这样的简化，尽管已经提出不同的近似（Loh和Vanichsetakul,1988）</p>
-<p>这个划分算法趋向于偏爱有多个层次$q$的类别型预报变量；划分的种类关于$q$呈指数增长，而且我们有更多的选择，我们更有可能招待一个对于当前数据好的方法。如果$q$很大，这导致严重的过拟合，而且类似的变量应该被避免。</p>
-<h3 id="_6">损失矩阵<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p>在分类问题中，某些类别的误分类的后果会比其他类别的误分类后果要严重。举个例子，当某人实际上会发生心脏病而预测他/她不会发生心脏病比反过来的情形要糟糕。为了说明这一点，我们定义$K\times K$的损失矩阵$\mathbf L$,其中$L_{kk&rsquo;}$为将类别$k$的观测划分为$k&rsquo;$的观测产生的损失。一般地，对于正确的分类不会带来损失，也就是$L_{kk}=0\;\forall k$.为了将损失结合到模型过程中，我们可以将Gini指数修改成$\sum_{k\neq k&rsquo;}L_{kk&rsquo;}\hat p_{mk}\hat p_{mk&rsquo;}$;这个可以成为由于随机规则引起的期望损失。这对于多重类别的情形也成立，但是对于两个类别的情形没有影响，因为$\hat p_{mk}\hat p_{mk&rsquo;}$的系数为$L_{kk&rsquo;}+L_{k&rsquo;k}$.对于两个类别的情形更好的方式是对类别$k$的观测赋予权重$L_{kk&rsquo;}$. 这个可以在多重类别情形下使用仅仅当关于$k$的函数$L_{kk&rsquo;}$不依赖$k&rsquo;$.观测的权重也可以同偏差一起使用。观测权重的影响是去更改类别的先验概率。在终止结点上，经验贝叶斯规则表明我们划分成类别$k(m)=\mathrm{arg\; min_k}\sum_\ell L_{\ell k}\hat p_{m\ell}$</p>
-<h3 id="_7">缺失预报变量的值<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p>假设我们的数据在部分或全部变量中有一些缺失的预报变量的值。我们可能丢弃含有缺失数据的观测，但是这会导致训练集严重的消耗。另外我们或许试图填补缺失数据，如用非缺失观测的均值来填补。对于基于树的模型，有两种更好的方式。第一种是应用到类别型预报变量上：我们简单地新建一个“缺失”的类别。从这里我们可能发现含缺失值的观测在某些指标上的表现与其他不含缺失值的表现有不同。第二种更一般的方式是构造代理变量。当对一个分割考虑一个预报变量，我们仅仅考虑该变量未缺失的观测。选择好最优的（主要的）预报变量和分割点，我们构造代理预报变量和分离点的列表。第一个代理是最好模拟由初次分割得到的训练数据分割的预报变量和对应的分离点。第二代理是模仿的第二好的预报变量和对应的分离点，以此类推。当在训练阶段或者预测阶段使得观测在树中下降，我们依次采用代理分割，如果最初的分割预报变量缺失。代理分割探索预报变量之间的相关性来试图减轻丢失数据的影响。丢失预测变量和其他预测变量的相关度越高，则由于丢失数据造成信息丢失的影响越小。丢失数据的一般问题将在9.6节中讨论。</p>
-<h3 id="_8">为什么二值分割？<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>与其在每一步对每个结点只分割成两个群体（如上面讨论的），我们或许考虑多重分割成多于两个群体。尽管这个在某些情况下是有用的，但不是一个好的一般策略。问题在于多重分割将数据分得太快，以至于在下一层次没有充分多的数据。因此我们仅仅当需要的时候采用这种分割。因为多重分割可以通过一系列的二值分割实现，所以后者更好一点。</p>
-<h3 id="_9">其他建树的过程<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<p>上面的讨论集中在CART(分类和回归树)树的实现。其他流行的方法是ID3和后来的版本，C4.5和C5.0（Quinlan, 1993). 程序的早期版本只限制类别型变量，而且采用自上而下没有剪枝的规则。经过最近的发展，C5.0已经变得与CART很相似。C5.0独有的最显著的特征是用于导出规则集的方案。树建成之后，定义终止结点的分割规则有时可以被简化：这就是，不用改变落入结点里面的观测的子集删掉一个或多个条件。最终我们得到定义每个终止结点的简化规则集；这些不再遵循树的结构，但是它们的简化可能使得它们更加吸引人们使用。</p>
-<h3 id="_10">线性组合分割<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<p>与其将分割限制成$X_j\le s$的形式，可以允许线性组合形式的分割$\sum a_jX_j\le s$.优化权重$a_j$和分离点$s$使得有关的准则最小（比如Gini指数）。尽管这个可以提高树的预测能力，但这也会损害解释性。计算上，分离点搜索的分离性妨碍了对权重的光滑优化。更好地结合线性组合分割的方式是在专家系统混合模型中，这是9.5节的主题。</p>
-<h3 id="_11">树的不稳定性<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<p>树的一个主要问题是它们的高方差性。经常在数据中的一个小改动导致完全不同的分割点序列，使得解释不稳定。这种不稳定的主要原因是这个过程的层次性：上一个分割点的误差会传递到下面所有的分割点上。可以试图采取更加稳定的分离准则在某种程度上减轻这一影响，但是固有的不稳定性没有移除。这是从数据中估计一二简单的、基于树结构的代价。Bagging（8.7节）对很多树进行平均来降低方差。</p>
-<h3 id="_12">缺乏光滑性<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<p>树的另一个限制是预测表面缺乏光滑性，如在图9.2中的右下图中那样。在0/1损失的分类问题中，这不会有太大的损伤，因为类别概率估计的偏差的影响有限。然而，在回归问题中这会降低效果，正常情况下我们期望潜在的函数是光滑的。9.4节介绍的MARS过程可以看出是为了减轻CART缺乏光滑性而做的改动。</p>
-<h3 id="_13">捕捉加性结构的困难<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
-<p>另外一个树的问题是对加性结构建模的困难。举个例子，在回归问题中，假设$Y=c_1I(X_1&lt;t_1)+c_2I(X_2&lt;t_2)+\varepsilon$,其中$\varepsilon$是0均值噪声。则二叉树会在$t_1$附近对$X_1$做第一次分割。为了捕捉加性结构，下一层两个结点都需要在$t_2$处对$X_2$分割。在充足数据情况下这个或许可以发生，但是这个模型没有给予特别鼓励来找到这一结构。如果有10个而不是2个加性影响，需要花费很多偶然的分割来重造这个结构，并且在估计的树中，通过数据分析来识别它会变得非常困难。原因再一次可以归结为二叉树的结构，既有优点也有不足。为了捕捉加性结构，MARS方法（9.4节）再一次放弃树的结构。</p>
-<h2 id="_14">垃圾邮件的例子（继续）<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
-<p>前面我们已经对spam例子应用了分类树的方法。我们运用偏差来建树，用误分类率来剪枝。图9.4显示了根据10个复制数据的10折交叉验证误差率作为剪枝树的大小的函数，以及$\pm2$倍的均值的标准误差。测试误差曲线用橘黄色来表示。注意到交叉验证误差率是通过$\alpha$的序列而非树的大小来索引的；对于不同的复制数据建的树，一个$\alpha$可能对应不同的大小。在图的底部所示的大小指的是剪枝的原始树的大小$\vert T_\alpha\vert$.</p>
-<p><img alt="" src="../../img/09/tab9.3.png" /></p>
+<p>GCV近似为<script type="math/tex; mode=display">
+GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\qquad (7.52)</script>
+$trace(\mathbf S)$的值是有效参数个数。</p>
+<p>一些理论的证明和实际的拟合结果表明在分段线性回归中每选择一个结点，应当增加三个有效参数。所以，如果模型中含有$r$个线性独立基函数，并且在向前过程中选择$K$个结点，则有$M(\lambda)=r+cK$，其中$c=3$。（当模型限定为加性时，$c=2$）。在向后删除变量的过程中，计算$GCV(\lambda)$，选择使得$GCV(\lambda)$最小的模型。</p>
+<p>为什么是这些分段线性函数，为什么是这个特定的模型策略？图9.9中函数的关键性质是它可以局部计算；在它们的定义域中有一部分为0。当它们乘起来，如图9.11，非零的结果仅仅占特征空间的一小部分，当函数的公共部分为非零。这样便可以非常简约地建立起回归曲面（如图9.11），只需要采用局部非零的部分。这是很重要的，因为在高维问题中应该小心地使用参数，因为它们很快就会用光。其它比如多项式的基函数会在任意地方产生非零乘积，而很多非零乘积也不会起作用（相当于浪费了参数）。</p>
+<p>这种分段线性基函数的第二个重要优点是关于计算的。考虑$\cal M$中的函数和输入变量$X_j$的 $N$个反射对的乘积。似乎需要拟合$N$个单输入的线性回归模型，每个需要$O(N)$的操作，总共需要$O(N^2)$的操作。然而，我们利用分段线性函数的简单形式的特点，首先用最右端结点的反射对。当这个结点每次依次向左移动一个位置，基函数在结点左边的值为0，在右边部分值为常数。每次移动后会以$O(1)$的操作更新拟合值。所以我们仅仅需要$O(N)$的操作来遍历每个结点。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注<p>对于单输入线性回归
+<script type="math/tex; mode=display">
+Y_i\sim h_{\ell}(X)(X_{ij}-t_r), \; r=1,2,\ldots, N; i=1,2,\ldots, N
+</script>
+不考虑截距的情况下，记
+<script type="math/tex; mode=display">
+\hat \beta^{(r)} = (\sum\limits_{i=1}^Nh_\ell(X)^2(X_{ij}-t_r)^2)^{-1}(\sum\limits_{i=1}^Nh_\ell(X)(X_{ij}-t_r)Y_i)=W_rZ_r
+</script>
+计算量为$O(N)$（考虑截距时，多了$O(1)$的2阶矩阵的求逆操作，故也是$O(N)$的计算量）。
+若首先从最右端的结点开始计算，则
+<script type="math/tex; mode=display">
+\hat\beta^{(r)} = (W_{r+1}+h_\ell^2(X)(X_{r+1,j}-t_r)^2)^{-1}(Z_{r+1}+h_\ell(X)(X_{r+1,j}-t_r)Y_{r+1})
+</script>
+即仅需要$O(1)$的更新操作，则原来$O(N^2)$($N$个$O(N)$)的操作采用这种更新策略只需要$O(N)$的计算量。</p>
+</p>
+</div>
+<p>MARS中向前建模的策略是层次性的，因为多重乘积是从已经在模型中的项来建立的。举个例子，仅仅当4重乘积中的一个3重乘积已经在模型中，才会加入该四重乘积。这里的哲学是，高阶交叉项仅仅当其中的低阶项存在才会存在。这个需求不是正确的，但是是合理的假设，并且避免了在可行选择数目呈指数增长的空间中的搜索。</p>
+<p>在模型的项构造时有一个约束：每个输入变量在一个乘积中至多可以出现一次。这预防了输入变量的高阶幂的形成，这导致参数空间的边界会有剧烈的增大或下降。这样的幂次可以通过分段线性函数以一种更稳定的方式来近似。</p>
+<p>MARS过程中的一个有用选项是在交叉项的阶数上设置上界。举个例子，可以设置上界为2，允许成对的分段线性函数的乘积，但是不允许3次或更高次的乘积。这个可以帮助最终模型的解释。含有上界得到加性模型。</p>
+<h2 id="_1">垃圾邮件的例子（继续）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>我们对垃圾邮件的数据应用MARS，本章前面已经分析了这个数据集。为了增强解释性，我们限制MARS到2阶交叉项。尽管响应变量是取值为两个类别的类别型变量，但我们还是采用平方误差损失函数（见9.4.3节）。图9.12显示了模型中测试误差误分类率作为秩（独立基函数的个数）的函数。误差率约为5.5%，这比前面讨论的广义加性模型的误差率(5.3%)稍高一点。GCV选择大小为60的模型，近似给出了最优表现的最小模型。通过MARS找到的主要交叉项涉及(ch\$, remove),(ch\$, free)和(hp, CAPTOT)。然而，这些交叉项没有提高广义加性模型中的表现。</p>
+<p><img alt="" src="../../img/09/fig9.12.png" /></p>
 <blockquote>
-<p>表9.3. 垃圾邮件数据：测试数据上17个结点（通过交叉验证选出来的）树的混淆比例。总的误差率为9.3%。</p>
+<p>垃圾数据：MARS过程的测试误差误分类率，作为模型的秩（独立基函数的个数）的函数。</p>
 </blockquote>
-<p><img alt="" src="../../img/09/fig9.4.png" /></p>
-<blockquote>
-<p>图9.4. spam例子的结果。蓝色曲线是10折交叉验证误分类率的估计作为树大小的函数的曲线。最小值发生在含有17个终止结点的树处（采用“one-standard-error”规则）。橘黄色区显示测试误差，其非常接近地沿着CV误差。交叉验证由如上所示的$\alpha$值索引。下面显示的树的大小指的是由$\alpha$索引的原始树的大小$\vert T_\alpha\vert$。</p>
-</blockquote>
-<p>误差在大概17个终止结点处变平，给出了图9.5的剪枝树。在树的13个不同特征中，有11个与加性模型中16个显著特征重合（表9.2）.表9.3显示的整体误差率比表9.1显示的加性模型大概高出50%.</p>
-<p><img alt="" src="../../img/09/fig9.5.png" /></p>
-<blockquote>
-<p>图9.5. spam例子的剪枝树。分离变量在树枝上用蓝色显示，分类结果在每个结点处显示。在终止结点处的数目表示在测试数据上的错误分类率。</p>
-</blockquote>
-<p>考虑树的最右边分支，如果超过5.5%的字符是\$符号则将分到右边分支并且显示为垃圾邮件（spam）的警告。然而，另外如果词语hp经常出现，则很可能是公司事务并且我们分成email。在测试集里的所有22个情形满足正确分类的准则。如果第二个条件不满足，而且重复出现的大写字母平均长度CAPAVE大于2.9，则我们分成spam类。在227个测试情形中，只有7个被错误分类。</p>
-<p>在医学分类问题中，sensitivity和specificity经常用来衡量一个准则。它们按如下定义：</p>
-<p>Sensitivity：给定真实状态为患病预测为患病的概率</p>
-<p>Specificity：给定真实状态为未患病预测为未患病的概率</p>
-<p>如果我们将spam和email看成有无患病，则从表9.3我们有
+<h2 id="_2">例子（模拟数据）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>这里我们在三种不同的情形下验证MARS的表现。$N=100$个观测，预测变量$X_1,X_2,\ldots,X_p$和误差$\varepsilon$有独立标准正态分布。</p>
+<h3 id="1">情形1：<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>数据产生模型为
+<script type="math/tex; mode=display">
+Y=(X_1-1)_++(X_1-1)_+\cdot (X_2-.8)_++0.12\cdot\varepsilon\qquad (9.21)
+</script>
+</p>
+<p>选择噪声标准误差0.12使得信噪比约为5.我们称这个为张量积情形；乘积项给出类似图9.11的表面。</p>
+<h3 id="2">情形2：<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>同情形1，但是总共$p=20$个预测变量，也就是，有18个独立于响应变量的输入。</p>
+<h3 id="3">情形3：<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>有神经网络的结构：
 <script type="math/tex; mode=display">
 \begin{align}
-Sensitivity & = 100\times\frac{33.4}{33.4+5.3}=86.3\%\\
-Specificity &  = 100\times \frac{57.3}{57.3+4.0}=93.4\%
+\ell_1 &= X_1+X_2+X_3+X_4+X_5\\
+\ell_2 &= X_6-X_7+X_8-X_9+X_{10}\\
+\sigma(t) &=1/(1+e^{-t})\\
+Y&=\sigma(\ell_1)+\sigma(\ell_2)+0.12\cdot \varepsilon
 \end{align}
+\qquad (9.22)
 </script>
-在这个分析中我们使用了相等的损失。和之前一样令$L_{kk&rsquo;}$为将类别$k$预测成类别$k&rsquo;$对应的损失。通过改变损失$L_{01}$和$L_{10}$的相对大小，我们增大该规则的敏感性降低该规则的特异性，或者反过来。在这个例子中，我们想要避免将好的email预测成spam，因此我们希望确定性非常高。我们可以通过设置$L_{01}&gt;1,L_{10}=1$来实现。如果spam的比例$\ge L_{01}/(L_{10}+L_{01})$，则在每个终止结点处的贝叶斯规则将此结点归类为类别1，否则归为类别0.受试者工作特征曲线（ROC）是用于评估敏感性和特异性之间折中的常用概述。当我们改变分类规则的参数得到敏感性关于特异性的图像。在0.1和10之间改变损失$L_{01}$，然后对图9.4中选定的17个结点的贝叶斯规则，得到如图9.6所示的ROC曲线。每条曲线靠近0.9的标准误差近似为$\sqrt{0.9(1-0.9)/1536}=0.008$，因此差别的标准误差大概为0.01。我们为了实现接近100%的特异性，敏感性大致降低到了50%.曲线下面的面积是通常使用的定量概述；在曲线的两端线性扩张使得它在[0,100]上有定义，面积大概为0.95.为了比较，我们也画出了在9.2节对这些数据进行GAM模型拟合的ROC曲线；它给出了对于任意损失更好的分类规则，面积为0.98.</p>
-<p><img alt="" src="../../img/09/fig9.6.png" /></p>
-<blockquote>
-<p>图9.6. 对spam数据应用分类规则拟合的ROC曲线。越靠近东北角落的曲线表示越好的分类器。这种情形下，GAM分类器比树模型更好。加权树比未加权树在更高特异性情况下有更好的敏感性。图例中的数字表示曲线下面的面积。</p>
-</blockquote>
-<p>与其仅仅修改结点处的贝叶斯规则，在建树的时候将不相等的损失进行全面考虑更好，正如我们在9.2节做的那样。当只有两个类别0和1时，通过对类别$k$的观测赋予权重$L_{k,1-k}$将损失考虑到建树的过程中。这里我们选择$L_{01}=5,L_{10}=1$而且像前面一样拟合同样大小的树（$\vert T_\alpha\vert=17$）.这棵树在高特异性下比原树有更高的敏感性，但是在其它极端情况下表现得更差。前几层的分割与原树是一样的，但是接着就变不同了。因为这个应用通过$L_{01}=5$建的树显然好于原来的树。</p>
-<p>上面使用的ROC曲线下的面积有时被称作$c$统计量。有趣地是，对于两个群体中预测得分差异的中位数（Hanley和McNeil，1982），可以证明ROC曲线下的面积等于Mann-Whitney U统计量（或者 Wilcoxon 秩和检验）.当额外的预报变量加入到标准模型中时衡量该预报变量的贡献度，$c$统计量或许不是一个有信息的衡量。新预报变量可以对模型偏差改变很显著，但是$c$统计量却只有很小的增大。举个例子，从表9.2中移除高显著项george会导致$c$统计量的增长小于0.01.相反地，基于个体样本基来检查额外的预测变量怎样改变分类是有用的。这点将在Cook(2007)中进行充分讨论。</p>
+</p>
+<p>情形1和2完美地适合MARS，而情形3包含高阶交叉项，可能很难用MARS来近似。我们对每个模型跑了5个模拟，并且记录结果。</p>
+<p>情形1中，MARS一般几乎完美地找到模型。情形2中，找到正确的结构但是找到一些涉及其它预测变量的多余项。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注<p>自己编写R程序对这三种情形进行模拟，代码可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/MARS/simulation.R">这里</a>找到，模拟结果也表明情形1和情形2能够很好地捕捉到模型结构，而很难对情形3进行建模。</p>
+</p>
+</div>
+<p>令$\mu(x)$为 $Y$的真实均值，并且令
+<script type="math/tex; mode=display">
+\begin{align}
+MSE_0&=ave_{x\in Test}(\bar y-\mu(x))^2\\
+MSE&= ave_{x\in Test}(\hat f(x)-\mu(x))^2
+\end{align}
+\qquad (9.23)
+</script>
+</p>
+<p>这些表示了常值模型和拟合MARS模型的均方误差，通过对$x$的1000次测试值进行平均来估计。表9.4显示了每个情形中模型误差或者$R^2$的下降比例。</p>
+<p>
+<script type="math/tex; mode=display">
+R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
+</script>
+</p>
+<p>显示的值是五次模拟的均值和标准差。情形2中的因为了加入无用的输入略微降低了MARS的效果；在情形3中表现得很差。</p>
+<p><img alt="" src="../../img/09/tab9.4.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">weiya注<p>利用<code>earth</code>包拟合出的MARS模型，编写R代码进行测试，结果表明，对于情形1和情形2的$R^2$而言，与书中的结果一致；而情形3则相差较多，在我的程序中为负值，也就是表明情形3的MARS还不如利用均值直接估计。代码可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/MARS/simulation.R">这里</a>找到。</p>
+</p>
+</div>
+<h2 id="_3">其他的问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="mars">MARS用于分类<a class="headerlink" href="#mars" title="Permanent link">&para;</a></h3>
+<p>MARS方法和算法可以拓展到处理分类问题。已经提出了几种策略。</p>
+<p>对于两个类别，可以将输出编码为0/1，并且将其看成是回归问题；我们在spam例子中已经这样做了。对于多余两个类别的情形，可以采用4.2节描述的指示响应变量的方法。用0/1来编码$K$个响应类别，接着采用多重响应的MARS回归。对于后者我们对所有的响应变量采用共同的基函数集合。分类使得类别有最大的预测向量的值。然而，这种方法存在潜在的掩盖问题，正如4.2中描述的那样。一般更好的方式是在12.5节讨论的optimal scoring.</p>
+<p>Stone等人（1997）发展了MARS的混合版本PolyMARS，是为了处理分类问题特别设计的。它采用在4.4节描述的多重逻辑斯蒂回归框架。以类似MARS的向前逐步方式来建立模型，但是在每一步多多变量对数似然作二次近似来寻找下一个基函数对。一旦找到，则通过极大似然扩大模型，并且这个过程重复进行。</p>
+<h3 id="marscart">MARS和CART的关系<a class="headerlink" href="#marscart" title="Permanent link">&para;</a></h3>
+<p>尽管它们看起来相当不同，但是MARS和CART策略实际上有很强的相似性。假设我们进行了MARS过程，并且作出下面改变：</p>
+<ul>
+<li>用阶跃函数$I(x-t&gt;0)$和$I(x-t\le 0)$来替换分段线性基函数。</li>
+<li>当模型中的项与候选项相乘，用交叉性来代替，因此对于后续的交叉项不是可行的。</li>
+</ul>
+<p>有了这些改变，MARS向前过程与CART构造树的算法是一样的。乘上一对反射阶跃函数等价于在阶跃点分割开。第二条限制表明一个结点可能不会被分割成多次，因此得到受欢迎的CART模型的二叉树表示。另一方面，也是这条限制使得CART很难对加性结构进行建模。MARS放弃树结构并且得到捕捉加性影响的能力。</p>
+<h3 id="_4">混合输入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>MARS可以用一种自然的方式处理混合预测变量——定量和定性变量，这非常像CART。对于一个定性变量，MARS考虑将该定性变量的类别分成两块的所有可能的二叉分割。每个这样的分割产生成对分段常值基函数——关于两个类别集的指示函数。这个基对现在被看成和其他的一样，并且用它和其它已经在模型中的基函数来构造张量积。</p>
                 
                   
                 
@@ -3430,7 +3411,7 @@ Specificity &  = 100\times \frac{57.3}{57.3+4.0}=93.4\%
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../9.1 Generalized Additive Models/index.html" title="9.1 广义可加模型" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3439,19 +3420,19 @@ Specificity &  = 100\times \frac{57.3}{57.3+4.0}=93.4\%
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                9.1 广义可加模型
+                9.3 PRIM
               </span>
             </div>
           </a>
         
         
-          <a href="../9.3 PRIM(Bump Hunting)/index.html" title="9.3 耐心规则归纳法" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的系统混合" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                9.3 耐心规则归纳法
+                9.5 专家的系统混合
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

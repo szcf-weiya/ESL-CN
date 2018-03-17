@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/09 Additive Models, Trees, and Related Methods/9.3 PRIM(Bump Hunting)/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.6-Missing-Data/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>9.3 耐心规则归纳法 - ESL CN</title>
+        <title>9.6 缺失数据 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#93-prim" tabindex="1" class="md-skip">
+      <a href="#96" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                9.3 耐心规则归纳法
+                9.6 缺失数据
               </span>
             
           
@@ -1576,7 +1576,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.0 Introduction/index.html" title="9.0 导言" class="md-nav__link">
+    <a href="../9.0-Introduction/index.html" title="9.0 导言" class="md-nav__link">
       9.0 导言
     </a>
   </li>
@@ -1588,7 +1588,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.1 Generalized Additive Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
+    <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
       9.1 广义可加模型
     </a>
   </li>
@@ -1600,8 +1600,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.2 Tree-Based Methods(CART)/index.html" title="9.2 基于树的方法" class="md-nav__link">
+    <a href="../9.2-Tree-Based-Methods/index.html" title="9.2 基于树的方法" class="md-nav__link">
       9.2 基于树的方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-nav__link">
+      9.3 PRIM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.4-MARS/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
+      9.4 多变量自适应回归样条
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
+      9.5 专家的系统混合
     </a>
   </li>
 
@@ -1620,79 +1656,10 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        9.3 耐心规则归纳法
-      </label>
-    
-    <a href="index.html" title="9.3 耐心规则归纳法" class="md-nav__link md-nav__link--active">
-      9.3 耐心规则归纳法
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="垃圾邮件的例子（继续）" class="md-nav__link">
-    垃圾邮件的例子（继续）
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.4 MARS(Multivariate Adaptive Regression Splines)/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
-      9.4 多变量自适应回归样条
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.5 Hierarchical Mixtures of Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
-      9.5 专家的系统混合
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.6 Missing Data/index.html" title="9.6 缺失数据" class="md-nav__link">
+    <a href="index.html" title="9.6 缺失数据" class="md-nav__link md-nav__link--active">
       9.6 缺失数据
     </a>
+    
   </li>
 
         
@@ -1702,7 +1669,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.7 Computational Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
+    <a href="../9.7-Computational-Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
       9.7 计算上的考虑
     </a>
   </li>
@@ -1714,7 +1681,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3007,26 +2974,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="垃圾邮件的例子（继续）" class="md-nav__link">
-    垃圾邮件的例子（继续）
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3038,7 +2985,7 @@
               
                 
                 
-                <h1 id="93-prim">9.3 PRIM<a class="headerlink" href="#93-prim" title="Permanent link">&para;</a></h1>
+                <h1 id="96">9.6 缺失数据<a class="headerlink" href="#96" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3053,40 +3000,29 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-03-12</td>
+<td>2017-03-13</td>
 </tr>
 </tbody>
 </table>
-<p>基于树的方法（用于回归）将特征空间分成盒状的区域，来试图将响应变量在每个盒子中尽可能不同。通过二叉树定义了盒子的分割规则与每个都相关，帮助我们的理解。</p>
-<p>耐心诱导方法(PRIM)也在特征空间中找到了盒子，但是它是寻找具有高的平均响应的盒子。因此它是在寻找目标函数的最大值，称为bump hunting。（如果需要最小值而非最大值，简单地用负的响应变量值来进行。）</p>
-<p>PRIM也区别于基于树的分割方法，因为盒子的定义不是通过二叉树来描述的。这使得规则集合的解释更加困难；然而，通过移除二叉树的限制，单个规则经常更加简单。</p>
-<p>PRIM中构造盒子的主要方法是自上而下，以包含所有数据的盒子开始。这个盒子沿着一个面被少量压缩，接着观测落在盒子外面被剔除掉。用于压缩的面的选择使得压缩过后，盒子均值最大的那个面。接着这个过程被重复，直到当前的盒子包含最小数目的数据点。</p>
-<p>这个过程在图9.7中进行了图示。在单位方格中200个数据点均匀分布。用颜色编码的图象表明当$0.5&lt;X_1&lt;0.8,0.4&lt;X_2&lt;0.6$时，响应变量$Y$取值1（红色），否则取值为0（蓝色）。这个面板显示了通过自上而下的剔除过程被逐步找到的盒子，在每一步剔除了剩余数据点中的$\alpha=0.1$.</p>
-<p><img alt="" src="../../img/09/fig9.7.png" /></p>
-<blockquote>
-<p>图9.7. PRIM算法的图解。有两个类别，用蓝色（类别0）和红色（类别1）的点来表示。这个过程以包含所有数据的长方形（黑色虚线）开始，接着沿着某条边剔除预定量的点，使得留在盒子中的点的均值最大。从左上图开始，显示了这个剔除序列，直到右下图中纯红色区域被隔离开。这个迭代次数由每张图上面的数字表示。</p>
-</blockquote>
-<p>图9.8显示了当盒子被压缩后，盒子中响应变量的均值。</p>
-<p><img alt="" src="../../img/09/fig9.8.png" /></p>
-<blockquote>
-<p>图9.8. 盒子中盒子的均值作为观测数目的函数。</p>
-</blockquote>
-<p>计算自上而下的序列之后，PRIM颠倒了这个过程，沿着任意边进行展开，如果这样的展开增大盒子均值的话。这称为pasting。因为自上而下的过程在每一步是贪婪的，这样的展开经常是可行的。</p>
-<p>这些步骤的结果是盒子的序列，每个盒子中含有不同数目的观测。交叉验证，并结合数据分析家的判断，来选择最优的盒子大小。</p>
-<p>用$B_1$记在第一步中找到的盒子的观测的指标。PRIM过程接着从训练集中移除$B_1$的观测，并且这两步的过程——先自下而上pasting，后自上而下剔除——在剩下的数据集中重复。整个过程重复若干次，得到盒子序列$B_1,B_2,\ldots,B_k$。每个盒子由涉及预测变量的子集的规则集
+<p>一个或多个输入特征的观测还有缺失值是很常见的。通常的方式是以某种方式来插补（填补）缺失值。</p>
+<p>然而，处理这个问题的第一个问题是如何确定缺失数据的机制是否使观测数据失真。大致地说，如果导致其遗漏的机制与其（未观测到的）值无关，则是随机丢失数据。更精确的定义由Little和Rubin(2002)给出。假设$\mathbf y$是响应变量，$\mathbf X$ 为$N\times p$的输入矩阵（某些值缺失）。用$\mathbf X_{obs}$记 $\mathbf X$中的观测值，并令$\mathbf{Z=(y,X),Z_{obs}=(y,X_{obs})}$。最后，如果$\mathbf R$为指示矩阵，如果$x_{ij}$缺失，则第$ij$个元素为1，否则为0，则如果$\mathbf R$的分布仅仅通过$\mathbf Z_{obs}$来依赖$\mathbf Z$，数据称为随机缺失（MAR）：
 <script type="math/tex; mode=display">
-(a_1\le X_1\le b_1)\text{ and } (b_1\le X_3\le X_2)
+Pr(\mathbf R\mid \mathbf Z,\theta) = Pr(\mathbf R\mid\mathbf Z_{obs}, \theta)\qquad (9.31)
 </script>
-来定义。PRIM过程的总结在算法9.3中给出。</p>
-<p><img alt="" src="../../img/09/alg9.3.png" /></p>
-<p>PRIM可以通过考虑所有预测变量的划分处理类别型变量，正如CART中一样。缺失值也通常以一种类似CART的方式进行处理。PRIM是为回归（定量响应变量）而设计的；两个类别的输出可以简单地编码成0和1来处理。没有简单的方式来同时处理$k&gt;2$个的类别的情形：一种方式是对每个类别和基准类别单独采用PRIM。</p>
-<p>PRIM与CART相比的优点是它的耐心(patience)。因为它的二值分割，CART快速地将数据分割开。假设等大小的分割，有$N$个观测情况下，在使用完数据之前，只能进行$log_2(N)-1$次分割。如果PRIM在每一步剔除掉训练点的$\alpha$（$\alpha$是个百分比），则在用完数据之前近似需要$-log(N)/log(1-\alpha)$次剔除步骤。举个例子，如果$N=128,\alpha=0.10$，则$log_2(N)-1=6$，而$-log(N)/log(1-\alpha)\approx 46$。考虑每一步需要整数个的观测，PRIM实际上仅仅可以剔除29次。在任何情形下，PRIM的能力更加耐心，这应该帮助自上而下的贪婪算法找到更好的解。</p>
-<h2 id="_1">垃圾邮件的例子（继续）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>我们对spam数据应用PRIM，对spam编码为1，对email编码为0.</p>
-<p>通过PRIM最初找到的两个盒子总结如下：</p>
-<p><img alt="" src="../../img/09/pic1.png" /></p>
-<p>盒子的支撑为观测值落入盒子的比例。第一个盒子是纯spam，并且大约包含15%的测试数据。第二个盒子包含10.6%的测试观测，其中92.6%为spam。加起来两个盒子包含数据的26%，以及大约97%的spam。接下来一些盒子（没有显示出来）相当小，仅仅包含数据的3%.</p>
-<p>预测变量按照重要性列出来。有趣的是在CART树中最上面的分割变量没有出现在PRIM的第一个盒子中。</p>
+这里$\theta$为 $\mathbf R$中任意参数。如果$\mathbf R$的分布不依赖观测数据或者缺失数据，则数据称为完全随机缺失（MCAR）：
+<script type="math/tex; mode=display">
+Pr(\mathbf R\mid \mathbf Z,\theta) = Pr(\mathbf R\mid \theta)\qquad (9.32)
+</script>
+MCAR是比MAR更强的假设：为了保证有效性，大部分的插补方法依赖 MCAR。</p>
+<p>举个例子，如果一个病人的测量没有被采用，是因为医生认为他病了，则这个观测不是MAR或者MACR。这种情形下，缺失数据的缺失举止导致我们的观测的训练数据得到真实总体扭曲的情形，这种情形下数据插补是很危险的。通常确定特使是否是MACR必须从数据收集的过程中的信息做出判断。对于类别型特征，诊断这个问题是把缺失作为一个新的类别“缺失”。接着对训练数据拟合我们的模型看看“缺失”这个类别是否预测了一些响应变量。</p>
+<p>假设特征完全随机缺失，有一系列方式可以处理：
+1. 丢掉含任意缺失的数据的观测
+2. 在训练阶段，依赖于具体学习算法来处理缺失数据
+3. 训练前插补所有缺失数据。</p>
+<p>方式（1）用在缺失数据相对较少的情形，其它情形应该避免使用。至于（2），CART是有效处理缺失数据的一个学习算法，通过代理分割(surrogate splits)（第9.2.4节）。MARS和PRIM采用类似的方式。在广义加性建模中，当在backfitting算法中对某特征的部分残差被光滑，忽略该给定输入特征的所有缺失观测，并且它们的拟合值设为0。因为拟合曲线均值为0（当模型包含截距时），这意味着对缺失的观测赋予平均的拟合值。</p>
+<p>对于大部分学习方法，插补方式（3）是必要的。最简单的策略是用该特征的非缺失数据的均值或中值进行插补。（注意到上面对广义加性模型的过程与这个类似。）</p>
+<p>如果特征至少有中等程度的依赖，可以通过在给定其他特征的情形下估计每个特征的预测模型，然后从模型中用预测对每个缺失数据进行插补。在选择插补特征的学习算法时，必须记住这个选择与从$\mathbf X$估计$\mathbf y$的方法不同。因此通常更倾向于灵活的，自适应的方法，甚至对于在$\mathbf X$上运用线性回归$\mathbf y$的最终目的。另外，如果在训练集中有许多缺失的特征值，学习算法自身要能够处理缺失的特征值。CART因此是插补的理想选择。</p>
+<p>插补之后，缺失数据一般视为实际观测的一样。这忽略了由于插补带来的不确定性，本身会对响应变量模型的估计和预测引入额外的不确定性。可以通过进行多重插补来衡量这种额外的不确定性，因此得到许多不同的训练集。对$\mathbf y$的预测模型可以对每个训练集进行拟合，并且可以评估训练集的方差。如果CART作为插补的工具，多重插补可以通过在对应的终止结点取样得到。</p>
                 
                   
                 
@@ -3118,7 +3054,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../9.2 Tree-Based Methods(CART)/index.html" title="9.2 基于树的方法" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的系统混合" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3127,19 +3063,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                9.2 基于树的方法
+                9.5 专家的系统混合
               </span>
             </div>
           </a>
         
         
-          <a href="../9.4 MARS(Multivariate Adaptive Regression Splines)/index.html" title="9.4 多变量自适应回归样条" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../9.7-Computational-Considerations/index.html" title="9.7 计算上的考虑" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                9.4 多变量自适应回归样条
+                9.7 计算上的考虑
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

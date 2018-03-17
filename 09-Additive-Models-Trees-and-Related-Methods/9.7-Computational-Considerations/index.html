@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/09 Additive Models, Trees, and Related Methods/9.4 MARS(Multivariate Adaptive Regression Splines)/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.7-Computational-Considerations/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>9.4 多变量自适应回归样条 - ESL CN</title>
+        <title>9.7 计算上的考虑 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#94-mars" tabindex="1" class="md-skip">
+      <a href="#97" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                9.4 多变量自适应回归样条
+                9.7 计算上的考虑
               </span>
             
           
@@ -1576,7 +1576,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.0 Introduction/index.html" title="9.0 导言" class="md-nav__link">
+    <a href="../9.0-Introduction/index.html" title="9.0 导言" class="md-nav__link">
       9.0 导言
     </a>
   </li>
@@ -1588,7 +1588,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.1 Generalized Additive Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
+    <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
       9.1 广义可加模型
     </a>
   </li>
@@ -1600,7 +1600,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.2 Tree-Based Methods(CART)/index.html" title="9.2 基于树的方法" class="md-nav__link">
+    <a href="../9.2-Tree-Based-Methods/index.html" title="9.2 基于树的方法" class="md-nav__link">
       9.2 基于树的方法
     </a>
   </li>
@@ -1612,8 +1612,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../9.3 PRIM(Bump Hunting)/index.html" title="9.3 耐心规则归纳法" class="md-nav__link">
-      9.3 耐心规则归纳法
+    <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-nav__link">
+      9.3 PRIM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.4-MARS/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
+      9.4 多变量自适应回归样条
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
+      9.5 专家的系统混合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.6-Missing-Data/index.html" title="9.6 缺失数据" class="md-nav__link">
+      9.6 缺失数据
     </a>
   </li>
 
@@ -1632,147 +1668,10 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        9.4 多变量自适应回归样条
-      </label>
-    
-    <a href="index.html" title="9.4 多变量自适应回归样条" class="md-nav__link md-nav__link--active">
-      9.4 多变量自适应回归样条
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="垃圾邮件的例子（继续）" class="md-nav__link">
-    垃圾邮件的例子（继续）
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="例子（模拟数据）" class="md-nav__link">
-    例子（模拟数据）
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" title="情形1：" class="md-nav__link">
-    情形1：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" title="情形2：" class="md-nav__link">
-    情形2：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" title="情形3：" class="md-nav__link">
-    情形3：
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="其他的问题" class="md-nav__link">
-    其他的问题
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mars" title="MARS用于分类" class="md-nav__link">
-    MARS用于分类
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#marscart" title="MARS和CART的关系" class="md-nav__link">
-    MARS和CART的关系
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" title="混合输入" class="md-nav__link">
-    混合输入
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.5 Hierarchical Mixtures of Experts/index.html" title="9.5 专家的系统混合" class="md-nav__link">
-      9.5 专家的系统混合
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.6 Missing Data/index.html" title="9.6 缺失数据" class="md-nav__link">
-      9.6 缺失数据
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../9.7 Computational Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
+    <a href="index.html" title="9.7 计算上的考虑" class="md-nav__link md-nav__link--active">
       9.7 计算上的考虑
     </a>
+    
   </li>
 
         
@@ -1782,7 +1681,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3075,94 +2974,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="垃圾邮件的例子（继续）" class="md-nav__link">
-    垃圾邮件的例子（继续）
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="例子（模拟数据）" class="md-nav__link">
-    例子（模拟数据）
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" title="情形1：" class="md-nav__link">
-    情形1：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" title="情形2：" class="md-nav__link">
-    情形2：
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" title="情形3：" class="md-nav__link">
-    情形3：
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="其他的问题" class="md-nav__link">
-    其他的问题
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mars" title="MARS用于分类" class="md-nav__link">
-    MARS用于分类
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#marscart" title="MARS和CART的关系" class="md-nav__link">
-    MARS和CART的关系
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" title="混合输入" class="md-nav__link">
-    混合输入
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3174,7 +2985,7 @@
               
                 
                 
-                <h1 id="94-mars">9.4 MARS: 多变量自适应回归样条<a class="headerlink" href="#94-mars" title="Permanent link">&para;</a></h1>
+                <h1 id="97">9.7 计算的考虑<a class="headerlink" href="#97" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3191,195 +3002,12 @@
 <td>时间</td>
 <td>2017-03-13</td>
 </tr>
-<tr>
-<td>更新</td>
-<td>2017-08-25</td>
-</tr>
 </tbody>
 </table>
-<blockquote>
-<p>写在前面</p>
-<p>MARS应该算是我接触得比较早的统计学习方法，大二的时候曾经在医学院某实验室搬砖，是关于基因数据的项目，具体项目记不太清，毕竟最后这个项目夭折了。但记得很清楚的是，我尝试使用MARS来建模，那时我还没有开始看ESL，是在Max Kuhn • Kjell Johnson的Applied Predictive Modeling这本书中初识了MARS。这本书介绍了一系列统计学习方法，以及如何利用R语言来实现。然后我就依葫芦画瓢学习了其中的例子，应用到了基因数据中，但基因数据实在太大了，跑啊跑啊，最后还是不了了之。。。由于种种原因，这个项目不了了之，与MARS挥手告别。</p>
-<p>第二次与MARS相见就是着手翻译这一章节，必须得承认，首次翻译实在太粗糙，既没有好好理解MARS的精髓，也没有好好注意译文的语句。</p>
-<p>第三次是在处理soda项目的时候，用到MARS，以及与其它方法的对比，跟Professor Liu的soda还真是有异曲同工之妙。</p>
-<p>今天更新MARS这一章节算是第四次与MARS的正式重逢吧。@2017.08.25</p>
-</blockquote>
-<p>MARS是回归的自适应过程，非常适合高维问题（比如，存在大量的输入）。可以从两个角度来理解它，首先，它可以看成是逐步线性回归的推广，其次，也可以看成是为了提高CART在回归中的效果而进行的改进。我们从第一种观点引入MARS，接着与CART联系起来。</p>
-<p>MARS采用形式为$(x-t)_+, (t-x)_+$的分段线性基函数的展开。“+”表示正的部分，所以</p>
-<p>
-<script type="math/tex; mode=display">
-(x-t)_+=\left\{
-\begin{array}{ll}
-x-t& \text{if }x>t\\
-0&\text{otherwise}
-\end{array}
-\right.
-\text{  and  }
-(t-x)_+=\left\{
-\begin{array}{ll}
-t-x& \text{if }x<t\\
-0&\text{otherwise}
-\end{array}
-\right.
-</script>
-</p>
-<p>举个例子，图9.9显示了函数$(x-0.5)_+, (0.5-x)_+$的图象。</p>
-<p><img alt="" src="../../img/09/fig9.9.png" /></p>
-<blockquote>
-<p>图9.9. MARS采用的基函数$(x-t)_+$(实心橘黄色)和$(t-x)_+$(蓝色虚线)</p>
-</blockquote>
-<p>每个函数是分段线性的，在值$t$处有一个结点。用第五章的术语说它们是线性样条。在下面的讨论中我们将这两个函数称为反射对(reflected pair)。想法是，对于每个输入变量$X_j$，将该输入变量的所有观测值作为结点。因此，基函数集合为</p>
-<p>
-<script type="math/tex; mode=display">
-{\cal C}=\{(X_j-t)_+,(t-X_j)_+\}_{t\in\{x_{1j},x_{2j},\ldots,x_{Nj}\},j=1,2,\ldots,p}\qquad (9.18)
-</script>
-</p>
-<p>如果所有的输入变量的观测值都不同，则总共有$2Np$个基函数。注意到尽管每个基函数仅仅取决于单个的$X_j$，举个例子，$h(X)=(X_j-t)_+$，但还是被看成是整个输入空间$R^p$中的函数。</p>
-<p>建立模型的策略类似向前逐步线性回归，但是不是使用原始输入，允许使用集合$\cal C$中的基函数及其基函数间的乘积。因此模型有如下形式</p>
-<p>
-<script type="math/tex; mode=display">
-f(X)=\beta_0+\sum\limits_{m=1}^M\beta_mh_m(X)\qquad (9.19)
-</script>
-</p>
-<p>其中每个$h_m(X)$是 $\cal C$ 中的基函数，也可能是两个或者更多这样基函数的乘积。</p>
-<p>给定$h_m$，通过最小残差平方和来估计系数$\beta_m$，也就是，通过标准线性回归。然而，函数$h_m(x)$的构造是“真正的艺术”。在我们的模型中以常数函数$h_0(X)=1$开始，集合$\cal C$中的所有函数都是候选函数。图9.10说明了这一过程</p>
-<p><img alt="" src="../../img/09/fig9.10.png" /></p>
-<blockquote>
-<p>图9.10. MARS向前建模的过程示意图。左边是已经在模型中的基函数：初始时，是常值函数$h(X)=1$。右图中是所有考虑加进模型的候选基函数。这些候选基函数是如图9.9所示的成对分段线性基函数，其中结点$t$为每个输入变量$X_j$的所有观测值$x_{ij}$。在每一步，我们考虑模型中的基函数和候选反射对间的所有乘积。将使得残差下降最多的乘积加进当前模型中。图中显示了这个过程的前三步，被选择的函数用红色标出。</p>
-</blockquote>
-<p>在每一步我们将模型集合$\cal M$中函数$h_m$的与$\cal C$中某个反射对的所有乘积看成是新的基函数。我们往模型$\cal M$中加入如下形式的项，该项使得训练误差有最大下降。</p>
-<p>
-<script type="math/tex; mode=display">
-\hat\beta_{M+1}h_\ell(X)\cdot (X_j-t)_++\hat\beta_{M+2}h_\ell(X)\cdot(t-X_j)_+,h_\ell\in \cal M
-</script>
-</p>
-<p>这里$\hat\beta_{M+1}$和$\hat \beta_{M+2}$是由最小二乘估计的系数，和模型中其他的$M+1$个系数一样。接着使得训练误差有最大下降的乘积被加入到模型中，这个过程不断继续直到模型集合$\cal M$中项的个数达到预设的最大值。</p>
-<p>举个例子，在第一步我们考虑往模型中加入形如$\beta_1(X_j-t)_++\beta_2(t-X_j)_+;t\in\{x_{ij}\}$的函数，因为乘以常数仅仅得到函数本身。假设最优选择为$\hat\beta_1(X_2-x_{72})_++\hat\beta_2(x_{72}-X_2)_+$。则这个基函数对加入到模型$\cal M$中，并且在下一步我们考虑加入如下形式的乘积对</p>
-<p>
-<script type="math/tex; mode=display">
-h_m(X)\cdot(X_j-t)_+\text{     and    }h_m(X)\cdot (t-X_j)_+,t\in\{x_{ij}\}
-</script>
-</p>
-<p>其中对于$h_m$我们有如下选择
-<script type="math/tex; mode=display">
-\begin{align}
-h_0(X)&=1\\
-h_1(X)&=(X_2-x_{72})_+\\
-h_2(X)&=(x_{72}-X_2)_+
-\end{align}
-</script>
-</p>
-<p>第三个选择得到形如$(X_1-x_{51})_+\cdot (x_{72}-X_2)_+$的函数，如图9.11所示。</p>
-<p><img alt="" src="../../img/09/fig9.11.png" /></p>
-<blockquote>
-<p>图9.11. 函数$h(X_1,X_2)=(X_1-x_{51})_+\cdot (x_{72}-X_2)_+$，从两个分段线性的MARS基函数相乘得到。</p>
-</blockquote>
-<p>这个过程的最后我们有形如(9.19)的大模型。这些模型一般对数据过拟合，所以应用向后删除过程。每一步中，删掉的项使得残差平方和增长最小，得到每个$\lambda$（项的个数）下的最优模型的估计$\hat f_\lambda$。可以采用交叉验证来估计最优的$\lambda$，但是为了节省计算，MARS过程采用的是广义交叉验证。广义交叉验证准则定义为
-<script type="math/tex; mode=display">
-GCV(\lambda)=\frac{\sum_{i=1}^N(y_i-\hat f_\lambda(x_i))^2}{(1-M(\lambda)/N)^2}\qquad (9.20)
-</script>
-$M(\lambda)$是模型中有效参数的个数：它等于模型中项的个数，加上在选择最优结点位置的参数个数。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya 注</p>
-<p>7.10节中也有广义交叉验证的讨论。在那里，是针对平方误差损失下的线性拟合而言的。线性拟合方法可以写成<script type="math/tex; mode=display">\mathbf{\hat y=Sy}\qquad (7.50)</script>
-</p>
-</div>
-<p>GCV近似为<script type="math/tex; mode=display">
-GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\qquad (7.52)</script>
-$trace(\mathbf S)$的值是有效参数个数。</p>
-<p>一些理论的证明和实际的拟合结果表明在分段线性回归中每选择一个结点，应当增加三个有效参数。所以，如果模型中含有$r$个线性独立基函数，并且在向前过程中选择$K$个结点，则有$M(\lambda)=r+cK$，其中$c=3$。（当模型限定为加性时，$c=2$）。在向后删除变量的过程中，计算$GCV(\lambda)$，选择使得$GCV(\lambda)$最小的模型。</p>
-<p>为什么是这些分段线性函数，为什么是这个特定的模型策略？图9.9中函数的关键性质是它可以局部计算；在它们的定义域中有一部分为0。当它们乘起来，如图9.11，非零的结果仅仅占特征空间的一小部分，当函数的公共部分为非零。这样便可以非常简约地建立起回归曲面（如图9.11），只需要采用局部非零的部分。这是很重要的，因为在高维问题中应该小心地使用参数，因为它们很快就会用光。其它比如多项式的基函数会在任意地方产生非零乘积，而很多非零乘积也不会起作用（相当于浪费了参数）。</p>
-<p>这种分段线性基函数的第二个重要优点是关于计算的。考虑$\cal M$中的函数和输入变量$X_j$的 $N$个反射对的乘积。似乎需要拟合$N$个单输入的线性回归模型，每个需要$O(N)$的操作，总共需要$O(N^2)$的操作。然而，我们利用分段线性函数的简单形式的特点，首先用最右端结点的反射对。当这个结点每次依次向左移动一个位置，基函数在结点左边的值为0，在右边部分值为常数。每次移动后会以$O(1)$的操作更新拟合值。所以我们仅仅需要$O(N)$的操作来遍历每个结点。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注<p>对于单输入线性回归
-<script type="math/tex; mode=display">
-Y_i\sim h_{\ell}(X)(X_{ij}-t_r), \; r=1,2,\ldots, N; i=1,2,\ldots, N
-</script>
-不考虑截距的情况下，记
-<script type="math/tex; mode=display">
-\hat \beta^{(r)} = (\sum\limits_{i=1}^Nh_\ell(X)^2(X_{ij}-t_r)^2)^{-1}(\sum\limits_{i=1}^Nh_\ell(X)(X_{ij}-t_r)Y_i)=W_rZ_r
-</script>
-计算量为$O(N)$（考虑截距时，多了$O(1)$的2阶矩阵的求逆操作，故也是$O(N)$的计算量）。
-若首先从最右端的结点开始计算，则
-<script type="math/tex; mode=display">
-\hat\beta^{(r)} = (W_{r+1}+h_\ell^2(X)(X_{r+1,j}-t_r)^2)^{-1}(Z_{r+1}+h_\ell(X)(X_{r+1,j}-t_r)Y_{r+1})
-</script>
-即仅需要$O(1)$的更新操作，则原来$O(N^2)$($N$个$O(N)$)的操作采用这种更新策略只需要$O(N)$的计算量。</p>
-</p>
-</div>
-<p>MARS中向前建模的策略是层次性的，因为多重乘积是从已经在模型中的项来建立的。举个例子，仅仅当4重乘积中的一个3重乘积已经在模型中，才会加入该四重乘积。这里的哲学是，高阶交叉项仅仅当其中的低阶项存在才会存在。这个需求不是正确的，但是是合理的假设，并且避免了在可行选择数目呈指数增长的空间中的搜索。</p>
-<p>在模型的项构造时有一个约束：每个输入变量在一个乘积中至多可以出现一次。这预防了输入变量的高阶幂的形成，这导致参数空间的边界会有剧烈的增大或下降。这样的幂次可以通过分段线性函数以一种更稳定的方式来近似。</p>
-<p>MARS过程中的一个有用选项是在交叉项的阶数上设置上界。举个例子，可以设置上界为2，允许成对的分段线性函数的乘积，但是不允许3次或更高次的乘积。这个可以帮助最终模型的解释。含有上界得到加性模型。</p>
-<h2 id="_1">垃圾邮件的例子（继续）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>我们对垃圾邮件的数据应用MARS，本章前面已经分析了这个数据集。为了增强解释性，我们限制MARS到2阶交叉项。尽管响应变量是取值为两个类别的类别型变量，但我们还是采用平方误差损失函数（见9.4.3节）。图9.12显示了模型中测试误差误分类率作为秩（独立基函数的个数）的函数。误差率约为5.5%，这比前面讨论的广义加性模型的误差率(5.3%)稍高一点。GCV选择大小为60的模型，近似给出了最优表现的最小模型。通过MARS找到的主要交叉项涉及(ch\$, remove),(ch\$, free)和(hp, CAPTOT)。然而，这些交叉项没有提高广义加性模型中的表现。</p>
-<p><img alt="" src="../../img/09/fig9.12.png" /></p>
-<blockquote>
-<p>垃圾数据：MARS过程的测试误差误分类率，作为模型的秩（独立基函数的个数）的函数。</p>
-</blockquote>
-<h2 id="_2">例子（模拟数据）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>这里我们在三种不同的情形下验证MARS的表现。$N=100$个观测，预测变量$X_1,X_2,\ldots,X_p$和误差$\varepsilon$有独立标准正态分布。</p>
-<h3 id="1">情形1：<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p>数据产生模型为
-<script type="math/tex; mode=display">
-Y=(X_1-1)_++(X_1-1)_+\cdot (X_2-.8)_++0.12\cdot\varepsilon\qquad (9.21)
-</script>
-</p>
-<p>选择噪声标准误差0.12使得信噪比约为5.我们称这个为张量积情形；乘积项给出类似图9.11的表面。</p>
-<h3 id="2">情形2：<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
-<p>同情形1，但是总共$p=20$个预测变量，也就是，有18个独立于响应变量的输入。</p>
-<h3 id="3">情形3：<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<p>有神经网络的结构：
-<script type="math/tex; mode=display">
-\begin{align}
-\ell_1 &= X_1+X_2+X_3+X_4+X_5\\
-\ell_2 &= X_6-X_7+X_8-X_9+X_{10}\\
-\sigma(t) &=1/(1+e^{-t})\\
-Y&=\sigma(\ell_1)+\sigma(\ell_2)+0.12\cdot \varepsilon
-\end{align}
-\qquad (9.22)
-</script>
-</p>
-<p>情形1和2完美地适合MARS，而情形3包含高阶交叉项，可能很难用MARS来近似。我们对每个模型跑了5个模拟，并且记录结果。</p>
-<p>情形1中，MARS一般几乎完美地找到模型。情形2中，找到正确的结构但是找到一些涉及其它预测变量的多余项。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注<p>自己编写R程序对这三种情形进行模拟，代码可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/MARS/simulation.R">这里</a>找到，模拟结果也表明情形1和情形2能够很好地捕捉到模型结构，而很难对情形3进行建模。</p>
-</p>
-</div>
-<p>令$\mu(x)$为 $Y$的真实均值，并且令
-<script type="math/tex; mode=display">
-\begin{align}
-MSE_0&=ave_{x\in Test}(\bar y-\mu(x))^2\\
-MSE&= ave_{x\in Test}(\hat f(x)-\mu(x))^2
-\end{align}
-\qquad (9.23)
-</script>
-</p>
-<p>这些表示了常值模型和拟合MARS模型的均方误差，通过对$x$的1000次测试值进行平均来估计。表9.4显示了每个情形中模型误差或者$R^2$的下降比例。</p>
-<p>
-<script type="math/tex; mode=display">
-R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
-</script>
-</p>
-<p>显示的值是五次模拟的均值和标准差。情形2中的因为了加入无用的输入略微降低了MARS的效果；在情形3中表现得很差。</p>
-<p><img alt="" src="../../img/09/tab9.4.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">weiya注<p>利用<code>earth</code>包拟合出的MARS模型，编写R代码进行测试，结果表明，对于情形1和情形2的$R^2$而言，与书中的结果一致；而情形3则相差较多，在我的程序中为负值，也就是表明情形3的MARS还不如利用均值直接估计。代码可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/MARS/simulation.R">这里</a>找到。</p>
-</p>
-</div>
-<h2 id="_3">其他的问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="mars">MARS用于分类<a class="headerlink" href="#mars" title="Permanent link">&para;</a></h3>
-<p>MARS方法和算法可以拓展到处理分类问题。已经提出了几种策略。</p>
-<p>对于两个类别，可以将输出编码为0/1，并且将其看成是回归问题；我们在spam例子中已经这样做了。对于多余两个类别的情形，可以采用4.2节描述的指示响应变量的方法。用0/1来编码$K$个响应类别，接着采用多重响应的MARS回归。对于后者我们对所有的响应变量采用共同的基函数集合。分类使得类别有最大的预测向量的值。然而，这种方法存在潜在的掩盖问题，正如4.2中描述的那样。一般更好的方式是在12.5节讨论的optimal scoring.</p>
-<p>Stone等人（1997）发展了MARS的混合版本PolyMARS，是为了处理分类问题特别设计的。它采用在4.4节描述的多重逻辑斯蒂回归框架。以类似MARS的向前逐步方式来建立模型，但是在每一步多多变量对数似然作二次近似来寻找下一个基函数对。一旦找到，则通过极大似然扩大模型，并且这个过程重复进行。</p>
-<h3 id="marscart">MARS和CART的关系<a class="headerlink" href="#marscart" title="Permanent link">&para;</a></h3>
-<p>尽管它们看起来相当不同，但是MARS和CART策略实际上有很强的相似性。假设我们进行了MARS过程，并且作出下面改变：</p>
-<ul>
-<li>用阶跃函数$I(x-t&gt;0)$和$I(x-t\le 0)$来替换分段线性基函数。</li>
-<li>当模型中的项与候选项相乘，用交叉性来代替，因此对于后续的交叉项不是可行的。</li>
-</ul>
-<p>有了这些改变，MARS向前过程与CART构造树的算法是一样的。乘上一对反射阶跃函数等价于在阶跃点分割开。第二条限制表明一个结点可能不会被分割成多次，因此得到受欢迎的CART模型的二叉树表示。另一方面，也是这条限制使得CART很难对加性结构进行建模。MARS放弃树结构并且得到捕捉加性影响的能力。</p>
-<h3 id="_4">混合输入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>MARS可以用一种自然的方式处理混合预测变量——定量和定性变量，这非常像CART。对于一个定性变量，MARS考虑将该定性变量的类别分成两块的所有可能的二叉分割。每个这样的分割产生成对分段常值基函数——关于两个类别集的指示函数。这个基对现在被看成和其他的一样，并且用它和其它已经在模型中的基函数来构造张量积。</p>
+<p>在$N$个观测和$p$个预测变量的情形下，加性模型拟合需要$mp$个一维光滑器或回归方法的应用。backfitting算法的要求的圈数$m$通常小于20，并且经常小于10，而且取决于输入中的相关性大小。举个例子，三次光滑样条下，对于初始的排序需要$NlogN$次操作，以及对样条拟合的$N$操作。因此对于加性模型拟合总共的操作数为$pNlogN+mpN$.</p>
+<p>对每个预测变量的初始排序，树需要$pNlogN$次操作，并且一般地对分割计算需要$pNlogN$次操作。如果分割在预测变量值域附近的边上，这个数目可能增大到$N^2p$.</p>
+<p>MARS需要$Nm^2+pmN$次操作从$p$个预测变量中，往已经存在$m$项的模型中加入基函数。因此建立一个$M$项的模型需要$NM^3+pM^2N$次操作，如果$M$是 $N$中合理的一部分，则可能是相当禁止的。</p>
+<p>HME的每一个组分在每个$M$步一般不需要花费太多来拟合：对于回归需要$Np^2$次，对于$K$个类别的逻辑斯蒂回归需要$Np^2K^2$次。然而，EM算法需要更长时间来收敛，因此较大的HME模型需要相当大的花费去拟合。</p>
                 
                   
                 
@@ -3411,7 +3039,7 @@ R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../9.3 PRIM(Bump Hunting)/index.html" title="9.3 耐心规则归纳法" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../9.6-Missing-Data/index.html" title="9.6 缺失数据" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3420,19 +3048,19 @@ R^2=\frac{MSE_0-MSE}{MSE_0}\qquad (9.24)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                9.3 耐心规则归纳法
+                9.6 缺失数据
               </span>
             </div>
           </a>
         
         
-          <a href="../9.5 Hierarchical Mixtures of Experts/index.html" title="9.5 专家的系统混合" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                9.5 专家的系统混合
+                文献笔记
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
