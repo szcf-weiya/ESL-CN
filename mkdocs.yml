@@ -201,6 +201,7 @@ pages:
       - SVM处理线性和非线性类别边界: 'notes/SVM/e1071.md'
       - 损失函数的梯度总结及Julia实现: 'notes/boosting/summary-loss-function.md'
       - R语言中的多种决策树算法实现: 'notes/tree/various-classification-methods.md'
+      - R语言处理缺失数据: 'notes/missing-data/missing-data.md'
 
 
 site_name: 'ESL CN'
