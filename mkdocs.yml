@@ -184,7 +184,7 @@ pages:
       - 文献笔记: '18-High-Dimensional-Problems/Bioliographic-Notes.md'
 
   - 个人笔记:
-    - Ipython Notebook: 
+    - 笔记列表: 
       - 列表: 'notes/ipynb/list.md'
     - 模拟实验:
       - 模拟 Fig. 4.5: 'notes/LDA/sim-4-5.md'
@@ -195,6 +195,7 @@ pages:
       - 模拟 Fig. 18.1: 'notes/HighDim/sim18_1.md'
       - 模拟 Eq. 10.2: 'notes/boosting/sim-eq-10-2.md'
       - 模拟 Tab. 12.2: 'notes/SVM/skin-of-the-orange.md'
+      - 模拟 Fig. 9.3: 'notes/tree/sim-9-7.md'
     - 比较总结:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
       - SVM处理线性和非线性类别边界: 'notes/SVM/e1071.md'
