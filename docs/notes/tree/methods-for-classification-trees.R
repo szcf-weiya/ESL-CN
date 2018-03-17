@@ -1,9 +1,10 @@
-## ####################################################################
-## Learn and reproduce the program in Appried Predicitive Modeling
+## ###########################################################################################
+## Learn and reproduce the program about classification trees in Appried Predicitive Modeling
 ## 
 ## refer to http://www.appliedpredictivemodeling.com for more details
 ## 
-## ####################################################################
+## reorganized by szcf-weiya <szcfweiya@gmail.com>
+## ###########################################################################################
 load('grantData.RData')
 
 library(caret)
