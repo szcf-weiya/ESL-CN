@@ -3014,47 +3014,67 @@
 <td>时间</td>
 <td>2017-03-13</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-03-17</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
-<p><strong>专家的分层混合 (HME)</strong> 过程可以看成是基于树方法的变种。主要的差异是树的分割不是<strong>硬的决定 (hard decision)</strong>，而是<strong>软概率的决定 (soft probabilistic)</strong>。在每个结点一个观测往左或者往右的概率取决于输入值。因为最后的参数优化问题是光滑的，所以有一些计算的优势，不像在基于树的方式中的离散分割点的搜索。软分割或许也可以帮助预测准确性，并且提供另外一种有用的数据描述方式。</p>
-<p>HMEs 和 CART 树的实现还有其他的差异。在HME中，线性（或者逻辑斯蒂回归）模型在每个终止结点处拟合，而不是像CART中一样是常值。分割点可以是多重的，而不仅仅是二值的，并且分割点是输入的线性组合的概率函数，而不是在标准CART中的单个输入。然而，这些选择的相对优点不是清晰的，大部分将在 9.2 节的后面中讨论。</p>
-<p>简单的2层HME模型如图 9.13 所示。可以认为是在每个非终止结点处软分割的树。然而，这种方法的发明者采用不同的术语。终止结点称为专家(experts)，非终止结点称为门控网络 (gating networks)。想法是，每个专家对响应提供一个看法(预测)，并且这些通过门控网络结合在一起。正如我们所见，这个模型正式上是混合模型，并且图中的两层模型可以推广为多层次，因此有了名字专家的分层混合(hierarchical mixtures of experts)</p>
+<p><strong>专家的分层混合 (HME)</strong> 过程可以看成是基于树方法的变种。主要的差异是树的分割不是<strong>硬决定 (hard decision)</strong>，而是<strong>软概率的决定 (soft probabilistic)</strong>。在每个结点观测往左或者往右的概率取决于输入值。因为最后的参数优化问题是光滑的，所以有一些计算的优势，不像在基于树的方式中的离散分割点的搜索。软分割或许也可以帮助预测准确性，并且提供另外一种有用的数据描述方式。</p>
+<p>HMEs 和 CART 树的实现还有其他的差异。在HME中，在每个终止结点处拟合线性（或者逻辑斯蒂回归）模型，而不是像 CART 中那样是常值。分割点可以是多重的，而不仅仅是二值的，并且分割点是输入的线性组合的概率函数，而不是在标准 CART 中的单个输入。然而，这些选择的相对优点不是清晰的，大部分将在 9.2 节的后面中讨论。</p>
+<p>简单的 2 层 HME 模型如图 9.13 所示。可以认为是在每个非终止结点处进行软分割的树。然而，这种方法的发明者采用不同的术语。终止结点称为<strong>专家 (experts)</strong>，非终止结点称为<strong>门控网络 (gating networks)</strong>。想法是，每个专家对响应变量提供一个看法（预测），并且通过门控网络将这些“看法”结合在一起。正如我们所见，这个模型形式上是混合模型，并且图中的两层模型可以推广为多层，因此有了称为<strong>专家的分层混合 (hierarchical mixtures of experts)</strong></p>
 <p><img alt="" src="../../img/09/fig9.13.png" /></p>
 <blockquote>
-<p>图9.13. 两层专家分层混合模型(HME)。</p>
+<p>图9.13. 两层专家分层混合模型 (HME)。</p>
 </blockquote>
-<p>考虑回归或者分类问题，正如本章中前面描述的一样。数据 $(x_i,y_i),i=1,2,\ldots,N$，$y_i$ 要么是连续响应变量，要么是二值响应变量，并且$x_i$是向量值输入。为了记号的简便，我们假设$x_i$的第一个元素是1，这个元素代表截距。</p>
-<p>这里描述了HME是如何定义的。顶层的门控网络有输出
+<p>考虑回归或者分类问题，正如本章中前面描述的一样。数据 $(x_i,y_i),i=1,2,\ldots,N$，$y_i$ 要么是连续响应变量，要么是二值响应变量，并且 $x_i$ 是向量值输入。为了记号的简便，我们假设 $x_i$ 的第一个元素是1，这个元素代表截距。</p>
+<p>这里描述 HME 是如何定义的。顶层的门控网络有输出</p>
+<p>
 <script type="math/tex; mode=display">
 g_j(x,\gamma_j)=\frac{e^{\gamma_j^Tx}}{\sum_{k=1}^Ke^{\gamma_k^Tx}}\; j=1,2,\ldots,K\qquad (9.25)
 </script>
-其中每个$\gamma_j$是未知参数向量。这表示软的$K$重分割（图9.13中$K=2$）每个$g_j(x,\gamma_j)$是将特征向量为$x$的观测赋给第$j$个分支。注意到$K=2$时，如果我们将$x$的某一个元素的系数取为$+\infty$，接着我们得到无穷大的斜率的逻辑斯蒂曲线。在这种情形下，门的概率取0或1，对应在该输入下的硬分割。</p>
+</p>
+<p>其中每个 $\gamma_j$ 是未知参数向量。这表示软的 $K$ 重分割（图 9.13 中 $K=2$）每个 $g_j(x,\gamma_j)$ 是将特征向量为$x$ 的观测赋给第 $j$ 个分支。注意到 $K=2$ 时，如果我们将 $x$ 的某一个元素的系数取为 $+\infty$，接着我们得到无穷大的斜率的逻辑斯蒂曲线。在这种情形下，门的概率取 0 或 1，对应在该输入下的硬分割。</p>
 <p>在第二层，门控网络有类似的形式：
 <script type="math/tex; mode=display">
 g_{\ell\mid j}(x,\gamma_{j\ell})=\frac{e^{\gamma_{j\ell}^Tx}}{\sum_{k=1}^Ke^{\gamma_{jk}^Tx}},\ell=1,2,\ldots,K\qquad (9.26)
 </script>
 这是在给定上一层第 $j$ 个分支的情况下，赋予第$\ell$分支的概率。</p>
-<p>在每个专家（终止结点），我们有如下形式的响应变量的模型
+<p>在每个专家（终止结点），我们有如下形式的响应变量的模型</p>
+<p>
 <script type="math/tex; mode=display">
 Y\sim  Pr(y\mid x,\theta_{jl})\qquad (9.27)
 </script>
-这根据问题而有不同。</p>
+</p>
+<p>这根据问题而有不同。</p>
 <p><strong>回归：</strong> 使用高斯线性回归模型，其中$\theta_{j\ell}=(\beta_{i\ell},\sigma^2_{j\ell})$:
 <script type="math/tex; mode=display">
 Y=\beta_{k\ell}^Tx+\varepsilon\text{  and  }\varepsilon\sim N(0,\sigma_{j\ell}^2)\qquad (9.28)
 </script>
 <strong>分类：</strong> 使用线性逻辑斯蒂回归模型：
 <script type="math/tex; mode=display">
-Pr(Y=1\mid x,\theta_{j\ell})=\frac{1}{1+e^{-\theta_{j\ell}^Tx}}\qquad (9.29)
+\Pr(Y=1\mid x,\theta_{j\ell})=\frac{1}{1+e^{-\theta_{j\ell}^Tx}}\qquad (9.29)
 </script>
-用$\Psi={\gamma_j,\gamma_{j\ell},\theta_{j\ell}}$表示参数的集合，$Y=y$整体概率为
+用$\Psi=\{\gamma_j,\gamma_{j\ell},\theta_{j\ell}\}$表示参数的集合，$Y=y$ 整体概率为
 <script type="math/tex; mode=display">
 Pr(y\mid x,\Psi)=\sum\limits_{j=1}^Kg_j(x,\gamma_j)\sum\limits_{\ell=1}^Kg_{\ell\mid j}(x,\gamma_{j\ell})Pr(y\mid x,\theta_{j\ell})\qquad (9.30)
 </script>
 这是个混合模型，其中混合概率由门控网络模型确定。</p>
-<p>为了估计这些参数，我们在 $\Psi$ 的参数上最大化数据的对数似然，$\sum_i log Pr(y_i\mid x_i,\Psi)$。处理这个的最方便是EM算法，我们已经在8.5节中描述了。我们定义潜在变量$\Delta_j$， 除了一个元素为1，所有的都是0。我们把这个解释为由顶层门控网络作出的分支判断。类似地，我们定义潜在变量$\Delta_{\ell\mid j}$来描述第二层的门控判断。</p>
-<p>在E步，EM算法计算在给定当前参数值的情况下计算$\Delta_j$和$\Delta_{\ell\mid j}$的期望。这些期望接着作为M步的观测权重，来估计专家网络的参数。中间结点的参数由多重逻辑斯蒂回归来估计。$\Delta_j$和$\Delta_{\ell\mid j}$的期望是概率，并且这些用作逻辑斯蒂回归的响应向量。</p>
-<p>专家的分层混合方式是CART树的一个有潜力的对手。采用软分割(soft splits)，而不是硬分割，它可以捕捉到从低到高响应变量的转变是渐增的情形。（？？？？）对数似然是未知系数的光滑函数，因此更适合数值优化。和CART类似，都是线性组合的分割，但是后者更难优化。另一方面，基于我们的了解，寻找HME模型的一个好的树拓扑结构是没有方法的，正如CART中一样。一般地，可以采用一些深度固定的树，很可能得到CART过程的输出。HMEs上的研究强调预测而不是最终模型的解释。与HME很相近的模型是潜类别模型(latent class model)(Lin等人，2000)，一般只有一层；且结点或者潜在类别解释成表现出相似响应变量行为的主题的群体。</p>
+<p>为了估计这些参数，我们在 $\Psi$ 的参数上最大化数据的对数似然，$\sum_i \log \Pr(y_i\mid x_i,\Psi)$。处理这个的最方便是 EM 算法，我们已经在<a href="../../08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm/index.html">8.5节</a>中描述了。我们定义潜在变量 $\Delta_j$， 除了一个元素为 1，所有的都是 0。我们把这个解释为由顶层门控网络作出的分支判断。类似地，我们定义潜在变量 $\Delta_{\ell\mid j}$ 来描述第二层的门控判断。</p>
+<p>在 E 步，EM 算法在给定当前参数值的情况下计算 $\Delta_j$ 和 $\Delta_{\ell\mid j}$ 的期望。这些期望接着作为 M 步的观测权重，来估计专家网络的参数。中间结点的参数由多重逻辑斯蒂回归来估计。$\Delta_j$ 和 $\Delta_{\ell\mid j}$ 的期望是概率，并且这些用作逻辑斯蒂回归的响应向量。</p>
+<p>专家的分层混合方式是 CART 树的一个有潜力的对手。采用<strong>软分割 (soft splits)</strong>，而不是硬分割，它可以捕捉到从低到高响应变量的转变是渐增的情形。对数似然是未知系数的光滑函数，因此更适合数值优化。和 CART 类似，都是线性组合的分割，但是后者更难优化。另一方面，基于我们的了解，寻找 HME 模型的一个好的树拓扑结构是没有方法的，正如 CART 中一样。一般地，可以采用一些深度固定的树，很可能得到 CART 过程的输出。HMEs 上的研究强调预测而不是最终模型的解释。与 HME 很相近的模型是<strong>潜类别模型(latent class model)</strong> (Lin et. al, 2000<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)，一般只有一层；且结点或者潜在类别解释成表现出相似响应变量行为的个体的群体。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Lin, H., McCulloch, C., Turnbull, B., Slate, E. and Clark, L. (2000). A latent class mixed model for analyzing biomarker trajectories in longitudinal data with irregularly scheduled observations, Statistics in Medicine 19: 1303–1318.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
