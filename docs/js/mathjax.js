@@ -31,7 +31,7 @@ window.MathJax = {
       z: "{\\mathbf{z}}",
 
       LOG: "{\\mathrm{log}\\;}",
-      log: "{\\mathrm{log}\\;}",
+      log: "{\\mathrm{log}}",
       E: "{\\mathrm{E}}",
       1: "{\\boldsymbol 1}",
       Cov: "{\\mathrm{Cov}\\;}",
