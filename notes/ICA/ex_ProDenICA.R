@@ -1,3 +1,13 @@
+## #######################################################################################
+## Example R code for the usage of ICA
+##
+## author: szcf-weiya <szcfweiya@gmail.com>
+##
+## refer to https://esl.hohoweiya.xyz/notes/Prototype/sim13_5/index.html for more details
+##
+## #######################################################################################
+
+
 library(ProDenICA)
 p=2
 ### Can use letters a-r below for dist

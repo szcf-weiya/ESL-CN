@@ -1,11 +1,14 @@
-# file LDA/sim-4-5.R
-# copyright (C) 2018 Lijun Wang <szcfweiya.gamil.com>
-#
-# This program is to simulate figure 4.5 in the book called The Elements of Statistical Learning.
-# You also can found the translated documents from https://esl.hohoweiya.xyz
-#
-# The simulated data is from three gaussian distributions which have
-# different means but same covariance.
+## ##############################################################################################
+## file LDA/sim-4-5.R
+## copyright (C) 2018 Lijun Wang <szcfweiya@gamil.com>
+##
+## This program is to simulate figure 4.5 in the book called The Elements of Statistical Learning.
+## You also can found the translated documents from https://esl.hohoweiya.xyz
+##
+## The simulated data is from three gaussian distributions which have
+## different means but same covariance.
+## #############################################################################################
+
 library(MASS)
 library(mvtnorm)
 #sigma = diag(1, 2, 2)

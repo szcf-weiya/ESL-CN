@@ -37,7 +37,6 @@ plot.box <- function(df, id, fcut){
 }
 
 ## main function
-
 simplePRIM <- function(df, alpha=0.1, n1=5, n2=5){
   par(mfrow=c(n1, n2), mar=c(1,1,1,1))
   nstep = 0

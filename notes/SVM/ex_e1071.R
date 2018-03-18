@@ -1,3 +1,9 @@
+## ###########################################################################
+## Example code about e1071 in ISLR
+## 
+## more details refer to https://esl.hohoweiya.xyz/notes/SVM/e1071/index.html
+## ###########################################################################
+
 library(e1071)
 
 ## generate data

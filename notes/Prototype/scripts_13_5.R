@@ -1,9 +1,12 @@
-## ###################################
+## ######################################################################################
 ## Scripts for simulation of Fig. 13.5
 ##
 ## author: weiya <szcfweiya@gmail.com>
 ## date: 2018-02-04
-## ###################################
+##
+## refer to https://esl.hohoweiya.xyz/notes/Prototype/sim13_5/index.html for more details
+##
+## #######################################################################################
 
 ## generate dataset X
 genX <- function(N, p = 10){

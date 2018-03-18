@@ -1,3 +1,12 @@
+## #######################################################################################
+## R code for the simulation of Fig. 13.5
+##
+## author: szcf-weiya <szcfweiya@gmail.com>
+##
+## refer to https://esl.hohoweiya.xyz/notes/Prototype/sim13_5/index.html for more details
+##
+## #######################################################################################
+
 library(ProDenICA)
 library(fastICA)
 

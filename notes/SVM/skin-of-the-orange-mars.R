@@ -1,3 +1,12 @@
+## ########################################################################################
+## R code for the simulation of Tab. 12.2 (mars)
+## 
+## author: szcf-weiya <szcfweiya@gmail.com>
+## 
+## more details refer to https://esl.hohoweiya.xyz/notes/SVM/skin-of-the-orange/index.html
+##
+## ########################################################################################
+
 genXY <- function(n = 100, num_noise = 0)
 {
   ## class 1
