@@ -42,7 +42,7 @@ window.MathJax = {
       arg: "{\\mathrm{arg}\\;}",
       max: "{\\mathrm{max}}",
       min: "{\\mathrm{min}}",
-      RSS: "{\\mathrm{RSS}\\;}",
+      RSS: "{\\mathrm{RSS}}",
       
       
       inf: "{\\mathrm{inf}}",
