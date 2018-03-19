@@ -206,7 +206,7 @@ pages:
 
 site_name: 'ESL CN'
 
-site_description: 'The Elements of Statistical Learning(ESL) 的中文笔记及其代码实现'
+site_description: 'The Elements of Statistical Learning(ESL) 的中文笔记、代码实现以及习题解答'
 
 #site_url: https://szcf-weiya.github.io/ESL-CN/
 site_author: szcf-weiya
