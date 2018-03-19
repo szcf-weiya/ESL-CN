@@ -3035,6 +3035,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_11" title="计算边界" class="md-nav__link">
+    计算边界
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3205,6 +3212,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_11" title="计算边界" class="md-nav__link">
+    计算边界
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3242,6 +3256,10 @@
 <tr>
 <td>时间</td>
 <td>2018-02-12</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>2018-03-19</td>
 </tr>
 </tbody>
 </table>
@@ -3487,6 +3505,54 @@ dev.off<span class="p">()</span>
 
 <p><img alt="" src="../roc.png" /></p>
 <p>从图中容易看出，在训练数据上，flexible的模型ROC表现更好，而在测试集上最优模型表现最好。</p>
+<h2 id="_11">计算边界<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>本节内容是知乎问题<a href="https://www.zhihu.com/question/269082342/answer/345343234">MATLAB上libsvm的使用？ - 知乎</a>的回答过程。</p>
+<p>虽然问题是问 Matlab，但系统上没装 matlab，而且不同语言中的算法应该是基本一致的。所以先用 R 来研究一下</p>
+<p>数据生成代码</p>
+<div class="codehilite"><pre><span></span>x <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
+             <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
+             <span class="m">0</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span>
+             <span class="m">-1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
+             <span class="m">0</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span>
+             <span class="m">0</span><span class="p">,</span> <span class="m">-2</span><span class="p">,</span>
+             <span class="m">-2</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> byrow <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+phi <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">){</span>
+  <span class="kr">return</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span>x<span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">^</span><span class="m">2</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span>x<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">+</span> <span class="m">3</span><span class="p">,</span> x<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">^</span><span class="m">2</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span>x<span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="o">-</span> <span class="m">3</span><span class="p">))</span>
+<span class="p">}</span>
+z <span class="o">=</span> <span class="kp">t</span><span class="p">(</span><span class="kp">apply</span><span class="p">(</span>x<span class="p">,</span> <span class="m">1</span><span class="p">,</span> phi<span class="p">))</span>
+df <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>z<span class="p">,</span> <span class="kp">factor</span><span class="p">(</span>y<span class="p">))</span>
+<span class="kp">colnames</span><span class="p">(</span>df<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;z1&quot;</span><span class="p">,</span> <span class="s">&quot;z2&quot;</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>注意要设定 <code>scale = FALSE</code>，当采用默认 <code>cost</code> 时，</p>
+<div class="codehilite"><pre><span></span><span class="c1"># cost = 1</span>
+svmfit <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> df<span class="p">,</span> kernel<span class="o">=</span><span class="s">&quot;linear&quot;</span><span class="p">,</span> scale <span class="o">=</span> <span class="bp">F</span><span class="p">,</span>cost<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+w <span class="o">=</span> <span class="kp">t</span><span class="p">(</span>svmfit<span class="o">$</span>coefs<span class="p">)</span> <span class="o">%*%</span> svmfit<span class="o">$</span>SV
+b <span class="o">=</span> <span class="o">-</span>svmfit<span class="o">$</span>rho
+w
+b
+</pre></div>
+
+
+<p><img alt="" src="../line-1.png" /></p>
+<p>此时线性边界为 $z_1=5$，不是问题中的最优分离超平面。注意到当 $C\rightarrow\infty$ 时会得到最优超平面，所以我们取个较大的 <code>cost</code> 进行训练，即</p>
+<div class="codehilite"><pre><span></span><span class="c1"># cost = 10000</span>
+svmfit <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> df<span class="p">,</span> kernel<span class="o">=</span><span class="s">&quot;linear&quot;</span><span class="p">,</span> scale <span class="o">=</span> <span class="bp">F</span><span class="p">,</span>cost<span class="o">=</span><span class="m">1000000</span><span class="p">)</span>
+w <span class="o">=</span> <span class="kp">t</span><span class="p">(</span>svmfit<span class="o">$</span>coefs<span class="p">)</span> <span class="o">%*%</span> svmfit<span class="o">$</span>SV
+b <span class="o">=</span> <span class="o">-</span>svmfit<span class="o">$</span>rho
+w
+b
+</pre></div>
+
+
+<p>得到</p>
+<p><img alt="" src="../line-10000.png" /></p>
+<p>判别边界为 $-1.999808z_1-6.4\times 10^{-5}z_2+8.998997=0$，近似 $z_1=4.5$。</p>
+<p>顺带贴一下 matlab 的结果</p>
+<p><img alt="" src="../line-1-mat.png" /></p>
+<p><img alt="" src="../line-10000-mat.png" /></p>
 <div class="footnote">
 <hr />
 <ol>
