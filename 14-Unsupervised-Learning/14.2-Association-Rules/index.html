@@ -3165,7 +3165,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-03-20</td>
+<td>2018-03-20, 2018-03-21</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3253,6 +3253,18 @@ L(A\mid B)=\frac{C(A\Rightarrow B)}{T(B)}
 </script>
 </p>
 <p>这是关联衡量 $\Pr(A\; and\; B)/\Pr(A)\Pr(B)$ 的估计。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：lift vs. Lift Chart </p>
+<p>在评估预测模型时，有时会作出 Lift Chart，与这里的 lift 看起来很像。画 Lift Chart 时，</p>
+<ol>
+<li>首先对测试样本进行预测计算某一事件（比如有 $K$ 个类别，考虑其中的类 a）的类别概率，根据类别概率从大到小排序；</li>
+<li>给定一个<strong>概率阈值</strong>，计算第 1 步中所有小于该概率的样本中该事件发生的比例（比如类别概率小于 0.8 的样本中类别 a 的比例）</li>
+<li>计算<strong>基准 (baseline) 事件率</strong>，也就是全样本集中所考察的事件的比例（比如类别 a 的比例），第 2 步的比例除以基准事件率则得到该阈值下的 <strong>lift</strong>。</li>
+</ol>
+<p>很直观地，可以发现关联规则中的 lift 与 Lift Chart 的计算方法很像，概率阈值就相当于<strong>支撑阈值 $t$</strong>，基准事件率对应 $T(B)$，而小于阈值时样本中事件发生的比例对应 $C(A\Rightarrow B)$。</p>
+<p>R 中作出 Lift Chart 的命令也很简单，直接调用 <code>caret</code> 包中的 <code>lift</code> 函数可以作出如下的 Lift Chart（采用的是示例代码）</p>
+<p><img alt="" src="../../notes/apriori/lift2.png" /></p>
+</div>
 <p>举个例子，假设项目集为 ${\cal K}=$ {<code>peanut butter</code>, <code>jelly</code>, <code>bread</code>}，并且考虑规则 {<code>peanut butter</code>, <code>jelly</code>} $\Rightarrow$ {<code>bread</code>}。$0.03$ 的支撑值表示 <code>peanut butter</code>，<code>jelly</code> 和 <code>bread</code>同时出现在 $3\%$ 的市场篮子中。这个规则的 0.82 置信度表示当购买了 <code>peanut butter</code> 和 <code>jelly</code>，$82\%$ 的情形下也会购买 <code>bread</code>。如果<code>bread</code> 在 $43\%$ 的市场篮子中，则规则 {<code>peanut butter</code>, <code>jelly</code>}$\Rightarrow$ {<code>bread</code>} 的 lift 为 $1.95$。</p>
 <p>这个分析的目标是得到支撑和置信度 (14.8) 都高的关联规则 (14.7)。Apriori 算法返回由支撑阈值 $t$ (14.6) 定义的所有高支撑的项目集。设定置信度阈值 $c$，报告所有可以从这些项目集 (14.6) 中组成的置信度大于 $c$ 的规则，也就是
 <script type="math/tex; mode=display">
