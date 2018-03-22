@@ -768,8 +768,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#larlasso" title="LAR和Lasso自由度法则" class="md-nav__link">
-    LAR和Lasso自由度法则
+  <a href="#lar-lasso" title="LAR 和 Lasso 自由度法则" class="md-nav__link">
+    LAR 和 Lasso 自由度法则
   </a>
   
 </li>
@@ -3098,8 +3098,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#larlasso" title="LAR和Lasso自由度法则" class="md-nav__link">
-    LAR和Lasso自由度法则
+  <a href="#lar-lasso" title="LAR 和 Lasso 自由度法则" class="md-nav__link">
+    LAR 和 Lasso 自由度法则
   </a>
   
 </li>
@@ -3237,7 +3237,7 @@
 > 则$\lambda=\frac{\sigma^2}{\tau^2}$,且岭回归估计是后验分布的众数。
 -->
 
-<p>中心化输入矩阵 $\mathbf{X}$ 的奇异值分解(SVD)让我们进一步了解岭回归的本质。这个分解在许多统计方法分析中非常有用。$N\times p$ 阶矩阵 $\mathbf{X}$ 的 SVD 分解有如下形式</p>
+<p>中心化输入矩阵 $\mathbf{X}$ 的<strong>奇异值分解 (SVD)</strong> 让我们进一步了解了岭回归的本质。这个分解在许多统计方法分析中非常有用。$N\times p$ 阶矩阵 $\mathbf{X}$ 的 SVD 分解有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
 \mathbf{X=UDV^T}\qquad (3.45)
@@ -3293,7 +3293,8 @@ M=U_n\Sigma_nV^T
 </script>
 只有$U$中对应$V^T$中行向量的$n$个列向量被计算，$U$的其它列不被计算。$U_n$为$m\times n$,$\Sigma_n$为$n\times n$的对角矩阵，$V$是$n\times n$</p>
 </blockquote>
-<p>利用奇异值分解经过一些简化我们可以最小二乘拟合向量写成
+<p>利用奇异值分解，通过简化我们可以把最小二乘拟合向量写成</p>
+<p>
 <script type="math/tex; mode=display">
 \begin{align}
 \mathbf{X}\hat{\beta}^{ls}&=\mathbf{X(X^TX)^{-1}X^Ty}\\\
@@ -3301,7 +3302,8 @@ M=U_n\Sigma_nV^T
 \end{align}
 </script>
 </p>
-<p>注意到$\mathbf{U}^Ty$是$\mathbf{y}$关于正交基$\mathbf{U}$的坐标。同时注意同(3.33)的相似性；$\mathbf{Q}$和$\mathbf{U}$是$\mathbf{X}$列空间两个不同的正交基（练习3.8）。</p>
+<p>注意到 $\mathbf{U}^Ty$ 是 $\mathbf{y}$ 关于正交基 $\mathbf{U}$ 的坐标。同时注意其与 (3.33) 的相似性；$\mathbf{Q}$ 和 $\mathbf{U}$ 是 $\mathbf{X}$ 列空间的两个不同的正交基（<a href="https://github.com/szcf-weiya/ESL-CN/issues/97">练习 3.8</a>）。</p>
+<p>现在岭回归为</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3311,42 +3313,42 @@ M=U_n\Sigma_nV^T
 \end{align}
 </script>
 </p>
-<p>其中$\mathbf{u}_j$为$\mathbf{U}$的列向量。注意到因为$\lambda \ge 0$,我们有$d_j^2/(d^2_j+\lambda)\le 1$.类似线性回归，岭回归计算$\mathbf{y}$关于正规基$\mathbf{U}$的坐标。通过因子$d^2_j/(d^2_j+\lambda)$来收缩这些坐标。这意味着更小的$d_j^2$会在更大程度上收缩基向量的坐标。</p>
-<p>$d_j^2$值小意味着什么？中心化矩阵$\mathbf{X}$的奇异值分解是表达$\mathbf{X}$中主成分变量的另一种方式。样本协方差矩阵为$\mathbf{S={\color{red} E((X-EX)^T(X-EX))=}X^TX}/N$,并且从(3.45)式我们得到</p>
+<p>其中 $\mathbf{u}_j$ 是 $\mathbf{U}$ 的列向量。注意到因为 $\lambda \ge 0$，我们有 $d_j^2/(d^2_j+\lambda)\le 1$。类似线性回归，岭回归计算 $\mathbf{y}$ 关于正规基 $\mathbf{U}$ 的坐标。通过因子 $d^2_j/(d^2_j+\lambda)$ 来收缩这些坐标。这意味着更小的 $d_j^2$ 会在更大程度上收缩基向量的坐标。</p>
+<p>$d_j^2$ 值小意味着什么？中心化矩阵 $\mathbf{X}$ 的奇异值分解是表示 $\mathbf{X}$ 中主成分变量的另一种方式。样本协方差矩阵为 $\mathbf{S=X^TX}/N$<!--$\mathbf{S={\color{red} E((X-EX)^T(X-EX))=}X^TX}/N$-->，并且从 (3.45) 式我们得到</p>
 <p>
 <script type="math/tex; mode=display">
 \mathbf{X^T X = VD^2V^T} \qquad (3.48)
 </script>
 </p>
-<p>上式是$\mathbf{X^TX}$(也是$S$,取决于因子$N$)的特征值分解(eigen decomposition)。特征向量$v_j$($\mathbf{V}$的列向量)也称作$\mathbf{X}$的主成分（或Karhunen-Loeve）方向。第一主成分方向$v_1$有下面性质：$\mathbf{z}_1=\mathbf{X}v_1$在所有$\mathbf{X}$列的标准化线性组合中有最大的样本方差。样本方差很容易看出来是
+<p>上式是 $\mathbf{X^TX}$（也是 $S$，取决于因子 $N$）的<strong>特征值分解 (eigen decomposition)</strong>。特征向量 $v_j$（$\mathbf{V}$ 的列向量）也称作 $\mathbf{X}$ 的<strong>主成分</strong>（或 Karhunen-Loeve）方向。第一主成分方向 $v_1$ 有下面性质：$\mathbf{z}_1=\mathbf{X}v_1$ 在所有 $\mathbf{X}$ 列的标准化线性组合中有最大的样本方差。样本方差很容易看出来是</p>
+<p>
 <script type="math/tex; mode=display">
-Var(\mathbf{z}_1)=Var(\mathbf{X}v_1)=\dfrac{d_1^2}{N}\qquad (3.49)
+\Var(\mathbf{z}_1)=\Var(\mathbf{X}v_1)=\dfrac{d_1^2}{N}\qquad (3.49)
 </script>
 </p>
-<p>事实上$\mathbf{z}_1=\mathbf{X}v_1=\mathbf{u}_1d_1$。引申变量$\mathbf{z_1}$称作$\mathbf{X}$的第一主成分，并且因此$\mathbf{u_1}$是标准化的第一主成分。后面的主成分$z_j$有最大的方差$d_j^2/N$,与前一个保持正交。相反地，最后一个主成分有最小的方差。因此最小的奇异值$d_j$对应$\mathbf{X}$列空间有最小方差的方向，并且岭回归在这些方向上收缩得最厉害。</p>
-<p>图3.9图示了两个维度下一些数据点的主成分。如果我们考虑在这个区域（Y轴垂直纸面）内拟合线性曲面，数据的结构形态使得我们确定在长方向下的梯度比短方向更精确。岭回归防止在短方向上估计梯度可能存在的高方差。隐含的假设是响应变量在输入高方差的方向上往往有很大不同。这往往是个合理的假设，因为预测变量经常是选来研究的，因为他们区别于响应变量，但是不需要保持一般。</p>
+<p>事实上 $\mathbf{z}_1=\mathbf{X}v_1=\mathbf{u}_1d_1$。导出变量 $\mathbf{z_1}$ 称作 $\mathbf{X}$ 的第一主成分，并且因此 $\mathbf{u_1}$ 是标准化的第一主成分。后面的主成分 $z_j$ 有最大的方差 $d_j^2/N$，与前一个保持正交。相反地，最后一个主成分有最小的方差。因此最小的奇异值 $d_j$ 对应 $\mathbf{X}$ 列空间有最小方差的方向，并且岭回归在这些方向上收缩得最厉害。</p>
+<p>图 3.9 展示了两个维度下部分数据点的主成分。如果我们考虑在这个区域（$Y$ 轴垂直纸面）内拟合线性曲面，数据的结构形态使得我们确定在长方向下的梯度比短方向更精确。岭回归防止在短方向上估计梯度可能存在的高方差。隐含的假设是响应变量在输入高方差的方向上往往有很大不同。这往往是个合理的假设，因为预测变量经常是选来研究的，因为他们区别于响应变量，但是不需要保持一般。</p>
 <p><img alt="" src="../../img/03/fig3.9.png" /></p>
 <blockquote>
-<p>图3.9 一些输入数据点的主成分。最大主成分是使得投影数据方差最大的方向，最小主成分是使得方差最小的方向。岭回归将$\mathbf{y}$投射到这些成分上，然后将低方差成分的系数比高方差收缩得更厉害。</p>
+<p>图3.9 部分输入数据点的主成分。最大主成分是使得投影数据方差最大的方向，最小主成分是使得方差最小的方向。岭回归将 $\mathbf{y}$ 投射到这些成分上，然后对低方差成分的系数比高方差收缩得更厉害。</p>
 </blockquote>
-<p>在图3.7中我们已经画了预测误差估计值关于$df(\lambda)$的曲线</p>
+<p>在图 3.7 中我们已经画了预测误差估计值关于 $\df(\lambda)$ 的曲线</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\
-&=tr(\mathbf{H}_{\lambda})\\
+\df(\lambda)&=\tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\
+&=\tr(\mathbf{H}_{\lambda})\\
 &=\sum\limits_{j=1}^p\dfrac{d_j^2}{d_j^2+\lambda}\qquad (3.50)
 \end{align}
 </script>
 </p>
-<p>上面$\lambda$的单调递减函数是岭回归拟合的有效自由度。通常在有$p$个变量的线性回归拟合中，拟合的自由度为$p$，也就是无约束参数的个数。想法是尽管岭回归拟合中所有的$p$个系数都不为0，但是它们在由$\lambda$控制的约束方式中拟合。注意到当$\lambda=0$（没有规范化）时$df(\lambda)=p$，并且当$\lambda\rightarrow \infty$时$df(\lambda)\rightarrow 0$。当然总是对于截距会多一个自由度，在前面已经去掉了。这个定义将在3.4.4节和7.4-7.6节中详细介绍。图3.7中最小值在$df(\lambda)=5.0$处。表3.3显示了岭回归将全最小二乘估计的测试误差减少了一小部分。</p>
+<p>上面 $\lambda$ 的单调递减函数是岭回归拟合的<strong>有效自由度 (effective degrees of freedom)</strong>。通常在含 $p$ 个变量的线性回归拟合中，拟合的自由度为 $p$，也就是无约束参数的个数。想法是尽管岭回归拟合中所有的 $p$ 个系数都不为 0，但是它们在由 $\lambda$ 控制的约束方式中拟合。注意到当$\lambda=0$（没有正则化）时 $\df(\lambda)=p$，并且当 $\lambda\rightarrow \infty$ 时 $df(\lambda)\rightarrow 0$。当然总是对于截距会多一个自由度，事先 (apriori) 已经去掉了。这个定义将在 3.4.4 节和 7.4-7.6 节中详细介绍。图 3.7 中最小值在 $\df(\lambda)=5.0$ 处。表 3.3 表明岭回归将全最小二乘估计的测试误差降低了一小部分。</p>
 <h2 id="lasso">Lasso<a class="headerlink" href="#lasso" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>weiya注：</strong></p>
-<p>lasso是下面这句话的首字母缩写</p>
-<p>Least absolute shrinkage and seleetion operator</p>
-</blockquote>
-<p>lasso像岭回归一样是个收缩方法，有微妙但很重要的区别。lasso估计定义如下</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>lasso 是下面 “Least absolute shrinkage and seleetion operator” 的首字母缩写。</p>
+</div>
+<p>lasso 像岭回归一样是个收缩方法，有微妙但很重要的区别。lasso 估计定义如下</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3355,46 +3357,46 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\
 \end{align}
 </script>
 </p>
-<p>正如在岭回归中一样，我们可以通过标准化预测变量对常数$\beta_0$参再量化；$\hat{\beta}_0$的解为$\bar{y}$,并且后面我们拟合无截距的模型（练习3.5）.在信号处理中，lasso也被称作基本追求（basis pursuit）(Chen et al., 1998)</p>
-<p>我们也可以把lasso问题等价地写成拉格朗日形式</p>
+<p>正如在岭回归中一样，我们可以通过标准化预测变量对常数 $\beta_0$ 再参量化；$\hat{\beta}_0$ 的解为 $\bar{y}$，并且后面我们拟合无截距的模型（<a href="https://github.com/szcf-weiya/ESL-CN/issues/95">练习 3.5</a>）。在信号处理中，lasso 也被称作 basis pursuit (Chen et al., 1998<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">3</a></sup>)</p>
+<p>我们也可以把 lasso 问题等价地写成<strong>拉格朗日形式 (Lagrangian form)</strong></p>
 <p>
 <script type="math/tex; mode=display">
-\hat{\beta}^{lasso}=\underset{\beta}{argmin}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert\Big\}\qquad (3.52)
+\hat{\beta}^{lasso}=\underset{\beta}{\arg\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert\Big\}\qquad (3.52)
 </script>
 </p>
-<p>注意到与岭回归问题（3.42）或（3.41）的相似性：$L_2$的岭回归惩罚$\sum_1^p\beta^2_j$被$L_1$的lasso惩罚$\sum_1^p\vert\beta_j\vert$代替。后一约束使得解在$y_i$处非线性，并且在岭回归中没有相近的形式表达。计算lasso的解是一个二次编程问题，尽管我们在3.4.4节看到当$\lambda$不同时计算解的整个路径存在与岭回归同样计算花费的有效的算法。由于该约束的本质，令$t$充分小会造成一些参数恰恰等于0。因此lasso完成一个温和的连续子集选择。如果所选的$t$大于$t_0=\sum_1^p\vert\hat{\beta}_j\vert$(其中$\hat{\beta}_j=\hat{\beta}_j^{ls}$,$\hat{\beta}_j^{ls}$为最小二乘估计)，则lasso估计为$\hat{\beta}_j$。另一方面，当$t=t_0/2$，最小二乘系数平均收缩$50\%$。然而，收缩的本质不是很显然，我们将在3.4.4节进一步研究。类似在变量子集选择中子集的大小，或者岭回归的惩罚参数，应该自适应地选择$t$使得预测误差期望值的估计最小化。</p>
-<p>图3.7中，为了方便解释，我们已经画出lasso的预测误差估计关于标准化参数$s=t/\sum^p_1\vert\hat{\beta}_j\vert$的曲线。通过10-折交叉验证选择$s\approx 0.36$;这导致4个系数设为0（表3.3的第5列）。最终模型有第二低的测试误差，比全最小二乘模型略低，但是测试误差估计的标准误差（表3.3的最后一行）相当大。</p>
-<p>图3.10显示了当惩罚参数$s=t/\sum_1^p\vert\hat{\beta}_j\vert$不同时的lasso系数。当$s=1.0$时为最小二乘估计；当$s\rightarrow 0$时下降为0.该下降不总是严格单调的，尽管例子中确实是。在$s=0.36$处画了垂直直线，该值通过交叉验证来选择。</p>
+<p>注意到这与岭回归问题 (3.42) 或 (3.41) 的相似性：$L_2$ 的岭回归惩罚 $\sum_1^p\beta^2_j$ 代替 $L_1$ 的 lasso 惩罚$\sum_1^p\vert\beta_j\vert$。后一约束使得解在 $y_i$ 处非线性，并且在岭回归中没有相近的表达式。计算 lasso 的解是一个二次规划问题，尽管我们在 3.4.4 节看到当 $\lambda$ 不同时计算解的整个路径存在与岭回归同样计算花费的有效的算法。由于该约束的本质，令 $t$ 充分小会造成一些参数恰恰等于 0。因此 lasso 完成一个温和的连续子集选择。如果所选的 $t$ 大于$t_0=\sum_1^p\vert\hat{\beta}_j\vert$（其中 $\hat{\beta}_j=\hat{\beta}_j^{ls}$，$\hat{\beta}_j^{ls}$ 为最小二乘估计），则 lasso 估计为 $\hat{\beta}_j$。另一方面，当 $t=t_0/2$，最小二乘系数平均收缩 $50\%$。然而，收缩的本质不是很显然，我们将在 3.4.4 节进一步研究。类似在变量子集选择中子集的大小，或者岭回归的惩罚参数，应该自适应地选择 $t$ 使预测误差期望值的估计最小化。</p>
+<p>图 3.7 中，为了方便解释，我们已经画出 lasso 的预测误差估计关于标准化参数 $s=t/\sum^p_1\vert\hat{\beta}_j\vert$ 的曲线。通过 10 折交叉验证选择 $s\approx 0.36$；这导致 4 个系数为 0（表 3.3 的第 5 列）。最终模型有第二低的测试误差，比全最小二乘模型略低，但是测试误差估计的标准误差（表 3.3 的最后一行）相当大。</p>
+<p>图 3.10 显示了当惩罚参数 $s=t/\sum_1^p\vert\hat{\beta}_j\vert$ 不同时的 lasso 系数。当 $s=1.0$ 时为最小二乘估计；当 $s\rightarrow 0$ 时下降为 0。该下降不总是严格单调的，尽管例子中确实是。在 $s=0.36$ 处画了垂直直线，该值通过交叉验证来选择。</p>
 <p><img alt="" src="../../img/03/fig3.10.png" /></p>
 <blockquote>
-<p>图3.10 当惩罚参数$t$变化时的lasso系数曲线。图中画了系数关于$s=t/\sum^p_1\vert\hat{\beta}_j\vert$的曲线。垂直直线画在$s=0.36$处，该值通过交叉验证来选择。比较65页的图3.8，lasso曲线会达到0，然而岭回归不会。曲线是分段线性的，所以只计算显示点处的值；详见3.4.4节。</p>
+<p>图 3.10 当惩罚参数 $t$ 变化时的 lasso 系数曲线。图中画了系数关于 $s=t/\sum^p_1\vert\hat{\beta}_j\vert$ 的曲线。垂直直线画在 $s=0.36$ 处，该值通过交叉验证来选择。比较 65 页的图 3.8，lasso 曲线会达到 0，然而岭回归不会。曲线是分段线性的，所以只计算显示点处的值；详见 3.4.4 节。</p>
 </blockquote>
 <h2 id="lasso_1">讨论：子集的选择，岭回归，Lasso<a class="headerlink" href="#lasso_1" title="Permanent link">&para;</a></h2>
-<p>这部分我们讨论并且比较至今为止约束线性回归模型的三种方法：子集选择、岭回归和lasso。</p>
-<p>在正规输入矩阵的情况下，三种过程都有显式解。每种方法对最小二乘估计$\hat{\beta}_j$应用简单的转换，详见表3.4。</p>
+<p>这部分我们讨论并且比较至今为止约束线性回归模型的三种方法：子集选择、岭回归和 lasso。</p>
+<p>在正规输入矩阵的情况下，三种过程都有显式解。每种方法对最小二乘估计 $\hat{\beta}_j$ 应用简单的转换，详见表 3.4。</p>
 <p><img alt="" src="../../img/03/tab3.4.png" /></p>
 <blockquote>
-<p>表3.4 在$\mathbf{X}$为正规列情形下$\beta_j$的估计值。$M$和$\lambda$是通过对应的手段选择的常数；符号标记变量的符号（$\pm 1$）,而且$x_+$记$x$的正数部分。下面的表格中，估计值由红色虚线来显示。灰色的$45^{\circ}$直线作为参照显示了无约束的估计。</p>
+<p>表 3.4 在 $\mathbf{X}$ 为正规列情形下 $\beta_j$ 的估计值。$M$ 和 $\lambda$ 是通过对应的手段选择的常数；符号标记变量的符号（$\pm 1$），而且 $x_+$ 记 $x$ 的正数部分。下面的表格中，估计值由红色虚线来显示。灰色的 $45^{\circ}$ 直线作为参照显示了无约束的估计。</p>
 </blockquote>
-<p>岭回归做等比例的收缩。lasso通过常数因子$\lambda$转换每个系数，在0处截去。这也称作“软阈限”，而且用在5.9节中基于小波光滑的内容中。最优子集选择删掉所有系数小于第$M$大系数的变量；这是“硬阈限”的一种形式。</p>
-<p>回到非正交的情形，一些图片帮助了解它们之间的关系。当只有两个参数时图3.11描绘了lasso（左）和岭回归（右）。残差平方和有椭圆形的等高线，以全最小二乘估计为中心。岭回归的约束区域为圆盘$\beta_1^2+\beta_2^2\le t$,lasso的约束区域为菱形$\vert\beta_1\vert+\vert\beta_2\vert\le t$。两种方式都寻找当椭圆等高线到达约束区域的第一个点。与圆盘不同，菱形有角；如果解出现在角上，则有一个参数$\beta_j$等于0。当$p&gt;2$,菱形变成了偏菱形，而且有许多交，平坦的边和面；对于参数估计有更多的可能为0.</p>
+<p>岭回归做等比例的收缩。lasso 通过常数因子 $\lambda$ 转换每个系数，在 0 处截去。这也称作“软阈限”，而且用在 <a href="../../05-Basis-Expansions-and-Regularization/5.9-Wavelet-Smoothing/index.html">5.9 节</a>中基于小波光滑的内容中。最优子集选择删掉所有系数小于第 $M$ 个大系数的变量；这是“硬阈限”的一种形式。</p>
+<p>回到非正交的情形，一些图片帮助了解它们之间的关系。当只有两个参数时图 3.11 描绘了 lasso（左）和岭回归（右）。残差平方和有椭圆形的等高线，以全最小二乘估计为中心。岭回归的约束区域为圆盘 $\beta_1^2+\beta_2^2\le t$，lasso 的约束区域为菱形$\vert\beta_1\vert+\vert\beta_2\vert\le t$。两种方式都寻找当椭圆等高线到达约束区域的第一个点。与圆盘不同，<strong>菱形 (diamond)</strong> 有角；如果解出现在角上，则有一个参数 $\beta_j$ 等于 0。当 $p &gt; 2$，菱形变成了<strong>偏菱形 (rhomboid)</strong>，而且有许多交，平坦的边和面；对于参数估计有更多的可能为 0。</p>
 <p><img alt="" src="../../img/03/fig3.11.png" /></p>
 <blockquote>
-<p>图3.11 lasso(左)和岭回归（右）的估计图片。图中显示了误差的等高线和约束函数。实心蓝色区域分别为约束区域$\vert\beta_1\vert+\vert\beta_2\vert\le t$以及$\beta^2_1+\beta_2^2\le t^2$，红色椭圆为最小二乘误差函数的等高线。</p>
+<p>图 3.11 lasso(左)和岭回归（右）的估计图片。图中显示了误差的等高线和约束函数。实心蓝色区域分别为约束区域$\vert\beta_1\vert+\vert\beta_2\vert\le t$以及$\beta^2_1+\beta_2^2\le t^2$，红色椭圆为最小二乘误差函数的等高线。</p>
 </blockquote>
-<p>我们可以把岭回归和lasso一般化，并且可以看成是贝叶斯估计。考虑下面准则
+<p>我们可以把岭回归和 lasso 一般化，并且可以看成是贝叶斯估计。考虑下面准则
 <script type="math/tex; mode=display">
 \tilde{\beta}=\underset{\beta}{argmin}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert^q\Big\}\qquad (3.53)
 </script>
 </p>
-<p>其中$q\ge 0$。图3.12显示了两个输入情形下常数值$\sum_j\vert\beta_j\vert^q$的等高线。</p>
+<p>其中 $q\ge 0$。图 3.12 显示了两个输入情形下常数值 $\sum_j\vert\beta_j\vert^q$ 的等高线。</p>
 <p><img alt="" src="../../img/03/fig3.12.png" /></p>
 <blockquote>
-<p>图3.12 给定值$q$下常数值$\sum_j\vert\beta_j\vert^q$的等高线。</p>
+<p>图 3.12 给定值 $q$ 下常数值 $\sum_j\vert\beta_j\vert^q$ 的等高线。</p>
 </blockquote>
 <p>考虑$\vert\beta_j\vert^q$作为$\beta_j$的先验概率密度的对数值，同样有参数先验分布的等高线。$q=0$对应变量子集选择，惩罚项简单地统计非零参数的个数；$q=1$对应lasso，$q=2$对应岭回归。注意到$q\le 1$，先验在方向上不是均匀的，而是更多地集中在坐标方向上。对应$q=1$情形的先验分布是关于每个输入变量是的独立二重指数分布（或者Laplace分布），概率密度为$(1/2\tau)exp(-\vert\beta\vert)/\tau$并且$\tau=1/\lambda$。$q=1$的情形（lasso）是使得约束区域为凸的最小$q$值；非凸约束区域使得优化问题很困难。</p>
 <p>从这点看，lasso、岭回归和最优子集选择是有着不同先验分布的贝叶斯估计。然而，注意到它们取自后验分布的众数，即最大化后验分布。在贝叶斯估计中使用后验分布的均值更加常见。岭回归同样是后验分布的均值，但是lasso和最优子集选择不是。</p>
-<p>再一次观察准则（3.53），我们可能尝试除0，1，2外的其它$q$值。尽管有人可能从数据中估计$q$,我们的经验是为了多余的方差不值得。$q\in (1,2)$表明lasso和岭回归之间的权衡。当$q&gt;1$时尽管$\vert\beta_j\vert^q$在0处可导，但是并没有lasso（$q=1$）的令系数恰巧为零的性质。部分由于这个原因并且考虑计算易处理，Zou和Hastie在2005年引入弹性惩罚
+<p>再一次观察准则（3.53），我们可能尝试除0，1，2外的其它 $q$ 值。尽管有人可能从数据中估计$q$,我们的经验是为了多余的方差不值得。$q\in (1,2)$表明lasso和岭回归之间的权衡。当$q&gt;1$时尽管$\vert\beta_j\vert^q$在0处可导，但是并没有lasso（$q=1$）的令系数恰巧为零的性质。部分由于这个原因并且考虑计算易处理，Zou和Hastie在2005年引入弹性惩罚
 <script type="math/tex; mode=display">
 \lambda \sum\limits_{j=1}^p(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)\qquad (3.54)
 </script>
@@ -3402,16 +3404,16 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\
 <p>一种岭回归和lasso之间的不同的平衡。图3.13比较了$q=1.2$下的$L_q$惩罚以及$\alpha=0.2$的弹性网惩罚；很难从肉眼来观察出差异。弹性网像lasso一样选择变量，同时像岭回归一样收缩相关变量的系数。同时考虑了$L_q$惩罚的计算优势。我们将在18.4节介绍弹性网惩罚。</p>
 <p><img alt="" src="../../img/03/fig3.13.png" /></p>
 <blockquote>
-<p>图3.13 $q=1.2$时$\sum_j\vert\beta_j\vert^q$为常数值的轮廓线（左图）以及$\alpha=0.2$时弹性网惩罚$\sum_j(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)$为常数值的轮廓线（右图）。尽管看起来很相似，弹性网有尖角（不可导），而$q=1.2$的惩罚不会有尖角。</p>
+<p>图3.13 $q=1.2$ 时 $\sum_j\vert\beta_j\vert^q$ 为常数值的轮廓线（左图）以及 $\alpha=0.2$ 时弹性网惩罚 $\sum_j(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)$ 为常数值的轮廓线（右图）。尽管看起来很相似，弹性网有尖角（不可导），而 $q=1.2$ 的惩罚不会有尖角。</p>
 </blockquote>
 <h2 id="_2">最小角回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>最小角回归（LAR）是相对较新的方法（2004年Efron等人），而且可以看成是一种向前逐步回归（3.3.2节）的“民主”版本。正如我们所看到的，LAR与lasso联系紧密，并且事实上提供了如图3.10所示的计算整个lasso路径的非常有效的算法。</p>
-<blockquote>
-<p><strong>weiya 注：</strong>
-在Efron的论文中，最小角回归缩写为LARS（S表示“Lasso”和“Stagewise”），我们这里仍以ESL书上的缩写为准——LAR</p>
-</blockquote>
+<p>最小角回归（LAR）是相对较新的方法（Efron et al., 2004<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">4</a></sup>），而且可以看成是一种向前逐步回归（3.3.2节）的“民主”版本。正如我们所看到的，LAR 与 lasso 联系紧密，并且事实上提供了如图 3.10 所示的计算整个 lasso 路径的非常有效的算法。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>在 Efron 的论文中，最小角回归缩写为 LARS（S 表示 “Lasso” 和 “Stagewise”），我们这里仍以 ESL 书上的缩写为准——LAR</p>
+</div>
 <p>向前逐步回归逐步建立了一个模型，每次添加一个变量。每一步，它选出最好的变量加入活跃集，然后更新最小二乘来加入所有的活跃变量。</p>
-<p>最小角回归采用类似的策略，但是仅仅加入一个变量应有的程度。第一步它确定与响应变量最相关的变量。不是完全的拟合该变量，LAR使得该变量的系数向最小二乘值连续变化（造成它与进化的残差之间的相关系数绝对值降低）。只要另一个变量在与残差的相关性达到，则该过程暂停。第二个变量加入活跃集，然后它们的系数一起以保持相关性连接以及降低的方式变化。这个过程一直继续直到所有的变量都在模型中，然后在全最小二乘拟合处停止。算法3.2给出了详细过程。第5步的终止条件需要一些解释。如果$p&gt;N-1$，LAR算法经过$N-1$步达到0残差解（-1是因为我们已经对数据进行了中心化）</p>
+<p>最小角回归采用类似的策略，但是仅仅加入一个变量应有的程度。第一步它确定与响应变量最相关的变量。不是完全的拟合该变量，LAR使得该变量的系数向最小二乘值连续变化（造成它与进化的残差之间的相关系数绝对值降低）。只要另一个变量在与残差的相关性达到，则该过程暂停。第二个变量加入活跃集，然后它们的系数一起以保持相关性连接以及降低的方式变化。这个过程一直继续直到所有的变量都在模型中，然后在全最小二乘拟合处停止。算法3.2给出了详细过程。第 5 步的终止条件需要一些解释。如果 $p &gt;N-1$，LAR 算法经过 $N-1$ 步达到 0 残差解（$-1$ 是因为我们已经对数据进行了中心化）</p>
 <hr />
 <p><strong>算法 3.2</strong> 最小角回归</p>
 <hr />
@@ -3432,13 +3434,13 @@ df(\lambda)&=tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\
 <p>然后系数迭代为 $\beta_{\cal A_k} (\alpha) = \beta_{\cal A_k} + \alpha · \delta_k$。练习3.23证明这种方式下选择的方向满足断言：保证相关系数结合和递减（tied and decreasing）。如果该步的开始拟合向量为$\hat{\mathbf f}_k$，则迭代为$\hat{\mathbf f}_k(\alpha)=\mathbf f_k+\alpha\cdot\mathbf u_k$，其中$\mathbf u_k=\mathbf X_{\cal A_k}\delta_k$是新的拟合方向。“最小角”由该过程的几何解释得到；$\mathbf u_k$使得活跃集${\cal A}_k$中的预测变量间的角度最小（练习3.24）。图3.14使用模拟数据显示了相关系数的绝对值下降以及每一步LAR算法的加入行列。</p>
 <p><img alt="" src="../../img/03/fig3.14.png" /></p>
 <blockquote>
-<p>图3.14：通过6个预测变量的拟合数据集，每一步LAR过程中的相关性绝对值的变化。图像上方的标签表示在每一步哪些变量加进了活跃集。步长是用单位$L_1$弧长来测量的。</p>
+<p>图3.14：通过 6 个预测变量的拟合数据集，每一步 LAR 过程中的相关性绝对值的变化。图像上方的标签表示在每一步哪些变量加进了活跃集。步长是用单位$L_1$弧长来测量的。</p>
 </blockquote>
 <p><img alt="" src="../../img/03/fig3.15.png" /></p>
 <blockquote>
-<p>图3.15：左图显示了LAR系数作为$L_1$长度的函数在模拟数据上的图象。右图显示了Lasso的图象。它们大概在$L_1$弧长为18之前（深蓝色的系数曲线通过0）都是完全相同的.</p>
+<p>图3.15：左图显示了 LAR 系数作为 $L_1$ 长度的函数在模拟数据上的图象。右图显示了 Lasso 的图象。它们大概在 $L_1$ 弧长为 18 之前（深蓝色的系数曲线通过 0）都是完全相同的.</p>
 </blockquote>
-<p>通过构造LAR的系数以一种分段线性的方式进行改变。图3.15（左图）显示了LAR系数曲线作为$L_1$弧长<sup id="fnref:L1 arc length"><a class="footnote-ref" href="#fn:L1 arc length" rel="footnote">1</a></sup>的函数曲线。注意到我们不需要走很小的步以及重新检查步骤3的相关系数；应用预测变量的协方差和算法的分段线性性质，我们可以在每一步开始计算出确切的步长（练习3.25）。</p>
+<p>通过构造 LAR 的系数以一种分段线性的方式进行改变。图 3.15（左图）显示了 LAR 系数曲线作为 $L_1$ 弧长<sup id="fnref:L1 arc length"><a class="footnote-ref" href="#fn:L1 arc length" rel="footnote">1</a></sup>的函数曲线。注意到我们不需要走很小的步以及重新检查步骤3的相关系数；应用预测变量的协方差和算法的分段线性性质，我们可以在每一步开始计算出确切的步长（<a href="https://github.com/szcf-weiya/ESL-CN/issues/98">练习 3.25</a>）。</p>
 <p>图3.15的右图展示了对同样数据的lasso系数曲线。几乎与左图相同，当绿色曲线通过0时首次出现不同。对于前列腺癌数据，LAR系数曲线显示与图3.10的lasso曲线相同，该曲线从不经过0。这些观测值导致对LAR算法的一个简单修改，给出了整个lasso路径，它同样也是分段线性的。</p>
 <hr />
 <p><strong>算法 3.2a</strong> 最小角回归：Lasso修正</p>
@@ -3470,9 +3472,9 @@ R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Ver
 <p>图3.16：LAR、lasso、向前逐步、向前逐渐（FS）和增长向前逐渐（$FS_0$）回归之间的比较。设定与图3.6相同，除了这里$N=100$而不是300.这里较慢的$FS$回归最终表现得比向前逐步好。LAR和lasso表现得和FS、$FS_0$相似。因为这些过程采取不同的步数（根据模拟复制和方法），我们画出最小二乘拟合的MSE关于整体$L_1$弧长的片段的函数。</p>
 </blockquote>
 <p>图3.16将LAR和lasso与向前逐步（forward stepwise）和向前逐渐（forward stagewise）回归。设定与p59的图3.6是相同的，除了这里的$N=100$而不是300，所有这个问题更加困难。我们可以看到增长性更快的向前逐步很快地过拟合（10个变量加入模型中之前是很好的），最终比增长性较慢的向前逐渐回归表现得更差。LAR和lasso的行为与向前逐渐回归相似。增长的向前逐渐回归与LAR和lasso类似，并且将在3.8.1节中描述。</p>
-<h3 id="larlasso">LAR和Lasso自由度法则<a class="headerlink" href="#larlasso" title="Permanent link">&para;</a></h3>
-<p>假设我们通过最小角回归过程拟合了线性模型，在某步$k&lt;p$停止，或者等价地用lasso边界$t$来得到约束情况下的全最小二乘拟合。我们需要多少参数，或者自由度？</p>
-<p>首先考虑采用$k$个特征的子集的线性回归。如果这个子集是没有通过训练数据而事先确定好的，然后在该拟合模型中的自由度定义为$k$。当然，在经典统计学中，线性独立参数的个数也就是自由度。另外地，假设我们经历了一个最优子集选择去定了最优的$k$个预测变量。于是结果模型中有$k$个参数，但在某种意义上我们用了多余$k$个的自由度。</p>
+<h3 id="lar-lasso">LAR 和 Lasso 自由度法则<a class="headerlink" href="#lar-lasso" title="Permanent link">&para;</a></h3>
+<p>假设我们通过最小角回归过程拟合了线性模型，在某步$k &lt; p$停止，或者等价地用lasso边界$t$来得到约束情况下的全最小二乘拟合。我们需要多少参数，或者自由度？</p>
+<p>首先考虑采用$k$个特征的子集的线性回归。如果这个子集是没有通过训练数据而事先确定好的，然后在该拟合模型中的自由度定义为$k$。当然，在经典统计学中，线性独立参数的个数也就是自由度。另外地，假设我们经历了一个最优子集选择去定了最优的$k$个预测变量。于是结果模型中有$k$个参数，但在某种意义上我们用了多余 $k$ 个的自由度。</p>
 <p>我们需要一个对于自适应拟合模型的有效自由度的一般定义。我们定义拟合向量$\hat{\mathbf y}=(\hat y_1,\hat y_2,\ldots,\hat y_N)$的自由度为
 <script type="math/tex; mode=display">
 df(\hat{\mathbf y})=\frac{1}{\sigma^2}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad (3.60)
@@ -3488,6 +3490,12 @@ df(\hat{\mathbf y})=\frac{1}{\sigma^2}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad
 </li>
 <li id="fn:1">
 <p>Hoerl, A. E. and Kennard, R. (1970). Ridge regression: biased estimation for nonorthogonal problems, Technometrics 12: 55–67.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Chen, S. S., Donoho, D. and Saunders, M. (1998). Atomic decomposition by basis pursuit, SIAM Journal on Scientific Computing 20(1): 33–61.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Efron, B., Hastie, T., Johnstone, I. and Tibshirani, R. (2004). Least angle regression (with discussion), Annals of Statistics 32(2): 407–499.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
