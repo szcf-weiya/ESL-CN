@@ -3162,29 +3162,30 @@
 <p><strong>岭回归 (Ridge regression)</strong> 通过对回归系数的大小加上惩罚因子来收缩它们。岭回归的系数使得带惩罚的残差平方和最小</p>
 <p>
 <script type="math/tex; mode=display">
-\hat{\beta}^{ridge}=\underset{\beta}{\arg\;\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\beta_j^2\Big\}\qquad (3.41)
+\hat{\beta}^{ridge}=\underset{\beta}{\arg\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\beta_j^2\Big\}\qquad (3.41)
 </script>
 </p>
-<p>这里$\lambda\ge 0 $是控制收缩程度的参数：$\lambda$值越大，收缩的程度越大。每个系数都向零收缩。&lt;&ndash;系数向零收缩（并且彼此收缩到一起）。&ndash;&gt;通过参数的平方和来惩罚的想法也用在了神经网络，也被称作<strong>权重衰减 (weight decay)</strong>（<a href="">第 11 章</a>）。</p>
+<p>这里$\lambda\ge 0 $是控制收缩程度的参数：$\lambda$值越大，收缩的程度越大。每个系数都向零收缩。<!--系数向零收缩（并且彼此收缩到一起）。-->通过参数的平方和来惩罚的想法也用在了神经网络，也被称作<strong>权重衰减 (weight decay)</strong>（<a href="">第 11 章</a>）。</p>
 <p>岭回归问题可以等价地写成</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\hat{\beta}^{ridge}&=\underset{\beta}{argmin}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2\\\
+\hat{\beta}^{ridge}&=\underset{\beta}{\arg\min}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2\\\
 & \text{subject to }\sum\limits_{j=1}^p\beta_j^2 \le t
 \end{align}
 \qquad (3.42)
 </script>
 </p>
-<p>上式用参数显式表达了对回归参数大小的约束。(3.41)中的$\lambda$和(3.42)中的$t$一一对应。当在线性回归模型中有许多相关变量，它们的系数可能不充分确定且有高方差。某个变量的较大的正系数可以同相关性强的变量上差不多大的负系数相互抵消。通过对系数加入大小限制，如（3.42），这个问题得以减轻。</p>
-<blockquote>
-<p>weiya注：这里说的是，在没有对参数大小进行限制前，会存在一对相关性强的变量，当它们系数取值符号相反，但绝对值差不多大，会大大增加方差，这也就是高方差的体现，但其实它们的合作用效果为近似为0,所以考虑引进对参数大小的惩罚。</p>
-</blockquote>
-<p>对输入按比例进行缩放或放大时，岭回归的解不相等，因此求解（3.41）前我们需要对输入进行正规标准化。另外，注意到惩罚项不包含截距$\beta_0$。对截距的惩罚会使得过程依赖于$\mathbf{Y}$的初始选择；也就是，对每个$y_i$加上常数$c$不会简单地导致预测会偏离同样的量$c$。可以证明（练习3.5）经过中心化输入的再参量化，每个$x_{ij}$用$x_{ij}-\bar x_j$来替换，(3.41)的解可以分成两部分。我们用$\bar y=\frac{1}{N}\sum_1^Ny_i$来估计$\beta_0$。剩余的参数利用中心化的$x_{ij}$通过无截距的岭回归来估计。今后我们假设中心化已经完成，则输入矩阵$\mathbf X$有$p$（不是$p+1$）列。</p>
-<p>将(3.41)的准则写成矩阵形式</p>
+<p>上式用参数显式表达了对回归参数大小的约束。(3.41) 中的$ \lambda$ 和 (3.42) 中的 $t$ 存在一一对应。当在线性回归模型中有许多相关变量，它们的系数可能很难确定且有高方差。某个变量的较大的正系数可以与相关性强的变量的差不多大的负系数相互抵消。通过对系数加入大小限制，如 (3.42)，这个问题能得以减轻。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>这里说的是，在没有对参数大小进行限制前，会存在一对相关性强的变量，它们系数取值符号相反，但绝对值差不多大，会大大增加方差，这也就是高方差的体现，但其实它们的合作用效果近似为 0,所以考虑引进对参数大小的惩罚。</p>
+</div>
+<p>对输入按比例进行缩放或放大时，岭回归的解不相等，因此求解 (3.41) 前我们需要对输入进行正规标准化。另外，注意到惩罚项不包含截距 $\beta_0$。对截距的惩罚会使得过程依赖于 $\mathbf{Y}$ 的初始选择；也就是，对每个 $y_i$ 加上常数 $c$ 不是简单地导致预测值会偏离同样的量 $c$。可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/95">练习 3.5</a>）经过中心化输入的再参量化，每个 $x_{ij}$ 用 $x_{ij}-\bar x_j$ 来替换，(3.41) 的解可以分成两部分。我们用 $\bar y=\frac{1}{N}\sum_1^Ny_i$ 来估计 $\beta_0$。剩余的参数利用中心化的 $x_{ij}$ 通过无截距的岭回归来估计。今后我们假设中心化已经完成，则输入矩阵 $\mathbf X$ 有 $p$（不是 $p+1$）列。</p>
+<p>将 (3.41) 的准则写成矩阵形式</p>
 <p>
 <script type="math/tex; mode=display">
-RSS(\lambda)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)+\lambda\beta^T\beta \qquad (3.43)
+\RSS(\lambda)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)+\lambda\beta^T\beta \qquad (3.43)
 </script>
 </p>
 <p>可以简单地看出岭回归的解为</p>
@@ -3193,48 +3194,56 @@ RSS(\lambda)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)+\lambda\
 \hat{\beta}^{ridge}=(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}\qquad (3.44)
 </script>
 </p>
-<p>其中$\mathbf{I}$为$p\times p$单位矩阵。注意到选择二次函数惩罚$\beta^T\beta$,岭回归的解仍是$\mathbf{y}$的线性函数。解在求逆之前向矩阵$\mathbf{X^TX}$的对角元上加入正的常数值。这样会使得问题非奇异，即使$\mathbf{X^TX}$不是满秩，而且这是第一次将岭回归引入统计学中（Hoerl and Kennard,1970）的主要动力。传统的岭回归的描述从定义（3.44）开始。我们选择通过(3.41)和(3.42)来阐述，因为这两式让我们看清楚了它是怎样实现的。</p>
-<p>图3.8展示了前列腺癌例子的岭回归系数估计，绘制成关于$df(\lambda)$的函数，$df(\lambda)$为由惩罚$\lambda$得到的有效自由度（effective degrees of freedom）（在p68的式(3.50)中定义）。在正规化输入的情形下，岭回归估计仅仅是最小二乘估计的缩小版本，也就是$\hat{\beta}^{ridge}=\hat{\beta}/(1+\lambda)$</p>
+<p>其中 $\mathbf{I}$ 为 $p\times p$ 的单位矩阵。注意到选择二次函数惩罚 $\beta^T\beta$，岭回归的解仍是 $\mathbf{y}$ 的线性函数。解在求逆之前向矩阵 $\mathbf{X^TX}$ 的对角元上加入正的常数值。这样会使得问题非奇异，即使 $\mathbf{X^TX}$ 不是满秩，而且这是第一次将岭回归引入统计学中 (Hoerl and Kennard, 1970<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">2</a></sup>）的主要动力。传统的岭回归的描述从定义 (3.44) 开始。我们选择通过 (3.41) 和 (3.42) 来阐述，因为这两式让我们看清楚了它是怎样实现的。</p>
+<p>图 3.8 展示了前列腺癌例子的岭回归系数估计，绘制成关于 $\df(\lambda)$ 的函数，$\df(\lambda)$ 为由惩罚 $\lambda$ 得到的<strong>有效自由度 (effective degrees of freedom)</strong>（由 p68 的式 (3.50) 中定义）。在正规化输入的情形下，岭回归估计仅仅是最小二乘估计的缩小版本，也就是 $\hat{\beta}^{ridge}=\hat{\beta}/(1+\lambda)$</p>
 <p><img alt="" src="../../img/03/fig3.8.png" /></p>
 <blockquote>
-<p>图3.8 当惩罚参数$\lambda$不同时，前列腺癌例子岭回归的轮廓。画出系数关于有效自由度$df(\lambda)$的曲线。垂直直线画在$df=5.0$处，这是由交叉验证选择出来的。</p>
+<p>图 3.8 当惩罚参数 $\lambda$ 不同时，前列腺癌例子岭回归的变化曲线。画出系数关于有效自由度 $\df(\lambda)$ 的曲线。垂直直线画在 $\df=5.0$ 处，这是由交叉验证选择出来的。</p>
 </blockquote>
-<p>当给定一个合适的先验分布，岭回归也可以从后验分布的均值或众数得到。具体地，假设$y_i \sim N(\beta_0+x^T_i\beta,\sigma^2)$,参数$\beta_j$的分布均为$N(0,\tau^2)$,每个都相互独立。则当$\tau^2$和$\sigma^2$值已知时，$\beta$后验分布密度函数的对数值(的负数)与（3.41）中花括号里面的表达式成比例<strong>(weiya 注：原文直接说与花括号的表达式相等，但应该是常数倍)</strong>，且$\lambda=\sigma^2/\tau^2$(练习3.6[^Ex3.7])。因此岭回归估计是后验分布的众数；又分布为高斯分布，则也是后验分布的均值。</p>
-<blockquote>
-<p><strong>weiya注：</strong></p>
+<p>当给定一个合适的先验分布，岭回归也可以从后验分布的均值或众数得到。具体地，假设 $y_i \sim N(\beta_0+x^T_i\beta,\sigma^2)$，参数 $\beta_j$ 的分布均为 $N(0,\tau^2)$，每个都相互独立。则当 $\tau^2$ 和 $\sigma^2$ 值已知时，$\beta$ 后验分布密度函数的对数值（的负数）与 (3.41) 中花括号里面的表达式成比例<strong>(weiya 注：原文直接说与花括号的表达式相等，但应该是常数倍)</strong>，且 $\lambda=\sigma^2/\tau^2$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/96">练习 3.6</a>)。因此岭回归估计是后验分布的众数；又因分布为高斯分布，则也是后验分布的均值。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.6</p>
+<p>将解答过程移至<a href="https://github.com/szcf-weiya/ESL-CN/issues/96">Issue 96: Ex. 3.6</a>。</p>
+</div>
+<!--
+> **weiya注：**
+>
+>
+> $$
+> \begin{align}
+> f(\beta\mid y)&=\dfrac{f(\beta, y)}{f(y)}\\\
+> &=\dfrac{f(\beta,y)}{\int f(y\mid\beta)f(\beta)}\\\
+> &\sim f(y\mid\beta)f(\beta)\\\
+> &=Cexp\Big\{-\frac{1}{2\sigma^2}\Big[(y-\beta_0-X\beta)'(y-\beta_0-X\beta)+\frac{\sigma^2}{\tau^2}\beta'\beta\Big]\Big\}
+> \end{align}
+> $$
+>
+> $\color{red} 疑问：C是多少？$
+> 通过
+> $$
+> \int Cf(\beta\mid y)d\beta=1
+> $$
+> 来确定C
+> $$
+> C = \dfrac{1}{(2\pi)^N\tau\sigma \Vert XX'\Vert^{1/2}}
+> $$
+>
+>
+> 取对数，有
+> $$
+> log(f(\beta\mid y))=-\frac{1}{2\sigma^2}[(y-\beta_0-X\beta)'(y-\beta_0-X\beta)+\frac{\sigma^2}{\tau^2}\beta'\beta]+log(C)
+> $$
+>
+> 则$\lambda=\frac{\sigma^2}{\tau^2}$,且岭回归估计是后验分布的众数。
+-->
+
+<p>中心化输入矩阵 $\mathbf{X}$ 的奇异值分解(SVD)让我们进一步了解岭回归的本质。这个分解在许多统计方法分析中非常有用。$N\times p$ 阶矩阵 $\mathbf{X}$ 的 SVD 分解有如下形式</p>
 <p>
-<script type="math/tex; mode=display">
-\begin{align}
-f(\beta\mid y)&=\dfrac{f(\beta, y)}{f(y)}\\\
-&=\dfrac{f(\beta,y)}{\int f(y\mid\beta)f(\beta)}\\\
-&\sim f(y\mid\beta)f(\beta)\\\
-&=Cexp\Big\{-\frac{1}{2\sigma^2}\Big[(y-\beta_0-X\beta)'(y-\beta_0-X\beta)+\frac{\sigma^2}{\tau^2}\beta'\beta\Big]\Big\}
-\end{align}
-</script>
-</p>
-<p>$\color{red} 疑问：C是多少？$
-通过
-<script type="math/tex; mode=display">
-\int Cf(\beta\mid y)d\beta=1
-</script>
-来确定C
-<script type="math/tex; mode=display">
-C = \dfrac{1}{(2\pi)^N\tau\sigma \Vert XX'\Vert^{1/2}}
-</script>
-</p>
-<p>取对数，有
-<script type="math/tex; mode=display">
-log(f(\beta\mid y))=-\frac{1}{2\sigma^2}[(y-\beta_0-X\beta)'(y-\beta_0-X\beta)+\frac{\sigma^2}{\tau^2}\beta'\beta]+log(C)
-</script>
-</p>
-<p>则$\lambda=\frac{\sigma^2}{\tau^2}$,且岭回归估计是后验分布的众数。</p>
-</blockquote>
-<p>中心化输入矩阵$\mathbf{X}$的奇异值分解(SVD)让我们进一步了解岭回归的本质。这个分解在许多统计方法分析中非常有用。$N\times p$阶矩阵$\mathbf{X}$的SVD分解有如下形式
 <script type="math/tex; mode=display">
 \mathbf{X=UDV^T}\qquad (3.45)
 </script>
 </p>
-<p>这里$\mathbf{U}$和$\mathbf{V}$分别是$N\times p$和$p\times p$的正交矩阵，$\mathbf{U}$的列张成$X$的列空间，$\mathbf{V}$的列张成$X$的行空间。$\mathbf{D}$为$p\times p$的对角矩阵，对角元$d_1\ge d_2 \ge \cdots \ge d_p \ge 0$称作$\mathbf{X}$的奇异值。如果一个或多个$d_j=0$,则$\mathbf{X}$为奇异的。</p>
+<p>这里 $\mathbf{U}$ 和 $\mathbf{V}$ 分别是 $N\times p$ 和 $p\times p$ 的正交矩阵，$\mathbf{U}$的列张成 $X$ 的列空间，$\mathbf{V}$ 的列张成 $X$ 的行空间。$\mathbf{D}$ 为 $p\times p$ 的对角矩阵，对角元 $d_1\ge d_2 \ge \cdots \ge d_p \ge 0$ 称作 $\mathbf{X}$ 的奇异值。如果一个或多个 $d_j=0$，则 $\mathbf{X}$ 为奇异的。</p>
 <blockquote>
 <p><strong>weiya 注：（以下关于奇异值分解内容来自张贤达的《矩阵分析与应用》）</strong></p>
 <p>奇异值分解最早由Beltrami在1873年对实正方矩阵提出来的。Beltrami从双线性函数
@@ -3476,6 +3485,9 @@ df(\hat{\mathbf y})=\frac{1}{\sigma^2}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad
 <ol>
 <li id="fn:L1 arc length">
 <p>可导曲线$\beta(s), s \in [0,S]$的$L_1$弧长为$TV(\beta,S)=\int_0^S\Vert\dot{\beta}(s)\Vert_1ds$,其中$\dot{\beta}(s)=\partial\beta(s)/\partial s$.对于分段LAR函数曲线，这相当于从这一步到下一步系数的$L_1$范数变化之和。&#160;<a class="footnote-backref" href="#fnref:L1 arc length" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p>Hoerl, A. E. and Kennard, R. (1970). Ridge regression: biased estimation for nonorthogonal problems, Technometrics 12: 55–67.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
