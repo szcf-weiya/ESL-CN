@@ -3149,7 +3149,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-03-22</td>
+<td>2018-03-22, 2018-03-23</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3184,7 +3184,7 @@
 <p>对输入按比例进行缩放时，岭回归的解不相等，因此求解 (3.41) 前我们需要对输入进行标准化。另外，注意到惩罚项不包含截距 $\beta_0$。对截距的惩罚会使得过程依赖于 $\mathbf{Y}$ 的初始选择；也就是，对每个 $y_i$ 加上常数 $c$ 不是简单地导致预测值会偏离同样的量 $c$。可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/95">练习 3.5</a>）经过对输入进行中心化（每个 $x_{ij}$ 替换为 $x_{ij}-\bar x_j$）后，(3.41) 的解可以分成两部分。我们用 $\bar y=\frac{1}{N}\sum_1^Ny_i$ 来估计 $\beta_0$。剩余的参数利用中心化的 $x_{ij}$ 通过无截距的岭回归来估计。今后我们假设中心化已经完成，则输入矩阵 $\mathbf X$ 有 $p$（不是 $p+1$）列。</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.5</p>
-<p>已解答，详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/95">Issue 95: Ex. 3.5</a></p>
+<p>已解答，详细证明过程见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/95">Issue 95: Ex. 3.5</a></p>
 </div>
 <p>将 (3.41) 的准则写成矩阵形式</p>
 <p>
@@ -3198,8 +3198,8 @@
 \hat{\beta}^{ridge}=(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}\qquad (3.44)
 </script>
 </p>
-<p>其中 $\mathbf{I}$ 为 $p\times p$ 的单位矩阵。注意到选择二次函数惩罚 $\beta^T\beta$，岭回归的解仍是 $\mathbf{y}$ 的线性函数。解在求逆之前向矩阵 $\mathbf{X^TX}$ 的对角元上加入正的常数值。这样会使得问题非奇异，即使 $\mathbf{X^TX}$ 不是满秩，而且这是第一次将岭回归引入统计学中 (Hoerl and Kennard, 1970<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">2</a></sup>）的主要动力。传统的岭回归的描述从定义 (3.44) 开始。我们选择通过 (3.41) 和 (3.42) 来阐述，因为这两式让我们看清楚了它是怎样实现的。</p>
-<p>图 3.8 展示了前列腺癌例子的岭回归系数估计，绘制成关于 $\df(\lambda)$ 的函数，$\df(\lambda)$ 为由惩罚 $\lambda$ 得到的<strong>有效自由度 (effective degrees of freedom)</strong>（由 p68 的式 (3.50) 中定义）。在正规化输入的情形下，岭回归估计仅仅是最小二乘估计的缩小版本，也就是 $\hat{\beta}^{ridge}=\hat{\beta}/(1+\lambda)$</p>
+<p>其中 $\mathbf{I}$ 为 $p\times p$ 的单位矩阵。注意到选择二次函数惩罚 $\beta^T\beta$，岭回归的解仍是 $\mathbf{y}$ 的线性函数。解在求逆之前向矩阵 $\mathbf{X^TX}$ 的对角元上加入正的常数值。即使 $\mathbf{X^TX}$ 不是满秩，这样会使得问题非奇异，而且这是第一次将岭回归引入统计学中 (Hoerl and Kennard, 1970<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">2</a></sup>）的主要动力。传统的岭回归的描述从定义 (3.44) 开始。我们选择通过 (3.41) 和 (3.42) 来阐述，因为这两式让我们看清楚了它是怎样实现的。</p>
+<p>图 3.8 展示了前列腺癌例子的岭回归系数估计，绘制成关于 $\df(\lambda)$ 的函数图象，$\df(\lambda)$ 为由惩罚 $\lambda$ 得到的<strong>有效自由度 (effective degrees of freedom)</strong>（由式 (3.50) 中定义）。在正交输入的情形下，岭回归估计仅仅是最小二乘估计的缩小版本，也就是 $\hat{\beta}^{ridge}=\hat{\beta}/(1+\lambda)$。</p>
 <p><img alt="" src="../../img/03/fig3.8.png" /></p>
 <blockquote>
 <p>图 3.8 当惩罚参数 $\lambda$ 不同时，前列腺癌例子岭回归的变化曲线。画出系数关于有效自由度 $\df(\lambda)$ 的曲线。垂直直线画在 $\df=5.0$ 处，这是由交叉验证选择出来的。</p>
@@ -3306,7 +3306,11 @@ M=U_n\Sigma_nV^T
 \end{align}
 </script>
 </p>
-<p>注意到 $\mathbf{U}^Ty$ 是 $\mathbf{y}$ 关于正交基 $\mathbf{U}$ 的坐标。同时注意其与 (3.33) 的相似性；$\mathbf{Q}$ 和 $\mathbf{U}$ 是 $\mathbf{X}$ 列空间的两个不同的正交基（<a href="https://github.com/szcf-weiya/ESL-CN/issues/97">练习 3.8</a>）。</p>
+<p>注意到 $\mathbf{U}^T\mathbf y$ 是 $\mathbf{y}$ 正交基 $\mathbf{U}$ 下的坐标。同时注意其与 (3.33) 的相似性；$\mathbf{Q}$ 和 $\mathbf{U}$ 是 $\mathbf{X}$ 列空间的两个不同的正交基（<a href="https://github.com/szcf-weiya/ESL-CN/issues/97">练习 3.8</a>）。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.8</p>
+<p>已解答，具体证明过程见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/97">Issue 97: Ex. 3.8</a></p>
+</div>
 <p>现在岭回归为</p>
 <p>
 <script type="math/tex; mode=display">
