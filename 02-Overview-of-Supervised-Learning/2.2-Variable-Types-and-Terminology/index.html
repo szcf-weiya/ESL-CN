@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记、代码实现以及习题解答">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/02 Overview of Supervised Learning/2.2 Variable Types and Terminology/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/02-Overview-of-Supervised-Learning/2.2-Variable-Types-and-Terminology/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -532,7 +532,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.1 Introduction/index.html" title="2.1 导言" class="md-nav__link">
+    <a href="../2.1-Introduction/index.html" title="2.1 导言" class="md-nav__link">
       2.1 导言
     </a>
   </li>
@@ -565,7 +565,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.3 Two Simple Approaches to Prediction/index.html" title="2.3 两种预测的简单方法" class="md-nav__link">
+    <a href="../2.3-Two-Simple-Approaches-to-Prediction/index.html" title="2.3 两种预测的简单方法" class="md-nav__link">
       2.3 两种预测的简单方法
     </a>
   </li>
@@ -577,7 +577,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.4 Statistical Decision Theory/index.html" title="2.4 统计判别理论" class="md-nav__link">
+    <a href="../2.4-Statistical-Decision-Theory/index.html" title="2.4 统计判别理论" class="md-nav__link">
       2.4 统计判别理论
     </a>
   </li>
@@ -589,7 +589,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.5 Local Methods in High Dimensions/index.html" title="2.5 高维问题的局部方法" class="md-nav__link">
+    <a href="../2.5-Local-Methods-in-High-Dimensions/index.html" title="2.5 高维问题的局部方法" class="md-nav__link">
       2.5 高维问题的局部方法
     </a>
   </li>
@@ -601,7 +601,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.6 Statistical Models, Supervised Learning and Function Approximation/index.html" title="2.6 统计模型，监督学习和函数逼近" class="md-nav__link">
+    <a href="../2.6-Statistical-Models-Supervised-Learning-and-Function-Approximation/index.html" title="2.6 统计模型，监督学习和函数逼近" class="md-nav__link">
       2.6 统计模型，监督学习和函数逼近
     </a>
   </li>
@@ -613,7 +613,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.7 Structured Regression Models/index.html" title="2.7 结构化的回归模型" class="md-nav__link">
+    <a href="../2.7-Structured-Regression-Models/index.html" title="2.7 结构化的回归模型" class="md-nav__link">
       2.7 结构化的回归模型
     </a>
   </li>
@@ -625,7 +625,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.8 Classes of Restricted Estimators/index.html" title="2.8 限制性估计的类别" class="md-nav__link">
+    <a href="../2.8-Classes-of-Restricted-Estimators/index.html" title="2.8 限制性估计的类别" class="md-nav__link">
       2.8 限制性估计的类别
     </a>
   </li>
@@ -637,7 +637,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.9 Model Selection and the Bias-Variance Tradeoff/index.html" title="2.9 模型选择和偏差-方差的权衡" class="md-nav__link">
+    <a href="../2.9-Model-Selection-and-the-Bias-Variance-Tradeoff/index.html" title="2.9 模型选择和偏差-方差的权衡" class="md-nav__link">
       2.9 模型选择和偏差-方差的权衡
     </a>
   </li>
@@ -649,7 +649,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3036,7 +3036,7 @@
 <p>定性的变量常用数字编码来表示。最简单的情形是只有两个分类，比如说“成功”与“失败”，“生存”与“死亡”。这些经常用一位二进制数来表示，比如0或1，或者用-1和1来表示。因为一些显然的原因，这些数字编码有时被称作指标（<em>targets</em>）。当存在超过两个的类别，一些其他的选择是可行的。最有用并且最普遍使用的编码是虚拟变量（<em>dummy variables</em>）。这里有$K$个水平的定性变量被一个$K$位的二进制变量表示，每次只有一个在开启状态。尽管更简洁的编码模式也是可能的，虚拟变量在因子的层次中是对称的。</p>
 <p>我们将经常把输入变量用符号 $X$ 来表示。如果$X$是一个向量，则它的组成部分可以用下标$X_j$来取出。定量的输出变量用$Y$来表示，对于定性的输出变量采用$G$来表示(group的意思)。当指一般的变量，我们使用大写字母$X,Y,G$来表示，对于观测值我们用小写字母来表示；因此$X$的第$i$个观测值记作 $x_i$ （其中，$x_i$要么是标量要么是向量）矩阵经常用粗体的大写字母来表示；举个例子，$N$个$p$维输入向量$x_i,i=1,\cdots,N$可以表示成$N\times p$的矩阵 $\mathbf{X}$ 。一般地，向量不是粗体，除非它们有 $N$ 个组成成分；这个约定区分了包含变量$X_j$的所有观测值的$N$维向量 $\mathbf{x}_j$ 和第 $i$ 个观测值的 $p$ 维向量 $x_i$ 。因为所有的向量都假定为列向量， $\mathbf{X}$ 的第 $i$ 行是 $x_i$ 的转置 $x_i^T$ 。</p>
 <p>现在我们可以不严谨地把学习叙述成如下：给定输入向量$X$，对输出$Y$做出一个很好的估计，记为 $\hat{Y}$ 。如果$Y$取值为$\mathbf{R}$，则 $\hat{Y}$ 取值也是 $\mathbf{R}$ ；同样地，对于类别型输出，$\hat{G}$ 取值为对应 $G$ 取值的集合 $\cal{G}$。</p>
-<p>对于只有两种类别的$G$，一种方式是把二进制编码记为$Y$，然后把它看成是定量的输出变量。预测值 $\hat{Y}$ 一般落在 $[0,1]$ 之间，而且我们可以根据 $\hat{y} &gt; 0.5$ 来赋值给 $\hat{G}$ 。这种方式可以一般化为有 $K$ 个水平的定性的输出变量。</p>
+<p>对于只有两种类别的 $G$，一种方式是把二进制编码记为$Y$，然后把它看成是定量的输出变量。预测值 $\hat{Y}$ 一般落在 $[0,1]$ 之间，而且我们可以根据 $\hat{y} &gt; 0.5$ 来赋值给 $\hat{G}$ 。这种方式可以一般化为有 $K$ 个水平的定性的输出变量。</p>
 <p>我们需要数据去构建预测规则，经常是大部分的数据。因此我们假设有一系列可用的测量值 $(x_i,y_i)$ 或 $(x_i,g_i),i=1,\cdots,N$ ，这也称之为训练数据(<em>training data</em>)，将利用这些训练数据去构建我们的预测规则。</p>
                 
                   
@@ -3069,7 +3069,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../2.1 Introduction/index.html" title="2.1 导言" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2.1-Introduction/index.html" title="2.1 导言" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3084,7 +3084,7 @@
           </a>
         
         
-          <a href="../2.3 Two Simple Approaches to Prediction/index.html" title="2.3 两种预测的简单方法" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2.3-Two-Simple-Approaches-to-Prediction/index.html" title="2.3 两种预测的简单方法" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
