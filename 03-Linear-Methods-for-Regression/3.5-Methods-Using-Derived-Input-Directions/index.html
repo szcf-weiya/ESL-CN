@@ -3161,21 +3161,27 @@ $\mathbf b$ 在 $\mathbf a$ 上的无截距的简单单变量回归，回归系�
 -->
 
 <p>在前列腺癌的例子中，交叉验证在图 3.7 中选择 $M=2$ 个PLS方向。这得到了表 3.3 最右边的列的模型。</p>
-<p>偏最小二乘求解的是什么优化问题呢？因为它使用响应变量 $\mathbf y$ 去构造它的方向，所以它的解的路径是关于 $\mathbf y$ 的非线性函数。可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/103">练习 3.15</a>）偏最小二乘寻找有高方差以及和响应变量有高相关性的方向，而与之相对的主成分分析回归只重视高方差（Stone and Brooks, 1990<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>; Frank and Friedman, 1993<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。特别地，第 $m$ 个主成分方向 $v_m$ 是下面问题的解：</p>
+<p>偏最小二乘求解的是什么优化问题呢？因为它使用响应变量 $\mathbf y$ 去构造它的方向，所以它解的路径是关于 $\mathbf y$ 的非线性函数。可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/103">练习 3.15</a>）偏最小二乘寻找有高方差以及和响应变量有高相关性的方向，而与之相对的主成分分析回归只重视高方差（Stone and Brooks, 1990<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>; Frank and Friedman, 1993<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。特别地，第 $m$ 个主成分方向 $v_m$ 是下面问题的解：</p>
 <p>
 <script type="math/tex; mode=display">
-\max_{\alpha} \;\Var(\mathbf X\alpha)\\
-s.t.\;\Vert \alpha\Vert=1,\alpha^T\mathbf Sv_\ell=0,\;\ell=1,\ldots,m-1
+\begin{align}
+\max_{\alpha} &\Var(\mathbf X\alpha)\\
+\st&\Vert \alpha\Vert=1,\alpha^T\mathbf Sv_\ell=0,\;\ell=1,\ldots,m-1
+\end{align}
+\qquad (3.63)
 </script>
 </p>
 <p>其中，$\mathbf S$ 为 $\mathbf x_j$ 的样本协方差矩阵。$\alpha^T\mathbf Sv_\ell=0$ 保证了 $\mathbf z_m=\mathbf X\alpha$ 与之前所有的线性组合 $\mathbf z_\ell=\mathbf v_\ell$ 都不相关。第 $m$ 个 PLS 方向 $\hat \varphi_m$ 是下面的解：</p>
 <p>
 <script type="math/tex; mode=display">
-\max_\alpha\; \mathrm{Corr}^2(\mathbf y,\mathbf X\alpha)\Var(\mathbf X\alpha)\\
-s.t.\; \Vert\alpha\Vert=1,\alpha^T\mathbf S\hat \varphi_\ell=0,\ell=1,\ldots,m-1
+\begin{align}
+\max_\alpha& \mathrm{Corr}^2(\mathbf y,\mathbf X\alpha)\Var(\mathbf X\alpha)\\
+\st& \Vert\alpha\Vert=1,\alpha^T\mathbf S\hat \varphi_\ell=0,\ell=1,\ldots,m-1
+\end{align}
+\qquad (3.64)
 </script>
 </p>
-<p>更多的分析揭示了，方差项趋向于主导地位，而且偏最小二乘表现得很像岭回归和主成分回归。我们将在下一部分讨论这些。</p>
+<p>更多的分析揭示了，方差项趋向于占主导地位，而且因此偏最小二乘表现得很像岭回归和主成分回归。我们将在下一部分讨论这些。</p>
 <p>如果输入矩阵 $\mathbf X$ 是正交的，则偏最小二乘会经过 $m=1$ 步找到最小二乘估计。后续的步骤不起作用，因为 $m &gt;1\text{时}，\hat \varphi_{mj}=0$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/104">练习 3.14</a>）。也可以证明 $m=1,2,\ldots,p$ 时的 PLS 系数序列表示计算最小二乘解时的共轭梯度（<a href="https://github.com/szcf-weiya/ESL-CN/issues/105">练习 3.18</a>）。</p>
 <div class="footnote">
 <hr />
