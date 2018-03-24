@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#35-derived-input-directions" tabindex="1" class="md-skip">
+      <a href="#35" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -3076,7 +3076,7 @@
               
                 
                 
-                <h1 id="35-derived-input-directions">3.5 运用派生输入方向（Derived Input Directions）的方法<a class="headerlink" href="#35-derived-input-directions" title="Permanent link">&para;</a></h1>
+                <h1 id="35">3.5 运用派生输入方向的方法<a class="headerlink" href="#35" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3093,60 +3093,102 @@
 <td>时间</td>
 <td>2016-10-14:2016-10-21</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-03-24</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
-<p>在很多情形下我们有很多输入，这些输入相关性经常是非常强的。这一小节中的方法得到较少的原输入变量$X_j$的线性组合$Z_m,m=1,2,\ldots,M$，然后$Z_m$用来代替$X_j$来作为回归的输入。这些方法区别于怎样构造线性组合。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：翻译</p>
+<p>Derived Input Directions 翻译为 派生输入方向。</p>
+</div>
+<p>在很多情形下我们有很多输入，这些输入的相关性经常是非常强的。这一小节中的方法产生较少的原输入变量 $X_j$ 的线性组合 $Z_m,m=1,2,\ldots,M$，然后 $Z_m$ 用来代替 $X_j$ 来作为回归的输入。这些方法区别于怎样构造线性组合。</p>
 <h2 id="_1">主成分回归<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>在这种方法下，使用的线性组合$Z_m$是在前面3.4.1节中定义的主成分。</p>
-<p>主成分回归构造派生的输入列$\mathbf z_m=\mathbf Xv_m$，然后在$\mathbf z_1,\mathbf z_2,\ldots,\mathbf z_M,\; M\le p$上回归$\mathbf y$.因为$\mathbf z_m$是正交的，这个回归仅仅是一个单变量回归的和
+<p>在这种方法下，使用的线性组合 $Z_m$ 是在前面 <a href="../../3.4-Shrinkage-Methods/index.html">3.4.1 节</a>中定义的主成分。</p>
+<p>主成分回归构造派生的输入列 $\mathbf z_m=\mathbf Xv_m$，然后在 $\mathbf z_1,\mathbf z_2,\ldots,\mathbf z_M,\; M\le p$ 上回归 $\mathbf y$。因为 $\mathbf z_m$ 是正交的，这个回归仅仅是单变量回归的和</p>
+<p>
 <script type="math/tex; mode=display">
 \hat{\mathbf y}^{pcr}_{(M)}=\bar y\mathbf 1+\sum\limits_{m=1}^M\hat{\theta}_m\mathbf z_m\qquad (3.61)
 </script>
-其中，$\hat\theta_m=\langle \mathbf z_m,\mathbf y\rangle/\langle\mathbf z_m,\mathbf z_m\rangle$. 因为$\mathbf z_m$是原输入变量$\mathbf x_j$的每个线性组合，我们可以将解（3.61）表达成关于$\mathbf x_j$的函数（练习3.13）
+</p>
+<p>其中，$\hat\theta_m=\langle \mathbf z_m,\mathbf y\rangle/\langle\mathbf z_m,\mathbf z_m\rangle$。因为每个$\mathbf z_m$ 是原输入变量 $\mathbf x_j$ 的线性组合，我们可以将解（3.61）表达成关于 $\mathbf x_j$ 的函数（<a href="https://github.com/szcf-weiya/ESL-CN/issues/102">练习 3.13</a>）:</p>
+<p>
 <script type="math/tex; mode=display">
 \hat\beta^{pcr}(M)=\sum\limits_{m=1}^M\hat\theta_mv_m\qquad (3.62)
 </script>
 </p>
-<p>岭回归下，主成分依赖输入$\mathbf x_j$的放缩尺度，所以一般地我们首先对它们进行标准化。注意到如果$M=p$，我们就会回到通常的最小二乘估计，因为列$\mathbf Z=\mathbf U\mathbf D$张成了$\mathbf X$的列空间。对于$M&lt;p$我们得到一个降维的回归问题。我们看到主成分回归与岭回归非常相似：都是通过输入矩阵的主成分来操作的。岭回归对主成分系数进行了收缩，收缩更多地依赖对应特征值的大小；主成分回归丢掉$p-M$个最小的特征值分量。图3.17说明了这一点</p>
+<p>岭回归下，主成分依赖输入 $\mathbf x_j$ 的放缩尺度，所以一般地我们首先对它们进行标准化。注意到如果 $M=p$，我们就会回到通常的最小二乘估计，因为列 $\mathbf Z=\mathbf U\mathbf D$ 张成了 $\mathbf X$ 的列空间。对于 $M &lt; p$ 我们得到一个降维的回归问题。我们看到主成分回归与岭回归非常相似：都是通过输入矩阵的主成分来操作的。岭回归对主成分系数进行了收缩，收缩更多地依赖对应特征值的大小；主成分回归丢掉 $p-M$ 个最小的特征值分量。图 3.17 说明了这一点</p>
 <p><img alt="" src="../../img/03/fig3.17.png" /></p>
-<p>图3.17 岭回归运用(3.47)中的收缩因子$d_j^2/(d_j^2+\lambda)$来收缩主成分回归的系数。主成分回归截断了它们。 图中显示了图3.7对应的收缩和截断模式作为主成分指标的函数。</p>
-<p>在图3.7中我们看到交叉验证表明有7项；最终模型在表3.3中有最低的测试误差。</p>
-<h2 id="_2">偏最小二乘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>这个技巧也构造了一系列用于回归的输入变量的线性组合，但是与主成分回归不同的是它采用$\mathbf y$（以及$\mathbf X$）来构造。和主成分回归相同的是，偏最小二乘(PLS)不是尺度不变的，所以我们假设每个$\mathbf x_j$标准化使得均值为0和方差为1。PLS通过对每个$j$计算$\hat \psi_{1j}=\langle \mathbf x_j, \mathbf y\rangle$。从这里我们构造了新的输入变量$\mathbf z_1=\sum_j\hat \psi_{1j}\mathbf x_j$, 这是第一偏最小二乘方向。因此在每个$\mathbf z_m$的构造中，输入变量通过判断其在$\mathbf y$上的单变量影响强度来加权。输出变量<strong>$\mathbf y$在$\mathbf z_1$上回归</strong>便得到系数$\hat \theta_1$, 然后我们对$\mathbf x_1,\mathbf x_2,\ldots,\mathbf x_p$进行关于$\mathbf z_1$的正交化。我们继续这个过程，直到$M\le p$。在这种方式下，偏最小二乘得到一系列派生出的、正交化的输入或者方向$\mathbf z_1,\mathbf z_2,\ldots, \mathbf z_p$。至于主成分回归，如果我们构造所有$M=p$个方向，我们会得到一个等价于普通最小二乘估计的解；如果使用$M&lt; p$个方向会得到一个低维的回归。这个过程将在算法3.3中详细描述。</p>
 <blockquote>
-<p><strong>weiya 注：</strong>在$\mathbf a$上回归$\mathbf b$(或者称作$\mathbf b$在$\mathbf a$上回归)指的是</p>
-<p>$\mathbf b$在$\mathbf a$上的无截距的简单单变量回归，回归系数为
+<p>图 3.17 岭回归运用 (3.47) 中的收缩因子 $d_j^2/(d_j^2+\lambda)$ 来收缩主成分回归的系数。主成分回归截断了它们。 图中显示了图 3.7 对应的收缩和截断模式作为主成分指标的函数。</p>
+</blockquote>
+<p>在图 3.7 中我们看到交叉验证表明有7项；最终模型在表 3.3 中有最低的测试误差。</p>
+<h2 id="_2">偏最小二乘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>这个技巧也构造了一系列用于回归的输入变量的线性组合，但是与主成分回归不同的是它采用 $\mathbf y$（除了 $\mathbf X$）来构造。和主成分回归相同的是，偏最小二乘 (PLS) 也不是<strong>尺度不变 (scale invariant)</strong> 的，所以我们假设每个 $\mathbf x_j$ 标准化使得均值为 0 、方差为 1。一开始，PLS 对每个 $j$ 计算 $\hat \varphi_{1j}=\langle \mathbf x_j, \mathbf y\rangle$。从这里我们构造新的派生输入变量 $\mathbf z_1=\sum_j\hat \varphi_{1j}\mathbf x_j$，这是第一偏最小二乘方向。因此在每个 $\mathbf z_m$ 的构造中，输入变量通过判断其在 $\mathbf y$ 上的单变量影响强度来加权。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：原书脚注</p>
+<p>因为 $\x_j$ 已经标准化，第一方向 $\hat\varphi_{1j}$ 是单变量回归的系数（乘以某不相关的常数）；但对接下来的方向不是这样。</p>
+</div>
+<p>输出变量<strong>$\mathbf y$ 在 $\mathbf z_1$ 上回归</strong>便得到系数 $\hat \theta_1$，然后我们对 $\mathbf x_1,\mathbf x_2,\ldots,\mathbf x_p$ 进行关于 $\mathbf z_1$ 的正交化。我们继续这个过程，直到得到 $M\le p$ 个方向。在这种方式下，偏最小二乘得到一系列派生的、正交化的输入或者方向 $\mathbf z_1,\mathbf z_2,\ldots, \mathbf z_M$。至于主成分回归，如果我们构造所有 $M=p$ 个方向，我们会得到一个等价于普通最小二乘估计的解；如果使用 $M&lt; p$ 个方向会得到一个低维的回归。这个过程将在算法 3.3 中详细描述。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>在 $\mathbf a$ 上回归 $\mathbf b$（或者称作 $\mathbf b$ 在 $\mathbf a$ 上回归）指的是
+$\mathbf b$ 在 $\mathbf a$ 上的无截距的简单单变量回归，回归系数为
 <script type="math/tex; mode=display">
 \hat \gamma = \dfrac{\langle \mathbf a,\mathbf b\rangle}{\langle \mathbf a,\mathbf a\rangle}
 </script>
-同时这一过程也称作$\mathbf b$关于$\mathbf a$正交化</p>
-</blockquote>
-<hr />
-<p>算法 3.3 偏最小二乘</p>
-<hr />
-<ol>
-<li>对$\mathbf x_j$标准化使得均值为0、方差为1.令$\hat{\mathbf y}^{(0)}=\bar y\mathbf 1$, 并且$\mathbf x_j^{(0)}=\mathbf x_j,\;j=1,\ldots,p$.</li>
-<li>对于$m=1,2,\ldots,p$</li>
-<li>$\mathbf z_m=\sum_{j=1}^p\hat \varphi_{mj}\mathbf x_j^{(m-1)}$, 其中$\hat \varphi_{mj}=\langle\mathbf x_j^{(m-1)},\mathbf y\rangle$</li>
-<li>$\hat \theta_m=\langle \mathbf z_m, \mathbf y\rangle/\langle \mathbf z_m,\mathbf z_m\rangle$</li>
-<li>$\hat{\mathbf y}^{(m)}=\hat{\mathbf y}^{(m-1)}+\hat\theta_m\mathbf z_m$</li>
-<li>对每个$\mathbf x_j^{(m-1)}$关于$\mathbf z_m$正交化：$\mathbf x_j^{(m)}=\mathbf x_j^{(m-1)}-\dfrac{\langle \mathbf z_m,\mathbf x_j\rangle}{\langle \mathbf z_m,\mathbf z_m\rangle}\mathbf z_m,\; j=1,2,\ldots,p.$</li>
-<li>输出拟合向量序列${\hat{\mathbf y^{(m)}}}^p_1$。因为${\mathbf z_\ell}^m_1$关于原输入变量$\mathbf x_j$为线性的，所以是$\hat {\mathbf y}^{(m)}=\mathbf X \hat \beta^{pls}(m)$.这些线性系数可以通过PLS转换的序列重新得到。</li>
-</ol>
-<hr />
-<p>在前列腺癌的例子中，交叉验证在图3.7中选择$M=2$个PLS方向。这得到了表3.3最右边的列的模型。</p>
-<p>什么优化问题是偏最小二乘？因为它使用响应变量$\mathbf y$去构造它的方向，它的解的路径是$\mathbf y$的非线性函数。可以证明（练习3.15）偏最小二乘寻找有高方差以及和响应变量有高相关性的方向，而与之相对的主成分分析回归只重视高方差（Stone和Brooks, 1990; Frank和Friedman, 1993）。特别地，第$m$个主成分方向$v_m$是下面的解：
+<!--同时这一过程也称作 $\mathbf b$ 关于 $\mathbf a$ 正交化--></p>
+</div>
+<p><img alt="" src="../../img/03/Alg3.3.png" /></p>
+<!--
+****
+算法 3.3 偏最小二乘
+****
+
+1. 对$\mathbf x_j$标准化使得均值为0、方差为1.令$\hat{\mathbf y}^{(0)}=\bar y\mathbf 1$, 并且$\mathbf x_j^{(0)}=\mathbf x_j,\;j=1,\ldots,p$.
+2. 对于$m=1,2,\ldots,p$
+   1. $\mathbf z_m=\sum_{j=1}^p\hat \varphi_{mj}\mathbf x_j^{(m-1)}$, 其中$\hat \varphi_{mj}=\langle\mathbf x_j^{(m-1)},\mathbf y\rangle$
+   2. $\hat \theta_m=\langle \mathbf z_m, \mathbf y\rangle/\langle \mathbf z_m,\mathbf z_m\rangle$
+   3. $\hat{\mathbf y}^{(m)}=\hat{\mathbf y}^{(m-1)}+\hat\theta_m\mathbf z_m$
+   4. 对每个$\mathbf x_j^{(m-1)}$关于$\mathbf z_m$正交化：$\mathbf x_j^{(m)}=\mathbf x_j^{(m-1)}-\dfrac{\langle \mathbf z_m,\mathbf x_j\rangle}{\langle \mathbf z_m,\mathbf z_m\rangle}\mathbf z_m,\; j=1,2,\ldots,p.$
+3. 输出拟合向量序列$\{\hat{\mathbf y^{(m)}}\}^p_1$。因为$\{\mathbf z_\ell\}^m_1$关于原输入变量$\mathbf x_j$为线性的，所以是$\hat {\mathbf y}^{(m)}=\mathbf X \hat \beta^{pls}(m)$.这些线性系数可以通过PLS转换的序列重新得到。
+****
+-->
+
+<p>在前列腺癌的例子中，交叉验证在图 3.7 中选择 $M=2$ 个PLS方向。这得到了表 3.3 最右边的列的模型。</p>
+<p>偏最小二乘求解的是什么优化问题呢？因为它使用响应变量 $\mathbf y$ 去构造它的方向，所以它的解的路径是关于 $\mathbf y$ 的非线性函数。可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/103">练习 3.15</a>）偏最小二乘寻找有高方差以及和响应变量有高相关性的方向，而与之相对的主成分分析回归只重视高方差（Stone and Brooks, 1990<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>; Frank and Friedman, 1993<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。特别地，第 $m$ 个主成分方向 $v_m$ 是下面问题的解：</p>
+<p>
 <script type="math/tex; mode=display">
-max_{\alpha} \;Var(\mathbf X\alpha)\\
+\max_{\alpha} \;\Var(\mathbf X\alpha)\\
 s.t.\;\Vert \alpha\Vert=1,\alpha^T\mathbf Sv_\ell=0,\;\ell=1,\ldots,m-1
 </script>
-其中，$\mathbf S$为$\mathbf x_j$的样本协方差矩阵。$\alpha^T\mathbf Sv_\ell=0$保证了$\mathbf z_m=\mathbf X\alpha$与之前所有的线性组合$\mathbf z_\ell=\mathbf v_\ell$都不相关。第$m$个PLS方向$\hat \varphi_m$是下面的解：
+</p>
+<p>其中，$\mathbf S$ 为 $\mathbf x_j$ 的样本协方差矩阵。$\alpha^T\mathbf Sv_\ell=0$ 保证了 $\mathbf z_m=\mathbf X\alpha$ 与之前所有的线性组合 $\mathbf z_\ell=\mathbf v_\ell$ 都不相关。第 $m$ 个 PLS 方向 $\hat \varphi_m$ 是下面的解：</p>
+<p>
 <script type="math/tex; mode=display">
-max_\alpha\; Corr^2(\mathbf y,\mathbf X\alpha)Var(\mathbf X\alpha)\\
+\max_\alpha\; \mathrm{Corr}^2(\mathbf y,\mathbf X\alpha)\Var(\mathbf X\alpha)\\
 s.t.\; \Vert\alpha\Vert=1,\alpha^T\mathbf S\hat \varphi_\ell=0,\ell=1,\ldots,m-1
 </script>
-更多的分析揭示了，方差项趋向于主导地位，而且偏最小二乘表现得很像岭回归和主成分回归。我们将在下一部分讨论这些。</p>
-<p>如果输入矩阵$\mathbf X$是正交的，则偏最小二乘会经过$m=1$步找到最小二乘估计。后续的步骤不起作用，因为$m&gt;1\text{时}，\hat \varphi_{mj}=0$（练习3.14）.也可以证明$m=1,2,\ldots,p$时的PLS系数序列表示计算最小二乘解时的共轭梯度（练习3.18）。</p>
+</p>
+<p>更多的分析揭示了，方差项趋向于主导地位，而且偏最小二乘表现得很像岭回归和主成分回归。我们将在下一部分讨论这些。</p>
+<p>如果输入矩阵 $\mathbf X$ 是正交的，则偏最小二乘会经过 $m=1$ 步找到最小二乘估计。后续的步骤不起作用，因为 $m &gt;1\text{时}，\hat \varphi_{mj}=0$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/104">练习 3.14</a>）。也可以证明 $m=1,2,\ldots,p$ 时的 PLS 系数序列表示计算最小二乘解时的共轭梯度（<a href="https://github.com/szcf-weiya/ESL-CN/issues/105">练习 3.18</a>）。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Stone, M. and Brooks, R. J. (1990). Continuum regression: cross-validated sequentially constructed prediction embracing ordinary least squares, partial least squares and principal components regression (Corr: V54 p906-907), Journal of the Royal Statistical Society, Series B 52: 237–269.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Frank, I. and Friedman, J. (1993). A statistical view of some chemometrics
+regression tools (with discussion), Technometrics 35(2): 109–148.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 

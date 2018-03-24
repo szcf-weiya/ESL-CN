@@ -768,8 +768,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lar-lasso" title="LAR 和 Lasso 自由度法则" class="md-nav__link">
-    LAR 和 Lasso 自由度法则
+  <a href="#lar-lasso" title="LAR 和 Lasso 自由度公式" class="md-nav__link">
+    LAR 和 Lasso 自由度公式
   </a>
   
 </li>
@@ -3098,8 +3098,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lar-lasso" title="LAR 和 Lasso 自由度法则" class="md-nav__link">
-    LAR 和 Lasso 自由度法则
+  <a href="#lar-lasso" title="LAR 和 Lasso 自由度公式" class="md-nav__link">
+    LAR 和 Lasso 自由度公式
   </a>
   
 </li>
@@ -3149,7 +3149,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-03-22, 2018-03-23</td>
+<td>2018-03-22, 2018-03-23, 2018-03-24</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3198,7 +3198,7 @@
 \hat{\beta}^{ridge}=(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}\qquad (3.44)
 </script>
 </p>
-<p>其中 $\mathbf{I}$ 为 $p\times p$ 的单位矩阵。注意到选择二次函数惩罚 $\beta^T\beta$，岭回归的解仍是 $\mathbf{y}$ 的线性函数。解在求逆之前向矩阵 $\mathbf{X^TX}$ 的对角元上加入正的常数值。即使 $\mathbf{X^TX}$ 不是满秩，这样会使得问题非奇异，而且这是第一次将岭回归引入统计学中 (Hoerl and Kennard, 1970<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">2</a></sup>）的主要动力。传统的岭回归的描述从定义 (3.44) 开始。我们选择通过 (3.41) 和 (3.42) 来阐述，因为这两式让我们看清楚了它是怎样实现的。</p>
+<p>其中 $\mathbf{I}$ 为 $p\times p$ 的单位矩阵。注意到选择二次函数惩罚 $\beta^T\beta$，岭回归的解仍是 $\mathbf{y}$ 的线性函数。解在求逆之前向矩阵 $\mathbf{X^TX}$ 的对角元上加入正的常数值。即使 $\mathbf{X^TX}$ 不是满秩，这样会使得问题非奇异，而且这是第一次将岭回归引入统计学中 (Hoerl and Kennard, 1970<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）的主要动力。传统的岭回归的描述从定义 (3.44) 开始。我们选择通过 (3.41) 和 (3.42) 来阐述，因为这两式让我们看清楚了它是怎样实现的。</p>
 <p>图 3.8 展示了前列腺癌例子的岭回归系数估计，绘制成关于 $\df(\lambda)$ 的函数图象，$\df(\lambda)$ 为由惩罚 $\lambda$ 得到的<strong>有效自由度 (effective degrees of freedom)</strong>（由式 (3.50) 中定义）。在正交输入的情形下，岭回归估计仅仅是最小二乘估计的缩小版本，也就是 $\hat{\beta}^{ridge}=\hat{\beta}/(1+\lambda)$。</p>
 <p><img alt="" src="../../img/03/fig3.8.png" /></p>
 <blockquote>
@@ -3370,7 +3370,7 @@ M=U_n\Sigma_nV^T
 <p class="admonition-title">weiya 注：Ex. 3.5</p>
 <p>已解答，详细证明过程见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/95">Issue 95: Ex. 3.5</a></p>
 </div>
-<p>在信号处理中，lasso 也被称作 basis pursuit (Chen et al., 1998<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">3</a></sup>)</p>
+<p>在信号处理中，lasso 也被称作 basis pursuit (Chen et al., 1998<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)</p>
 <p>我们也可以把 lasso 问题等价地写成<strong>拉格朗日形式 (Lagrangian form)</strong></p>
 <p>
 <script type="math/tex; mode=display">
@@ -3409,7 +3409,7 @@ M=U_n\Sigma_nV^T
 </blockquote>
 <p>将 $\vert\beta_j\vert^q$ 看成 $\beta_j$ 的先验概率密度的对数值，同样有参数先验分布的等高线。$q=0$ 对应变量子集选择，惩罚项是简单地统计非零参数的个数；$q=1$ 对应 lasso，$q=2$ 对应岭回归。注意到 $q\le 1$，先验在各方向上不是均匀的，而是更多地集中在坐标方向上。对应 $q=1$ 情形的先验分布是关于每个输入变量是的独立的二重指数分布（或者 Laplace 分布），概率密度为$(1/2\tau)exp(-\vert\beta\vert)/\tau$ 并且 $\tau=1/\lambda$。$q=1$ 的情形（lasso）是使得约束区域为凸的最小 $q$ 值；非凸约束区域使得优化问题很困难。</p>
 <p>从这点看，lasso、岭回归和最优子集选择是有着不同先验分布的贝叶斯估计。然而，注意到它们取自后验分布的众数，即最大化后验分布。在贝叶斯估计中使用后验分布的均值更加常见。岭回归同样是后验分布的均值，但是 lasso 和最优子集选择不是。</p>
-<p>再一次观察准则 (3.53)，我们可能尝试除 0，1，2 外的其它 $q$ 值。尽管有人可能从数据中估计 $q$，我们的经验表明引入额外的方差不值得。$q\in (1,2)$ 表明在 lasso 和岭回归之间进行权衡。当 $ q &gt; 1$ 时尽管 $\vert\beta_j\vert^q$ 在 0 处可导，但是并没有lasso（$q=1$）的令系数恰巧为零的性质。部分由于这个原因并且考虑计算易处理，Zou and Hastie (2005)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">5</a></sup> 引入弹性惩罚</p>
+<p>再一次观察准则 (3.53)，我们可能尝试除 0，1，2 外的其它 $q$ 值。尽管有人可能从数据中估计 $q$，我们的经验表明引入额外的方差不值得。$q\in (1,2)$ 表明在 lasso 和岭回归之间进行权衡。当 $ q &gt; 1$ 时尽管 $\vert\beta_j\vert^q$ 在 0 处可导，但是并没有lasso（$q=1$）的令系数恰巧为零的性质。部分由于这个原因并且考虑计算易处理，Zou and Hastie (2005)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup> 引入弹性惩罚</p>
 <p>
 <script type="math/tex; mode=display">
 \lambda \sum\limits_{j=1}^p(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)\qquad (3.54)
@@ -3421,7 +3421,7 @@ M=U_n\Sigma_nV^T
 <p>图3.13 $q=1.2$ 时 $\sum_j\vert\beta_j\vert^q$ 为常数值的轮廓线（左图）以及 $\alpha=0.2$ 时弹性网惩罚 $\sum_j(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)$ 为常数值的轮廓线（右图）。尽管看起来很相似，弹性网有尖角（不可导），而 $q=1.2$ 的惩罚不会有尖角。</p>
 </blockquote>
 <h2 id="_2">最小角回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>最小角回归（LAR）是相对较新的方法（Efron et al., 2004<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">4</a></sup>），而且可以看成是一种向前逐步回归（3.3.2节）的“民主”版本。正如我们所看到的，LAR 与 lasso 联系紧密，并且事实上提供了如图 3.10 所示的计算整个 lasso 路径的非常有效的算法。</p>
+<p>最小角回归（LAR）是相对较新的方法（Efron et al., 2004<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>），而且可以看成是一种向前逐步回归（3.3.2节）的“民主”版本。正如我们所看到的，LAR 与 lasso 联系紧密，并且事实上提供了如图 3.10 所示的计算整个 lasso 路径的非常有效的算法。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
 <p>在 Efron 的论文中，最小角回归缩写为 LARS（S 表示 “Lasso” 和 “Stagewise”），我们这里仍以 ESL 书上的缩写为准——LAR</p>
@@ -3446,79 +3446,99 @@ M=U_n\Sigma_nV^T
 \delta_k=(\mathbf X^T_{ \cal A_k}\mathbf X_{\cal A_k})^{-1}\mathbf X^T_{\cal A_k}\mathbf r_k \qquad (3.55)
 </script>
 </p>
-<p>然后系数迭代为 $\beta_{\cal A_k} (\alpha) = \beta_{\cal A_k} + \alpha · \delta_k$。<a href="https://github.com/szcf-weiya/ESL-CN/issues/100">练习 3.23</a> 证明这种方式下选择的方向满足断言：保证（各个预测变量与残差间的）相关系数相等和递减（tied and decreasing）。</p>
+<p>然后系数迭代为 $\beta_{\cal A_k} (\alpha) = \beta_{\cal A_k} + \alpha · \delta_k$。<a href="https://github.com/szcf-weiya/ESL-CN/issues/100">练习 3.23</a> 证明这种方式下选择的方向满足断言：<strong>保持（各个预测变量与残差间的）相关系数相等和递减（tied and decreasing）</strong>。</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.23</p>
 <p>已解决，具体证明过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/100">Issue 100: Ex. 3.23</a>。起初翻译时，对 tied 的理解不够，通过求解该练习题，认为 tied 意思其实就是<strong>各个预测变量与残差之间的相关系数保持相等</strong>。</p>
 </div>
-<p>如果该步的开始拟合向量为$\hat{\mathbf f}_k$，则迭代为$\hat{\mathbf f}_k(\alpha)=\mathbf f_k+\alpha\cdot\mathbf u_k$，其中$\mathbf u_k=\mathbf X_{\cal A_k}\delta_k$是新的拟合方向。“最小角”由该过程的几何解释得到；$\mathbf u_k$使得活跃集${\cal A}_k$中的预测变量间的角度最小（<a href="https://github.com/szcf-weiya/ESL-CN/issues/101">练习 3.24</a>）。图3.14使用模拟数据显示了相关系数的绝对值下降以及每一步LAR算法的加入行列。</p>
+<p>如果该步的开始拟合向量为 $\hat{\mathbf f}_k$，则迭代为 $\hat{\mathbf f}_k(\alpha)=\mathbf f_k+\alpha\cdot\mathbf u_k$，其中 $\mathbf u_k=\mathbf X_{\cal A_k}\delta_k$ 是新的拟合方向。“最小角”由该过程的几何解释得到；$\mathbf u_k$ 使得活跃集 ${\cal A}_k $中预测变量间的角度最小（<a href="https://github.com/szcf-weiya/ESL-CN/issues/101">练习 3.24</a>）。图 3.14 使用模拟数据显示了相关系数的绝对值下降以及每一步 LAR 算法中变量进入的顺序。</p>
 <p><img alt="" src="../../img/03/fig3.14.png" /></p>
 <blockquote>
-<p>图3.14：通过 6 个预测变量的拟合数据集，每一步 LAR 过程中的相关性绝对值的变化。图像上方的标签表示在每一步哪些变量加进了活跃集。步长是用单位$L_1$弧长来测量的。</p>
+<p>图 3.14：通过 6 个预测变量的拟合数据集，每一步 LAR 过程中的相关性绝对值的变化。图象上方的标签表示在每一步哪些变量加进了活跃集。步长是用单位 $L_1$ 弧长来测量的。</p>
 </blockquote>
 <p><img alt="" src="../../img/03/fig3.15.png" /></p>
+<p>由构造知 LAR 的系数以一种分段线性的方式进行改变。图 3.15（左图）显示了 LAR 系数曲线作为 $L_1$ 弧长的函数曲线。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：原书脚注</p>
+<p>$L_1$ arc length：可导曲线 $\beta(s), s \in [0,S]$ 的 $L_1$ 弧长为 $TV(\beta,S)=\int_0^S\Vert\dot{\beta}(s)\Vert_1ds$，其中 $\dot{\beta}(s)=\partial\beta(s)/\partial s$。对于分段 LAR 函数曲线，这相当于从这一步到下一步系数的 $L_1$ 范数变化之和。</p>
+</div>
 <blockquote>
-<p>图3.15：左图显示了 LAR 系数作为 $L_1$ 长度的函数在模拟数据上的图象。右图显示了 Lasso 的图象。它们大概在 $L_1$ 弧长为 18 之前（深蓝色的系数曲线通过 0）都是完全相同的.</p>
+<p>图 3.15：左图显示了 LAR 系数作为 $L_1$ 长度的函数在模拟数据上的图象。右图显示了 Lasso 的图象。它们大概在 $L_1$ 弧长为 18 之前（深蓝色的系数曲线通过 0）都是完全相同的.</p>
 </blockquote>
-<p>通过构造 LAR 的系数以一种分段线性的方式进行改变。图 3.15（左图）显示了 LAR 系数曲线作为 $L_1$ 弧长<sup id="fnref:L1 arc length"><a class="footnote-ref" href="#fn:L1 arc length" rel="footnote">1</a></sup>的函数曲线。注意到我们不需要走很小的步以及重新检查步骤3的相关系数；应用预测变量的协方差和算法的分段线性性质，我们可以在每一步开始计算出确切的步长（<a href="https://github.com/szcf-weiya/ESL-CN/issues/98">练习 3.25</a>）。</p>
-<p>图3.15的右图展示了对同样数据的lasso系数曲线。几乎与左图相同，当绿色曲线通过0时首次出现不同。对于前列腺癌数据，LAR系数曲线显示与图3.10的lasso曲线相同，该曲线从不经过0。这些观测值导致对LAR算法的一个简单修改，给出了整个lasso路径，它同样也是分段线性的。</p>
+<p>注意到我们不需要走很小的步以及重新检查步骤 3 的相关系数；应用预测变量的协方差和算法的分段线性性质，我们可以在每一步开始计算出确切的步长（<a href="https://github.com/szcf-weiya/ESL-CN/issues/98">练习 3.25</a>）。</p>
+<p>图 3.15 的右图展示了对同样数据的 lasso 系数曲线。几乎与左图相同，当绿色曲线通过 0 时首次出现不同。对于前列腺癌数据，LAR 系数曲线显示与图 3.10 的 lasso 曲线相同，该曲线从不经过 0。这些观测值促使对 LAR 算法进行简单修改，给出了整个 lasso 路径，它同样也是分段线性的。</p>
+<p><img alt="" src="../../img/03/Alg3.2a.png" /></p>
 <hr />
 <p><strong>算法 3.2a</strong> 最小角回归：Lasso修正</p>
 <hr />
 <p>4a. 如果一个非零的系数达到0，则从变量的活跃集中删除该变量并且重新计算当前的联合最小二乘方向。</p>
 <hr />
-<p>LAR(lasso)算法是非常有效的，需要采用类似$p$个变量的最小二乘拟合的相同步骤进行计算。最小角回归总是需要$p$步达到全最小二乘估计。lasso路径可以有超过$p$步，经过这两者经常是非常相似的。经过lasso修正的3.2a的算法3.2是计算任何一个lasso问题的有效方式，特别是当$p&gt;&gt;N$。Osborne等人(2000a)页发现计算lasso的分段线性的路径，他们称之为同伦（homotopy）算法。</p>
-<p>我们已经给出一个为什么这些过程很相似的启发式的论据。尽管LAR算法是用相关性来叙述的，如果输入特征是标准化的，它与内积是等价的并且更简单。假设$\cal A$是算法中某些步的变量活跃集，它们与当前残差$\mathbf y -\mathbf X\beta$的内积的绝对值是结合在一起的。我们可以表达成</p>
+<p>LAR(lasso) 算法是非常有效的，需要用 $p$ 个预测变量的单最小二乘拟合的相同步骤进行计算。最小角回归总是需要 $p$ 步达到全最小二乘估计。lasso 路径可能超过 $p$ 步，尽管这两者经常是非常相似的。经过 lasso 修正的 3.2a 的算法 3.2 是计算任何一个lasso 问题的有效方式，特别是当 $p &gt; &gt;N$。Osborne et al. (2000a)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 也发现了计算 lasso 的分段线性的路径，他们称之为<strong>同伦 (homotopy)</strong> 算法。</p>
+<p>我们已经给出一个为什么这些过程很相似的启发式的论据。尽管 LAR 算法是用相关性来叙述的，但如果输入特征是标准化的，它与内积是等价的并且用内积更简单。假设 $\cal A$ 是算法中某些步的变量活跃集，它们与当前残差 $\mathbf y -\mathbf X\beta$ 的内积的绝对值是结合在一起的。我们可以表达成</p>
 <p>
 <script type="math/tex; mode=display">
 \mathbf x_j^T(\mathbf y-\mathbf X\beta)=\gamma\cdot s_j,\forall j\in {\cal A} \qquad (3.56)
 </script>
 </p>
-<p>其中$s_j\in{-1,1}$表示内积的符号，$\gamma$是普通的数值。并且$\vert \mathbf x_k^T(\mathbf y-\mathbf X\beta)\vert\le \gamma\; \forall k\notin \cal A$。现在我们考虑(3.52)的lasso准则，我们可以写成向量形式
+<p>其中 $s_j\in\{-1,1\}$ 表示内积的符号，$\gamma$ 是普通的数值。并且 $\vert \mathbf x_k^T(\mathbf y-\mathbf X\beta)\vert\le \gamma\; \forall k\notin \cal A$。现在我们考虑 (3.52) 的 lasso 准则，我们可以写成向量形式</p>
+<p>
 <script type="math/tex; mode=display">
 R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Vert_1\qquad (3.57)
 </script>
-令$\cal B$为在给定$\lambda$值下解中的变量的活跃集。对于这些变量$R(\beta)$是可导的，并且稳态条件为
+</p>
+<p>令 $\cal B$ 为在给定 $\lambda$ 值下解中的变量的活跃集。对于这些变量 $R(\beta)$ 是可导的，并且<strong>平稳条件 (stationary condition)</strong> 为</p>
+<p>
 <script type="math/tex; mode=display">
-\mathbf x_j^T(\mathbf y-\mathbf X\beta)=\lambda\cdot sign(\beta_j),\forall j\in {\cal B}\qquad (3.58)
+\mathbf x_j^T(\mathbf y-\mathbf X\beta)=\lambda\cdot \sign(\beta_j),\forall j\in {\cal B}\qquad (3.58)
 </script>
-比较（3.58）和（3.56），我们看到只有当$\beta_j$的符号与内积的符号相同。这也就是为什么LAR算法和lasso当一个活跃系数经过零开始出现不同；对于不满足条件（3.58）的变量，会被踢出活跃集$\cal B$。练习3.23显示了这些等式表示当$\lambda$降低时的分段线性曲线。对于不活跃的变量的稳态条件要求
+</p>
+<p>比较（3.58）和（3.56），我们看到只有当$\beta_j$的符号与内积的符号相同。这也就是为什么 LAR 算法和 lasso 当一个活跃系数经过零开始出现不同；对于不满足条件 (3.58) 的变量，会被踢出活跃集 $\cal B$。<a href="">练习 3.23</a> 证明了这些等式表明随$\lambda$ 减小的分段线性系数曲线。对于不活跃的变量的平稳条件要求</p>
+<p>
 <script type="math/tex; mode=display">
 \vert\mathbf x_k^T(\mathbf y-\mathbf X\beta)\vert\le\lambda,\forall k\notin{\cal B}\qquad (3.59)
 </script>
-这与LAR算法一致。</p>
+</p>
+<p>这与 LAR 算法一致。</p>
 <p><img alt="" src="../../img/03/fig3.16.png" /></p>
 <blockquote>
-<p>图3.16：LAR、lasso、向前逐步、向前逐渐（FS）和增长向前逐渐（$FS_0$）回归之间的比较。设定与图3.6相同，除了这里$N=100$而不是300.这里较慢的$FS$回归最终表现得比向前逐步好。LAR和lasso表现得和FS、$FS_0$相似。因为这些过程采取不同的步数（根据模拟复制和方法），我们画出最小二乘拟合的MSE关于整体$L_1$弧长的片段的函数。</p>
+<p>图 3.16：LAR、lasso、向前逐步、向前逐渐（FS）和增长向前逐渐（$FS_0$）回归之间的比较。设定与图3.6相同，除了这里$N=100$而不是300.这里较慢的$FS$回归最终表现得比向前逐步好。LAR和lasso表现得和FS、$FS_0$相似。因为这些过程采取不同的步数（根据模拟复制和方法），我们画出最小二乘拟合的MSE关于整体$L_1$弧长的片段的函数。</p>
 </blockquote>
-<p>图3.16将LAR和lasso与向前逐步（forward stepwise）和向前逐渐（forward stagewise）回归。设定与p59的图3.6是相同的，除了这里的$N=100$而不是300，所有这个问题更加困难。我们可以看到增长性更快的向前逐步很快地过拟合（10个变量加入模型中之前是很好的），最终比增长性较慢的向前逐渐回归表现得更差。LAR和lasso的行为与向前逐渐回归相似。增长的向前逐渐回归与LAR和lasso类似，并且将在3.8.1节中描述。</p>
-<h3 id="lar-lasso">LAR 和 Lasso 自由度法则<a class="headerlink" href="#lar-lasso" title="Permanent link">&para;</a></h3>
-<p>假设我们通过最小角回归过程拟合了线性模型，在某步$k &lt; p$停止，或者等价地用lasso边界$t$来得到约束情况下的全最小二乘拟合。我们需要多少参数，或者自由度？</p>
-<p>首先考虑采用$k$个特征的子集的线性回归。如果这个子集是没有通过训练数据而事先确定好的，然后在该拟合模型中的自由度定义为$k$。当然，在经典统计学中，线性独立参数的个数也就是自由度。另外地，假设我们经历了一个最优子集选择去定了最优的$k$个预测变量。于是结果模型中有$k$个参数，但在某种意义上我们用了多余 $k$ 个的自由度。</p>
-<p>我们需要一个对于自适应拟合模型的有效自由度的一般定义。我们定义拟合向量$\hat{\mathbf y}=(\hat y_1,\hat y_2,\ldots,\hat y_N)$的自由度为
+<p>图 3.16 将 LAR 和 lasso 与向前逐步（forward stepwise）和向前逐渐（forward stagewise）回归进行比较。设定与图 3.6 是相同的，除了这里的 $N=100$ 而不是 $300$，所以这个问题更加困难。我们可以看到增长性更快的向前逐步很快地过拟合（10 个变量加入模型中之前是很好的），最终比增长性较慢的向前逐渐回归表现得更差。LAR 和 lasso 的行为与向前逐渐回归相似。增长的向前逐渐回归与 LAR 和 lasso 类似，并且将在 <a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8.1 节</a>中描述。</p>
+<h3 id="lar-lasso">LAR 和 Lasso 自由度公式<a class="headerlink" href="#lar-lasso" title="Permanent link">&para;</a></h3>
+<p>假设我们通过最小角回归过程拟合了线性模型，在某步 $k &lt; p$ 停止，或者等价地用 lasso 的界 $t$ 得到约束情况下的全最小二乘拟合。我们需要多少参数，或者自由度？</p>
+<p>首先考虑采用 $k$ 个特征的子集的线性回归。如果这个子集是没有通过训练数据而事先确定好的，然后在该拟合模型中的自由度定义为$k$。当然，在经典统计学中，线性独立参数的个数也就是自由度。另外地，假设我们用一个最优子集选择确定了最优的 $k$ 个预测变量。于是结果模型中有 $k$ 个参数，但在某种意义上我们用了大于 $k$ 个的自由度。</p>
+<p>我们需要一个对于自适应拟合模型的有效自由度的一般定义。我们定义拟合向量 $\hat{\mathbf y}=(\hat y_1,\hat y_2,\ldots,\hat y_N)$ 的自由度为
 <script type="math/tex; mode=display">
-df(\hat{\mathbf y})=\frac{1}{\sigma^2}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\qquad (3.60)
+\df(\hat{\mathbf y})=\frac{1}{\sigma^2}\sum\limits_{i=1}^N\Cov(\hat y_i,y_i)\qquad (3.60)
 </script>
-这里$Cov(\hat y_i,y_i)$指的是预测值$\hat y_i$和其对应的输出向量$y_i$之间的协方差。这会导致这样的直观感觉：我们拟合数据越困难，协方差越大从而$df(\hat{\mathbf y})$越大。表达式（3.60）是一个有用的自由度的概念，可以应用到任何模型的预测向量$\hat{\mathbf y}$。其中包括那些对训练数据自适应拟合的模型。这个定义将在7.4-7.6节中进一步讨论。</p>
-<p>现在对于有$k$个固定预测变量的线性回归模型，可以简单地证明$df(\hat{\mathbf y})=k$。同样地，对于岭回归，这一定义导出p68表达式（3.50）的封闭形式（closed-form）：$df(\hat{\mathbf{y}})=tr(\mathbf S_\lambda)$。在这些情况下，（3.60）是很简单的进行赋值因为$\hat{\mathbf{y}}=\mathbf{H}_\lambda\mathbf y$关于$\mathbf y$是线性的。如果我们考虑在大小为$k$的最优子集选择中的定义（3.60），似乎显然有$df(\hat{\mathbf y})$会大于$k$,并且可以通过运用模拟的方法直接地估计$Cov(\hat y_i,y_i)/\sigma^2$来验证。然而估计最优子集选择的$df(\hat{\mathbf y})$没有固定的形式（closed form）</p>
-<p>对于LAR和lasso，会发生很奇怪的事情。这些技巧的自适应方式比最优集选择更加光滑，因此估计自由度会更加地难以驾驭。特别地，可以证明经过$k$步LAR过程，拟合向量的有效自由度恰巧是$k$.对于lasso，（改进的）LAR过程经常需要多余$k$的步骤，因为可以删去预测变量。因此，定义有点不一样；对于lasso，在任一小步$df(\hat{\mathbf y})$近似等于模型中预测变量的个数。然而这种近似在lasso路径中的任何地方都表现得很好，但是对于每个$k$,它在包含$k$个预测变量的序列中最后一个模型表现得最好。关于lasso自由度详细的研究或许可以在Zou等人（2007）的工作中找到。</p>
+这里 $\Cov(\hat y_i,y_i)$ 指的是预测值 $\hat y_i$ 和其对应的输出向量 $y_i$ 之间的协方差。直观上看有意义：当拟合数据越困难，协方差会越大，从而 $\df(\hat{\mathbf y})$ 越大。表达式（3.60）是一个有用的自由度的概念，可以应用到任何模型的预测向量 $\hat{\mathbf y}$。其中包括那些对训练数据自适应拟合的模型。这个定义将在 <a href="../../07-Model-Assessment-and-Selection/7.6-The-Effective-Number-of-Parameters/index.html">7.4-7.6 节</a> 中进一步讨论。</p>
+<p>现在对于有 $k$ 个固定预测变量的线性回归模型，可以简单地证明 $\df(\hat{\mathbf y})=k$。同样地，对于岭回归，这一定义导出表达式（3.50）的<strong>闭型解 (closed-form)</strong>：$\df(\hat{\mathbf{y}})=\tr(\mathbf S_\lambda)$。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：closed form expression</p>
+<p>根据 <a href="https://en.wikipedia.org/wiki/Closed-form_expression">wiki: Closed-form expression</a>，closed-form 是指可以进行有限次赋值的表达式，依此理解，有显示解的为 closed form。</p>
+</div>
+<p>在这些情况下，(3.60) 可以很简单地进行赋值因为 $\hat{\mathbf{y}}=\mathbf{H}_\lambda\mathbf y$ 关于 $\mathbf y$ 是线性的。如果我们考虑在大小为 $k$ 的最优子集选择中的定义 (3.60)，似乎显然有 $\df(\hat{\mathbf y})$ 会大于 $k$，并且可以通过运用模拟的方法直接地估计 $\Cov(\hat y_i,y_i)/\sigma^2$ 来验证。然而估计最优子集选择的 $\df(\hat{\mathbf y})$ 没有<strong>闭形式 (closed form)</strong>。</p>
+<p>对于 LAR 和 lasso，会发生很奇怪的事情。这些技巧的自适应方式比最优集选择更加光滑，因此估计自由度会更加地难以驾驭。特别地，可以证明经过 $k$ 步 LAR 过程，拟合向量的有效自由度恰巧是 $k$。对于 lasso，（改进的）LAR 过程经常需要多余 $k$ 的步骤，因为可以删去预测变量。因此，定义有点不一样；对于 lasso，在任一小步 $\df(\hat{\mathbf y})$ 近似等于模型中预测变量的个数。然而这种近似在 lasso 路径中的任何地方都表现得很好，但是对于每个 $k$，它在包含 $k$ 个预测变量的序列中最后一个模型表现得最好。关于 lasso 自由度详细的研究或许可以在 Zou et al. (2007)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup> 中找到。</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:L1 arc length">
-<p>可导曲线$\beta(s), s \in [0,S]$的$L_1$弧长为$TV(\beta,S)=\int_0^S\Vert\dot{\beta}(s)\Vert_1ds$,其中$\dot{\beta}(s)=\partial\beta(s)/\partial s$.对于分段LAR函数曲线，这相当于从这一步到下一步系数的$L_1$范数变化之和。&#160;<a class="footnote-backref" href="#fnref:L1 arc length" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
 <li id="fn:1">
-<p>Hoerl, A. E. and Kennard, R. (1970). Ridge regression: biased estimation for nonorthogonal problems, Technometrics 12: 55–67.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Hoerl, A. E. and Kennard, R. (1970). Ridge regression: biased estimation for nonorthogonal problems, Technometrics 12: 55–67.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Chen, S. S., Donoho, D. and Saunders, M. (1998). Atomic decomposition by basis pursuit, SIAM Journal on Scientific Computing 20(1): 33–61.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Chen, S. S., Donoho, D. and Saunders, M. (1998). Atomic decomposition by basis pursuit, SIAM Journal on Scientific Computing 20(1): 33–61.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Efron, B., Hastie, T., Johnstone, I. and Tibshirani, R. (2004). Least angle regression (with discussion), Annals of Statistics 32(2): 407–499.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Efron, B., Hastie, T., Johnstone, I. and Tibshirani, R. (2004). Least angle regression (with discussion), Annals of Statistics 32(2): 407–499.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Zou, H. and Hastie, T. (2005). Regularization and variable selection via the elastic net, Journal of the Royal Statistical Society Series B. 67(2): 301–320.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>Zou, H. and Hastie, T. (2005). Regularization and variable selection via the elastic net, Journal of the Royal Statistical Society Series B. 67(2): 301–320.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Osborne, M., Presnell, B. and Turlach, B. (2000a). A new approach to variable selection in least squares problems, IMA Journal of Numerical Analysis 20: 389–404.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Zou, H., Hastie, T. and Tibshirani, R. (2007). On the degrees of freedom of the lasso, Annals of Statistics 35(5): 2173–2192.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
