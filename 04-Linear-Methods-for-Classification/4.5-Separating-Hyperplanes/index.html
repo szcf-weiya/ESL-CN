@@ -3105,47 +3105,65 @@
 <td>时间</td>
 <td>2016-12-15:2016-12-15</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-03-26</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
-<p>我们已经看到线性判别分析和逻辑斯蒂回归都很相似地估计线性判别边界但是有点不同的地方。这章的剩下部分我们来描述一下分离超平面分类器。这些过程构造线性判别边界试图把数据尽可能分到不同的类别中去。它们可以看成是将在12章讨论的支持向量机的基础。这节的数学层次比前面的章节更高一点。</p>
-<p>图4.14显示了$R^2$空间的两个类别的20个数据点。这些点可以被线性边界分离开。图中的蓝色线条是无穷个可能分离超平面中的两个。黄色的线条表示该问题的最小二乘解，通过在$X$上对-1/1的响应变量$Y$回归得到（带有截距）；该直线由下式给出
+<p>我们已经看到线性判别分析和逻辑斯蒂回归估计线性判别边界的方式很相似，但是又有些不同。这章的剩下部分我们来描述一下<strong>分离超平面分类器 (separating hyperplane classifiers)</strong>。这些过程构造线性判别边界时试图把数据尽可能分到不同的类别中去。它们可以看成是将在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">12 章</a>讨论的支持向量机的基础。这节的数学层次比前面的章节更高一点。</p>
+<p>图 4.14 显示了 $R^2$ 空间中两个类别的 20 个数据点。</p>
+<p><img alt="" src="../../img/04/fig4.14.png" /></p>
+<blockquote>
+<p>图 4.14. 被超平面分离开的两个类别的小例子。橘黄色的线条是最小二乘的解，误判了训练集中的一个点。图中也显示了通过不同初始值运用感知器学习算法得到的分离超平面。</p>
+</blockquote>
+<p>这些点可以被线性边界分离开。图中的蓝色线条是无穷种可能<strong>分离超平面</strong>中的两个。黄色的线条表示该问题的最小二乘解，通过在 $X$ 上对 $-1/1$ 响应变量 $Y$ 回归得到（带有截距）；该直线由下式给出</p>
+<p>
 <script type="math/tex; mode=display">
 \{x:\hat\beta_0+\hat\beta_1x_1+\hat\beta_2x_2=0\}\qquad (4.39)
 </script>
-<img alt="" src="../../img/04/fig4.14.png" /></p>
-<blockquote>
-<p>图4.14. 被超平面分离开的两个类别的小例子。橘黄色的线条是最小二乘的解，误判了训练集中的一个点。图中也显示了通过不同初始值运用感知器学习算法得到的分离超平面。</p>
-</blockquote>
-<p>最小二乘解并不能很好地把点分离开，而且有一个误判。这与通过LDA找到地边界相同，由于在两个类别的情况下LDA与线性回归是等价的。（4.3节和练习4.2）</p>
-<p>（4.39）的分类器计算得到输入特征的线性组合并且返回符号，在1950s末期（Rosenblatt,1958）称之为感知器（perceptrons）。感知器是1980s和1990s神经网络模型的基础。</p>
-<p>在我们继续之前，我们稍微岔开去回顾一些向量代数的知识。图4.15描述了由等式$f(x)=\beta_0+\beta^Tx=0$定义的超平面或仿射集$L$;因为我们是在$R^2$空间中所以这是一条直线。这里我们列出一些性质：
-1. 对于在$L$中的两点$x_1$和$x_2$,$\beta^T(x_1-x_2)=0$，因此$L$表面的法向量为$\beta^*=\beta/\Vert\beta\Vert$
-2. 对于$L$的任意点，$\beta^Tx_0=-\beta_0$
-3. $x$到$L$的符号距离为
+</p>
+<p>最小二乘解并不能很好地把点分离开，而且有一个误判。这与通过 LDA 找到的边界相同，这因为在两个类别的情况下 LDA 与线性回归是等价的。（<a href="../../4.3-Linear-Discriminant-Analysis/index.html">4.3 节</a>和<a href="https://github.com/szcf-weiya/ESL-CN/issues/108">练习 4.2</a>）</p>
+<p>类似 (4.39) 的分类器计算输入特征的线性组合并且返回符号，在 1950s 末期称之为<strong>感知器 (perceptrons)</strong> (Rosenblatt,1958<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>) 。感知器是 1980s 和 1990s 神经网络模型的基础。</p>
+<p>在我们继续之前，稍微岔开去回顾一些向量代数的知识。图 4.15 描述了由等式 $f(x)=\beta_0+\beta^Tx=0$ 定义的超平面或仿射集$L$；因为我们是在 $R^2$ 空间中，所以这是一条直线。这里我们列出一些性质：</p>
+<ol>
+<li>对于在 $L$ 中的两点 $x_1$ 和 $x_2$，$\beta^T(x_1-x_2)=0$，因此 $L$ 表面的 法向量为$\beta^*=\beta/\Vert\beta\Vert$</li>
+<li>对于 $L$ 的任意点，$\beta^Tx_0=-\beta_0$</li>
+<li>任意点  $x$ 到 $L$ 的符号距离为
 <script type="math/tex; mode=display">
-\begin{array}{ll}
+\begin{align}
 {\beta^*}^T(x-x_0)&=\frac{1}{\Vert\beta\Vert}(\beta^Tx+\beta_0)\\
 &=\frac{1}{\Vert f'(x)\Vert}f(x)\qquad (4.40)
-\end{array}
+\end{align}
 </script>
-因此$f(x)$与$x$到由$f(x)=0$定义的超平面符号距离成比例。</p>
+因此 $f(x)$ 与 $x$ 到由 $f(x)=0$ 定义的超平面符号距离成比例。</li>
+</ol>
 <p><img alt="" src="../../img/04/fig4.15.png" /></p>
 <blockquote>
 <p>图4.15. 超平面（仿射集）的线性代数</p>
 </blockquote>
 <h2 id="451-rosenblatt">4.5.1 Rosenblatt的感知器学习算法<a class="headerlink" href="#451-rosenblatt" title="Permanent link">&para;</a></h2>
-<p>感知器学习算法试图通过最小化误分类的点到判别边界距离来寻找分离超平面。如果响应变量$y_i=1$是误分类的，则$x_i^T\beta+\beta_0&lt;0$，对于误分类的响应变量$y_i=-1$是反过来的。目标是最小化
+<p><strong>感知器学习算法 (perceptron learning algorithm)</strong> 试图通过最小化误分类的点到判别边界距离来寻找分离超平面。如果响应变量 $y_i=1$ 是误分类的，则 $x_i^T\beta+\beta_0 &lt; 0$，对于误分类的响应变量 $y_i=-1 $是反过来的。目标是最小化</p>
+<p>
 <script type="math/tex; mode=display">
 D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\qquad (4.41)
 </script>
-其中$\cal M$是误分类点的指标集。该值是非负的且与误分类的点到由$\beta^Tx+\beta_0=0$定义的判别边界的距离成比例。梯度（假设$\cal M$固定）由下式给出
+</p>
+<p>其中 $\cal M$ 是误分类点的指标集。上式是非负的且与误分类的点到由 $\beta^Tx+\beta_0=0$ 定义的判别边界的距离成比例。梯度（假设 $\cal M$ 固定）由下式给出</p>
+<p>
 <script type="math/tex; mode=display">
-\begin{array}{ll}
+\begin{align}
 \dfrac{\partial D(\beta,\beta_0)}{\partial \beta}&=-\sum\limits_{i\in \cal M}y_ix_i\qquad (4.42)\\
 \dfrac{\partial D(\beta,\beta_0)}{\partial \beta_0}&=-\sum\limits_{i\in \cal M}y_i\qquad (4.43)
-\end{array}
+\end{align}
 </script>
-这个算法实际上应用了随机梯度下降（stochastic gradient descent）来最小化分段线性准则。这意味着与其计算经过一步之后每个观测值的梯度贡献之和，不如当每个观测被访问之后采取新的一步。因此误分类的观测值会以某种次序被访问，而且参数$\beta$通过下式更新
+</p>
+<p>这个算法实际上应用了<strong>随机梯度下降 (stochastic gradient descent)</strong> 来最小化分段线性准则。这意味着<strong>不是</strong>计算经过一步之后每个观测值的梯度贡献之和，<strong>而是</strong>当每个观测被访问之后采取新的一步。因此误分类的观测值会以某种次序被访问，而且参数 $\beta$ 通过下式更新</p>
+<p>
 <script type="math/tex; mode=display">
 \left(\begin{array}{}\beta\\\beta_0\end{array}\right)\leftarrow
 \left(\begin{array}{}\beta\\\beta_0\end{array}\right)+
@@ -3153,46 +3171,57 @@ D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\qquad (4.41)
 \qquad (4.44)
 </script>
 </p>
-<p>这里$\beta$是学习速率，不失一般性这种情形下取1.如果类别是线性可分的，则可以证明在有限步后该算法收缩到一个分离超平面（练习4.6）.图4.14显示了对一个简单问题的两个解，每个都是从不同的随机猜测开始的。</p>
-<p>该算法有以下一些问题，由1996年Ripley总结：</p>
+<p>这里 $\beta$ 是学习速率，不失一般性这种情形下可以取1。如果类别是线性可分的，则可以证明在有限步后该算法收缩到一个分离超平面（<a href="https://github.com/szcf-weiya/ESL-CN/issues/109">练习 4.6</a>）。图 4.14 显示了对一个简单问题的两个解，每个都是从不同的随机猜测开始的。</p>
+<p>Ripley (1996)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 总结了该算法有以下一些问题：</p>
 <ul>
 <li>当数据是线性可分时，有许多解，且解基于初始值的设定。</li>
 <li>“有限”步可以非常大。差异越小，需要花的时间就越久。</li>
 <li>当数据不是线性可分时，算法不会收敛，而且会形成循环。循环可以很长因此不容易检测。</li>
 </ul>
-<p>第二个问题经常通过不在原空间中寻找超平面而被忽略，而在一个通过构造在原空间中变量的基函数变换得到的增广空间中。这类似于在多项式回归问题中为了将残差降为0而使得阶数特别大。完美的分离不总是可以达到：举个例子，如果来自两个类别的观测值有一个共同输入。这或许也不是需要的，因为得到的模型很可能是过拟合从而不能很好地进行推广。我们将在下一节的结束回到这个问题的讨论。</p>
+<p>第二个问题经常通过不在原空间中寻找超平面消除，而在一个通过构造在原空间中变量的基函数变换得到的增广空间中。这类似于在多项式回归问题中为了将残差降为 0 而使得阶数特别大。完美的分离不总是可以达到：举个例子，如果来自两个类别的观测值有一个共同输入。当然或许也不需要完美分割，因为得到的模型很可能是过拟合从而不能很好地进行推广。我们将在下一节的最后回到这个问题的讨论。</p>
 <p>对于第一个问题的优雅解决方式是对分离超平面加上额外的约束条件。</p>
 <h2 id="452">4.5.2 最优分离超平面<a class="headerlink" href="#452" title="Permanent link">&para;</a></h2>
-<p>最优分离超平面将两个类别分离开且使得超平面到每一个类别最近点的距离最大（Vapnik, 1996）.这样不仅得到分离超平面问题的唯一解，而且通过使得在训练集上两个类别的边缘最大，这使得在测试集上有更好的分类表现。</p>
-<p>我们需要一般化准则（4.41）。考虑下面的优化问题
+<p>最优分离超平面将两个类别分离开且使得超平面到每一个类别最近点的距离最大 (Vapnik, 1996)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>。这样不仅得到分离超平面问题的唯一解，而且通过使得在训练集上两个类别的<strong>边缘 (margin)</strong> 最大，这使得在测试集上有更好的分类表现。</p>
+<p>我们需要推广准则 (4.41)。考虑下面的优化问题</p>
+<p>
 <script type="math/tex; mode=display">
-\begin{array}{}
-\underset{\beta,\beta_0,\Vert\beta\Vert=1}{max}\; M\\
-s.t.\; y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N
-\end{array}
+\begin{align}
+\underset{\beta,\beta_0,\Vert\beta\Vert=1}{\max}& M\\
+\st& y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N
+\end{align}
 \qquad (4.45)
 </script>
-这一系列条件保证了所有点到由$\beta$和$\beta_0$定义的判别边界的符号距离至少为$M$，我们寻找最大的$M$和相关的参数。我们可以通过把条件替换为下面的形式来摆脱$\Vert\beta\Vert=1$的限制
+</p>
+<p>这一系列条件保证了所有点到由 $\beta$ 和 $\beta_0$ 定义的判别边界的符号距离至少为 $M$，我们寻找最大的 $M$ 和相关的参数。我们可以通过把条件替换为下面的形式来摆脱 $\Vert\beta\Vert=1$ 的限制</p>
+<p>
 <script type="math/tex; mode=display">
 \frac{1}{\Vert\beta\Vert}y_i(x_i^T\beta+\beta_0)\ge M\qquad (4.46)
 </script>
-(重新定义了$\beta_0$)或者等价于
+</p>
+<p>（重新定义了 $\beta_0$）或者等价于</p>
+<p>
 <script type="math/tex; mode=display">
 y_i(x_i^T\beta+\beta_0)\ge M\Vert\beta\Vert\qquad (4.47)
 </script>
-因为对于任意满足这些不等式的$\beta$和$\beta_0$，任意正的放缩因子同样满足它们，我们可以任意令$\Vert\beta\Vert=1/M$.因此（4.45）等价于
+</p>
+<p>因为对于任意满足这些不等式的 $\beta$ 和 $\beta_0$，任意正的放缩因子同样成立，我们可以任意令 $\Vert\beta\Vert=1/M$。因此 (4.45) 等价于</p>
+<p>
 <script type="math/tex; mode=display">
-\begin{array}{}
-\underset{\beta,\beta_0}{min}\;\frac{1}{2}\Vert\beta\Vert^2\\
-s.t.\; y_i(x_i^T\beta+\beta_0)\ge \; i=1,\ldots,N 
-\end{array}
+\begin{align}
+\underset{\beta,\beta_0}{\min}&\frac{1}{2}\Vert\beta\Vert^2\\
+\st & y_i(x_i^T\beta+\beta_0)\ge \; i=1,\ldots,N 
+\end{align}
 \qquad (4.48)
 </script>
-由于(4.40),上面的约束条件定义了一个判别边界周围厚度为$1/\Vert\beta\Vert$的平板或者空白。因此我恶魔年选择$\beta$和$\beta_0$最大化厚度。这是一个凸优化问题（线性不等约束的二次准则）。Lagrange（原问题）函数关于$\beta$和$\beta_0$进行最小化是
+</p>
+<p>根据 (4.40)，上面的约束条件定义了一个判别边界周围厚度为 $1/\Vert\beta\Vert$ 的<strong>平板 (slab)</strong> 或者<strong>空白 (margin)</strong>。因此我们选择 $\beta$ 和 $\beta_0$ 最大化厚度。这是一个凸优化问题（线性不等约束的二次准则）。Lagrange（原问题）函数关于 $\beta$ 和 $\beta_0$ 进行最小化是</p>
+<p>
 <script type="math/tex; mode=display">
 L_P=\frac{1}{2}\Vert\beta\Vert^2-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-1]\qquad (4.49)
 </script>
-令微分为0，则有
+</p>
+<p>令微分为 0，则有</p>
+<p>
 <script type="math/tex; mode=display">
 \beta=\sum\limits_{i=1}^N\alpha_iy_ix_i\qquad (4.50)
 </script>
@@ -3202,33 +3231,91 @@ L_P=\frac{1}{2}\Vert\beta\Vert^2-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\bet
 0=\sum\limits_{i=1}^N\alpha_iy_i\qquad (4.51)
 </script>
 </p>
-<p>替换掉（4.49）中的这些项我们得到被称作Wolfe的对偶问题
+<p>替换掉 (4.49) 中的这些项我们得到被称作 Wolfe 的对偶问题
 <script type="math/tex; mode=display">
 L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{k=1}^N\alpha_i\alpha_ky_iy_kx_i^Tx_k\\
-\qquad\qquad \qquad \qquad \qquad s.t. \; \alpha_i\ge 0\qquad \qquad(4.52)
+\qquad\qquad \qquad \qquad \qquad \st \; \alpha_i\ge 0\qquad \qquad(4.52)
 </script>
-通过在正象限内最大化$L_D$得到解，这是一个简单的凸优化问题，可以使用标准的软件来求解。另外解必须满足KKT（Karush-Kuhn-Tucker）条件,它包括（4.50），（4.51），（4.52）以及
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：对偶问题</p>
+<p>对于无等值约束的优化问题</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{x\in\IR^n}{\min}f(x)\; \st c_i(x)\ge 0,\; i=1,2,\ldots,m
+</script>
+</p>
+<p>记
+<script type="math/tex; mode=display">
+c(x)\def(c_1(x), c_2(x),\ldots, c_m(x))^T
+</script>
+则原问题写为
+<script type="math/tex; mode=display">
+\underset{x\in\IR^n}{\min}f(x)\; \st c(x)\ge 0
+</script>
+Lagrangian函数为
+<script type="math/tex; mode=display">
+{\cal L}(x,\lambda)=f(x)-\lambda^Tc(x)
+</script>
+定义对偶目标函数$q:\IR^n\rightarrow \IR$：
+<script type="math/tex; mode=display">
+q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
+</script>
+其定义域为
+<script type="math/tex; mode=display">
+\cal D\def\{\lambda\mid q(\lambda)>-\infty\}
+</script>
+<strong>若$f$和$-c_i$均为凸函数</strong>，则$\cal L(\cdot, \lambda)$也为凸函数，则可以很容易计算$q(\lambda)$。</p>
+<p>参考资料: <a href="../../references/opbook2.pdf">Wright S, Nocedal J. Numerical optimization (Second Edition). Springer Science.</a></p>
+</div>
+<p>通过在正象限内最大化 $L_D$ 得到解，这是一个简单的凸优化问题，可以使用标准的软件来求解。另外解必须满足 KKT(Karush-Kuhn-Tucker) 条件,它包括（4.50)，(4.51)，(4.52) 以及</p>
+<p>
 <script type="math/tex; mode=display">
 \alpha_i[y_i(x_i^T\beta+\beta_0)-1]=0\;\forall i.\qquad (4.53)
 </script>
-从这些我们看到</p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：KKT条件</p>
+<p>对于带约束的优化问题
+<img alt="" src="../../img/12/def12.1.png" />
+一阶必要条件为
+<img alt="" src="../../img/12/KKT.png" />
+图片来源：<a href="../../references/opbook2.pdf">Wright S, Nocedal J. Numerical optimization (Second Edition). Springer Science.</a></p>
+</div>
+<p>从这些我们看到</p>
 <ul>
-<li>如果$\alpha_i\gt 0$,则$y_i(x_i^T+\beta_0)=1$,或者换句话说，$x_i$在平板的边界上；</li>
-<li>如果$y_i(x_i^T\beta+\beta_0)&gt;1$,$x_i$不在平板的边界上，而且$\alpha_i=0$</li>
+<li>如果 $\alpha_i\gt 0$，则 $y_i(x_i^T+\beta_0)=1$，或者换句话说，$x_i$ 在 slab 的边界上；</li>
+<li>如果 $y_i(x_i^T\beta+\beta_0)&gt;1$，$x_i$ 不在平板的边界上，而且 $\alpha_i=0$。</li>
 </ul>
-<p>从(4.50)我们可以看到解向量$\beta$定义为关于支撑点$x_i$的线性组合——这些点通过$\alpha_i&gt;0$定义在平板的边界上。图4.16显示了我们小例子的最优分离超平面；这里有三个支撑点。同样地，$\beta_0$通过对任意支撑点求解（4.53）得到。</p>
+<p>从 (4.50) 我们可以看到解向量 $\beta$ 定义为<strong>支撑点 (support points)</strong> $x_i$ 的线性组合——这些点通过 $\alpha_i &gt;0$ 定义在 slab 的边界上。图 4.16 显示了我们那个简单例子的最优分离超平面；这里有三个支撑点。同样地，$\beta_0$ 可以通过对任意支撑点求解 (4.53) 得到。</p>
 <p><img alt="" src="../../img/04/fig4.16.png" /></p>
 <blockquote>
-<p>图4.16. 和图4.14同样的数据。阴影区域描绘了分离两个类别的最大边缘空白。这里有三个支撑点；它们位于边缘空白的边界上，最优分离超平面（蓝色线条）平分了平板。这张图里面的边界是通过逻辑斯蒂回归得到的（红色线条），它与最优分离超平面非常接近（见12.3.3节）</p>
+<p>图 4.16. 和图 4.14 同样的数据。阴影区域描绘了分离两个类别的最大边缘空白。这里有三个支撑点；它们位于边缘空白的边界上，最优分离超平面（蓝色线条）平分了平板。这张图里面的边界是通过逻辑斯蒂回归得到的（红色线条），它与最优分离超平面非常接近（见<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.3 节</a>）</p>
 </blockquote>
-<p>最优分离超平面得到函数$\hat f(x)=x^T\hat\beta+\hat\beta_0$来对新的观测分类
+<p>最优分离超平面得到函数 $\hat f(x)=x^T\hat\beta+\hat\beta_0$ 来对新的观测分类</p>
+<p>
 <script type="math/tex; mode=display">
-\hat G(x)=sign \hat f(x)\qquad (4.54)
+\hat G(x)=\sign \hat f(x)\qquad (4.54)
 </script>
-尽管没有训练观测点落在空白边缘处（由构造可知），但这对于测试观测点不一定正确。直觉是训练数据上大的边缘空白会导致在训练数据集上良好的分离。</p>
-<p>关于支撑点的描述似乎表明解更加关注考虑的点，而且对于模型错误更加稳健。而另一方面，LDA的解取决于所有数据点，即便点远离判别边界。然而，注意到这些支撑点也需要用到所有数据点。当然，如果类别真的服从高斯分布，LDA是最优的，分离超平面会在关注类别边界数据（噪声）上付出代价。</p>
-<p>图4.16中还画出了该问题的通过极大似然法得到的逻辑斯蒂回归的解。这种情形下两个解都是很相似的。当存在分离超平面，逻辑斯蒂回归总是能找到它，因为这种情况下概率的对数值总能达到0（练习4.5）.逻辑斯蒂回归的解与分离超平面的解有其它的定性上的特点。系数向量通过在输入特征上零均值线性响应向量的加权最小二乘拟合来定义，对于离判别边界更近的点系数更大。</p>
-<p>当数据不可分时，该问题没有可行解，需要一种另外的构造。再一次我们可以利用基变换来扩大空间，但是这个可能导致通过过拟合进行人工分离。在第12章中我们将要讨论更加吸引人的方法，被称为支持向量机，它允许重叠，但是最小化了某种度量下的重叠。</p>
+</p>
+<p>尽管没有训练观测点会落在空白边缘里面（由构造可知），但这对于测试观测点不一定正确。直觉上，若训练数据边缘空白较大，会使得在测试数据集上良好的分离。</p>
+<p>关于支撑点的描述似乎表明解更加关注支撑点，而且对于模型错误更加稳健。而另一方面，LDA 的解取决于所有数据点，即便点远离判别边界。然而，注意到这些支撑点也需要用到所有数据点。当然，如果类别真的服从高斯分布，LDA 是最优的，分离超平面会因关注类别边界数据（噪声）而付出代价。</p>
+<p>图 4.16 中还画出了该问题的通过极大似然法得到的逻辑斯蒂回归的解。这种情形下两个解都是很相似的。当存在分离超平面，逻辑斯蒂回归总是能找到它，因为这种情况下概率的对数值总能达到 0（<a href="https://github.com/szcf-weiya/ESL-CN/issues/110">练习 4.5</a>）。逻辑斯蒂回归的解与分离超平面的解有其它的定性上的特点。系数向量通过在输入特征上零均值线性响应向量的加权最小二乘拟合来定义，对于离判别边界更近的点系数更大。</p>
+<p>当数据不可分时，该问题没有可行解，需要另外的构造。同样我们可以利用基变换来扩大空间，但是这个可能导致通过过拟合进行人工分离。在<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>中我们将要讨论更加吸引人的方法，被称为<strong>支持向量机 (support vector machine)</strong>，它允许重叠，但是最小化了某种度量下的重叠。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Rosenblatt, F. (1958). The perceptron: a probabilistic model for information storage and organization in the brain, Psychological Review 65: 386–408.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Ripley, B. D. (1996). Pattern Recognition and Neural Networks, Cambridge University Press.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Vapnik, V. (1996). The Nature of Statistical Learning Theory, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
