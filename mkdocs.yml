@@ -42,7 +42,7 @@ pages:
       - 5.3 滤波和特征提取: '05-Basis-Expansions-and-Regularization/5.3-Filtering-and-Feature-Extraction.md'
       - 5.4 光滑样条: '05-Basis-Expansions-and-Regularization/5.4-Smoothing-Splines.md'
       - 5.5 光滑参数的自动选择: '05-Basis-Expansions-and-Regularization/5.5-Automatic-Selection-of-the-Smoothing-Parameters.md'
-      - 5.6 非参逻辑斯蒂回归: '05-Basis-Expansions-and-Regularization/5.6 Nonparametric Logistic Regression.md'
+      - 5.6 非参逻辑斯蒂回归: '05-Basis-Expansions-and-Regularization/5.6-Nonparametric-Logistic-Regression.md'
       - 5.7 多维样条: '05-Basis-Expansions-and-Regularization/5.7-Multidimensional-Splines.md'
       - 5.8 正则化和再生核希尔伯特空间理论: '05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces.md'
       - 5.9 小波光滑: '05-Basis-Expansions-and-Regularization/5.9-Wavelet-Smoothing.md'
