@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/update-daily-brightgreen.svg)
 
-The Elements of Statistical Learning (ESL)的中文翻译及其代码实现。
+The Elements of Statistical Learning (ESL) 的中文翻译、代码实现及其习题解答。
 
 ## 代码实现
 
