@@ -1,4 +1,7 @@
-# ESL-CN
+# ESL-CN 
+
+![](https://img.shields.io/badge/update-daily-brightgreen.svg)
+
 The Elements of Statistical Learning (ESL)的中文翻译及其代码实现。
 
 ## 代码实现
