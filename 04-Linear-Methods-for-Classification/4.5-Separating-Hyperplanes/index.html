@@ -3116,10 +3116,10 @@
 </tbody>
 </table>
 <p>我们已经看到线性判别分析和逻辑斯蒂回归估计线性判别边界的方式很相似，但是又有些不同。这章的剩下部分我们来描述一下<strong>分离超平面分类器 (separating hyperplane classifiers)</strong>。这些过程构造线性判别边界时试图把数据尽可能分到不同的类别中去。它们可以看成是将在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">12 章</a>讨论的支持向量机的基础。这节的数学层次比前面的章节更高一点。</p>
-<p>图 4.14 显示了 $R^2$ 空间中两个类别的 20 个数据点。</p>
+<p>图 4.14 显示了 $\IR^2$ 空间中两个类别的 20 个数据点。</p>
 <p><img alt="" src="../../img/04/fig4.14.png" /></p>
 <blockquote>
-<p>图 4.14. 被超平面分离开的两个类别的小例子。橘黄色的线条是最小二乘的解，误判了训练集中的一个点。图中也显示了通过不同初始值运用感知器学习算法得到的分离超平面。</p>
+<p>图 4.14. 被超平面分离开的两个类别的简单例子。橘黄色的线条是最小二乘的解，误判了训练集中的一个点。图中也显示了通过不同初始值运用感知器学习算法得到的分离超平面。</p>
 </blockquote>
 <p>这些点可以被线性边界分离开。图中的蓝色线条是无穷种可能<strong>分离超平面</strong>中的两个。黄色的线条表示该问题的最小二乘解，通过在 $X$ 上对 $-1/1$ 响应变量 $Y$ 回归得到（带有截距）；该直线由下式给出</p>
 <p>
@@ -3128,6 +3128,10 @@
 </script>
 </p>
 <p>最小二乘解并不能很好地把点分离开，而且有一个误判。这与通过 LDA 找到的边界相同，这因为在两个类别的情况下 LDA 与线性回归是等价的。（<a href="../../4.3-Linear-Discriminant-Analysis/index.html">4.3 节</a>和<a href="https://github.com/szcf-weiya/ESL-CN/issues/108">练习 4.2</a>）</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 4.2</p>
+<p>具体证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/108">Issue 108: Ex. 4.2</a></p>
+</div>
 <p>类似 (4.39) 的分类器计算输入特征的线性组合并且返回符号，在 1950s 末期称之为<strong>感知器 (perceptrons)</strong> (Rosenblatt,1958<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>) 。感知器是 1980s 和 1990s 神经网络模型的基础。</p>
 <p>在我们继续之前，稍微岔开去回顾一些向量代数的知识。图 4.15 描述了由等式 $f(x)=\beta_0+\beta^Tx=0$ 定义的超平面或仿射集$L$；因为我们是在 $R^2$ 空间中，所以这是一条直线。这里我们列出一些性质：</p>
 <ol>
