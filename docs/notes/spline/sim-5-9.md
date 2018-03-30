@@ -102,7 +102,7 @@ $$
 
 ### 第一次尝试
 
-第一次尝试是与上述计算 CV 时的错误做法一起发生的，因为注意到返回值有个 `pens.crit`，帮助文档给出的解释为 
+第一次尝试是与上述计算 CV 时的错误做法一起发生的，因为注意到函数有个返回值 `pens.crit`，帮助文档给出的解释为 
 
 > the penalized criterion, a non-negative number; simply the (weighted) residual sum of squares (RSS), sum(.$w * residuals(.)^2)
 
