@@ -115,7 +115,8 @@ plot.lambda <- function(X, Y, lambda)
        main = substitute(paste(df[lambda]," = ", l), list(l=lambda)))#expression(paste(df[lambda]," = ", lambda)))
   lines(0.01*0:100, func(0.01*0:100), col = "blue", type = "l", lwd=3)
   lines(sort(X), fitted, lwd = 3)
-  polygon(c(rev(sort(X)), sort(X)), c(rev(fitted-2*sd), fitted+2*sd), col=rgb(1, 1, 0, 0.5), border = NA)
+  polygon(c(rev(sort(X)), sort(X)), c(rev(fitted-2*sd), fitted+2*sd), 
+          col=rgb(1, 1, 0, 0.5), border = NA)
 }
 
 ## fig. 5.19 (b)
