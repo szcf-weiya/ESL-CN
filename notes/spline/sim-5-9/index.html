@@ -2908,6 +2908,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#510" title="练习 5.10" class="md-nav__link">
+    练习 5.10
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3215,6 +3222,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#510" title="练习 5.10" class="md-nav__link">
+    练习 5.10
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3424,6 +3438,17 @@ plot.lambda <span class="o">&lt;-</span> <span class="kr">function</span><span c
 <p><img alt="" src="../res-5-19c.png" /></p>
 <p><img alt="" src="../res-5-19d.png" /></p>
 <p>这与原图是一致的！</p>
+<h2 id="510">练习 5.10<a class="headerlink" href="#510" title="Permanent link">&para;</a></h2>
+<p>Ex. 5.10 要求添加 $\hat f(\lambda)$ 的逐点分位数，直接在上面的代码中加入计算分位数的代码即可</p>
+<div class="codehilite"><pre><span></span>yhat75 <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>yhat<span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> quantile<span class="p">(</span>x<span class="p">,</span> <span class="m">0.75</span><span class="p">))</span>
+yhat25 <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>yhat<span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> quantile<span class="p">(</span>x<span class="p">,</span> <span class="m">0.25</span><span class="p">))</span>
+</pre></div>
+
+
+<p>得到</p>
+<p><img alt="" src="../res-ex-5-10-5.png" />
+<img alt="" src="../res-ex-5-10-9.png" />
+<img alt="" src="../res-ex-5-10-15.png" /></p>
                 
                   
                 

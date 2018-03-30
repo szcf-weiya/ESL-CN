@@ -61,9 +61,12 @@ mysmooth.spline <- function(X, Y, df){
   epe = mean(epe.i)
   ## calculate the mean and sd of fitted value
   yhat.mean = apply(yhat, 2, mean)
+  yhat75 = apply(yhat, 2, function(x) quantile(x, 0.75))
+  yhat25 = apply(yhat, 2, function(x) quantile(x, 0.25))
   yhat.sd = apply(yhat, 2, sd)
   return(list(CV = cv, EPE = epe,
-              fitted = yhat.mean, sd = yhat.sd))
+              fitted = yhat.mean, sd = yhat.sd,
+              yhat75 = yhat75, yhat25 = yhat25))
 }
 
 ## simulation
@@ -119,6 +122,8 @@ plot.lambda <- function(X, Y, lambda)
           col=rgb(1, 1, 0, 0.5), border = NA)
 }
 
+
+
 ## fig. 5.19 (b)
 png("res-5-19b.png")
 plot.lambda(X, Y, 5)
@@ -130,4 +135,37 @@ dev.off()
 ## fig. 5.19 (d)
 png("res-5-19d.png")
 plot.lambda(X, Y, 15)
+dev.off()
+
+## ######################################
+## plot for ex. 5.10
+## ######################################
+plot.lambda2 <- function(X, Y, lambda)
+{
+  res = mysmooth.spline(X, Y, lambda)
+  fitted = res$fitted
+  sd = res$sd
+  yhat75 = res$yhat75
+  yhat25 = res$yhat25
+  plot(X, Y, xlab = expression(X), ylab = "y",
+       main = substitute(paste(df[lambda]," = ", l), list(l=lambda)))
+  lines(0.01*0:100, func(0.01*0:100), col = "blue", type = "l", lwd=3)
+  lines(sort(X), fitted, lwd = 3)
+  lines(sort(X), yhat25, col = "red")
+  lines(sort(X), yhat75, col = "red")
+  #polygon(c(rev(sort(X)), sort(X)), c(rev(fitted-2*sd), fitted+2*sd), 
+  #        col=rgb(1, 1, 0, 0.5), border = NA)
+  legend("topright", legend = c("1/4 quantile", "mean", "true"),
+         col = c("red", "black", "blue"),
+         lwd = c(1, 3, 3))
+}
+
+png("res-ex-5-10-5.png")
+plot.lambda2(X, Y, 5)
+dev.off()
+png("res-ex-5-10-9.png")
+plot.lambda2(X, Y, 9)
+dev.off()
+png("res-ex-5-10-15.png")
+plot.lambda2(X, Y, 15)
 dev.off()
