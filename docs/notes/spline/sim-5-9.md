@@ -206,3 +206,18 @@ plot.lambda <- function(X, Y, lambda)
 ![](res-5-19d.png)
 
 这与原图是一致的！
+
+## 练习 5.10
+
+Ex. 5.10 要求添加 $\hat f(\lambda)$ 的逐点分位数，直接在上面的代码中加入计算分位数的代码即可
+
+```r
+yhat75 = apply(yhat, 2, function(x) quantile(x, 0.75))
+yhat25 = apply(yhat, 2, function(x) quantile(x, 0.25))
+```
+
+得到
+
+![](res-ex-5-10-5.png)
+![](res-ex-5-10-9.png)
+![](res-ex-5-10-15.png)
