@@ -48,15 +48,22 @@ mysmooth.spline <- function(X, Y, df){
   #y.pred = predict(model.full, x.test)$y
   #epe = mean((y.test - y.pred)^2)
   n2 = 100
+  yhat = array(dim = c(n2, nY))
   epe.i = numeric(n2)
   for (i in 1:n2){
     ind = sample(N, 50)
     model = smooth.spline(X[ind], Y[ind], df = df)
     y.pred = predict(model, X[-ind])$y
     epe.i[i] = mean((y.pred - Y[-ind])^2)
+    # predict the whole dataset
+    yhat[i, ] = predict(model, sort(X))$y
   }
   epe = mean(epe.i)
-  return(list(CV = cv, EPE = epe))
+  ## calculate the mean and sd of fitted value
+  yhat.mean = apply(yhat, 2, mean)
+  yhat.sd = apply(yhat, 2, sd)
+  return(list(CV = cv, EPE = epe,
+              fitted = yhat.mean, sd = yhat.sd))
 }
 
 ## simulation
@@ -85,5 +92,41 @@ for (i in 1:nrep)
   cvs[i] = res$CV
   epes[i] = res$EPE
 }
-plot(df.seq, cvs, col = "blue", pch = 16, ylim = c(0.8, 3.0))
+## fig. 5.19 (a)
+png("res-5-19a.png")
+plot(df.seq, cvs, col = "blue", pch = 16, ylim = c(0.8, 3.0),
+     main = "Cross-Validation",
+     xlab = expression(df[lambda]),
+     ylab = expression(paste(EPE[lambda], " and ", CV[lambda])))
 points(df.seq, epes, col = "orange", pch = 16)
+legend("topright", 
+       col = c("blue", "orange"), 
+       pch = c(16, 16), legend = c("CV", "EPE"))
+abline(v=9)
+dev.off()
+
+## plot function for (b)-(d)
+plot.lambda <- function(X, Y, lambda)
+{
+  res = mysmooth.spline(X, Y, lambda)
+  fitted = res$fitted
+  sd = res$sd
+  plot(X, Y, xlab = expression(X), ylab = "y",
+       main = substitute(paste(df[lambda]," = ", l), list(l=lambda)))#expression(paste(df[lambda]," = ", lambda)))
+  lines(0.01*0:100, func(0.01*0:100), col = "blue", type = "l", lwd=3)
+  lines(sort(X), fitted, lwd = 3)
+  polygon(c(rev(sort(X)), sort(X)), c(rev(fitted-2*sd), fitted+2*sd), col=rgb(1, 1, 0, 0.5), border = NA)
+}
+
+## fig. 5.19 (b)
+png("res-5-19b.png")
+plot.lambda(X, Y, 5)
+dev.off()
+## fig. 5.19 (c)
+png("res-5-19c.png")
+plot.lambda(X, Y, 9)
+dev.off()
+## fig. 5.19 (d)
+png("res-5-19d.png")
+plot.lambda(X, Y, 15)
+dev.off()
