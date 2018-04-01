@@ -3135,6 +3135,10 @@
 <p>图 5.17 展示了一个 NMR（原子核偶磁共振）信号，看上去由光滑的组分和单独的尖状物以及一些噪声组成。采用 symmlet 基底的小波变换显示在左下角的图中。小波的系数按行排列，从底部的最低尺度到顶部的最大尺度。每一条线段的长度表明了系数的大小。右下角显示了当设置阈值过滤时的小波系数。阈值的过程由式 (5.69) 给出，是与线性回归中 lasso 一样的软阈值过程。注意到许多较小的系数设为了 0。图中上边的绿色曲线显示了阈值系数的向后转换：这也就是原始信号的光滑版本。在下一节我们将给出这一过程的细节，包括小波的构造和阈值规则。</p>
 <p><img alt="" src="../../img/05/fig5.17.png" /></p>
 <h2 id="_1">小波基和小波变换<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">weiya 注</p>
+<p>推荐 Guy Nason 的 <a href="http://www.springer.com/gp/book/9780387759609">Wavelet Methods in Statistics with R</a> 的第 2 节对 Wavelet 的介绍很通俗易懂，几乎不涉及定理，还在 R 中用具体例子说明。</p>
+</div>
 <p>这一节我们将给出小波的构造和过滤的具体细节。小波基通过单尺度函数 $\phi(x)$ 的<strong>平移 (translation)</strong> 和<strong>伸缩 (dilation)</strong> （也被称作 father）。图 5.18 的红色曲线是 Haar 和 symmlet-8 的尺度函数。</p>
 <p><img alt="" src="../../img/05/fig5.18.png" /></p>
 <p>Haar 基特别容易理解，特别是对于有着方差分析或者树的经验的人，因为它产生一个分段常值表示。因此如果 $\phi(x) = I(x\in [0,1])$，则 $\phi_{0,k}(x)=\phi(0,k)$，$k$ 是整数，生成在整数结点处跳跃的正交基函数。称这个为参考 (reference) 空间 $V_0$。伸缩变换 $\phi_{1,k}=\sqrt{2}\phi(2x-k)$ 形成了在长度为 $\frac 12$ 的区间上取分段常值的函数空间 $V_1\supset V_0$。事实上，更一般地，我们有 $\cdots\supset V_1\supset V_0\supset V_{-1}\supset \cdots$ 其中每个 $V_j$ 由 $\phi_{j,k}=2^{j/2}\phi(2^jx-k)$。</p>
@@ -3189,7 +3193,7 @@
 </ul>
 <p>更一般地，光滑样条通过加上光滑度来实现原始信号的压缩，而小波是加上稀疏度。图 5.19 在两个本质不同的数据集上比较了小波拟合 （采用 SURE 收缩） 和光滑样条拟合（采用交叉验证）。对于上图中的 NMR 数据，光滑样条到处引入 detail 来捕捉 isolated spike 的细节；小波拟合很好地局部化了 spike。在下图中，真实函数是光滑的，噪声相对较大、小波拟合引入了额外的不必要的 wiggle——这是为了额外的自适应性付出的代价。</p>
 <p>小波变换不是通过 $\y^*=\W\y$ 中的矩阵相乘来进行。事实上，采用更智能的 pyramidal 模式 $\y^*$ 会用 $O(N)$ 的计算量完成，这甚至比<strong>快速傅里叶变换 (FFT)</strong> 的 $N\log N$ 还要快。尽管一般情形下的构造超出了本书的范围，但可以简单证明 Haar 基时的情形（<a href="https://github.com/szcf-weiya/ESL-CN/issues/116">练习 5.19</a>）。同样地，逆小波变换 $\W\hat{\theta}$ 也是 $O(N)$ 的。</p>
-<p>这里只是这个庞大且在发展的领域的非常简单的介绍。在小波上建立了非常大量的数学和计算基础。现代图象压缩通常采用二维小波表示来实现。</p>
+<p>这里只是对这个庞大且在发展的领域的非常简单的介绍。在小波上建立了非常大量的数学和计算基础。现代图象压缩通常采用二维小波表示来实现。</p>
 <div class="footnote">
 <hr />
 <ol>
