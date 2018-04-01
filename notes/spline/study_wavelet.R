@@ -60,3 +60,45 @@ W2
 
 ## Example 2.4 (continue Example 2.3)
 yinv = wr(ywd)
+
+## fig. 3.3
+res = example.1()
+plot(res, type = "l")
+
+## universal thresholding
+v = DJ.EX()
+x = (1:1024)/1024
+plot(x, v$bumps, type = "l", ylab = "Bumps") #  fig. 3.4
+ssig = sd(v$bumps) # Bumps sd
+SNR = 2 # fix SNR
+# work out what the variance of the noise is ...
+sigma = ssig/SNR
+# generate it
+e = rnorm(1024, mean = 0, sd = sigma)
+# add this noise to Bumps
+y = v$bumps + e
+plot(x, y, type = "l", ylab = "Noisy bumps")
+
+## plot wd of bumps
+xlv = seq(from = 0, to = 1.0, by = 0.2)
+bumpswd = wd(v$bumps)
+plot(bumpswd, main = "", sub = "",
+     xlabvals = xlv*512, xlabchars = as.character(xlv),
+     xlab = "x")
+
+## plot wd of noisy bumps for comparison
+ywd = wd(y)
+plot(ywd, main = "", sub = "",
+     xlabvals = xlv*512, xlabchars = as.character(xlv),
+     xlab = "x")
+
+## threshold
+FineCoefs = accessD(ywd, level = nlevelsWT(ywd) - 1)
+sigma = mad(FineCoefs)
+utDJ = sigma*sqrt(2*log(1024))
+ywdT = threshold(ywd, policy = "manual", value = utDJ)
+
+## compare
+ywr = wr(ywdT)
+plot(x, ywr, type = "l")
+lines(x, v$bumps, lty = 2)
