@@ -3235,22 +3235,22 @@ Pr(G=k\mid X=x)=\frac{exp(\beta_{k0}+x^T\beta_k)}{\sum_{\ell=1}^Kexp(\beta_{\ell
 \hat\beta = \mathbf{V(R^TR+\lambda I)^{-1}\mathbf{R^Ty}}\qquad (18.15)
 </script>
 </p>
-<p>（<a href="https://github.com/szcf-weiya/ESL-CN/issues/117">练习 18.4</a>）。因此$\hat\beta = \mathbf V\hat\theta$，其中$\hat\theta$是采用$N$个观测$(r_i,y_i),i=1,2,\ldots,N$的岭回归估计。换句话说，我们可以简单地将数据矩阵从$\mathbf X$降维成$\mathbf R$，并且对$\mathbf R$的行进行操作。这个技巧将$p &gt; N$时的计算花费从$O(p^3)$降为$O(pN^2)$</p>
-<p>这些结果可以推广到所有参数为线性并且有二次惩罚的模型。考虑任意的监督学习问题，我们采用线性函数$f(X)=\beta_0+X^T\beta$来建立条件分布$Y\mid X$的参数模型。我们通过在数据上最小化损失函数$\sum_{i=1}^NL(y_i,f(x_i))$和 $\beta$上的二次惩罚来拟合参数$\beta$。逻辑斯底回归是个很有用的例子。接着我们有下面简单的定理：</p>
+<p>（<a href="https://github.com/szcf-weiya/ESL-CN/issues/117">练习 18.4</a>）。因此 $\hat\beta = \mathbf V\hat\theta$，其中 $\hat\theta$ 是采用 $N$ 个观测 $(r_i,y_i),i=1,2,\ldots,N$ 的岭回归估计。换句话说，我们可以简单地将数据矩阵从$\mathbf X$ 降维成 $\mathbf R$，并且对 $\mathbf R$ 的行进行操作。这个技巧将 $p &gt; N$ 时的计算花费从 $O(p^3)$ 降为 $O(pN^2)$。</p>
+<p>这些结果可以推广到所有参数为线性并且有二次惩罚的模型。考虑任意的监督学习问题，我们采用线性函数 $f(X)=\beta_0+X^T\beta$ 来建立条件分布 $Y\mid X$ 的参数模型。我们通过在数据上最小化损失函数 $\sum_{i=1}^NL(y_i,f(x_i))$ 和 $\beta$ 上的二次惩罚来拟合参数 $\beta$。逻辑斯底回归是个很有用的例子。接着我们有下面简单的定理：</p>
 <blockquote>
 <p>令$f^*(r_i)=\theta_0+r_i^T\theta$， $r_i$ 如(18.13)定义，并且考虑成对优化问题：</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
-(\hat\beta_0,\hat\beta) &= arg\underset{\beta_0,\beta\in R^p}{min}\sum\limits_{i=1}^NL(y_i,\beta_0+x_i^T\beta)+\lambda\beta^T\beta\qquad (18.16)\\
-(\hat\theta_0,\hat\theta) &= arg\underset{\theta_0,\theta\in R^N}{min}\sum\limits_{i=1}^NL(y_i,\theta_0+r_i^T\theta)+\lambda\theta^T\theta\qquad (18.17)
+(\hat\beta_0,\hat\beta) &= arg\underset{\beta_0,\beta\in R^p}{\min}\sum\limits_{i=1}^NL(y_i,\beta_0+x_i^T\beta)+\lambda\beta^T\beta\qquad (18.16)\\
+(\hat\theta_0,\hat\theta) &= arg\underset{\theta_0,\theta\in R^N}{\min}\sum\limits_{i=1}^NL(y_i,\theta_0+r_i^T\theta)+\lambda\theta^T\theta\qquad (18.17)
 \end{array}
 </script>
 于是有$\hat\beta_0=\hat\theta_0, \hat\beta=\mathbf V\hat\theta$.</p>
 </blockquote>
-<p>这个定理说我们可以用$N$维的向量替换$p$维向量，并且像之前一样进行带惩罚的拟合，但是有更少的预测变量。$N$维向量的解$\hat\theta$接着通过简单的矩阵运算转化为$p$维向量的解。这个结果是统计学传说之一，理应当被广泛知道——更多细节详见Hastie and Tibshirani(2004)等人的工作。</p>
-<p>几何上，我们把特征旋转到除了前$N$个坐标分量其余分量都为0的坐标系中。这个旋转是允许的，因为二次惩罚在旋转下是不变的，并且线性模型是等价的。</p>
-<p>这个结果可以应用到本章中讨论的许多学习算法，比如正则化（多类别）逻辑斯底回归，线性判别分析（练习18.6），以及支持向量机。这也应用到有二次正则化的神经网络（11.5.2节）。然而，注意到，这并不应用到类似lasso的方法中，这些方法对系数加的是非平方惩罚（$L_1$）。</p>
+<p>这个定理说我们可以用 $N$ 维的向量替换 $p$ 维向量，并且像之前一样进行带惩罚的拟合，但是有更少的预测变量。$N$ 维向量的解 $\hat\theta$ 接着通过简单的矩阵运算转化为 $p$ 维向量的解。这个结果是统计学传说之一，理应当被广泛知道——更多细节详见 Hastie and Tibshirani(2004) 等人的工作。</p>
+<p>几何上，我们把特征旋转到除了前 $N$ 个坐标分量其余分量都为 0 的坐标系中。这个旋转是允许的，因为二次惩罚在旋转下是不变的，并且线性模型是等价的。</p>
+<p>这个结果可以应用到本章中讨论的许多学习算法，比如正则化（多类别）逻辑斯底回归，线性判别分析（<a href="https://github.com/szcf-weiya/ESL-CN/issues/118">练习 18.6</a>），以及支持向量机。这也应用到有二次正则化的神经网络（11.5.2节）。然而，注意到，这并不应用到类似lasso的方法中，这些方法对系数加的是非平方惩罚（$L_1$）。</p>
 <p>一般地，我们采用交叉验证去选择参数$\lambda$。可以看到（练习18.12）我们仅需要对原始数据构造一次$\mathbf R$，并且用这个作为每个CV折的数据。</p>
 <p>12.3.7节中的支持向量机的“核技巧”在不同的情形下利用了这节中的降维。假设我们有$N\times N$的（内积）矩阵$\mathbf{K=XX^T}$。由（18.12）我们有$\mathbf{K=UD^2U^T}$，所以$\mathbf K$捕捉了与$\mathbf R$一样的信息。练习18.13显示了我们怎样在这节中利用这个想法用$\mathbf K$和它的SVD分解来拟合岭逻辑斯底回归。</p>
 <div class="footnote">
