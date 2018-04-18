@@ -3133,11 +3133,11 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-02-04, 2018-03-07, 2018-03-08</td>
+<td>2018-02-04, 2018-03-07, 2018-03-08, 2018-04-18</td>
 </tr>
 <tr>
 <td>状态</td>
-<td>In Progress</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
@@ -3198,12 +3198,35 @@ X_j=\alpha_{0j}+\alpha_{1j}U+\epsilon_j\;j\in \cal P\qquad (18.33)
 <p>假设总共有 $p$ 个特征，其中 $p_1$ 个特征在相关集合 $\cal P$ 中。则如果 $p$ 和 $p_1$ 都增长但 $p_1$ 比 $p$ 相对较小，可以证明（在合理的条件下）第一主成分对于潜因子是一致的。通常情形下的主成分可能不是一致的，因为它可能被大量的噪声特征所污染。</p>
 <p>最后，假设在监督主成分过程中的第 (1) 步使用的阈值产生大量的特征用于计算主成分。则为了解释性，也同样为了实际应用，我们会寻找降维后的子集特征来近似模型。预处理 (Pre-conditioning) 是其中的一种方式。</p>
 <h2 id="_2">与偏最小二乘的联系<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>有监督的主成分与偏最小二乘紧密相关（第 <a href="../../03-Linear-Methods-for-Regression/3.5-Methods-Using-Derived-Input-Directions/index.html#_2">3.5.2节</a>）Bair et al. (2006)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 发现有监督的主成分效果的关键点在于过滤掉第 2(a) 步中的噪声特征。偏最小二乘减小噪声特征的权重，但不会丢掉它们；结果导致大量的噪声特征会污染预报变量。</p>
-<p>....</p>
+<p>有监督的主成分与偏最小二乘紧密相关（第 <a href="../../03-Linear-Methods-for-Regression/3.5-Methods-Using-Derived-Input-Directions/index.html#_2">3.5.2节</a>）Bair et al. (2006)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 发现有监督的主成分效果的关键点在于过滤掉第 2(a) 步中的噪声特征。偏最小二乘减小噪声特征的权重，但不会丢掉它们；结果导致大量的噪声特征会污染预报变量。然而，已经提出的修改版本的偏最小二乘与有监督的主成分有类似的优点（如，Brown et al. (1991)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>, Nadler and Coifman (2005)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。我们在监督主成分的第 (1) 步和 (2a) 步选择特征，接着对这些特征应用 PLS （而不是主成分）。对于我们现在的讨论，我们将之称为 “thresholded PLS”。</p>
+<p>Thresholded PLS 可以看成是监督主成分的噪声版本，因此我们不会期待它在实际中效果会很好。假设我们的变量全部标准化了，第一 PLS 变量有如下的形式</p>
+<p>
+<script type="math/tex; mode=display">
+\z = \sum_{j\in \cal P}\langle \y,\x_j\rangle\x_j\qquad (18.34)
+</script>
+</p>
+<p>并且可以看成对模型 (18.33) 中潜因子 $U$ 的估计。相反地，监督主成分方向 $\hat\u$ 满足</p>
+<p>
+<script type="math/tex; mode=display">
+\hat\u = \frac{1}{d^2}\sum\limits_{j\in\cal P}\langle \hat\u,\x_j\rangle\x_j\qquad (18.35)
+</script>
+</p>
+<p>其中 $d$ 是 $\X_{\cal P}$ 第一奇异值。这遵循第一主成分的定义。因此 thresholded PLS 采用 $\y$ 与每个特征的内积作为权重，而有监督的主成分采用特征来导出“self-consistent”的估计量 $\hat\u$。因为许多特征都对估计 $\hat\u$ 起到作用，而不是仅仅是单个输出 $\y$，我们可以期待 $\hat\u$ 比 $\z$ 的噪声更少。事实上，如果在集合 $\cal P$ 中有 $p_1$ 个特征，且 $N,p$ 和 $p_1$ 都趋于无穷，且 $p_1/N\rightarrow 0$，则用 Bair et al. (2006)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 中的技巧可以证明 </p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\z & = \u +O_p(1)\\
+\hat\u &= \u + O_p(\sqrt{p_1/N})
+\end{align}
+\qquad (18.36)
+</script>
+</p>
+<p>其中 $\u$ 是模型 (18.32) 中真实的（未观测的）潜变量。</p>
 <p>用一个模拟例子来数值比较这些方法。例子中有 $N=100$ 个样本，$p=5000$ 个基因。按如下方式生成数据：</p>
 <p><img alt="" src="../../img/18/eq18.37.png" /></p>
-<p>其中 $\epsilon_{ij}$ 和 $\varepsilon_i$ 是均值为 0 标准差分别为 1 和 1.5 的独立正态随机变量。</p>
-<p>....</p>
+<p>其中 $\epsilon_{ij}$ 和 $\varepsilon_i$ 是均值为 0 标准差分别为 1 和 1.5 的独立正态随机变量。因此在前 50 个基因中，1-50 号样本与 51-100 号样本有 1 个单位的差异，这个差异与输出 $y$ 有关。接下来 200 个在样本 (1-25, 51-75) 和样本 (26-50, 76-100) 之间有 4 个单位的平均差异，但是这种差异与输出变量无关。剩下的基因是噪声。图 18.15 展示了经典的热图，其中输出变量在左边，前 500 个基因在右边。</p>
+<p>我们从这个模型中产生 100 次模拟，并且在图 18.16 中总结了测试误差的结果。主成分以及偏最小二乘的测试误差展示在图象的右边，两者都受到数据中噪声特征比较大的影响。有监督的主成分和 thresholded PLS 在大部分选择的特征上都表现得很好，且前者有更一致低的测试误差。</p>
+<p>尽管这个例子看上去特意为监督主成分设计的，但是它似乎也能在其它模拟和真实数据集中保持良好的表现 (Bair et al., 2006)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>。</p>
 <h2 id="_3">特征选择的预处理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>正如图 18.16 展示的，监督主成分可以得到比其它方法更低的测试误差。</p>
 <p><img alt="" src="../../img/18/fig18.16.png" /></p>
