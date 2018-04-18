@@ -3216,26 +3216,26 @@ Pr(G=k\mid X=x)=\frac{exp(\beta_{k0}+x^T\beta_k)}{\sum_{\ell=1}^Kexp(\beta_{\ell
 <p>给定$N\times p$的数据矩阵$\mathbf X$，令</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{array}{ll}
+\begin{align}
 \mathbf X & = \mathbf {UDV^T}\quad (18.12)\\
 & = \mathbf{RV^T}\qquad (18.13)
-\end{array}
+\end{align}
 </script>
 </p>
-<p>为$\mathbf X$的奇异值分解；也就是，$\mathbf V$是有着正交列的$p\times N$矩阵，$\mathbf U$是 $N\times N$正交矩阵，$\mathbf D$是元素为$d_1\ge d_2\ge d_N\ge 0$的对角矩阵。矩阵$\mathbf R$是 $N\times N$的，列为$r_i^T$.</p>
+<p>为 $\mathbf X$ 的奇异值分解；也就是，$\mathbf V$ 是有着正交列的 $p\times N$ 矩阵，$\mathbf U$ 是 $N\times N$ 正交矩阵，$\mathbf D$ 是元素为 $d_1\ge d_2\ge d_N\ge 0$ 的对角矩阵。矩阵 $\mathbf R$ 是 $N\times N$ 的，列为$r_i^T$。</p>
 <p>举个简单的例子，我们首先考虑岭回归估计</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\beta = (\mathbf{X^TX}+\lambda\mathbf I)^{-1}\mathbf{X^Ty}\qquad (18.14)
 </script>
 </p>
-<p>用$\mathbf RV^T$替换$\mathbf X$，并且进行一些运算，可以证明它等于</p>
+<p>用 $\mathbf RV^T$ 替换 $\mathbf X$，并且进行一些运算，可以证明它等于</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\beta = \mathbf{V(R^TR+\lambda I)^{-1}\mathbf{R^Ty}}\qquad (18.15)
 </script>
 </p>
-<p>（练习18.4）。因此$\hat\beta = \mathbf V\hat\theta$，其中$\hat\theta$是采用$N$个观测$(r_i,y_i),i=1,2,\ldots,N$的岭回归估计。换句话说，我们可以简单地将数据矩阵从$\mathbf X$降维成$\mathbf R$，并且对$\mathbf R$的行进行操作。这个技巧将$p &gt; N$时的计算花费从$O(p^3)$降为$O(pN^2)$</p>
+<p>（<a href="https://github.com/szcf-weiya/ESL-CN/issues/117">练习 18.4</a>）。因此$\hat\beta = \mathbf V\hat\theta$，其中$\hat\theta$是采用$N$个观测$(r_i,y_i),i=1,2,\ldots,N$的岭回归估计。换句话说，我们可以简单地将数据矩阵从$\mathbf X$降维成$\mathbf R$，并且对$\mathbf R$的行进行操作。这个技巧将$p &gt; N$时的计算花费从$O(p^3)$降为$O(pN^2)$</p>
 <p>这些结果可以推广到所有参数为线性并且有二次惩罚的模型。考虑任意的监督学习问题，我们采用线性函数$f(X)=\beta_0+X^T\beta$来建立条件分布$Y\mid X$的参数模型。我们通过在数据上最小化损失函数$\sum_{i=1}^NL(y_i,f(x_i))$和 $\beta$上的二次惩罚来拟合参数$\beta$。逻辑斯底回归是个很有用的例子。接着我们有下面简单的定理：</p>
 <blockquote>
 <p>令$f^*(r_i)=\theta_0+r_i^T\theta$， $r_i$ 如(18.13)定义，并且考虑成对优化问题：</p>
