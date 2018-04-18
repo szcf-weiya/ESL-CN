@@ -29,6 +29,8 @@ window.MathJax = {
       f: "{\\mathbf{y}}",
       x: "{\\mathbf{x}}",
       z: "{\\mathbf{z}}",
+      u: "{\\mathbf{u}}",
+      
 
       LOG: "{\\mathrm{log}}",
       log: "{\\mathrm{log}}",
