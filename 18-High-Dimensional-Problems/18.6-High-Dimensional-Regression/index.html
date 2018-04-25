@@ -3133,7 +3133,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-02-04, 2018-03-07, 2018-03-08, 2018-04-18</td>
+<td>2018-02-04, 2018-03-07, 2018-03-08, 2018-04-18, 2018-04-25</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3202,7 +3202,7 @@ X_j=\alpha_{0j}+\alpha_{1j}U+\epsilon_j\;j\in \cal P\qquad (18.33)
 <p>假设总共有 $p$ 个特征，其中 $p_1$ 个特征在相关集合 $\cal P$ 中。则如果 $p$ 和 $p_1$ 都增长但 $p_1$ 比 $p$ 相对较小，可以证明（在合理的条件下）第一主成分对于潜因子是一致的。通常情形下的主成分可能不是一致的，因为它可能被大量的噪声特征所污染。</p>
 <p>最后，假设在监督主成分过程中的第 (1) 步使用的阈值产生大量的特征用于计算主成分。则为了解释性，也同样为了实际应用，我们会寻找降维后的子集特征来近似模型。预处理 (Pre-conditioning) 是其中的一种方式。</p>
 <h2 id="_2">与偏最小二乘的联系<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>有监督的主成分与偏最小二乘紧密相关（第 <a href="../../03-Linear-Methods-for-Regression/3.5-Methods-Using-Derived-Input-Directions/index.html#_2">3.5.2节</a>）Bair et al. (2006)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 发现有监督的主成分效果的关键点在于过滤掉第 2(a) 步中的噪声特征。偏最小二乘减小噪声特征的权重，但不会丢掉它们；结果导致大量的噪声特征会污染预报变量。然而，已经提出的修改版本的偏最小二乘与有监督的主成分有类似的优点（如，Brown et al. (1991)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>, Nadler and Coifman (2005)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。我们在监督主成分的第 (1) 步和 (2a) 步选择特征，接着对这些特征应用 PLS （而不是主成分）。对于我们现在的讨论，我们将之称为 “thresholded PLS”。</p>
+<p>有监督的主成分与偏最小二乘紧密相关（第 <a href="../../03-Linear-Methods-for-Regression/3.5-Methods-Using-Derived-Input-Directions/index.html#_2">3.5.2 节</a>）Bair et al. (2006)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 发现有监督的主成分效果的关键点在于过滤掉第 2(a) 步中的噪声特征。偏最小二乘减小噪声特征的权重，但不会丢掉它们；结果导致大量的噪声特征会污染预报变量。然而，已经提出的修改版本的偏最小二乘与有监督的主成分有类似的优点（如，Brown et al. (1991)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>, Nadler and Coifman (2005)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。我们在监督主成分的第 (1) 步和 (2a) 步选择特征，接着对这些特征应用 PLS （而不是主成分）。对于我们现在的讨论，我们将之称为 “thresholded PLS”。</p>
 <p>Thresholded PLS 可以看成是监督主成分的噪声版本，因此我们不会期待它在实际中效果会很好。假设我们的变量全部标准化了，第一 PLS 变量有如下的形式</p>
 <p>
 <script type="math/tex; mode=display">
