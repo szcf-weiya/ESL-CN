@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#68" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -3033,7 +3033,7 @@
               
                 
                 
-                <h1 id="_1">混合模型的密度估计和分类<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+                <h1 id="68">6.8 混合模型的密度估计和分类<a class="headerlink" href="#68" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3058,15 +3058,15 @@
 f(x)=\sum\limits_{m=1}^M\alpha_m\phi(x;\mu_m,\Sigma_m)\qquad (6.32)
 </script>
 </p>
-<p>其中混合比例$\alpha_m$满足$\sum_m\alpha_m=1$，并且每个高斯密度均值为$\mu_m$，协方差阵为$\Sigma_m$。一般地，混合模型可以用任意组分来替换式(6.32)的高斯密度：高斯混合模型是至今最受欢迎的。</p>
-<p>这些参数通常用极大似然法，采用第8章中描述的EM算法。下面是一些特殊情形：</p>
+<p>其中混合比例 $\alpha_m$ 满足 $\sum_m\alpha_m=1$，并且每个高斯密度均值为 $\mu_m$，协方差阵为 $\Sigma_m$。一般地，混合模型可以用任意组分来替换式 (6.32) 的高斯密度：高斯混合模型是至今最受欢迎的。</p>
+<p>这些参数通常用极大似然法，采用第 8 章中描述的 EM 算法。下面是一些特殊情形：</p>
 <ul>
-<li>如果协方差阵约束为标量：$\Sigma_m=\sigma_mI$，则式(6.32)有径向基展开的形式。</li>
-<li>如果另外固定$\sigma_m=\sigma&gt;0$，并且$M\uparrow N$，则(6.32)的极大似然估计会近似当$\hat\alpha_m=1/N,\hat\mu_m=x_m$的核密度估计(6.22)。</li>
+<li>如果协方差阵约束为标量：$\Sigma_m=\sigma_mI$，则式 (6.32) 有径向基展开的形式。</li>
+<li>如果另外固定 $\sigma_m=\sigma&gt;0$，并且 $M\uparrow N$，则 (6.32) 的极大似然估计会近似当 $\hat\alpha_m=1/N,\hat\mu_m=x_m$ 的核密度估计 (6.22)。</li>
 </ul>
-<p>利用贝叶斯定理，将每个类别的混合密度分离开，则得到$Pr(G\mid X)$的灵活模型；这将在第12章详细讨论。</p>
+<p>利用贝叶斯定理，将每个类别的混合密度分离开，则得到 $\Pr(G\mid X)$ 的灵活模型；这将在第 12 章详细讨论。</p>
 <p><img alt="" src="../../img/06/fig6.17.png" /></p>
-<p>图6.17展示了混合模型应用到心脏病风险因子研究中。最上面一行是<code>no CHD</code>、<code>CHD</code>关于<code>Age</code>的直方图，然后结合起来得到最右边的直方图。采用结合后的数据，我们拟合形如(6.32)的两组分混合模型，其中（标量）协方差阵$\Sigma_1$和$\Sigma_2$不要求相等。通过EM算法来拟合：注意到过程中没用到<code>CHD</code>标签的信息。结果得到</p>
+<p>图 6.17 展示了混合模型应用到心脏病风险因子研究中。最上面一行是 <code>no CHD</code>、<code>CHD</code> 关于 <code>Age</code> 的直方图，然后结合起来得到最右边的直方图。采用结合后的数据，我们拟合形如 (6.32) 的两组分混合模型，其中（标量）协方差阵 $\Sigma_1$ 和 $\Sigma_2$ 不要求相等。通过 EM 算法来拟合：注意到过程中没用到 <code>CHD</code> 标签的信息。结果得到</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{lll}
@@ -3075,16 +3075,16 @@ f(x)=\sum\limits_{m=1}^M\alpha_m\phi(x;\mu_m,\Sigma_m)\qquad (6.32)
 \end{array}
 </script>
 </p>
-<p>组分密度$\phi(\hat\mu_1,\hat\Sigma_1)$和$\phi(\hat\mu_2,\hat\Sigma_2)$展示在图6.17中第二行的前两幅图中。右下角的图展示了组分密度（橘黄色和蓝色）以及估计的混合密度(绿色)。</p>
-<p>混合模型同样给出了观测$i$属于组分$m$的概率的估计</p>
+<p>组分密度 $\phi(\hat\mu_1,\hat\Sigma_1)$ 和 $\phi(\hat\mu_2,\hat\Sigma_2)$ 展示在图 6.17 中第二行的前两幅图中。右下角的图展示了组分密度（橘黄色和蓝色）以及估计的混合密度(绿色)。</p>
+<p>混合模型同样给出了观测 $i$ 属于组分 $m$ 的概率的估计</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\gamma_{im}=\frac{\hat\alpha_m\phi(x_i;\hat\mu_m,\hat\Sigma_m)}{\sum_{k=1}^M\hat\alpha_k\phi(x_i;\hat\mu_k,\hat\Sigma_k)}\qquad (6.33)
 </script>
 </p>
-<p>其中在我们例子中$x_i$是<code>Age</code>。假设对每个$\hat\gamma_{i2}$设阈值，并且定义$\hat\delta_i=I(\hat\gamma_{i2}&gt;0.5)$。接着我们比较根据<code>CHD</code>和混合模型分类的结果</p>
+<p>其中在我们例子中 $x_i$ 是 <code>Age</code>。假设对每个 $\hat\gamma_{i2}$ 设阈值，并且定义 $\hat\delta_i=I(\hat\gamma_{i2}&gt;0.5)$。接着我们比较根据 <code>CHD</code> 和混合模型分类的结果</p>
 <p><img alt="" src="../../img/06/res.p215.png" /></p>
-<p>尽管混合模型没有用到<code>CHD</code>标签，但还是较好地发现了两个<code>CHD</code>子总体。线性逻辑斯底回归当采用<code>CHD</code>作为响应变量，用极大似然拟合数据达到相同的误差率(32%)。</p>
+<p>尽管混合模型没有用到 <code>CHD</code> 标签，但还是较好地发现了两个 <code>CHD</code> 子总体。线性逻辑斯底回归当采用 <code>CHD</code> 作为响应变量，用极大似然拟合数据达到相同的误差率 $(32%)$。</p>
                 
                   
                 
