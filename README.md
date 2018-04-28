@@ -6,7 +6,17 @@ The Elements of Statistical Learning (ESL) 的中文翻译、代码实现及其�
 
 ## 习题解答
 
-[![](https://img.shields.io/badge/solution-chapter%202-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/7) [![](https://img.shields.io/badge/solution-chapter%203-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/2)[![](https://img.shields.io/badge/solution-chapter%204-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/12)[![](https://img.shields.io/badge/solution-chapter%205-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/6)[![](https://img.shields.io/badge/solution-chapter%206-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/14)[![](https://img.shields.io/badge/solution-chapter%207-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/4)[![](https://img.shields.io/badge/solution-chapter%209-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/15)[![](https://img.shields.io/badge/solution-chapter%2010-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/1)[![](https://img.shields.io/badge/solution-chapter%2012-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/3)[![](https://img.shields.io/badge/solution-chapter%2014-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/5)[![](https://img.shields.io/badge/solution-chapter%2018-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/13)
+- [![](https://img.shields.io/badge/solution-chapter%202-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/7) 
+- [![](https://img.shields.io/badge/solution-chapter%203-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/2)
+- [![](https://img.shields.io/badge/solution-chapter%204-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/12)
+- [![](https://img.shields.io/badge/solution-chapter%205-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/6)
+- [![](https://img.shields.io/badge/solution-chapter%206-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/14)
+- [![](https://img.shields.io/badge/solution-chapter%207-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/4)
+- [![](https://img.shields.io/badge/solution-chapter%209-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/15)
+- [![](https://img.shields.io/badge/solution-chapter%2010-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/1)
+- [![](https://img.shields.io/badge/solution-chapter%2012-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/3)
+- [![](https://img.shields.io/badge/solution-chapter%2014-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/5)
+- [![](https://img.shields.io/badge/solution-chapter%2018-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/13)
 
 
 ## 代码实现
