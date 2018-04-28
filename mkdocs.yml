@@ -184,6 +184,8 @@ pages:
       - 文献笔记: '18-High-Dimensional-Problems/Bioliographic-Notes.md'
 
   - 个人笔记:
+    - 习题解答: 
+      - 索引: 'notes/manual.md'
     - 笔记列表: 
       - 列表: 'notes/ipynb/list.md'
     - 模拟实验:
