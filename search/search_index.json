@@ -2541,6 +2541,26 @@
             "title": "18.8 \u6587\u732e\u7b14\u8bb0"
         }, 
         {
+            "location": "/notes/manual/index.html", 
+            "text": "\u4e60\u9898\u89e3\u7b54\n\n\n\n\n\n\n\n\n\u4f5c\u8005\n\n\nszcf-weiya\n\n\n\n\n\n\n\n\n\n\n\u65f6\u95f4\n\n\n2018-04-28\n\n\n\n\n\n\n\n\n\u4e60\u9898\u53ca\u5176\u89e3\u7b54\u90fd\u653e\u5728\u672c\u9879\u76ee\u7684 Issue \u4e2d\uff0c\u4e0d\u5b9a\u671f\u66f4\u65b0\uff0c\u6b22\u8fce\u6279\u8bc4\u6307\u6b63\u3002\u4e0b\u9762\u5206\u522b\u6839\u636e\u5173\u952e\u8bcd\u548c\u7ae0\u8282\u5bf9\u8fd9\u4e9b\u4e60\u9898\u89e3\u7b54\u8fdb\u884c\u7d22\u5f15\u3002\n\n\n\u5173\u952e\u8bcd\n\n\n\n\n\u5cad\u56de\u5f52\n\n\n\u4e3b\u6210\u5206\u5206\u6790 (PCA) \u6216\u4e3b\u6210\u5206\u56de\u5f52 (PCR)\n\n\n\u6700\u5c0f\u89d2\u56de\u5f52\n\n\n\u6837\u6761\n\n\nWoodbury Formula\n\n\n\u975e\u8d1f\u77e9\u9635\u5206\u89e3\n\n\nQR \u5206\u89e3\n\n\nSVD \u5206\u89e3\n\n\nAdaBoost\n\n\n\u591a\u7c7b\u522b\u95ee\u9898\n\n\n\u968f\u673a\u68ee\u6797\n\n\n\u805a\u7c7b\n\n\n\n\n\n\n\u7ae0\u8282\n\n\n\n\n\u7b2c\u4e8c\u7ae0\n \n\n\n\u7b2c\u4e09\u7ae0\n\n\n\u7b2c\u56db\u7ae0\n\n\n\u7b2c\u4e94\u7ae0\n\n\n\u7b2c\u516d\u7ae0\n\n\n\u7b2c\u4e03\u7ae0\n\n\n\u7b2c\u4e5d\u7ae0\n\n\n\u7b2c\u5341\u7ae0\n\n\n\u7b2c\u5341\u4e8c\u7ae0\n\n\n\u7b2c\u5341\u56db\u7ae0\n\n\n\u7b2c\u5341\u4e94\u7ae0\n\n\n\u7b2c\u5341\u516b\u7ae0", 
+            "title": "\u7d22\u5f15"
+        }, 
+        {
+            "location": "/notes/manual/index.html#_1", 
+            "text": "\u4f5c\u8005  szcf-weiya      \u65f6\u95f4  2018-04-28     \u4e60\u9898\u53ca\u5176\u89e3\u7b54\u90fd\u653e\u5728\u672c\u9879\u76ee\u7684 Issue \u4e2d\uff0c\u4e0d\u5b9a\u671f\u66f4\u65b0\uff0c\u6b22\u8fce\u6279\u8bc4\u6307\u6b63\u3002\u4e0b\u9762\u5206\u522b\u6839\u636e\u5173\u952e\u8bcd\u548c\u7ae0\u8282\u5bf9\u8fd9\u4e9b\u4e60\u9898\u89e3\u7b54\u8fdb\u884c\u7d22\u5f15\u3002", 
+            "title": "\u4e60\u9898\u89e3\u7b54"
+        }, 
+        {
+            "location": "/notes/manual/index.html#_2", 
+            "text": "\u5cad\u56de\u5f52  \u4e3b\u6210\u5206\u5206\u6790 (PCA) \u6216\u4e3b\u6210\u5206\u56de\u5f52 (PCR)  \u6700\u5c0f\u89d2\u56de\u5f52  \u6837\u6761  Woodbury Formula  \u975e\u8d1f\u77e9\u9635\u5206\u89e3  QR \u5206\u89e3  SVD \u5206\u89e3  AdaBoost  \u591a\u7c7b\u522b\u95ee\u9898  \u968f\u673a\u68ee\u6797  \u805a\u7c7b", 
+            "title": "\u5173\u952e\u8bcd"
+        }, 
+        {
+            "location": "/notes/manual/index.html#_3", 
+            "text": "\u7b2c\u4e8c\u7ae0    \u7b2c\u4e09\u7ae0  \u7b2c\u56db\u7ae0  \u7b2c\u4e94\u7ae0  \u7b2c\u516d\u7ae0  \u7b2c\u4e03\u7ae0  \u7b2c\u4e5d\u7ae0  \u7b2c\u5341\u7ae0  \u7b2c\u5341\u4e8c\u7ae0  \u7b2c\u5341\u56db\u7ae0  \u7b2c\u5341\u4e94\u7ae0  \u7b2c\u5341\u516b\u7ae0", 
+            "title": "\u7ae0\u8282"
+        }, 
+        {
             "location": "/notes/ipynb/list/index.html", 
             "text": "Ipython Notebook\u5217\u8868\n\n\n\n\n\n\n\n\n\u4f5c\u8005\n\n\nszcf-weiya\n\n\n\n\n\n\n\n\n\n\n\u65f6\u95f4\n\n\n2018-03-03\n\n\n\n\n\n\n\n\n\u4e3a\u4e86\u65b9\u4fbf\u6d4f\u89c8\uff0c\u7528\nnbviewer\n\u5c55\u793aIpython Notebook\uff0c\u4e0b\u9762\u5217\u51fa\u5177\u4f53\u7684\u94fe\u63a5\uff08\u70b9\u51fb\u56fe\u7247\u5373\u53ef\u8bbf\u95ee\uff09\n\n\nNotebook for Simple Neural Network\n\n\n\n\nNotebook for Section 11.6", 
             "title": "\u5217\u8868"
