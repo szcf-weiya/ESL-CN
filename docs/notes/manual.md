@@ -39,5 +39,6 @@
 - [第十三章](https://github.com/szcf-weiya/ESL-CN/milestone/19)
 - [第十四章](https://github.com/szcf-weiya/ESL-CN/milestone/5)
 - [第十五章](https://github.com/szcf-weiya/ESL-CN/milestone/16)
+- [第十六章](https://github.com/szcf-weiya/ESL-CN/milestone/21)
+- [第十七章](https://github.com/szcf-weiya/ESL-CN/milestone/20)
 - [第十八章](https://github.com/szcf-weiya/ESL-CN/milestone/13)
-- ...

@@ -20,6 +20,8 @@ The Elements of Statistical Learning (ESL) 的中文翻译、代码实现及其�
 - [![](https://img.shields.io/badge/solution-chapter%2013-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/19)
 - [![](https://img.shields.io/badge/solution-chapter%2014-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/5)
 - [![](https://img.shields.io/badge/solution-chapter%2015-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/16)
+- [![](https://img.shields.io/badge/solution-chapter%2016-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/21)
+- [![](https://img.shields.io/badge/solution-chapter%2017-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/20)
 - [![](https://img.shields.io/badge/solution-chapter%2018-blue.svg)](https://github.com/szcf-weiya/ESL-CN/milestone/13)
 
 
