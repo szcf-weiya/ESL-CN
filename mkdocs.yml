@@ -134,7 +134,7 @@ pages:
   - 下篇:
     - 13 原型方法和最近邻:
       - 13.1 导言: '13-Prototype-Methods-and-Nearest-Neighbors/13.1-Introduction.md'
-      - 13.2 原型方法: '13-Prototype-Methods-and-Nearest-Neighbors/13.2-Prototype Methods.md'
+      - 13.2 原型方法: '13-Prototype-Methods-and-Nearest-Neighbors/13.2-Prototype-Methods.md'
       - 13.3 k最近邻分类器: '13-Prototype-Methods-and-Nearest-Neighbors/13.3-k-Nearest-Neighbor Classifiers.md'
       - 13.4 自适应的最近邻方法: '13-Prototype-Methods-and-Nearest-Neighbors/13.4-Adaptive-Nearest-Neighbor-Methods.md'
       - 13.5 计算上的考虑: '13-Prototype-Methods-and-Nearest-Neighbors/13.5-Computational-Considerations.md'
