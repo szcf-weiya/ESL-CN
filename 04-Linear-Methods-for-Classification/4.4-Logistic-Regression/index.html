@@ -1,0 +1,3589 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <!--dns prefetch-->
+      <link rel="dns-prefetch" href="//cdn.mathjax.org" />
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记、代码实现以及习题解答">
+      
+      
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/04-Linear-Methods-for-Classification/4.4-Logistic-Regression/index.html">
+      
+      
+        <meta name="author" content="szcf-weiya">
+      
+      <!--
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+	    
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+	    
+        <meta name="lang:search.language" content="en">
+	    
+        <meta name="lang:search.pipeline.stopwords" content="True">
+	    
+        <meta name="lang:search.pipeline.trimmer" content="True">
+	    
+        <meta name="lang:search.result.none" content="No matching documents">
+	    
+        <meta name="lang:search.result.one" content="1 matching document">
+	    
+        <meta name="lang:search.result.other" content="# matching documents">
+	    
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+	    
+	-->
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.0">
+    
+    
+      
+        <title>4.4 逻辑斯蒂回归 - ESL CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.js"></script>
+    
+    
+      
+        <script src="../../js/iDisqus0.min.js"></script>
+      
+    
+    
+      
+      <!--
+      <style>body,input{font-family:"lucida grande", "lucida sans unicode", lucida, 'Open Sans', helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;}code,kbd,pre{font-family: Consolas, monospace;}blockquote{font-family: 'Palatino Linotype','Book Antiqua',Palatino,STKaiti,KaiTi,'楷体',SimKai,DFKai-SB,NSimSun,serif;}</style>
+      -->
+      <style>body,input{font-family:Optima,'Lucida Sans',Calibri,Candara,Arial,source-han-serif-sc,'Source Han Serif SC','Source Han Serif CN','Source Han Serif TC','Source Han Serif TW','Source Han Serif','Songti SC','Microsoft YaHei',sans-serif}code,kbd,pre{font-family: Consolas, monospace;}blockquote{font-family: 'Palatino Linotype','Book Antiqua',Palatino,STKaiti,KaiTi,'楷体',SimKai,DFKai-SB,NSimSun,serif;}</style>
+      <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+      <link rel="stylesheet" href="../../css/icon.css">
+      <link rel="stylesheet" href="../../css/mini-awesome/font-awesome.css">
+    
+    
+      <link rel="stylesheet" href="../../css/misc.css">
+    
+      <link rel="stylesheet" href="../../css/iDisqus.min.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="black" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <!--
+    
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    
+    -->
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+    
+      <a href="#44" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://esl.hohoweiya.xyz" title="ESL CN" class="md-header-nav__button md-logo">
+          
+            <img src="../../img/logo_white_24x24.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                ESL CN
+              </span>
+              <span class="md-header-nav__topic">
+                4.4 逻辑斯蒂回归
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <!--
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          
+        
+        -->
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      szcf-weiya/ESL-CN
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../index.html" title="主页" class="md-tabs__link">
+          主页
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../01-Introduction/2016-07-26-Chapter-1-Introduction/index.html" title="上篇" class="md-tabs__link">
+          上篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../07-Model-Assessment-and-Selection/7.1-Introduction/index.html" title="中篇" class="md-tabs__link">
+          中篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/index.html" title="下篇" class="md-tabs__link">
+          下篇
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../notes/manual/index.html" title="个人笔记" class="md-tabs__link">
+          个人笔记
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <img src="../../img/logo_white_24x24.svg" width="24" height="24">
+      
+    </span>
+    ESL CN
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/szcf-weiya/ESL-CN" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      szcf-weiya/ESL-CN
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      主页
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        主页
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" title="欢迎" class="md-nav__link">
+      欢迎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2">
+    
+    <label class="md-nav__link" for="nav-1-2">
+      序言
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-1-2">
+        序言
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Preface/2016-07-20-Preface-to-the-Second-Edition/index.html" title="第二版序言" class="md-nav__link">
+      第二版序言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Preface/2016-07-21-Preface-to-the-First-Edition/index.html" title="第一版序言" class="md-nav__link">
+      第一版序言
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      上篇
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        上篇
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      1 简介
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        1 简介
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../01-Introduction/2016-07-26-Chapter-1-Introduction/index.html" title="1.1 导言" class="md-nav__link">
+      1.1 导言
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      2 监督学习概要
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-2">
+        2 监督学习概要
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.1-Introduction/index.html" title="2.1 导言" class="md-nav__link">
+      2.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.2-Variable-Types-and-Terminology/index.html" title="2.2 变量类型和术语" class="md-nav__link">
+      2.2 变量类型和术语
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.3-Two-Simple-Approaches-to-Prediction/index.html" title="2.3 两种预测的简单方法" class="md-nav__link">
+      2.3 两种预测的简单方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.4-Statistical-Decision-Theory/index.html" title="2.4 统计判别理论" class="md-nav__link">
+      2.4 统计判别理论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.5-Local-Methods-in-High-Dimensions/index.html" title="2.5 高维问题的局部方法" class="md-nav__link">
+      2.5 高维问题的局部方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.6-Statistical-Models-Supervised-Learning-and-Function-Approximation/index.html" title="2.6 统计模型，监督学习和函数逼近" class="md-nav__link">
+      2.6 统计模型，监督学习和函数逼近
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.7-Structured-Regression-Models/index.html" title="2.7 结构化的回归模型" class="md-nav__link">
+      2.7 结构化的回归模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.8-Classes-of-Restricted-Estimators/index.html" title="2.8 限制性估计的类别" class="md-nav__link">
+      2.8 限制性估计的类别
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/2.9-Model-Selection-and-the-Bias-Variance-Tradeoff/index.html" title="2.9 模型选择和偏差-方差的权衡" class="md-nav__link">
+      2.9 模型选择和偏差-方差的权衡
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Overview-of-Supervised-Learning/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      3 回归的线性方法
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-2-3">
+        3 回归的线性方法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.1-Introduction/index.html" title="3.1 导言" class="md-nav__link">
+      3.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.2-Linear-Regression-Models-and-Least-Squares/index.html" title="3.2 线性回归模型和最小二乘法" class="md-nav__link">
+      3.2 线性回归模型和最小二乘法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.3-Subset-Selection/index.html" title="3.3 子集的选择" class="md-nav__link">
+      3.3 子集的选择
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html" title="3.4 收缩的方法" class="md-nav__link">
+      3.4 收缩的方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.5-Methods-Using-Derived-Input-Directions/index.html" title="3.5 运用派生输入方向的方法" class="md-nav__link">
+      3.5 运用派生输入方向的方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.6-A-Comparison-of-the-Selection-and-Shrinkage-Methods/index.html" title="3.6 选择和收缩方法的比较" class="md-nav__link">
+      3.6 选择和收缩方法的比较
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.7-Multiple-Outcome-Shrinkage-and-Selection/index.html" title="3.7 多重输出的收缩和选择" class="md-nav__link">
+      3.7 多重输出的收缩和选择
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html" title="3.8 Lasso和相关路径算法的补充" class="md-nav__link">
+      3.8 Lasso和相关路径算法的补充
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/3.9-Computational-Considerations/index.html" title="3.9 计算上的考虑" class="md-nav__link">
+      3.9 计算上的考虑
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Linear-Methods-for-Regression/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4" checked>
+    
+    <label class="md-nav__link" for="nav-2-4">
+      4 分类的线性方法
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-2-4">
+        4 分类的线性方法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.1-Introduction/index.html" title="4.1 导言" class="md-nav__link">
+      4.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.2-Linear-Regression-of-an-Indicator-Matrix/index.html" title="4.2 指示矩阵的线性回归" class="md-nav__link">
+      4.2 指示矩阵的线性回归
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.3-Linear-Discriminant-Analysis/index.html" title="4.3 线性判别分析" class="md-nav__link">
+      4.3 线性判别分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        4.4 逻辑斯蒂回归
+      </label>
+    
+    <a href="index.html" title="4.4 逻辑斯蒂回归" class="md-nav__link md-nav__link--active">
+      4.4 逻辑斯蒂回归
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="拟合逻辑斯蒂回归模型" class="md-nav__link">
+    拟合逻辑斯蒂回归模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="例子：南非心脏病" class="md-nav__link">
+    例子：南非心脏病
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="二次拟合和推断" class="md-nav__link">
+    二次拟合和推断
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l_1" title="$L_1$正则化逻辑斯蒂回归" class="md-nav__link">
+    $L_1$正则化逻辑斯蒂回归
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lda" title="逻辑斯蒂回归或者LDA？" class="md-nav__link">
+    逻辑斯蒂回归或者LDA？
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.5-Separating-Hyperplanes/index.html" title="4.5 分离超平面" class="md-nav__link">
+      4.5 分离超平面
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      5 基展开和正规化
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-2-5">
+        5 基展开和正规化
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.1-Introduction/index.html" title="5.1 导言" class="md-nav__link">
+      5.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.2-Piecewise-Polynomials-and-Splines/index.html" title="5.2 分段多项式和样条" class="md-nav__link">
+      5.2 分段多项式和样条
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.3-Filtering-and-Feature-Extraction/index.html" title="5.3 滤波和特征提取" class="md-nav__link">
+      5.3 滤波和特征提取
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.4-Smoothing-Splines/index.html" title="5.4 光滑样条" class="md-nav__link">
+      5.4 光滑样条
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.5-Automatic-Selection-of-the-Smoothing-Parameters/index.html" title="5.5 光滑参数的自动选择" class="md-nav__link">
+      5.5 光滑参数的自动选择
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.6-Nonparametric-Logistic-Regression/index.html" title="5.6 非参逻辑斯蒂回归" class="md-nav__link">
+      5.6 非参逻辑斯蒂回归
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.7-Multidimensional-Splines/index.html" title="5.7 多维样条" class="md-nav__link">
+      5.7 多维样条
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html" title="5.8 正则化和再生核希尔伯特空间理论" class="md-nav__link">
+      5.8 正则化和再生核希尔伯特空间理论
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/5.9-Wavelet-Smoothing/index.html" title="5.9 小波光滑" class="md-nav__link">
+      5.9 小波光滑
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Basis-Expansions-and-Regularization/Appendix-Computations-for-B-splines/index.html" title="附录-B样条的计算" class="md-nav__link">
+      附录-B样条的计算
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      6 核光滑方法
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="7">
+      <label class="md-nav__title" for="nav-2-6">
+        6 核光滑方法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.0-Introduction/index.html" title="6.0 导言" class="md-nav__link">
+      6.0 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.1-One-Dimensional-Kernel-Smoothers/index.html" title="6.1 一维核光滑器" class="md-nav__link">
+      6.1 一维核光滑器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.2-Selecting-the-Width-of-the-Kernel/index.html" title="6.2 选择核的宽度" class="md-nav__link">
+      6.2 选择核的宽度
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.3-Local-Regression-in-Rp/index.html" title="6.3 $\IR^p$中的局部回归" class="md-nav__link">
+      6.3 $\IR^p$中的局部回归
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.4-Structured-Local-Regression-Models-in-Rp/index.html" title="6.4 $\IR^p$中的结构化局部回归模型" class="md-nav__link">
+      6.4 $\IR^p$中的结构化局部回归模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.5-Local-Likelihood-and-Other-Models/index.html" title="6.5 局部似然和其他模型" class="md-nav__link">
+      6.5 局部似然和其他模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.6-Kernel-Density-Estimation-and-Classification/index.html" title="6.6 核密度估计和分类" class="md-nav__link">
+      6.6 核密度估计和分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.7-Radial-Basis-Functions-and-Kernels/index.html" title="6.7 径向基函数和核" class="md-nav__link">
+      6.7 径向基函数和核
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html" title="6.8 混合模型的密度估计和分类" class="md-nav__link">
+      6.8 混合模型的密度估计和分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.9-Computational-Consoderations/index.html" title="6.9 计算上的考虑" class="md-nav__link">
+      6.9 计算上的考虑
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      中篇
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        中篇
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      7 模型评估及选择
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        7 模型评估及选择
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.1-Introduction/index.html" title="7.1 导言" class="md-nav__link">
+      7.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.2-Bias-Variance-and-Model-Complexity/index.html" title="7.2 偏差，方差和模型复杂度" class="md-nav__link">
+      7.2 偏差，方差和模型复杂度
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.3-The-Bias-Variance-Decomposition/index.html" title="7.3 偏差-方差分解" class="md-nav__link">
+      7.3 偏差-方差分解
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.4-Optimism-of-the-Training-Error-Rate/index.html" title="7.4 测试误差率的optimism" class="md-nav__link">
+      7.4 测试误差率的optimism
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.5-Estimates-of-In-Sample-Prediction-Error/index.html" title="7.5 样本内预测误差的估计" class="md-nav__link">
+      7.5 样本内预测误差的估计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.6-The-Effective-Number-of-Parameters/index.html" title="7.6 参数的有效个数" class="md-nav__link">
+      7.6 参数的有效个数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.7-The-Bayesian-Approach-and-BIC/index.html" title="7.7 贝叶斯方法和BIC" class="md-nav__link">
+      7.7 贝叶斯方法和BIC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.8-Minimum-Description-Length/index.html" title="7.8 最小描述长度" class="md-nav__link">
+      7.8 最小描述长度
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.9-Vapnik-Chervonenkis-Dimension/index.html" title="7.9 VC维" class="md-nav__link">
+      7.9 VC维
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.10-Cross-Validation/index.html" title="7.10 交叉验证" class="md-nav__link">
+      7.10 交叉验证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.11-Bootstrap-Methods/index.html" title="7.11 自助法" class="md-nav__link">
+      7.11 自助法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/7.12-Conditional-or-Expected-Test-Error/index.html" title="7.12 条件测试误差或期望测试误差" class="md-nav__link">
+      7.12 条件测试误差或期望测试误差
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Model-Assessment-and-Selection/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      8 模型推断和平均
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2">
+        8 模型推断和平均
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.1-Introduction/index.html" title="8.1 导言" class="md-nav__link">
+      8.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.2-The-Bootstrap-and-Maximum-Likelihood-Methods/index.html" title="8.2 自助法和最大似然法" class="md-nav__link">
+      8.2 自助法和最大似然法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.3-Bayesian-Methods/index.html" title="8.3 贝叶斯方法" class="md-nav__link">
+      8.3 贝叶斯方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.4-Relationship-Between-the-Bootstrap-and-Bayesian-Inference/index.html" title="8.4 自助法和贝叶斯推断之间的关系" class="md-nav__link">
+      8.4 自助法和贝叶斯推断之间的关系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm/index.html" title="8.5 EM算法" class="md-nav__link">
+      8.5 EM算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.6-MCMC-for-Sampling-from-the-Posterior/index.html" title="8.6 MCMC向后采样" class="md-nav__link">
+      8.6 MCMC向后采样
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.7-Bagging/index.html" title="8.7 袋装法" class="md-nav__link">
+      8.7 袋装法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.8-Model-Averaging-and-Stacking/index.html" title="8.8 模型平均和堆栈" class="md-nav__link">
+      8.8 模型平均和堆栈
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/8.9-Stochastic-Search/index.html" title="8.9 随机搜索" class="md-nav__link">
+      8.9 随机搜索
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Model-Inference-and-Averaging/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      9 增广模型，树，以及相关方法
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-3">
+        9 增广模型，树，以及相关方法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.0-Introduction/index.html" title="9.0 导言" class="md-nav__link">
+      9.0 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
+      9.1 广义可加模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html" title="9.2 基于树的方法" class="md-nav__link">
+      9.2 基于树的方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.3-PRIM/index.html" title="9.3 PRIM" class="md-nav__link">
+      9.3 PRIM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.4-MARS/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
+      9.4 多变量自适应回归样条
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的分层混合" class="md-nav__link">
+      9.5 专家的分层混合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.6-Missing-Data/index.html" title="9.6 缺失数据" class="md-nav__link">
+      9.6 缺失数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.7-Computational-Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
+      9.7 计算上的考虑
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Additive-Models-Trees-and-Related-Methods/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      10 增强和可加树
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-3-4">
+        10 增强和可加树
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.1-Boosting-Methods/index.html" title="10.1 boosting方法" class="md-nav__link">
+      10.1 boosting方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.2-Boosting-Fits-an-Additive-Model/index.html" title="10.2 boosting拟合可加模型" class="md-nav__link">
+      10.2 boosting拟合可加模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.3-Forward-Stagewise-Additive-Modeling/index.html" title="10.3 向前逐步加性建模" class="md-nav__link">
+      10.3 向前逐步加性建模
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.4-Exponential-Loss-and-AdaBoost/index.html" title="10.4 指数损失和AdaBoost" class="md-nav__link">
+      10.4 指数损失和AdaBoost
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.5-Why-Exponential-Loss/index.html" title="10.5 为什么是指数损失" class="md-nav__link">
+      10.5 为什么是指数损失
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.6-Loss-Functions-and-Robustness/index.html" title="10.6 损失函数和鲁棒性" class="md-nav__link">
+      10.6 损失函数和鲁棒性
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.7-Off-the-Shelf-Procedures-for-Data-Mining/index.html" title="10.7 数据挖掘的现货方法" class="md-nav__link">
+      10.7 数据挖掘的现货方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.8-Spam-Data/index.html" title="10.8 垃圾邮件的例子" class="md-nav__link">
+      10.8 垃圾邮件的例子
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.9-Boosting-Trees/index.html" title="10.9 boosting树" class="md-nav__link">
+      10.9 boosting树
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting/index.html" title="10.10 Gradient Boosting的数值优化" class="md-nav__link">
+      10.10 Gradient Boosting的数值优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.11-Right-Sized-Trees-for-Boosting/index.html" title="10.11 大小合适的boosting树" class="md-nav__link">
+      10.11 大小合适的boosting树
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/10.12-Regularization/index.html" title="10.12 正则化" class="md-nav__link">
+      10.12 正则化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Boosting-and-Additive-Trees/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5">
+    
+    <label class="md-nav__link" for="nav-3-5">
+      11 神经网络
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-3-5">
+        11 神经网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../11-Neural-Networks/11.1-Introduction/index.html" title="11.1 导言" class="md-nav__link">
+      11.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../11-Neural-Networks/11.2-Projection-Pursuit-Regression/index.html" title="11.2 投影寻踪回归" class="md-nav__link">
+      11.2 投影寻踪回归
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../11-Neural-Networks/11.3-Neural-Networks/index.html" title="11.3 神经网络" class="md-nav__link">
+      11.3 神经网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../11-Neural-Networks/11.4-Fitting-Neural-Networks/index.html" title="11.4 拟合神经网络" class="md-nav__link">
+      11.4 拟合神经网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../11-Neural-Networks/11.5-Some-Issues-in-Training-Neural-Networks/index.html" title="11.5 训练神经网络的一些问题" class="md-nav__link">
+      11.5 训练神经网络的一些问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../11-Neural-Networks/11.6-Example-of-Simulated-Data/index.html" title="11.6 模拟数据的例子" class="md-nav__link">
+      11.6 模拟数据的例子
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../11-Neural-Networks/11.7-Example-ZIP-Code-Data/index.html" title="11.7 邮编数字的例子" class="md-nav__link">
+      11.7 邮编数字的例子
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../11-Neural-Networks/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+    
+    <label class="md-nav__link" for="nav-3-6">
+      12 支持向量机和灵活的判别方法
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="7">
+      <label class="md-nav__title" for="nav-3-6">
+        12 支持向量机和灵活的判别方法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html" title="12.1 导言" class="md-nav__link">
+      12.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html" title="12.2 支持向量分类器" class="md-nav__link">
+      12.2 支持向量分类器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html" title="12.3 支持向量机和核" class="md-nav__link">
+      12.3 支持向量机和核
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      下篇
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        下篇
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      13 原型方法和最近邻
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        13 原型方法和最近邻
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/index.html" title="13.1 导言" class="md-nav__link">
+      13.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.2 Prototype Methods/index.html" title="13.2 原型方法" class="md-nav__link">
+      13.2 原型方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.3 k-Nearest-Neighbor Classifiers/index.html" title="13.3 k最近邻分类器" class="md-nav__link">
+      13.3 k最近邻分类器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/index.html" title="13.4 自适应的最近邻方法" class="md-nav__link">
+      13.4 自适应的最近邻方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/13.5 Computational Considerations/index.html" title="13.5 计算上的考虑" class="md-nav__link">
+      13.5 计算上的考虑
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../13 Prototype Methods and Nearest-Neighbors/Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      14 非监督学习
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-2">
+        14 非监督学习
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.1-Introduction/index.html" title="14.1 导言" class="md-nav__link">
+      14.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.2-Association-Rules/index.html" title="14.2 关联规则" class="md-nav__link">
+      14.2 关联规则
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.3-Cluster-Analysis/index.html" title="14.3 聚类分析" class="md-nav__link">
+      14.3 聚类分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.4-Self-Organizing-Maps/index.html" title="14.4 自组织图" class="md-nav__link">
+      14.4 自组织图
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
+      14.5 主成分，主曲线以及主曲面
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.6-Non-negative-Matrix-Factorization/index.html" title="14.6 非负矩阵分解" class="md-nav__link">
+      14.6 非负矩阵分解
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
+      14.7 独立成分分析和探索投影寻踪
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.8-Multidimensional-Scaling/index.html" title="14.8 多维缩放" class="md-nav__link">
+      14.8 多维缩放
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.9-Nonlinear-Dimension-Reduction-and-Local-Multidimensional-Scaling/index.html" title="14.9 非线性降维和局部多维缩放" class="md-nav__link">
+      14.9 非线性降维和局部多维缩放
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/14.10-The-Google-PageRank-Algorithm/index.html" title="14.10 谷歌的PageRank算法" class="md-nav__link">
+      14.10 谷歌的PageRank算法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../14-Unsupervised-Learning/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      15 随机森林
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-4-3">
+        15 随机森林
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../15-Random-Forests/15.1-Introduction/index.html" title="15.1 导言" class="md-nav__link">
+      15.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../15-Random-Forests/15.2-Definition-of-Random-Forests/index.html" title="15.2 随机森林的定义" class="md-nav__link">
+      15.2 随机森林的定义
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../15-Random-Forests/15.3-Details-of-Random-Forests/index.html" title="15.3 随机森林的细节" class="md-nav__link">
+      15.3 随机森林的细节
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../15-Random-Forests/15.4-Analysis-of-Random-Forests/index.html" title="15.4 随机森林的分析" class="md-nav__link">
+      15.4 随机森林的分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../15-Random-Forests/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      16 集成学习
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-4-4">
+        16 集成学习
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../16 Ensemble Learning/16.1 Introduction/index.html" title="16.1 导言" class="md-nav__link">
+      16.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../16 Ensemble Learning/16.2 Boosting and Regularization Paths/index.html" title="16.2 增强和正则路径" class="md-nav__link">
+      16.2 增强和正则路径
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../16 Ensemble Learning/16.3 Learning Ensembles/index.html" title="16.3 学习集成" class="md-nav__link">
+      16.3 学习集成
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../16 Ensemble Learning/Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
+    
+    <label class="md-nav__link" for="nav-4-5">
+      17 无向图模型
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-4-5">
+        17 无向图模型
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../17 Undirected Graphical Models/17.1 Introduction/index.html" title="17.1 导言" class="md-nav__link">
+      17.1 导言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../17 Undirected Graphical Models/17.2 Markov Graphs and Their Properties/index.html" title="17.2 马尔科夫图及其性质" class="md-nav__link">
+      17.2 马尔科夫图及其性质
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../17 Undirected Graphical Models/17.3 Undirected Graphical Models for Continuous Variables/index.html" title="17.3 连续变量的无向图模型" class="md-nav__link">
+      17.3 连续变量的无向图模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../17 Undirected Graphical Models/17.4 Undirected Graphical Models for Discrete Variables/index.html" title="17.4 离散变量的无向图模型" class="md-nav__link">
+      17.4 离散变量的无向图模型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../17 Undirected Graphical Models/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-6" type="checkbox" id="nav-4-6">
+    
+    <label class="md-nav__link" for="nav-4-6">
+      18 高维问题
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="7">
+      <label class="md-nav__title" for="nav-4-6">
+        18 高维问题
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../18-High-Dimensional-Problems/18.1-When-p-is-Much-Bigger-than-N/index.html" title="18.1 当p大于N" class="md-nav__link">
+      18.1 当p大于N
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../18-High-Dimensional-Problems/18.2-Diagonal-Linear-Discriminant-Analysis-and-Nearest-Shrunken-Centroids/index.html" title="18.2 对角线性判别分析和最近收缩重心" class="md-nav__link">
+      18.2 对角线性判别分析和最近收缩重心
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../18-High-Dimensional-Problems/18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html" title="18.3 二次正则的线性分类器" class="md-nav__link">
+      18.3 二次正则的线性分类器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization/index.html" title="18.4 一次正则的线性分类器" class="md-nav__link">
+      18.4 一次正则的线性分类器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../18-High-Dimensional-Problems/18.5-Classification-When-Features-are-Unavailable/index.html" title="18.5 当特征不可用时的分类" class="md-nav__link">
+      18.5 当特征不可用时的分类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../18-High-Dimensional-Problems/18.6-High-Dimensional-Regression/index.html" title="18.6 有监督的主成分" class="md-nav__link">
+      18.6 有监督的主成分
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../18-High-Dimensional-Problems/18.7-Feature-Assessment-and-the-Multiple-Testing-Problem/index.html" title="18.7 特征评估和多重检验问题" class="md-nav__link">
+      18.7 特征评估和多重检验问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../18-High-Dimensional-Problems/Bioliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+      文献笔记
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      个人笔记
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        个人笔记
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      习题解答
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        习题解答
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/manual/index.html" title="索引" class="md-nav__link">
+      索引
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      笔记列表
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-2">
+        笔记列表
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/ipynb/list/index.html" title="列表" class="md-nav__link">
+      列表
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      模拟实验
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="4">
+      <label class="md-nav__title" for="nav-5-3">
+        模拟实验
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/linear-reg/sim-3-18/index.html" title="模拟 Fig. 3.18" class="md-nav__link">
+      模拟 Fig. 3.18
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/LDA/sim-4-5/index.html" title="模拟 Fig. 4.5" class="md-nav__link">
+      模拟 Fig. 4.5
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/spline/sim-5-9/index.html" title="模拟 Fig. 5.9" class="md-nav__link">
+      模拟 Fig. 5.9
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/ModelSelection/sim7_3/index.html" title="模拟 Fig. 7.3" class="md-nav__link">
+      模拟 Fig. 7.3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/ModelSelection/sim7_7/index.html" title="模拟 Fig. 7.7" class="md-nav__link">
+      模拟 Fig. 7.7
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/Prototype/sim13_5/index.html" title="模拟 Fig. 13.5" class="md-nav__link">
+      模拟 Fig. 13.5
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/ICA/sim14_42/index.html" title="模拟 Fig. 14.42" class="md-nav__link">
+      模拟 Fig. 14.42
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/HighDim/sim18_1/index.html" title="模拟 Fig. 18.1" class="md-nav__link">
+      模拟 Fig. 18.1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/sim-eq-10-2/index.html" title="模拟 Eq. 10.2" class="md-nav__link">
+      模拟 Eq. 10.2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/SVM/skin-of-the-orange/index.html" title="模拟 Tab. 12.2" class="md-nav__link">
+      模拟 Tab. 12.2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/tree/sim-9-7/index.html" title="模拟 Fig. 9.7" class="md-nav__link">
+      模拟 Fig. 9.7
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      比较总结
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-5-4">
+        比较总结
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/Mixture-Gaussian/index.html" title="估计高斯混合模型参数的三种方式" class="md-nav__link">
+      估计高斯混合模型参数的三种方式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/SVM/e1071/index.html" title="SVM处理线性和非线性类别边界" class="md-nav__link">
+      SVM处理线性和非线性类别边界
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/boosting/summary-loss-function/index.html" title="损失函数的梯度总结及Julia实现" class="md-nav__link">
+      损失函数的梯度总结及Julia实现
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/tree/various-classification-methods/index.html" title="R语言中的多种决策树算法实现" class="md-nav__link">
+      R语言中的多种决策树算法实现
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/missing-data/missing-data/index.html" title="R语言处理缺失数据" class="md-nav__link">
+      R语言处理缺失数据
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="拟合逻辑斯蒂回归模型" class="md-nav__link">
+    拟合逻辑斯蒂回归模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="例子：南非心脏病" class="md-nav__link">
+    例子：南非心脏病
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="二次拟合和推断" class="md-nav__link">
+    二次拟合和推断
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l_1" title="$L_1$正则化逻辑斯蒂回归" class="md-nav__link">
+    $L_1$正则化逻辑斯蒂回归
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lda" title="逻辑斯蒂回归或者LDA？" class="md-nav__link">
+    逻辑斯蒂回归或者LDA？
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="44">4.4 逻辑斯蒂回归<a class="headerlink" href="#44" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翻译</td>
+<td>szcf-weiya</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>2016-12-09:2016-12-15</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>2018-02-13; 2018-02-21</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
+</tbody>
+</table>
+<p>逻辑斯蒂回归来自用$x$的线性函数来建立$K$个类别后验概率的模型的需要，同时保证后验概率的和为1且每一个都在$[0,1]$中取值。模型有如下形式</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\log\dfrac{\Pr(G=1\mid X=x)}{\Pr(G=K\mid X=x)}&=\beta_{10}+\beta_1^Tx\\
+\log\dfrac{\Pr(G=2\mid X=x)}{\Pr(G=K\mid X=x)}&=\beta_{20}+\beta_2^Tx\\
+&\ldots\\
+\log\dfrac{\Pr(G=K-1\mid X=x)}{\Pr(G=K\mid X=x)}&=\beta_{(K-1)0}+\beta_{K-1}^Tx\\
+\end{array}
+\qquad (4.17)
+</script>
+</p>
+<p>模型由$K-1$个log-odds或logit变换来确定（反映了概率相加和为1的约束）。虽然模型采用最后一类来作为odds-rations的分母，但分母的选择其实是任意的，因为在这个选择下估计值是等价的。简单地计算可以得到</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\Pr(G=k\mid X=x)=\dfrac{exp(\beta_{k0}+\beta_k^Tx)}{1+\sum\limits_{\ell=1}^{K-1}exp(\beta_{\ell0+\beta_\ell^Tx})},& k=1,\ldots, K-1\\
+\Pr(G=K\mid X=x)=\dfrac{1}{1+\sum\limits_{\ell=1}^{K-1}exp(\beta_{\ell0+\beta_\ell^Tx})}&
+\end{array}
+\qquad (4.18)
+</script>
+</p>
+<p>显然它们相加等于1。为了强调对参数集$\theta=\{\beta_{10},\beta_1^T,\ldots,\beta_{(K-1)0},\beta_{K-1}^T\}$的依赖，我们将概率记为$p_k(x,\theta)$。</p>
+<p>当$K=2$时，模型非常简单，因为只有一个单线性函数。在生物统计应用中应用很广，因为经常会有二进制（两个类别）的响应变量。举个例子，病人获救或死亡，患心脏病和不患心脏病，或者某个条件存在与否。</p>
+<h2 id="_1">拟合逻辑斯蒂回归模型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>逻辑斯蒂回归经常通过极大似然法求解，采用在给定$X$时$G$的条件概率。因为$\Pr(G\mid X)$完全明确了条件分布，选择多项式分布(multinomial)是合适的。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：多项式分布的合理性</p>
+<p>因为条件概率之和等于1，而各个条件概率可疑看成是互斥事件的概率，满足多项式分布的条件。</p>
+</div>
+<p>$N$个观测的对数似然为</p>
+<p>
+<script type="math/tex; mode=display">
+\ell(\theta)=\sum\limits_{i=1}^Nlog\,p_{g_i}(x_i;\theta)\qquad (4.19)
+</script>
+</p>
+<p>其中，$p_k(x_i;\theta)=Pr(G=k\mid X=x_i;\theta)$</p>
+<p>我们将详细讨论两个类别的情形，因为此时算法可以非常简化。我们可以用0/1来对两个类别$g_i$的响应变量$y_i$进行编码，当$g_i=1$时$y_i=1$，当$g_i=2$时$y_i=0$。令$p_1(x;\theta)=p(x,\theta)$,$p_2(x;\theta)=1-p(x;\theta)$，对数似然为</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{lll}
+\ell(\beta)&=&\sum\limits_{i=1}^N\{y_i\log p(x_i;\beta)+(1-y_i)\log(1-p(x_i;\beta))\}\\
+&=&\sum\limits_{i=1}^N\{y_i\beta^Tx_i-\log(1+e^{\beta^Tx_i})\}
+\end{array}
+\qquad (4.20)
+</script>
+</p>
+<p>这里$\beta=\{\beta_{10},\beta_1\}$，而且我们假设输入向量$x_i$包含表示截距的项$1$。</p>
+<p>为了最大化对数似然，令微分为0，得到</p>
+<p>
+<script type="math/tex; mode=display">
+\dfrac{\partial \ell(\beta)}{\partial \beta}=\sum\limits_{i=1}^Nx_i(y_i-p(x_i;\beta))=0,\qquad (4.21)
+</script>
+</p>
+<p>这是关于$\beta$的$p+1$个非线性等式。注意到因为$x_i$的第一个组分为1，第一个组分满足的等式为$\sum_{i=1}^Ny_i=\sum_{i=1}^Np(x_i;\beta)$；这表明类别一概率的期望值与观测值一致（也因此类别二概率的期望值与观测值一致）。</p>
+<p>为了求解（4.21）的得分等式，我们采用Newton-Raphson算法，需要Hessian矩阵</p>
+<p>
+<script type="math/tex; mode=display">
+\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T}=\sum\limits_{i=1}^Nx_ix_i^Tp(x_i;\beta)(1-p(x_i;\beta))\qquad (4.22)
+</script>
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>Newton-Raphson 也就是我们熟知的牛顿迭代法
+<script type="math/tex; mode=display">
+x_{i+1}=x_i-\dfrac{f(x_i)}{f'(x_i)}
+</script>
+</p>
+</div>
+<p>以$\beta^{old}$开始，新的Newton更新为
+<script type="math/tex; mode=display">
+\beta^{new}=\beta^{old}-(\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T})^{-1}\dfrac{\partial \ell(\beta)}{\partial(\beta)}\qquad (4.23)
+</script>
+其中微分值由$\beta^{old}$处的值得到。</p>
+<p>把得分和Hessian写成矩阵形式是很方便的。记$\mathbf y$为$y_i$的值，$\mathbf X$是值为$x_i$的$N\times (p+1)$矩阵，$\mathbf p$是拟合概率的向量且第$i$个元素为$p(x_i;\beta^{odd})$，$\mathbf W$是第$i$个对角元为$p(x_i;\beta^{odd})(1-p(x_i;\beta^{odd}))$的$N\times N$的对角矩阵。则我们有</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>$\mathbf X=[x&rsquo;_1,x&rsquo;_2,\ldots,x&rsquo;_N]&rsquo;$</p>
+</div>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\dfrac{\partial \ell(\beta)}{\partial \beta}&=\mathbf{X^T(y-p)}\qquad (4.24)\\
+\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T}&=-\mathbf{X^TWX}\qquad (4.25)
+\end{array}
+</script>
+牛顿迭代为
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\beta^{new}&=\beta^{old}+\mathbf{(X^TWX)^{-1}X^T(y-p)}\\
+&=\mathbf {(X^TWX)^{-1}X^TW(X\beta^{old}+W^{-1}(y-p))}\\
+&=\mathbf{(X^TWX)^{-1}X^TWz}\qquad (4.26)
+\end{array}
+</script>
+</p>
+<p>在第二和第三行我们已经重新把牛顿迭代表达成最小二乘迭代，响应变量为
+<script type="math/tex; mode=display">
+\mathbf z=\mathbf X\beta^{old}+\mathbf{W^{-1}(y-p)}\qquad (4.27)
+</script>
+有时也被称作调整后的响应变量。重复地进行求解这些方程，每一次迭代时，$\mathbf p$改变，因此$\mathbf W$和$\mathbf z$也改变。这个算法被称作是加权迭代最小二乘或者IRLS，因为每次迭代求解加权最小二乘问题：
+<script type="math/tex; mode=display">
+\beta^{new}\leftarrow arg\,\underset{\beta}{min}(\mathbf z-\mathbf X\beta)^T\mathbf W(\mathbf z-\mathbf X\beta)\qquad (4.28)
+</script>
+</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：IRLS</p>
+<p><a href="https://github.com/xqwen/IRLS">Github: xqwen/IRLS</a>用C++实现IRLS。</p>
+</div>
+<p>似乎$\beta=0$是迭代过程一个很好的初始值，尽管不会保证收敛性。一般地，算法确实是收敛的，因为对数似然是凹的(concave)，但是可能出现过收敛的情况。如果在罕见的情形下对数似然值下降，对步长进行二分法会保证收敛性。</p>
+<p>对于多类别的情况$K\ge 3$，牛顿算法也可以表达成加权迭代最小二乘，只是对于每一个观测用一个$K-1$的响应向量和非对角系数矩阵。后者阻碍了算法的简化，在这种情况下直接使用展开向量$\theta$数值上会更加方便（练习4.4）。另一种是坐标下降方法（3.8.6节）也可以有效地最大化对数似然。<code>R</code>语言的<code>glmnet</code>包(Friedman et al., 2010<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)可以有效地拟合$N$和$p$都非常大时的逻辑斯蒂回归。尽管是为了拟合正则化模型设计的，但是也适用于非正则化的拟合。</p>
+<p>逻辑斯蒂回归经常被用作一种数据分析和推断的工具，目标就是理解在解释输出时输入变量的角色。一般地，拟合时要寻找变量的最简洁(parsimonious)的模型，很可能还有一些交叉项。下面的例子说明了涉及到的一些问题。</p>
+<h2 id="_2">例子：南非心脏病<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>这里我们展示一个用二值数据分析去说明逻辑斯蒂回归的传统统计学应用。图4.12中的数据取自CORIS调查的部分数据，这个调查在南非Western Cape的三个乡村进行(Rousseauw et al., 1983<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)。调查的目标是建立在高发生率的地区中缺血性心脏病影响因子的强度模型。数据中有15到64岁的白人男性，响应变量是MI的存在或者缺失（该地区整个MI流行程度为5.1%）。在我们数据集中有160个案例，以及302个控制个体。数据在Hastie and Tibshirani(1987)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>中有详细描述。</p>
+<p><img alt="" src="../../img/04/fig4.12.png" /></p>
+<blockquote>
+<p>图4.12. 南非心脏病数据的散点图。每张图片是一对影响因子，案例集和控制集用不同颜色区分（红色的为案例）。家族心脏病史(famhist)是二值变量（是或否）</p>
+</blockquote>
+<p>我们通过极大似然法拟合了逻辑斯蒂回归模型，给出了如表4.2所示的结果。结果概要包含了模型中每一个系数的$Z$分数（系数除以他们的标准误差）；不重要的$Z$分数表明该系数可以从模型中剔除。这对应着检验该系数为0而其它系数不为0的零假设（也被称作Wald检验）。$Z$分数的绝对值大于2表明在5%的水平下是显著的。</p>
+<p><img alt="" src="../../img/04/tab4.2.png" /></p>
+<blockquote>
+<p>表4.2. 南非心脏病数据的逻辑斯蒂回归结果。</p>
+</blockquote>
+<p>在系数表中有一些比较奇怪的结果，这必须认真对待。收缩压sbp竟然不显著！肥胖(obesity)也不显著，它的符号是负的。这个混乱是因为预测变量之间的相关关系。单独地来看，sbp和obesity都是显著的，而且都是正号。然而，当有其它相关变量时它们便不再需要了（甚至可以得到一个负号）。</p>
+<p>这时分析者可能会做一些模型选择；寻找能够充分解释他们在chd上联合影响的子集变量。一种方式是删掉显著性最低的系数然后重新拟合模型。这个可以重复做下去直到没有更多的项可以从模型中剔除。这样得到了表4.3所示例的模型。</p>
+<p><img alt="" src="../../img/04/tab4.3.png" /></p>
+<blockquote>
+<p>表4.3. 对南非心脏病数据逐步逻辑斯蒂回归的结果</p>
+</blockquote>
+<p>一个更好但是需要花费更多时间的策略是对每一个剔除一个变量后的模型进行重新拟合，然后进行偏差分析(analysis of deviance)确定哪个变量需要剔除。拟合模型的残差是减去两倍的对数似然，两个模型的偏差是它们个体残差的差别（类似于平方和），这个策略给出了上面同样的最终结果。</p>
+<p>举个例子，怎么解释tobacco的系数0.081（标准偏差为0.026）？tobacco是一生中使用的烟草总千克数，控制集中位数为1.0kg，而这个案例集为4.1kg。因此每增加1kg的烟草使用量意味着冠状心脏病的几率为$exp(0.081)=1.084$（或者8.4%）。结合标准误差我们得到95%的置信区间$exp(0.081\pm 2\times 0.026)=(1.03,1.14)$</p>
+<p>我们将在第5章再次用到这些数据，我们将会看到一些变量会有非线性影响，当进行合适的建模后不会被剔除模型。</p>
+<h2 id="_3">二次拟合和推断<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>极大似然法的参数估计$\hat\beta$满足自一致性(self-consistency)关系：它们是加权最小二乘拟合的系数，其中响应变量为</p>
+<p>
+<script type="math/tex; mode=display">
+z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\qquad (4.29)
+</script>
+</p>
+<p>系数为$w_i=\hat p_i(1-\hat p_i)$，都依赖$\hat\beta$自身。除了提供了一个方便的算法，这与最小二乘的联系还有其它用处：</p>
+<ul>
+<li>加权的残差平方和是熟悉的Pearson卡方统计量
+<script type="math/tex; mode=display">
+\sum\limits_{i=1}^N\dfrac{(y_i-\hat p_i)^2}{\hat p_i(1-\hat p_i)}\qquad (4.30)
+</script>
+这是对偏差的二次近似。</li>
+<li>极限概率理论表明如果模型是正确的，则$\hat\beta$为常数（比如，收缩到真实的$\beta$）</li>
+<li>中心极限定理证明$\hat \beta$的分布收敛到$N(\beta,\mathbf{(X^TWX)^{-1}})$。这个可以模仿正态理论推断直接从加权最小二乘得到。</li>
+<li>对于逻辑斯蒂回归建立模型计算量比较大，因为每个模型拟合需要迭代。受欢迎的方法是Rao score检验来检验是否包含某一项，以及Wald检验来检验是否剔除某一项。这些都不需要迭代拟合，而且都是基于当前模型的极大似然拟合。结果是两者都代表在加权最小二乘拟合中运用相同的系数加上或剔除某一项。这些计算可以高效地进行，不需要重新计算整个加权最小二乘拟合。</li>
+</ul>
+<p>软件实现可以利用这些联系。举个例子，R中的广义线性模型（包括作为二项式模型族中的逻辑斯蒂回归）充分运用了他们。GLM（广义线性模型）对象可以当作线性模型对象来处理，而且所有对于线性模型可用的工具都可以自动应用起来。</p>
+<h2 id="l_1">$L_1$正则化逻辑斯蒂回归<a class="headerlink" href="#l_1" title="Permanent link">&para;</a></h2>
+<p>lasso中使用的$L_1$惩罚（3.4.2节）可以应用到任意线性回归模型的变量选择和收缩上面。对于逻辑斯蒂回归，我们最大化(4.20)带惩罚项的版本：</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\beta_0,\beta}{\max}\{\sum\limits_{i=1}^N[y_i(\beta_0+\beta^Tx_i)-\log(1+e^{\beta_0+\beta^Tx_i})]-\lambda\sum\limits_{j=1}^p\vert \beta_j\vert\}\qquad (4.31)
+</script>
+</p>
+<p>对于lasso，我们一般不对截距项进行惩罚，且对预测变量标准化后加惩罚有意义。准则(4.31)是凹的，而且运用非线性规划方法可以找到一个解（举个例子，Koh et al., 2007<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>）。另外，运用我们在4.4.1节运用的Netwon算法的二次逼近，我们可以通过重复应用加权的lasso算法求解(4.31)。有趣的是非零系数变量的得分等式（式4.24）有如下形式</p>
+<p>
+<script type="math/tex; mode=display">
+\mathbf {x_j^T(y-p)} = \lambda\cdot sign(\beta_j)\qquad (4.32)
+</script>
+</p>
+<p>这一般化了3.4.4节中的(3.58)；活跃变量再与残差的一般化相关性结合在一起。
+路径算法比如说lasso的LAR算法更加困难，因为系数曲线是逐段光滑而不是线性的。然而，可以通过二次逼近来实现。</p>
+<p>图4.13显示了4.4.2节南非心脏病数据的$L_1$正则化路径。这是通过R语言<code>glmpath</code>包(Park and Hastie, 2007<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>)实现的，运用了凸优化的predictor-corrector方法确定了$\lambda$在哪个非零活跃集值发生改变（图中的垂直线）。这里直线看似线性的，但在其它的例子中曲率将会更加明显。</p>
+<p><img alt="" src="../../img/04/fig4.13.png" /></p>
+<blockquote>
+<p>图4.13. 南非心脏病数据的$L_1$正则化逻辑斯蒂回归系数，画出了作为$L_1$范数函数的曲线。这些变量都标准化后有单位方差。在图像每一个点处都精确算出来了。</p>
+</blockquote>
+<p>坐标下降方法（3.8.6节）对于计算$\lambda$网格上的值的系数曲线是很有效的。<code>R</code>语言<code>glmnet</code>包(Friedman et al., 2010<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)对于非常大的逻辑斯蒂回归问题拟合系数路径是非常有效的（$N$或$p$很大时）。他们的算法可以利用预测变量矩阵$X$的稀疏性，以至于对于大规模问题也适用。18.4节有更详细的解释，而且将会讨论$L_1$正则多项分布模型。</p>
+<h2 id="lda">逻辑斯蒂回归或者LDA？<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>基于本小节内容，回答了<a href="https://www.zhihu.com/question/61101057/answer/324078106">Logistic回归模型和判别分析之间的关系？ - 知乎</a>。</p>
+</div>
+<p>在4.3节我们发现类别$k$和$K$类关于$x$线性函数的后验概率odds的对数（4.9）：</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\log\dfrac{\Pr(G=k\mid X=x)}{\Pr(G=K\mid X=x)}&=\log\dfrac{\pi_k}{\pi_K}-\frac{1}{2}(\mu_k+\mu_K)^T\Sigma^{-1}(\mu_k-\mu_K)\\
+&=\alpha_{k0}+\alpha_k^Tx\qquad\qquad (4.33)
+\end{array}
+</script>
+</p>
+<p>线性是因为对类别的概率密度函数做了正态性假设及协方差矩阵相等的假设。通过构造线性逻辑斯蒂模型(4.17)有线性logits:</p>
+<p>
+<script type="math/tex; mode=display">
+\log\frac{\Pr(G=k\mid X=x)}{\Pr(G=K\mid X=x)}=\beta_{k0}+\beta_k^Tx\qquad (4.34)
+</script>
+</p>
+<p>看起来模型似乎是一样的。尽管它们确实有相同的形式，区别在于它们系数估计的方式。逻辑斯蒂回归模型更加一般，因为它做了更少的假设。我们可以把$X$和$G$的联合概率密度写成</p>
+<p>
+<script type="math/tex; mode=display">
+\Pr(X,G=k)=\Pr(X)\Pr(G=k\mid X)\qquad (4.35)
+</script>
+</p>
+<p>其中$\Pr(X)$为$X$的边缘概率密度。对于LDA和逻辑斯蒂回归，右边的第二项有线性logit形式</p>
+<p>
+<script type="math/tex; mode=display">
+\Pr(G=k\mid X=x)=\dfrac{e^{\beta_{k0}+\beta_k^Tx}}{1+\sum_{\ell=1}^{K-1}e^{\beta_{\ell0}+\beta_\ell^Tx}}\qquad (4.36)
+</script>
+</p>
+<p>我们再一次任意地选择最后一类作为标准。</p>
+<p>逻辑斯蒂回归模型中，$X$的边缘概率密度可以取任意的边界密度函数$\Pr(X)$，然后通过最大化条件概率（$\Pr(G=k\mid X)$的多项式概率）来拟合$\Pr(G\mid X)$的参数。尽管可以完全忽略掉$\Pr(X)$，但我们可以把边缘密度看成在全部非参和无约束情形下的估计，该估计是在每个观测值上采用权重为$1/N$的经验分布函数。</p>
+<p>进行LDA时，我们通过基于下面的联合密度来最大化对数似然进行拟合参数</p>
+<p>
+<script type="math/tex; mode=display">
+\Pr(X,G=k)=\phi(X;\mu_k,\Sigma)\pi_k\qquad (4.37)
+</script>
+</p>
+<p>其中$\phi$是高斯密度函数。用标准正态的理论可以更容易估计4.3节的$\hat\mu_k,\hat\Sigma$和$\hat\pi_k$。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：Recall</p>
+<p>
+<script type="math/tex; mode=display">
+\mathbf{ \hat Y = {X(X^TX)^{-1}X^TY}} \qquad (4.3)
+</script>
+</p>
+</div>
+<p>因为(4.3)形式的逻辑斯蒂回归的线性参数是高斯分布参数的函数，我们通过插入对应的估计得到它们的极大似然估计。然而，与条件概率密度不同，边缘密度$\Pr(X)$起着重要作用。它是一个混合密度</p>
+<p>
+<script type="math/tex; mode=display">
+\Pr(X)=\sum\limits_{k=1}^K\pi_k\phi(X;\mu_k,\Sigma)\qquad (4.38)
+</script>
+</p>
+<p>同样涉及到参数。</p>
+<p>这个可加组分（约束条件）起着什么作用呢？通过依赖可加模型的假设，我们可以得到更多的参数信息，因此可以更加有效地估计它们（低方差）。事实上，如果$f_k(x)$的真实分布为高斯分布，则最坏的情形下忽略密度的边缘项会在误差率上有近30%的效率损失(Efron, 1975<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>)。换句话说：当再有30%的数据，条件概率效果一样。</p>
+<p>举个例子，远离判别边界的观测点（权重被逻辑斯蒂回归低估(down-weighted)）在估计斜方差阵中起着作用。这不是一个好消息，因为这意味着当有许多的边界点时，LDA不够稳健。</p>
+<p>从混合模型的组成来看，很显然没有类别标签的观测甚至都有参数的信息。产生类别标签经常是不划算的，但是产生未分类的观测值是容易的。通过依赖对模型强的假设，正如这里的一样，我们可以同时运用两种类别的信息。</p>
+<p>边缘似然可以认为是一个正则器，从边缘角度来看在某种程度上类别密度是已知的。举个例子，如果在两个类别的逻辑斯蒂回归模型中，数据可以很好地被超平面分隔开，则参数的极大似然估计是没有定义的（比如说无穷，见练习4.5）。而对于同样的数据LDA的系数有很好的定义，因为边缘密度函数不会允许这些退化。</p>
+<p>实际应用中这些假设从不正确，而且$X$的有些组分是定性变量。一般感觉逻辑斯蒂回归更加安全，比LDA模型更稳健，因为它依赖更少的假设。从我们经验来看，甚至不恰当地运用LDA时，比如说对定性预测变量应用LDA，两个模型都会得到非常相似的结果。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Friedman, J., Hastie, T. and Tibshirani, R. (2010). Regularization paths for generalized linear models via coordinate descent, Journal of Statistical Software 33(1): 1–22.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Rousseauw, J., du Plessis, J., Benade, A., Jordaan, P., Kotze, J., Jooste, P. and Ferreira, J. (1983). Coronary risk factor screening in three rural communities, South African Medical Journal 64: 430–436.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Hastie, T. and Tibshirani, R. (1987). Nonparametric logistic and proportional odds regression, Applied Statistics 36: 260–276.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Park, M. Y. and Hastie, T. (2007). l1-regularization path algorithm for generalized linear models, Journal of the Royal Statistical Society Series B 69: 659–677.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Koh, K., Kim, S.-J. and Boyd, S. (2007). An interior-point method for large-scale L1-regularized logistic regression, Journal of Machine Learning Research 8: 1519–1555.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Efron, B. (1975). The efficiency of logistic regression compared to normal discriminant analysis, Journal of the American Statistical Association 70: 892–898.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+                  <h2 id="__comments">Comments</h2>
+                  <div id="comment"></div>
+<script>
+    var disq = new iDisqus('comment', {
+    forum: 'esl-hohoweiya-xyz',
+    api: 'https://api.hohoweiya.xyz/disqus',
+    site: 'https://esl.hohoweiya.xyz',
+    mode: 1,
+    timeout: 3000,
+    init: true
+});
+</script>
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../4.3-Linear-Discriminant-Analysis/index.html" title="4.3 线性判别分析" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                4.3 线性判别分析
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../4.5-Separating-Hyperplanes/index.html" title="4.5 分离超平面" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                4.5 分离超平面
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016-2018 weiya
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--> <!--<link rel="stylesheet" href="../../css/mini-awesome/font-awesome.css">-->    
+      <a href="https://github.com/szcf-weiya" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://tech.hohoweiya.xyz" class="md-footer-social__link fa fa-code"></a>
+    
+      <a href="https://hohoweiya.xyz" class="md-footer-social__link fa fa-home"></a>
+    
+      <a href="https://blog.hohoweiya.xyz" class="md-footer-social__link fa fa-rss"></a>
+    
+      <a href="https://www.linkedin.com/in/szcfweiya/" class="md-footer-social__link fa fa-linkedin"></a>
+    
+      <a href="mailto:szcfweiya@gmail.com" class="md-footer-social__link fa fa-envelope"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+          <!---->
+    <script src="../../assets/javascripts/application.js"></script>
+    <!--
+      
+    -->
+	    <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
+	          <!---->
+
+    <script>var base_url = '../..';</script>
+    <!--
+      
+    -->
+    <script src="../../js/mathjax.js"></script>
+    <script src="https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../js/baiduzhanzhang.js"></script>
+    <script src="../../js/360.js"></script>
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-85046550-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
