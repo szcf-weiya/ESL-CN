@@ -161,17 +161,17 @@ pages:
       - 文献笔记: '15-Random-Forests/Bibliographic-Notes.md'
 
     - 16 集成学习:
-      - 16.1 导言: '16 Ensemble Learning/16.1 Introduction.md'
-      - 16.2 增强和正则路径: '16 Ensemble Learning/16.2 Boosting and Regularization Paths.md'
-      - 16.3 学习集成: '16 Ensemble Learning/16.3 Learning Ensembles.md'
-      - 文献笔记: '16 Ensemble Learning/Bibliographic Notes.md'
+      - 16.1 导言: '16-Ensemble-Learning/16.1-Introduction.md'
+      - 16.2 增强和正则路径: '16-Ensemble-Learning/16.2-Boosting-and-Regularization-Paths.md'
+      - 16.3 学习集成: '16-Ensemble-Learning/16.3-Learning-Ensembles.md'
+      - 文献笔记: '16-Ensemble-Learning/Bibliographic-Notes.md'
 
     - 17 无向图模型:
-      - 17.1 导言: '17 Undirected Graphical Models/17.1 Introduction.md'
-      - 17.2 马尔科夫图及其性质: '17 Undirected Graphical Models/17.2 Markov Graphs and Their Properties.md'
-      - 17.3 连续变量的无向图模型: '17 Undirected Graphical Models/17.3 Undirected Graphical Models for Continuous Variables.md'
-      - 17.4 离散变量的无向图模型: '17 Undirected Graphical Models/17.4 Undirected Graphical Models for Discrete Variables.md'
-      - 文献笔记: '17 Undirected Graphical Models/Bibliographic-Notes.md'
+      - 17.1 导言: '17-Undirected-Graphical-Models/17.1-Introduction.md'
+      - 17.2 马尔科夫图及其性质: '17-Undirected-Graphical-Models/17.2-Markov-Graphs-and-Their-Properties.md'
+      - 17.3 连续变量的无向图模型: '17-Undirected-Graphical-Models/17.3-Undirected-Graphical-Models-for-Continuous-Variables.md'
+      - 17.4 离散变量的无向图模型: '17-Undirected-Graphical-Models/17.4-Undirected-Graphical-Models-for-Discrete-Variables.md'
+      - 文献笔记: '17-Undirected-Graphical-Models/Bibliographic-Notes.md'
 
     - 18 高维问题:
       - 18.1 当p大于N: '18-High-Dimensional-Problems/18.1-When-p-is-Much-Bigger-than-N.md'
