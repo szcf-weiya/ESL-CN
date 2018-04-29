@@ -3295,7 +3295,12 @@
 </blockquote>
 <p>这个定理说我们可以用 $N$ 维的向量替换 $p$ 维向量，并且像之前一样进行带惩罚的拟合，但是有更少的预测变量。$N$ 维向量的解 $\hat\theta$ 接着通过简单的矩阵运算转化为 $p$ 维向量的解。这个结果是统计学传说之一，理应当被广泛知道——更多细节详见 Hastie and Tibshirani(2004)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 等人的工作。</p>
 <p>几何上看，我们把特征旋转到除了前 $N$ 个坐标分量外其余分量都为 0 的坐标系中。这个旋转是允许的，因为二次惩罚在旋转下是不变的，并且线性模型是等价的。</p>
-<p>这个结果可以应用到本章中讨论的许多学习算法，比如正则化（多类别）逻辑斯底回归，线性判别分析（<a href="https://github.com/szcf-weiya/ESL-CN/issues/118">练习 18.6</a>），以及支持向量机。这也应用到有二次正则化的神经网络（<a href="../../11-Neural-Networks/11.5-Some-Issues-in-Training-Neural-Networks/index.html">11.5.2 节</a>）。然而，注意到，这并不应用到类似lasso的方法中，这些方法对系数加的是非平方惩罚（$L_1$）。</p>
+<p>这个结果可以应用到本章中讨论的许多学习算法，比如正则化（多类别）逻辑斯底回归，线性判别分析（<a href="https://github.com/szcf-weiya/ESL-CN/issues/118">练习 18.6</a>），以及支持向量机。</p>
+<div class="admonition info">
+<p class="admonition-title">Ex. 18.6</p>
+<p>已证。详细解答过程见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/118">Issue 118: Ex.18.6</a>。</p>
+</div>
+<p>这也应用到有二次正则化的神经网络（<a href="../../11-Neural-Networks/11.5-Some-Issues-in-Training-Neural-Networks/index.html">11.5.2 节</a>）。然而，注意到，这并不应用到类似lasso的方法中，这些方法对系数加的是非平方惩罚（$L_1$）。</p>
 <p>一般地，我们采用交叉验证去选择参数 $\lambda$。可以看到（<a href="https://github.com/szcf-weiya/ESL-CN/issues/121">练习 18.12</a>）我们仅需要对原始数据构造一次 $\mathbf R$，并且用这个作为每个 CV 折的数据。</p>
 <p><a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.7 节</a>中的支持向量机的“核技巧”在不同的情形下利用了这节中的降维。假设我们有 $N\times N$ 的（内积）矩阵 $\mathbf{K=XX^T}$。由 (18.12) 我们有 $\mathbf{K=UD^2U^T}$，所以 $\mathbf K$ 捕捉了与 $\mathbf R$ 一样的信息。<a href="https://github.com/szcf-weiya/ESL-CN/issues/122">练习 18.13</a> 显示了我们怎样在这节中利用这个想法用 $\mathbf K$ 和它的 SVD 分解来拟合岭逻辑斯底回归。</p>
 <div class="footnote">
