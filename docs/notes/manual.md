@@ -20,6 +20,7 @@
 - [多类别问题](https://github.com/szcf-weiya/ESL-CN/issues?q=is%3Aissue+label%3Amulticlass)
 - [随机森林](https://github.com/szcf-weiya/ESL-CN/issues?q=is%3Aissue+label%3ARF)
 - [聚类](https://github.com/szcf-weiya/ESL-CN/issues?q=is%3Aissue+label%3Aclustering)
+- [MM 算法 (Minorize-Maximize, or Majorize-Minimize)](https://github.com/szcf-weiya/ESL-CN/issues?q=is%3Aissue+label%3AMM)
 - ...
 
 ## 章节
@@ -30,6 +31,7 @@
 - [第五章](https://github.com/szcf-weiya/ESL-CN/milestone/6)
 - [第六章](https://github.com/szcf-weiya/ESL-CN/milestone/14)
 - [第七章](https://github.com/szcf-weiya/ESL-CN/milestone/4)
+- [第八章](https://github.com/szcf-weiya/ESL-CN/milestone/17)
 - [第九章](https://github.com/szcf-weiya/ESL-CN/milestone/15)
 - [第十章](https://github.com/szcf-weiya/ESL-CN/milestone/1)
 - [第十二章](https://github.com/szcf-weiya/ESL-CN/milestone/3)
