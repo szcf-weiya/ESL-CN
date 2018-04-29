@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记、代码实现以及习题解答">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/13 Prototype Methods and Nearest-Neighbors/13.1 Introduction/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/13-Prototype-Methods-and-Nearest-Neighbors/13.4-Adaptive-Nearest-Neighbor-Methods/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>13.1 导言 - ESL CN</title>
+        <title>13.4 自适应的最近邻方法 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#131" tabindex="1" class="md-skip">
+      <a href="#134" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                13.1 导言
+                13.4 自适应的最近邻方法
               </span>
             
           
@@ -290,7 +290,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="index.html" title="下篇" class="md-tabs__link md-tabs__link--active">
+        <a href="../13.1-Introduction/index.html" title="下篇" class="md-tabs__link md-tabs__link--active">
           下篇
         </a>
       
@@ -2102,20 +2102,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="index.html" title="13.1 导言" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../13.1-Introduction/index.html" title="13.1 导言" class="md-nav__link">
       13.1 导言
     </a>
-    
   </li>
 
         
@@ -2125,7 +2116,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../13.2 Prototype Methods/index.html" title="13.2 原型方法" class="md-nav__link">
+    <a href="../13.2-Prototype-Methods/index.html" title="13.2 原型方法" class="md-nav__link">
       13.2 原型方法
     </a>
   </li>
@@ -2137,7 +2128,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../13.3 k-Nearest-Neighbor Classifiers/index.html" title="13.3 k最近邻分类器" class="md-nav__link">
+    <a href="../13.3-k-Nearest-Neighbor-Classifiers/index.html" title="13.3 k最近邻分类器" class="md-nav__link">
       13.3 k最近邻分类器
     </a>
   </li>
@@ -2147,11 +2138,60 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../13.4 Adaptive Nearest-Neighbor Methods/index.html" title="13.4 自适应的最近邻方法" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        13.4 自适应的最近邻方法
+      </label>
+    
+    <a href="index.html" title="13.4 自适应的最近邻方法" class="md-nav__link md-nav__link--active">
       13.4 自适应的最近邻方法
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="例子" class="md-nav__link">
+    例子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="最近邻的全局维度降低" class="md-nav__link">
+    最近邻的全局维度降低
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -2161,7 +2201,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../13.5 Computational Considerations/index.html" title="13.5 计算上的考虑" class="md-nav__link">
+    <a href="../13.5-Computational-Considerations/index.html" title="13.5 计算上的考虑" class="md-nav__link">
       13.5 计算上的考虑
     </a>
   </li>
@@ -2173,7 +2213,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3058,6 +3098,33 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="例子" class="md-nav__link">
+    例子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="最近邻的全局维度降低" class="md-nav__link">
+    最近邻的全局维度降低
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3069,7 +3136,7 @@
               
                 
                 
-                <h1 id="131">13.1 导言<a class="headerlink" href="#131" title="Permanent link">&para;</a></h1>
+                <h1 id="134">13.4 自适应最近邻方法<a class="headerlink" href="#134" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3084,19 +3151,51 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-01-28</td>
-</tr>
-<tr>
-<td>更新</td>
-<td>2017-08-28&amp;2018-01-26</td>
+<td>2017-08-29&amp; 2018-01-26</td>
 </tr>
 <tr>
 <td>状态</td>
-<td>Done</td>
+<td>In Progress</td>
 </tr>
 </tbody>
 </table>
-<p>这章中我们讨论一些简单的、而且本质上不取决于具体模型的，并且适用于分类和模式识别的方法。因为它们的高度无结构性(highly unstructured)，所以一般地对理解特征和类别结果之间的本质关系也没有作用。然而，作为一种黑箱(black box)的预测器，它们可以很有效，而且在实际数据问题中的表现经常最好的。最近邻技巧也可以用于回归，这在第2章有提到而且对于低维问题效果很好。然而，对于高维特征，最近邻回归中偏差和方差之间的权衡不再表现得像在分类中那样好。</p>
+<p>当在高维特征空间中做最近邻分类时，最近邻的点可以非常远，导致偏差，并且降低了分类的效果。</p>
+<p>为了定量化这一点，考虑在单位立方体$[-\frac{1}{2},\frac{1}{2}]^p$中均匀分布的数据点。令$R$为中心在原点的1-最近邻的半径。则</p>
+<p>
+<script type="math/tex; mode=display">
+\text{median(R)} = v_p^{-\frac{1}{p}}(1-\frac{1}{2}^{1/N})^{1/p}\qquad (13.7)
+</script>
+</p>
+<p>其中$v_pr^p$是在$p$维空间半径为$r$的球的体积。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：推导(13.7)</p>
+<p>记$X$为离原点的距离，根据点的均匀分布知
+<script type="math/tex; mode=display">
+F(X) = P(X<x)=v_pr^p
+</script>
+考虑次序统计量$X_{(1)}$，即原点的1最近邻点，则
+<script type="math/tex; mode=display">
+F_1(x)=P(X_{(1)}<x)=1-(1-F(x))^N
+</script>
+而中位数满足
+<script type="math/tex; mode=display">
+F_1(\mathrm{median}(R))=\frac 12
+</script>
+则
+<script type="math/tex; mode=display">
+\mathrm{median}=v_p^{-\frac 1p}\Big(1-{\frac 12}^{\frac 1N}\Big)^{1/p}
+</script>
+证毕。</p>
+</div>
+<p>图13.12显示了不同的训练样本大小和维度下半径的中位数。我们看到半径的中位数很快达到0.5，也就是到立方体的边的距离。</p>
+<p><img alt="" src="../../img/13/fig13.12.png" /></p>
+<p>这个问题我们可以怎么做呢？考虑图13.13的两个类别的情形。</p>
+<p><img alt="" src="../../img/13/fig13.13.png" /></p>
+<p>图中有两个特征，并且用圆形区域画出了查询点的最近邻。最近邻分类的隐含假设是类别概率在邻域内近似为常值，也因此简单的平均会得到不错的估计。然而，在这个例子中，只变化了水平方向上的类别概率。如果知道这些，我们将邻居拉伸为长方形区域。这会降低估计的偏差，同时方差不变。</p>
+<p>一般地，这导致了对最近邻分类中使用的度量的自适应更新，所以得到的邻域在类别不会改变太多的方向上进行了拉伸。在高维特征空间中，类别概率可能仅仅需要在一个低维的子空间中有所改变，因此自适应度量是很重要的优点。</p>
+<p>TODO</p>
+<h2 id="_1">例子<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_2">最近邻的全局维度降低<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
                 
                   
                 
@@ -3128,7 +3227,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/Bibliographic-Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../13.3-k-Nearest-Neighbor-Classifiers/index.html" title="13.3 k最近邻分类器" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3137,19 +3236,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                文献笔记
+                13.3 k最近邻分类器
               </span>
             </div>
           </a>
         
         
-          <a href="../13.2 Prototype Methods/index.html" title="13.2 原型方法" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../13.5-Computational-Considerations/index.html" title="13.5 计算上的考虑" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                13.2 原型方法
+                13.5 计算上的考虑
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

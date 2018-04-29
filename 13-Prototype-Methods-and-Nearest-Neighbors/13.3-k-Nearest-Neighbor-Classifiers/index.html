@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记、代码实现以及习题解答">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/13 Prototype Methods and Nearest-Neighbors/13.4 Adaptive Nearest-Neighbor Methods/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/13-Prototype-Methods-and-Nearest-Neighbors/13.3-k-Nearest-Neighbor-Classifiers/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>13.4 自适应的最近邻方法 - ESL CN</title>
+        <title>13.3 k最近邻分类器 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#134" tabindex="1" class="md-skip">
+      <a href="#133-k" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                13.4 自适应的最近邻方法
+                13.3 k最近邻分类器
               </span>
             
           
@@ -290,7 +290,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../13.1 Introduction/index.html" title="下篇" class="md-tabs__link md-tabs__link--active">
+        <a href="../13.1-Introduction/index.html" title="下篇" class="md-tabs__link md-tabs__link--active">
           下篇
         </a>
       
@@ -2104,7 +2104,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../13.1 Introduction/index.html" title="13.1 导言" class="md-nav__link">
+    <a href="../13.1-Introduction/index.html" title="13.1 导言" class="md-nav__link">
       13.1 导言
     </a>
   </li>
@@ -2116,20 +2116,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../13.2 Prototype Methods/index.html" title="13.2 原型方法" class="md-nav__link">
+    <a href="../13.2-Prototype-Methods/index.html" title="13.2 原型方法" class="md-nav__link">
       13.2 原型方法
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../13.3 k-Nearest-Neighbor Classifiers/index.html" title="13.3 k最近邻分类器" class="md-nav__link">
-      13.3 k最近邻分类器
     </a>
   </li>
 
@@ -2149,11 +2137,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        13.4 自适应的最近邻方法
+        13.3 k最近邻分类器
       </label>
     
-    <a href="index.html" title="13.4 自适应的最近邻方法" class="md-nav__link md-nav__link--active">
-      13.4 自适应的最近邻方法
+    <a href="index.html" title="13.3 k最近邻分类器" class="md-nav__link md-nav__link--active">
+      13.3 k最近邻分类器
     </a>
     
       
@@ -2167,15 +2155,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="例子" class="md-nav__link">
-    例子
+  <a href="#_1" title="例子： 比较研究" class="md-nav__link">
+    例子： 比较研究
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="最近邻的全局维度降低" class="md-nav__link">
-    最近邻的全局维度降低
+  <a href="#k-" title="例子： k-最近邻和图象分类" class="md-nav__link">
+    例子： k-最近邻和图象分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="不变量和切线距离" class="md-nav__link">
+    不变量和切线距离
   </a>
   
 </li>
@@ -2201,7 +2196,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../13.5 Computational Considerations/index.html" title="13.5 计算上的考虑" class="md-nav__link">
+    <a href="../13.4-Adaptive-Nearest-Neighbor-Methods/index.html" title="13.4 自适应的最近邻方法" class="md-nav__link">
+      13.4 自适应的最近邻方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../13.5-Computational-Considerations/index.html" title="13.5 计算上的考虑" class="md-nav__link">
       13.5 计算上的考虑
     </a>
   </li>
@@ -2213,7 +2220,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3102,15 +3109,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="例子" class="md-nav__link">
-    例子
+  <a href="#_1" title="例子： 比较研究" class="md-nav__link">
+    例子： 比较研究
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="最近邻的全局维度降低" class="md-nav__link">
-    最近邻的全局维度降低
+  <a href="#k-" title="例子： k-最近邻和图象分类" class="md-nav__link">
+    例子： k-最近邻和图象分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="不变量和切线距离" class="md-nav__link">
+    不变量和切线距离
   </a>
   
 </li>
@@ -3136,7 +3150,7 @@
               
                 
                 
-                <h1 id="134">13.4 自适应最近邻方法<a class="headerlink" href="#134" title="Permanent link">&para;</a></h1>
+                <h1 id="133-k">13.3 k最近邻分类器<a class="headerlink" href="#133-k" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3151,7 +3165,7 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-08-29&amp; 2018-01-26</td>
+<td>2017-08-28&amp;2018-01-26</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3159,43 +3173,76 @@
 </tr>
 </tbody>
 </table>
-<p>当在高维特征空间中做最近邻分类时，最近邻的点可以非常远，导致偏差，并且降低了分类的效果。</p>
-<p>为了定量化这一点，考虑在单位立方体$[-\frac{1}{2},\frac{1}{2}]^p$中均匀分布的数据点。令$R$为中心在原点的1-最近邻的半径。则</p>
+<p>这些分类器是基于存储的(memory-based)，并且不需要拟合模型。给定查询点$x_0$，找到$k$个距离$x_0$最近的训练点$x_{(r)}, r=1,\ldots,k$，接着在这$k$个最近邻中采用多数服从少数的方法进行分类。Ties are broken at random。为了简便起见，假设所有的特征是实值的，我们在特征空间中采用欧氏距离</p>
 <p>
 <script type="math/tex; mode=display">
-\text{median(R)} = v_p^{-\frac{1}{p}}(1-\frac{1}{2}^{1/N})^{1/p}\qquad (13.7)
+d_{(i)} = \Vert x_{(i)} - x_0\Vert \qquad (13.1)
 </script>
 </p>
-<p>其中$v_pr^p$是在$p$维空间半径为$r$的球的体积。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注：推导(13.7)</p>
-<p>记$X$为离原点的距离，根据点的均匀分布知
+<p>一般地，首先对每个特征进行标准化使得均值为0方差为1，因为它们可能是在不同的尺度下的测量值。在第14章中，我们讨论适用与定性变量和有序变量的距离度量，以及对于混合数据怎样将它们结合起来。自适应的距离度量将在下一节中讨论。</p>
+<p><img alt="" src="../../img/13/fig13.3.png" /></p>
+<p>尽管k最近邻很简单，但是在大量的分类问题中取得了成功，包括手写字体，卫星图象以及EKG模式。当每个类别有许多可能的原型时，并且判别边界非常不规则，通常会取得成功。图13.3的上图显示了对3个类别的模拟例子应用15最近邻分类器的结果。这个判别边界比下半图的1-最近邻分类器要光滑。最近邻和原型方法有着紧密的联系，在1-最近邻分类中，每个训练点就是一个原型。</p>
+<p>图13.4显示了两个类别的混合问题中，训练误差、测试误差以及10折交叉验证误差关于邻居大小的函数图象。因为10折CV误差是10个数据的平均，因此我们可以估计标准误差。</p>
+<p><img alt="" src="../../img/10/fig13.4.png" /></p>
+<p>因为最近邻仅仅用到离查询点近的训练点，1-最近邻的偏差通常很低，但是方差很高。Cover and Hart(1967)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>证明了一个很著名的结果，1-最近邻分类器的误差率渐近地不会高于两倍的贝叶斯误差率。证明的大致思想如下（采用平方误差损失）。假设查询点刚好与其中一个训练点重合，则偏差为0。如果特征空间的维数固定，且训练数据密集地充满空间。则贝叶斯误差恰恰是Bernoulli随机变量的方差，而1-最近邻的误差是Bernoulli随机变量方差的两倍，对训练和查询目标各自贡献了一份。</p>
+<p>对于误分类损失，我们下面给出更多的细节。令$k^*$为$x$点处的优势类别，而$p_k(x)$是类别$k$的真实条件概率。则</p>
+<p>
 <script type="math/tex; mode=display">
-F(X) = P(X<x)=v_pr^p
+\text{Bayes error} = 1-p_{k^*}(x)\qquad (13.2)
 </script>
-考虑次序统计量$X_{(1)}$，即原点的1最近邻点，则
+</p>
+<p>
 <script type="math/tex; mode=display">
-F_1(x)=P(X_{(1)}<x)=1-(1-F(x))^N
+\begin{array}{ll}
+\text{1-nearest-neighbor error}&=\sum\limits_{k=1}^Kp_k(x)(1-p_k(x))\qquad (13.3)\\
+&\ge 1-p_{k^*}(x)\qquad (13.4)
+\end{array}
 </script>
-而中位数满足
+</p>
+<p>渐进的1-最近邻误差率是一个随机规则；我们以概率$p_k(x),k=1,\ldots,K$随机选择类别和测试点。对于$K=2$，1-最近邻误差率为$2p_{k^*}(x)(1-p_{k^*}(x))\le 2(1-p_{k^*}(x))$(两倍的贝叶斯误差率)。更一般地，可以证明</p>
+<p>
 <script type="math/tex; mode=display">
-F_1(\mathrm{median}(R))=\frac 12
+\sum\limits_{k=1}^Kp_k(x)(1-p_k(x))\le 2(1-p_{k*}(x))-\frac{K}{K-1}(1-p_{k^*}(x))^2\qquad (13.5)
 </script>
-则
+</p>
+<p>可以导出更多这种形式的结果；Ripley(1996)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>总结了其中的一些。</p>
+<p>这个结果可以提供在给定问题中最优的效果的大致思路。举个例子，如果1-最近邻有$10\%$的误差率，则渐近情况下贝叶斯误差率至少为$5%$。这里是渐近情形，它假设最近邻的偏差为0。在实际问题中，偏差可能很大。本章后面讨论的自适应最近邻试图减去这种偏差的影响。对于简单的最近邻，在给定的问题中，偏差和方差可以决定最优的最近邻个数。在下面的例子中会解释。</p>
+<h2 id="_1">例子： 比较研究<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>我们在两个模拟问题中比较了最近邻，k均值和LVQ分类器。有10个独立的特征$X_j$，每个都是[0,1]上的均匀分布。两类别的0-1目标变量由下式子定义：</p>
+<p>
 <script type="math/tex; mode=display">
-\mathrm{median}=v_p^{-\frac 1p}\Big(1-{\frac 12}^{\frac 1N}\Big)^{1/p}
+\begin{align}
+Y&=I(X_1\ge \frac 12);\qquad\text{problem 1: easy}\\
+Y&=I(\sign\{\prod\limits_{j=1}^3(X_j-\frac 12)\}>0);\qquad \text{problem 2: difficult}
+\end{align}
+\qquad (13.6)
 </script>
-证毕。</p>
-</div>
-<p>图13.12显示了不同的训练样本大小和维度下半径的中位数。我们看到半径的中位数很快达到0.5，也就是到立方体的边的距离。</p>
-<p><img alt="" src="../../img/13/fig13.12.png" /></p>
-<p>这个问题我们可以怎么做呢？考虑图13.13的两个类别的情形。</p>
-<p><img alt="" src="../../img/13/fig13.13.png" /></p>
-<p>图中有两个特征，并且用圆形区域画出了查询点的最近邻。最近邻分类的隐含假设是类别概率在邻域内近似为常值，也因此简单的平均会得到不错的估计。然而，在这个例子中，只变化了水平方向上的类别概率。如果知道这些，我们将邻居拉伸为长方形区域。这会降低估计的偏差，同时方差不变。</p>
-<p>一般地，这导致了对最近邻分类中使用的度量的自适应更新，所以得到的邻域在类别不会改变太多的方向上进行了拉伸。在高维特征空间中，类别概率可能仅仅需要在一个低维的子空间中有所改变，因此自适应度量是很重要的优点。</p>
+</p>
+<p>因此在第一个问题中，两个类别被超平面$X_1=\frac 12$分离开；在第二个问题中，两个类别被前三个特征定义的超立体形成了跳棋盘(checkerboard)。这两个问题的贝叶斯误差率都是0。有100个训练观测和100个测试观测。</p>
+<p><img alt="" src="../../img/13/fig13.5.png" /></p>
+<p>图13.5展示了最近邻、K均值和LVQ当调整参数变化的10次实现中的误分类误差的均值和标准误差。我们看到K均值和LVQ给出了几乎相近的结果。在调整参数的最优选择下，K均值和LVQ在第一个问题上都比最近邻要好，并且在第二个问题上它们表现很相似。注意到每个调整参数的最优值在不同情形是不同的。举个例子，在第一个问题中，25最近邻比1最近邻好70%，而在第二个例子中1最近邻比25最近邻好18%。这些结果强调了采用客观的、基于数据的方法的重要性，比如用交叉验证来估计调整参数的最优值（见图13.4和第7章）。</p>
+<h2 id="k-">例子： k-最近邻和图象分类<a class="headerlink" href="#k-" title="Permanent link">&para;</a></h2>
 <p>TODO</p>
-<h2 id="_1">例子<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h2 id="_2">最近邻的全局维度降低<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../../img/13/fig13.6.png" /></p>
+<p><img alt="" src="../../img/13/fig13.7.png" /></p>
+<p><img alt="" src="../../img/13/fig13.8.png" /></p>
+<h2 id="_2">不变量和切线距离<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../../img/13/fig13.9.png" /></p>
+<p><img alt="" src="../../img/13/fig13.10.png" /></p>
+<p><img alt="" src="../../img/13/fig13.11.png" /></p>
+<p><img alt="" src="../../img/13/tab13.1.png" /></p>
+<p>TODO</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Cover, T. and Hart, P. (1967). Nearest neighbor pattern classification, IEEE Transactions on Information Theory IT-11: 21–27.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Ripley, B. D. (1996). Pattern Recognition and Neural Networks, Cambridge University Press.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
@@ -3227,7 +3274,7 @@ F_1(\mathrm{median}(R))=\frac 12
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../13.3 k-Nearest-Neighbor Classifiers/index.html" title="13.3 k最近邻分类器" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../13.2-Prototype-Methods/index.html" title="13.2 原型方法" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3236,19 +3283,19 @@ F_1(\mathrm{median}(R))=\frac 12
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                13.3 k最近邻分类器
+                13.2 原型方法
               </span>
             </div>
           </a>
         
         
-          <a href="../13.5 Computational Considerations/index.html" title="13.5 计算上的考虑" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../13.4-Adaptive-Nearest-Neighbor-Methods/index.html" title="13.4 自适应的最近邻方法" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                13.5 计算上的考虑
+                13.4 自适应的最近邻方法
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
