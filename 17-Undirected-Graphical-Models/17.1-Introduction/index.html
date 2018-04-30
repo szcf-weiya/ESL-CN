@@ -3088,20 +3088,31 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-08-26</td>
+<td>2017-08-26; 2018-04-30</td>
 </tr>
 </tbody>
 </table>
-<p>图包含顶点集合（结点），以及连接顶点对的边的集合。在图模型中，每个顶点表示随机变量，并且图给出了理解整个随机变量联合分布的可视化方式。对于监督学习和非监督学习它们都是很有用的。在无向图中，边是没有方向的。我们仅限于讨论无向图模型，也称作马尔科夫随机域（Markov random fields）或者马尔科夫网络（Markov networks）。在这些图中，两个顶点之间缺失一条边有着特殊的含义：对应的随机变量是在给定其它变量下是条件独立的。</p>
-<p>图17.1显示了图模型的一个例子，是$p=11$个蛋白质在$N=7466$个细胞中的flow-cytometry数据集，取自Sachs等人（2003）的工作。图中的每一个顶点对应蛋白质表达水平的真实值。网络结构是在假定多元高斯分布情况下利用本章后面将要讨论的graphical lasso过程估计得到的。</p>
+<p>图包含顶点集合（结点），以及连接顶点对的边的集合。在图模型中，每个顶点表示随机变量，并且图给出了理解整个随机变量联合分布的可视化方式。对于监督学习和非监督学习它们都是很有用的。在无向图中，边是没有方向的。我们仅限于讨论无向图模型，也称作<strong>马尔科夫随机域 (Markov random fields)</strong> 或者<strong>马尔科夫网络 (Markov networks)</strong>。在这些图中，两个顶点之间缺失一条边有着特殊的含义：对应的随机变量是在给定其它变量下是条件独立的。</p>
+<p>图 17.1 显示了图模型的一个例子，这是 $p=11$ 个蛋白质在 $N=7466$ 个细胞中的 <code>flow-cytometry</code> 数据集，取 Sachs et. al (2005)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。图中的每一个顶点对应蛋白质表达水平的真实值。网络结构是在假定多元高斯分布情况下利用本章后面将要讨论的 graphical lasso 过程估计得到的。</p>
 <p><img alt="" src="../../img/17/fig17.1.png" /></p>
 <blockquote>
-<p>图17.1. 稀疏无向图的例子，从flow-cytometry数据集中估计得到，含有$p=11$个蛋白质在$N=7466$个细胞中的测量值。网络结构是通过本章后面将要讨论的图lasso过程进行估计的。</p>
+<p>图 17.1. 稀疏无向图的例子，从 <code>flow-cytometry</code> 数据集中估计得到，含有 $p=11$ 个蛋白质在 $N=7466$ 个细胞中的测量值。网络结构是通过本章后面将要讨论的图 lasso 过程进行估计的。</p>
 </blockquote>
 <p>稀疏图有相对少的边数，而且非常方便来解读。在各种领域中都有用，包括基因和蛋白质，其中它们提供了基因通路的大致模型。在定义和理解图模型上做了很多工作，参见文献笔记。</p>
-<p>正如我们将要看到的，图中的边用值或者势（potential）参量化，来表示在对应顶点上的随机变量之间的条件依赖性的强度大小。采用图模型的主要挑战是模型选择（选择图的结构），从数据来估计边的参数，并且从联合分布中计算边缘顶点的概率和期望。后两个任务在计算机科学中有时被称作学习（learning）和推断（inference）。</p>
-<p>我们不去试图全面地了解这个有趣的领域。相反地，仅仅介绍一些基本的概念，并且讨论一些估计参数和无向图结构的简单方法；涉及这些技巧的方法已经在本书中讨论了。我们介绍的的估计方式对于连续值和离散值的顶点的情形是不同的，所以我们分别对待它们。17.3.1和17.3.2节可能是特别有意义的，因为描述全新的、基于回归的过程来估计图模型。</p>
-<p>关于有向图（directed graphical models）或者贝叶斯网络（Bayesian networks）有大量并且活跃(active)的文献；这是边有方向箭头（但是没有有向环）的图模型。有向图模型表示可以分解成条件分布乘积的概率分布，并且有解释因果关系的潜力。作者建议我们读Wasserman(2004)的工作来对无向图和有向图的综述；下一节与18章联系很紧密。更多有用的参考文献在p645的文献笔记中给出。</p>
+<p>正如我们将要看到的，图中的边用值或者势 (potential) 参量化，来表示在对应顶点上的随机变量之间的条件依赖性的强度大小。采用图模型的主要挑战是模型选择（选择图的结构），从数据来估计边的参数，并且从联合分布中计算边缘顶点的概率和期望。后两个任务在计算机科学中有时被称作学习（learning）和推断（inference）。</p>
+<p>我们不去试图全面地了解这个有趣的领域。相反地，仅仅介绍一些基本的概念，并且讨论一些估计参数和无向图结构的简单方法；涉及这些技巧的方法已经在本书中讨论了。我们介绍的的估计方式对于连续值和离散值的顶点的情形是不同的，所以我们分别对待它们。17.3.1 和 17.3.2 节可能是特别有意义的，因为描述全新的、基于回归的过程来估计图模型。</p>
+<p>关于<strong>有向图 (directed graphical models)</strong> 或者<strong>贝叶斯网络 (Bayesian networks)</strong> 有大量并且活跃(active)的文献；这是边有方向箭头（但是没有有向环）的图模型。有向图模型表示可以分解成条件分布乘积的概率分布，并且有解释因果关系的潜力。作者建议我们读 Wasserman (2004)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 来对无向图和有向图的综述；下一节与 18 章联系很紧密。更多有用的参考文献在文献笔记中给出。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Sachs, K., Perez, O., Pe’er, D., Lauffenburger, D. and Nolan, G. (2005). Causal protein-signaling networks derived from multiparameter singlecell data, Science 308: 523–529.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Wasserman, L. (2004). All of Statistics: a Concise Course in Statistical Inference, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
