@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记、代码实现以及习题解答">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/17-Undirected-Graphical-Models/17.4-Undirected-Graphical-Models-for-Discrete-Variables/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>17.4 离散变量的无向图模型 - ESL CN</title>
+        <title>9.2 基于树的方法 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#174" tabindex="1" class="md-skip">
+      <a href="#92-cart" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                17.4 离散变量的无向图模型
+                9.2 基于树的方法
               </span>
             
           
@@ -1208,10 +1208,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       中篇
@@ -1551,10 +1553,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
     
     <label class="md-nav__link" for="nav-3-3">
       9 增广模型，树，以及相关方法
@@ -1572,7 +1576,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.0-Introduction/index.html" title="9.0 导言" class="md-nav__link">
+    <a href="../9.0-Introduction/index.html" title="9.0 导言" class="md-nav__link">
       9.0 导言
     </a>
   </li>
@@ -1584,7 +1588,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
+    <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-nav__link">
       9.1 广义可加模型
     </a>
   </li>
@@ -1594,11 +1598,150 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html" title="9.2 基于树的方法" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        9.2 基于树的方法
+      </label>
+    
+    <a href="index.html" title="9.2 基于树的方法" class="md-nav__link md-nav__link--active">
       9.2 基于树的方法
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="背景" class="md-nav__link">
+    背景
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="回归树" class="md-nav__link">
+    回归树
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="分类树" class="md-nav__link">
+    分类树
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="其他的问题" class="md-nav__link">
+    其他的问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="类别型预报变量" class="md-nav__link">
+    类别型预报变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="损失矩阵" class="md-nav__link">
+    损失矩阵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="缺失预报变量的值" class="md-nav__link">
+    缺失预报变量的值
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="为什么二值分割？" class="md-nav__link">
+    为什么二值分割？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="其他建树的过程" class="md-nav__link">
+    其他建树的过程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="线性组合分割" class="md-nav__link">
+    线性组合分割
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="树的不稳定性" class="md-nav__link">
+    树的不稳定性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" title="缺乏光滑性" class="md-nav__link">
+    缺乏光滑性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="捕捉加性结构的困难" class="md-nav__link">
+    捕捉加性结构的困难
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" title="垃圾邮件的例子（继续）" class="md-nav__link">
+    垃圾邮件的例子（继续）
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1608,7 +1751,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.3-PRIM/index.html" title="9.3 PRIM" class="md-nav__link">
+    <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-nav__link">
       9.3 PRIM
     </a>
   </li>
@@ -1620,7 +1763,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.4-MARS/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
+    <a href="../9.4-MARS/index.html" title="9.4 多变量自适应回归样条" class="md-nav__link">
       9.4 多变量自适应回归样条
     </a>
   </li>
@@ -1632,7 +1775,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的分层混合" class="md-nav__link">
+    <a href="../9.5-Hierarchical-Mixtures-of-Experts/index.html" title="9.5 专家的分层混合" class="md-nav__link">
       9.5 专家的分层混合
     </a>
   </li>
@@ -1644,7 +1787,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.6-Missing-Data/index.html" title="9.6 缺失数据" class="md-nav__link">
+    <a href="../9.6-Missing-Data/index.html" title="9.6 缺失数据" class="md-nav__link">
       9.6 缺失数据
     </a>
   </li>
@@ -1656,7 +1799,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.7-Computational-Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
+    <a href="../9.7-Computational-Considerations/index.html" title="9.7 计算上的考虑" class="md-nav__link">
       9.7 计算上的考虑
     </a>
   </li>
@@ -1668,7 +1811,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../09-Additive-Models-Trees-and-Related-Methods/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2060,12 +2203,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       下篇
@@ -2489,12 +2630,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
     
     <label class="md-nav__link" for="nav-4-5">
       17 无向图模型
@@ -2512,7 +2651,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../17.1-Introduction/index.html" title="17.1 导言" class="md-nav__link">
+    <a href="../../17-Undirected-Graphical-Models/17.1-Introduction/index.html" title="17.1 导言" class="md-nav__link">
       17.1 导言
     </a>
   </li>
@@ -2524,7 +2663,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../17.2-Markov-Graphs-and-Their-Properties/index.html" title="17.2 马尔科夫图及其性质" class="md-nav__link">
+    <a href="../../17-Undirected-Graphical-Models/17.2-Markov-Graphs-and-Their-Properties/index.html" title="17.2 马尔科夫图及其性质" class="md-nav__link">
       17.2 马尔科夫图及其性质
     </a>
   </li>
@@ -2536,7 +2675,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../17.3-Undirected-Graphical-Models-for-Continuous-Variables/index.html" title="17.3 连续变量的无向图模型" class="md-nav__link">
+    <a href="../../17-Undirected-Graphical-Models/17.3-Undirected-Graphical-Models-for-Continuous-Variables/index.html" title="17.3 连续变量的无向图模型" class="md-nav__link">
       17.3 连续变量的无向图模型
     </a>
   </li>
@@ -2546,74 +2685,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        17.4 离散变量的无向图模型
-      </label>
-    
-    <a href="index.html" title="17.4 离散变量的无向图模型" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../17-Undirected-Graphical-Models/17.4-Undirected-Graphical-Models-for-Discrete-Variables/index.html" title="17.4 离散变量的无向图模型" class="md-nav__link">
       17.4 离散变量的无向图模型
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="当图结构已知时估计参数" class="md-nav__link">
-    当图结构已知时估计参数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="隐藏结点" class="md-nav__link">
-    隐藏结点
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="图结构的估计" class="md-nav__link">
-    图结构的估计
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="限制玻尔兹曼机" class="md-nav__link">
-    限制玻尔兹曼机
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -2623,7 +2699,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../../17-Undirected-Graphical-Models/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3116,29 +3192,105 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="当图结构已知时估计参数" class="md-nav__link">
-    当图结构已知时估计参数
+  <a href="#_1" title="背景" class="md-nav__link">
+    背景
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="隐藏结点" class="md-nav__link">
-    隐藏结点
+  <a href="#_2" title="回归树" class="md-nav__link">
+    回归树
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="图结构的估计" class="md-nav__link">
-    图结构的估计
+  <a href="#_3" title="分类树" class="md-nav__link">
+    分类树
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="限制玻尔兹曼机" class="md-nav__link">
-    限制玻尔兹曼机
+  <a href="#_4" title="其他的问题" class="md-nav__link">
+    其他的问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="类别型预报变量" class="md-nav__link">
+    类别型预报变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="损失矩阵" class="md-nav__link">
+    损失矩阵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="缺失预报变量的值" class="md-nav__link">
+    缺失预报变量的值
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="为什么二值分割？" class="md-nav__link">
+    为什么二值分割？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="其他建树的过程" class="md-nav__link">
+    其他建树的过程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="线性组合分割" class="md-nav__link">
+    线性组合分割
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="树的不稳定性" class="md-nav__link">
+    树的不稳定性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" title="缺乏光滑性" class="md-nav__link">
+    缺乏光滑性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="捕捉加性结构的困难" class="md-nav__link">
+    捕捉加性结构的困难
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" title="垃圾邮件的例子（继续）" class="md-nav__link">
+    垃圾邮件的例子（继续）
   </a>
   
 </li>
@@ -3164,7 +3316,7 @@
               
                 
                 
-                <h1 id="174">17.4 离散变量的无向图模型<a class="headerlink" href="#174" title="Permanent link">&para;</a></h1>
+                <h1 id="92-cart">9.2 基于树的方法(CART)<a class="headerlink" href="#92-cart" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3179,149 +3331,158 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-25:2017-02-26</td>
+<td>2017-02-05</td>
 </tr>
 <tr>
-<td>时间</td>
-<td>2017-08-27</td>
+<td>更新</td>
+<td>2018-03-15</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
+<h2 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><strong>基于树 (Tree-based)</strong> 的方法将特征空间划分成一系列的长方形，然后对每个长方形拟合简单的模型（比如常数）。想法很简单但是很有用。我们首先描述一个基于树的回归和分类的方法，称为CART，后来与 C4.5 进行对比，这是它主要的一个对手。</p>
+<p>让我们考虑含连续响应变量 $Y$ 和输入变量 $X_1$ 和 $X_2$ 的回归问题，每个都在单位区间内取值。</p>
+<p><img alt="" src="../../img/09/fig9.2.png" /></p>
 <blockquote>
-<p>写在前面</p>
-<p>这一节中我觉得最有应用价值的是RBM，这跟深度学习很相关，在LISA lab, University of Montreal编的那本Deep Learning Tutorial (Release 0.1) 中，有一节就是将如何用RBM做手写数字识别。那段程序大概六个月前就已经接触了，但一直没搞清楚它在干嘛<img alt="😞" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f61e.svg" title=":disappointed:" />。其实，本节最后作者提到的用RBM做手写数字识别中的某一步其实就是那段程序干的事情。事实上，那段程序并没有真正地完成识别问题，仅仅是其中的一步——“采用对比发散训练包含784个可见单元和500个隐藏单元的RBM，来建立图像集的模型”，后续步骤还应该有“将这个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征，并且用上标签数据。” 或许，这导致当时没有理解程序所要完成的目标的原因吧<img alt="😖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f616.svg" title=":confounded:" />  </p>
-<p>程序可以在<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/rbm">这里</a> 中找到，或者参考<a href="http://deeplearning.net/tutorial/deeplearning.pdf">官方教程</a>。</p>
-<p>另外，在我的<a href="https://stats.hohoweiya.xyz//statisticallearning/2017/08/17/Restricted-Boltzmann-Machines/">英文博客</a>中有RBM的简要总结，欢迎提出宝贵建议<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" />
-@2017.08.27</p>
+<p>图9.2. 划分和CART。右上图显示了二维特征空间被一些模拟的值进行递归二值分割得到的一个划分，就像CART中使用的那样。左上图显示了一个不能通过递归二分得到的一般划分。左下图吓屎了对应右上图划分的树，右下图则画出了预测平面的透视图。</p>
 </blockquote>
-<p>离散变量的无向马尔科夫网络是很流行的，而且特别地，二值变量的成对马尔科夫网络更普遍。在统计力学领域有时称为Ising模型，在机器学习领域称为玻尔兹曼机 (Boltzmann machines)，其中顶点称为“结点(nodes)”或“单元(units)”，而且是取两个值的。</p>
-<p>另外，每个结点处的值可以被观测到(visible)或者观测不到 (hidden)。结点通常以层来组织，类似神经网络。玻尔兹曼机对于非监督学习和监督学习都是很有用的，特别对有结构化输入数据，比如图像，但是也受到计算上的限制。图17.6显示了一个约束的玻尔兹曼机（后面讨论），其中一些变量是隐藏的，而且只有一些结点对是相连的。我们所有$p$个结点都是可见的简单情形，并且边的对$(j,k)$取自$E$。</p>
-<p>用$X_j$标记结点$j$的二值变量，它们联合分布的Ising模型由下式给出
-<script type="math/tex; mode=display">
-p(X,\mathbf\Theta)=exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\Theta})]\text{  for  }X\in{\cal X}\qquad (17.28)
-</script>
-其中${\cal X}=\{0,1\}^p$。和上一节的高斯模型一样，只有成对交叉项才进行建模。Ising 模型是在统计力学中发展的，而且现在更一般地用来建立成对交叉的联合影响。$\Phi\mathbf{(\Theta)}$为分割函数的对数，而且由下式定义
-<script type="math/tex; mode=display">
-\Phi(\mathbf \Theta)=\mathrm{log}\sum\limits_{x\in\cal X}[\mathrm {exp}(\sum\limits_{(j,k)\in E}\theta_{jk}x_jx_k)]\qquad (17.29)
-</script>
-</p>
-<p>分割函数保证在样本空间中概率相加起来为1。$\theta_{jk}X_jX_k$项表示（对数）势函数（17.5）的特定参量化，而且因为技术上的原因需要包含常数结点$X_0\equiv 1$（练习17.10），与其他结点都有边相连。在统计领域中，这个模型等价于多路计算表（multiway tables of counts）的一阶交叉泊松对数线性模型（Bishop等人，1975；McCullagh和Nelder,1989;Agresti，2002）。</p>
-<p>Ising模型表示每个结点在其它结点条件下的逻辑斯蒂形式（练习17.11）
-<script type="math/tex; mode=display">
-Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta_{jk}x_k}\qquad (17.30)
-</script>
-其中$X_{-j}$记除了$j$的所有结点。因此参数$\theta_{jk}$衡量了在给定其它结点条件下，$X_j$在$X_k$上的依赖性。</p>
-<h2 id="_1">当图结构已知时估计参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>从模型中给出一些数据，我们可以怎么估计参数？假设我们有观测$x_i=(x_{i1},x_{i2},\ldots,x_{ip})\in\{0,1\}^p,i=1,\ldots,N$。对数似然为
-<script type="math/tex; mode=display">
-\begin{align}
-\ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\mathrm{log\; Pr}_{\mathbf\Theta}(X_i=x_i)\\
-&=\sum\limits_{i=1}^N\Big[\sum\limits_{(j,k)\in E}\theta_{jk}x_{ij}x_{ik}-\Phi(\mathbf\Theta) \Big]\qquad (17.31)
-\end{align}
-</script>
-对数似然的梯度为
-<script type="math/tex; mode=display">
-\frac{\partial\ell(\mathbf\Theta)}{\partial\theta_{jk}}=\sum\limits_{i=1}^Nx_{ij}x_{ik}-N\frac{\partial \Phi(\mathbf\Theta)}{\partial\theta_{jk}}\qquad (17.32)
-</script>
-并且
-<script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial \Phi(\mathbf\Theta)}{\partial \theta_{jk}}&=\sum\limits_{x\in\cal X}x_jx_k\cdot p(x,\mathbf\Theta)\\
-&=E_{\mathbf\Theta}(X_jX_k)\qquad (17.33)
-\end{align}
-</script>
-令梯度等于0得到
-<script type="math/tex; mode=display">
-\hat E(X_jX_k)-E_{\mathbf \Theta}(X_jX_k)=0\qquad (17.34)
-</script>
-其中我们定义
-<script type="math/tex; mode=display">
-\hat E(X_jX_k)=\frac{1}{N}\sum\limits_{i=1}^Nx_{ij}x_{ik}\qquad (17.35)
-</script>
-关于数据的期望分布取期望。注意(17.34)式，我们看到极大似然估计简单地把结点之间的内积估计和观测的内积匹配上了。这是指数族模型得分（梯度）等式的标准形式，令充分统计量等于模型下的期望。</p>
-<p>为了寻找极大似然估计，我们可以利用梯度搜索或者牛顿法。然而$E_{\mathbf \Theta}(X_jX_k)$涉及$p(X,\mathbf\Theta)$在$X$的$\vert{\cal X}\vert=2^p$种可能值中的$2^{p-2}$ （？？？）种情形的列举，而且对于大的$p$一般是不可行的（比如，大于30）。对于小$p$，有一系列标准的统计方法可以使用：</p>
-<ul>
-<li><strong>泊松对数线性建模</strong>， 我们将问题看成是大型回归问题（练习17.12）。响应变量$\mathbf y$是数据的多路表合的每个单元中的$2^p$个计数的向量。预测矩阵$\mathbf Z$有$2^p$个行，最多$1+p+p^2$个表征每个单元的列，尽管这个数字取决于图的稀疏程度。计算代价本质是该规模下回归问题的代价，计算代价为$O(p^42^p)$并且对于$p&lt;20$是可行的。牛顿更新一般通过迭代重赋权最小二乘发发类似计算，并且步数通常是在个位数之内。详见Agresti(2002)和McCullagh和Nelder(1989)。标准软件（比如R语言的glm包）可以用来拟合这个模型。</li>
-<li><strong>梯度下降</strong>至多需要$O(p^22^{p-2})$的计算量来计算梯度，但是可能回避二阶牛顿法需要更多的梯度步数。然而，可以处理$p\le 30$的稍微大点的问题。这些计算可以通过发现稀疏图中特别的团结构，采用junction-tree算法进行降低计算量。这里没有给出细节。</li>
-<li><strong>迭代比例过滤</strong>(IPF)在梯度式(17.34)中采用柱坐标系。每一步更新一个参数使得梯度等式正好为0。这在柱坐标系中进行直到所有梯度为0。一个完整的周期与梯度赋值花费同样的计算量，但是可能更有效。Jirouśek和Přeučil (1995)采用junction trees实现了IPF的一个有效版本。</li>
-</ul>
-<p>当$p$大（&gt;30）可以采用其它的方法来近似梯度</p>
-<ul>
-<li>均值域近似（Peterson和Anderson，1987）用$E_{\mathbf\Theta}(X_j)E_{\mathbf \Theta}(X_k)$来估计$E_{\Theta}(X_jX_k)$，并且将输入变量用它们的均值替换，得到一系列关于参数$\theta_{jk}$的非线性等式。</li>
-<li>为了得到近似解，使用吉布斯采样（8.6节）来近似$E_{\mathbf\Theta}(X_jX_k)$，通过从估计模型$Pr_{\mathbf\Theta}(X_j\mid X_{-j})$来逐步抽样（见Ripley(1996)）</li>
-</ul>
-<p>我们没有讨论可分解模型，因为极大似然估计不需要任何迭代可以在闭形式中找到。举个例子，这些模型来自树：截断树拓扑的特殊图。当要关心计算易处理性，树表示一个有用的模型类，并且它们回避本节中提出的计算上的考虑。详见Whittaker(1990)的第12章的例子。</p>
-<h2 id="_2">隐藏结点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>我们可以通过包含潜在或隐藏结点来增加离散马尔科夫网络的复杂性。假设变量的子集$X_{\cal H}$是未观测的或者“隐藏的”，并且剩余的变量$X_{\cal V}$是观测的或者“可见的”。则观测数据的对数似然为
-<script type="math/tex; mode=display">
-\begin{align}
-\ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\mathrm{log}[Pr_{\mathbf\Theta}(X_{\cal V}=x_{i\cal V})]\\
-&=\sum\limits_{i=1}^N[\mathrm{log}\sum\limits_{x_{\cal H}\in{\cal X_H}}exp\sum\limits_{(j,k)\in E}(\theta_{jk}x_{ij}x_{jk}-\Phi(\mathbf\Theta))]\qquad (17.36)
-\end{align}
-</script>
-对$x_{\cal H}$求和意味着我们对隐藏单元的所有可能${0,1}$值进行求和。梯度为
-<script type="math/tex; mode=display">
-\frac{d\ell(\mathbf\Theta)}{d\theta_{jk}}=\hat E_{\cal V}E_{\mathbf \Theta}(X_jX_k\mid X_{\cal V})-E_{\mathbf\Theta}(X_jX_k)\qquad (17.37)
-</script>
-第一项是当$X_jX_k$都可见是的经验均值；如果其中一个或都隐藏，则在给定可见数据下进行第一次插值，然后在隐藏变量上平均。第二项是$X_jX_k$的无条件期望。</p>
-<p>第一项中的内层期望可以用条件期望的基本法则和伯努利随机变量的性质进行赋值。具体地，对于观测$i$，
-<script type="math/tex; mode=display">
-E_{\mathbf\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V}) =
-\left\{
-\begin{array}{ll}
-x_{ij}x_{ik}& \text{if }j,k\in\cal V\\
-x_{ij}Pr_{\cal\mathbf\Theta}(X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j\in\cal V,k\in\cal H\\
-Pr_{\mathbf\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in{\cal H}(17.38)
-\end{array}
-\right.
-</script>
-现在需要进行两个独立的吉布斯采样；第一个是从上面的模型中采样估计$E_{\mathbf \Theta}(X_jX_k)$，第二个是估计$E_{\mathbf\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})$。对于后者，固定（“夹住”）可见单元为观测值，并且仅仅对隐藏变量进行取样。吉布斯采样必须对训练集中的每一个观测进行，在梯度搜索的每一阶段。结果是这个过程可以变得非常慢，甚至对于中等大小的模型也是如此。在17.4.4节我们考虑进一步的模型约束来使得计算可行。</p>
-<h2 id="_3">图结构的估计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Lee等人(2007)和Wainwright等人(2007)建议使用二值成对马尔科夫网络的lasso惩罚。第一个作者研究含惩罚的对数似然的精确最小化的共轭梯度过程。瓶颈是梯度中$E_{\mathbf\Theta}(X_jX_k)$的计算；通过junction tree 算法的精确计算对与稀疏图是可行的但是对稠密的图变得难以处理。</p>
-<p>第二个作者提出近似的解法，类似对于高斯图模型的Meinshausen和Bühlmann（2006）的方法。它们将每个结点看成其他结点的函数的$L_1$惩罚逻辑斯蒂回归，接着以某种方式对称边的参数。举个例子，如果$\hat\theta_{jk}$为从输出变量为结点$j$的逻辑斯蒂回归模型中得到的$j-k$边参数的估计，“最小”的对称化设定$\hat\theta_{jk}$为$\hat\theta_{jk}$或$\hat\theta_{kj}$中绝对值最小的，类似地定义“最大”准则。他们证明在确定条件下，随着样本大小变为无穷大，两种近似都估计正确的非零边。Hoefling和Tibshirani(2008)将图lasso扩大为离散马尔科夫网络，得到比共轭梯度稍快的过程，但是依旧必须处理$E_{\mathbf\Theta}(X_jX_k)$的计算。他们也在广泛的模拟研究中比较精确和近似解，并且找到“最小”和“最大”近似仅仅比精确解略微不精确，对于估计非零边和估计边参数的真实值都是这样，而且快很多。此外，他们可以处理稠密图的情形因为他们不需要计算$E_{\mathbf\Theta}(X_jX_k)$.</p>
-<p>最后，我们指出高斯和二值模型的关键区别。在高斯情况下，$\mathbf\Sigma$和其逆经常都是感兴趣的，而且图lasso过程都实现了这两个的估计。然而，Meinshausen和Bühlmann (2006)对于高斯图模型的近似类似Wainwright等人（2007）对二值情形的近似，仅仅得到$\mathbf\Sigma^{-1}$的估计。相反地，在二值数据的马尔科夫模型中，$\mathbf\Theta$是我们感兴趣的，而它的逆不是我们感兴趣的。Wainwright等人（2007）近似的方法有效地估计$\mathbf\Theta$，因此是二值问题的吸引人的解。</p>
-<h2 id="_4">限制玻尔兹曼机<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>这节我们考虑受神经网络影响的一种特殊的图模型结构，该结构中，单元是按层进行组织的。限制玻尔兹曼机(RBM)包含一层可见单元和一层隐藏单元，单层之间没有联系。如果隐藏单元的连接被移除掉，计算条件期望变得很简单（如17.37和17.38）。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya 注：<p>这样（17.38）式变成，对于观测$i$，
-<script type="math/tex; mode=display">
-E_{\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})=
-\left\{
-    \begin{array}{ll}
-    x_{ij}x_{ik}&\text{if }j,k\in\cal V\\
-    Pr_{\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in\cal H
-    \end{array}
-    \right.
-</script>
-</p>
-</p>
-</div>
-<p>图17.6显示了一个例子；可见层被分成了输入变量$\cal V_1$和输出变量$\cal V_2$，且有一个隐藏层$\cal H$。我们将这样一个网络表示成</p>
+<p>图 9.2 的左上图展示了用平行于坐标轴的直线对特征空间的一个划分。在每个划分元素里面我们可以用不同的常值来对 $Y$ 进行建模。然而，这里有个问题：尽管每个划分直线有个类似 $X_1=c$ 的简单表示，但有一些区域是很难描述的。</p>
+<p>为了简化问题，我们限制在如图 9.2 的右上图所示的递归二值划分。我们首先将空间分成两个区域，然后在每个区域里面用 $Y$ 的均值来对响应变量进行建模。我们选择变量和分离点以实现最优拟合。然后这些区域又被分成两个区域，这个过程一直进行下去，直到满足停止规则。举个例子，在图 9.2 的右上图，我们首先在 $X_1=t_1$ 处进行划分。然后在 $X_2=t_2$ 处对区域 $X_1\le t_1$ 进行划分，在$X_1=t_3$ 对区域 $X_1&gt; t_1$ 进行划分。最后，在 $X_2=t_4$ 处对区域 $X_1&gt;t_3$ 进行划分。这一过程的结果是得到如图所示的五个区域 $R_1,R_2,\ldots,R_5$ 的划分。对应的回归模型在区域 $R_m$ 中用常数 $c_m$ 来预测 $Y$，也就是</p>
 <p>
 <script type="math/tex; mode=display">
-{\cal V}_1\leftrightarrow {\cal H\leftrightarrow\cal V}_2\qquad (17.39)
+\hat f(X)=\sum\limits_{m=1}^5c_mI\{(X_1,X_2\in R_m\}\qquad (9.9)
 </script>
 </p>
-<p><img alt="" src="../../img/17/fig17.6.png" /></p>
+<p>同样的模型也可以用图 9.2 的左下图的二叉树来表示。在树的顶端标出全数据集。在每个交叉点处满足条件的观测分配到左枝上去，其他的分到右枝上去。终止结点或者树的叶子对应区域 $R_1,R_2,\ldots, R_5$。图 9.2 的右下图是该模型回归表面的透视图。为了说明，我们选择结点均值 $c_1=-5,c_2=-7,c_3=0,c_4=2,c_5=4$ 来画这张图。</p>
+<p>递归二叉树一个重要的优点在于它的解释性。特征空间被一棵树完全描述。当超过两个输入，类似图 9.2 的右上图的划分很难画出来，但是二叉树表示能够仍然起作用。这种表示方法在医学科学家中很流行，或许它在模仿医生的思考方式。基于病人的特征，树将总体分成了高低不同的阶层。</p>
+<h2 id="_2">回归树<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>我们现在讨论怎样生成一个回归树的问题。我们的数据包含对$N$个观测值中的每一个的$p$个输入和1个输出：这就是，$(x_i,y_i),i=1,2,\ldots, N,$其中，$x_i=(x_{i1},x_{i2},\ldots,x_{ip})$.这个算法需要根据分离变量和分类点来自动确定，而且确定树应该有的拓扑结构（形状）。首先假设我们有一个分成$M$个区域$R_1,R_2,\ldots, R_M$的一个划分，而且我们在每个区域内用常数$c_m$来对响应变量来建立模型：
+<script type="math/tex; mode=display">
+f(x)=\sum\limits_{m=1}^Mc_mI(x\in R_m)\qquad (9.10)
+</script>
+如果我们采取最小化平方和$\sum(y_i-f(x_i))^2$的准则，则可以很简单地证明得到最好的$\hat c_m$恰巧是区域$R_m$中$y_i$的平均值：
+<script type="math/tex; mode=display">
+\hat c_m=\mathrm{ave}(y_i\mid x_i\in R_m)\qquad (9.11)
+</script>
+现在找出使得平方和最小的最优二分在计算上一般是不可行的。因此我们采用一种贪婪算法。从所有变量开始，考虑分离变量$j$和分离点$s$,定义半平面对
+<script type="math/tex; mode=display">
+R_1(j,s)=\{X\mid X_j\le s\}\;\text{and}\; R_2(j,s)=\{X\mid X_j>s\}\qquad (9.12)
+</script>
+于是我们寻找分离变量$j$和分离点$s$求解
+<script type="math/tex; mode=display">
+\underset{j,s}{\mathrm {min}}[\underset{c_1}{\mathrm{min}}\;\sum\limits_{x_i\in R_1(j,s)}(y_i-c_1)^2+\sum\limits_{x_i\in R_2(j,s)}(y_i-c_2)^2]\qquad (9.13)
+</script>
+对于每个选定的$j$和$s$，内部最小化通过下式来求解
+<script type="math/tex; mode=display">
+\hat c_1=\mathrm{ave}(y_i\mid x_i\in R_1(j,s))\;\text{and}\; \hat c_2=\mathrm{ave}(y_i\mid x_i\in R_2(j,s))\qquad (9.14)
+</script>
+对于每个分离变量，可以非常快地确定分离点$s$，因此对所有输入进行扫描，确定最优的对$(j,s)$是可行的。</p>
+<p>找到最优的分割之后，我们将数据分成两个区域，然后对每个区域重复分割过程。然后在对所有区域都重复同样的分割过程。</p>
+<p>我们应该生成多大的树？很显然，树太大会过拟合数据，而树太小则可能捕捉不了重要的结构。树的大小也是一个调整参数来控制模型复杂度，最优的树规模应该从数据中自适应选取。一种分割树结点的方式可能是仅仅如果由于分割超出一些阈值使得平方和降低。然而，这种策略太目光短浅了，因为看似无用的分割或许会导致下面得到很好的分割。</p>
+<p>更好的策略是生成一个大树$T_0$,仅仅当一些最小结点规模（比如5）达到停止分割过程。接着大树采用cost-complexity pruning来调整，我们现在讨论的内容。</p>
+<p>我们定义子树$T\subset T_0$为任何可以通过对$T_0$剪枝得到的树，也就是，压缩任意数目的中间（非终止）结点。我们用$m$表示终止结点，其中结点$m$表示区域$R_m$。令$\vert T\vert $为$T$中终止结点的个数。令
+<script type="math/tex; mode=display">
+\begin{align}
+N_m&=\#\{x_i\in R_m\}\\
+\hat c_m&=\frac{1}{N_m}\sum\limits_{x_i\in R_m}y_i\\
+Q_m(T)&=\frac{1}{N_m}\sum\limits_{x_i\in R_m}(y_i-\hat c_m)^2
+\end{align}
+\qquad (9.15)
+</script>
+定义复杂度代价准则
+<script type="math/tex; mode=display">
+C_\alpha(T)=\sum\limits_{m=1}^{\vert T\vert}N_mQ_m(T)+\alpha\vert T\vert\qquad (9.16)
+</script>
+想法是对于每个$\alpha$,寻找子树$T_\alpha\subset T_0$使得$C_\alpha(T)$最小化。调整参数$\alpha\ge 0$调整树的规模和它对数据拟合的成都之间的平衡。较大的$\alpha$值导致小规模的树$T_\alpha$,对于较小的$\alpha$情况反过来了。这种记号表明，当$\alpha=0$时，解为全树$T_0$.我们下面讨论怎么自适应地选择$\alpha$.</p>
+<p>对于每个$\alpha$,可以找到唯一最小的子树$T_\alpha$使得$C_\alpha(T)$最小化。为了寻找$T_\alpha$我们采用weakest link pruning：逐步压缩在$\sum_mN_mQ_m(T)$中单节点增长最小的中间结点，直到我们得到单结点（根）的树。这给出了子树的（有限）序列，而且可以证明这条序列一定包含$T_\alpha$.更多细节见Breiman等人（1984）或者Ripley（1996）年的工作。$\alpha$的估计可以通过五折或者十折交叉验证得到：我们选择$\hat\alpha$使得交叉验证平方和最小。我们最终的树为$T_{\hat \alpha}$</p>
+<h2 id="_3">分类树<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>如果目标是结果取值为 $1,2,\ldots,K$ 的分类问题，则在树的算法中唯一需要改变的是关于分离结点以及剪枝的准则。对于回归我们用 (9.15) 式定义的平方误差结点纯度，但是这对于分类便不适合了。在结点$m$,用 $N_m$ 个观测值表示区域 $R_m$，令
+<script type="math/tex; mode=display">
+\hat p_{mk} = \frac{1}{N_m}\sum\limits_{x_i\in R_m}I(y_i=k)
+</script>
+类别$k$的观测在结点$m$处的比例。我们将结点$m$处的观测划分为类别$k(m)=\mathrm{arg\; max}_k\hat p_{mk}$，结点$m$处最主要的类别。不同衡量结点纯度$Q_m(T)$的方法包括如下：
+<script type="math/tex; mode=display">
+\begin{align}
+\text{误分类误差：}& \frac{1}{N_m}\sum_{i\in R_m}I(y_i\neq k(m))=1-\hat p_{mk(m)}\\
+\text{Gini指数：}&\sum_{k\neq k'}\hat p_{mk}\hat p_{mk'}=\sum_{k=1}^K\hat p_{mk}(1-\hat p_{mk})\\
+\text{交叉熵或者偏差：}&-\sum_{k=1}^K\hat p_{mk}\mathbf{log} \hat p_{mk}
+\end{align}
+\qquad (9.17)
+</script>
+对于两个类别，如果$p$是第二类的比例，则这三个衡量指标分别为$1-max(p,1-p), 2p(1-p)$以及$-p\mathrm{log}p-(1-p)\mathrm{log}(1-p)$.图9.3 画出了它们的函数曲线。这三者都类似，但是交叉熵和Gini指数是可微的，因此更加适合数值优化。比较（9.13）和（9.15）,我们看到我们需要由分离结点$m$得到的两个子节点的观测数$N_{m_L}$和$N_{m_R}$来对结点纯度赋予权重。</p>
+<p><img alt="" src="../../img/09/fig9.3.png" /></p>
 <blockquote>
-<p>图17.6. 同一层中的结点没有连接的约束玻尔兹曼机（RBM）。可见单元细分成了$\cal V_1$和 $\cal V_2$，允许RBM建立特征$\cal V_1$和标签$\cal V_2$之间的联合密度。</p>
+<p>图9.3 两类别分类的结点纯度关于类别2比例$p$的函数。交叉熵已被缩放使能过点（0.5,0.5）</p>
 </blockquote>
-<p>举个例子， $\cal V_1$可以是手写字体图像的二值像素，$\cal V_2$可以有10个单元，每个单元是观测的类别标签0-9中的一个。</p>
-<p>这个模型的约束形式简化了估计(17.37)中期望的吉布斯采样，因为每一层的变量在给定其它层中的变量时独立于其它变量。因此它们可以采用由式（7.30）给出的条件概率一起取样。</p>
-<p>最终的模型没有玻尔兹曼机一般，但是仍然很有用；举个例子，可以经过学习从图像中提取有趣的特征。</p>
-<p>通过对图17.6中RBM的每一层中的变量进行交替取样，从联合密度模型中产生样本是可能的。如果可见层的$\cal V_1$部分在交替取样时固定为特定的特征向量，从给定$\cal V_1$的标签分布中取样是可能的。另外测试项的分类也可以通过比较观测到的特征和每个类别标签的未标准化联合密度来实现。我们不需要计算分割函数因为对于所有的组合都是一样的（？？？？）。</p>
-<p>正如所注意到的约束玻尔兹曼机有与单层隐藏层神经网络一样的一般形式（11.3节）。神经网络中边是有向的，隐藏单元经常是实值的，并且拟合准则不一样。神经网络在输入特征的情况下，最小化目标与模型预测之间的误差（交叉熵）。相反地，约束玻尔兹曼机最大所有可见单元（也就是，特征和目标）的联合分布的对数似然。可以从输入特征中提取对预测标签有用的信息，但是，与监督学习方法不同，可能也使用一些隐藏单元对特征向量中的结构进行建模，而这与预测标签不是直接相关的。然而，这些特征当与从隐藏层中导出的特征结合起来会变得有用。</p>
-<p>不幸的是，约束玻尔兹曼机中的吉布斯采样会非常慢，因为需要花费很长时间达到稳态。当网络参数变得更大，这些链混合得更慢，并且我们需要更多的步骤来得到无条件的估计。Hinton(2002)根据经验注意到当我们通过在数据中启动马尔科夫链并仅仅运行几步（不是直到收敛）来估计（17.37）中的第二个期望，学习仍然有用。他称这个为对比发散(contrastive divergence)：我们给定$\cal V_1,V_2$对 $\cal H$ 取样，然后给定 $\cal H$对 $\cal V_1,V_2$取样，最后再次给定$\cal V_1,V_2$对$ \cal H$取样。思想是，当参数与解相差很多，迭代吉布斯取样达到问题是浪费的，因为仅仅一个迭代就是发现改变估计的一个好方向。</p>
+<p>另外，交叉熵和Gini指数比误分类率对结点概率的改变更加敏感。举个例子，在每个类别都有400个观测的两个类别的问题中（记为（400,400）），假设一个分割得到得到结点（300,100）和结点（100,300），而另外一个分割得到结点（200,400）和结点（200，0）。两个分割过程的误分类误差率都是0.25，但是第二个分割产生一个纯结点，似乎更好一些。对于第二个分割，Gini指数和交叉熵都更低一点。基于这个原因，当生成一棵树时应该使用Gini指数或者交叉熵中的一个。为了引导复杂度代价剪枝，三种衡量指标的任意一个都可以使用，但是一般地是采用误分类误差率。</p>
+<p>Gini指数可以用两种方式来解读。与其将观测值划分到结点的主要类别中，我们可以以一定概率$\hat p_{mk}$将它们划分到类别$k$。于是该结点的这条规则的训练误差率是$\sum_{k\neq k&rsquo;}\hat p_{mk}\hat p_{mk&rsquo;}$——Gini指数。类似地，如果我们对类别$k$的观测编码为1，而对其它的观测编码为0，则该结点的0-1响应变量的方差为$\hat p_{mk}(1-\hat p_{mk})$.将$k$个类别的全部相加再一次得到Gini指数。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya 注<p><img alt="" src="../../img/17/hvGibbs.png" />
-截图自<a href="http://deeplearning.net/tutorial/">http://deeplearning.net/tutorial/</a></p>
-</p>
+<p class="admonition-title">weiya注</p>
+<p>下面看一下如何在R中实现CART算法，采用rpart包来完成，下面是一个很简单的例子。</p>
+<p>library(rpart)</p>
+<p>library(rpart.plot)</p>
+<p>fit &lt;- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)</p>
+<p>rpart.plot(fit)</p>
+<p>最终，我们得到
+<img alt="" src="../../img/09/ex_CART.png" /></p>
 </div>
-<p>我们现在给出说明RBM用法的一个例子。采用对比发散(CD)，训练RBM来识别MNIST数据集中的手写字体是可能的（LeCun等人，1998）。2000个隐藏单元，784个表示二值像素强度的单元，以及表示标签的10-way multinomial（weiya注：取值为0-9）可见单元，RBM可以在测试集值达到1.9%的错误率。这比支持向量机达到的1.4%略高一点，与通过向后传播训练的神经网络得到的误差率相当。然而，用500个从图像中得到的不含任何标签信息的特征来替换784个像素强度，RBM的误差率会降至1.25%。首先，采用对比发散训练包含784个可见单元和500个隐藏单元的RBM，来建立图像集的模型。然后第一个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征。这种以贪婪、逐层的方式来学习特征的细节及证明在Hinton等人（2006）中给出。图17.7给出了以这种方式学习的复合模型的一个表示，也显示了一些它能够应付的变形的字体的例子。</p>
-<p><img alt="" src="../../img/17/fig17.7.png" /></p>
+<h2 id="_4">其他的问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">类别型预报变量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>当对一个有着$q$个可能的无次序值的预报变量，则将这$q$个值分成两块有$2^{q-1}-1$种可能的划分，对于大的$q$值，计算变得很困难。然而，输出为0-1时，计算可以简化。我们根据落入类别1的比例对预报变量的类别进行排序。然后把预报变量看成是有序预报变量进行划分。可以证明这给出了在交叉熵或者Gini指数情形下$2^{q-1}-1$种可能分割的最优分割。这个结果对与定量输出和平方误差损失也一样成立——通过增加输出的均值对类别进行排序。尽管很直观，但是这些断言的证明不是很简单。二值输出的证明由Breiman等人（1984）和Ripley(1996)给出；定量输出的证明可以在Fisher（1958）的工作中找到。对于多重类别的输出，没有这样的简化，尽管已经提出不同的近似（Loh和Vanichsetakul,1988）</p>
+<p>这个划分算法趋向于偏爱有多个层次$q$的类别型预报变量；划分的种类关于$q$呈指数增长，而且我们有更多的选择，我们更有可能招待一个对于当前数据好的方法。如果$q$很大，这导致严重的过拟合，而且类似的变量应该被避免。</p>
+<h3 id="_6">损失矩阵<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>在分类问题中，某些类别的误分类的后果会比其他类别的误分类后果要严重。举个例子，当某人实际上会发生心脏病而预测他/她不会发生心脏病比反过来的情形要糟糕。为了说明这一点，我们定义$K\times K$的损失矩阵$\mathbf L$,其中$L_{kk&rsquo;}$为将类别$k$的观测划分为$k&rsquo;$的观测产生的损失。一般地，对于正确的分类不会带来损失，也就是$L_{kk}=0\;\forall k$.为了将损失结合到模型过程中，我们可以将Gini指数修改成$\sum_{k\neq k&rsquo;}L_{kk&rsquo;}\hat p_{mk}\hat p_{mk&rsquo;}$;这个可以成为由于随机规则引起的期望损失。这对于多重类别的情形也成立，但是对于两个类别的情形没有影响，因为$\hat p_{mk}\hat p_{mk&rsquo;}$的系数为$L_{kk&rsquo;}+L_{k&rsquo;k}$.对于两个类别的情形更好的方式是对类别$k$的观测赋予权重$L_{kk&rsquo;}$. 这个可以在多重类别情形下使用仅仅当关于$k$的函数$L_{kk&rsquo;}$不依赖$k&rsquo;$.观测的权重也可以同偏差一起使用。观测权重的影响是去更改类别的先验概率。在终止结点上，经验贝叶斯规则表明我们划分成类别$k(m)=\mathrm{arg\; min_k}\sum_\ell L_{\ell k}\hat p_{m\ell}$</p>
+<h3 id="_7">缺失预报变量的值<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>假设我们的数据在部分或全部变量中有一些缺失的预报变量的值。我们可能丢弃含有缺失数据的观测，但是这会导致训练集严重的消耗。另外我们或许试图填补缺失数据，如用非缺失观测的均值来填补。对于基于树的模型，有两种更好的方式。第一种是应用到类别型预报变量上：我们简单地新建一个“缺失”的类别。从这里我们可能发现含缺失值的观测在某些指标上的表现与其他不含缺失值的表现有不同。第二种更一般的方式是构造代理变量。当对一个分割考虑一个预报变量，我们仅仅考虑该变量未缺失的观测。选择好最优的（主要的）预报变量和分割点，我们构造代理预报变量和分离点的列表。第一个代理是最好模拟由初次分割得到的训练数据分割的预报变量和对应的分离点。第二代理是模仿的第二好的预报变量和对应的分离点，以此类推。当在训练阶段或者预测阶段使得观测在树中下降，我们依次采用代理分割，如果最初的分割预报变量缺失。代理分割探索预报变量之间的相关性来试图减轻丢失数据的影响。丢失预测变量和其他预测变量的相关度越高，则由于丢失数据造成信息丢失的影响越小。丢失数据的一般问题将在9.6节中讨论。</p>
+<h3 id="_8">为什么二值分割？<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>与其在每一步对每个结点只分割成两个群体（如上面讨论的），我们或许考虑多重分割成多于两个群体。尽管这个在某些情况下是有用的，但不是一个好的一般策略。问题在于多重分割将数据分得太快，以至于在下一层次没有充分多的数据。因此我们仅仅当需要的时候采用这种分割。因为多重分割可以通过一系列的二值分割实现，所以后者更好一点。</p>
+<h3 id="_9">其他建树的过程<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>上面的讨论集中在CART(分类和回归树)树的实现。其他流行的方法是ID3和后来的版本，C4.5和C5.0（Quinlan, 1993). 程序的早期版本只限制类别型变量，而且采用自上而下没有剪枝的规则。经过最近的发展，C5.0已经变得与CART很相似。C5.0独有的最显著的特征是用于导出规则集的方案。树建成之后，定义终止结点的分割规则有时可以被简化：这就是，不用改变落入结点里面的观测的子集删掉一个或多个条件。最终我们得到定义每个终止结点的简化规则集；这些不再遵循树的结构，但是它们的简化可能使得它们更加吸引人们使用。</p>
+<h3 id="_10">线性组合分割<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>与其将分割限制成$X_j\le s$的形式，可以允许线性组合形式的分割$\sum a_jX_j\le s$.优化权重$a_j$和分离点$s$使得有关的准则最小（比如Gini指数）。尽管这个可以提高树的预测能力，但这也会损害解释性。计算上，分离点搜索的分离性妨碍了对权重的光滑优化。更好地结合线性组合分割的方式是在专家系统混合模型中，这是9.5节的主题。</p>
+<h3 id="_11">树的不稳定性<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>树的一个主要问题是它们的高方差性。经常在数据中的一个小改动导致完全不同的分割点序列，使得解释不稳定。这种不稳定的主要原因是这个过程的层次性：上一个分割点的误差会传递到下面所有的分割点上。可以试图采取更加稳定的分离准则在某种程度上减轻这一影响，但是固有的不稳定性没有移除。这是从数据中估计一二简单的、基于树结构的代价。Bagging（8.7节）对很多树进行平均来降低方差。</p>
+<h3 id="_12">缺乏光滑性<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>树的另一个限制是预测表面缺乏光滑性，如在图9.2中的右下图中那样。在0/1损失的分类问题中，这不会有太大的损伤，因为类别概率估计的偏差的影响有限。然而，在回归问题中这会降低效果，正常情况下我们期望潜在的函数是光滑的。9.4节介绍的MARS过程可以看出是为了减轻CART缺乏光滑性而做的改动。</p>
+<h3 id="_13">捕捉加性结构的困难<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>另外一个树的问题是对加性结构建模的困难。举个例子，在回归问题中，假设$Y=c_1I(X_1&lt;t_1)+c_2I(X_2&lt;t_2)+\varepsilon$,其中$\varepsilon$是0均值噪声。则二叉树会在$t_1$附近对$X_1$做第一次分割。为了捕捉加性结构，下一层两个结点都需要在$t_2$处对$X_2$分割。在充足数据情况下这个或许可以发生，但是这个模型没有给予特别鼓励来找到这一结构。如果有10个而不是2个加性影响，需要花费很多偶然的分割来重造这个结构，并且在估计的树中，通过数据分析来识别它会变得非常困难。原因再一次可以归结为二叉树的结构，既有优点也有不足。为了捕捉加性结构，MARS方法（9.4节）再一次放弃树的结构。</p>
+<h2 id="_14">垃圾邮件的例子（继续）<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>前面我们已经对spam例子应用了分类树的方法。我们运用偏差来建树，用误分类率来剪枝。图9.4显示了根据10个复制数据的10折交叉验证误差率作为剪枝树的大小的函数，以及$\pm2$倍的均值的标准误差。测试误差曲线用橘黄色来表示。注意到交叉验证误差率是通过$\alpha$的序列而非树的大小来索引的；对于不同的复制数据建的树，一个$\alpha$可能对应不同的大小。在图的底部所示的大小指的是剪枝的原始树的大小$\vert T_\alpha\vert$.</p>
+<p><img alt="" src="../../img/09/tab9.3.png" /></p>
 <blockquote>
-<p>图17.7 约束玻尔兹曼机处理手写字体数字的例子。网络用左边的原理图来描述。右边显示了一些该模型分类正确的难的测试图像。</p>
+<p>表9.3. 垃圾邮件数据：测试数据上17个结点（通过交叉验证选出来的）树的混淆比例。总的误差率为9.3%。</p>
 </blockquote>
+<p><img alt="" src="../../img/09/fig9.4.png" /></p>
+<blockquote>
+<p>图9.4. spam例子的结果。蓝色曲线是10折交叉验证误分类率的估计作为树大小的函数的曲线。最小值发生在含有17个终止结点的树处（采用“one-standard-error”规则）。橘黄色区显示测试误差，其非常接近地沿着CV误差。交叉验证由如上所示的$\alpha$值索引。下面显示的树的大小指的是由$\alpha$索引的原始树的大小$\vert T_\alpha\vert$。</p>
+</blockquote>
+<p>误差在大概17个终止结点处变平，给出了图9.5的剪枝树。在树的13个不同特征中，有11个与加性模型中16个显著特征重合（表9.2）.表9.3显示的整体误差率比表9.1显示的加性模型大概高出50%.</p>
+<p><img alt="" src="../../img/09/fig9.5.png" /></p>
+<blockquote>
+<p>图9.5. spam例子的剪枝树。分离变量在树枝上用蓝色显示，分类结果在每个结点处显示。在终止结点处的数目表示在测试数据上的错误分类率。</p>
+</blockquote>
+<p>考虑树的最右边分支，如果超过5.5%的字符是\$符号则将分到右边分支并且显示为垃圾邮件（spam）的警告。然而，另外如果词语hp经常出现，则很可能是公司事务并且我们分成email。在测试集里的所有22个情形满足正确分类的准则。如果第二个条件不满足，而且重复出现的大写字母平均长度CAPAVE大于2.9，则我们分成spam类。在227个测试情形中，只有7个被错误分类。</p>
+<p>在医学分类问题中，sensitivity和specificity经常用来衡量一个准则。它们按如下定义：</p>
+<p>Sensitivity：给定真实状态为患病预测为患病的概率</p>
+<p>Specificity：给定真实状态为未患病预测为未患病的概率</p>
+<p>如果我们将spam和email看成有无患病，则从表9.3我们有
+<script type="math/tex; mode=display">
+\begin{align}
+Sensitivity & = 100\times\frac{33.4}{33.4+5.3}=86.3\%\\
+Specificity &  = 100\times \frac{57.3}{57.3+4.0}=93.4\%
+\end{align}
+</script>
+在这个分析中我们使用了相等的损失。和之前一样令$L_{kk&rsquo;}$为将类别$k$预测成类别$k&rsquo;$对应的损失。通过改变损失$L_{01}$和$L_{10}$的相对大小，我们增大该规则的敏感性降低该规则的特异性，或者反过来。在这个例子中，我们想要避免将好的email预测成spam，因此我们希望确定性非常高。我们可以通过设置$L_{01}&gt;1,L_{10}=1$来实现。如果spam的比例$\ge L_{01}/(L_{10}+L_{01})$，则在每个终止结点处的贝叶斯规则将此结点归类为类别1，否则归为类别0.受试者工作特征曲线（ROC）是用于评估敏感性和特异性之间折中的常用概述。当我们改变分类规则的参数得到敏感性关于特异性的图像。在0.1和10之间改变损失$L_{01}$，然后对图9.4中选定的17个结点的贝叶斯规则，得到如图9.6所示的ROC曲线。每条曲线靠近0.9的标准误差近似为$\sqrt{0.9(1-0.9)/1536}=0.008$，因此差别的标准误差大概为0.01。我们为了实现接近100%的特异性，敏感性大致降低到了50%.曲线下面的面积是通常使用的定量概述；在曲线的两端线性扩张使得它在[0,100]上有定义，面积大概为0.95.为了比较，我们也画出了在9.2节对这些数据进行GAM模型拟合的ROC曲线；它给出了对于任意损失更好的分类规则，面积为0.98.</p>
+<p><img alt="" src="../../img/09/fig9.6.png" /></p>
+<blockquote>
+<p>图9.6. 对spam数据应用分类规则拟合的ROC曲线。越靠近东北角落的曲线表示越好的分类器。这种情形下，GAM分类器比树模型更好。加权树比未加权树在更高特异性情况下有更好的敏感性。图例中的数字表示曲线下面的面积。</p>
+</blockquote>
+<p>与其仅仅修改结点处的贝叶斯规则，在建树的时候将不相等的损失进行全面考虑更好，正如我们在9.2节做的那样。当只有两个类别0和1时，通过对类别$k$的观测赋予权重$L_{k,1-k}$将损失考虑到建树的过程中。这里我们选择$L_{01}=5,L_{10}=1$而且像前面一样拟合同样大小的树（$\vert T_\alpha\vert=17$）.这棵树在高特异性下比原树有更高的敏感性，但是在其它极端情况下表现得更差。前几层的分割与原树是一样的，但是接着就变不同了。因为这个应用通过$L_{01}=5$建的树显然好于原来的树。</p>
+<p>上面使用的ROC曲线下的面积有时被称作$c$统计量。有趣地是，对于两个群体中预测得分差异的中位数（Hanley和McNeil，1982），可以证明ROC曲线下的面积等于Mann-Whitney U统计量（或者 Wilcoxon 秩和检验）.当额外的预报变量加入到标准模型中时衡量该预报变量的贡献度，$c$统计量或许不是一个有信息的衡量。新预报变量可以对模型偏差改变很显著，但是$c$统计量却只有很小的增大。举个例子，从表9.2中移除高显著项george会导致$c$统计量的增长小于0.01.相反地，基于个体样本基来检查额外的预测变量怎样改变分类是有用的。这点将在Cook(2007)中进行充分讨论。</p>
                 
                   
                 
@@ -3353,7 +3514,7 @@ E_{\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})=
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../17.3-Undirected-Graphical-Models-for-Continuous-Variables/index.html" title="17.3 连续变量的无向图模型" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../9.1-Generalized-Additive-Models/index.html" title="9.1 广义可加模型" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3362,19 +3523,19 @@ E_{\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})=
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                17.3 连续变量的无向图模型
+                9.1 广义可加模型
               </span>
             </div>
           </a>
         
         
-          <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../9.3-PRIM/index.html" title="9.3 PRIM" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                文献笔记
+                9.3 PRIM
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

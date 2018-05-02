@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记、代码实现以及习题解答">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/17-Undirected-Graphical-Models/17.4-Undirected-Graphical-Models-for-Discrete-Variables/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.3-Cluster-Analysis/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>17.4 离散变量的无向图模型 - ESL CN</title>
+        <title>14.3 聚类分析 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#174" tabindex="1" class="md-skip">
+      <a href="#143" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                17.4 离散变量的无向图模型
+                14.3 聚类分析
               </span>
             
           
@@ -2177,10 +2177,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2" checked>
     
     <label class="md-nav__link" for="nav-4-2">
       14 非监督学习
@@ -2198,7 +2200,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.1-Introduction/index.html" title="14.1 导言" class="md-nav__link">
+    <a href="../14.1-Introduction/index.html" title="14.1 导言" class="md-nav__link">
       14.1 导言
     </a>
   </li>
@@ -2210,7 +2212,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.2-Association-Rules/index.html" title="14.2 关联规则" class="md-nav__link">
+    <a href="../14.2-Association-Rules/index.html" title="14.2 关联规则" class="md-nav__link">
       14.2 关联规则
     </a>
   </li>
@@ -2220,11 +2222,157 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.3-Cluster-Analysis/index.html" title="14.3 聚类分析" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        14.3 聚类分析
+      </label>
+    
+    <a href="index.html" title="14.3 聚类分析" class="md-nav__link md-nav__link--active">
       14.3 聚类分析
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#proximity-matrices" title="接近矩阵(proximity matrices)" class="md-nav__link">
+    接近矩阵(proximity matrices)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="基于属性的不相似性" class="md-nav__link">
+    基于属性的不相似性
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="定量变量" class="md-nav__link">
+    定量变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="有序变量" class="md-nav__link">
+    有序变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="类别变量" class="md-nav__link">
+    类别变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-dissimilarity" title="样品的不相似性(object dissimilarity)" class="md-nav__link">
+    样品的不相似性(object dissimilarity)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="聚类算法" class="md-nav__link">
+    聚类算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="组合算法" class="md-nav__link">
+    组合算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-means" title="K-means" class="md-nav__link">
+    K-means
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soft-k-means" title="高斯混合作为Soft K-means聚类" class="md-nav__link">
+    高斯混合作为Soft K-means聚类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="例子：人类肿瘤微阵列数据" class="md-nav__link">
+    例子：人类肿瘤微阵列数据
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="向量量化" class="md-nav__link">
+    向量量化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-medoids" title="K-medoids" class="md-nav__link">
+    K-medoids
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="实际问题" class="md-nav__link">
+    实际问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" title="系统聚类" class="md-nav__link">
+    系统聚类
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
+            Comments
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -2234,7 +2382,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.4-Self-Organizing-Maps/index.html" title="14.4 自组织图" class="md-nav__link">
+    <a href="../14.4-Self-Organizing-Maps/index.html" title="14.4 自组织图" class="md-nav__link">
       14.4 自组织图
     </a>
   </li>
@@ -2246,7 +2394,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
+    <a href="../14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
       14.5 主成分，主曲线以及主曲面
     </a>
   </li>
@@ -2258,7 +2406,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.6-Non-negative-Matrix-Factorization/index.html" title="14.6 非负矩阵分解" class="md-nav__link">
+    <a href="../14.6-Non-negative-Matrix-Factorization/index.html" title="14.6 非负矩阵分解" class="md-nav__link">
       14.6 非负矩阵分解
     </a>
   </li>
@@ -2270,7 +2418,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
+    <a href="../14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit/index.html" title="14.7 独立成分分析和探索投影寻踪" class="md-nav__link">
       14.7 独立成分分析和探索投影寻踪
     </a>
   </li>
@@ -2282,7 +2430,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.8-Multidimensional-Scaling/index.html" title="14.8 多维缩放" class="md-nav__link">
+    <a href="../14.8-Multidimensional-Scaling/index.html" title="14.8 多维缩放" class="md-nav__link">
       14.8 多维缩放
     </a>
   </li>
@@ -2294,7 +2442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.9-Nonlinear-Dimension-Reduction-and-Local-Multidimensional-Scaling/index.html" title="14.9 非线性降维和局部多维缩放" class="md-nav__link">
+    <a href="../14.9-Nonlinear-Dimension-Reduction-and-Local-Multidimensional-Scaling/index.html" title="14.9 非线性降维和局部多维缩放" class="md-nav__link">
       14.9 非线性降维和局部多维缩放
     </a>
   </li>
@@ -2306,7 +2454,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.10-The-Google-PageRank-Algorithm/index.html" title="14.10 谷歌的PageRank算法" class="md-nav__link">
+    <a href="../14.10-The-Google-PageRank-Algorithm/index.html" title="14.10 谷歌的PageRank算法" class="md-nav__link">
       14.10 谷歌的PageRank算法
     </a>
   </li>
@@ -2318,7 +2466,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -2489,12 +2637,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
     
     <label class="md-nav__link" for="nav-4-5">
       17 无向图模型
@@ -2512,7 +2658,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../17.1-Introduction/index.html" title="17.1 导言" class="md-nav__link">
+    <a href="../../17-Undirected-Graphical-Models/17.1-Introduction/index.html" title="17.1 导言" class="md-nav__link">
       17.1 导言
     </a>
   </li>
@@ -2524,7 +2670,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../17.2-Markov-Graphs-and-Their-Properties/index.html" title="17.2 马尔科夫图及其性质" class="md-nav__link">
+    <a href="../../17-Undirected-Graphical-Models/17.2-Markov-Graphs-and-Their-Properties/index.html" title="17.2 马尔科夫图及其性质" class="md-nav__link">
       17.2 马尔科夫图及其性质
     </a>
   </li>
@@ -2536,7 +2682,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../17.3-Undirected-Graphical-Models-for-Continuous-Variables/index.html" title="17.3 连续变量的无向图模型" class="md-nav__link">
+    <a href="../../17-Undirected-Graphical-Models/17.3-Undirected-Graphical-Models-for-Continuous-Variables/index.html" title="17.3 连续变量的无向图模型" class="md-nav__link">
       17.3 连续变量的无向图模型
     </a>
   </li>
@@ -2546,74 +2692,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        17.4 离散变量的无向图模型
-      </label>
-    
-    <a href="index.html" title="17.4 离散变量的无向图模型" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../17-Undirected-Graphical-Models/17.4-Undirected-Graphical-Models-for-Discrete-Variables/index.html" title="17.4 离散变量的无向图模型" class="md-nav__link">
       17.4 离散变量的无向图模型
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="当图结构已知时估计参数" class="md-nav__link">
-    当图结构已知时估计参数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="隐藏结点" class="md-nav__link">
-    隐藏结点
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="图结构的估计" class="md-nav__link">
-    图结构的估计
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="限制玻尔兹曼机" class="md-nav__link">
-    限制玻尔兹曼机
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -2623,7 +2706,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../../17-Undirected-Graphical-Models/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3116,29 +3199,112 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="当图结构已知时估计参数" class="md-nav__link">
-    当图结构已知时估计参数
+  <a href="#proximity-matrices" title="接近矩阵(proximity matrices)" class="md-nav__link">
+    接近矩阵(proximity matrices)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="隐藏结点" class="md-nav__link">
-    隐藏结点
+  <a href="#_1" title="基于属性的不相似性" class="md-nav__link">
+    基于属性的不相似性
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="定量变量" class="md-nav__link">
+    定量变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="有序变量" class="md-nav__link">
+    有序变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="类别变量" class="md-nav__link">
+    类别变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-dissimilarity" title="样品的不相似性(object dissimilarity)" class="md-nav__link">
+    样品的不相似性(object dissimilarity)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="图结构的估计" class="md-nav__link">
-    图结构的估计
+  <a href="#_5" title="聚类算法" class="md-nav__link">
+    聚类算法
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="限制玻尔兹曼机" class="md-nav__link">
-    限制玻尔兹曼机
+  <a href="#_6" title="组合算法" class="md-nav__link">
+    组合算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-means" title="K-means" class="md-nav__link">
+    K-means
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soft-k-means" title="高斯混合作为Soft K-means聚类" class="md-nav__link">
+    高斯混合作为Soft K-means聚类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="例子：人类肿瘤微阵列数据" class="md-nav__link">
+    例子：人类肿瘤微阵列数据
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="向量量化" class="md-nav__link">
+    向量量化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-medoids" title="K-medoids" class="md-nav__link">
+    K-medoids
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="实际问题" class="md-nav__link">
+    实际问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" title="系统聚类" class="md-nav__link">
+    系统聚类
   </a>
   
 </li>
@@ -3164,7 +3330,7 @@
               
                 
                 
-                <h1 id="174">17.4 离散变量的无向图模型<a class="headerlink" href="#174" title="Permanent link">&para;</a></h1>
+                <h1 id="143">14.3 聚类分析<a class="headerlink" href="#143" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3179,149 +3345,249 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-02-25:2017-02-26</td>
+<td>2017-02-22:2017-02-23</td>
 </tr>
 <tr>
-<td>时间</td>
-<td>2017-08-27</td>
+<td>更新</td>
+<td>2017-12-31 &amp; 2018-01-17</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>写在前面</p>
-<p>这一节中我觉得最有应用价值的是RBM，这跟深度学习很相关，在LISA lab, University of Montreal编的那本Deep Learning Tutorial (Release 0.1) 中，有一节就是将如何用RBM做手写数字识别。那段程序大概六个月前就已经接触了，但一直没搞清楚它在干嘛<img alt="😞" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f61e.svg" title=":disappointed:" />。其实，本节最后作者提到的用RBM做手写数字识别中的某一步其实就是那段程序干的事情。事实上，那段程序并没有真正地完成识别问题，仅仅是其中的一步——“采用对比发散训练包含784个可见单元和500个隐藏单元的RBM，来建立图像集的模型”，后续步骤还应该有“将这个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征，并且用上标签数据。” 或许，这导致当时没有理解程序所要完成的目标的原因吧<img alt="😖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f616.svg" title=":confounded:" />  </p>
-<p>程序可以在<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/rbm">这里</a> 中找到，或者参考<a href="http://deeplearning.net/tutorial/deeplearning.pdf">官方教程</a>。</p>
-<p>另外，在我的<a href="https://stats.hohoweiya.xyz//statisticallearning/2017/08/17/Restricted-Boltzmann-Machines/">英文博客</a>中有RBM的简要总结，欢迎提出宝贵建议<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" />
-@2017.08.27</p>
-</blockquote>
-<p>离散变量的无向马尔科夫网络是很流行的，而且特别地，二值变量的成对马尔科夫网络更普遍。在统计力学领域有时称为Ising模型，在机器学习领域称为玻尔兹曼机 (Boltzmann machines)，其中顶点称为“结点(nodes)”或“单元(units)”，而且是取两个值的。</p>
-<p>另外，每个结点处的值可以被观测到(visible)或者观测不到 (hidden)。结点通常以层来组织，类似神经网络。玻尔兹曼机对于非监督学习和监督学习都是很有用的，特别对有结构化输入数据，比如图像，但是也受到计算上的限制。图17.6显示了一个约束的玻尔兹曼机（后面讨论），其中一些变量是隐藏的，而且只有一些结点对是相连的。我们所有$p$个结点都是可见的简单情形，并且边的对$(j,k)$取自$E$。</p>
-<p>用$X_j$标记结点$j$的二值变量，它们联合分布的Ising模型由下式给出
-<script type="math/tex; mode=display">
-p(X,\mathbf\Theta)=exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\Theta})]\text{  for  }X\in{\cal X}\qquad (17.28)
-</script>
-其中${\cal X}=\{0,1\}^p$。和上一节的高斯模型一样，只有成对交叉项才进行建模。Ising 模型是在统计力学中发展的，而且现在更一般地用来建立成对交叉的联合影响。$\Phi\mathbf{(\Theta)}$为分割函数的对数，而且由下式定义
-<script type="math/tex; mode=display">
-\Phi(\mathbf \Theta)=\mathrm{log}\sum\limits_{x\in\cal X}[\mathrm {exp}(\sum\limits_{(j,k)\in E}\theta_{jk}x_jx_k)]\qquad (17.29)
-</script>
-</p>
-<p>分割函数保证在样本空间中概率相加起来为1。$\theta_{jk}X_jX_k$项表示（对数）势函数（17.5）的特定参量化，而且因为技术上的原因需要包含常数结点$X_0\equiv 1$（练习17.10），与其他结点都有边相连。在统计领域中，这个模型等价于多路计算表（multiway tables of counts）的一阶交叉泊松对数线性模型（Bishop等人，1975；McCullagh和Nelder,1989;Agresti，2002）。</p>
-<p>Ising模型表示每个结点在其它结点条件下的逻辑斯蒂形式（练习17.11）
-<script type="math/tex; mode=display">
-Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta_{jk}x_k}\qquad (17.30)
-</script>
-其中$X_{-j}$记除了$j$的所有结点。因此参数$\theta_{jk}$衡量了在给定其它结点条件下，$X_j$在$X_k$上的依赖性。</p>
-<h2 id="_1">当图结构已知时估计参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>从模型中给出一些数据，我们可以怎么估计参数？假设我们有观测$x_i=(x_{i1},x_{i2},\ldots,x_{ip})\in\{0,1\}^p,i=1,\ldots,N$。对数似然为
-<script type="math/tex; mode=display">
-\begin{align}
-\ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\mathrm{log\; Pr}_{\mathbf\Theta}(X_i=x_i)\\
-&=\sum\limits_{i=1}^N\Big[\sum\limits_{(j,k)\in E}\theta_{jk}x_{ij}x_{ik}-\Phi(\mathbf\Theta) \Big]\qquad (17.31)
-\end{align}
-</script>
-对数似然的梯度为
-<script type="math/tex; mode=display">
-\frac{\partial\ell(\mathbf\Theta)}{\partial\theta_{jk}}=\sum\limits_{i=1}^Nx_{ij}x_{ik}-N\frac{\partial \Phi(\mathbf\Theta)}{\partial\theta_{jk}}\qquad (17.32)
-</script>
-并且
-<script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial \Phi(\mathbf\Theta)}{\partial \theta_{jk}}&=\sum\limits_{x\in\cal X}x_jx_k\cdot p(x,\mathbf\Theta)\\
-&=E_{\mathbf\Theta}(X_jX_k)\qquad (17.33)
-\end{align}
-</script>
-令梯度等于0得到
-<script type="math/tex; mode=display">
-\hat E(X_jX_k)-E_{\mathbf \Theta}(X_jX_k)=0\qquad (17.34)
-</script>
-其中我们定义
-<script type="math/tex; mode=display">
-\hat E(X_jX_k)=\frac{1}{N}\sum\limits_{i=1}^Nx_{ij}x_{ik}\qquad (17.35)
-</script>
-关于数据的期望分布取期望。注意(17.34)式，我们看到极大似然估计简单地把结点之间的内积估计和观测的内积匹配上了。这是指数族模型得分（梯度）等式的标准形式，令充分统计量等于模型下的期望。</p>
-<p>为了寻找极大似然估计，我们可以利用梯度搜索或者牛顿法。然而$E_{\mathbf \Theta}(X_jX_k)$涉及$p(X,\mathbf\Theta)$在$X$的$\vert{\cal X}\vert=2^p$种可能值中的$2^{p-2}$ （？？？）种情形的列举，而且对于大的$p$一般是不可行的（比如，大于30）。对于小$p$，有一系列标准的统计方法可以使用：</p>
-<ul>
-<li><strong>泊松对数线性建模</strong>， 我们将问题看成是大型回归问题（练习17.12）。响应变量$\mathbf y$是数据的多路表合的每个单元中的$2^p$个计数的向量。预测矩阵$\mathbf Z$有$2^p$个行，最多$1+p+p^2$个表征每个单元的列，尽管这个数字取决于图的稀疏程度。计算代价本质是该规模下回归问题的代价，计算代价为$O(p^42^p)$并且对于$p&lt;20$是可行的。牛顿更新一般通过迭代重赋权最小二乘发发类似计算，并且步数通常是在个位数之内。详见Agresti(2002)和McCullagh和Nelder(1989)。标准软件（比如R语言的glm包）可以用来拟合这个模型。</li>
-<li><strong>梯度下降</strong>至多需要$O(p^22^{p-2})$的计算量来计算梯度，但是可能回避二阶牛顿法需要更多的梯度步数。然而，可以处理$p\le 30$的稍微大点的问题。这些计算可以通过发现稀疏图中特别的团结构，采用junction-tree算法进行降低计算量。这里没有给出细节。</li>
-<li><strong>迭代比例过滤</strong>(IPF)在梯度式(17.34)中采用柱坐标系。每一步更新一个参数使得梯度等式正好为0。这在柱坐标系中进行直到所有梯度为0。一个完整的周期与梯度赋值花费同样的计算量，但是可能更有效。Jirouśek和Přeučil (1995)采用junction trees实现了IPF的一个有效版本。</li>
-</ul>
-<p>当$p$大（&gt;30）可以采用其它的方法来近似梯度</p>
-<ul>
-<li>均值域近似（Peterson和Anderson，1987）用$E_{\mathbf\Theta}(X_j)E_{\mathbf \Theta}(X_k)$来估计$E_{\Theta}(X_jX_k)$，并且将输入变量用它们的均值替换，得到一系列关于参数$\theta_{jk}$的非线性等式。</li>
-<li>为了得到近似解，使用吉布斯采样（8.6节）来近似$E_{\mathbf\Theta}(X_jX_k)$，通过从估计模型$Pr_{\mathbf\Theta}(X_j\mid X_{-j})$来逐步抽样（见Ripley(1996)）</li>
-</ul>
-<p>我们没有讨论可分解模型，因为极大似然估计不需要任何迭代可以在闭形式中找到。举个例子，这些模型来自树：截断树拓扑的特殊图。当要关心计算易处理性，树表示一个有用的模型类，并且它们回避本节中提出的计算上的考虑。详见Whittaker(1990)的第12章的例子。</p>
-<h2 id="_2">隐藏结点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>我们可以通过包含潜在或隐藏结点来增加离散马尔科夫网络的复杂性。假设变量的子集$X_{\cal H}$是未观测的或者“隐藏的”，并且剩余的变量$X_{\cal V}$是观测的或者“可见的”。则观测数据的对数似然为
-<script type="math/tex; mode=display">
-\begin{align}
-\ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\mathrm{log}[Pr_{\mathbf\Theta}(X_{\cal V}=x_{i\cal V})]\\
-&=\sum\limits_{i=1}^N[\mathrm{log}\sum\limits_{x_{\cal H}\in{\cal X_H}}exp\sum\limits_{(j,k)\in E}(\theta_{jk}x_{ij}x_{jk}-\Phi(\mathbf\Theta))]\qquad (17.36)
-\end{align}
-</script>
-对$x_{\cal H}$求和意味着我们对隐藏单元的所有可能${0,1}$值进行求和。梯度为
-<script type="math/tex; mode=display">
-\frac{d\ell(\mathbf\Theta)}{d\theta_{jk}}=\hat E_{\cal V}E_{\mathbf \Theta}(X_jX_k\mid X_{\cal V})-E_{\mathbf\Theta}(X_jX_k)\qquad (17.37)
-</script>
-第一项是当$X_jX_k$都可见是的经验均值；如果其中一个或都隐藏，则在给定可见数据下进行第一次插值，然后在隐藏变量上平均。第二项是$X_jX_k$的无条件期望。</p>
-<p>第一项中的内层期望可以用条件期望的基本法则和伯努利随机变量的性质进行赋值。具体地，对于观测$i$，
-<script type="math/tex; mode=display">
-E_{\mathbf\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V}) =
-\left\{
-\begin{array}{ll}
-x_{ij}x_{ik}& \text{if }j,k\in\cal V\\
-x_{ij}Pr_{\cal\mathbf\Theta}(X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j\in\cal V,k\in\cal H\\
-Pr_{\mathbf\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in{\cal H}(17.38)
-\end{array}
-\right.
-</script>
-现在需要进行两个独立的吉布斯采样；第一个是从上面的模型中采样估计$E_{\mathbf \Theta}(X_jX_k)$，第二个是估计$E_{\mathbf\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})$。对于后者，固定（“夹住”）可见单元为观测值，并且仅仅对隐藏变量进行取样。吉布斯采样必须对训练集中的每一个观测进行，在梯度搜索的每一阶段。结果是这个过程可以变得非常慢，甚至对于中等大小的模型也是如此。在17.4.4节我们考虑进一步的模型约束来使得计算可行。</p>
-<h2 id="_3">图结构的估计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Lee等人(2007)和Wainwright等人(2007)建议使用二值成对马尔科夫网络的lasso惩罚。第一个作者研究含惩罚的对数似然的精确最小化的共轭梯度过程。瓶颈是梯度中$E_{\mathbf\Theta}(X_jX_k)$的计算；通过junction tree 算法的精确计算对与稀疏图是可行的但是对稠密的图变得难以处理。</p>
-<p>第二个作者提出近似的解法，类似对于高斯图模型的Meinshausen和Bühlmann（2006）的方法。它们将每个结点看成其他结点的函数的$L_1$惩罚逻辑斯蒂回归，接着以某种方式对称边的参数。举个例子，如果$\hat\theta_{jk}$为从输出变量为结点$j$的逻辑斯蒂回归模型中得到的$j-k$边参数的估计，“最小”的对称化设定$\hat\theta_{jk}$为$\hat\theta_{jk}$或$\hat\theta_{kj}$中绝对值最小的，类似地定义“最大”准则。他们证明在确定条件下，随着样本大小变为无穷大，两种近似都估计正确的非零边。Hoefling和Tibshirani(2008)将图lasso扩大为离散马尔科夫网络，得到比共轭梯度稍快的过程，但是依旧必须处理$E_{\mathbf\Theta}(X_jX_k)$的计算。他们也在广泛的模拟研究中比较精确和近似解，并且找到“最小”和“最大”近似仅仅比精确解略微不精确，对于估计非零边和估计边参数的真实值都是这样，而且快很多。此外，他们可以处理稠密图的情形因为他们不需要计算$E_{\mathbf\Theta}(X_jX_k)$.</p>
-<p>最后，我们指出高斯和二值模型的关键区别。在高斯情况下，$\mathbf\Sigma$和其逆经常都是感兴趣的，而且图lasso过程都实现了这两个的估计。然而，Meinshausen和Bühlmann (2006)对于高斯图模型的近似类似Wainwright等人（2007）对二值情形的近似，仅仅得到$\mathbf\Sigma^{-1}$的估计。相反地，在二值数据的马尔科夫模型中，$\mathbf\Theta$是我们感兴趣的，而它的逆不是我们感兴趣的。Wainwright等人（2007）近似的方法有效地估计$\mathbf\Theta$，因此是二值问题的吸引人的解。</p>
-<h2 id="_4">限制玻尔兹曼机<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>这节我们考虑受神经网络影响的一种特殊的图模型结构，该结构中，单元是按层进行组织的。限制玻尔兹曼机(RBM)包含一层可见单元和一层隐藏单元，单层之间没有联系。如果隐藏单元的连接被移除掉，计算条件期望变得很简单（如17.37和17.38）。</p>
+<!--
+!!! note "更新笔记"
+    @2017-12-31 大三上学期学过多元统计分析，其中有一次实验是聚类分析。实验报告参见[**这里**](http://rmd.hohoweiya.xyz/3140105707hw5.pdf)（下载[**数据**](http://rmd.hohoweiya.xyz/avenormal.xls)）
+-->
+
 <div class="admonition note">
-<p class="admonition-title">weiya 注：<p>这样（17.38）式变成，对于观测$i$，
-<script type="math/tex; mode=display">
-E_{\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})=
-\left\{
-    \begin{array}{ll}
-    x_{ij}x_{ik}&\text{if }j,k\in\cal V\\
-    Pr_{\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in\cal H
-    \end{array}
-    \right.
-</script>
-</p>
-</p>
+<p class="admonition-title">更新笔记</p>
+<p>@2018-01-17 解决两个练习题。<a href="https://github.com/szcf-weiya/ESL-CN/issues/42">Ex. 14.1</a>和<a href="https://github.com/szcf-weiya/ESL-CN/issues/43">Ex. 14.2</a></p>
 </div>
-<p>图17.6显示了一个例子；可见层被分成了输入变量$\cal V_1$和输出变量$\cal V_2$，且有一个隐藏层$\cal H$。我们将这样一个网络表示成</p>
+<p>聚类分析(cluster analysis)，也称作数据分离(data segmentation)，有各种不同的目标。所有的目标都与将点集(a collection of objects)分成子集或者簇有关，使得同一个簇中的点比不在同一个簇的点彼此更接近。一个点可以用一系列度量来描述，或者通过与其它点的关系。另外，目标有时是将簇排列成自然分层的形式。这涉及到依次将簇本身进行分类使得在每一层次，同一类中的簇比不在同类的簇彼此更相似。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：翻译</p>
+<p>为了更好地表述，将上文中的object翻译成“点”。</p>
+</div>
+<p>聚类分析也用来构造描述型统计量来确定数据点是否包含不同的子群，每个群表示有着显著不同特点的点集。这一目标需要评估被分到各自簇中的点集间的差异程度。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>这里谈到了两个目标：第一个提到了hierarchy，这与系统聚类相似；第二个提到用统计量衡量簇间的差异，如各种距离和相似系数。</p>
+</div>
+<p>聚类分析的所有目标的核心是度量要聚类的单个点间相似（或不相似）的程度。聚类方法试图基于点间相似性的定义来将其分类。相似性的定义只能从关注的主题得到。某种程度上，这个情形与确定预测问题（监督学习）中的损失或花费函数相似。在预测问题中，损失函数与错误的预测有关，而错误的预测取决于数据之外的考虑。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>简而言之，聚类方法中相似性的定义就如同监督学习问题中损失函数一样重要。</p>
+</div>
+<p>图14.4 显示了通过流行的K-means算法将一些模拟数据聚成三簇。这种情况下其中的两个簇不是很好地分离开，所以“分割（segmentation）”比“聚类（clustering）”能将这部分过程描述得更精确。K-means聚类以猜三个聚类中心为开始。然后交替进行下面的步骤直到收敛：</p>
+<ul>
+<li>对于每个数据点，确定（欧式空间）中最近的聚类中心。</li>
+<li>每个聚类中心用与其最近的所有数据点的平均坐标来替换。</li>
+</ul>
+<p><img alt="" src="../../img/14/fig14.4.png" /></p>
+<blockquote>
+<p>图14.4. 平面上的模拟数据，用K-means聚类算法聚成三类（分别用橘黄色，蓝色和绿色）。</p>
+</blockquote>
+<p>我们将在后面更详细地描述K-means，包括怎样选取类别数目的问题（例子中是三个）。K-means聚类是从上到下（top-down）的过程，而其他我们描述的分类方式是从下往上（bottom-up）的过程。所有聚类技巧的根本是两个点之间距离或者相似性的度量。我们在描述各种不同的聚类算法之前首先讨论距离的度量。</p>
+<h2 id="proximity-matrices">接近矩阵(proximity matrices)<a class="headerlink" href="#proximity-matrices" title="Permanent link">&para;</a></h2>
+<p>有时数据是直接用点对之间的接近（相似或亲近）来表示。这些可以是相似性(similarities)或者不相似性(dissimilarities)（不同或者不够近似）。举个例子，在社会科学实验中，参与者被要求去判断特定的物品与另一个之间的差异程度。不相似性进一步可以对这些判断进行平均来计算。这种类型的数据可以表示成$N\times N$的矩阵$\mathbf D$，其中$N$为物品数目的个数，并且每个元素$d_{ii&rsquo;}$记录了第$i$个和第$i&rsquo;$个物品之间的接近程度。这个矩阵接着作为聚类算法的输入。</p>
+<p>大部分算法假定一个非负的不相似性矩阵，对角元素为0：$d_{ii}=0,i=1,2,\ldots,N$。如果原始数据以相似性表示的，则某合适的非负单调下降函数可以用来将它们转换为不相似性。另外，大部分算法假定不相似性矩阵是对称的，所以如果原始矩阵$\mathbf D$不是对称的，则必须用$(\mathbf{D+D^T})/2$来替换。在严格意义下主观判断的差异并不是距离（distances），因为三角不等式$d_{ii&rsquo;}\le d_{ik}+d_{i&rsquo;k}$对于所有的$k\in{1,\ldots,N}$不满足。因此，一些采用距离的算法不能用这些数据。</p>
+<h2 id="_1">基于属性的不相似性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>大部分情形下我们对变量$j=1,\ldots,p$（也称为属性）在$i=1,2,\ldots,N$上有测量值$x_{ij}$。因为大多数流行的聚类算法将不相似性矩阵作为输入，我们首先必须构造两个观测之间的成对不相似性。在大部分一般情形下，我们定义第$j$个属性上不相似性$d_j(x_{ij},x_{i&rsquo;j})$，进一步定义
+<script type="math/tex; mode=display">
+D(x_i,x_{i'})=\sum\limits_{j=1}^pd_j(x_{ij},x_{i'j})\qquad (14.20)
+</script>
+作为第$i$和$i&rsquo;$点的不相似性。至今为止最普遍的选择是平方距离
+<script type="math/tex; mode=display">
+d_j(x_{ij},d_{i'j})=(x_{ij}-x_{i'j})^2\qquad (14.21)
+</script>
+然而，其它的情形也是可能的，而且可以导出潜在的不同的结果。对于非定量的属性（如类别型数据），平方距离可能不合适。另外的，有时候需要对属性赋予不同的权重，而不是像在（14.20）中赋予相等的权重。</p>
+<p>我们首先讨论关于属性类别的备选方案。</p>
+<h3 id="_2">定量变量<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>这种类型的变量（或属性）的度量用连续实值来表示。将它们间的“误差”定义为关于它们绝对差异的单调增加的函数是很自然的</p>
 <p>
 <script type="math/tex; mode=display">
-{\cal V}_1\leftrightarrow {\cal H\leftrightarrow\cal V}_2\qquad (17.39)
+d(x_i,x_{i'})=l(\vert x_i-x_{i'}\vert)
 </script>
 </p>
-<p><img alt="" src="../../img/17/fig17.6.png" /></p>
-<blockquote>
-<p>图17.6. 同一层中的结点没有连接的约束玻尔兹曼机（RBM）。可见单元细分成了$\cal V_1$和 $\cal V_2$，允许RBM建立特征$\cal V_1$和标签$\cal V_2$之间的联合密度。</p>
-</blockquote>
-<p>举个例子， $\cal V_1$可以是手写字体图像的二值像素，$\cal V_2$可以有10个单元，每个单元是观测的类别标签0-9中的一个。</p>
-<p>这个模型的约束形式简化了估计(17.37)中期望的吉布斯采样，因为每一层的变量在给定其它层中的变量时独立于其它变量。因此它们可以采用由式（7.30）给出的条件概率一起取样。</p>
-<p>最终的模型没有玻尔兹曼机一般，但是仍然很有用；举个例子，可以经过学习从图像中提取有趣的特征。</p>
-<p>通过对图17.6中RBM的每一层中的变量进行交替取样，从联合密度模型中产生样本是可能的。如果可见层的$\cal V_1$部分在交替取样时固定为特定的特征向量，从给定$\cal V_1$的标签分布中取样是可能的。另外测试项的分类也可以通过比较观测到的特征和每个类别标签的未标准化联合密度来实现。我们不需要计算分割函数因为对于所有的组合都是一样的（？？？？）。</p>
-<p>正如所注意到的约束玻尔兹曼机有与单层隐藏层神经网络一样的一般形式（11.3节）。神经网络中边是有向的，隐藏单元经常是实值的，并且拟合准则不一样。神经网络在输入特征的情况下，最小化目标与模型预测之间的误差（交叉熵）。相反地，约束玻尔兹曼机最大所有可见单元（也就是，特征和目标）的联合分布的对数似然。可以从输入特征中提取对预测标签有用的信息，但是，与监督学习方法不同，可能也使用一些隐藏单元对特征向量中的结构进行建模，而这与预测标签不是直接相关的。然而，这些特征当与从隐藏层中导出的特征结合起来会变得有用。</p>
-<p>不幸的是，约束玻尔兹曼机中的吉布斯采样会非常慢，因为需要花费很长时间达到稳态。当网络参数变得更大，这些链混合得更慢，并且我们需要更多的步骤来得到无条件的估计。Hinton(2002)根据经验注意到当我们通过在数据中启动马尔科夫链并仅仅运行几步（不是直到收敛）来估计（17.37）中的第二个期望，学习仍然有用。他称这个为对比发散(contrastive divergence)：我们给定$\cal V_1,V_2$对 $\cal H$ 取样，然后给定 $\cal H$对 $\cal V_1,V_2$取样，最后再次给定$\cal V_1,V_2$对$ \cal H$取样。思想是，当参数与解相差很多，迭代吉布斯取样达到问题是浪费的，因为仅仅一个迭代就是发现改变估计的一个好方向。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya 注<p><img alt="" src="../../img/17/hvGibbs.png" />
-截图自<a href="http://deeplearning.net/tutorial/">http://deeplearning.net/tutorial/</a></p>
+<p>除了平方误差损失$(x_i-x_{i&rsquo;})^2$，普遍的选择是单位（绝对误差）。前者更加关注大的差异。另外，聚类可以基于相关系数</p>
+<p>
+<script type="math/tex; mode=display">
+\rho(x_i,x_{i'})=\frac{\sum_j(x_{ij}-\bar x_i)(x_{i'j}-\bar x_{i'})}{\sqrt{\sum_j(x_{ij}-\bar x_i)^2\sum_j(x_{i'j}-\bar x_{i'})^2}}\qquad (14.22)
+</script>
 </p>
-</div>
-<p>我们现在给出说明RBM用法的一个例子。采用对比发散(CD)，训练RBM来识别MNIST数据集中的手写字体是可能的（LeCun等人，1998）。2000个隐藏单元，784个表示二值像素强度的单元，以及表示标签的10-way multinomial（weiya注：取值为0-9）可见单元，RBM可以在测试集值达到1.9%的错误率。这比支持向量机达到的1.4%略高一点，与通过向后传播训练的神经网络得到的误差率相当。然而，用500个从图像中得到的不含任何标签信息的特征来替换784个像素强度，RBM的误差率会降至1.25%。首先，采用对比发散训练包含784个可见单元和500个隐藏单元的RBM，来建立图像集的模型。然后第一个RBM的隐藏状态作为训练第二个RBM的数据，第二个RBM含500个可见单元和500个隐藏单元。最后，第二个RBM的隐藏状态用作训练含2000个隐藏单元的RBM的输入特征。这种以贪婪、逐层的方式来学习特征的细节及证明在Hinton等人（2006）中给出。图17.7给出了以这种方式学习的复合模型的一个表示，也显示了一些它能够应付的变形的字体的例子。</p>
-<p><img alt="" src="../../img/17/fig17.7.png" /></p>
+<p>其中$\bar x_i=\sum_jx_{ij}/p$。注意到这是在变量上平均，不是在观测上。如果输入已经标准化了，则$\sum_j(x_{ij}-x_{i&rsquo;j})^2\propto 2(1-\rho(x_i,x_{i&rsquo;}))$。因此基于协方差（相似性）的分类与基于平方距离（不相似性）是等价的。</p>
+<h3 id="_3">有序变量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>这种类型的变量经常表示成邻接整数，而且实现值也看成有序集。举些例子，如学业成绩(A,B,C,D,F)，偏好程度（can&rsquo;t stand, dislike, OK, like, terrific）。排名数据是一类特别的有序数据。有序变量的误差度量一般通过将它们$M$个原始值（按照原始值规定的顺序）替换为下式来定义
+<script type="math/tex; mode=display">
+\frac{i-1/2}{M},i=1,\ldots,M\qquad (14.23)
+</script>
+</p>
+<p>于是它们接着可以看成这个尺度下的定量变量。</p>
+<h3 id="_4">类别变量<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>对于无序的类别（也称作名义(nomial)）变量，成对数据的差异程度必须明确地表示出来。如果变量假设有$M$个不同的值，可以排列成对称的$M\times M$矩阵，元素$L_{rr&rsquo;}=L_{r&rsquo;r},L_{rr}=0,L_{rr&rsquo;}\ge 0$。最普遍的选择对于所有$r\neq r&rsquo;$取$L_{rr&rsquo;}=1$，而不同的损失可以用来突出某些错误。</p>
+<h2 id="object-dissimilarity">样品的不相似性(object dissimilarity)<a class="headerlink" href="#object-dissimilarity" title="Permanent link">&para;</a></h2>
+<p>接着我们定义将$p$个单属性不相似性$d_j(x_{ij},d_{i&rsquo;j}),j=1,2,\ldots,p$结合成一个单独的衡量整个不相似性的$D(x_i,x_{i&rsquo;})$，$D(x_i,x_{i&rsquo;})$是两个有着各自属性值的点或观测$(x_i,x_{i&rsquo;})$之间的不相似性。这几乎总是通过加权平均（凸组合）的方式实现
+<script type="math/tex; mode=display">
+D(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot d_j(x_{ij},x_{i'j});\; \sum\limits_{j=1}^p=1\qquad (14.24)
+</script>
+这里$w_j$是为了确定点间的整个不相似性对第$j$个属性赋值的权重，权重表示了这个变量的相对影响。权重的选择取决于具体的问题。</p>
+<p>重要的是意识到，对每个变量的设定相同的权重$w_j$（如，$w_j=1\;\forall j$）不一定对所有变量有相同的影响。第$j$个属性$X_j$在点的不相似性$D(x_i,x_{i&rsquo;})$（14.24）上的影响取决于它的相对贡献，这个相对贡献是对数据集中所有的数据对的平均样品不相似性$\bar D$而言
+<script type="math/tex; mode=display">
+\bar D=\frac{1}{N^2}\sum_{i=1}^N\sum\limits_{i'=1}^ND(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot \bar d_j
+</script>
+其中，
+<script type="math/tex; mode=display">
+\bar d_j=\frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nd_j(x_{ij},x_{i'j})\qquad (14.25)
+</script>
+是第$j$个属性的平均不相似性。因此，第$j$个变量的相对影响为$w_j\cdot \bar d_j$，并且令$w_j\sim 1/\bar d_j$会让所有的属性在表征样品间整个不相似性中有相等的影响。举个例子，$p$个定量变量以及对每个坐标使用平方误差距离，接着（14.24）成为以定量变量为坐标轴的$R^p$空间中成对点的（加权）欧氏距离
+<script type="math/tex; mode=display">
+D_I(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot (x_{ij}-x_{i'j})^2\qquad (14.26)
+</script>
+</p>
+<p>这种情形下（14.25）变成
+<script type="math/tex; mode=display">
+\bar d_j=\frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N(x_{ij}-x_{x'j})^2=2\cdot var_j\qquad (14.27)
+</script>
+其中$var_j$为$Var(X_j)$的样本估计。因此，每个这样变量的相对重要性与其在数据集上的方差成比例。一般地，对所有属性令$w_j=1/\bar d_j$会导致它们中的每一个在成对物体$(x_i,x_{i&rsquo;})$上的整体不相似性上有相等的影响。尽管这看起来或许合理，并且通常推荐这样做，但是会产生严重的不良后果。如果目标是将数据分割成相似样品的类，所有属性或许不会对样品之间的不相似性的（取决于问题）概念贡献相等。一些属性值的差异可能会在某问题领域反映更大的实际的样品不相似性。</p>
+<p>如果目标是发现数据的自然分类，一些属性或许比其他属性表现出更多的分类趋势。在分离类别时，越相关的变量越应该赋予更高的影响来定义object dissimilarity。这种情况下给所有属性相等的影响会趋于隐藏掉这个类别，使得分类算法不能发现它们。图14.5展示了一个例子。</p>
+<p><img alt="" src="../../img/14/fig14.5.png" /></p>
 <blockquote>
-<p>图17.7 约束玻尔兹曼机处理手写字体数字的例子。网络用左边的原理图来描述。右边显示了一些该模型分类正确的难的测试图像。</p>
+<p>图14.5. 模拟数据：左图对原始数据应用K-means（K=2）分类。两种颜色表示类别的成员。右图，聚类之前对特征进行第一次标准化。这等价于使用特征权重$1/[2\cdot var(X_j)]$。标准化模糊了两个能完美分离的类。注意到每张图的横纵坐标使用相同的单位长度。</p>
 </blockquote>
+<p>尽管选择单个属性不相似性$d_j(x_{ij},d_{x_{i&rsquo;j}})$和它们的权重$w_j$的简单的通用方法会令人愉快，但是在每个单个问题中，没有替代仔细思考的方式。确定一个合适的不相似性的度量远比选择聚类算法来得重要。该问题的这个方面在聚类领域比算法本身强调得少，因为它取决于特定的领域域知识，并且不适合一般性的研究。</p>
+<p>最后，观测值经常在一个或多个属性中有缺失值。将缺失值合并到不相似性的计算（14.24）中的最普遍方法是在计算观测$x_i$和$x_{i&rsquo;}$之间的不相似性时，省略掉至少有一个缺失值的观测对$x_{ij},x_{i&rsquo;j}$。这个方法在两个观测都没有共同测量值的情况中是不适用的。这种情况下，两个观测都会从分析中删掉。或者，可以使用每个属性未缺失值的平均值或中位数来插补缺失值。对于类别型变量，如果两个物体在相同变量上具有缺失值的情况下将两个对象视为相似是合理的，则可以将缺失值仅仅考虑成另一个类别值。</p>
+<h2 id="_5">聚类算法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>聚类分析的目标是将观测进行分类使得分到同一类中的成对非相似性趋向于比在不同类中小。聚类算法可以分成三种不同的类别：组合算法(combinatorial algorithms)，混合模型(mixture modeling)，以及模式寻找(mode seeking)。</p>
+<p>组合算法直接对观测数据进行处理，而不直接引用潜在的概率模型。混合模型假设数据是从某概率密度函数对应的总体中抽取的独立同分布的样本。密度函数用参数化模型表征，该参数化模型为各组分密度函数的混合；每个组分密度表示其中的一类。这个模型接着利用极大似然或者对应的贝叶斯方式来拟合。模式寻找（bump hunters）采用非参数观点，试图直接估计不同的概率密度函数的模式。与每个单独的模式最接近的观测定义为单个簇。</p>
+<p>混合模型在6.8节中有讨论。在9.3和14.2.5节中讨论的PRIM算法是模式寻找（或“bump hunters”）的例子。我们接下来讨论组合算法。</p>
+<h2 id="_6">组合算法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>最受欢迎的聚类算法不考虑描述数据的概率模型而直接将每个观测划分为一类或一簇。每个观测用整数$i\in\{1,\cdots,N\}$来唯一标号。假定预先确定的类别个数$K &lt; N$，并且每个编号为$k\in\{1,\ldots,K\}$。每个观测仅仅分配到一个类中。这些分配可以表示为多对一映射，或者编码器$k = C(i)$，将第$i$个观测分配到第$k$个类。基于每个观测对的不相似性$d(x_i,x_{i&rsquo;})$来寻找特定的编码器${C^*(i)}$来实现要求的目标（细节在下面）。一般地，编码器$C(i)$通过给出每个观测$i$的值（类别分配）来显示描述。因此，过程的“参数”是$N$个观测中每个的类别分配。调整这些来最小化表征聚类目标没有达到的程度的“损失”函数。</p>
+<p>一种方式是直接确定数学上的损失函数并且试图通过一些组合优化算法来最小化。因为目标是将离得近的点分到同一类，一个自然的损失（或“能量”）函数会是
+<script type="math/tex; mode=display">
+W(C)=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}d(x_i,x_{i'})\qquad (14.28)
+</script>
+这个准则表征了分配到同一类的观测与另一个接近的程度。有时也被称作“类间”点散（point scatter），因为
+<script type="math/tex; mode=display">
+T=\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nd_{ii'}=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\Big(\sum\limits_{C(i')=k}d_{ii'}+\sum\limits_{C(i')\neq k}d_{ii'}\Big)
+</script>
+或者
+<script type="math/tex; mode=display">
+T=W(C)+B(C)
+</script>
+其中$d_{ii&rsquo;}=d(x_i,x_{i&rsquo;})$。$T$是总点散，给定数据后为常数，与类别分配是独立的。下面的$B(C)$值是类间点散。
+<script type="math/tex; mode=display">
+B(C)=\frac{1}{2}\sum\limits_{k=1}\sum\limits_{C(i)=k}\sum\limits_{C(i')\neq k}d_{ii'}\qquad (14.29)
+</script>
+当观测分到远离的不同类中时这个值趋向于大。因此有
+<script type="math/tex; mode=display">
+W(C)=T-B(C)
+</script>
+并且最小化$W(C)$等价于最大化$B(C)$</p>
+<p>通过组合优化的聚类分析原则上是直接的。简单地在$N$个点分到$K$个类中的所有可能分配上最小化$W$或等价地最大化$B$。不幸的是，这种穷举法的优化仅仅在非常小的数据集中才适用。不同的分配个数为（Jain and Dubes，1988<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）
+<script type="math/tex; mode=display">
+S(N,K)=\frac{1}{K!}\sum\limits_{k=1}^K(-1)^{K-k}\binom{K}{k}k^N\qquad (14.30)
+</script>
+举个例子，$S(10,4)=34,105$是可行的。但是$S(N,K)$随着变量值的增大迅速增大。$S(19,4)\simeq 10^{10}$,并且大多数聚类问题涉及比$N=19$更大的数据集。基于这个原因，实用的聚类算法只能验证所有可能编码$k=C(i)$情形的非常小的一部分。目标是识别处可能包含最优解的小的子集，或者至少好的次优的划分。</p>
+<p>这些可行的策略是基于迭代贪婪下降。给定初始划分。每一步迭代，以某种方式来改变类别划分，这种方式使得某准则的值比上一步的值有所改善的。这个类别的聚类算法区别于在每一步迭代修改类别分配的方式。当这种方式不能再改善，算法以当前的分配为其解而终止。因为在任一步的迭代中的类别分配是对上一步类别分配的扰动，只有所有可能分配（14.30）的非常小的一部分被检查。然而，这些算法收敛到局部最优，与全局最优相比可能是高度次优的。</p>
+<h2 id="k-means">K-means<a class="headerlink" href="#k-means" title="Permanent link">&para;</a></h2>
+<p>K-means算法是最流行的迭代下降聚类方法之一。适用于所有变量都为定量的情形，且选择下式的平方欧式距离作为其不相似性的度量
+<script type="math/tex; mode=display">
+d(x_i,x_{i'})=\sum\limits_{j=1}^p(x_{ij}-x_{i'j})^2=\Vert x_i-x_{i'}\Vert^2
+</script>
+注意到加权欧式距离可以通过重新定义$x_{ij}$来实现（练习14.1）</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: Ex. 14.1 </p>
+<p>这个可以很容易计算。原问题及解答参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/42">Issues 42: Ex. 14.1</a></p>
+</div>
+<p>类间点散（14.28）可以写成
+<script type="math/tex; mode=display">
+\begin{align}
+W(C)&=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}\Vert x_i-x_{i'}\Vert^2\\
+&=\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2\qquad \qquad (14.31)
+\end{align}
+</script>
+其中$\bar x_k=(\bar x_{1k},\ldots,\bar x_{pk})$是与第$k$个类的均值向量，并且$N_k=\sum_{i=1}^NI(C(i)=k)$。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注</p>
+<p>式(14.31)并不成立，以两个点为例，
+<script type="math/tex; mode=display">
+(x_1-x_2)^2=(x_1-\mu+\mu-x_2)^2\neq (x_1-\mu)^2+(x_2-\mu)^2
+</script>。</p>
+</div>
+<p>因此，通过以某种方式将$N$个观测分配到$K$个类中来最小化该准则，该方式为最小化每个类中观测点与类别中心（用该类中的点定义）的不相似性的平均值。</p>
+<p>求解下列问题的迭代下降算法
+<script type="math/tex; mode=display">
+C^*=\underset{C}{min}\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
+</script>
+可以通过注意到任意观测集$S$有下式而得到。
+<script type="math/tex; mode=display">
+\bar x_S=\underset{m}{\text{argmin}}\;\sum\limits_{i\in S}\Vert x_i-m\Vert^2\qquad (14.32)
+</script>
+因此我们可以通过求解扩大的优化问题而得到$C^*$
+<script type="math/tex; mode=display">
+\underset{C,\{m_k\}_1^K}{min}\;\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-m_k\Vert^2\qquad (14.33)
+</script>
+这个可以通过算法14.1给出的交替优化过程得以最小化。</p>
+<p><img alt="" src="../../img/14/alg14.1.png" /></p>
+<p>每个步骤1和步骤2都降低准则（14.33）的值，所以收敛性是保证的。然而，结果可能会表现处次优局部最小值。Hartigan and Wong (1979)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>的算法进一步研究，并且保证了单个的一个观测从一个类转换到另一个类不会降低目标值。另外，应该用许多初始值的许多随机选择来开始算法，然后选择有最小目标函数的解。</p>
+<p>图14.6显示了图14.4的模拟数据的一些K-means迭代过程。重心用O来描述。直线显示了点的划分，每个部分都是离重心最近的点的集合。这个划分也称为Voronoi曲面细分。20次迭代之后收敛。</p>
+<p><img alt="" src="../../img/14/fig14.6.png" /></p>
+<blockquote>
+<p>图14.6. 对于图14.4的模拟数据的K-means聚类算法的逐次迭代</p>
+</blockquote>
+<h2 id="soft-k-means">高斯混合作为Soft K-means聚类<a class="headerlink" href="#soft-k-means" title="Permanent link">&para;</a></h2>
+<p>K-means 聚类算法与估计特定的高斯混合模型的EM算法有关。（6.8节和8.5.1节）EM算法的步骤E对每个数据点基于在每个混合部分中的相对密度来赋予“responsibilities”，而步骤M基于当前的responsibilities重新计算各组分的密度参数。假设明确了我们有$K$个混合组分，每个是有着标量协方差矩阵$\sigma^2\mathbf I$的高斯密度。则在每个混合组分的相对密度是关于数据点到混合中心欧氏距离的单调函数。因此在这一步中EM是K-means聚类的soft，使得点以概率（而不是确定性的）分配到聚类中心。因为方差$\sigma\rightarrow 0$，这些概率变成0和1，两种方法也就一致。细节在练习14.2中给出。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注: Ex. 14.2</p>
+<p>Ex. 14.2讨论了$k$个高斯组分的混合模型，而算法8.1针对的是两组分的高斯混合模型，但主要思想是一致的。具体解题过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/43">Issues 43: Ex. 14.2</a></p>
+</div>
+<p>图14.7说明了实线上两个聚类的结果。</p>
+<p><img alt="" src="../../img/14/fig14.7.png" /></p>
+<blockquote>
+<p>图14.7. (左：)实线为两个高斯密度$g_0(x)$和$g_1(x)$（蓝色和橘黄色），以及$x=0.5$处的单个数据点（绿色圆点）。带颜色的方块画在$x=-1.0$和$x=1.0$处，每个密度的均值。（右：）对于数据点来说，相对密度$g_0(x)/(g_0(x)+g_1(x))$和$g_1(x)/(g_0(x)+g_1(x))$称作每个聚类的“responsibilities”。上面一排的两张图，高斯标准误差为$\sigma=1.0$在下面的两张图中$\sigma=0.2$。EM算法用这些responsibilities来对每个数据点做“soft”分配到两个簇中。当$\sigma$相对大，responsibilities可以接近0.5，（右上图中为0.36和0.64）。当$\sigma\rightarrow 0$时，responsibilities接近1，表示聚类中心离目标点很近，0代表是其它的聚类。“hard”版本的分配如右下图所示。</p>
+</blockquote>
+<h2 id="_7">例子：人类肿瘤微阵列数据<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>我们对第１章描述的人类肿瘤微阵列数据应用Ｋ-means聚类。这是一个高维聚类的例子。数据为$6830\times 64$的实值矩阵，每个元素表示基因（行）和样本（列）的表达测量值。这里我们对样本进行聚类，每个都是长度为6830的向量，对应6830个基因的表达值。每个样本有像breast(乳腺癌)，melanoma等标签；聚类时，我们不会用这些标签，但是会验证哪个标签落入到哪个簇中。</p>
+<p>我们对从1到10的$K$应用K-means聚类，而且对每次聚类计算总类间平方和，如图14.8所示。一般地我们在平方和曲线中寻找一个结点来定位最优簇的个数（见14.3.11）。这里没有显然的指示：为了说明我们选择$K=3$给出如表14.2所示的三个类。</p>
+<p><img alt="" src="../../img/14/fig14.8.png" /></p>
+<blockquote>
+<p>图14.8. 对人类种类微阵列数据应用K-means聚类的总簇间平方和。</p>
+</blockquote>
+<p><img alt="" src="../../img/14/tab14.2.png" /></p>
+<blockquote>
+<p>表14.2. 人类肿瘤数据：每种类型的癌症在由K-means聚类得到的三个类中的个数</p>
+</blockquote>
+<p>我们看到这个过程在聚集同样类型的癌症是很成功的。事实上，在第2类中的两个乳腺癌后来发现是误诊的，而是转移的黑素瘤。然而，K-means聚类在这个应用中有缺点。其中一个是，它没有给出癌症中物体的线性顺序：我们仅仅以字母顺序列出来。第二，当聚类的数目$K$改变，簇中的成员以任意方式变化。也就是，如4个类，这些类不需要嵌套在上面的三个类中。基于这个原因，系统聚类可能在这个应用中更好。</p>
+<h2 id="_8">向量量化<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>K-means聚类算法代表了在图像和信号压缩的明显无关的区域中的关键工具，特别在向量量化(vector quantization)或者VQ（Gersho and Gray，1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）中。图14.9（本例由Maya Gupta准备）的左图像是著名的统计学家Sir Ronald Fisher的电子相片。它包含$1024\times 1024$个像素，每个像素是从0到255的灰度值，因此每个像素需要8位的存储。整张图像占据1M的存储空间。中间图像是左边图像的VQ压缩版本，需要0.239的存储（质量上有一些损失）。右图压缩得更厉害，仅需要0.0625的存储空间（质量上有较大的损失）。</p>
+<p><img alt="" src="../../img/14/fig14.9.png" /></p>
+<blockquote>
+<p>图14.9. Sir Ronald A.Fisher(1890-1962)是现代统计学的创始人之一，极大似然法，充分性和许多其他基本概念都是归功于他。左边的图像是1024$\times$1024的灰度图像，每个像素为8位。中间图像是$2\times 2$VQ块的结果，采用200个编码向量，达到1.9bits/pixel的压缩率。右图像仅采用4个编码向量，压缩率为0.50bits/pixel。</p>
+</blockquote>
+<p>这里的VQ版本实现过程是首先将图像分成小块，这里是$2\times 2$的小块的像素。$512\times 512$个4数目的块被视为$R^4$中的向量。在这个空间内运用K-means聚类算法（这种情形下也称为Lloyd算法）。图14.9的中间图像采用$K=200$，而右边图像采用$K=4$。$512\times 512$个像素块中的每一个用它最近的类别中心近似，称为codeword。聚类过程称为编码（encoding），中心的集合称为码本（codebook）。</p>
+<p>为了表示近似的图像，我们需要提供对每个块用码本中唯一的量来近似它的空间。每一块需要$log_2(K)$位空间。我们也需要提供码本本身的存储空间，是一个$K\times4$的实值（一般忽略不计）。总的来说，压缩图像的空间为原图像的$log_2(K)/(4\cdot 8)$倍（$K=200$时为0.239，$K=4$时为0.063）。通常表示成单位为bits/pixel的比率：$log_2(K)/4$，分别是1.91和0.50。从重心构造出近似的图像的过程称为解码（decoding）。</p>
+<p>为什么我们期望VQ会有效果？原因是日常的图像比如照片，许多块看起来一样。这种情形下许多几乎是纯白的块，类似的不同阴影的纯灰度块。这些仅仅需要一个块来表示它们，以及指向这个快的多个指针。</p>
+<p>我们描述的是被称作损失压缩，因为我们的图像是原图的退化版本。这种退化或者失真（distortion）通常用均值平方误差来衡量。这种情形下，$K=200$时$D=0.89$，$K=4$时$D=16.95$。更一般地，比率/失真曲线会用来衡量这种权衡。也可以使用块聚类来实现小损失（lossless）的压缩，并且仍然利用重复的模式。如果需要对原图像进行小损失的压缩，最好的选择是4.48bits/pixel。</p>
+<p>我们在上面断言，码本中确定$K$个码字中的每一个需要$log_2(K)$位空间。这采用了固定长度编码，如果一些码字在图像中比其他的出现更频繁，这是无效的。采用Shannon编码理论，我们知道一般地可变长度的编码会更好，并且比率会变成$-\sum_{k=1}^Kp_\ell log_2(p_\ell)/4$。分子中的项是图像中codeword的分布$p_\ell$的熵。采用可变长度编码我们的比例会分别降至1.42和0.39。最后，已经发展出很多VQ的推广：举个例子，树结构的VQ以自上而下、2-均值算法来寻找重心，如第14.3.12节所述。这允许压缩的逐步加细。更多细节或许可以在Gersho and Gray(1992)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的工作中找到。</p>
+<h2 id="k-medoids">K-medoids<a class="headerlink" href="#k-medoids" title="Permanent link">&para;</a></h2>
+<p>TODO</p>
+<h2 id="_9">实际问题<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>TODO</p>
+<h2 id="_10">系统聚类<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>TODO</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Jain, A. and Dubes, R. (1988). Algorithms for Clustering Data, Prentice- Hall, Englewood Cliffs, N.J.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Gersho, A. and Gray, R. (1992). Vector Quantization and Signal Compression, Kluwer Academic Publishers, Boston, MA.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Hartigan, J. A. and Wong, M. A. (1979). [(Algorithm AS 136] A k-means clustering algorithm (AS R39: 81v30 p355-356), Applied Statistics 28: 100–108.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
@@ -3353,7 +3619,7 @@ E_{\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})=
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../17.3-Undirected-Graphical-Models-for-Continuous-Variables/index.html" title="17.3 连续变量的无向图模型" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../14.2-Association-Rules/index.html" title="14.2 关联规则" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3362,19 +3628,19 @@ E_{\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})=
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                17.3 连续变量的无向图模型
+                14.2 关联规则
               </span>
             </div>
           </a>
         
         
-          <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../14.4-Self-Organizing-Maps/index.html" title="14.4 自组织图" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                文献笔记
+                14.4 自组织图
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
