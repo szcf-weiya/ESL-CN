@@ -3169,7 +3169,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-02-04, 2018-03-07, 2018-03-08, 2018-04-18, 2018-04-25</td>
+<td>2018-02-04, 2018-03-07, 2018-03-08, 2018-04-18, 2018-04-25,2018-05-03</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3262,6 +3262,14 @@ X_j=\alpha_{0j}+\alpha_{1j}U+\epsilon_j\;j\in \cal P\qquad (18.33)
 </script>
 </p>
 <p>其中 $\u$ 是模型 (18.32) 中真实的（未观测的）潜变量。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Big O in Probability</p>
+<p>设 $X_n$ 为随机变量序列，$a_n$ 为常值序列，若 $\forall \varepsilon&gt;0$，存在 $M(\varepsilon)$ 和 $N(\varepsilon)$，使得当 $n&gt;N(\varepsilon)$ 时
+<script type="math/tex; mode=display">
+P\{\vert X_n/a_n\vert > M(\varepsilon)\}<\varepsilon
+</script>
+则称 $X_n=O_p(a_n)$。</p>
+</div>
 <p>用一个模拟例子来数值比较这些方法。例子中有 $N=100$ 个样本，$p=5000$ 个基因。按如下方式生成数据：</p>
 <p><img alt="" src="../../img/18/eq18.37.png" /></p>
 <p>其中 $\epsilon_{ij}$ 和 $\varepsilon_i$ 是均值为 0 标准差分别为 1 和 1.5 的独立正态随机变量。因此在前 50 个基因中，1-50 号样本与 51-100 号样本有 1 个单位的差异，这个差异与输出 $y$ 有关。接下来 200 个在样本 (1-25, 51-75) 和样本 (26-50, 76-100) 之间有 4 个单位的平均差异，但是这种差异与输出变量无关。剩下的基因是噪声。图 18.15 展示了经典的热图，其中输出变量在左边，前 500 个基因在右边。</p>
