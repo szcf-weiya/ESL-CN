@@ -26,7 +26,7 @@ pages:
       - 3.5 运用派生输入方向的方法: '03-Linear-Methods-for-Regression/3.5-Methods-Using-Derived-Input-Directions.md'
       - 3.6 选择和收缩方法的比较: '03-Linear-Methods-for-Regression/3.6-A-Comparison-of-the-Selection-and-Shrinkage-Methods.md'
       - 3.7 多重输出的收缩和选择: '03-Linear-Methods-for-Regression/3.7-Multiple-Outcome-Shrinkage-and-Selection.md'
-      - 3.8 Lasso和相关路径算法的补充: '03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms.md'
+      - 3.8 Lasso 和相关路径算法的补充: '03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms.md'
       - 3.9 计算上的考虑: '03-Linear-Methods-for-Regression/3.9-Computational-Considerations.md'
       - 文献笔记: '03-Linear-Methods-for-Regression/Bibliographic-Notes.md'
     - 4 分类的线性方法:
@@ -47,7 +47,7 @@ pages:
       - 5.8 正则化和再生核希尔伯特空间理论: '05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces.md'
       - 5.9 小波光滑: '05-Basis-Expansions-and-Regularization/5.9-Wavelet-Smoothing.md'
       - 文献笔记: '05-Basis-Expansions-and-Regularization/Bibliographic-Notes.md'
-      - 附录-B样条的计算: '05-Basis-Expansions-and-Regularization/Appendix-Computations-for-B-splines.md'
+      - 附录-B 样条的计算: '05-Basis-Expansions-and-Regularization/Appendix-Computations-for-B-splines.md'
     - 6 核光滑方法:
       - 6.0 导言: '06-Kernel-Smoothing-Methods/6.0-Introduction.md'
       - 6.1 一维核光滑器: '06-Kernel-Smoothing-Methods/6.1-One-Dimensional-Kernel-Smoothers.md'
@@ -66,12 +66,12 @@ pages:
       - 7.1 导言: '07-Model-Assessment-and-Selection/7.1-Introduction.md'
       - 7.2 偏差，方差和模型复杂度: '07-Model-Assessment-and-Selection/7.2-Bias-Variance-and-Model-Complexity.md'
       - 7.3 偏差-方差分解: '07-Model-Assessment-and-Selection/7.3-The-Bias-Variance-Decomposition.md'
-      - 7.4 测试误差率的optimism: '07-Model-Assessment-and-Selection/7.4-Optimism-of-the-Training-Error-Rate.md'
+      - 7.4 测试误差率的 optimism: '07-Model-Assessment-and-Selection/7.4-Optimism-of-the-Training-Error-Rate.md'
       - 7.5 样本内预测误差的估计: '07-Model-Assessment-and-Selection/7.5-Estimates-of-In-Sample-Prediction-Error.md'
       - 7.6 参数的有效个数: '07-Model-Assessment-and-Selection/7.6-The-Effective-Number-of-Parameters.md'
-      - 7.7 贝叶斯方法和BIC: '07-Model-Assessment-and-Selection/7.7-The-Bayesian-Approach-and-BIC.md'
+      - 7.7 贝叶斯方法和 BIC: '07-Model-Assessment-and-Selection/7.7-The-Bayesian-Approach-and-BIC.md'
       - 7.8 最小描述长度: '07-Model-Assessment-and-Selection/7.8-Minimum-Description-Length.md'
-      - 7.9 VC维: '07-Model-Assessment-and-Selection/7.9-Vapnik-Chervonenkis-Dimension.md'
+      - 7.9 VC 维: '07-Model-Assessment-and-Selection/7.9-Vapnik-Chervonenkis-Dimension.md'
       - 7.10 交叉验证: '07-Model-Assessment-and-Selection/7.10-Cross-Validation.md'
       - 7.11 自助法: '07-Model-Assessment-and-Selection/7.11-Bootstrap-Methods.md'
       - 7.12 条件测试误差或期望测试误差: '07-Model-Assessment-and-Selection/7.12-Conditional-or-Expected-Test-Error.md'
@@ -82,7 +82,7 @@ pages:
       - 8.2 自助法和最大似然法: '08-Model-Inference-and-Averaging/8.2-The-Bootstrap-and-Maximum-Likelihood-Methods.md'
       - 8.3 贝叶斯方法: '08-Model-Inference-and-Averaging/8.3-Bayesian-Methods.md'
       - 8.4 自助法和贝叶斯推断之间的关系: '08-Model-Inference-and-Averaging/8.4-Relationship-Between-the-Bootstrap-and-Bayesian-Inference.md'
-      - 8.5 EM算法: '08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm.md'
+      - 8.5 EM 算法: '08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm.md'
       - 8.6 MCMC向后采样: '08-Model-Inference-and-Averaging/8.6-MCMC-for-Sampling-from-the-Posterior.md'
       - 8.7 袋装法: '08-Model-Inference-and-Averaging/8.7-Bagging.md'
       - 8.8 模型平均和堆栈: '08-Model-Inference-and-Averaging/8.8-Model-Averaging-and-Stacking.md'
@@ -101,17 +101,17 @@ pages:
       - 文献笔记: '09-Additive-Models-Trees-and-Related-Methods/Bibliographic-Notes.md'
 
     - 10 增强和可加树:
-      - 10.1 boosting方法: '10-Boosting-and-Additive-Trees/10.1-Boosting-Methods.md'
-      - 10.2 boosting拟合可加模型:  '10-Boosting-and-Additive-Trees/10.2-Boosting-Fits-an-Additive-Model.md'
+      - 10.1 boosting 方法: '10-Boosting-and-Additive-Trees/10.1-Boosting-Methods.md'
+      - 10.2 boosting 拟合可加模型:  '10-Boosting-and-Additive-Trees/10.2-Boosting-Fits-an-Additive-Model.md'
       - 10.3 向前逐步加性建模: '10-Boosting-and-Additive-Trees/10.3-Forward-Stagewise-Additive-Modeling.md'
-      - 10.4 指数损失和AdaBoost: '10-Boosting-and-Additive-Trees/10.4-Exponential-Loss-and-AdaBoost.md'
+      - 10.4 指数损失和 AdaBoost: '10-Boosting-and-Additive-Trees/10.4-Exponential-Loss-and-AdaBoost.md'
       - 10.5 为什么是指数损失: '10-Boosting-and-Additive-Trees/10.5-Why-Exponential-Loss.md'
       - 10.6 损失函数和鲁棒性: '10-Boosting-and-Additive-Trees/10.6-Loss-Functions-and-Robustness.md'
       - 10.7 数据挖掘的现货方法: '10-Boosting-and-Additive-Trees/10.7-Off-the-Shelf-Procedures-for-Data-Mining.md'
       - 10.8 垃圾邮件的例子: '10-Boosting-and-Additive-Trees/10.8-Spam-Data.md'
-      - 10.9 boosting树: '10-Boosting-and-Additive-Trees/10.9-Boosting-Trees.md'
-      - 10.10 Gradient Boosting的数值优化: '10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting.md'
-      - 10.11 大小合适的boosting树: '10-Boosting-and-Additive-Trees/10.11-Right-Sized-Trees-for-Boosting.md'
+      - 10.9 boosting 树: '10-Boosting-and-Additive-Trees/10.9-Boosting-Trees.md'
+      - 10.10 Gradient Boosting 的数值优化: '10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting.md'
+      - 10.11 大小合适的 boosting 树: '10-Boosting-and-Additive-Trees/10.11-Right-Sized-Trees-for-Boosting.md'
       - 10.12 正则化: '10-Boosting-and-Additive-Trees/10.12-Regularization.md'
       - 文献笔记: '10-Boosting-and-Additive-Trees/Bibliographic-Notes.md'
 
@@ -135,7 +135,7 @@ pages:
     - 13 原型方法和最近邻:
       - 13.1 导言: '13-Prototype-Methods-and-Nearest-Neighbors/13.1-Introduction.md'
       - 13.2 原型方法: '13-Prototype-Methods-and-Nearest-Neighbors/13.2-Prototype-Methods.md'
-      - 13.3 k最近邻分类器: '13-Prototype-Methods-and-Nearest-Neighbors/13.3-k-Nearest-Neighbor-Classifiers.md'
+      - 13.3 k 最近邻分类器: '13-Prototype-Methods-and-Nearest-Neighbors/13.3-k-Nearest-Neighbor-Classifiers.md'
       - 13.4 自适应的最近邻方法: '13-Prototype-Methods-and-Nearest-Neighbors/13.4-Adaptive-Nearest-Neighbor-Methods.md'
       - 13.5 计算上的考虑: '13-Prototype-Methods-and-Nearest-Neighbors/13.5-Computational-Considerations.md'
       - 文献笔记: '13-Prototype-Methods-and-Nearest-Neighbors/Bibliographic-Notes.md'
@@ -150,7 +150,7 @@ pages:
       - 14.7 独立成分分析和探索投影寻踪: '14-Unsupervised-Learning/14.7-Independent-Component-Analysis-and-Exploratory-Projection-Pursuit.md'
       - 14.8 多维缩放: '14-Unsupervised-Learning/14.8-Multidimensional-Scaling.md'
       - 14.9 非线性降维和局部多维缩放: '14-Unsupervised-Learning/14.9-Nonlinear-Dimension-Reduction-and-Local-Multidimensional-Scaling.md'
-      - 14.10 谷歌的PageRank算法: '14-Unsupervised-Learning/14.10-The-Google-PageRank-Algorithm.md'
+      - 14.10 谷歌的 PageRank 算法: '14-Unsupervised-Learning/14.10-The-Google-PageRank-Algorithm.md'
       - 文献笔记: '14-Unsupervised-Learning/Bibliographic-Notes.md'
 
     - 15 随机森林:
@@ -174,7 +174,7 @@ pages:
       - 文献笔记: '17-Undirected-Graphical-Models/Bibliographic-Notes.md'
 
     - 18 高维问题:
-      - 18.1 当p大于N: '18-High-Dimensional-Problems/18.1-When-p-is-Much-Bigger-than-N.md'
+      - 18.1 当 p 大于 N: '18-High-Dimensional-Problems/18.1-When-p-is-Much-Bigger-than-N.md'
       - 18.2 对角线性判别分析和最近收缩重心: '18-High-Dimensional-Problems/18.2-Diagonal-Linear-Discriminant-Analysis-and-Nearest-Shrunken-Centroids.md'
       - 18.3 二次正则的线性分类器: '18-High-Dimensional-Problems/18.3-Linear-Classifiers-with-Quadratic-Regularization.md'
       - 18.4 一次正则的线性分类器: '18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization.md'
@@ -202,10 +202,10 @@ pages:
       - 模拟 Fig. 9.7: 'notes/tree/sim-9-7.md'
     - 比较总结:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
-      - SVM处理线性和非线性类别边界: 'notes/SVM/e1071.md'
-      - 损失函数的梯度总结及Julia实现: 'notes/boosting/summary-loss-function.md'
-      - R语言中的多种决策树算法实现: 'notes/tree/various-classification-methods.md'
-      - R语言处理缺失数据: 'notes/missing-data/missing-data.md'
+      - SVM 处理线性和非线性类别边界: 'notes/SVM/e1071.md'
+      - 损失函数的梯度总结及 Julia 实现: 'notes/boosting/summary-loss-function.md'
+      - R 语言中的多种决策树算法实现: 'notes/tree/various-classification-methods.md'
+      - R 语言处理缺失数据: 'notes/missing-data/missing-data.md'
 
 
 site_name: 'ESL CN'
