@@ -333,3 +333,70 @@ testAdaBoost <- function()
 ```
 
 运行速度要比Julia的慢很多。
+
+## R GBM实现
+
+```r
+library(gbm)
+
+## generate dataset
+genData <- function(N, p = 10) {
+  p = 10
+  x = matrix(rnorm(N * p), nrow = N)
+  x2 = x^2
+  y = rowSums(x2)
+  y = sapply(y, function(x) ifelse(x > qchisq(0.5, 
+                                              10), 1, -1))
+  return(data.frame(x, y))
+}
+
+set.seed(123)
+train.data = genData(2000)
+table(train.data$y)
+# y
+# -1 1 
+# 980 1020
+
+## train datasets
+train.data = genData(2000)
+train.data[train.data$y == -1, 11] <- 0
+## test datasets
+test.data = genData(10000)
+test.data[test.data$y == -1, 11] <- 0
+
+# Do training with the maximum number of trees:
+Adaboost = TRUE
+n_trees = 400
+if (Adaboost) {
+  print("Running Adaboost ...")
+  m = gbm(y ~ ., data = train.data, distribution = "adaboost", 
+          n.trees = n_trees, shrinkage = 1, verbose = TRUE)
+} else {
+  print("Running Bernoulli Boosting ...")
+  m = gbm(y ~ ., data = train.data, distribution = "bernoulli", 
+          n.trees = n_trees, verbose = TRUE)
+}
+
+training_error = matrix(0, nrow = n_trees, ncol = 1)
+for (nti in seq(1, n_trees)) {
+  Fhat = predict(m, train.data[, 1:10], n.trees = nti)
+  pcc = mean(((Fhat <= 0) & (train.data[, 11] == 
+                               0)) | ((Fhat > 0) & (train.data[, 11] == 1)))
+  training_error[nti] = 1 - pcc
+}
+
+test_error = matrix(0, nrow = n_trees, ncol = 1)
+for (nti in seq(1, n_trees)) {
+  Fhat = predict(m, test.data[, 1:10], n.trees = nti)
+  pcc = mean(((Fhat <= 0) & (test.data[, 11] == 0)) | 
+               ((Fhat > 0) & (test.data[, 11] == 1)))
+  test_error[nti] = 1 - pcc
+}
+
+plot(seq(1, n_trees), training_error, type = "l", main = "Boosting Probability of Error", 
+     col = "red", xlab = "number of boosting iterations", 
+     ylab = "classification error")
+lines(seq(1, n_trees), test_error, type = "l", col = "green")
+legend(275, 0.45, c("training error", "testing error"), 
+       col = c("red", "green"), lty = c(1, 1))
+```
