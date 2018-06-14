@@ -72,6 +72,7 @@ window.MathJax = {
 
       def: "{\\;\\overset{\\mathrm{def}}{=}\\;}"
     },
-    entensions: ["color.js"]
+    entensions: ["color.js"],
+    equationNumbers: { autoNumber: "AMS" }
   }
 };
