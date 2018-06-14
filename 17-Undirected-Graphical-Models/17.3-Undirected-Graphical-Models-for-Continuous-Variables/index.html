@@ -3170,11 +3170,12 @@
 <p class="admonition-title">weiya 注：Ex. 17.3</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/136">Issue 136: Ex. 17.3</a></p>
 </div>
-<p>验证某个变量在剩余的条件下的条件分布是有好处的，其中$\mathbf\Theta$的作用是显然的。假设我们进行分割$X=(Z,Y)$，其中$Z=(X_1,\ldots,X_{p-1})$包含前$p-1$个变量并且$Y=X_p$是最后一个。于是我们在给定$Z$下有条件分布（比如，Mardia等人，1979）
+<p>验证某个变量在剩余的条件下的条件分布是有好处的，其中 $\mathbf\Theta$ 的作用是显然的。假设我们进行分割 $X=(Z,Y)$，其中 $Z=(X_1,\ldots,X_{p-1})$ 包含前 $p-1$ 个变量并且 $Y=X_p$ 是最后一个。于是我们在给定 $Z$ 下有条件分布（比如，Mardia et al., 1979<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）</p>
+<p>
 <script type="math/tex; mode=display">
 Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}-\sigma_{ZY}^T\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY})\qquad (17.6)
 </script>
-其中我们将$\mathbf \Sigma$分割成
+其中我们将 $\mathbf \Sigma$ 分割成
 <script type="math/tex; mode=display">
 \mathbf\Sigma=
 \Big(
@@ -3185,7 +3186,7 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 \Big)
 \qquad (17.7)
 </script>
-(17.6)的条件均值与$Y$在$Z$上的总体多重线性回归有完全一样的形式，回归系数为$\beta=\mathbf\Sigma^{-1}_{ZZ}\sigma_{ZY}$。如果我们对$\mathbf\Theta$用同样的方式进行分割，因为$\mathbf{\Sigma\Theta=I}$，由分块矩阵的求逆公式有
+(17.6) 的条件均值与 $Y$ 在 $Z$ 上的总体多重线性回归有完全一样的形式，回归系数为 $\beta=\mathbf\Sigma^{-1}_{ZZ}\sigma_{ZY}$。如果我们对 $\mathbf\Theta$ 用同样的方式进行分割，因为 $\mathbf{\Sigma\Theta=I}$，由分块矩阵的求逆公式有
 <script type="math/tex; mode=display">
 \theta_{ZY}=-\theta_{YY}\cdot\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY}\qquad (17.8)
 </script>
@@ -3199,37 +3200,37 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 </script>
 我们可以从这里学到两件事情：</p>
 <ul>
-<li>（17.6）中的$Y$对$Z$的依懒性只与均值项有关。这里我们明确地看到$\beta$中的0元素，也是$\theta_{ZY}$中的0元素，意味着$Z$中对应的元素与$Y$在给定其余变量的情况下是条件独立的。</li>
-<li>我们可以通过多重线性回归了解这个依赖性结构。</li>
+<li>(17.6) 中的 $Y$ 对 $Z$ 的依懒性只与均值项有关。这里我们明确地看到 $\beta$ 中的0元素，也是$\theta_{ZY}$中的0元素，意味着$Z$中的元素与$Y$在给定其余变量（$Z$中其它元素）的情况下是条件独立的。</li>
+<li>我们可以通过多重线性回归学习这个依赖性结构。</li>
 </ul>
-<p>因此$\mathbf\Theta$捕捉了所有二阶信息（结构的和定量的），是描述每个顶点在给定剩余点时的条件分布需要的信息，也称为高斯图模型的“自然”参数。</p>
-<p>另外一个（不同）图模型为协方差图（covariance）或者相关网络（relevance network）,如果顶点的对应变量间的协方差（不是偏协方差）为0则用双向边连接这些顶点。这在基因问题中很流行，特别地见Butteet等人（2000）的工作。这些模型的负对数似然是非凸的，使得计算更加有挑战（Chaudhuri等人，2007）。</p>
+<p>因此 $\mathbf\Theta$ 捕捉了所有二阶信息（结构上的和定量的），这些信息是描述每个顶点在给定剩余点时的条件分布所需要的，这也称为高斯图模型的“自然”参数。</p>
+<p>另外一个（不同）图模型为 <strong>协方差图 (covariance)</strong> 或者 <strong>相关网络 (relevance network)</strong>，其中如果顶点的对应变量间的协方差（不是偏协方差）为 0 则用双向边连接这些顶点。这在基因问题中很常见，特别地见 Butteet et al. (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>。这些模型的负对数似然是非凸的，使得计算更加有挑战（Chaudhuri et al.，2007<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）。</p>
 <h2 id="_1">图结构已知时参数的估计<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>给定$X$的一些观测值，我们想要估计无向图的参数，该无向图近似了它们的联合分布。首先假设图是完全的（全连通）。我们假设有$N$个多维正态观测值$x_i,i=1,\ldots,N$，均值为$\mu$，协方差为$\mathbf \Sigma$。令
+<p>给定 $X$ 的一些观测值，我们想要估计无向图的参数，该无向图近似了它们的联合分布。首先假设图是完全的（全连通）。我们假设有 $N$ 个多维正态观测值 $x_i,i=1,\ldots,N$，均值为$\mu$，协方差为$\mathbf \Sigma$。令
 <script type="math/tex; mode=display">
 \mathbf S = \frac{1}{N}\sum\limits_{i=1}^N(x_i-\bar x)(x_i-\bar x)^T\qquad (17.10)
 </script>
-为观测值的协方差矩阵，$\bar x$为样本均值向量。忽略掉常数，其对数似然可以写成
+为观测值的协方差矩阵，$\bar x$ 为样本均值向量。忽略掉常数，其对数似然可以写成
 <script type="math/tex; mode=display">
 \ell(\mathbf \Theta)=\mathrm{log \;det}\mathbf\Theta-\mathrm{trace}(\mathbf{S\Theta})\qquad (17.11)
 </script>
-(17.11)中我们已经关于均值参数$\mu$进行了偏最大化。$-\ell(\mathbf \Theta)$是$\mathbf \Theta$的凸函数。可以很简单地证明$\mathbf\Sigma$的极大似然估计为$\mathbf S$。</p>
-<p>现在使得图更有用（特别在高维数据集中）假设某些边是缺失的，举个例子，图17.1的PIP3和Erk中间的边是缺失边中间的一条。正如我们所见，对于高斯分布这意味着$\mathbf{\Theta=\Sigma^{-1}}$对应的值为0。因此我们现在想要在某些预先定义的参数为0的子集的限制下最大化（17.11）。这是等值约束凸优化问题，提出了许多解决它的方法，特别地，迭代比例拟合过程（Speed和Kiiveri，1996）。这个和其它的方法在Whittaker（1990）和Lauritzen（1996）的例子中作了总结。这些方法探索简化问题，这产生于将图分解成最大团的过程中，正如在之前的章节中描述的那样。这里我们列出一种简单的交替方法，用不同的方式来探索稀疏性。这种方式的效果会在我们讨论图结构估计问题时变得明显。</p>
-<p>这个思想基于线性回归，受（17.6）和（17.9）式的鼓舞。特别地，假设我们想要估计与给定顶点$i$相连的顶点的边参数$\theta_{ij}$，那些没有相连的约束为0。于是这似乎是，顶点$i$处的值在其他相关的结点上的线性回归可能提供一个良好的估计。但是这忽略了回归中预测变量的依赖性结构。结果是如果我们当进行回归时采用当前（基于模型的）对预测变量叉积矩阵的估计，这给出了正确地解，并且精确地解出了约束的最大似然问题。我们现在给出细节。</p>
-<p>约束对数似然（17.11），我们对缺失边加上拉格朗日常数
+(17.11) 中我们已经对均值参数 $\mu$ 进行了偏最大化。$-\ell(\mathbf \Theta)$ 是 $\mathbf \Theta$ 的凸函数。可以很简单地证明 $\mathbf\Sigma$ 的极大似然估计为 $\mathbf S$。</p>
+<p>现在使得图更有用（特别在高维数据集中）假设某些边是缺失的，举个例子，图 17.1 中 <code>PIP3</code> 和 <code>Erk</code> 之间的边是某条缺失边。正如我们所见，对于高斯分布这意味着 $\mathbf{\Theta=\Sigma^{-1}}$ 对应的值为 0。因此我们现在想要在某些预先定义的参数为 0 的子集的约束下最大化 (17.11)。这是等值约束凸优化问题，研究者们已经提出了许多解决它的方法，特别地，迭代比例拟合过程（iterative proportional fitting procedure）（Speed and Kiiveri，1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>）。该方法及其它方法在 Whittaker (1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 和 Lauritzen (1996)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup> 中作了总结。这些方法研究简化问题，这产生于将图分解成最大团的过程中，正如在之前的章节中描述的那样。这里我们列出一种简单的轮换方法，用不同的方式来研究稀疏性。这种方式的效果会在我们讨论图结构估计问题时变得明显。</p>
+<p>受 (17.6) 和 (17.9) 式的启发，这个思想基于线性回归。特别地，假设我们想要估计与给定顶点 $i$ 相连的顶点的边参数 $\theta_{ij}$，那些没有相连的边为 0。于是这似乎是，顶点 $i$ 在与其相关的结点上的线性回归可能提供一个合理的估计。但是这忽略了回归中预测变量的依赖性结构。事实表明，如果我们进行回归时采用当前（基于模型的）对预测变量叉积矩阵的估计，这会给出了正确地解，并且精确地解出了带约束的最大似然问题。我们现在给出细节。</p>
+<p>为了约束对数似然 (17.11)，我们对缺失边加上拉格朗日常数
 <script type="math/tex; mode=display">
-\ell_C(\mathbf \Theta)=\mathrm{log\; det}\mathbf\Theta-\mathrm{trace}(\mathbf{\mathbf S\Theta})-\sum\limits_{(j,k)\in E}\gamma_{jk}\theta_{jk}\qquad (17.12)
+\ell_C(\mathbf \Theta)=\mathrm{log\; det}\mathbf\Theta-\mathrm{trace}(\mathbf{\mathbf S\Theta})-\sum\limits_{(j,k)\not\in E}\gamma_{jk}\theta_{jk}\qquad (17.12)
 </script>
-最大化（17.12）的梯度等式可以写成
+最大化 (17.12) 的梯度等式可以写成
 <script type="math/tex; mode=display">
 \mathbf{\Theta^{-1}-S-\Gamma=0}\qquad (17.13)
 </script>
-利用$\mathrm{log\; det}\Theta$的导数等于$\mathbf \Theta^{-1}$的事实（如，Boyd和Vandenberghe, 2004，p641）。$\mathbf\Gamma$为所有边缺失的对的非零拉格朗日参数值。</p>
-<p>我们将要展示我们可以怎么应用回归来求解$\mathbf\Theta$以及每次求解它的逆$\mathbf{W=\Theta^{-1}}$一行和一列。为了简单我们关注最后一行和最后一列。则（17.13）的右上块可以写成
+这利用了 $\mathrm{log\; det}\mathbf\Theta$ 的导数等于 $\mathbf \Theta^{-1}$ 的事实（如，Boyd and Vandenberghe, 2004，p641<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>）。$\mathbf\Gamma$ 为所有含缺失边的对的非零拉格朗日参数值。</p>
+<p>我们将要展示我们可以怎么应用回归来求解 $\mathbf\Theta$ 以及每次求解它的逆 $\mathbf{W=\Theta^{-1}}$ 的一行和一列。为了简单我们关注最后一行和最后一列。则 (17.13) 的右上块可以写成
 <script type="math/tex; mode=display">
-w_{12}-s_{12}-\gamma_{12}=0\qquad (17.14)
+\omega_{12}-s_{12}-\gamma_{12}=0\qquad (17.14)
 </script>
-这里我们将矩阵分块成如（17.7）所示：第一部分为前$p-1$列和行，第2部分为第$p$行和列。$\mathbf W$和它的逆$\mathbf\Theta$以同样的方式分块，我们有
+这里我们将矩阵分块成如 (17.7) 所示：第一部分为前 $p-1$ 列和行，第 2 部分为第 $p$ 行和列。$\mathbf W$ 和它的逆 $\mathbf\Theta$ 以同样的方式分块，我们有
 <script type="math/tex; mode=display">
 \Big(\begin{array}{ll}
 \mathbf W_{11}& w_{12}\\
@@ -3340,6 +3341,33 @@ S(x,t)=\mathrm{sign}(x)(\vert x\vert-t)_+\qquad (17.27)
 <p>图17.5. flow-cytometry数据的4个不同的图lasso解。</p>
 </blockquote>
 <p>最后注意到图模型中有些点的值可以被忽视，也就是，缺失或者隐藏。如果一个点上只有一些值缺失，EM算法可以用来插补缺失值（练习17.9）。然而，有时整个点是隐藏的。在高斯模型中，如果一个点有所有的缺失值，由于线性，可以简单地对缺失的结点进行平均，以在观察到的结点上产生令一个高斯模型。因此包含隐藏结点没有丰富观测点的最终模型；实际上，在协方差上加了额外的结构。然而在离散模型中（接下来讨论），固有的非线性使隐藏单元成为扩展模型的有力方式。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic
+Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Butte, A., Tamayo, P., Slonim, D., Golub, T. and Kohane, I. (2000). Discovering functional relationships between RNA expression and chemotherapeutic susceptibility using relevance networks, Proceedings of the National Academy of Sciences pp. 12182–12186.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Chaudhuri, S., Drton, M. and Richardson, T. S. (2007). Estimation of a covariance matrix with zeros, Biometrika 94(1): 1–18.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Speed, T. and Kiiveri, H. T. (1986). Gaussian Markov distributions over finite graphs, Annals of Statistics 14: 138–150.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Whittaker, J. (1990). Graphical Models in Applied Multivariate Statistics, Wiley, Chichester.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Lauritzen, S. and Spiegelhalter, D. (1988). Local computations with probabilities on graphical structures and their application to expert systems, J. Royal Statistical Society B. 50: 157–224.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Boyd, S. and Vandenberghe, L. (2004). Convex Optimization, Cambridge University Press. <a href="../../references/Convex-Optimization.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                 
