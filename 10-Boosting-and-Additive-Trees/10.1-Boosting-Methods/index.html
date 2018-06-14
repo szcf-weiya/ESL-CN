@@ -3141,7 +3141,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-08-26, 2018-01-02, 2018-02-28</td>
+<td>2017-08-26, 2018-01-02, 2018-02-28, 2018-05-17@xinyu-intel</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3154,7 +3154,7 @@
 <p>@2017.08.26 很早以前，略读了杨灿学长的<a href="https://cosx.org/2011/12/stories-about-statistical-learning/">《统计学习那些事》</a>，但其实没什么感受，因为当时也没看到boosting，对lasso了解也不多。而当我早早完成boosting的翻译后，又一直搁着没有再次阅读学长的文章。杨灿学长用风趣的笔墨从lasso和boosting的发展来看统计学习的那些事，个人觉得对于了解统计大佬们开创这些“绝世武功”的历史进程是很有帮助的。杨灿学长的<a href="https://cosx.org/2014/04/lmmandme">《昔日因，今日意》</a>和<a href="https://cosx.org/2012/05/chase-after-eb/">《那些年，我们一起追的 EB》</a>，我也是非常喜欢的，相信看了这么有趣的标题，不去拜读都不行啊hhh<img alt="😀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f600.svg" title=":grinning:" />在今年北京R会议上还听了杨灿学长的汇报，报告的主题也是跟boosting有关，当时还激动地跟他互动了一下，提了几个问题 <img alt="✋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/270b.svg" title=":raised_hand:" />。也是从那时候才知道，杨灿学长原来还是校友。</p>
 </div>
 <p>boosting是在最近20年内提出的最有力的学习方法。最初是为了分类问题而设计的，但是我们将在这章中看到，它也可以很好地扩展到回归问题上。boosting的动机是集合许多弱学习的结果来得到有用的“committee”。从这点看boosting与bagging以及其他的基于committee的方式（8.8节）类似。然而，我们应该看到这种联系最多是表面上的，boosting在根本上存在不同。</p>
-<p>我们以最流行的被称为“AdaBoost.M1”的boosting算法开始，这归功于Freund and Schapire (1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。考虑两个类别的分类问题，输入变量编码为$Y\in\{-1,1\}$。给定预报向量$X$，分类器$G(X)$在二值$\{-1,1\}$中取一个值得到一个预测。在训练样本上的误差率是</p>
+<p>我们以最流行的被称为“AdaBoost.M1”的boosting算法开始，这归功于Freund and Schapire (1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。考虑两个类别的分类问题，输出变量编码为$Y\in\{-1,1\}$。给定预报向量$X$，分类器$G(X)$在二值$\{-1,1\}$中取一个值得到一个预测。在训练样本上的误差率是</p>
 <p>
 <script type="math/tex; mode=display">
 \overline{err}=\frac{1}{N}\sum\limits_{i=1}^NI(y_i\neq G(x_i))
@@ -3187,7 +3187,7 @@ Y=
 \right.
 \qquad (10.2)
 </script>
-这里$\chi_{10}^2(0.5)=9.34$是自由度为10的卡方随机变量的中位数（10个标准的高斯分布的平方和）。有2000个训练情形，每个类别大概有1000个情形，以及10000个测试观测值。这里的弱分类器仅仅是一个“stump”：含两个终止结点的分类树。仅仅对训练数据应用分类器会得到非常差的测试集误差率（45.8%），与50%的随机猜测相差不多。然而，当不断进行boosting迭代，误差率将稳定下降，直到400次迭代之后达到5.8%。因此，对这一简单的非常弱的分类器进行boosting，其预测误差率可以几乎降低四分之一。它也比单个的大规模分类树（误差率为24.7%）表现得要好。自从它的提出，有很多理论来解释AdaBoost能成功得到正确分类器。很多工作集中在用分类树作为“基学习者(base learner)”$G(x)$，改善经常是非常显著的。事实上，Breiman(NIPS Workshop，1996)将树的AdaBoost称为“世界上最好的现成分类器”(best off-the-shelf classifier in
+这里$\chi_{10}^2(0.5)=9.34$是自由度为10的卡方随机变量的中位数（10个标准的高斯分布的平方和）。有2000个训练样本，每个类别大概有1000个样本，以及10000个测试观测。这里的弱分类器仅仅是一个“stump”：含两个终止结点的分类树。仅仅对训练数据应用分类器会得到非常差的测试集误差率（45.8%），与50%的随机猜测相差不多。然而，当不断进行boosting迭代，误差率将稳定下降，直到400次迭代之后达到5.8%。因此，对这一简单的非常弱的分类器进行boosting，其预测误差率可以几乎降低四分之一。它也比单个的大规模分类树（误差率为24.7%）表现得要好。自从它的提出，有很多理论来解释AdaBoost能成功得到正确分类器。很多工作集中在用分类树作为“基学习者(base learner)”$G(x)$，改善经常是非常显著的。事实上，Breiman(NIPS Workshop，1996)将树的AdaBoost称为“世界上最好的现成分类器”(best off-the-shelf classifier in
 the world)。这对于数据挖掘方面的应用尤其如此，本章的后面将更全面地讨论。</p>
 <p><img alt="" src="../../img/10/fig10.2.png" /></p>
 <blockquote>

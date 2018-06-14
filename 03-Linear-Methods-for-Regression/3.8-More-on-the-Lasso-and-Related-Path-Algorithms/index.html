@@ -3314,24 +3314,24 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 \frac{dJ_a(\beta,\lambda)}{d\beta}=\lambda \cdot \mathrm{sign}(\beta)[I(\vert \beta\vert\le \lambda)+\frac{(a\lambda-\vert \beta\vert)_\+}{(a-1)\lambda}I(\vert\beta\vert>\lambda)]\qquad (3.82)
 </script>
 </p>
-<p>方括号中的第二项降低了lasso对于较大$\beta$的收缩程度，在极限状态时，当$a\rightarrow \infty$，没有收缩。图3.20显示了SCAD惩罚，以及lasso和$\beta$^{1-\nu}$。然而这个准则不是凸的，这是一个缺陷，因为它会使得计算变得很困难。adaptive lasso (Zou, 2006)<sup id="fnref:26"><a class="footnote-ref" href="#fn:26" rel="footnote">26</a></sup>采用形如$\sum_{j=1}^pw_j\vert\beta_j\vert$的加权惩罚，其中$w_j=1/\vert\hat\beta_j\vert^\nu$，$\hat\beta_j$是一般最小二乘估计并且$\nu&gt;0$。这是对3.4.3节中讨论的$\vert\beta\vert^q$惩罚的实际近似（这里$q=1-\nu$）。adaptive lasso在保证lasso吸引人的凸性基础上还得到了参数的一致估计。</p>
+<p>方括号中的第二项降低了lasso对于较大$\beta$的收缩程度，在极限状态时，当$a\rightarrow \infty$，没有收缩。图 3.20 显示了 SCAD 惩罚，以及 lasso 和 $\beta^{1-\nu} $。然而这个准则不是凸的，这是一个缺陷，因为它会使得计算变得很困难。adaptive lasso (Zou, 2006)<sup id="fnref:26"><a class="footnote-ref" href="#fn:26" rel="footnote">26</a></sup>采用形如 $\sum_{j=1}^pw_j\vert\beta_j\vert$ 的加权惩罚，其中$w_j=1/\vert\hat\beta_j\vert^\nu$，$\hat\beta_j$是一般最小二乘估计并且$\nu&gt;0$。这是对3.4.3节中讨论的$\vert\beta\vert^q$惩罚的实际近似（这里$q=1-\nu$）。adaptive lasso在保证lasso吸引人的凸性基础上还得到了参数的一致估计。</p>
 <p><img alt="" src="../../img/03/fig3.20.png" /></p>
 <h2 id="pathwise-coordinate-optimization">Pathwise Coordinate Optimization<a class="headerlink" href="#pathwise-coordinate-optimization" title="Permanent link">&para;</a></h2>
-<p>一种替代计算lasso的LARS算法是简单的坐标下降(simple coordinate descent)。这个想法由Fu (1998)<sup id="fnref:27"><a class="footnote-ref" href="#fn:27" rel="footnote">27</a></sup>和Daubechies et al. (2004)<sup id="fnref:28"><a class="footnote-ref" href="#fn:28" rel="footnote">28</a></sup>提出，后来被Friedman et al. (2007)<sup id="fnref:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>, Wu and Lange (2008)<sup id="fnref:30"><a class="footnote-ref" href="#fn:30" rel="footnote">30</a></sup>和其他人研究及推广。想法是固定Lagrangian形式(3.52)中的惩罚参数$\lambda$，在控制其它参数固定不变时，相继地优化每一个参数。</p>
-<p>假设预测变量都经过标准化得到0均值和单位范数。用$\tilde\beta_k(\lambda)$表示惩罚参数为$\lambda$时对$\beta_k$的当前估计。我们可以分离出(3.52)的$\beta_j$,</p>
+<p>一种替代计算 lasso 的 LARS 算法是简单的坐标下降(simple coordinate descent)。这个想法由 Fu (1998)<sup id="fnref:27"><a class="footnote-ref" href="#fn:27" rel="footnote">27</a></sup> 和 Daubechies et al. (2004)<sup id="fnref:28"><a class="footnote-ref" href="#fn:28" rel="footnote">28</a></sup> 提出，后来被 Friedman et al. (2007)<sup id="fnref:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>, Wu and Lange (2008)<sup id="fnref:30"><a class="footnote-ref" href="#fn:30" rel="footnote">30</a></sup> 和其他人研究及推广。想法是固定 Lagrangian 形式 (3.52) 中的惩罚参数 $\lambda$，在控制其它参数固定不变时，相继地优化每一个参数。</p>
+<p>假设预测变量都经过标准化得到 0 均值和单位范数。用 $\tilde\beta_k(\lambda)$ 表示惩罚参数为 $\lambda$ 时对 $\beta_k$ 的当前估计。我们可以分离出 (3.52) 的 $\beta_j$,</p>
 <p>
 <script type="math/tex; mode=display">
 R(\tilde\beta(\lambda),\beta_j)=\frac{1}{2}\sum\limits_{i=1}^N(y_i-\sum\limits_{k\neq j}x_{ik}\tilde \beta_k(\lambda)-x_{ij}\beta_j)^2+\lambda \sum\limits_{k\neq j}\vert \tilde \beta_k(\lambda)\vert+\lambda \vert \beta_j\vert
 </script>
 </p>
-<p>其中我们压缩了截距并且为了方便引出因子$\frac 12$。这个可以看成是响应变量为部分残差$y_i-\tilde y_i^{(j)}=y_i-\sum_{k\neq j}x_{ik}\tilde \beta_k(\lambda)$。这有显式解，得到下面的更新</p>
+<p>其中我们压缩了截距并且为了方便引出因子 $\frac 12$。这个可以看成是响应变量为部分残差 $y_i-\tilde y_i^{(j)}=y_i-\sum_{k\neq j}x_{ik}\tilde \beta_k(\lambda)$。这有显式解，得到下面的更新</p>
 <p>
 <script type="math/tex; mode=display">
 \tilde \beta_j(\lambda)\leftarrow S(\sum\limits_{i=1}^Nx_{ij}(y_i-\tilde y_i^{(j)}),\lambda)\qquad (3.84)
 </script>
 </p>
-<p>这里$S(t,\lambda)=sign(t)(\vert t\vert-\lambda)_+$是表3.4中的软阈值算子。$S(\cdot)$中的第一个变量是部分残差在标准化变量$x_{ij}$上的简单最小二乘系数。(3.84)的重复迭代——轮流考虑每个变量直到收敛——得到lasso估计$\hat\beta(\lambda)$。</p>
-<p>我们也采用这种简单的算法来有效地计算在$\lambda$的每个网格结点上lasso的解。我们从使得$\hat\beta(\lambda_{max})=0$的最小$\lambda_{max}$开始，每次降低一点点来循环考虑每个变量直到收敛。采用前一个解作为$\lambda$新值的“warm start”，$\lambda$再一次降低，并且重复该过程。这个可以比LARS算法快，特别是在大型问题中。它速度的关键在于(3.84)中的量随着$j$变化可以快速更新，并且通常更新后有$\tilde \beta_j=0$。另一方面，它在$\lambda$的网格处求解，而不是整个解的路径。同样类型的算法可以应用到elastic net，grouped lasso以及许多其它惩罚为个体参数的函数之和的模型（Friedman et al., 2010<sup id="fnref:31"><a class="footnote-ref" href="#fn:31" rel="footnote">31</a></sup>）。通过一些修改，这也可以应用到fused lasso（18.4.2节）；细节在Friedman et al. (2007)<sup id="fnref:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>中给出。</p>
+<p>这里 $S(t,\lambda)=sign(t)(\vert t\vert-\lambda)_+$ 是表 3.4 中的软阈值算子。$S(\cdot)$ 中的第一个变量是部分残差在标准化变量 $x_{ij}$ 上的简单最小二乘系数。(3.84) 的重复迭代——轮流考虑每个变量直到收敛——得到 lasso 估计 $\hat\beta(\lambda)$。</p>
+<p>我们也采用这种简单的算法来有效地计算在 $\lambda$ 的每个网格结点上 lasso 的解。我们从使得 $\hat\beta(\lambda_{max})=0$ 的最小 $\lambda_{\max}$ 开始，每次降低一点点来循环考虑每个变量直到收敛。采用前一个解作为 $\lambda$ 新值的“warm start”，$\lambda$ 再一次降低，并且重复该过程。这个可以比 LARS 算法快，特别是在大型问题中。它速度的关键在于 (3.84) 中的量随着 $j$ 变化可以快速更新，并且通常更新后有 $\tilde \beta_j=0$。另一方面，它在 $\lambda$ 的网格处求解，而不是整个解的路径。同样类型的算法可以应用到 elastic net，grouped lasso 以及许多其它惩罚为个体参数的函数之和的模型（Friedman et al., 2010<sup id="fnref:31"><a class="footnote-ref" href="#fn:31" rel="footnote">31</a></sup>）。通过一些修改，这也可以应用到 fused lasso（18.4.2 节）；细节在 Friedman et al. (2007)<sup id="fnref:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>中给出。</p>
 <div class="footnote">
 <hr />
 <ol>

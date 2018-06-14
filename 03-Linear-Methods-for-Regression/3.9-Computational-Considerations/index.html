@@ -3088,7 +3088,7 @@
 </tr>
 </tbody>
 </table>
-<p>最小二乘拟合一般通过对矩阵$\mathbf X^T\mathbf X$进行Cholesky分解或者对$\mathbf X$进行QR分解实现。在有$N$个观测和$p$个特征时，Cholesky分解需要$p^3+Np^2/2$次操作，而QR分解需要$Np^2$次操作。依赖于$N$和$p$的相对大小，Cholesky分解有时会更快，但是另一方面，数值不太稳定（Lawson and Hansen, 1974<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。通过LAR算法实现的lasso的计算量与最小二乘拟合有相同的阶数。</p>
+<p>最小二乘拟合一般通过对矩阵 $\mathbf X^T\mathbf X$ 进行 Cholesky 分解或者对 $\mathbf X$ 进行 QR 分解实现。在有 $N$ 个观测和 $p$ 个特征时，Cholesky 分解需要 $p^3+Np^2/2$ 次操作，而 QR 分解需要 $Np^2$ 次操作。依赖于 $N$ 和 $p$ 的相对大小，Cholesky 分解有时会更快，但是另一方面，数值不太稳定（Lawson and Hansen, 1974<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。通过 LAR 算法实现的 lasso 的计算量与最小二乘拟合有相同的阶数。</p>
 <div class="footnote">
 <hr />
 <ol>
