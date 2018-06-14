@@ -3155,12 +3155,21 @@
 </tr>
 </tbody>
 </table>
-<p>这里我们考虑所有变量为连续的马尔科夫网络。高斯分布几乎总是用到这样的图模型中，因为它有方便的分析性质。我们假设观测值服从均值为 $\mu$，协方差为 $\mathbf \Sigma$ 的多元高斯分布。因为高斯分布表示之多二阶的关系，所以它自动地编码了一个成对马尔科夫图。图17.1的图是高斯图模型的一个例子。</p>
+<p>这里我们考虑所有变量都是连续变量的马尔科夫网络。这样的图模型几乎总是用到高斯分布，因为它有方便的分析性质。我们假设观测值服从均值为 $\mu$，协方差为 $\mathbf \Sigma$ 的多元高斯分布。因为高斯分布至多表示二阶的关系，所以它自动地编码了一个成对马尔科夫图。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>因为在高斯分布的密度函数中，指数项中关于随机变量的阶数最多是二次，所以说它至多能表示二阶的关系。</p>
+</div>
+<p>图 17.1 的图是高斯图模型的一个例子。</p>
 <p><img alt="" src="../../img/17/fig17.1.png" /></p>
 <blockquote>
-<p>图17.1. 稀疏无向图的例子，从flow-cytometry数据集中估计得到，含有$p=11$个蛋白质在$N=7466$个细胞中的测量值。网络结构是通过本章后面将要讨论的图lasso过程进行估计的。</p>
+<p>图 17.1. 稀疏无向图的例子，从 flow-cytometry 数据集中估计得到，含有 $p=11$ 个蛋白质在 $N=7466$ 个细胞中的测量值。网络结构是通过本章后面将要讨论的图 lasso 过程进行估计的。</p>
 </blockquote>
-<p>高斯分布有条性质是所有条件分布也是高斯分布的。协方差矩阵的逆$\mathbf\Sigma^{-1}$包含变量之间的偏协方差(partial covariances)信息；也就是，$i$与$j$在其它所有变量上的协方差。特别地，如果$\mathbf {\Theta=\Sigma^{-1}}$的第$ij$个元素为0，则变量$i$和$j$在给定其它变量情况下是条件独立的。（练习17.3）</p>
+<p>高斯分布有条性质是所有的条件分布也是高斯分布。协方差矩阵的逆 $\mathbf\Sigma^{-1}$ 包含变量之间的 <strong>偏协方差 (partial covariances)</strong> 信息；也就是，在给定其它变量的条件下，$i$ 与 $j$ 的协方差。特别地，如果 $\mathbf {\Theta=\Sigma^{-1}}$ 的第 $ij$ 个元素为 0，则变量 $i$ 和 $j$ 在给定其它变量情况下是条件独立的。（<a href="https://github.com/szcf-weiya/ESL-CN/issues/136">练习 17.3</a>）</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 17.3</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/136">Issue 136: Ex. 17.3</a></p>
+</div>
 <p>验证某个变量在剩余的条件下的条件分布是有好处的，其中$\mathbf\Theta$的作用是显然的。假设我们进行分割$X=(Z,Y)$，其中$Z=(X_1,\ldots,X_{p-1})$包含前$p-1$个变量并且$Y=X_p$是最后一个。于是我们在给定$Z$下有条件分布（比如，Mardia等人，1979）
 <script type="math/tex; mode=display">
 Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}-\sigma_{ZY}^T\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY})\qquad (17.6)
