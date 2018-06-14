@@ -3188,15 +3188,15 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 </script>
 (17.6) 的条件均值与 $Y$ 在 $Z$ 上的总体多重线性回归有完全一样的形式，回归系数为 $\beta=\mathbf\Sigma^{-1}_{ZZ}\sigma_{ZY}$。如果我们对 $\mathbf\Theta$ 用同样的方式进行分割，因为 $\mathbf{\Sigma\Theta=I}$，由分块矩阵的求逆公式有
 <script type="math/tex; mode=display">
-\theta_{ZY}=-\theta_{YY}\cdot\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY}\qquad (17.8)
+\theta_{ZY}=-\theta_{YY}\cdot\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY}\tag{17.8}
 </script>
 其中$1/\theta_{YY}=\sigma_{YY}-\sigma_{ZY}^T\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY}&gt;0$。因此
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 \beta&=\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY}\\
 &=-\theta_{ZY}/\theta_{YY}
-\end{align}
-\qquad (17.9)
+\end{align*}
+\tag{17.9}
 </script>
 我们可以从这里学到两件事情：</p>
 <ul>
@@ -3228,7 +3228,7 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 这利用了 $\mathrm{log\; det}\mathbf\Theta$ 的导数等于 $\mathbf \Theta^{-1}$ 的事实（如，Boyd and Vandenberghe, 2004，p641<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>）。$\mathbf\Gamma$ 为所有含缺失边的对的非零拉格朗日参数值。</p>
 <p>我们将要展示我们可以怎么应用回归来求解 $\mathbf\Theta$ 以及每次求解它的逆 $\mathbf{W=\Theta^{-1}}$ 的一行和一列。为了简单我们关注最后一行和最后一列。则 (17.13) 的右上块可以写成
 <script type="math/tex; mode=display">
-\omega_{12}-s_{12}-\gamma_{12}=0\qquad (17.14)
+w_{12}-s_{12}-\gamma_{12}=0\qquad (17.14)
 </script>
 这里我们将矩阵分块成如 (17.7) 所示：第一部分为前 $p-1$ 列和行，第 2 部分为第 $p$ 行和列。$\mathbf W$ 和它的逆 $\mathbf\Theta$ 以同样的方式分块，我们有
 <script type="math/tex; mode=display">
@@ -3484,7 +3484,7 @@ Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Ju
       
     -->
     <script src="../../js/mathjax.js"></script>
-    <script src="https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script src="../../js/baiduzhanzhang.js"></script>
     <script src="../../js/360.js"></script>
     
