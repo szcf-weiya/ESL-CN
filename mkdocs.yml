@@ -200,6 +200,8 @@ pages:
       - 模拟 Eq. 10.2: 'notes/boosting/sim-eq-10-2.md'
       - 模拟 Tab. 12.2: 'notes/SVM/skin-of-the-orange.md'
       - 模拟 Fig. 9.7: 'notes/tree/sim-9-7.md'
+    - 算法实现:
+      - 算法 Alg. 17.1: 'notes/Graph/alg-17-1.md'
     - 比较总结:
       - 估计高斯混合模型参数的三种方式: 'notes/Mixture-Gaussian.md'
       - SVM 处理线性和非线性类别边界: 'notes/SVM/e1071.md'
