@@ -3002,10 +3002,46 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
     
     <label class="md-nav__link" for="nav-5-4">
-      比较总结
+      算法实现
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
       <label class="md-nav__title" for="nav-5-4">
+        算法实现
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../notes/Graph/alg-17-1/index.html" title="算法 Alg. 17.1" class="md-nav__link">
+      算法 Alg. 17.1
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5">
+    
+    <label class="md-nav__link" for="nav-5-5">
+      比较总结
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-5-5">
         比较总结
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -3286,11 +3322,15 @@ w_{12}&=-\mathbf W_{11}\theta_{12}/\theta_{22}\tag{17.16}\\
 </blockquote>
 <p>这里是个小例子，选自 Whittaker(1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>。假设我们的模型如图 17.4 描述，经验协方差阵为 $\mathbf S$。我们应用算法 (17.1) 来解决这个问题；举个例子，在步骤 (b) 对变量 1 的修改后的回归中，删掉变量 3。这个过程很快收敛到解</p>
 <p><img alt="" src="../../img/17/matrix1.png" /></p>
-<p>注意到 $\hat{\mathbf\Sigma} ^{-1}$ 的 0 元素，对应缺失边 (1,3) 和 (2,4)。也注意到 $\hat{\mathbf \Sigma}$ 中对应的元素是唯一与 $\mathbf S$ 不同的元素。$\mathbf \Sigma$ 估计是有时称为    $\mathbf S$ 的正定“补(completion)”。</p>
+<p>注意到 $\hat{\mathbf\Sigma} ^{-1}$ 的 0 元素，对应缺失边 (1,3) 和 (2,4)。也注意到 $\hat{\mathbf \Sigma}$ 中对应的元素是唯一与 $\mathbf S$ 不同的元素。$\mathbf \Sigma$ 估计是有时称为    $\mathbf S$ 的正定“补 (completion)”。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：</p>
+<p><a href="../../notes/Graph/alg-17-1/index.html">这篇笔记</a>记录了算法 17.1 的具体实现过程。</p>
+</div>
 <h2 id="_2">图结构的估计<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>大多数情况下，我们不知道哪些边要从图中省略，因此想试图从数据本身找出。最近几年很多作者提出用于这个目的的 $L_1$ (lasso) 正则化。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
+<p class="admonition-title">weiya 注：</p>
 <p>省略图中的边，有点类似于做变量选择，而lasso正是应对变量选择的“绝世武功”!<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" /></p>
 </div>
 <p>Meinshausen and Bühlmann (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 对这个问题采取简单的方式：不是试图完全估计 $\mathbf \Sigma$ 或者 $\mathbf \Theta=\mathbf \Sigma^{-1}$，它们仅仅估计非零的组分 $\theta_{ij}$。为了实现这点，它们将每个变量作为响应变量其它的作为预测变量拟合 lasso 回归。如果变量 $i$ 在变量 $j$ 上的估计系数为非零，或者（并且）$j$ 变量在 $i$ 上的估计系数为非零，则组分 $\theta_{ij}$ 估计为非零。它们证明这个过程渐近地一致估计了 $\mathbf\Theta$ 的非零元的集合。</p>
@@ -3341,12 +3381,12 @@ $j=1,2,\ldots,p-1,1,2,\ldots,\ldots,p-1,\ldots,$其中 $S$ 为软阈限算子
 S(x,t)=\mathrm{sign}(x)(\vert x\vert-t)_+\tag{17.27}
 </script>
 这个过程对预测变量循环直到收敛。</p>
-<p>可以简单地证明得到解矩阵 $\mathbf W$ 的对角元 $w_{jj}$ 为 $s_{jj}+\lambda$，这些是在算法 17.2 的步骤 1 中固定。（</p>
+<p>可以简单地证明得到解矩阵 $\mathbf W$ 的对角元 $w_{jj}$ 为 $s_{jj}+\lambda$，这些是在算法 17.2 的步骤 1 中固定。</p>
 <div class="admonition note">
 <p class="admonition-title">原书脚注：</p>
 <p>可以提出问题 (17.21) 的另一个构造，我们不对 $\mathbf \Theta$ 的对角元进行惩罚。则解矩阵的对角元 $w_{jj}$ 为 $s_{jj}$，算法的剩余部分没有改变）</p>
 </div>
-<p>图 lasso 算法非常快，而且可以在一分钟之内求解 1000 个结点的中等稀疏的问题。可以很简单地修改算法得到特定边的惩罚参数 $\lambda_{jk}$；因为 $\lambda_{jk}=\infty$ 会强制使 $\hat\theta_{jk}$ 为 0，这个算法归入到算法 17.1 中。通过将稀疏逆协方差矩阵问题作为一系列回归，可以快速地计算并且验证解的路径作为惩罚参数$\lambda$ 的函数。更多的细节可以在 Friedman et al. (2007a) 中找到。</p>
+<p>图 lasso 算法非常快，而且可以在一分钟之内求解 1000 个结点的中等稀疏的问题。可以很简单地修改算法得到特定边的惩罚参数 $\lambda_{jk}$；因为 $\lambda_{jk}=\infty$ 会强制使 $\hat\theta_{jk}$ 为 0，这个算法归入到算法 17.1 中。通过将稀疏逆协方差矩阵问题作为一系列回归，可以快速地计算并且验证解的路径作为惩罚参数$\lambda$ 的函数。更多的细节可以在 Friedman et al. (2008b)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 中找到。</p>
 <p>图 17.1 显示了将图 lasso 应用到 flow-cytometry 数据集中的结果。这里 lasso 惩罚参数 $\lambda$ 设为14。实际中检验随着 $\lambda$ 变化而得到的不同组的图是有益的。图 17.5 显示了 4 个不同的解。当惩罚参数增大时图变得更稀疏。</p>
 <p><img alt="" src="../../img/17/fig17.5.png" /></p>
 <blockquote>
