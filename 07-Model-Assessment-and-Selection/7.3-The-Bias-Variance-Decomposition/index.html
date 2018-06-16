@@ -3188,16 +3188,16 @@
 <p>像第 2 章一样，如果我们假设 $Y=f(X)+\varepsilon$，其中 $\E(\varepsilon)=0$，并且 $\Var(\epsilon)=\sigma_\varepsilon^2$，我们可以导出在使用平方误差损失的情形下，输入点 $X=x_0$ 处回归拟合 $\hat f(X)$ 的取值的期望预测误差。
 <script type="math/tex; mode=display">
 \begin{align}
-Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
-&=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2\\
-&=\sigma_\varepsilon^2+Bias^2(\hat f(x_0))+Var(\hat f(x_0))\\
+Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\notag\\
+&=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2\notag\\
+&=\sigma_\varepsilon^2+Bias^2(\hat f(x_0))+Var(\hat f(x_0))\notag\\
 &=\text{Irreducible Error} + \text{Bias}^2+\text{Variance}\tag{7.9}
 \end{align}
 </script>
 </p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：推导 (7.9)</p>
-<p>(7.9) 其实暗含 $\Ef(x_0)\E\hat f(x_0)=\E(f(x_0)\hat f(x_0))$，这显然成立，因为我们训练 $\hat f$ 时，完全不知道真实的 $f$，故它们独立。
+<p>(7.9) 其实暗含 $\E f(x_0)\E\hat f(x_0)=\E(f(x_0)\hat f(x_0))$，这显然成立，因为我们训练 $\hat f$ 时，完全不知道真实的 $f$，故它们独立。
 <script type="math/tex; mode=display">
 \begin{align}
 Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
@@ -3215,7 +3215,7 @@ Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
 <p>对于 $k$-最近邻回归拟合，这些表达式有简单的形式
 <script type="math/tex; mode=display">
 \begin{align}
-Err(x_0)&=E[(Y-\hat f_k(x_0))^2\mid X=x_0]\\
+Err(x_0)&=E[(Y-\hat f_k(x_0))^2\mid X=x_0]\notag\\
 &= \sigma_\varepsilon^2+[f(x_0)-\frac{1}{k}\sum\limits_{\ell=1}^k f(x_{(\ell)})]^2+\frac{\sigma_\varepsilon^2}{k}\tag{7.10}
 \end{align}
 </script>
@@ -3223,7 +3223,7 @@ Err(x_0)&=E[(Y-\hat f_k(x_0))^2\mid X=x_0]\\
 <p>对于线性模型拟合 $\hat f_p(x)=x^T\hat\beta$，其中含有 $p$ 个组分的参数向量 $\beta$ 通过最小二乘拟合的，我们有
 <script type="math/tex; mode=display">
 \begin{align}
-Err(x_0)&=E[(Y-\hat f_p(x_0))^2\mid X=x_0]\\
+Err(x_0)&=E[(Y-\hat f_p(x_0))^2\mid X=x_0]\notag\\
 &=\sigma^2_\varepsilon+[f(x_0)-E\hat f_p(x_0)]^2+\Vert\mathbf h(x_0)\Vert^2\sigma_\varepsilon^2\tag{7.11}
 \end{align}
 </script>
@@ -3234,11 +3234,11 @@ Err(x_0)&=E[(Y-\hat f_p(x_0))^2\mid X=x_0]\\
 <script type="math/tex; mode=display">
 \begin{align}
 \sum\limits_{i=1}^N\Vert\mathbf h(x_i)\Vert^2
-&=\sum\limits_{i=1}^N\mathbf h^T(x_i)\mathbf h^T(x_i)\\
-&=\sum\limits_{i=1}^Nx_i^T(\mathbf{X^TX})^{-1}x_i\\
-&=trace[X(X^TX)^{-1}X^T]\\
-&=trace[(x^TX)^{-1}X^TX]\\
-&=p
+&=\sum\limits_{i=1}^N\mathbf h^T(x_i)\mathbf h^T(x_i)\notag\\
+&=\sum\limits_{i=1}^Nx_i^T(\mathbf{X^TX})^{-1}x_i\notag\\
+&=trace[X(X^TX)^{-1}X^T]\notag\\
+&=trace[(x^TX)^{-1}X^TX]\notag\\
+&=p\notag
 \end{align}
 </script>
 则方差的平均为 $(p/N)\sigma_\epsilon^2$。</p>
@@ -3257,8 +3257,8 @@ Err(x_0)&=E[(Y-\hat f_p(x_0))^2\mid X=x_0]\\
 这里期望是对输入变量 $X$ 的分布取的。接着我们可以将平均偏差的平均 (average squared bias) 写成
 <script type="math/tex; mode=display">
 \begin{align}
-&E_{x_0}[f(x_0)-E\hat f_\alpha(x_0)]^2\\
-&=E_{x_0}[f(x_0)-x_0^T\beta_*]^2+E_{x_0}[x_0^T\beta_*-Ex_0^T\hat\beta_\alpha]^2\\
+&E_{x_0}[f(x_0)-E\hat f_\alpha(x_0)]^2\notag\\
+&=E_{x_0}[f(x_0)-x_0^T\beta_*]^2+E_{x_0}[x_0^T\beta_*-Ex_0^T\hat\beta_\alpha]^2\notag\\
 &=\text{Ave[Model Bias]}^2+\text{Ave[Estimation Bias]}^2\tag{7.14}
 \end{align}
 </script>
