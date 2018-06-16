@@ -3189,7 +3189,7 @@
 <p>首先考虑一个回归问题。假设我们根据我们的训练数据 $\mathbf Z={(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)}$ 拟合一个模型，得到在输入$x$处的预测值$\hat f(x)$。自助法整合(Bootstrap aggregation)或者bagging在自助法样本的集合中平均了这个预测值，因此降低了它的方差。对于每个自助法样本$\mathbf Z^{*b},b=1,2,\ldots,B$，拟合我们的模型得到预测值$\hat f^{*b}(x)$。bagging估计定义为</p>
 <p>
 <script type="math/tex; mode=display">
-\hat f_{bag}(x)=\frac{1}{B}\sum\limits_{b=1}^B\hat f^{*b}(x)\qquad (8.51)
+\hat f_{bag}(x)=\frac{1}{B}\sum\limits_{b=1}^B\hat f^{*b}(x)\tag{8.51}
 </script>
 </p>
 <p>记$\hat{\cal P}$为在每个数据点$(x_i,y_i)$上赋予相同概率$1/N$的经验分布。实际上，“真正”的bagging估计由$E_{\hat{\cal P}}\hat f^*(x)$定义，其中$\mathbf Z^*=(x_1^*,y_1^*),(x_2^*,y_2^*),\ldots,(x_N^*,y_N^*)$，并且$(x_i^*,y_i^*)\in \hat{\cal P}$。当$B\rightarrow \infty$，表达式（8.51）是真实bagging估计的蒙特卡洛估计。</p>
@@ -3207,11 +3207,11 @@
 <p>本书很多部分都有这样处理：
 如<a href="https://esl.hohoweiya.xyz/06%20Kernel%20Smoothing%20Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html">混合模型的密度估计和分类</a>中
 <script type="math/tex; mode=display">
-\hat\gamma_{im}=\frac{\hat\alpha_m\phi(x_i;\hat\mu_m,\hat\Sigma_m)}{\sum_{k=1}^M\hat\alpha_k\phi(x_i;\hat\mu_k,\hat\Sigma_k)}\qquad (6.33)
+\hat\gamma_{im}=\frac{\hat\alpha_m\phi(x_i;\hat\mu_m,\hat\Sigma_m)}{\sum_{k=1}^M\hat\alpha_k\phi(x_i;\hat\mu_k,\hat\Sigma_k)}\tag{6.33}
 </script>
 又如<a href="https://esl.hohoweiya.xyz/18%20High-Dimensional%20Problems/18.2%20Diagonal%20Linear%20Discriminant%20Analysis%20and%20Nearest%20Shrunken%20Centroids/index.html">对角线性判别分析和最近收缩重心</a>中
 <script type="math/tex; mode=display">
-\hat p_k(x^\*)=\frac{e^{\frac{1}{2}\delta_k(x^\*)}}{\sum_{\ell=1}^Ke^{\frac{1}{2}\delta_\ell(x^\*)}}\qquad (18.8)
+\hat p_k(x^\*)=\frac{e^{\frac{1}{2}\delta_k(x^\*)}}{\sum_{\ell=1}^Ke^{\frac{1}{2}\delta_\ell(x^\*)}}\tag{18.8}
 </script>
 </p>
 </div>
@@ -3229,7 +3229,7 @@
 \begin{align}
 E_{\cal P}[Y-\hat f^*(x)]^2 &= E_{\cal P}[Y-f_{ag}(x)+f_{ag}(x)-\hat f^*(x)]^2\\
 & = E_{\cal P}[Y-f_{ag}(x)]^2+E_{\cal P}[\hat f^*(x) - f_{ag}(x)]^2\\
-& \ge E_{\cal P}[Y-f_{ag}(x)]^2\qquad (8.52)
+& \ge E_{\cal P}[Y-f_{ag}(x)]^2\tag{8.52}
 \end{align}
 </script>
 </p>
