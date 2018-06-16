@@ -3249,9 +3249,10 @@
 <p>实际上最小二乘估计（8.2）和（8.3），自助法和最大似然法有着很紧密的联系。进一步假设模型误差为高斯分布，
 <script type="math/tex; mode=display">
 \begin{align}
-Y&=\mu(X)+\varepsilon\; \varepsilon\sim N(0,\sigma^2)\\
-\mu(X)&=\sum\limits_{j=1}^7\beta_jh_j(x).\qquad\qquad\qquad\tag{8.5}
+Y&=\mu(X)+\varepsilon;\; \varepsilon\sim N(0,\sigma^2),\notag\\
+\mu(X)&=\sum\limits_{j=1}^7\beta_jh_j(x)\notag
 \end{align}
+\tag{8.5}
 </script>
 上面描述的自助法，通过从训练集中有放回地采样，称作非参自助法(nonparametric bootstrap)。这实际上意味着这个方法是与模型无关的，因为它使用原始数据来得到新的数据集，而不是一个特定的含参数的模型。考虑到自助法的方差，则称为参数自助法(parametric bootstrap)，通过对预测值加上高斯噪声模拟新的响应：
 <script type="math/tex; mode=display">

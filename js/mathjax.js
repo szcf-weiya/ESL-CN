@@ -39,6 +39,7 @@ window.MathJax = {
       E: "{\\mathrm{E}}",
       1: "{\\boldsymbol 1}",
       Cov: "{\\mathrm{Cov}}",
+      cov: "{\\mathrm{cov}}",
       CV: "{\\mathrm{CV}}",
       Var: "{\\mathrm{Var}}",
       Bias: "{\\mathrm{Bias}}",
