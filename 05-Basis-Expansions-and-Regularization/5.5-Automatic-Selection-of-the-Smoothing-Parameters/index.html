@@ -3219,7 +3219,7 @@
 Y& =f(X)+\varepsilon\\
 f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 \end{align}
-\qquad (5.22)
+\tag{5.22}
 </script>
 </p>
 <p>其中 $X\sim U[0,1], \varepsilon\sim N(0, 1)$。我们的训练样本包含从该模型中独立抽取的 $N=100$ 个数据对 $x_i,y_i$。</p>
@@ -3227,13 +3227,13 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <p>图中显示了 3 个不同 $\df_\lambda$ 的拟合样条。图中黄色阴影部分表示 $\hat f_\lambda$ 的逐点标准误差，也就是，我们将区域 $\hat f_\lambda(x)\pm 2\cdot se(\hat f_\lambda(x))$ 画成阴影。因为 $\hat{\mathbf f}=\mathbf S_\lambda \mathbf y$，</p>
 <p>
 <script type="math/tex; mode=display">
-\Cov(\hat{\mathbf f})=\mathbf S_\lambda \Cov(\mathbf y)\mathbf S_\lambda^T=\mathbf S_\lambda\mathbf S_\lambda^T\qquad (5.23)
+\Cov(\hat{\mathbf f})=\mathbf S_\lambda \Cov(\mathbf y)\mathbf S_\lambda^T=\mathbf S_\lambda\mathbf S_\lambda^T\tag{5.23}
 </script>
 </p>
 <p>对角元包含训练点 $x_i$ 的逐点方差。偏差由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
-\Bias(\hat{\mathbf f})=\mathbf f-\E(\hat{\mathbf f})=\mathbf f-\mathbf S_\lambda \mathbf f\qquad (5.24)
+\Bias(\hat{\mathbf f})=\mathbf f-\E(\hat{\mathbf f})=\mathbf f-\mathbf S_\lambda \mathbf f\tag{5.24}
 </script>
 </p>
 <p>其中 $\mathbf f$ 是真实的 $f$ 在训练点 $X$ 处的取值得到的向量（未知）。期望和方差是从模型 (5.22) 中重复取样得到的大小为 $N=100$ 的样本。类似地，$\Var(\hat f_\lambda(x_0))$ 和 $\Bias(\hat f_\lambda(x_0))$ 可以在任意点 $x_0$ 处计算得到（<a href="https://github.com/szcf-weiya/ESL-CN/issues/111">练习 5.10</a>）。</p>
@@ -3259,7 +3259,7 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 \begin{align}
 \EPE(\hat f_\lambda) &=\E(Y-\hat f_\lambda(X))^2\\
 &= \Var(Y)+\E[\Bias^2(\hat f_\lambda(X))+\Var(\hat f_\lambda(X))]\\
-&= \sigma^2+\MSE(\hat f_\lambda)\qquad (5.25)
+&= \sigma^2+\MSE(\hat f_\lambda)\tag{5.25}
 \end{align}
 </script>
 </p>
@@ -3273,7 +3273,7 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\CV(\hat f_\lambda) &=\frac 1N\sum\limits_{i=1}^N(y_i-\hat f_\lambda^{(-i)}(x_i))^2\qquad (5.26)\\
+\CV(\hat f_\lambda) &=\frac 1N\sum\limits_{i=1}^N(y_i-\hat f_\lambda^{(-i)}(x_i))^2\tag{5.26}\\
 &= \frac 1N\sum\limits_{i=1}^N(\frac{y_i-\hat f_\lambda (x_i)}{1-S_\lambda(i, i)})\\
 \end{align}
 </script>

@@ -3135,13 +3135,13 @@
 <p><a href="../../5.4-Smoothing-Splines/index.html">5.4 节</a>的光滑样条问题 (5.9) 是在回归的背景下提出来的。可以非常直接地将其推广到其他领域。这里我们考虑单个定量输入变量 $X$ 的逻辑斯底回归。模型为</p>
 <p>
 <script type="math/tex; mode=display">
-\log\frac{\Pr(Y=1\mid X=x)}{\Pr(Y=0\mid X=x)}=f(x)\qquad (5.28)
+\log\frac{\Pr(Y=1\mid X=x)}{\Pr(Y=0\mid X=x)}=f(x)\tag{5.28}
 </script>
 </p>
 <p>这表明</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr(Y=1\mid X=x)=\frac{e^{f(x)}}{1+e^{f(x)}}\qquad (5.29)
+\Pr(Y=1\mid X=x)=\frac{e^{f(x)}}{1+e^{f(x)}}\tag{5.29}
 </script>
 </p>
 <p>以光滑化的方式对 $f(x)$ 进行拟合会得到条件概率 $\Pr(Y=1\mid x)$ 的光滑估计，它可以用来分类或者风险评分。</p>
@@ -3150,7 +3150,7 @@
 <script type="math/tex; mode=display">
 \begin{align}
 \ell(f;\lambda)&=\sum\limits_{i=1}^N[y_i\LOG p(x_i)+(1-y_i)\mathrm{log}(1-p(x_i))]-\frac{1}{2}\lambda\int \{f''(t)\}^2dt\\
-&=\sum\limits_{i=1}^N[y_if(x_i)-\log(1+e^{f(x_i)})]-\frac{1}{2}\lambda \int\{f''(t)\}^2dt\qquad (5.30)
+&=\sum\limits_{i=1}^N[y_if(x_i)-\log(1+e^{f(x_i)})]-\frac{1}{2}\lambda \int\{f''(t)\}^2dt\tag{5.30}
 \end{align}
 </script>
 </p>
@@ -3158,8 +3158,8 @@
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\frac{\partial \ell(\theta)}{\partial \theta}&=\mathbf {N^T(y-p)-\lambda\Omega}\theta\qquad (5.31)\\
-\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^T}&=-\mathbf{N^TWN-\lambda \Omega}\qquad (5.32)
+\frac{\partial \ell(\theta)}{\partial \theta}&=\mathbf {N^T(y-p)-\lambda\Omega}\theta\tag{5.31}\\
+\frac{\partial^2\ell(\theta)}{\partial\theta\partial\theta^T}&=-\mathbf{N^TWN-\lambda \Omega}\tag{5.32}
 \end{align}
 </script>
 </p>
@@ -3168,13 +3168,13 @@
 <p class="admonition-title">weiya 注：Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\beta^{new}=\beta^{old}-(\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T})^{-1}\dfrac{\partial \ell(\beta)}{\partial(\beta)}\qquad (4.23)
+\beta^{new}=\beta^{old}-(\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T})^{-1}\dfrac{\partial \ell(\beta)}{\partial(\beta)}\tag{4.23}
 </script>
 <script type="math/tex; mode=display">
 \begin{align}
 \beta^{new}&=\beta^{old}+\mathbf{(X^TWX)^{-1}X^T(y-p)}\\
 &=\mathbf {(X^TWX)^{-1}X^TW(X\beta^{old}+W^{-1}(y-p))}\\
-&=\mathbf{(X^TWX)^{-1}X^TWz}\qquad (4.26)
+&=\mathbf{(X^TWX)^{-1}X^TWz}\tag{4.26}
 \end{align}
 </script>
 </p>
@@ -3183,7 +3183,7 @@
 <script type="math/tex; mode=display">
 \begin{align}
 \theta^{new} &=\mathbf{(N^TWN+\lambda\Omega)^{-1}N^TW(N\theta^{old}+W^{-1}(y-p))}\\
-&= \mathbf{(N^TWN+\lambda\Omega)^{-1}N^TWz}\qquad (5.33)
+&= \mathbf{(N^TWN+\lambda\Omega)^{-1}N^TWz}\tag{5.33}
 \end{align}
 </script>
 </p>
@@ -3192,7 +3192,7 @@
 <script type="math/tex; mode=display">
 \begin{array}{ll}
 \mathbf f^{new} &=\mathbf{N(N^TWN+\lambda\Omega)^{-1}N^TW(f^{old}+W^{-1}(y-p))}\\
-&= \mathbf{S_{\lambda,w}z}\qquad (5.34)
+&= \mathbf{S_{\lambda,w}z}\tag{5.34}
 \end{array}
 </script>
 </p>
@@ -3201,12 +3201,12 @@
 <p class="admonition-title">weiya 注：Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\qquad (5.12)
+\hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\tag{5.12}
 </script>
 <script type="math/tex; mode=display">
 \begin{align}
 \hat{\mathbf f} &= \mathbf N(\mathbf N^T\mathbf N + \lambda\mathbf \Omega_N)^{-1}\mathbf N^T\mathbf y\\\
-            &= \mathbf S_\lambda\mathbf y\qquad\qquad\qquad\qquad (5.14)
+            &= \mathbf S_\lambda\mathbf y\qquad\qquad\qquad\tag{5.14}
 \end{align}
 </script>
 </p>

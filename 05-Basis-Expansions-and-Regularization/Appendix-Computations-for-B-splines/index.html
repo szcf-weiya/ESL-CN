@@ -3239,12 +3239,12 @@ B_{i,1}(x)=\left\{
   \right.
   \;
   i=1,\ldots, K+2M-1
-  \qquad (5.77)
+  \tag{5.77}
 </script>
 </p>
 <p>这些也被称为Haar基函数。
 <script type="math/tex; mode=display">
-B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}{\tau_{i+m}-\tau_{i+1}}B_{i+1,m-1}(x), \; i=1, \ldots,K+2M-m\qquad (5.78)
+B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}{\tau_{i+m}-\tau_{i+1}}B_{i+1,m-1}(x), \; i=1, \ldots,K+2M-m\tag{5.78}
 </script>
 </p>
 <p>因此当$M=4,B_{i,4},i=1,\cdots,K+4$是结点序列$\xi$的$K+4$个三次B样条基函数。</p>
@@ -3291,25 +3291,25 @@ B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}
 <p class="admonition-title">Recall</p>
 <p>含$K$个结点的自然三次样条可以用$K$个基函数表示：
 <script type="math/tex; mode=display">
-N_1(X)=1,\;N_2(X)=X,\; N_{k+2}(X)=d_k(X)-d_{K-1}(X),\qquad (5.4)
+N_1(X)=1,\;N_2(X)=X,\; N_{k+2}(X)=d_k(X)-d_{K-1}(X),\tag{5.4}
 </script>
 其中，
 <script type="math/tex; mode=display">
-d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\qquad (5.5)
+d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\tag{5.5}
 </script>
 </p>
 </div>
 <p>我们写成$f(x)=\sum_1^{N+4}\gamma_jB_j(x)$，其中$\gamma_j$是系数，$B_j$是三次$B$样条基函数。这个解与之前看起来很像，</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\gamma = (\B^T\B+\lambda\oomega_B)^{-1}\B^T\y\qquad (5.79)
+\hat\gamma = (\B^T\B+\lambda\oomega_B)^{-1}\B^T\y\tag{5.79}
 </script>
 </p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\qquad (5.12)
+\hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\tag{5.12}
 </script>
 </p>
 </div>

@@ -3235,13 +3235,13 @@
 <p>当数据在均匀格子上取值时，小波非常有用，比如数字化信号、图象，或者时间序列。我们将要关注一维的情形，假设总共有 $N=2^J$ 个格子点是很方便的。假设 $\mathbf y$ 是响应向量，$\W$ 是在 $N$ 个等距间隔观测上取值的 $N\times N$ 正交小波基矩阵。然后 $\y^* = \W^T\y$ 被称作 $\y$ 的 <strong>小波变换 (wavelet transform)</strong> （这也是全最小二乘系数）。自适应小波拟合的流行方法被称作 SURE 收缩 (Stein Unbiased Risk Estimation, Donoho and Johnstone (1994)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。我们以下面的准则开始</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\boldsymbol\theta}{\min}\Vert \y-\W\boldsymbol\theta\Vert^2_2+2\lambda\Vert \boldsymbol\theta\Vert_1\qquad (5.68)
+\underset{\boldsymbol\theta}{\min}\Vert \y-\W\boldsymbol\theta\Vert^2_2+2\lambda\Vert \boldsymbol\theta\Vert_1\tag{5.68}
 </script>
 </p>
 <p>这与<a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">第 3 章</a>中的 lasso 准则一样。因为 $\W$ 是正交的，所以导出下面简单的解：</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\theta_j = \sign(y_j^*)(\vert y_j^*\vert-\lambda)_+\qquad (5.69)
+\hat\theta_j = \sign(y_j^*)(\vert y_j^*\vert-\lambda)_+\tag{5.69}
 </script>
 </p>
 <p>最小二乘系数平移至 0，且在 0 处截断。拟合后的函数（向量）则由<strong>逆小波变换 (inverse wavelet transform)</strong> $\hat{\mathbf f} = \W\hat\theta$ 给出。</p>
@@ -3254,7 +3254,7 @@
 <p class="admonition-title">weiya 注：Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\mathbf\theta}{\mathrm{min}}\Vert \mathbf{y-U\theta}\Vert^2+\lambda \mathbf{\theta^TD\theta}\qquad (5.21)
+\underset{\mathbf\theta}{\mathrm{min}}\Vert \mathbf{y-U\theta}\Vert^2+\lambda \mathbf{\theta^TD\theta}\tag{5.21}
 </script>
 </p>
 </div>
