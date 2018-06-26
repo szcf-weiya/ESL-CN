@@ -3146,7 +3146,7 @@ Z_m&=\sigma(\alpha_{0m}+\alpha_m^TX),m=1,2,\ldots,M\\
 T_k&=\beta_{0k}+\beta_k^TZ,k=1,\ldots,K,\\
 f_k(X)&=g_k(T),k=1,\ldots,K
 \end{align}
-\qquad (11.5)
+\tag{11.5}
 </script>
 其中 $Z=(Z_1,Z_2,\ldots,Z_M)$，以及 $T=(T_1,T_2,\ldots,T_K)$</p>
 <p>激活函数 $\sigma(v)$ 通常取 sigmoid 函数 $\sigma(v)=1/(1+e^{-v})$; 图 11.3 展示了 $1/(1+e^{-v})$ 的一个图象。有时 $\sigma(v)$ 取为高斯径向基函数，得到所谓的径向基函数网络 (radical basis function network)。</p>
@@ -3157,7 +3157,7 @@ f_k(X)&=g_k(T),k=1,\ldots,K
 <p>类似图 11.2 的神经网络图有时画一个额外的 bias 单元馈送到隐藏层和输出层的每个单元。将常数 1 看成是额外的输入特征，这个 bias 单元捕捉模型 (11.5) 的截距项 $\alpha_{0m}$ 和 $\beta_{0k}$</p>
 <p>输出函数 $g_k(T)$ 允许对输出向量 $T$ 进行最后的变换。对于回归，我们一般选择单位函数 $g_k(T)=T_k$。在 $K$ 类别分类问题的早期工作中也使用单位函数，但是后来丢弃了而采用 softmax 函数
 <script type="math/tex; mode=display">
-g_k(T)=\frac{e^{T_k}}{\sum\limits_{\ell=1}^Ke^{T_\ell}}\qquad (11.6)
+g_k(T)=\frac{e^{T_k}}{\sum\limits_{\ell=1}^Ke^{T_\ell}}\tag{11.6}
 </script>
 这与在多重 logit 模型使用的变换完全一样（<a href="../../04-Linear-Methods-for-Classification/4.4-Logistic-Regression/index.html">4.4 节</a>），而且得到正的估计值且和为 1。在 <a href="../../04-Linear-Methods-for-Classification/4.2-Linear-Regression-of-an-Indicator-Matrix/index.html">4.2 节</a>，我们用线性激活函数讨论其他问题，特别是潜在的严重掩饰影响 (masking effects)。</p>
 <p>网络的中间层的单元，计算派生的特征 $Z_m$，被称作隐藏层因为值 $Z_m$ 不是直接被观测到。一般地，正如在本章的最后的例子说明的那样，存在不止一个的隐藏层。我们可以把 $Z_m$ 看成是原始输入 $X$ 的基展开；神经网络则是用这些变换作为输入的标准的线性模型、或者是线性多重逻辑斯蒂模型。然而，这是一个在<a href="../../05-Basis-Expansions-and-Regularization/5.1-Introduction/index.html">第 5 章</a>中讨论的基展开技巧的重要改进；这里基函数的参数是从数据中学习。</p>
@@ -3166,7 +3166,7 @@ g_k(T)=\frac{e^{T_k}}{\sum\limits_{\ell=1}^Ke^{T_\ell}}\qquad (11.6)
 <script type="math/tex; mode=display">
 \begin{align}
 g_m(\omega_m^TX)&=\beta_m\sigma(\alpha_{0m}+\alpha_m^TX)\\
-&=\beta_m\sigma(\alpha_{0m}+\Vert \alpha_m\Vert(\omega_m^TX))\qquad (11.7)
+&=\beta_m\sigma(\alpha_{0m}+\Vert \alpha_m\Vert(\omega_m^TX))\tag{11.7}
 \end{align}
 </script>
 其中 $\omega_m=\alpha_m/\Vert \alpha_m\Vert$ 是 $m$ 元单位向量。因为 $\sigma_{\beta,\alpha_0,s}(v)=\beta\sigma(\alpha_0+sv)$ 比更一般的非参函数 $g(v)$ 复杂度更低，所以当一个神经网络可能使用 20 或 100 个这样的函数，而 PPR 模型一般使用更少的项（举个例子，$M=5$ 或 $10$），也不觉得奇怪了。</p>

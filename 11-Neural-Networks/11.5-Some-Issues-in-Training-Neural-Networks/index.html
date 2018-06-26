@@ -3245,11 +3245,11 @@
 <p>通常神经网络有太多的权重而且在$R$的全局最小处过拟合数据。在神经网络的发展早期，无论是设计还是意外，采用提起终止的规则来避免过拟合。这里我们训练一会儿模型，在达到全局最小前终止。因为权重以高正则化（线性）解开始，这有将最终模型收缩成线性模型的效果。验证数据集对于决定什么时候停止是很有用的，因为我们期望验证误差开始增长。</p>
 <p>一个更明显的正则化方法是权重衰减（weight decay）,类似用于线性模型的岭回归（3.4.1节）。我们对误差函数加上惩罚$R(\theta)+\lambda J(\theta)$,其中
 <script type="math/tex; mode=display">
-J(\theta)=\sum\limits_{km}\beta_{km}^2+\sum\limits_{m\ell}\alpha_{m\ell}^2\qquad (11.16)
+J(\theta)=\sum\limits_{km}\beta_{km}^2+\sum\limits_{m\ell}\alpha_{m\ell}^2\tag{11.16}
 </script>
 $\lambda\ge 0 $是一个调整参数。更大的$\lambda$有将系数收缩到0的趋势：一般地，交叉验证用来估计$\lambda$。惩罚项带来的影响是简单地在（11.13）的梯度表达式上分别加上$2\beta_{km}$和$2\alpha_{m\ell}$。也有提出其他形式的惩罚项，举个例子，
 <script type="math/tex; mode=display">
-J(\theta)=\sum\limits_{km}\frac{\beta_{km}^2}{1+\beta_{km}^2}+\sum\limits_{m\ell}\frac{\alpha_{m\ell}^2}{1+\alpha_{m\ell}^2}\qquad (11.17)
+J(\theta)=\sum\limits_{km}\frac{\beta_{km}^2}{1+\beta_{km}^2}+\sum\limits_{m\ell}\frac{\alpha_{m\ell}^2}{1+\alpha_{m\ell}^2}\tag{11.17}
 </script>
 也称作权重排除（weight elimination）惩罚。这比（11.16）更能收缩系数。</p>
 <p><img alt="" src="../../img/11/fig11.4.png" /></p>
