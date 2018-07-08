@@ -3244,26 +3244,26 @@
 <p>在回归的设定中，广义加性模型有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-\E(Y\mid X_1,X_2,\ldots,X_p) = \alpha+f_1(X_1)+f_2(X_2)+\cdots+f_p(X_p).\qquad (9.1)
+\E(Y\mid X_1,X_2,\ldots,X_p) = \alpha+f_1(X_1)+f_2(X_2)+\cdots+f_p(X_p).\tag{9.1}
 </script>
 </p>
 <p>和通常一样，$X_1,X_2,\ldots,X_p$代表预报变量，$Y$表示输出；$f_j$是未定义的（非参）光滑函数。如果我们用基函数的展开（第5章）对每个函数进行建模，则最终的模型可以通过简单的最小二乘实现。我们这里的方式有些不同：我们用散点图光滑器来拟合每个函数（比如，三次光滑样条或核光滑），并且提供了同时估计所有$p$个函数的算法（<a href="#_1">9.1.1节</a>）</p>
 <p>对于两个类别的分类，回忆在<a href="https://esl.hohoweiya.xyz/04%20Linear%20Methods%20for%20Classification/4.4%20Logistic%20Regression/index.html">4.4节</a>中讨论的二值数据的逻辑斯蒂回归模型。我们通过一个线性回归模型和logit链接函数将预报变量与二进制响应变量的均值$\mu(X)=Pr(Y=1\mid X)$关联起来：</p>
 <p>
 <script type="math/tex; mode=display">
-\log(\frac{\mu(X)}{1-\mu(X)})=\alpha+\beta_1X_1+\cdots+\beta_pX_p\qquad (9.2)
+\log(\frac{\mu(X)}{1-\mu(X)})=\alpha+\beta_1X_1+\cdots+\beta_pX_p\tag{9.2}
 </script>
 </p>
 <p>可加逻辑斯蒂回归模型将每个线性项换成更一般的函数形式</p>
 <p>
 <script type="math/tex; mode=display">
-\log(\frac{\mu(X)}{1-\mu(X)})=\alpha+f_1(X_1)+f_2(X_2)+\cdots+f_p(X_p)\qquad (9.3)
+\log(\frac{\mu(X)}{1-\mu(X)})=\alpha+f_1(X_1)+f_2(X_2)+\cdots+f_p(X_p)\tag{9.3}
 </script>
 </p>
 <p>其中每个$f_j$也是未定义的光滑函数。尽管函数$f_j$的非参形式使得模型更加灵活，但是仍然保留着可加性，而且允许我们用前面一样的方式来解读模型。可加逻辑斯蒂回归模型是广义加性模型的一个例子。一般地，响应变量$Y$的条件均值$\mu(X)$通过一个链接函数$g$将预报变量的加性函数联系起来：</p>
 <p>
 <script type="math/tex; mode=display">
-g[\mu(X)]=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.4)
+g[\mu(X)]=\alpha+f_1(X_1)+\cdots+f_p(X_p)\tag{9.4}
 </script>
 </p>
 <p>典型的链接函数的例子如下：</p>
@@ -3282,7 +3282,7 @@ g[\mu(X)]=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.4)
 <p>可加模型可以用各种设置来替换线性模型，举个例子，时间序列的可加性分解：</p>
 <p>
 <script type="math/tex; mode=display">
-Y_t=S_t+T_t+\varepsilon_t\qquad (9.5)
+Y_t=S_t+T_t+\varepsilon_t\tag{9.5}
 </script>
 </p>
 <p>其中，$S_t$是季节项，$T_t$是趋势项，$\varepsilon$是误差项。</p>
@@ -3291,7 +3291,7 @@ Y_t=S_t+T_t+\varepsilon_t\qquad (9.5)
 <p>可加模型有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
+Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\tag{9.6}
 </script>
 </p>
 <p>其中误差项$\varepsilon$均值为0。给定观测值$x_i,y_i$，可以确定出该问题的类似5.4节中讨论的惩罚平方和(5.9)的准则，</p>
@@ -3317,7 +3317,7 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\qquad (9.6)
 <p>或许在医学研究中应用最广的模型是对二值数据的逻辑斯蒂回归模型。在这个模型中，输出$Y$可以编码成0或1，其中1代表事件发生（比如死亡，疾病复发），0代表没有事件发生。我们希望建立$\Pr(Y=1\mid X)$的模型，其中$\Pr(Y=1\mid X)$是给定预测因子$X^T=(X_1,\ldots,X_p)$后事件发生的概率。目标通常是确定预测因子的作用，而不是对新个体进行分类。逻辑斯蒂回归也应用到当对估计类别比例感兴趣的情况下，比如risk screening。除了医学上的应用，信用风险screening也是一个受欢迎的应用方面。</p>
 <p>广义加性模型有如下形式
 <script type="math/tex; mode=display">
-\log\frac{\Pr(Y=1\mid X)}{\Pr(Y=0\mid X)}=\alpha+f_1(X_1)+\cdots+f_p(X_p)\qquad (9.8)
+\log\frac{\Pr(Y=1\mid X)}{\Pr(Y=0\mid X)}=\alpha+f_1(X_1)+\cdots+f_p(X_p)\tag{9.8}
 </script>
 </p>
 <p>函数$f_1,f_2,\ldots,f_p$是通过在Newton-Raphson过程中运用backfitting算法估计得到的，算法9.2中显示了具体过程。</p>

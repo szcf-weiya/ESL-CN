@@ -3429,11 +3429,11 @@
 <h2 id="_1">基于属性的不相似性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>大部分情形下我们对变量$j=1,\ldots,p$（也称为属性）在$i=1,2,\ldots,N$上有测量值$x_{ij}$。因为大多数流行的聚类算法将不相似性矩阵作为输入，我们首先必须构造两个观测之间的成对不相似性。在大部分一般情形下，我们定义第$j$个属性上不相似性$d_j(x_{ij},x_{i&rsquo;j})$，进一步定义
 <script type="math/tex; mode=display">
-D(x_i,x_{i'})=\sum\limits_{j=1}^pd_j(x_{ij},x_{i'j})\qquad (14.20)
+D(x_i,x_{i'})=\sum\limits_{j=1}^pd_j(x_{ij},x_{i'j})\tag{14.20}
 </script>
 作为第$i$和$i&rsquo;$点的不相似性。至今为止最普遍的选择是平方距离
 <script type="math/tex; mode=display">
-d_j(x_{ij},d_{i'j})=(x_{ij}-x_{i'j})^2\qquad (14.21)
+d_j(x_{ij},d_{i'j})=(x_{ij}-x_{i'j})^2\tag{14.21}
 </script>
 然而，其它的情形也是可能的，而且可以导出潜在的不同的结果。对于非定量的属性（如类别型数据），平方距离可能不合适。另外的，有时候需要对属性赋予不同的权重，而不是像在（14.20）中赋予相等的权重。</p>
 <p>我们首先讨论关于属性类别的备选方案。</p>
@@ -3447,14 +3447,14 @@ d(x_i,x_{i'})=l(\vert x_i-x_{i'}\vert)
 <p>除了平方误差损失$(x_i-x_{i&rsquo;})^2$，普遍的选择是单位（绝对误差）。前者更加关注大的差异。另外，聚类可以基于相关系数</p>
 <p>
 <script type="math/tex; mode=display">
-\rho(x_i,x_{i'})=\frac{\sum_j(x_{ij}-\bar x_i)(x_{i'j}-\bar x_{i'})}{\sqrt{\sum_j(x_{ij}-\bar x_i)^2\sum_j(x_{i'j}-\bar x_{i'})^2}}\qquad (14.22)
+\rho(x_i,x_{i'})=\frac{\sum_j(x_{ij}-\bar x_i)(x_{i'j}-\bar x_{i'})}{\sqrt{\sum_j(x_{ij}-\bar x_i)^2\sum_j(x_{i'j}-\bar x_{i'})^2}}\tag{14.22}
 </script>
 </p>
 <p>其中$\bar x_i=\sum_jx_{ij}/p$。注意到这是在变量上平均，不是在观测上。如果输入已经标准化了，则$\sum_j(x_{ij}-x_{i&rsquo;j})^2\propto 2(1-\rho(x_i,x_{i&rsquo;}))$。因此基于协方差（相似性）的分类与基于平方距离（不相似性）是等价的。</p>
 <h3 id="_3">有序变量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>这种类型的变量经常表示成邻接整数，而且实现值也看成有序集。举些例子，如学业成绩(A,B,C,D,F)，偏好程度（can&rsquo;t stand, dislike, OK, like, terrific）。排名数据是一类特别的有序数据。有序变量的误差度量一般通过将它们$M$个原始值（按照原始值规定的顺序）替换为下式来定义
 <script type="math/tex; mode=display">
-\frac{i-1/2}{M},i=1,\ldots,M\qquad (14.23)
+\frac{i-1/2}{M},i=1,\ldots,M\tag{14.23}
 </script>
 </p>
 <p>于是它们接着可以看成这个尺度下的定量变量。</p>
@@ -3463,7 +3463,7 @@ d(x_i,x_{i'})=l(\vert x_i-x_{i'}\vert)
 <h2 id="object-dissimilarity">样品的不相似性(object dissimilarity)<a class="headerlink" href="#object-dissimilarity" title="Permanent link">&para;</a></h2>
 <p>接着我们定义将$p$个单属性不相似性$d_j(x_{ij},d_{i&rsquo;j}),j=1,2,\ldots,p$结合成一个单独的衡量整个不相似性的$D(x_i,x_{i&rsquo;})$，$D(x_i,x_{i&rsquo;})$是两个有着各自属性值的点或观测$(x_i,x_{i&rsquo;})$之间的不相似性。这几乎总是通过加权平均（凸组合）的方式实现
 <script type="math/tex; mode=display">
-D(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot d_j(x_{ij},x_{i'j});\; \sum\limits_{j=1}^p=1\qquad (14.24)
+D(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot d_j(x_{ij},x_{i'j});\; \sum\limits_{j=1}^p=1\tag{14.24}
 </script>
 这里$w_j$是为了确定点间的整个不相似性对第$j$个属性赋值的权重，权重表示了这个变量的相对影响。权重的选择取决于具体的问题。</p>
 <p>重要的是意识到，对每个变量的设定相同的权重$w_j$（如，$w_j=1\;\forall j$）不一定对所有变量有相同的影响。第$j$个属性$X_j$在点的不相似性$D(x_i,x_{i&rsquo;})$（14.24）上的影响取决于它的相对贡献，这个相对贡献是对数据集中所有的数据对的平均样品不相似性$\bar D$而言
@@ -3472,16 +3472,16 @@ D(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot d_j(x_{ij},x_{i'j});\; \sum\limits_{j=
 </script>
 其中，
 <script type="math/tex; mode=display">
-\bar d_j=\frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nd_j(x_{ij},x_{i'j})\qquad (14.25)
+\bar d_j=\frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nd_j(x_{ij},x_{i'j})\tag{14.25}
 </script>
 是第$j$个属性的平均不相似性。因此，第$j$个变量的相对影响为$w_j\cdot \bar d_j$，并且令$w_j\sim 1/\bar d_j$会让所有的属性在表征样品间整个不相似性中有相等的影响。举个例子，$p$个定量变量以及对每个坐标使用平方误差距离，接着（14.24）成为以定量变量为坐标轴的$R^p$空间中成对点的（加权）欧氏距离
 <script type="math/tex; mode=display">
-D_I(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot (x_{ij}-x_{i'j})^2\qquad (14.26)
+D_I(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot (x_{ij}-x_{i'j})^2\tag{14.26}
 </script>
 </p>
 <p>这种情形下（14.25）变成
 <script type="math/tex; mode=display">
-\bar d_j=\frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N(x_{ij}-x_{x'j})^2=2\cdot var_j\qquad (14.27)
+\bar d_j=\frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N(x_{ij}-x_{x'j})^2=2\cdot var_j\tag{14.27}
 </script>
 其中$var_j$为$Var(X_j)$的样本估计。因此，每个这样变量的相对重要性与其在数据集上的方差成比例。一般地，对所有属性令$w_j=1/\bar d_j$会导致它们中的每一个在成对物体$(x_i,x_{i&rsquo;})$上的整体不相似性上有相等的影响。尽管这看起来或许合理，并且通常推荐这样做，但是会产生严重的不良后果。如果目标是将数据分割成相似样品的类，所有属性或许不会对样品之间的不相似性的（取决于问题）概念贡献相等。一些属性值的差异可能会在某问题领域反映更大的实际的样品不相似性。</p>
 <p>如果目标是发现数据的自然分类，一些属性或许比其他属性表现出更多的分类趋势。在分离类别时，越相关的变量越应该赋予更高的影响来定义object dissimilarity。这种情况下给所有属性相等的影响会趋于隐藏掉这个类别，使得分类算法不能发现它们。图14.5展示了一个例子。</p>
@@ -3499,7 +3499,7 @@ D_I(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot (x_{ij}-x_{i'j})^2\qquad (14.26)
 <p>最受欢迎的聚类算法不考虑描述数据的概率模型而直接将每个观测划分为一类或一簇。每个观测用整数$i\in\{1,\cdots,N\}$来唯一标号。假定预先确定的类别个数$K &lt; N$，并且每个编号为$k\in\{1,\ldots,K\}$。每个观测仅仅分配到一个类中。这些分配可以表示为多对一映射，或者编码器$k = C(i)$，将第$i$个观测分配到第$k$个类。基于每个观测对的不相似性$d(x_i,x_{i&rsquo;})$来寻找特定的编码器${C^*(i)}$来实现要求的目标（细节在下面）。一般地，编码器$C(i)$通过给出每个观测$i$的值（类别分配）来显示描述。因此，过程的“参数”是$N$个观测中每个的类别分配。调整这些来最小化表征聚类目标没有达到的程度的“损失”函数。</p>
 <p>一种方式是直接确定数学上的损失函数并且试图通过一些组合优化算法来最小化。因为目标是将离得近的点分到同一类，一个自然的损失（或“能量”）函数会是
 <script type="math/tex; mode=display">
-W(C)=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}d(x_i,x_{i'})\qquad (14.28)
+W(C)=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}d(x_i,x_{i'})\tag{14.28}
 </script>
 这个准则表征了分配到同一类的观测与另一个接近的程度。有时也被称作“类间”点散（point scatter），因为
 <script type="math/tex; mode=display">
@@ -3511,7 +3511,7 @@ T=W(C)+B(C)
 </script>
 其中$d_{ii&rsquo;}=d(x_i,x_{i&rsquo;})$。$T$是总点散，给定数据后为常数，与类别分配是独立的。下面的$B(C)$值是类间点散。
 <script type="math/tex; mode=display">
-B(C)=\frac{1}{2}\sum\limits_{k=1}\sum\limits_{C(i)=k}\sum\limits_{C(i')\neq k}d_{ii'}\qquad (14.29)
+B(C)=\frac{1}{2}\sum\limits_{k=1}\sum\limits_{C(i)=k}\sum\limits_{C(i')\neq k}d_{ii'}\tag{14.29}
 </script>
 当观测分到远离的不同类中时这个值趋向于大。因此有
 <script type="math/tex; mode=display">
@@ -3520,7 +3520,7 @@ W(C)=T-B(C)
 并且最小化$W(C)$等价于最大化$B(C)$</p>
 <p>通过组合优化的聚类分析原则上是直接的。简单地在$N$个点分到$K$个类中的所有可能分配上最小化$W$或等价地最大化$B$。不幸的是，这种穷举法的优化仅仅在非常小的数据集中才适用。不同的分配个数为（Jain and Dubes，1988<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）
 <script type="math/tex; mode=display">
-S(N,K)=\frac{1}{K!}\sum\limits_{k=1}^K(-1)^{K-k}\binom{K}{k}k^N\qquad (14.30)
+S(N,K)=\frac{1}{K!}\sum\limits_{k=1}^K(-1)^{K-k}\binom{K}{k}k^N\tag{14.30}
 </script>
 举个例子，$S(10,4)=34,105$是可行的。但是$S(N,K)$随着变量值的增大迅速增大。$S(19,4)\simeq 10^{10}$,并且大多数聚类问题涉及比$N=19$更大的数据集。基于这个原因，实用的聚类算法只能验证所有可能编码$k=C(i)$情形的非常小的一部分。目标是识别处可能包含最优解的小的子集，或者至少好的次优的划分。</p>
 <p>这些可行的策略是基于迭代贪婪下降。给定初始划分。每一步迭代，以某种方式来改变类别划分，这种方式使得某准则的值比上一步的值有所改善的。这个类别的聚类算法区别于在每一步迭代修改类别分配的方式。当这种方式不能再改善，算法以当前的分配为其解而终止。因为在任一步的迭代中的类别分配是对上一步类别分配的扰动，只有所有可能分配（14.30）的非常小的一部分被检查。然而，这些算法收敛到局部最优，与全局最优相比可能是高度次优的。</p>
@@ -3538,7 +3538,7 @@ d(x_i,x_{i'})=\sum\limits_{j=1}^p(x_{ij}-x_{i'j})^2=\Vert x_i-x_{i'}\Vert^2
 <script type="math/tex; mode=display">
 \begin{align}
 W(C)&=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}\Vert x_i-x_{i'}\Vert^2\\
-&=\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2\qquad \qquad (14.31)
+&=\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2\qquad \tag{14.31}
 \end{align}
 </script>
 其中$\bar x_k=(\bar x_{1k},\ldots,\bar x_{pk})$是与第$k$个类的均值向量，并且$N_k=\sum_{i=1}^NI(C(i)=k)$。</p>
@@ -3556,11 +3556,11 @@ C^*=\underset{C}{min}\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_
 </script>
 可以通过注意到任意观测集$S$有下式而得到。
 <script type="math/tex; mode=display">
-\bar x_S=\underset{m}{\text{argmin}}\;\sum\limits_{i\in S}\Vert x_i-m\Vert^2\qquad (14.32)
+\bar x_S=\underset{m}{\text{argmin}}\;\sum\limits_{i\in S}\Vert x_i-m\Vert^2\tag{14.32}
 </script>
 因此我们可以通过求解扩大的优化问题而得到$C^*$
 <script type="math/tex; mode=display">
-\underset{C,\{m_k\}_1^K}{min}\;\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-m_k\Vert^2\qquad (14.33)
+\underset{C,\{m_k\}_1^K}{min}\;\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-m_k\Vert^2\tag{14.33}
 </script>
 这个可以通过算法14.1给出的交替优化过程得以最小化。</p>
 <p><img alt="" src="../../img/14/alg14.1.png" /></p>

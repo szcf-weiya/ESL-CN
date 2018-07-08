@@ -3288,21 +3288,21 @@
 <p>记观测值为 $x_1,x_2,\ldots,x_N$，然后考虑用秩为$q$的线性模型来表示它们</p>
 <p>
 <script type="math/tex; mode=display">
-f(\lambda)=\mu+\mathbf V_q\lambda\qquad (14.49)
+f(\lambda)=\mu+\mathbf V_q\lambda\tag{14.49}
 </script>
 </p>
 <p>其中，$\mu$ 是 $\IR^p $中的位置向量，$\mathbf V_q$ 是有 $q$ 个正交单位列向量的 $p\times q$ 的矩阵，$\lambda$ 是一个 $q$ 维的系数向量。这是一个秩为 $q$ 的仿射超平面的系数表示。图 14.20 和图 14.21 分别展示了$q=1$ 和 $q=2$ 的情形。对数据进行最小二乘拟合这个模型等价最小化<strong>重构误差 (reconstruction error)</strong></p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\mu,\{\lambda_i\},\mathbf V_q}{\min}\sum\limits_{i=1}^N\Vert x_i-\mu-\mathbf V_q\lambda_i\Vert^2\qquad (14.50)
+\underset{\mu,\{\lambda_i\},\mathbf V_q}{\min}\sum\limits_{i=1}^N\Vert x_i-\mu-\mathbf V_q\lambda_i\Vert^2\tag{14.50}
 </script>
 </p>
 <p>我们可以对上式关于 $\mu$ 和 $\lambda_i$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/45">练习 14.7</a>）求微分得到</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{lll}
-\hat\mu&=&\bar x\qquad(14.51)\\
-\hat\lambda_i&=&\mathbf V_q^T(x_i-\bar x)\qquad (14.52)
+\hat\mu&=&\bar x\tag{14.51}\\
+\hat\lambda_i&=&\mathbf V_q^T(x_i-\bar x)\tag{14.52}
 \end{array}
 </script>
 </p>
@@ -3317,7 +3317,7 @@ f(\lambda)=\mu+\mathbf V_q\lambda\qquad (14.49)
 <p>这促使我们去寻找正交矩阵 $\mathbf V_q$:</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\mathbf V_q}{\min}\sum\limits_{i=1}^N\Vert (x_i-\bar x)-\mathbf V_q\mathbf V_q^T(x_i-\bar x)\Vert\qquad (14.53)
+\underset{\mathbf V_q}{\min}\sum\limits_{i=1}^N\Vert (x_i-\bar x)-\mathbf V_q\mathbf V_q^T(x_i-\bar x)\Vert\tag{14.53}
 </script>
 </p>
 <p>为了方便，我们假设 $\bar x=0$（否则我们只需要简单地对数据进行中心化 $\tilde x_i=x_i-\bar x$）。$p\times p$ 矩阵 $\mathbf H_q=\mathbf V_q\mathbf V_q^T$ 是<strong>投影矩阵 (projection matrix)</strong>，并且将每个点 $x_i$ 投影到它的秩为 $q$ 的重构 $\mathbf H_qx_i$ 上，这是 $x_i$ 在由 $\mathbf V_q$ 的列张成的子空间上的正交投影。</p>
@@ -3338,7 +3338,7 @@ f(\lambda)=\mu+\mathbf V_q\lambda\qquad (14.49)
 <p>(14.53) 的解可以按如下形式表示。将（中心化的）观测值放进 $N\times p$ 的矩阵 $\mathbf X$ 的行中。构造 $X$ 的奇异值分解：</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf{X=UDV^T}\qquad (14.54)
+\mathbf{X=UDV^T}\tag{14.54}
 </script>
 </p>
 <p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。这里 $\mathbf U$ 是$N\times p$ 的正交矩阵 ($\mathbf{U^TU}=\mathbf I_p$)，它的列向量 $\mathbf u_j$ 称为左奇异向量，$\mathbf V$ 是$p\times p$ 的正交矩阵 ($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量 $\mathbf v_j$ 称之为右奇异向量。对每个秩 $q$，(14.53) 的解 $\mathbf V_q$ 包含 $\mathbf V$ 的前 $q$ 列。$\mathbf{UD}$ 的列称为 $X$ 的主成分（见3.5.1节）。(14.52) 中 $N$ 个最优的 $\hat\lambda_i$ 由前 $q$ 个主成分给出（$N\times q$ 的矩阵 $\mathbf U_q\mathbf D_q$的$N$ 个行向量）。</p>
@@ -3384,7 +3384,7 @@ $$
 <p>考虑下面的问题：</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\mu, \mathbf R}{min}\Vert \mathbf X_2-(\mathbf X_1\mathbf R+\boldsymbol 1\mu^T)\Vert_F\qquad (14.56)
+\underset{\mu, \mathbf R}{min}\Vert \mathbf X_2-(\mathbf X_1\mathbf R+\boldsymbol 1\mu^T)\Vert_F\tag{14.56}
 </script>
 </p>
 <p>其中$\mathbf X_1$和$\mathbf X_2$都是对应点的$N\times p$矩阵，$\mathbf R$是标准正交$p\times p$的矩阵，$\mu$是$p$维的位置向量。</p>
@@ -3407,14 +3407,14 @@ $$
 <p>带尺度的Procrustes距离解决了更一般的问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta,\mathbf R}{min}\Vert \mathbf X_2-\beta\mathbf X_1\mathbf R\Vert_F\qquad (14.58)
+\underset{\beta,\mathbf R}{min}\Vert \mathbf X_2-\beta\mathbf X_1\mathbf R\Vert_F\tag{14.58}
 </script>
 </p>
 <p>其中$\beta&gt;0$是正的标量值。$\mathbf R$的解和前面一样，$\hat\beta=trace(D)/\Vert \mathbf X_1\Vert_F^2$</p>
 <p>与Procrustes距离有关的是$L$个形状的Procrustes平均，它解决了下面的问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\mathbf R_\ell\}_1^L,M}{min}\sum\limits_{\ell=1}^L\Vert \mathbf X_\ell \mathbf R_\ell -\mathbf M\Vert_F^2\qquad (14.59)
+\underset{\{\mathbf R_\ell\}_1^L,M}{min}\sum\limits_{\ell=1}^L\Vert \mathbf X_\ell \mathbf R_\ell -\mathbf M\Vert_F^2\tag{14.59}
 </script>
 </p>
 <p>也就是，在所有的形状中寻找Procrustes距离平方最近的形状$\mathbf X$。这可以通过简单的算法实现：</p>
@@ -3429,7 +3429,7 @@ $$
 <p>更一般地，我们可以通过下式来定义一系列形状的affine-invariant平均：</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\mathbf A_\ell\}_1^L,\mathbf M}\sum\limits_{\ell=1}^L\Vert\mathbf X_\ell\mathbf A_\ell-\mathbf M\Vert_F^2\qquad (14.60)
+\underset{\{\mathbf A_\ell\}_1^L,\mathbf M}\sum\limits_{\ell=1}^L\Vert\mathbf X_\ell\mathbf A_\ell-\mathbf M\Vert_F^2\tag{14.60}
 </script>
 </p>
 <p>其中$\mathbf A_\ell$是任意$p\times p$的非奇异矩阵。这里我们要求标准化，使得$\mathbf M^T\mathbf M=\mathbf I$，来避免平凡解。这个解是吸引人的，并且可以不用迭代便可以计算（练习14.10）：</p>
@@ -3442,7 +3442,7 @@ $$
 <p>我们首先定义随机变量$X\in R^p$的主曲线，并接着讨论有限数据的情形。令$f(\lambda)$为$R^p$中参数化的光滑曲线。因此$f(\lambda)$是有着$p$个坐标的向量函数，每个都是关于单参数$\lambda$的光滑函数。举个例子，可以选择参数$\lambda$为沿着曲线到固定原点的弧长。对于每个数据点$x$，令$\lambda_f(x)$为曲线上离$x$最近的点。如果满足</p>
 <p>
 <script type="math/tex; mode=display">
-f(\lambda) = E(X\mid \lambda_f(X)=\lambda)\qquad (14.61)
+f(\lambda) = E(X\mid \lambda_f(X)=\lambda)\tag{14.61}
 </script>
 </p>
 <p>则$f(\lambda)$称为随机向量$X$的分布的主曲线。这也就是说$f(\lambda)$是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点。这也称作 self-consistency性质。尽管在实际中，连续多元分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣。图14.27显示了一个主曲线。</p>
@@ -3482,7 +3482,7 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 <p>最后，graph laplacian定义为</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf{L=G-W}\qquad (14.63)
+\mathbf{L=G-W}\tag{14.63}
 </script>
 </p>
 <p>这称为未标准化的graph lapacian，人们提出一系列标准化的版本——对laplacian关于结点的度进行标准化，举个例子，$\tilde{\mathbf L}=\mathbf I-\mathbf G^{-1}\mathbf W$。</p>
@@ -3493,7 +3493,7 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 <script type="math/tex; mode=display">
 \begin{align}
 \mathbf f^T\mathbf L\mathbf f&=\sum\limits_{i=1}^Ng_if_i^2-\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nf_if_{i'}w_{ii'}\\
-& = \frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nw_{ii'}(f_i-f_{i'})^2\qquad (14.64)
+& = \frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nw_{ii'}(f_i-f_{i'})^2\tag{14.64}
 \end{align}
 </script>
 公式(14.64)表明如果有较大邻接的数据对的坐标$f_i$和$f_{i&rsquo;}$很接近，则$\mathbf f^T\mathbf L\mathbf f$将达到较小的值。</p>

@@ -3212,7 +3212,7 @@
 <p>这些分类器是基于存储的(memory-based)，并且不需要拟合模型。给定查询点$x_0$，找到$k$个距离$x_0$最近的训练点$x_{(r)}, r=1,\ldots,k$，接着在这$k$个最近邻中采用多数服从少数的方法进行分类。Ties are broken at random。为了简便起见，假设所有的特征是实值的，我们在特征空间中采用欧氏距离</p>
 <p>
 <script type="math/tex; mode=display">
-d_{(i)} = \Vert x_{(i)} - x_0\Vert \qquad (13.1)
+d_{(i)} = \Vert x_{(i)} - x_0\Vert \tag{13.1}
 </script>
 </p>
 <p>一般地，首先对每个特征进行标准化使得均值为0方差为1，因为它们可能是在不同的尺度下的测量值。在第14章中，我们讨论适用与定性变量和有序变量的距离度量，以及对于混合数据怎样将它们结合起来。自适应的距离度量将在下一节中讨论。</p>
@@ -3224,21 +3224,21 @@ d_{(i)} = \Vert x_{(i)} - x_0\Vert \qquad (13.1)
 <p>对于误分类损失，我们下面给出更多的细节。令$k^*$为$x$点处的优势类别，而$p_k(x)$是类别$k$的真实条件概率。则</p>
 <p>
 <script type="math/tex; mode=display">
-\text{Bayes error} = 1-p_{k^*}(x)\qquad (13.2)
+\text{Bayes error} = 1-p_{k^*}(x)\tag{13.2}
 </script>
 </p>
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
-\text{1-nearest-neighbor error}&=\sum\limits_{k=1}^Kp_k(x)(1-p_k(x))\qquad (13.3)\\
-&\ge 1-p_{k^*}(x)\qquad (13.4)
+\text{1-nearest-neighbor error}&=\sum\limits_{k=1}^Kp_k(x)(1-p_k(x))\tag{13.3}\\
+&\ge 1-p_{k^*}(x)\tag{13.4}
 \end{array}
 </script>
 </p>
 <p>渐进的1-最近邻误差率是一个随机规则；我们以概率$p_k(x),k=1,\ldots,K$随机选择类别和测试点。对于$K=2$，1-最近邻误差率为$2p_{k^*}(x)(1-p_{k^*}(x))\le 2(1-p_{k^*}(x))$(两倍的贝叶斯误差率)。更一般地，可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/129">练习 13.3</a>）</p>
 <p>
 <script type="math/tex; mode=display">
-\sum\limits_{k=1}^Kp_k(x)(1-p_k(x))\le 2(1-p_{k*}(x))-\frac{K}{K-1}(1-p_{k^*}(x))^2\qquad (13.5)
+\sum\limits_{k=1}^Kp_k(x)(1-p_k(x))\le 2(1-p_{k*}(x))-\frac{K}{K-1}(1-p_{k^*}(x))^2\tag{13.5}
 </script>
 </p>
 <p>可以导出更多这种形式的结果；Ripley(1996)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>总结了其中的一些。</p>
@@ -3251,7 +3251,7 @@ d_{(i)} = \Vert x_{(i)} - x_0\Vert \qquad (13.1)
 Y&=I(X_1\ge \frac 12);\qquad\text{problem 1: easy}\\
 Y&=I(\sign\{\prod\limits_{j=1}^3(X_j-\frac 12)\}>0);\qquad \text{problem 2: difficult}
 \end{align}
-\qquad (13.6)
+\tag{13.6}
 </script>
 </p>
 <p>因此在第一个问题中，两个类别被超平面$X_1=\frac 12$分离开；在第二个问题中，两个类别被前三个特征定义的超立体形成了跳棋盘(checkerboard)。这两个问题的贝叶斯误差率都是0。有100个训练观测和100个测试观测。</p>

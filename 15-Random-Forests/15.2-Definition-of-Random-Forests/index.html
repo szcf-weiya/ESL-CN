@@ -3131,7 +3131,7 @@
 <p>bagging的核心思想是对许多有噪声但近似无偏的模型进行平均，也因此降低了方差。树是用于bagging的理想模型，因为它们可以捕捉数据中复杂的交叉项，而且如果树长得足够深的话，会有相对较低的偏差。因为树是充满噪声的，所以通过平均可以很大程度地改善它们。而且，因为bagging中产生的每棵树是同分布的，$B$棵这样的树的平均的期望与它们中的任一个是相同的。这意味着经过bagged的树的偏差与单个(bootstrap)树的偏差是一样的，而且唯一改善的希望是通过降低方差。这与boosting是相反的，在boosting中树以一种自适应的方式减小偏差，因此不是同分布的。</p>
 <p>$B$棵独立同分布、方差为$\sigma^2$的随机变量的平均的方差为$\frac{1}{B}\sigma^2$。如果变量是简单的同分布（不一定独立），有着正的成对相关系数$\rho$，平均的方差为（练习15.1）
 <script type="math/tex; mode=display">
-\rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \qquad (15.1)
+\rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \tag{15.1}
 </script>
 </p>
 <div class="admonition note">
@@ -3172,7 +3172,7 @@ Var(\sum  X_i)=B\sigma^2+B(B-1)\rho\sigma^2\ge 0
 <p>一般地，$m$取为$\sqrt{p}$，或者甚至小到取1。</p>
 <p>生成$B$棵这样的树$\{T(x;\Theta_b)\}_1^B$，随机森林（回归）预测变量为
 <script type="math/tex; mode=display">
-\hat f_{rf}^B(x) = \frac{1}{B}\sum\limits_{b=1}^BT(x;\Theta_b)\qquad (15.2)
+\hat f_{rf}^B(x) = \frac{1}{B}\sum\limits_{b=1}^BT(x;\Theta_b)\tag{15.2}
 </script>
 </p>
 <p>如10.9节一样，$\Theta_b$根据分离变量、每个结点的分离值以及终止结点的值来表征第$b$个随机森林树。直观上，降低$m$会降低任意两棵树之间的相关系数，也因此通过（15.1）来降低平均的方差。</p>
@@ -3198,7 +3198,7 @@ Y=
 -1 & \text{otherwise}
 \end{array}
 \right.
-\qquad (10.2)
+\tag{10.2}
 </script>
 </p>
 </div>

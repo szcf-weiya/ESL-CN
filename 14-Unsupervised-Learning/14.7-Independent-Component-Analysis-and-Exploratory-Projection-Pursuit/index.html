@@ -3310,7 +3310,7 @@ X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2p}S_p\\
 \vdots &\qquad\vdots\\
 X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p
 \end{align}
-\qquad (14.78)
+\tag{14.78}
 </script>
 </p>
 <p>或者简单地写成$X=\A S$。相关的$X_j$都表示成不相关的、单位方差的变量$S_\ell$的线性展开。尽管这不是太满意，因为对于任意给定的$p\times p$的正交矩阵$\R$，我们可以写出</p>
@@ -3321,7 +3321,7 @@ X&=\A S\\
 &=\A\R^T\R S
 &=\A^*S^*
 \end{align}
-\qquad (14.79)
+\tag{14.79}
 </script>
 </p>
 <p>并且$\Cov (S^*)=\R\Cov(S)\R^T=\I$。因此存在许多这样的分解，也因此不可能将任意特定的潜变量作为唯一的潜在来源。SVD分解确实有这样的性质，以最优的方式得到使得任意$q &lt; p$的截断分解。</p>
@@ -3334,13 +3334,13 @@ X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2q}S_q+\varepsilon_2\\
 \vdots &\qquad\vdots\\
 X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
 \end{align}
-\qquad (14.80)
+\tag{14.80}
 </script>
 </p>
 <p>或者写成$X=\A S+\epsilon$。这里$S$是 $q &lt; p$个揭示潜变量或者因子的向量，$\A$ 是$p\times q$的因子载荷(loadings)矩阵，$\varepsilon_j$是零均值不相干的扰动。想法是潜变量$S_\ell$是$X_j$公共方差的来源，意味着它们之间的相关性结构，而$\varepsilon_j$对每个$X_j$是唯一的，并且解释了剩下的方差。一般地，$S_\ell$和$\varepsilon_j$假设为高斯随机变量，并且采用极大似然法来拟合模型。参数都存在于下面的协方差阵中</p>
 <p>
 <script type="math/tex; mode=display">
-\Sigma=\A\A^T+\D_\varepsilon \qquad (14.81)
+\Sigma=\A\A^T+\D_\varepsilon \tag{14.81}
 </script>
 </p>
 <p>其中$\D_\varepsilon = \diag[\Var(\varepsilon_1),\ldots, \Var(\varepsilon_p)]$. $S_\ell$为高斯并且不相关，这使得它们在统计上是独立随机变量。因此一系列的教育考试成绩可以认为是有潜在独立的因子，比如智力(intelligence)，动机(drive)等等所决定的。 $\A$的列被称为<strong>因子载荷(factor loadings)</strong>，而且用来命名因子和解释因子。</p>
@@ -3377,21 +3377,21 @@ Cov(X, Y)=0
 <p>ICA许多流行的方式是基于熵. 密度为$g(y)$的随机变量$Y$的相对熵(differential entropy) $H$由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
-H(Y)=-\int g(y)\LOG g(y)dy\qquad (14.82)
+H(Y)=-\int g(y)\LOG g(y)dy\tag{14.82}
 </script>
 </p>
 <p>信息理论中一个著名的结论是在所有同方差的随机变量中，高斯随机变量有最大的熵。最后，随机向量$Y$的组分之间的<strong>互信息量(mutual information)</strong>$I(Y)$是独立性的一个自然度量:</p>
 <p>
 <script type="math/tex; mode=display">
-I(Y)=\sum\limits_{j=1}^pH(Y_j)-H(Y)\qquad (14.83)
+I(Y)=\sum\limits_{j=1}^pH(Y_j)-H(Y)\tag{14.83}
 </script>
 </p>
 <p>值$I(Y)$称为$Y$的密度$g(y)$与其独立版本$\prod\limits_{j=1}^pg_j(y_j)$之间的Kullback-Leibler距离, 其中$g_j(y_j)$是 $Y_j$的边缘密度. 如果$X$有协方差$\I$, 且$Y=\A^TX$, 其中$\A$是正交, 则易证</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-I(Y)&= \sum\limits_{j=1}^pH(X)-\LOG\vert \det\A\vert\qquad (14.84)\\
-&=\sum\limits_{j=1}^pH(Y_j)-H(X)\qquad (14.85)
+I(Y)&= \sum\limits_{j=1}^pH(X)-\LOG\vert \det\A\vert\tag{14.84}\\
+&=\sum\limits_{j=1}^pH(Y_j)-H(X)\tag{14.85}
 \end{align}
 </script>
 </p>
@@ -3437,13 +3437,13 @@ H(Y) &= -\int \frac{f(x)}{\vert\det\A\vert} \LOG\frac{f(x)}{\vert\det\A\vert}\cd
 <p>为了简便, 与其采用熵$H(Y_j)$, Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>采用负熵(negentropy)$J(Y_j)$</p>
 <p>
 <script type="math/tex; mode=display">
-J(Y_j) = H(Z_j)-H(Y_j)\qquad (14.86)
+J(Y_j) = H(Z_j)-H(Y_j)\tag{14.86}
 </script>
 </p>
 <p>其中$Z_j$是与$Y_j$同方差的高斯随机变量。 负熵是非负的, 它度量了$Y_j$与高斯随机变量之间的距离. 他们提出负熵的一个简单近似, 这个近似可以用来计算和优化数据. 图14.37至图14.39中的ICA都采用下面的近似</p>
 <p>
 <script type="math/tex; mode=display">
-J(Y_j)\approx [EG(Y_j) - EG(Z_j)]^2\qquad (14.87)
+J(Y_j)\approx [EG(Y_j) - EG(Z_j)]^2\tag{14.87}
 </script>
 </p>
 <p>其中$G(u)=\frac 1a\LOG \cosh(au), 1\le a\le 2$. 当应用到实际数据时, 期望用数据的平均值代替。 这是这些作者们提供的<code>FastICA</code>软件中的一个选项. 更经典(以及不太鲁棒)的度量是基于四阶矩, 也因此可以通过峰度(kurtosis)来衡量与高斯分布的距离. 更多细节参见Hyvärinen and Oja (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>. 在14.7.4节我们讨论他们寻找最优方向的近似牛顿算法.</p>
@@ -3488,20 +3488,20 @@ Kurt(X)=\E\Big[
 <p>由定义知独立组分有如下联合乘积密度</p>
 <p>
 <script type="math/tex; mode=display">
-f_S(s)=\prod\limits_{j=1}^pf_j(s_j)\qquad (14.88)
+f_S(s)=\prod\limits_{j=1}^pf_j(s_j)\tag{14.88}
 </script>
 </p>
 <p>所以这里展示一种采用广义可加模型(9.1节)来直接估计这个密度的方式. 全部细节可以在Hastie and Tibshirani (2003)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>中找到, 并且这个方法已经在<code>ProDenICA</code>的R包中实现了, 这可以在CRAN上下载.</p>
 <p>根据与高斯分布的距离的表示, 我们将每个$f_j$写成</p>
 <p>
 <script type="math/tex; mode=display">
-f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\qquad (14.89)
+f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\tag{14.89}
 </script>
 </p>
 <p>这是倾斜的高斯密度. 这里$\phi$是标准高斯分布密度, 并且$g_j$满足密度函数所要求的标准化条件. 和之前一样假设$X$已经预处理, 观测数据$X=\A S$的对数似然为</p>
 <p>
 <script type="math/tex; mode=display">
-\ell(\A, \{g_j\}_1^p;\X)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[\LOG \phi(a_j^Tx_i)+g_j(a_j^Tx_i)]\qquad (14.90)
+\ell(\A, \{g_j\}_1^p;\X)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[\LOG \phi(a_j^Tx_i)+g_j(a_j^Tx_i)]\tag{14.90}
 </script>
 </p>
 <div class="admonition note">
@@ -3515,7 +3515,7 @@ f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\qquad (14.89)
 \frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
 \int \phi(t)e^{g_j(t)}dt - 
 \lambda_j\int\{g_j^{(3)}\}^2(t)dt
-\Big]\qquad (14.91)
+\Big]\tag{14.91}
 </script>
 </p>
 <p>受Silverman (1986)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>的启发, 在(14.91)中, 我们(对每个$j$)减去了两个惩罚项:</p>
@@ -3547,7 +3547,7 @@ A(g^*)=A(g)+\int e^{g(x)}dx-\LOG(\int e^{g(x)}dx)-1
 则$A(g^*)\le A(g)$，也就是当且仅当$\int e^g = 1$时，$A(g)$会取得最大值，而这时候$A(g)=A_0(g)-1$，所以$A_0(g)$也会取得最大值。由此看出，$A_0(g)$在$\int e^g=1$的约束下的$\arg\max$等于（无约束的）$A(g)$的$\arg\max$。
 关于第二个点说得到四次样条，我想可以这样类比理解（但不严谨），我们知道四次样条有三阶连续的导函数，且对于<a href="https://esl.hohoweiya.xyz/05%20Basis%20Expansions%20and%20Regularization/5.4%20Smoothing%20Splines/index.html">光滑样条（三次）</a>有如下形式
 <script type="math/tex; mode=display">
-RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\qquad (5.9)
+RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\tag{5.9}
 </script>
 可以类比看出第二个惩罚正是针对四次样条。</p>
 </div>
@@ -3559,20 +3559,20 @@ RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\qq
 <script type="math/tex; mode=display">
 \frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
 \int \phi(t)e^{g_j(t)}dt - 
-\lambda_j\int\{g_j^{(3)}\}^2(t)dt\qquad (14.92)
+\lambda_j\int\{g_j^{(3)}\}^2(t)dt\tag{14.92}
 </script>
 </p>
 <p>尽管(14.92)的第二个积分导出光滑样条， 但第一个积分比较困难， 需要近似。 我们构造一个$L$个值为$s_\ell^*$的细网格，这些值间距为$\Delta$、覆盖观测值$s_i$的取值范围， 并且统计得到的小块中$s_i$的个数：</p>
 <p>
 <script type="math/tex; mode=display">
-y_\ell^*=\frac{\#s_i\in (s_\ell^*-\Delta/2, s_\ell^*+\Delta/2)}{N}\qquad (14.93)
+y_\ell^*=\frac{\#s_i\in (s_\ell^*-\Delta/2, s_\ell^*+\Delta/2)}{N}\tag{14.93}
 </script>
 </p>
 <p>一般我们取$L$为1000就已经足够了。 则(14.92)可以近似为</p>
 <p>
 <script type="math/tex; mode=display">
 \sum\limits_{\ell=1}^L\Big\{
-y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta\phi(s_\ell^*)e^{g(s_\ell^*)}-\lambda\int (g^{3})^2ds\qquad (14.94)
+y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta\phi(s_\ell^*)e^{g(s_\ell^*)}-\lambda\int (g^{3})^2ds\tag{14.94}
 \Big\}
 </script>
 </p>
@@ -3581,7 +3581,7 @@ y_i^*[\LOG(\phi(s_\ell^*)) + g(s_\ell^*)]-\delta\phi(s_\ell^*)e^{g(s_\ell^*)}-\l
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-C(\A) &= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\qquad (14.95)\\
+C(\A) &= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\tag{14.95}\\
 &= \sum\limits_{j=1}^pC_j(a_j)
 \end{align}
 </script>
@@ -3590,7 +3590,7 @@ C(\A) &= \frac 1N\sum\limits_{j=1}^p\sum\limits_{i=1}^N\hat g_j(a_j^Tx_i)\qquad 
 <ol>
 <li>对于每个$j$，更新
 <script type="math/tex; mode=display">
-a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\qquad (14.96)
+a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\tag{14.96}
 </script>
 其中$\E$表示关于$x_i$的期望。因为$\hat g_j$是拟合的四次（或者三次）样条，则式中第一项和第二项已经计算好了。</li>
 <li>采用对称平方根变换将$\A$化为正交矩阵：$(\A\A^T)^{-\frac 12}\A$。如果$\A=\U\D\V^T$是$\A$的SVD分解，则易证$\A\leftarrow \U\V^T$。</li>
@@ -3625,7 +3625,7 @@ A^TA=AA^T
 <p>
 <script type="math/tex; mode=display">
 d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)+
-\frac{1}{2p}\sum\limits_{j=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)\qquad (14.97)
+\frac{1}{2p}\sum\limits_{j=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r_{ij}\vert}{\max_j\vert r_{ij}\vert}-1\Big)\tag{14.97}
 </script>
 </p>
 <p>其中$r_{ij}=(\A_o\A^{-1})_{ij}$。图14.42的右图比较了真实矩阵与估计的矩阵的Amari距离（对数尺度下）。<code>ProDenICA</code>在所有的情形都可以与<code>FastICA</code>和<code>KernelICA</code>进行比较，并且在大多数混合情形下表现最好。</p>

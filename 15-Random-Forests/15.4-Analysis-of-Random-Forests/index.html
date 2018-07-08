@@ -3210,20 +3210,20 @@
 <p>随机森林回归估计量的极限形式$B\rightarrow \infty$是</p>
 <p>
 <script type="math/tex; mode=display">
-\hat f_{rf}(x)=\mathrm E_{\Theta\mid Z}T(x;\Theta(Z))\qquad (15.4)
+\hat f_{rf}(x)=\mathrm E_{\Theta\mid Z}T(x;\Theta(Z))\tag{15.4}
 </script>
 </p>
 <p>其中我们已经显式地表达了对训练数据$Z$的依赖性。这里我们考虑在单个目标点$x$的估计。从(15.1)式我们可以看到</p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm{Var}\hat f_{rf}(x)=\rho(x)\sigma^2(x)\qquad (15.5)
+\mathrm{Var}\hat f_{rf}(x)=\rho(x)\sigma^2(x)\tag{15.5}
 </script>
 </p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \qquad (15.1)
+\rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \tag{15.1}
 </script>
 </p>
 </div>
@@ -3231,12 +3231,12 @@
 <ul>
 <li>$\rho(x)$是任意一对参与平均的树的的采样相关性:
 <script type="math/tex; mode=display">
-\rho(x)=\mathrm{corr}[T(x;\Theta_1(Z)),T(x;\Theta_2(Z))]\qquad (15.6)
+\rho(x)=\mathrm{corr}[T(x;\Theta_1(Z)),T(x;\Theta_2(Z))]\tag{15.6}
 </script>
 其中$\Theta_1(Z)$和$\Theta_2(Z)$是随机抽取的一对随机森林树，这些树是根据$Z^*$（$Z^*$是随机抽取$Z$得到的自助样本）生成的。</li>
 <li>$\sigma^2(x)$是任意随机抽出的单棵树的采样方差
 <script type="math/tex; mode=display">
-\sigma^2(x)=Var T(x;\Theta(Z))\qquad (15.7)
+\sigma^2(x)=Var T(x;\Theta(Z))\tag{15.7}
 </script>
 </li>
 </ul>
@@ -3259,7 +3259,7 @@
 <p class="admonition-title">weiya注： Ex. 15.5</p>
 <p>证明成对随机森林树在点$x$的采样相关性由下式给出
 <script type="math/tex; mode=display">
-\rho(x)=\frac{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]}{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}[T(x;\Theta(\mathbf Z))]}\qquad (15.12)
+\rho(x)=\frac{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]}{Var_{\mathbf Z}[E_{\Theta\mid\mathbf Z}T(x;\Theta(\mathbf Z))]+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}[T(x;\Theta(\mathbf Z))]}\tag{15.12}
 </script>
 证明过程如下：
 <script type="math/tex; mode=display">
@@ -3308,7 +3308,7 @@ $$
 <p>接下来的论证基于下面的模拟模型</p>
 <p>
 <script type="math/tex; mode=display">
-Y=\frac{1}{\sqrt{50}}\sum\limits_{j=1}^{50}X_j+\epsilon\qquad (15.8)
+Y=\frac{1}{\sqrt{50}}\sum\limits_{j=1}^{50}X_j+\epsilon\tag{15.8}
 </script>
 </p>
 <p>其中所有$X_j$和$\epsilon$都是独立高斯分布。我们用500个大小为100的训练集，以及600个测试点的单个测试集。因为回归树关于$\mathbf Z$是非线性的，我们在下面看到的模式将会取决于模型的结构而有些不同。</p>
@@ -3323,7 +3323,7 @@ Y=\frac{1}{\sqrt{50}}\sum\limits_{j=1}^{50}X_j+\epsilon\qquad (15.8)
 Var_{\Theta,\mathbf Z}T(x;\Theta(\mathbf Z))&=&Var_{\mathbf Z}E_{\mathbf \Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))&+E_{\mathbf Z}Var_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\\
 Total\; Variance&=&Var_{\mathbf Z}\hat f_{rf}(x)&+\text{within-}\mathbf Z\; Variance
 \end{align}
-\qquad (15.9)
+\tag{15.9}
 </script>
 </p>
 <div class="admonition note">
@@ -3350,7 +3350,7 @@ Var(Y)&=E(Y^2)-(EY)^2\\
 <script type="math/tex; mode=display">
 \begin{align}
 Bias(x) &= \mu(x)-E_{\mathbf Z}\hat f_{rf}(x)\\
-&=\mu(x)-E_{\mathbf Z}E_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\qquad (15.10)
+&=\mu(x)-E_{\mathbf Z}E_{\Theta\mid \mathbf Z}T(x;\Theta(\mathbf Z))\tag{15.10}
 \end{align}
 </script>
 </p>

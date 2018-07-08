@@ -3274,7 +3274,7 @@
 <p>进行第一次简化来修改目标。与其寻找 $\Pr(x)$ 很大时的 $x$ <strong>值 (values)</strong>，不如在 $X$ 空间中寻找相对它们大小和支撑集的大概率部分的<strong>区域 (regions)</strong>。令 $\cal S_j$ 表示第 $j$ 个变量的所有可能值的集合（<strong>支撑集 (support)</strong>），并且令  $s_j\subseteq\cal S_j$ 为这些值的子集。修改后的目标可以叙述成试图寻找变量值的子集 $s_1,\ldots,s_p$ 来使得每个变量的概率同时相对地大，假设每个子集中都有一个值，则也就是使得</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr\Big[\bigcap_{j=1}^p(X_j\in s_j)\Big]\qquad (14.2)
+\Pr\Big[\bigcap_{j=1}^p(X_j\in s_j)\Big]\tag{14.2}
 </script>
 </p>
 <p>相对大。子集的交 $\cap_{j=1}^p(X_j\in s_j)$ 称作<strong>联合规则 (conjunctive rule)</strong>。对于定性变量，子集 $s_j$ 为邻接区间；对于类别型变量，子集是明确界定的。注意到如果子集实际上是整个集合 $s_j=\cal S_j$，经常是这种情形，变量 $X_j$ 被称为没有出现在规则 (14.2) 中。</p>
@@ -3282,7 +3282,7 @@
 <p>求解 (14.2) 的一般方法将在 14.2.5 节讨论。这在许多应用中是很有用的。然而，它们对于非常多 ($p\approx 10^4,N\approx 10^8$) 的交易数据是不可行的，但市场篮子分析经常要应用到这些数据上。需要对 (14.2) 进一步简化。首先，只考虑两种类型的子集；$s_j$ 要么包含 $X_j$ 的单个值 $s_j=v_{0j}$，或者 $X_j$ 的整个值的集合，$s_j=\cal S_j$。这将 (14.2) 简化为寻找元素为整数的子集 $\cal J\subset\{1,\ldots,p\}$，以及对应的值 $v_{0j},j\in\cal J$，使得</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr\Big[\bigcap_{j\in \cal J}(X_j=v_{0j})\Big]\qquad (14.3)
+\Pr\Big[\bigcap_{j\in \cal J}(X_j=v_{0j})\Big]\tag{14.3}
 </script>
 </p>
 <p>相对大。图 14.1 解释了这个假设。</p>
@@ -3306,20 +3306,20 @@ K=\sum\limits_{j=1}^p\vert \cal S_j\vert
 <p>这将 (14.3) 转换为寻找整数集 ${\cal K}\subset\{1,\ldots,K\}$ 使得下式的值大。</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr\Big[\bigcap_{k\in\cal K}(Z_k=1)\Big]=\Pr\Big[\prod\limits_{k\in\cal K}Z_k=1\Big]\qquad (14.4)
+\Pr\Big[\bigcap_{k\in\cal K}(Z_k=1)\Big]=\Pr\Big[\prod\limits_{k\in\cal K}Z_k=1\Big]\tag{14.4}
 </script>
 </p>
 <p>这是市场篮子问题的标准形式。集合 $\cal K$ 称为“<strong>项目集 (items set)</strong>”。在项目集中的变量 $Z_k$ 的个数称为“大小（size）”（注意到这个大小不大于 $p$）。(14.4) 的估计值取为在数据集中式 (14.4) 中关联为真的观测的比例：</p>
 <p>
 <script type="math/tex; mode=display">
-\widehat{\Pr}\Big[\prod\limits_{k\in\cal K}(Z_k=1)\Big]=\frac{1}{N}\sum\limits_{i=1}^N\prod_{k\in\cal K}z_{ik}\qquad (14.5)
+\widehat{\Pr}\Big[\prod\limits_{k\in\cal K}(Z_k=1)\Big]=\frac{1}{N}\sum\limits_{i=1}^N\prod_{k\in\cal K}z_{ik}\tag{14.5}
 </script>
 </p>
 <p>这里 $z_{ik}$ 为 $Z_k$ 的第 $i$ 种情形的值。这称作项目集 $\cal K$ 的“支撑 (support)”或“流行 (prevalence)” $T(\cal K)$。$\prod_{k\in\cal k}z_{ik}=1$ 的观测 $i$ 称作“包含 (contain)”项目集 $\cal K$ 中。</p>
 <p>在关联规则挖掘中确定支撑的下界 $t$，并且寻找所有可以由变量 $Z_1,\ldots,Z_k$ 组成的项目集 $\cal K_l$，并且支撑集大于下界 $t$，也就是</p>
 <p>
 <script type="math/tex; mode=display">
-\{{\cal K_l}\mid T({\cal K_l})>t\}\qquad (14.6)
+\{{\cal K_l}\mid T({\cal K_l})>t\}\tag{14.6}
 </script>
 </p>
 <h2 id="apriori">Apriori 算法<a class="headerlink" href="#apriori" title="Permanent link">&para;</a></h2>
@@ -3333,13 +3333,13 @@ K=\sum\limits_{j=1}^p\vert \cal S_j\vert
 <p>通过 Apriori 算法返回的每个高支撑的数据集 $\cal K$（14.6）被放到“关联规则”的集合中。项目 $Z_k,k\in\cal K$ 被分成两个分离的子集，$A\cup B=\cal K$，并且写成</p>
 <p>
 <script type="math/tex; mode=display">
-A\Rightarrow B\qquad (14.7)
+A\Rightarrow B\tag{14.7}
 </script>
 </p>
 <p>第一项子集 $A$ 被称作“先因 (antecedent)”，第二个子集 $B$ 被称为“后果 (consequent)”。关联规则基于在数据库中 antecedent 和 consequent 项目集的流行程度，来定义具有一些性质。规则 $T(A\Rightarrow B)$ 的“支撑”是在先行项目集和后果项目集的并集中的观测的占比，这恰恰是导出它们的项目集 $\cal K$ 的支撑。可以看成在随机选择的市场篮子中同时观测项目集 $\Pr(A\; and\; B)$ 的概率的估计 (14.5)。该规则的“<strong>置信度 (confidence)</strong>” 或“<strong>可预测性 (predictability)</strong>” $C(A\Rightarrow B)$ 是它的支撑除以 antecedent 的支撑</p>
 <p>
 <script type="math/tex; mode=display">
-C(A\Rightarrow B)=\frac{T(A\Rightarrow B)}{T(A)}\qquad (14.8)
+C(A\Rightarrow B)=\frac{T(A\Rightarrow B)}{T(A)}\tag{14.8}
 </script>
 </p>
 <p>可以看成是 $\Pr(B\mid A)$ 的估计。记号 $\Pr(A)$ 是在篮子中出现项目集 $A$ 的概率，是 $\Pr(\prod_{k\in A}Z_k=1)$ 的缩写。“<strong>期望置信度</strong>”定义为 consequent 的支撑 $T(B)$，是无条件的概率 $\Pr(B)$ 的估计。最后，规则的“lift”定义为置信度除以期望置信度</p>
@@ -3364,7 +3364,7 @@ L(A\mid B)=\frac{C(A\Rightarrow B)}{T(B)}
 <p>举个例子，假设项目集为 ${\cal K}=$ {<code>peanut butter</code>, <code>jelly</code>, <code>bread</code>}，并且考虑规则 {<code>peanut butter</code>, <code>jelly</code>} $\Rightarrow$ {<code>bread</code>}。$0.03$ 的支撑值表示 <code>peanut butter</code>，<code>jelly</code> 和 <code>bread</code>同时出现在 $3\%$ 的市场篮子中。这个规则的 0.82 置信度表示当购买了 <code>peanut butter</code> 和 <code>jelly</code>，$82\%$ 的情形下也会购买 <code>bread</code>。如果<code>bread</code> 在 $43\%$ 的市场篮子中，则规则 {<code>peanut butter</code>, <code>jelly</code>}$\Rightarrow$ {<code>bread</code>} 的 lift 为 $1.95$。</p>
 <p>这个分析的目标是得到支撑和置信度 (14.8) 都高的关联规则 (14.7)。Apriori 算法返回由支撑阈值 $t$ (14.6) 定义的所有高支撑的项目集。设定置信度阈值 $c$，报告所有可以从这些项目集 (14.6) 中组成的置信度大于 $c$ 的规则，也就是
 <script type="math/tex; mode=display">
-\{A\Rightarrow B\mid C(A\Rightarrow B)>c\}\qquad (14.9)
+\{A\Rightarrow B\mid C(A\Rightarrow B)>c\}\tag{14.9}
 </script>
 对于大小为 $\vert\cal K\vert$ 的项目集 $\cal K$，有 $2^{\vert{\cal K}\vert-1}-1$ 条形式为 $A\Rightarrow ({\cal K}-A),A\subset \cal K$ 的规则。</p>
 <div class="admonition notes">
@@ -3419,32 +3419,32 @@ T(A\Rightarrow B)>t\qquad and\qquad C(A\Rightarrow B)>c
 <script type="math/tex; mode=display">
 \begin{align}
 \mu(x)=E(Y|x)&=\frac{g(x)}{g(x)+g_0(x)}\\
-&=\frac{g(x)/g_0(x)}{1+g(x)/g_0(x)}\qquad (14.10)
+&=\frac{g(x)/g_0(x)}{1+g(x)/g_0(x)}\tag{14.10}
 \end{align}
 </script>
 </p>
 <p>可以通过将下面的混合样本作为训练数据，然后采用监督学习的方法来估计</p>
 <p>
 <script type="math/tex; mode=display">
-(y_1,x_1),(y_2,x_2),\ldots,(y_{N+N_0},x_{N+N_0})\qquad (14.11)
+(y_1,x_1),(y_2,x_2),\ldots,(y_{N+N_0},x_{N+N_0})\tag{14.11}
 </script>
 </p>
 <p>估计的结果 $\hat \mu(x)$ 可以反解得 $g(x)$ 的估计</p>
 <p>
 <script type="math/tex; mode=display">
-\hat g(x)=g_0(x)\frac{\hat \mu(x)}{1-\hat\mu(x)}\qquad (14.12)
+\hat g(x)=g_0(x)\frac{\hat \mu(x)}{1-\hat\mu(x)}\tag{14.12}
 </script>
 </p>
 <p>广义逻辑斯蒂回归（<a href="../../04-Linear-Methods-for-Classification/4.4-Logistic-Regression/index.html">4.4 节</a>）是非常适用于这个方法，因为 log-odd 是直接估计的</p>
 <p>
 <script type="math/tex; mode=display">
-f(x)=\log\frac{g(x)}{g_0(x)}\qquad (14.13)
+f(x)=\log\frac{g(x)}{g_0(x)}\tag{14.13}
 </script>
 </p>
 <p>此时我们有</p>
 <p>
 <script type="math/tex; mode=display">
-\hat g(x)=g_0(x)e^{\hat f(x)}\qquad (14.14)
+\hat g(x)=g_0(x)e^{\hat f(x)}\tag{14.14}
 </script>
 </p>
 <p>图 14.3 显示了一个例子。我们在左边图中产生大小为 200 的训练集。右边显示了在图中长方形区域内均匀产生的参考点（蓝色）。训练样本被标号为 1，而参考样本标号为 0，并且采用逻辑斯蒂回归模型对数据进行拟合，逻辑斯蒂回归模型使用自然样条的张量积（<a href="../../05-Basis-Expansions-and-Regularization/5.2-Piecewise-Polynomials-and-Splines/index.html">5.2.1 节</a>）。$\mu(x)$ 的概率等高线展示在右图中；它们也是密度估计 $\hat g(x)$ 的等高线，因为 $\hat g(x)=\hat\mu(x)/(1-\hat\mu(x))$ 是单调函数。等高线大致捕捉了数据的密度。</p>
@@ -3455,7 +3455,7 @@ f(x)=\log\frac{g(x)}{g_0(x)}\qquad (14.13)
 <p>原则上任意参考点都可以作为 (14.14) 的 $g_0(x)$。实际中估计 $\hat g(x)$ 的准确性非常依赖于特定的选择。好的选择会取决于数据密度 $g(x)$ 和用来估计 (14.10) 和 (14.13) 的过程。如果目标是正确性，应该选择 $g_0(x)$ 使得最终函数 $\mu(x)$ 和$f(x)$ 可以简单地被使用的方法来近似。然而，准确性不总是主要目标。$\mu(x)$ 和 $f(x)$ 是概率比率 $g(x)/g_0(x)$ 的单调函数。它们可以看成是提供关于数据密度 $g(x)$ 与 $g_0(x)$ 偏离的信息的“差异”统计量。因此，在数据分析设定中，$g_0(x)$ 的选择是由偏离的类型决定的，实际中特定问题的情况下似乎是最有趣的。举个例子，如果我们感兴趣的是均匀的偏离，则 $g_0(x)$ 可能是变量值域上的均匀密度函数。如果与联合正态的偏离是我们感兴趣的，$g_0(x)$ 的一个好的选择是与原数据相同的均值向量和协方差均值。与独立性的偏离可以通过用下式表征：</p>
 <p>
 <script type="math/tex; mode=display">
-g_0(x)=\prod\limits_{j=1}^pg_j(x_j)\qquad (14.15)
+g_0(x)=\prod\limits_{j=1}^pg_j(x_j)\tag{14.15}
 </script>
 </p>
 <p>其中 $g_j(x_j)$ 为 $X_j$（$X$ 的第 $j$ 个坐标）的边缘密度。通过对每个变量的数据应用不同的随机排列，独立密度 (14.15) 的样本可以很简单地从数据本身产生。</p>
@@ -3464,13 +3464,13 @@ g_0(x)=\prod\limits_{j=1}^pg_j(x_j)\qquad (14.15)
 <p>在数据空间中寻找高密度区域的更一般问题 (14.2) 可以通过使用上面描述的监督学习的方法来解决。尽管不能应用对市场篮子分析可行的大数据库，但可以从适当大小的数据集中得到有用的信息。问题 (14.2) 可以用公式叙述为，寻找整数子集 $\cal J\subset{1,2,\ldots,p}$ 和与对应的变量 $X_j$ 对应的子集 $s_j,j\in \cal J$ 使得下式的值大。</p>
 <p>
 <script type="math/tex; mode=display">
-\widehat{\Pr}\Big(\bigcap_{j\in\cal J}(X_j\in s_j)\Big) = \frac{1}{N}\sum\limits_{i=1}^NI\Big(\bigcap_{j\in\cal J}(x_{ij}\in s_j)\Big)\qquad (14.16)
+\widehat{\Pr}\Big(\bigcap_{j\in\cal J}(X_j\in s_j)\Big) = \frac{1}{N}\sum\limits_{i=1}^NI\Big(\bigcap_{j\in\cal J}(x_{ij}\in s_j)\Big)\tag{14.16}
 </script>
 </p>
 <p>根据关联规则的数据，$\{(X_j\in s_j)\}_{i\in \cal J}$ 将被称为“广义”项目集。对应定量变量的子集 $s_j$ 取为在它们值域中的邻接区间，对于类别型变量的子集可以涉及不止一个单值。这种方法的这条“野心的 (ambitious)” 性质阻碍了对所有广义项目集的全面搜索，来寻找式 (14.16) 大于特定最小值的支撑。必须用到启发式搜索算法，而且最希望有个寻找这样广义项目集的集合。</p>
 <p>市场篮子分析 (14.5) 和广义公式 (14.16) 都隐式地引用均匀概率分布。如果所有的联合数据值 $(x_1,x_2,\ldots,x_N)$ 都是均匀分布的，则寻找比期望更频繁的项目集。这有助于寻找单个边缘组分 $(X_j\in s_j)$ 是频繁的项目集，也就是，下式的值大。
 <script type="math/tex; mode=display">
-\frac{1}{N}I(x_{ij}\in s_j)\qquad (14.17)
+\frac{1}{N}I(x_{ij}\in s_j)\tag{14.17}
 </script>
 </p>
 <p>频繁子集 (14.17) 的联合在高支撑的项目集（14.16）中趋向于比不频繁子集的联合更经常出现。这也就是为什么尽管高关联（lift）的规则 <code>vodka</code>$\Rightarrow$<code>caviar</code> 不可能被发现；因为没有一项含有高的边缘支撑，所以它们的联合支撑特别地小。引用均匀分布可以得出高频率项目集，其组成部分之间具有低关联性，以支配最高支撑项目集合的集合。</p>
@@ -3478,13 +3478,13 @@ g_0(x)=\prod\limits_{j=1}^pg_j(x_j)\qquad (14.15)
 <p>选择完参考分布后，并且根据它抽取样本，如 (14.11)，则得到一个关于二值输出变量 $Y\in\{0,1\}$ 的监督学习问题。目标是利用这些数据去寻找区域</p>
 <p>
 <script type="math/tex; mode=display">
-R=\bigcup_{j\in \cal J}(X_j\in s_j)\qquad (14.18)
+R=\bigcup_{j\in \cal J}(X_j\in s_j)\tag{14.18}
 </script>
 </p>
 <p>使得目标函数 $\mu(x)=E(Y\mid x)$ 相对地大。另外，可能希望要求这些区域的数据支撑</p>
 <p>
 <script type="math/tex; mode=display">
-T(R)=\int_{x\in R}g(x)dx\qquad (14.19)
+T(R)=\int_{x\in R}g(x)dx\tag{14.19}
 </script>
 </p>
 <p>不要太小。</p>

@@ -3234,17 +3234,17 @@
 <p>另外，每个结点处的值可以被观测到(visible)或者观测不到 (hidden)。结点通常以层来组织，类似神经网络。玻尔兹曼机对于非监督学习和监督学习都是很有用的，特别对有结构化输入数据，比如图像，但是也受到计算上的限制。图17.6显示了一个约束的玻尔兹曼机（后面讨论），其中一些变量是隐藏的，而且只有一些结点对是相连的。我们所有$p$个结点都是可见的简单情形，并且边的对$(j,k)$取自$E$。</p>
 <p>用$X_j$标记结点$j$的二值变量，它们联合分布的Ising模型由下式给出
 <script type="math/tex; mode=display">
-p(X,\mathbf\Theta)=exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\Theta})]\text{  for  }X\in{\cal X}\qquad (17.28)
+p(X,\mathbf\Theta)=exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\Theta})]\text{  for  }X\in{\cal X}\tag{17.28}
 </script>
 其中${\cal X}=\{0,1\}^p$。和上一节的高斯模型一样，只有成对交叉项才进行建模。Ising 模型是在统计力学中发展的，而且现在更一般地用来建立成对交叉的联合影响。$\Phi\mathbf{(\Theta)}$为分割函数的对数，而且由下式定义
 <script type="math/tex; mode=display">
-\Phi(\mathbf \Theta)=\mathrm{log}\sum\limits_{x\in\cal X}[\mathrm {exp}(\sum\limits_{(j,k)\in E}\theta_{jk}x_jx_k)]\qquad (17.29)
+\Phi(\mathbf \Theta)=\mathrm{log}\sum\limits_{x\in\cal X}[\mathrm {exp}(\sum\limits_{(j,k)\in E}\theta_{jk}x_jx_k)]\tag{17.29}
 </script>
 </p>
 <p>分割函数保证在样本空间中概率相加起来为1。$\theta_{jk}X_jX_k$项表示（对数）势函数（17.5）的特定参量化，而且因为技术上的原因需要包含常数结点$X_0\equiv 1$（练习17.10），与其他结点都有边相连。在统计领域中，这个模型等价于多路计算表（multiway tables of counts）的一阶交叉泊松对数线性模型（Bishop等人，1975；McCullagh和Nelder,1989;Agresti，2002）。</p>
 <p>Ising模型表示每个结点在其它结点条件下的逻辑斯蒂形式（练习17.11）
 <script type="math/tex; mode=display">
-Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta_{jk}x_k}\qquad (17.30)
+Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta_{jk}x_k}\tag{17.30}
 </script>
 其中$X_{-j}$记除了$j$的所有结点。因此参数$\theta_{jk}$衡量了在给定其它结点条件下，$X_j$在$X_k$上的依赖性。</p>
 <h2 id="_1">当图结构已知时估计参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -3252,27 +3252,27 @@ Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta
 <script type="math/tex; mode=display">
 \begin{align}
 \ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\mathrm{log\; Pr}_{\mathbf\Theta}(X_i=x_i)\\
-&=\sum\limits_{i=1}^N\Big[\sum\limits_{(j,k)\in E}\theta_{jk}x_{ij}x_{ik}-\Phi(\mathbf\Theta) \Big]\qquad (17.31)
+&=\sum\limits_{i=1}^N\Big[\sum\limits_{(j,k)\in E}\theta_{jk}x_{ij}x_{ik}-\Phi(\mathbf\Theta) \Big]\tag{17.31}
 \end{align}
 </script>
 对数似然的梯度为
 <script type="math/tex; mode=display">
-\frac{\partial\ell(\mathbf\Theta)}{\partial\theta_{jk}}=\sum\limits_{i=1}^Nx_{ij}x_{ik}-N\frac{\partial \Phi(\mathbf\Theta)}{\partial\theta_{jk}}\qquad (17.32)
+\frac{\partial\ell(\mathbf\Theta)}{\partial\theta_{jk}}=\sum\limits_{i=1}^Nx_{ij}x_{ik}-N\frac{\partial \Phi(\mathbf\Theta)}{\partial\theta_{jk}}\tag{17.32}
 </script>
 并且
 <script type="math/tex; mode=display">
 \begin{align}
 \frac{\partial \Phi(\mathbf\Theta)}{\partial \theta_{jk}}&=\sum\limits_{x\in\cal X}x_jx_k\cdot p(x,\mathbf\Theta)\\
-&=E_{\mathbf\Theta}(X_jX_k)\qquad (17.33)
+&=E_{\mathbf\Theta}(X_jX_k)\tag{17.33}
 \end{align}
 </script>
 令梯度等于0得到
 <script type="math/tex; mode=display">
-\hat E(X_jX_k)-E_{\mathbf \Theta}(X_jX_k)=0\qquad (17.34)
+\hat E(X_jX_k)-E_{\mathbf \Theta}(X_jX_k)=0\tag{17.34}
 </script>
 其中我们定义
 <script type="math/tex; mode=display">
-\hat E(X_jX_k)=\frac{1}{N}\sum\limits_{i=1}^Nx_{ij}x_{ik}\qquad (17.35)
+\hat E(X_jX_k)=\frac{1}{N}\sum\limits_{i=1}^Nx_{ij}x_{ik}\tag{17.35}
 </script>
 关于数据的期望分布取期望。注意(17.34)式，我们看到极大似然估计简单地把结点之间的内积估计和观测的内积匹配上了。这是指数族模型得分（梯度）等式的标准形式，令充分统计量等于模型下的期望。</p>
 <p>为了寻找极大似然估计，我们可以利用梯度搜索或者牛顿法。然而$E_{\mathbf \Theta}(X_jX_k)$涉及$p(X,\mathbf\Theta)$在$X$的$\vert{\cal X}\vert=2^p$种可能值中的$2^{p-2}$ （？？？）种情形的列举，而且对于大的$p$一般是不可行的（比如，大于30）。对于小$p$，有一系列标准的统计方法可以使用：</p>
@@ -3292,12 +3292,12 @@ Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta
 <script type="math/tex; mode=display">
 \begin{align}
 \ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\mathrm{log}[Pr_{\mathbf\Theta}(X_{\cal V}=x_{i\cal V})]\\
-&=\sum\limits_{i=1}^N[\mathrm{log}\sum\limits_{x_{\cal H}\in{\cal X_H}}exp\sum\limits_{(j,k)\in E}(\theta_{jk}x_{ij}x_{jk}-\Phi(\mathbf\Theta))]\qquad (17.36)
+&=\sum\limits_{i=1}^N[\mathrm{log}\sum\limits_{x_{\cal H}\in{\cal X_H}}exp\sum\limits_{(j,k)\in E}(\theta_{jk}x_{ij}x_{jk}-\Phi(\mathbf\Theta))]\tag{17.36}
 \end{align}
 </script>
 对$x_{\cal H}$求和意味着我们对隐藏单元的所有可能${0,1}$值进行求和。梯度为
 <script type="math/tex; mode=display">
-\frac{d\ell(\mathbf\Theta)}{d\theta_{jk}}=\hat E_{\cal V}E_{\mathbf \Theta}(X_jX_k\mid X_{\cal V})-E_{\mathbf\Theta}(X_jX_k)\qquad (17.37)
+\frac{d\ell(\mathbf\Theta)}{d\theta_{jk}}=\hat E_{\cal V}E_{\mathbf \Theta}(X_jX_k\mid X_{\cal V})-E_{\mathbf\Theta}(X_jX_k)\tag{17.37}
 </script>
 第一项是当$X_jX_k$都可见是的经验均值；如果其中一个或都隐藏，则在给定可见数据下进行第一次插值，然后在隐藏变量上平均。第二项是$X_jX_k$的无条件期望。</p>
 <p>第一项中的内层期望可以用条件期望的基本法则和伯努利随机变量的性质进行赋值。具体地，对于观测$i$，
@@ -3335,7 +3335,7 @@ E_{\Theta}(X_jX_k\mid X_{\cal V}=x_{i\cal V})=
 <p>图17.6显示了一个例子；可见层被分成了输入变量$\cal V_1$和输出变量$\cal V_2$，且有一个隐藏层$\cal H$。我们将这样一个网络表示成</p>
 <p>
 <script type="math/tex; mode=display">
-{\cal V}_1\leftrightarrow {\cal H\leftrightarrow\cal V}_2\qquad (17.39)
+{\cal V}_1\leftrightarrow {\cal H\leftrightarrow\cal V}_2\tag{17.39}
 </script>
 </p>
 <p><img alt="" src="../../img/17/fig17.6.png" /></p>

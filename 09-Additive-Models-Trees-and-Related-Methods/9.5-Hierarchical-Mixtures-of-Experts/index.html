@@ -3143,33 +3143,33 @@
 <p>这里描述 HME 是如何定义的。顶层的门控网络有输出</p>
 <p>
 <script type="math/tex; mode=display">
-g_j(x,\gamma_j)=\frac{e^{\gamma_j^Tx}}{\sum_{k=1}^Ke^{\gamma_k^Tx}}\; j=1,2,\ldots,K\qquad (9.25)
+g_j(x,\gamma_j)=\frac{e^{\gamma_j^Tx}}{\sum_{k=1}^Ke^{\gamma_k^Tx}}\; j=1,2,\ldots,K\tag{9.25}
 </script>
 </p>
 <p>其中每个 $\gamma_j$ 是未知参数向量。这表示软的 $K$ 重分割（图 9.13 中 $K=2$）每个 $g_j(x,\gamma_j)$ 是将特征向量为$x$ 的观测赋给第 $j$ 个分支。注意到 $K=2$ 时，如果我们将 $x$ 的某一个元素的系数取为 $+\infty$，接着我们得到无穷大的斜率的逻辑斯蒂曲线。在这种情形下，门的概率取 0 或 1，对应在该输入下的硬分割。</p>
 <p>在第二层，门控网络有类似的形式：
 <script type="math/tex; mode=display">
-g_{\ell\mid j}(x,\gamma_{j\ell})=\frac{e^{\gamma_{j\ell}^Tx}}{\sum_{k=1}^Ke^{\gamma_{jk}^Tx}},\ell=1,2,\ldots,K\qquad (9.26)
+g_{\ell\mid j}(x,\gamma_{j\ell})=\frac{e^{\gamma_{j\ell}^Tx}}{\sum_{k=1}^Ke^{\gamma_{jk}^Tx}},\ell=1,2,\ldots,K\tag{9.26}
 </script>
 这是在给定上一层第 $j$ 个分支的情况下，赋予第$\ell$分支的概率。</p>
 <p>在每个专家（终止结点），我们有如下形式的响应变量的模型</p>
 <p>
 <script type="math/tex; mode=display">
-Y\sim  Pr(y\mid x,\theta_{jl})\qquad (9.27)
+Y\sim  Pr(y\mid x,\theta_{jl})\tag{9.27}
 </script>
 </p>
 <p>这根据问题而有不同。</p>
 <p><strong>回归：</strong> 使用高斯线性回归模型，其中$\theta_{j\ell}=(\beta_{i\ell},\sigma^2_{j\ell})$:
 <script type="math/tex; mode=display">
-Y=\beta_{k\ell}^Tx+\varepsilon\text{  and  }\varepsilon\sim N(0,\sigma_{j\ell}^2)\qquad (9.28)
+Y=\beta_{k\ell}^Tx+\varepsilon\text{  and  }\varepsilon\sim N(0,\sigma_{j\ell}^2)\tag{9.28}
 </script>
 <strong>分类：</strong> 使用线性逻辑斯蒂回归模型：
 <script type="math/tex; mode=display">
-\Pr(Y=1\mid x,\theta_{j\ell})=\frac{1}{1+e^{-\theta_{j\ell}^Tx}}\qquad (9.29)
+\Pr(Y=1\mid x,\theta_{j\ell})=\frac{1}{1+e^{-\theta_{j\ell}^Tx}}\tag{9.29}
 </script>
 用$\Psi=\{\gamma_j,\gamma_{j\ell},\theta_{j\ell}\}$表示参数的集合，$Y=y$ 整体概率为
 <script type="math/tex; mode=display">
-Pr(y\mid x,\Psi)=\sum\limits_{j=1}^Kg_j(x,\gamma_j)\sum\limits_{\ell=1}^Kg_{\ell\mid j}(x,\gamma_{j\ell})Pr(y\mid x,\theta_{j\ell})\qquad (9.30)
+Pr(y\mid x,\Psi)=\sum\limits_{j=1}^Kg_j(x,\gamma_j)\sum\limits_{\ell=1}^Kg_{\ell\mid j}(x,\gamma_{j\ell})Pr(y\mid x,\theta_{j\ell})\tag{9.30}
 </script>
 这是个混合模型，其中混合概率由门控网络模型确定。</p>
 <p>为了估计这些参数，我们在 $\Psi$ 的参数上最大化数据的对数似然，$\sum_i \log \Pr(y_i\mid x_i,\Psi)$。处理这个的最方便是 EM 算法，我们已经在<a href="../../08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm/index.html">8.5节</a>中描述了。我们定义潜在变量 $\Delta_j$， 除了一个元素为 1，所有的都是 0。我们把这个解释为由顶层门控网络作出的分支判断。类似地，我们定义潜在变量 $\Delta_{\ell\mid j}$ 来描述第二层的门控判断。</p>

@@ -3189,14 +3189,14 @@
 <p>$N\times p$ 数据矩阵 $\mathbf X$ 由下式近似</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf X \approx \mathbf W\mathbf H\qquad (14.72)
+\mathbf X \approx \mathbf W\mathbf H\tag{14.72}
 </script>
 </p>
 <p>其中 $\mathbf W$ 阶为 $N\times r$，$\mathbf H$ 阶为 $r\times p, r\le \max(N,p)$。我们假设 $x_{ij}, w_{ik}, h_{kj}\ge 0$。</p>
 <p>通过最大化下式来确定 $\mathbf W$ 和 $\mathbf H$</p>
 <p>
 <script type="math/tex; mode=display">
-L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}\log(\mathbf {WH})_{ij}-(\mathbf{WH})_{ij})]\qquad (14.73)
+L(\mathbf W, \mathbf H)=\sum\limits_{i=1}^N\sum\limits_{j=1}^p[x_{ij}\log(\mathbf {WH})_{ij}-(\mathbf{WH})_{ij})]\tag{14.73}
 </script>
 </p>
 <p>这是模型的对数似然，模型中 $x_{ij}$ 服从均值为 $(\mathbf{WH})_{ij}$ 的 Poisson 分布——这对于正值数据是很合理的。</p>
@@ -3206,7 +3206,7 @@ $$
 \begin{array}{ll}
 w_{ik}&\leftarrow w_{ik}\frac{\sum_{j=1}^ph_{kj}x_{ij}/(\mathbf{WH}_{ij})}{\sum_{j=1}^ph_{kj}}\\
 h_{kj}&\leftarrow h_{kj}\frac{\sum_{j=1}^pw_{ik}x_{ij}/(\mathbf{WH}_{ij})}{\sum_{j=1}^pw_{ik}}
-\end{array}\qquad (14.74)
+\end{array}\tag{14.74}
 $$
 -->
 
@@ -3215,7 +3215,7 @@ $$
 \begin{align}
 w_{ik}&\leftarrow w_{ik}\frac{\sum_{j=1}^ph_{kj}x_{ij}/(\mathbf{WH})_{ij}}{\sum_{j=1}^ph_{kj}}\\
 h_{kj}&\leftarrow h_{kj}\frac{\sum_{i=1}^Nw_{ik}x_{ij}/(\mathbf{WH})_{ij}}{\sum_{i=1}^Nw_{ik}}
-\end{align}\qquad (14.74)
+\end{align}\tag{14.74}
 </script>
 </p>
 <p>这个算法可以由最大化 $L(\mathbf W, \mathbf H)$ 的 <strong>minorization</strong> 过程来导出（<a href="https://github.com/szcf-weiya/ESL-CN/issues/86">练习14.23</a>）</p>
@@ -3246,13 +3246,13 @@ g(x,y)\le f(x),\qquad g(x,x)=f(x)
 <p>如 (17.42) 一样，$N\times p$的数据矩阵 $\X$ 建模为</p>
 <p>
 <script type="math/tex; mode=display">
-\X\approx \W\H\qquad (14.75)
+\X\approx \W\H\tag{14.75}
 </script>
 </p>
 <p>其中 $\W$ 阶为 $N\times r$，且 $\H$ 为 $r\times p$。我们假设$w_{ik}\ge 0$，且 $\sum_{k=1}^rw_{ik}=1\;\forall i$。因此 $p$维空间中的 $N$ 个数据点（$\X$的行）用 $r$ 个原型（$\H$的行）的凸组合来表示。我们还假设</p>
 <p>
 <script type="math/tex; mode=display">
-\H=\B\X\qquad (14.76)
+\H=\B\X\tag{14.76}
 </script>
 </p>
 <p>其中 $\B$ 阶为 $r\times N$，其中 $b_{ki}\ge 0$，且 $\sum_{i=1}^Nb_{ki}=1\forall k$。因此原型本身是数据点的凸组合。使用 (14.75) 和 (14.76)，我们对下式关于权重$\W$和$\B$最小化</p>
@@ -3260,7 +3260,7 @@ g(x,y)\le f(x),\qquad g(x,x)=f(x)
 <script type="math/tex; mode=display">
 \begin{align}
 J(\W, \B) & = \Vert \X-\W\H\Vert^2\\
-&=\Vert \X-\W\B\X\Vert^2\qquad (14.77)
+&=\Vert \X-\W\B\X\Vert^2\tag{14.77}
 \end{align}
 </script>
 </p>
