@@ -186,6 +186,7 @@ pages:
   - 个人笔记:
     - 习题解答: 
       - 索引: 'notes/manual.md'
+      - 习题 Ex. 17.7: 'notes/Graph/ex-17-7.md'
     - 笔记列表: 
       - 列表: 'notes/ipynb/list.md'
     - 模拟实验:
