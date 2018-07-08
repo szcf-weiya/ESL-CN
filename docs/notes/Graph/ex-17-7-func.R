@@ -1,42 +1,3 @@
-## ######################################################################################
-##
-## Solution for Ex. 17.7
-##
-## refer to https://github.com/szcf-weiya/ESL-CN/issues/138
-## for more details
-##
-## author: weiya <szcfweiya@gmail.com>
-##
-## ###################################################################################### 
-#rm(list = ls(all=TRUE))
-## read data
-data = read.table("data/data.txt")
-covariance = read.table("data/covariance-mat.txt")
-S = as.matrix(covariance)
-colnames(data) = c("praf",
-                   "pmek",
-                   "plcg",
-                   "PIP2",
-                   "PIP3",
-                   "p44/42",
-                   "pakts473",
-                   "PKA",
-                   "PKC",
-                   "P38",
-                   "pjnk")
-
-adj = matrix(c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0,
-               0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0,
-               0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0,
-               0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-               0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1,
-               0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0), nrow = 11)
-
 ## estimation of an undirected gaussian graphical model with known structure
 ## refer to alg-17-1.R
 estUGGM <- function(S, adj)
@@ -101,6 +62,3 @@ estUGGM <- function(S, adj)
   print(W)
   print(Omega)
 }
-
-## run 
-estUGGM(S, adj)
