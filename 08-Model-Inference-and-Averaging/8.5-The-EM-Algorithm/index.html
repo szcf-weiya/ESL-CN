@@ -3191,7 +3191,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=291">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3242,12 +3242,12 @@
 <blockquote>
 <p>表 8.1. 图 8.5 中两个组分混合的例子中使用的 20 个模拟数据。</p>
 </blockquote>
-<p>我们想要建立数据点的密度模型，然后由于数据点呈现明显的双峰，高斯分布不是合适的选择。这里似乎有两个潜在的分开的形式，所以我们将 $Y$ 作为两个正态分布混合的模型：
+<p>我们想要建立数据点的密度模型，然后由于数据点呈现明显的双峰，高斯分布不是合适的选择。这里似乎有两个潜在的分开的形式，所以我们将 $Y$ 看成两个正态分布混合的模型：
 <script type="math/tex; mode=display">
 \begin{align}
-Y_1&\sim N(\mu_1,\sigma^2_1)\\
+Y_1&\sim N(\mu_1,\sigma^2_1)\notag\\
 Y_2&\sim N(\mu_2,\sigma_2^2)\qquad \qquad \qquad\tag{8.36}\\
-Y&=(1-\Delta)\cdot Y_1 + \Delta\cdot Y_2
+Y&=(1-\Delta)\cdot Y_1 + \Delta\cdot Y_2\notag
 \end{align}
 </script>
 其中 $\Delta\in \{0,1\}$，且 $\Pr(\Delta =1)=\pi$。产生过程是很显然的：以概率 $\pi$ 产生 $\Delta\in\{0,1\}$，然后根据输出结果，分配给 $Y_1$ 或 $Y_2$。令 $\phi_{\theta}(x)$ 记为参数为$\theta=(\mu,\sigma^2)$ 的正态分布。则 $Y$ 的密度为
@@ -3265,7 +3265,7 @@ g_Y(y)=(1-\pi)\phi_{\theta_1}(y)+\pi\phi_{\theta_2}(y)\tag{8.37}
 直接对 $\ell(\theta;\mathbf Z)$ 进行最大化在数值上是很困难的，因为求和项在 $\log$ 函数里面。然而，这里有一个更简单的方式。我们考虑一个类似 (8.36) 中取 0 或 1 的潜变量 $\Delta_i$：若 $\Delta_i=1$ 则 $Y_i$ 来自模型 2，否则来自模型 1。假设我们已经知道了 $\Delta_i$ 的值。则对数概率为
 <script type="math/tex; mode=display">
 \begin{align}
-\ell_0(\theta;\bf Z,\bf{\Delta})&=\sum\limits_{i=1}^N[(1-\Delta_i)\log\phi_{\theta_1}(y_i)+\Delta_i\log\phi_{\theta_2}(y_i)]\\
+\ell_0(\theta;\bf Z,\bf{\Delta})&=\sum\limits_{i=1}^N[(1-\Delta_i)\log\phi_{\theta_1}(y_i)+\Delta_i\log\phi_{\theta_2}(y_i)]\notag\\
 &+\sum\limits_{i=1}^N[(1-\Delta_i)\log(1-\pi)+\Delta_i\log\pi]\tag{8.40}
 \end{align}
 </script>
@@ -3281,9 +3281,9 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 <p>而且 $\mu_1$ 和 $\sigma_1^2$ 的极大似然估计为 $\Delta_i=0$ 时样本均值和方差，类似地对于 $\mu_2$ 和 $\sigma_2^2$ 的极大似然估计为 $\Delta_i=1$ 时的样本均值和方差。$\pi$ 的估计为 $\Delta_i=1$ 的比例。</p>
 <p>因为 $\Delta_i$ 的值实际上是不知道的，我们用一种迭代方式，替换 (8.40) 中的每个 $\Delta_i$，它的期望值
 <script type="math/tex; mode=display">
-\gamma_i(\theta)=E(\Delta_i\mid\theta,\mathbf Z)=Pr(\Delta_i=1\mid \theta,\mathbf Z)\tag{8.41}
+\gamma_i(\theta)=\E(\Delta_i\mid\theta,\mathbf Z)=\Pr(\Delta_i=1\mid \theta,\mathbf Z)\tag{8.41}
 </script>
-也称为模型 2 对于每个观测 $i$ 的责任 (responsibility)。我们用一种称作 EM 算法（算法 8.1 中给出）的过程来求解这个特殊的高斯混合模型。在期望 (expectation) 这一步，我们对每一个模型的每一个观测做一个软赋值：根据每个模型下训练集点的相对密度，参数的当前估计用来给 responsibilities 赋值。在最大化(maximization) 那一步，加权极大似然估计中使用的 responsibilities 用来更新参数估计。</p>
+也称为模型 2 对于每个观测 $i$ 的责任 (responsibility)。我们用一种称作 EM 算法（算法 8.1 中给出）的过程来求解这个特殊的高斯混合模型。在期望 (expectation) 这一步，我们对每一个模型的每一个观测做一个软赋值：根据每个模型下训练集点的相对密度，参数的当前估计用来给 responsibilities 赋值。在最大化(maximization) 那一步，对极大似然估计中使用的 responsibilities 进行加权用来更新参数估计。</p>
 <p>构造初始的 $\hat\mu_1$ 和 $\hat\mu_2$ 的一种很好的方式便是简单地随机选择 $y_i$ 中的两个值。$\hat\sigma^2_1$ 和 $\hat\sigma^2_2$ 都等于整体的样本方差 $\sum_{i=1}^N(y_i-\hat y)^2/N$。最大比例的 $\hat\pi$ 可以从 0.5 开始。</p>
 <p>注意到实际中概率的最大值发生在当我们固定一个数据点，换句话说，对于一些 $i$ 令 $\hat\mu_1=y_i$，$\hat\sigma^2_1=0$。这给出了无限大的概率，但是这不是一个有用的解。因此实际上我们寻找概率的一个良好的局部最大值，满足 $\hat\sigma^2_1,\hat\sigma^2_2&gt;0$。进一步，可以有多个局部最大值满足$\hat\sigma^2_1,\hat\sigma^2_2&gt;0$。在我们例子中，我们用一系列不同的初始参数值来运行 EM 算法，所有的都满足 $\hat\sigma^2_k&gt;0.5$，然后选择使得概率最大的那个。图 8.6 显示了在最大化对数概率的 EM 算法的过程。表 8.2 显示了在给定迭代次数的 EM 过程下 $\hat\pi=\sum_i\hat\gamma_i/N$ 是类别 2 中观测值比例的极大似然估计。</p>
 <p><img alt="" src="../../img/08/alg8.1.png" /></p>
@@ -3301,7 +3301,7 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 \hat\mu_2=1.06\qquad \sigma^2_2=0.77\\
 \hat\pi=0.546
 </script>
-图 8.5 的右图显示了从这个过程估计的混合高斯分布的密度（实心红色曲线），以及 responsibilities（绿色点曲线）。注意到混合在监督学习中也很有用；在 6.7 节我们显示了高斯混合模型怎样导出 radial 基函数的版本。</p>
+图 8.5 的右图显示了从这个过程估计的混合高斯分布的密度（实心红色曲线），以及 responsibilities（绿色点曲线）。注意到混合在监督学习中也很有用；在 <a href="../../06-Kernel-Smoothing-Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html">6.7 节</a>我们显示了高斯混合模型怎样导出 radial 基函数的版本。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注<p>自己实现了上述的模拟过程，具体 R 代码在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">这里</a></p>
 </p>
