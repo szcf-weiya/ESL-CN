@@ -3189,6 +3189,10 @@
 <td>时间</td>
 <td>2018-06-15</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-07-08</td>
+</tr>
 </tbody>
 </table>
 <p>这篇笔记记录了用 R 语言实现算法 17.1 并应用到实际数据的具体过程。</p>
@@ -3228,6 +3232,18 @@
 </pre></div>
 
 
+<p>为了让程序更有适用性，我们采用邻接矩阵来表示边的缺失，则上面代码可以简化为</p>
+<div class="codehilite"><pre><span></span>adj <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
+               <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
+               <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
+               <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> ncol <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+<span class="c1">## use adjacency matrix</span>
+edge.idx <span class="o">=</span> <span class="kp">which</span><span class="p">(</span>adj<span class="p">[</span>j<span class="p">,]</span> <span class="o">!=</span> <span class="m">0</span><span class="p">)</span>
+W.11.star <span class="o">=</span> W<span class="p">[</span>edge.idx<span class="p">,</span> edge.idx<span class="p">]</span>
+s.12.star <span class="o">=</span> S<span class="p">[</span>j<span class="p">,</span> edge.idx<span class="p">]</span>
+</pre></div>
+
+
 <p>更新 $w_{12}$，</p>
 <div class="codehilite"><pre><span></span><span class="c1">## solve reduced system of equations</span>
 beta.star <span class="o">=</span> <span class="kp">solve</span><span class="p">(</span>W.11.star<span class="p">,</span> s.12.star<span class="p">)</span>
@@ -3251,7 +3267,14 @@ W <span class="o">=</span> W.reorder<span class="p">[</span><span class="kp">ord
 </pre></div>
 
 
-<p>当$\mathbf W$ 收敛后，计算 $\hat{\mathbf\Sigma} ^{-1}$：</p>
+<p>采用邻接矩阵，计算 <code>beta.hat</code> 的代码可以简化为</p>
+<div class="codehilite"><pre><span></span>beta.hat.add.j <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="kp">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span>p<span class="p">),</span>ncol<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+beta.hat.add.j<span class="p">[</span>edge.idx<span class="p">]</span> <span class="o">=</span> beta.star
+beta.hat <span class="o">=</span> beta.hat.add.j<span class="p">[</span><span class="o">-</span>j<span class="p">]</span>
+</pre></div>
+
+
+<p>当 $\mathbf W$ 收敛后，计算 $\hat{\mathbf\Sigma} ^{-1}$：</p>
 <div class="codehilite"><pre><span></span><span class="c1">## final cycle</span>
 <span class="kr">if</span> <span class="p">(</span>finalcycle<span class="p">)</span>
 <span class="p">{</span>
