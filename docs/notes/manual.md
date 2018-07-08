@@ -23,6 +23,10 @@
 - [MM 算法 (Minorize-Maximize, or Majorize-Minimize)](https://github.com/szcf-weiya/ESL-CN/issues?q=is%3Aissue+label%3AMM)
 - ...
 
+## 编程题
+
+- [图模型](https://github.com/szcf-weiya/ESL-CN/issues?q=is%3Aissue+is%3Aopen+label%3Aprogramming)
+
 ## 章节
 
 - [第二章](https://github.com/szcf-weiya/ESL-CN/milestone/7) 
