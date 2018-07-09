@@ -3265,9 +3265,13 @@ p(X,\mathbf\Theta)=\exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\
 <p>在统计领域中，这个模型等价于多路计算表（multiway tables of counts）的一阶交叉泊松对数线性模型（Bishop et al.，1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> ;McCullagh and Nelder,1989<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>; Agresti, 2002<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）。</p>
 <p>Ising 模型暗示着每个结点在其它结点条件下由逻辑斯蒂形式（<a href="https://github.com/szcf-weiya/ESL-CN/issues/140">练习 17.11</a>）
 <script type="math/tex; mode=display">
-\Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+\exp(-\theta_{j0}-\sum_{(j,k)\in E})\theta_{jk}x_k}\tag{17.30}
+\Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+\exp(-\theta_{j0}-\sum_{(j,k)\in E}\theta_{jk}x_k)}\tag{17.30}
 </script>
 其中 $X_{-j}$ 记除了 $j$ 的所有结点。因此参数 $\theta_{jk}$ 衡量了在给定其它结点条件下，$X_j$ 在 $X_k$ 上的依赖性。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Ex. 17.11</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/140">Issue 140: Ex. 17.11</a>。</p>
+</div>
 <h2 id="_1">当图结构已知时估计参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>从模型中给出一些数据，我们可以怎么估计参数？假设我们有观测 $x_i=(x_{i1},x_{i2},\ldots,x_{ip})\in\{0,1\}^p,i=1,\ldots,N$。对数似然为
 <script type="math/tex; mode=display">
