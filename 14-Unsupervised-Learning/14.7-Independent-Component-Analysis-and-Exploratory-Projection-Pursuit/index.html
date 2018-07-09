@@ -3313,7 +3313,7 @@
 </ul>
 <p><strong>因子分析(Factor Analysis)</strong>是统计学领域为了识别潜在因素的一个经典方法。因子分析模型通常是用在高斯分布中，某种程度上阻碍了它的适用性。最近，<strong>独立成分分析(Independent Component Analysis)</strong>成为了因子分析的强劲对手，我们将会看到，它对非高斯分布的依赖是其成功的根本来源。</p>
 <h2 id="_1">潜变量和因子分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>奇异值分解(14.54) $\mathbf X=\mathbf{UDV}^T$ 有潜变量的表示。记 $\mathbf S=\sqrt{N}\mathbf U$，以及$\mathbf A^T=\mathbf{DV}^T/\sqrt{N}$，我们有 $\mathbf{X=SA}^T$，因此 $\mathbf X$ 的每一列是$\mathbf S$的列的线性组合。现在因为$\mathbf U$是正交的，并且和之前一样假设$\mathbf X$的列均值为0（因此$\mathbf U$也是），这意味着$\mathbf S$列均值为0，而且不相关，有单位方差。用随机变量表示，我们可以把SVD或者对应的主成分分析看成是下列潜变量模型的一个估计</p>
+<p>奇异值分解(14.54) $\mathbf X=\mathbf{UDV}^T$ 有潜变量的表示。记 $\mathbf S=\sqrt{N}\mathbf U$，以及$\mathbf A^T=\mathbf{DV}^T/\sqrt{N}$，我们有 $\mathbf{X=SA}^T$，因此 $\mathbf X$ 的每一列是$\mathbf S$的列的线性组合。现在因为$\mathbf U$是正交的，并且和之前一样假设$\mathbf X$的列均值为0（因此$\mathbf U$也是），这意味着 $\mathbf S$ 列均值为0，而且不相关，有单位方差。用随机变量表示，我们可以把SVD或者对应的主成分分析看成是下列潜变量模型的一个估计</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
