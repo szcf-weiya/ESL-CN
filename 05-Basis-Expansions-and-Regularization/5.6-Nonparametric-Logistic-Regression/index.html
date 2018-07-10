@@ -3136,7 +3136,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-03-26</td>
+<td>2018-03-26, 2018-07-10</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3161,7 +3161,7 @@
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\ell(f;\lambda)&=\sum\limits_{i=1}^N[y_i\LOG p(x_i)+(1-y_i)\mathrm{log}(1-p(x_i))]-\frac{1}{2}\lambda\int \{f''(t)\}^2dt\\
+\ell(f;\lambda)&=\sum\limits_{i=1}^N[y_i\LOG p(x_i)+(1-y_i)\mathrm{log}(1-p(x_i))]-\frac{1}{2}\lambda\int \{f''(t)\}^2dt\notag\\
 &=\sum\limits_{i=1}^N[y_if(x_i)-\log(1+e^{f(x_i)})]-\frac{1}{2}\lambda \int\{f''(t)\}^2dt\tag{5.30}
 \end{align}
 </script>
@@ -3184,8 +3184,8 @@
 </script>
 <script type="math/tex; mode=display">
 \begin{align}
-\beta^{new}&=\beta^{old}+\mathbf{(X^TWX)^{-1}X^T(y-p)}\\
-&=\mathbf {(X^TWX)^{-1}X^TW(X\beta^{old}+W^{-1}(y-p))}\\
+\beta^{new}&=\beta^{old}+\mathbf{(X^TWX)^{-1}X^T(y-p)}\notag\\
+&=\mathbf {(X^TWX)^{-1}X^TW(X\beta^{old}+W^{-1}(y-p))}\notag\\
 &=\mathbf{(X^TWX)^{-1}X^TWz}\tag{4.26}
 \end{align}
 </script>
@@ -3194,7 +3194,7 @@
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\theta^{new} &=\mathbf{(N^TWN+\lambda\Omega)^{-1}N^TW(N\theta^{old}+W^{-1}(y-p))}\\
+\theta^{new} &=\mathbf{(N^TWN+\lambda\Omega)^{-1}N^TW(N\theta^{old}+W^{-1}(y-p))}\notag\\
 &= \mathbf{(N^TWN+\lambda\Omega)^{-1}N^TWz}\tag{5.33}
 \end{align}
 </script>
@@ -3217,7 +3217,7 @@
 </script>
 <script type="math/tex; mode=display">
 \begin{align}
-\hat{\mathbf f} &= \mathbf N(\mathbf N^T\mathbf N + \lambda\mathbf \Omega_N)^{-1}\mathbf N^T\mathbf y\\\
+\hat{\mathbf f} &= \mathbf N(\mathbf N^T\mathbf N + \lambda\mathbf \Omega_N)^{-1}\mathbf N^T\mathbf y\notag\\
             &= \mathbf S_\lambda\mathbf y\qquad\qquad\qquad\tag{5.14}
 \end{align}
 </script>
