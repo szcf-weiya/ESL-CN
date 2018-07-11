@@ -3147,7 +3147,7 @@
 <p>这里每个类别型响应变量用一个指示变量来编码。因此如果 $\cal G$ 有 $K$ 个类别，则会有 $K$ 个指示变量 $Y_k,\;k=1,\ldots,K$，若 $G=k,\;Y_k=1$，否则 $Y_k=0$。用向量 $Y=(Y_1,\ldots,Y_K)$ 来表示它们, 则这种形式的 $N$ 个训练实例组成了 $N\times K$ 的<strong>指示变量响应矩阵 (indicator response matrix)</strong> $\mathbf Y$。$\mathbf Y$ 由 0 和 1 组成，每一行只含有一个1。我们对$\mathbf Y$的每一列同时用线性回归模型做拟合，拟合值由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf{ \hat Y = {X(X^TX)^{-1}X^TY}} \qquad (4.3)
+\mathbf{ \hat Y = {X(X^TX)^{-1}X^TY}} \tag{4.3}
 </script>
 </p>
 <p>第三章给出了线性回归的更多细节。注意到我们对于每个预测变量的列 $\mathbf y_k$ 都有一个系数向量，因此有一个 $(p+1)\times K$ 的系数矩阵 $\mathbf{\hat B=(X^TX)^{-1}X^TY}$。这里 $\mathbf X$ 是有 $p+1$ 列的模型矩阵，它对应$p$个输入，以及一个截距项为 1 的列。</p>
@@ -3158,7 +3158,7 @@
 </ul>
 <p>
 <script type="math/tex; mode=display">
-\hat G(x)=\mathrm{argmax}_{k\in\cal G}\hat f_k(x)\qquad (4.4)
+\hat G(x)=\mathrm{argmax}_{k\in\cal G}\hat f_k(x)\tag{4.4}
 </script>
 </p>
 <p>这种方式的理论根据是什么？更加正式的理由是把回归看成条件期望的估计。对于随机变量 $Y_k$，$E(Y_k\mid X=x)=\Pr(G=k\mid X=x)$，则每个随机变量 $Y_k$ 的条件期望似乎是一个明智的选择。真正问题是，除了刚性的 (rigid) 线性回归模型，条件期望的近似还可以达到什么程度？或者说，$\hat f_k(x)$ 是否是后验概率 $\Pr(G=k\mid X=x)$ 的合理估计，以及更重要地，这是否有用？</p>
@@ -3166,13 +3166,13 @@
 <p>一个更简单的角度是对每个类别构造<strong>目标 (target)</strong> $t_k$，其中 $t_k$ 是 $K\times K$ 单位矩阵的第 $k$ 列。我们的预测问题是对一个观测尝试并且再生出合适的目标。和之前的编码一样，对于第 $i$ 个观测的响应向量 $y_i$（$\mathbf Y$ 的第 $i$ 行），当 $g_i=k$ 时，$y_i=t_k$。我们可能通过最小二乘法来拟合线性模型</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\B}{\min}\sum\limits_{i=1}^N\Vert y_i-[(1,x_i)\mathbf B]^T\Vert^2\qquad(4.5)
+\underset{\B}{\min}\sum\limits_{i=1}^N\Vert y_i-[(1,x_i)\mathbf B]^T\Vert^2\tag{4.5}
 </script>
 </p>
 <p>这个准则是目标到拟合向量的欧几里得距离的平方和。对于新观测，通过计算它的拟合向量 $\hat f(x)$ 从而把它分到最近的目标：</p>
 <p>
 <script type="math/tex; mode=display">
-\hat G(x)=\underset{k}{\mathrm{argmin}}\Vert \hat f(x)-t_k\Vert^2\qquad (4.6)
+\hat G(x)=\underset{k}{\mathrm{argmin}}\Vert \hat f(x)-t_k\Vert^2\tag{4.6}
 </script>
 </p>
 <p>这恰好与之前的方式相同：</p>

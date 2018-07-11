@@ -3220,7 +3220,7 @@
 <p>这些点可以被线性边界分离开。图中的蓝色线条是无穷种可能<strong>分离超平面</strong>中的两个。黄色的线条表示该问题的最小二乘解，通过在 $X$ 上对 $-1/1$ 响应变量 $Y$ 回归得到（带有截距）；该直线由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
-\{x:\hat\beta_0+\hat\beta_1x_1+\hat\beta_2x_2=0\}\qquad (4.39)
+\{x:\hat\beta_0+\hat\beta_1x_1+\hat\beta_2x_2=0\}\tag{4.39}
 </script>
 </p>
 <p>最小二乘解并不能很好地把点分离开，而且有一个误判。这与通过 LDA 找到的边界相同，这因为在两个类别的情况下 LDA 与线性回归是等价的。（<a href="../../4.3-Linear-Discriminant-Analysis/index.html">4.3 节</a>和<a href="https://github.com/szcf-weiya/ESL-CN/issues/108">练习 4.2</a>）</p>
@@ -3237,7 +3237,7 @@
 <script type="math/tex; mode=display">
 \begin{align}
 {\beta^*}^T(x-x_0)&=\frac{1}{\Vert\beta\Vert}(\beta^Tx+\beta_0)\\
-&=\frac{1}{\Vert f'(x)\Vert}f(x)\qquad (4.40)
+&=\frac{1}{\Vert f'(x)\Vert}f(x)\tag{4.40}
 \end{align}
 </script>
 因此 $f(x)$ 与 $x$ 到由 $f(x)=0$ 定义的超平面符号距离成比例。</li>
@@ -3250,15 +3250,15 @@
 <p><strong>感知器学习算法 (perceptron learning algorithm)</strong> 试图通过最小化误分类的点到判别边界距离来寻找分离超平面。如果响应变量 $y_i=1$ 是误分类的，则 $x_i^T\beta+\beta_0 &lt; 0$，对于误分类的响应变量 $y_i=-1 $是反过来的。目标是最小化</p>
 <p>
 <script type="math/tex; mode=display">
-D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\qquad (4.41)
+D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\tag{4.41}
 </script>
 </p>
 <p>其中 $\cal M$ 是误分类点的指标集。上式是非负的且与误分类的点到由 $\beta^Tx+\beta_0=0$ 定义的判别边界的距离成比例。梯度（假设 $\cal M$ 固定）由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\dfrac{\partial D(\beta,\beta_0)}{\partial \beta}&=-\sum\limits_{i\in \cal M}y_ix_i\qquad (4.42)\\
-\dfrac{\partial D(\beta,\beta_0)}{\partial \beta_0}&=-\sum\limits_{i\in \cal M}y_i\qquad (4.43)
+\dfrac{\partial D(\beta,\beta_0)}{\partial \beta}&=-\sum\limits_{i\in \cal M}y_ix_i\tag{4.42}\\
+\dfrac{\partial D(\beta,\beta_0)}{\partial \beta_0}&=-\sum\limits_{i\in \cal M}y_i\tag{4.43}
 \end{align}
 </script>
 </p>
@@ -3268,7 +3268,7 @@ D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\qquad (4.41)
 \left(\begin{array}{}\beta\\\beta_0\end{array}\right)\leftarrow
 \left(\begin{array}{}\beta\\\beta_0\end{array}\right)+
 \rho\left(\begin{array}{}y_ix_i\\y_i\end{array}\right)
-\qquad (4.44)
+\tag{4.44}
 </script>
 </p>
 <p>这里 $\beta$ 是学习速率，不失一般性这种情形下可以取1。如果类别是线性可分的，则可以证明在有限步后该算法收缩到一个分离超平面（<a href="https://github.com/szcf-weiya/ESL-CN/issues/109">练习 4.6</a>）。图 4.14 显示了对一个简单问题的两个解，每个都是从不同的随机猜测开始的。</p>
@@ -3289,19 +3289,19 @@ D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\qquad (4.41)
 \underset{\beta,\beta_0,\Vert\beta\Vert=1}{\max}& M\\
 \st& y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N
 \end{align}
-\qquad (4.45)
+\tag{4.45}
 </script>
 </p>
 <p>这一系列条件保证了所有点到由 $\beta$ 和 $\beta_0$ 定义的判别边界的符号距离至少为 $M$，我们寻找最大的 $M$ 和相关的参数。我们可以通过把条件替换为下面的形式来摆脱 $\Vert\beta\Vert=1$ 的限制</p>
 <p>
 <script type="math/tex; mode=display">
-\frac{1}{\Vert\beta\Vert}y_i(x_i^T\beta+\beta_0)\ge M\qquad (4.46)
+\frac{1}{\Vert\beta\Vert}y_i(x_i^T\beta+\beta_0)\ge M\tag{4.46}
 </script>
 </p>
 <p>（重新定义了 $\beta_0$）或者等价于</p>
 <p>
 <script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0)\ge M\Vert\beta\Vert\qquad (4.47)
+y_i(x_i^T\beta+\beta_0)\ge M\Vert\beta\Vert\tag{4.47}
 </script>
 </p>
 <p>因为对于任意满足这些不等式的 $\beta$ 和 $\beta_0$，任意正的放缩因子同样成立，我们可以任意令 $\Vert\beta\Vert=1/M$。因此 (4.45) 等价于</p>
@@ -3311,30 +3311,30 @@ y_i(x_i^T\beta+\beta_0)\ge M\Vert\beta\Vert\qquad (4.47)
 \underset{\beta,\beta_0}{\min}&\frac{1}{2}\Vert\beta\Vert^2\\
 \st & y_i(x_i^T\beta+\beta_0)\ge \; i=1,\ldots,N 
 \end{align}
-\qquad (4.48)
+\tag{4.48}
 </script>
 </p>
 <p>根据 (4.40)，上面的约束条件定义了一个判别边界周围厚度为 $1/\Vert\beta\Vert$ 的<strong>平板 (slab)</strong> 或者<strong>空白 (margin)</strong>。因此我们选择 $\beta$ 和 $\beta_0$ 最大化厚度。这是一个凸优化问题（线性不等约束的二次准则）。Lagrange（原问题）函数关于 $\beta$ 和 $\beta_0$ 进行最小化是</p>
 <p>
 <script type="math/tex; mode=display">
-L_P=\frac{1}{2}\Vert\beta\Vert^2-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-1]\qquad (4.49)
+L_P=\frac{1}{2}\Vert\beta\Vert^2-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-1]\tag{4.49}
 </script>
 </p>
 <p>令微分为 0，则有</p>
 <p>
 <script type="math/tex; mode=display">
-\beta=\sum\limits_{i=1}^N\alpha_iy_ix_i\qquad (4.50)
+\beta=\sum\limits_{i=1}^N\alpha_iy_ix_i\tag{4.50}
 </script>
 </p>
 <p>
 <script type="math/tex; mode=display">
-0=\sum\limits_{i=1}^N\alpha_iy_i\qquad (4.51)
+0=\sum\limits_{i=1}^N\alpha_iy_i\tag{4.51}
 </script>
 </p>
 <p>替换掉 (4.49) 中的这些项我们得到被称作 Wolfe 的对偶问题
 <script type="math/tex; mode=display">
 L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{k=1}^N\alpha_i\alpha_ky_iy_kx_i^Tx_k\\
-\qquad\qquad \qquad \qquad \qquad \st \; \alpha_i\ge 0\qquad \qquad(4.52)
+\qquad\qquad \qquad \qquad \qquad \st \; \alpha_i\ge 0\qquad \tag{4.52}
 </script>
 </p>
 <div class="admonition note">
@@ -3371,7 +3371,7 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
 <p>通过在正象限内最大化 $L_D$ 得到解，这是一个简单的凸优化问题，可以使用标准的软件来求解。另外解必须满足 KKT(Karush-Kuhn-Tucker) 条件,它包括（4.50)，(4.51)，(4.52) 以及</p>
 <p>
 <script type="math/tex; mode=display">
-\alpha_i[y_i(x_i^T\beta+\beta_0)-1]=0\;\forall i.\qquad (4.53)
+\alpha_i[y_i(x_i^T\beta+\beta_0)-1]=0\;\forall i.\tag{4.53}
 </script>
 </p>
 <div class="admonition note">
@@ -3395,7 +3395,7 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
 <p>最优分离超平面得到函数 $\hat f(x)=x^T\hat\beta+\hat\beta_0$ 来对新的观测分类</p>
 <p>
 <script type="math/tex; mode=display">
-\hat G(x)=\sign \hat f(x)\qquad (4.54)
+\hat G(x)=\sign \hat f(x)\tag{4.54}
 </script>
 </p>
 <p>尽管没有训练观测点会落在空白边缘里面（由构造可知），但这对于测试观测点不一定正确。直觉上，若训练数据边缘空白较大，会使得在测试数据集上良好的分离。</p>

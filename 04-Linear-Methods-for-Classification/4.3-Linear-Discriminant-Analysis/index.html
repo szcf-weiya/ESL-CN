@@ -3232,7 +3232,7 @@
 <p>分类的判别理论（<a href="../../02%20Overview%20of%20Supervised%20Learning/2.4%20Statistical%20Decision%20Theory/index.html">2.4节</a>）告诉我们，我们需要知道的是最优分类的类别的后验概率 $\Pr(G\mid X)$。假设 $f_k(x)$ 是类别 $G=k$ 中 $X$ 的类别条件密度，并令 $\pi_k$ 为类别 $k$ 的先验概率，满足 $\sum_{k=1}^K\pi_k=1$。简单地应用一下贝叶斯定理得到</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr(G=k\mid X=x)=\dfrac{f_k(x)\pi_k}{\sum_{\ell=1}^Kf_{\ell}(x)\pi_\ell}\qquad (4.7)
+\Pr(G=k\mid X=x)=\dfrac{f_k(x)\pi_k}{\sum_{\ell=1}^Kf_{\ell}(x)\pi_\ell}\tag{4.7}
 </script>
 </p>
 <p>我们看到就<strong>判别能力(ability to classify)</strong>而言，知道 $f_k(x)$ 几乎等价于知道概率 $\Pr(G=k\mid X=x)$。</p>
@@ -3246,7 +3246,7 @@
 <p>假设我们每个类别密度用多元高斯分布来建模</p>
 <p>
 <script type="math/tex; mode=display">
-f_k(x)=\frac{1}{(2\pi)^{p/2}\vert \boldsymbol\Sigma_k\vert^{1/2}}e^{-\frac{1}{2}(x-\mu_k)^T\boldsymbol\Sigma^{-1}_k(x-\mu_k)} \qquad (4.8)
+f_k(x)=\frac{1}{(2\pi)^{p/2}\vert \boldsymbol\Sigma_k\vert^{1/2}}e^{-\frac{1}{2}(x-\mu_k)^T\boldsymbol\Sigma^{-1}_k(x-\mu_k)} \tag{4.8}
 </script>
 </p>
 <p>线性判别分析 LDA 产生于假设类别有相同的协方差矩阵 $\Sigma_k=\Sigma\;\forall k$ 时。在比较两个类别 $k$ 以及 $\ell$ 时，比较 log-ratio 是充分条件，而且我们可以看到
@@ -3254,7 +3254,7 @@ f_k(x)=\frac{1}{(2\pi)^{p/2}\vert \boldsymbol\Sigma_k\vert^{1/2}}e^{-\frac{1}{2}
 \begin{align}
 \log\frac{\Pr(G=k\mid X=x)}{\Pr(G=\ell\mid X=x)}&=\log\frac{f_k(x)}{f_\ell(x)}+\log\frac{\pi_k}{\pi_\ell}\\
 &=\log\frac{\pi_k}{\pi_\ell}-\frac{1}{2}(\mu_k+\mu_\ell)^T\boldsymbol\Sigma^{-1}(\mu_k-\mu_\ell)+x^T\boldsymbol\Sigma^{-1}(\mu_k-\mu_\ell)
-\end{align}\qquad(4.9)
+\end{align}\tag{4.9}
 </script>
 </p>
 <div class="admonition note">
@@ -3268,7 +3268,7 @@ a'Da-b'Db=(a+b)'D(a-b)
 <p>这是个关于 $x$ 的线性等式。等协方差矩阵时消除了正规化因子，以及指数中的二次项。这个线性的 log-odds 函数表明类别 $k$ 和类别 $\ell$ 的判别边界为$p$维超平面内$\Pr(G=k\mid X=x)=\Pr(G=\ell\mid X=x)$的集合，这关于$x$是线性的。对于任意类别对也是成立的，所以所有的判别边界都是线性的。如果我们把 $\IR^p$ 分成不同区域，记为类别 1，类别 2 等等，这些区域会被超平面所分离。图 4.5（左图）显示了有三个类别且 $p=2$ 的假想的例子。这里数据是从 3 个协方差矩阵相等的高斯分布中产生的。我们已经在图像中包含了对应 95% 概率密度的等高图，以及三个类别的形心。注意到判别边界不是连接两个形心的垂直平分线。如果协方差矩阵 $\Sigma$ 是 $\sigma^2\mathbf I$，且类别的先验概率相等。从 (4.9) 我们可以看出线性判别函数为</p>
 <p>
 <script type="math/tex; mode=display">
-\delta_k(x)=x^T\boldsymbol\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\boldsymbol\Sigma^{-1}\mu_k+\log\pi_k\qquad (4.10)
+\delta_k(x)=x^T\boldsymbol\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\boldsymbol\Sigma^{-1}\mu_k+\log\pi_k\tag{4.10}
 </script>
 </p>
 <p>这是判别规则的等价描述，$G(x)=\mathrm{argmax}_k \delta_k(x)$。</p>
@@ -3289,14 +3289,14 @@ a'Da-b'Db=(a+b)'D(a-b)
 <p>图 4.5（右图）显示了基于从 3 个高斯分布中取出的大小为 30 的样本集，图4.1是另外一个例子，但是那里类别不是高斯。</p>
 <p>两个类别的情况下在线性判别分析和线性最小二乘之间有一个简单的对应，如 (4.5) 所示。如果满足下面条件则 LDA 分类规则分给第二类
 <script type="math/tex; mode=display">
-x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\Sigma^{-1}\hat\mu_2-\frac{1}{2}\hat\mu_1^T\hat{\boldsymbol\Sigma}^{-1}\hat\mu_1+\log(N_1/N)-\log(N_2/N)\qquad (4.11)
+x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\Sigma^{-1}\hat\mu_2-\frac{1}{2}\hat\mu_1^T\hat{\boldsymbol\Sigma}^{-1}\hat\mu_1+\log(N_1/N)-\log(N_2/N)\tag{4.11}
 </script>
 否则分为第一类。假设我们将两个类别编码为 $+1$ 和 $-1$。可以简单地证明得出最小二乘的系数向量与 (4.11) 式给出的 LDA 方向成比例。（<a href="https://github.com/szcf-weiya/ESL-CN/issues/88">练习 4.2</a>）。【实际上，这种对应关系对于任意的编码都会有，见练习4.2】。然而除了 $N_1=N_2$ 的情形，截距不同因此得到的判别边界不一样。</p>
 <p>因为通过最小二乘得到的 LDA 方向不需要对特征做高斯分布的假设，它的应用可以不局限于高斯分布的数据。然而，(4.11)式给出的特定的截距和分离点确实需要高斯分布的数据。因此对于给定的数据集凭经验地选择分割点最小化训练误差是有意义的。这也是我们在实际中发现效果很好，但是在理论中没有提到的原因。</p>
 <p>多于两个类别的情形时，LDA 与类别指示矩阵的线性回归不是一样的，而且它避免了跟方法有关的掩藏问题(Hastie et al., 1994<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。 回归与LDA之间的对应可以通过在 12.5 节中讨论的最优评分来建立。</p>
 <p>回到一般的判别问题 (4.8)，如果没有假设$\boldsymbol\Sigma_k$相等，则(4.9)中方便的抵消不会发生；特别地关于$x$的平方项保留了下来。于是我们得到了平方判别函数QDA
 <script type="math/tex; mode=display">
-\delta_k(x)=-\frac{1}{2}\log\vert\Sigma_k\vert-\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)+\log\pi_k\qquad (4.12)
+\delta_k(x)=-\frac{1}{2}\log\vert\Sigma_k\vert-\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)+\log\pi_k\tag{4.12}
 </script>
 每个类别对$k$和$\ell$的判别边界由二次等式来描述$\{x:\delta_k(x)=\delta_\ell(x)\}$.</p>
 <p>图4.6显示了一个例子（p103中的图4.1），这三个类别都是混合高斯分布（6.8节），并且判别边界由关于$x$的二次函数近似给出。这里我们描述两种拟合这些判别边界的方式。右图使用这里描述的QDA，而左图是在增广的五维二次多项式空间中使用LDA。两者之间的差别很小，QDA是最好的方式，LDA方法是更方便的替换。</p>
@@ -3308,7 +3308,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\
 <h2 id="_1">正则化判别分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>Friedman (1989)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 提出 LDA 和 QDA 之间的一个权衡，使得 QDA 的协方差阵向 LDA 中的共同协方差阵收缩。这些方法非常类似岭回归。正则化协方差矩阵有如下形式
 <script type="math/tex; mode=display">
-\hat\Sigma_k(\alpha)=\alpha\hat\Sigma_k+(1-\alpha)\hat\Sigma\qquad (4.13)
+\hat\Sigma_k(\alpha)=\alpha\hat\Sigma_k+(1-\alpha)\hat\Sigma\tag{4.13}
 </script>
 其中，$\hat\Sigma$ 是和 LDA 一样用的联合协方差矩阵。这里 $\alpha\in[0,1]$ 允许在 LDA 和 QDA 之间连续变化的模型，而且需要指定。实际中，$\alpha$ 可以基于在验证数据的表现上进行选择，或者通过交叉验证。</p>
 <p><img alt="" src="../../img/04/fig4.7.png" /></p>
@@ -3318,7 +3318,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\
 <p>图 4.7 显示了将 RDA 运用到元音数据的结果。训练和测试误差都随着 $\alpha$ 的增大获得了改善，尽管在 $\alpha=0.9$ 后测试误差急剧上升。训练和测试误差最大的区别部分因为在小数量的个体上有很多重复观测，在训练和测试集上是不同的。</p>
 <p>类似的修改使得 $\hat\Sigma$ 向着标量协方差收缩
 <script type="math/tex; mode=display">
-\hat{\boldsymbol\Sigma}(\gamma)=\gamma\hat\Sigma+(1-\gamma)\hat\sigma^2I\qquad (4.14)
+\hat{\boldsymbol\Sigma}(\gamma)=\gamma\hat\Sigma+(1-\gamma)\hat\sigma^2I\tag{4.14}
 </script>
 对于 $\gamma\in[0,1]$。用 $\hat\Sigma(\gamma)$ 替换掉 (4.13) 的 $\hat\Sigma$ 导出了一个更加一般的协方差阵族$\hat\Sigma(\alpha,\gamma)$，这是由一对参数来表示的。</p>
 <p>在 12 章，我们将讨论 LDA 的另一种正则化版本，当数据来自数字化的相似的信号和图像时更加地合适。在这些情形下特征是高维的且相关的，LDA 系数可以通过正则化在原始信号域变得光滑和稀疏。这导出了更好的一般化并且对于这些系数有着简单的解释。在第 18 章中我们也处理非常高维的问题，举个例子如微阵列研究中基因表达测量的特征。这里方法集中在 (4.14) 中 $\gamma=0$ 的情形，以及其它 LDA 的正则化版本。</p>
@@ -3365,11 +3365,11 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\
 <p>$Z$的组间方差为$a^TBa$,而组内方差为$a^TWa$，$W$是很早定义的，$B$是类别形心矩阵$M$的协方差矩阵。注意到$B+W=T$，其中$T$是$X$的总协方差矩阵，忽略掉了类别信息。</p>
 <p>$Fisher$问题因此等价于最大化Rayleigh quotient,
 <script type="math/tex; mode=display">
-\underset{a}{\max}\;\dfrac{a^TBa}{a^TWa}\qquad (4.15)
+\underset{a}{\max}\;\dfrac{a^TBa}{a^TWa}\tag{4.15}
 </script>
 或者等价地，
 <script type="math/tex; mode=display">
-\underset{a}{\max}\;a^TBa \; \st \; a^TWa=1\qquad (4.16)
+\underset{a}{\max}\;a^TBa \; \st \; a^TWa=1\tag{4.16}
 </script>
 这是一个一般化的特征值问题，$a$是由$W^{-1}B$的最大特征值给出。不难证明（练习4.1）最优$a_1$等于上面定义的$v_1$。类似地，可以找到下一个方向$a_2$，在$W$中与$a_1$正交，使得$a_2^TBa_2/a_2^TWa_2$最大化；解为$a_2=v_2$，其余类似。$a_\ell$被称作判别坐标，不会与判别函数相混淆。他们同样被称作典则变量(canonical variables)，因为这些结果的一个变形是通过在预测变量矩阵$X$上对指示响应矩阵$Y$进行典则相关分析得到的。这一点将在12.5节继续讨论。</p>
 <p>总结一下至今为止的发展：</p>
