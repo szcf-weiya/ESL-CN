@@ -191,6 +191,7 @@ pages:
       - 列表: 'notes/ipynb/list.md'
     - 模拟实验:
       - 模拟 Fig. 3.18: 'notes/linear-reg/sim-3-18.md'
+      - 模拟 Fig. 4.3: 'notes/LDA/sim-4-3.md'
       - 模拟 Fig. 4.5: 'notes/LDA/sim-4-5.md'
       - 模拟 Fig. 5.9: 'notes/spline/sim-5-9.md'
       - 模拟 Fig. 7.3: 'notes/ModelSelection/sim7_3.md'
