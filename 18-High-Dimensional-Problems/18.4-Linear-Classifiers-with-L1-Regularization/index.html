@@ -3231,7 +3231,7 @@
 <p>回忆 <a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">3.4.2 节</a>的 lasso，</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta}{\min}\frac{1}{2}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert\qquad (18.18)
+\underset{\beta}{\min}\frac{1}{2}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert\tag{18.18}
 </script>
 </p>
 <p>我们写成了 (3.52) 的拉格朗日形式。这里讨论的，使用充分大的调整参数 $\lambda$，使用 $L_1$ 惩罚导致部分的解参数$\hat\beta_j$ 恰恰为 0。</p>
@@ -3241,7 +3241,7 @@
 <p>Friedman et al. (2010)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> 提供了用于拟合 $L_1$ 惩罚的逻辑斯底和多项式回归模型。他们应用 18.3.2 节中 (18.10) 中的对称多项式逻辑斯底回归模型，并且最大化带惩罚的对数似然</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\beta_{0k},\beta_k\in R^p\}_1^K}{\max}[\sum\limits_{i=1}^N\log\;\Pr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p\vert\beta_{kj}\vert]\qquad (18.19)
+\underset{\{\beta_{0k},\beta_k\in R^p\}_1^K}{\max}[\sum\limits_{i=1}^N\log\;\Pr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p\vert\beta_{kj}\vert]\tag{18.19}
 </script>
 </p>
 <p>这与式子 (18.11) 相对应。他们的算法通过<strong>坐标轮换 (cyclical coordinate descent)</strong>（<a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8.6 节</a>），并且利用 $p&gt;&gt;N$ 时解是稀疏的事实，以及 $\lambda$ 邻域的解趋向于非常相似。这个方法用在表 18.1 的第 7 行中，通过交叉验证来选取全局调整参数 $\lambda$。它的表现与最优方法很相似，除了自动特征选择一起选择了 269 个基因。类似的方法在 Genkin et. al (2007)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 的工作中使用了；尽管它们从贝叶斯角度提出它们的模型，事实上他们计算后验概率，解决了惩罚的最大似然问题。</p>
@@ -3252,14 +3252,14 @@
 <p>在基因应用中，变量间通常有强相关关系；基因趋向于在分子通路上起作用。lasso 惩罚在某种程度上与不受强相关的变量集的选择的影响（<a href="https://github.com/szcf-weiya/ESL-CN/issues/123">练习 3.28</a>）。另一方面，岭惩罚趋向于将相关变量的系数收缩（<a href="https://github.com/szcf-weiya/ESL-CN/issues/124">练习 3.29</a>）。<strong>弹性网 (elastic net)</strong>惩罚 (Zou and Hastie, 2005<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>) 是一种妥协的方式，并且有形式</p>
 <p>
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^p(\alpha\vert\beta_j\vert+(1-\alpha)\beta_j^2)\qquad (18.20)
+\sum\limits_{i=1}^p(\alpha\vert\beta_j\vert+(1-\alpha)\beta_j^2)\tag{18.20}
 </script>
 </p>
 <p>第二项鼓励高相关的特征进行平均，而第一项促进在平均特征系数中的稀疏解。弹性网惩罚可以用到任何线性模型中，特别是用于回归或分类中。</p>
 <p>因此上述的带弹性网惩罚的多项式问题变成</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\beta_{0k,\beta_k\in R^p}\}_1^K}{max}[\sum\limits_{i=1}^NlogPr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p(\alpha\vert\beta_{kj}\vert)+(1-\alpha)\beta_{kj}^2]\qquad (18.21)
+\underset{\{\beta_{0k,\beta_k\in R^p}\}_1^K}{max}[\sum\limits_{i=1}^NlogPr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p(\alpha\vert\beta_{kj}\vert)+(1-\alpha)\beta_{kj}^2]\tag{18.21}
 </script>
 </p>
 <p>参数 $\alpha$ 确定了惩罚的混合，并且经常在 qualitative grounds 上预先选取。当 $p&gt;N$ 时，弹性网得到多于 $N$ 个的非零参数，这是相比于 lasso 的潜在优点。表 18.1 的第 8 行采用这个模型，通过交叉验证选择 $\alpha$ 和 $\lambda$。我们采用 0.05 到1.0 之间的 20 个 $\alpha$ 值，以及在整个值域的对数尺度下均匀分布的 100 个 $\lambda$ 值。位于 $\alpha\in [0.75,0.80]$

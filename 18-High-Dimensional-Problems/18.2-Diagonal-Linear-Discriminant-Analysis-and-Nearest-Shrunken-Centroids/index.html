@@ -3163,19 +3163,19 @@
 <p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\delta_k(x)=-\frac{1}{2}\log\vert\Sigma_k\vert-\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)+\log\pi_k\qquad (4.12)
+\delta_k(x)=-\frac{1}{2}\log\vert\Sigma_k\vert-\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)+\log\pi_k\tag{4.12}
 </script>
 </p>
 </div>
 <p>
 <script type="math/tex; mode=display">
-\delta_k(x^*)=-\sum\limits_{j=1}^p\frac{(x_j^*-\bar x_{kj})^2}{s_j^2}+2\log\pi_k\qquad (18.2)
+\delta_k(x^*)=-\sum\limits_{j=1}^p\frac{(x_j^*-\bar x_{kj})^2}{s_j^2}+2\log\pi_k\tag{18.2}
 </script>
 </p>
 <p>这里$x^*=(x_1^*,x_2^*,\ldots,x_p^*)^T$是测试观测的表达值的向量，$s_j$为第$j$个基因的混合类间标准误差，并且$\bar x_{kj}=\sum_{i\in C_k}x_{ij}/N_k$是$N_k$个属于类别$k$的基因$j$的平均，其中$C_k$是类别$k$的索引集。我们称$\tilde x_k=(\bar x_{k1},\bar x_{k2},\ldots,\bar x_{kp})^T$为类别$k$的重心。式(18.2)的第一部分是$x^*$到第$k$个类别重心的（负）标准平方距离。第二部分是基于类别<strong>先验概率(prior probability)</strong>$\pi_k$的矫正，其中$\sum_{k=1}^K\pi_k=1$。分类规则于是为</p>
 <p>
 <script type="math/tex; mode=display">
-C(x^*)=\ell\text{ if } \delta_{\ell}(x^*)=\max_k\delta_k(x^*)\qquad (18.3)
+C(x^*)=\ell\text{ if } \delta_{\ell}(x^*)=\max_k\delta_k(x^*)\tag{18.3}
 </script>
 </p>
 <p>我们看到对角LDA分类器经过合适的标准化后等价于<strong>最近重心分类器(nearest centroid classifier)</strong>。这也是朴素贝叶斯分类器的一个特殊情形，正如在<a href="../../06-Kernel-Smoothing-Methods/6.6-Kernel-Density-Estimation-and-Classification/index.html#_4">第6.6.3节</a>中描述的那样。它假设每个类别的特征是有相同方差的独立高斯分布。</p>
@@ -3184,7 +3184,7 @@ C(x^*)=\ell\text{ if } \delta_{\ell}(x^*)=\max_k\delta_k(x^*)\qquad (18.3)
 <p>收缩过程按如下定义。令</p>
 <p>
 <script type="math/tex; mode=display">
-d_{kj}=\frac{\bar x_{kj}-\bar x_j}{m_k(s_j+s_0)}\qquad (18.4)
+d_{kj}=\frac{\bar x_{kj}-\bar x_j}{m_k(s_j+s_0)}\tag{18.4}
 </script>
 </p>
 <p>其中$\bar x_j$是基因$j$的整体均值，$m_k^2=1/N_k-1/N$，且$s_0$是一个小的正值，一般取为$s_j$的中值。这个常值防止因分母接近0导致太大的$d_{kj}$。类间方差为常值$\sigma^2$，分子中差异$\bar x_{kj}-\bar x_j$的方差为$m_k^2\sigma^2$，因此便有了如分母中的标准化。</p>
@@ -3195,7 +3195,7 @@ d_{kj}=\frac{\bar x_{kj}-\bar x_j}{m_k(s_j+s_0)}\qquad (18.4)
 <p>如图18.2，我们采用软阈值将$d_{kj}$收缩到0</p>
 <p>
 <script type="math/tex; mode=display">
-d_{kj}'=\sign(d_{kj})(\vert d_{kj}\vert-\Delta)_+\qquad (18.5)
+d_{kj}'=\sign(d_{kj})(\vert d_{kj}\vert-\Delta)_+\tag{18.5}
 </script>
 </p>
 <p>这里$\Delta$是需要确定的参数；我们在例子中采取10折交叉验证（见图18.4的上图）。</p>
@@ -3206,13 +3206,13 @@ d_{kj}'=\sign(d_{kj})(\vert d_{kj}\vert-\Delta)_+\qquad (18.5)
 <p>每个$d_{kj}$减少$\Delta$的绝对值的量，并且如果值小于0则设为0。图18.2显示了软阈值函数；同样的阈值也用在了<a href="../../05-Basis-Expansions-and-Regularization/5.9-Wavelet-Smoothing/index.html">5.9节</a>的小波系数中。另一种方式是采用硬阈值</p>
 <p>
 <script type="math/tex; mode=display">
-d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\qquad (18.6)
+d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\tag{18.6}
 </script>
 </p>
 <p>我们倾向于软阈值，因为这是一个更光滑的处理并且一般效果更好。$\bar x_{kj}$的收缩版本接着通过反解(18.4)的转换得到</p>
 <p>
 <script type="math/tex; mode=display">
-\bar x_{kj}'=\bar x_j'+m_k(s_j+s_0)d_{kj}'\qquad (18.7)
+\bar x_{kj}'=\bar x_j'+m_k(s_j+s_0)d_{kj}'\tag{18.7}
 </script>
 </p>
 <p>我们用收缩重心$\bar x_{kj}&rsquo;$代替判别得分(18.2)的原始$x_{kj}$。估计量(18.7)可以认为是类别均值的lasso风格的估计量（<a href="https://github.com/szcf-weiya/ESL-CN/issues/83">练习18.2</a>）。</p>
@@ -3221,14 +3221,14 @@ d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\qquad (18.6)
 <p>图18.4（上图）演示了收缩的影响。没有收缩时我们在测试数据上有5/20的误差，并且在训练和CV数据上有一些误差。当$\Delta$在相当宽的区域中，收缩重心达到零测试误差。图18.4的下图显示了SRBCT数据（灰色）的四个重心，这是相对整体重心来说。蓝色条状是这些重心的收缩版本，这是通过取$\Delta=4.3$对灰色条状进行软阈值得到的。判别分数(18.2)可以用来构造类别概率估计：</p>
 <p>
 <script type="math/tex; mode=display">
-\hat p_k(x^*)=\frac{e^{\frac{1}{2}\delta_k(x^*)}}{\sum_{\ell=1}^Ke^{\frac{1}{2}\delta_\ell(x^*)}}\qquad (18.8)
+\hat p_k(x^*)=\frac{e^{\frac{1}{2}\delta_k(x^*)}}{\sum_{\ell=1}^Ke^{\frac{1}{2}\delta_\ell(x^*)}}\tag{18.8}
 </script>
 </p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\gamma_{im}=\frac{\hat\alpha_m\phi(x_i;\hat\mu_m,\hat\Sigma_m)}{\sum_{k=1}^M\hat\alpha_k\phi(x_i;\hat\mu_k,\hat\Sigma_k)}\qquad (6.33)
+\hat\gamma_{im}=\frac{\hat\alpha_m\phi(x_i;\hat\mu_m,\hat\Sigma_m)}{\sum_{k=1}^M\hat\alpha_k\phi(x_i;\hat\mu_k,\hat\Sigma_k)}\tag{6.33}
 </script>
 </p>
 </div>
