@@ -5,7 +5,7 @@
 | 翻译   | szcf-weiya                               |
 | 时间   | 2017-08-29                   |
 
-许多文献已经在本章的特定地方给出来了；这里我们在列出另外的一些文献。Dudoit et al. (2002a)[^1]给出了对基因表达数据的判别分析方法的概述及比较。Levina (2002)[^2]做了一些数学分析在$p, N\rightarrow \infty, p>N$的情况下比较对角LDA和全LDA。她证明了在合理的假设下，对角LDA比全LDA有更低的极限误差率。Tibshirani et al. (2001a)[^3]和Tibshirani et al. (2003)[^4]提出了最近收缩中心分类器。Zhu and Hastie (2004)[^5]研究了正则化逻辑斯蒂回归。高纬回归和lasso是非常活跃的研究领域，许多的文献在3.8.5节给出。Tibshirani et al. (2005)[^6]提出fused lasso，而Zou and Hastie (2005)[^7]提出弹性网。Bair and Tibshirani (2004)[^8]和 Bair et al. (2006)[^9] 中讨论了有监督的主成分。关于censored survival data分析的介绍，参见Kalbfleisch and Prentice (1980)[^10]。
+许多文献已经在本章的特定地方给出来了；这里我们在列出另外的一些文献。Dudoit et al. (2002a)[^1]给出了对基因表达数据的判别分析方法的概述及比较。Levina (2002)[^2]做了一些数学分析在$p, N\rightarrow \infty, p>N$的情况下比较对角LDA和全LDA。她证明了在合理的假设下，对角LDA比全LDA有更低的极限误差率。Tibshirani et al. (2001a)[^3]和 Tibshirani et al. (2003)[^4] 提出了最近收缩中心分类器。Zhu and Hastie (2004)[^5]研究了正则化逻辑斯蒂回归。高纬回归和lasso是非常活跃的研究领域，许多的文献在3.8.5节给出。Tibshirani et al. (2005)[^6]提出fused lasso，而Zou and Hastie (2005)[^7]提出弹性网。Bair and Tibshirani (2004)[^8]和 Bair et al. (2006)[^9] 中讨论了有监督的主成分。关于censored survival data分析的介绍，参见Kalbfleisch and Prentice (1980)[^10]。
 
 微阵列技术导致了一系列的统计研究：参见Speed (2003)[^11]、Parmigiani et al. (2003)[^12]、Simon et al. (2004)[^13]以及Lee (2004)[^14]等书中的例子。
 
