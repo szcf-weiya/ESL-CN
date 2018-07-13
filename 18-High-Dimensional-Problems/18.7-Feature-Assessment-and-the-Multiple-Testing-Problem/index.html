@@ -3237,19 +3237,19 @@
 </tr>
 </tbody>
 </table>
-<p>在本章的第一部分中我们讨论了 $p&gt;&gt;N$ 情形下的预测模型。这里我们考虑在评估 $p$ 个特征中每一个特征的显著性的这一基本问题。考虑 <a href="../../18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization/index.html">18.4.1 节</a>中蛋白质质谱的例子。在这个问题中，对病人作预测时，研究者可能不关心他是否有前列腺癌。感兴趣的而是识别出哪种蛋白质在正常群体和癌症群体中的含量有差异，由此加深对疾病的了解，并且对药物的研制有指导意义。因此我们的目标是评估单个特征的显著性。这个评估通常不用在本章中第一部分使用多变量预测模型来实现。特征评估问题将我们的关注点从预测移到传统的统计学话题——多重假设检验。在本章接下来的章节中，我们将用 $M$ 来表示特征的个数，而不是 $p$，因为我们将频繁用 $p$ 表示 $p$ 值。</p>
+<p>在本章的第一部分中我们讨论了 $p&gt;&gt;N$ 情形下的预测模型。这里我们考虑在评估 $p$ 个特征中每一个特征的显著性的这一基本问题。考虑 <a href="../../18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization/index.html">18.4.1 节</a>中蛋白质质谱的例子。在这个问题中，对病人作预测时，研究者可能不关心他是否患有前列腺癌。感兴趣的而是识别出哪种蛋白质在正常群体和癌症群体中的含量有差异，由此加深对疾病的了解，这对药物的研制有指导意义。因此我们的目标是评估单个特征的显著性。这个评估通常不用在本章中第一部分使用多变量预测模型来实现。特征评估问题将我们的关注点从预测移到传统的统计学话题——多重假设检验。在本章接下来的章节中，我们将用 $M$ 来表示特征的个数，而不是 $p$，因为我们将频繁用 $p$ 表示 $p$ 值。</p>
 <p><img alt="" src="../../img/18/table18.4.png" /></p>
-<p>举个例子，考虑表 18.4 的微阵列数据，数据取自一项研究癌症患者对电离辐射治疗的敏感性的研究 (Rieger et al.，2004<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。每一行包含 58 个病人样本的基因表达值：44 个样本取自有正常反应的病人，而 14 个样本取自对电离辐射有严重反应的病人。测量值是在oligo-nucleotide 微阵列上得到的。试验的目的是在对电离辐射敏感的病人群体中找出基因表达值不同的基因。总共有 $M=12625$ 个基因，为了说明，表中显示了部分基因和样本。</p>
+<p>举个例子，考虑表 18.4 的微阵列数据，数据取自一项癌症患者对电离辐射治疗的敏感性的研究 (Rieger et al.，2004<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。每一行包含 58 个病人样本的基因表达值：44 个样本取自有正常反应的病人，而 14 个样本取自对电离辐射有严重反应的病人。测量值是在 oligo-nucleotide 微阵列上得到的。试验的目的是在对电离辐射敏感的病人群体中找出基因表达值不同的基因。总共有 $M=12625$ 个基因，为了说明，表中显示了部分基因和样本。</p>
 <p>为了识别出有用的基因，我们对每个基因构造两样本 $t$ 统计量</p>
 <p>
 <script type="math/tex; mode=display">
 t_j = \frac{\bar x_{2j}-\bar x_{1j}}{se_j}\qquad (18.38)
 </script>
 </p>
-<p>其中，$\bar x_{kj} = \sum_{i\in C_\ell}x_{ij}/N_\ell$。这里$C_\ell$是在群$\ell$中$N_\ell$个样本的指标集，其中 $\ell = 1$ 表示正常的群体，而 $\ell=2$ 表示敏感的群体。$se_j$ 是基因 $j$ 的混合群内标准误差：</p>
+<p>其中，$\bar x_{kj} = \sum_{i\in C_\ell}x_{ij}/N_\ell$。这里 $C_\ell$ 是在群 $\ell$ 中 $N_\ell$ 个样本的指标集，其中 $\ell = 1$ 表示正常的群体，而 $\ell=2$ 表示敏感的群体。$se_j$ 是基因 $j$ 的混合群内标准误差：</p>
 <p>
 <script type="math/tex; mode=display">
-se_j=\hat \sigma_j\sqrt{\frac{1}{N_1}+\frac{1}{N_2}};\qquad  \hat\sigma_j^2=\frac{1}{N_1+N_2-2}(\sum\limits_{i\in C_1}(x_{ij}-\bar x_{1j})^2+\sum\limits_{i\in C_2}(x_{ij}-\bar x_{2j})^2)
+se_j=\hat \sigma_j\sqrt{\frac{1}{N_1}+\frac{1}{N_2}};\;\hat\sigma_j^2=\frac{1}{N_1+N_2-2}(\sum\limits_{i\in C_1}(x_{ij}-\bar x_{1j})^2+\sum\limits_{i\in C_2}(x_{ij}-\bar x_{2j})^2)
 </script>
 </p>
 <div class="admonition note">
