@@ -3332,6 +3332,10 @@ H_{1j} = \text{治疗对基因 }j\text{ 有作用}\\
 </script>
 </p>
 <p>而且一般地，$\widehat{\mathrm{FDR}}$ 是 FDR 的一致估计(Storey, 2002<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>; Storey et al., 2004<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>)。注意到分子$\widehat{\E(V)}$ 实际上估计了 $(M/M_0)\E(V)$，因为排列分布使用 $M$ 而非 $M_0$ 个零假设。因此如果有了 $M_0$ 的一个估计，FDR的良好估计可以从 $(\hat M_0/M)\cdot \widehat{\mathrm{FDR}}$ 中得到。<a href="https://github.com/szcf-weiya/ESL-CN/issues/133">练习 18.19</a> 展示了估计 $M_0$ 的一种方式。最保守的 FDR 估计方法是用 $M_0=M$（向上偏）。等价地，$M_0$ 的估计可以通过关系 (18.45) 用来改善 BH 方法。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 18.19</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/133">Issue 133: Ex. 18.19</a>。</p>
+</div>
 <p>读者可能会惊讶我们选了一个较大的数 0.15 作为 FDR 的界$\alpha$。我们必须记住 FDR 不同于第一类误差，后者经常选择0.05。对于科学家，FDR是假阳性在被统计学家称为显著的基因中比例的期望。微阵列实验表明 FDR 达到 0.15 仍然有用，特别是当我们探索自然时。</p>
 <h2 id="sam">对称分割点和 SAM 过程<a class="headerlink" href="#sam" title="Permanent link">&para;</a></h2>
 <p>在上面描述的检验方法中，我们采用检验统计量 $t_j$ 的绝对值，因此对于统计量的正值和赋值有相同的截断点。在一些试验中，可能会出现大部分或者所有的差异表达基因在正方向上变化（或者所有都在负方向）。对于这种情形，对两种情形分布导出截断点是有利的。</p>
