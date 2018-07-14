@@ -3338,7 +3338,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <script type="math/tex; mode=display">
 \hat{\boldsymbol\Sigma}(\gamma)=\gamma\hat{\boldsymbol\Sigma}+(1-\gamma)\hat{\sigma}^2\mathbf I.\tag{4.14}
 </script>
-用 $\hat{\boldsymbol\Sigma}(\gamma)$ 替换掉 (4.13) 的 $\hat{boldsymbol\Sigma}$ 导出了一个更加一般的协方差阵族 $\hat{boldsymbol\Sigma}(\alpha,\gamma)$，这是由一对参数来表示的。</p>
+用 $\hat{\boldsymbol\Sigma}(\gamma)$ 替换掉 (4.13) 的 $\hat{\boldsymbol\Sigma}$ 导出了一个更加一般的协方差阵族 $\hat{\boldsymbol\Sigma}(\alpha,\gamma)$，这是由一对参数来表示的。</p>
 <p>在 12 章，我们将讨论 LDA 的另一种正则化版本，当数据来自数字化的相似的信号和图像时，这种方法会更加地合适。在这些情形下特征是高维的且相关的，LDA 系数可以通过正则化在原始信号域变得光滑和稀疏。这导出了更好的一般化并且对于这些系数有着简单的解释。在第 18 章中我们也处理非常高维的问题，举个例子如微阵列研究中基因表达测量的特征。这里方法集中在 (4.14) 中 $\gamma=0$ 的情形，以及其它 LDA 的正则化版本。</p>
 <h2 id="lda">LDA 的计算<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
 <p>作为下一主题的铺垫，我们简单地岔开去讨论 LDA，特别是 QDA 的计算。这些计算可以通过对角化 $\hat\ssigma$ 或 $\hat\ssigma_k$ 来简化。对于后者，假设我们对每一个计算特征值分解 $\hat\ssigma_k=\mathbf U_k\mathbf D_k\mathbf U_k^T$，其中 $\mathbf U_k$ 是 $p\times p$ 的对角矩阵，$\mathbf D_k$ 是正的特征值 $d_{k\ell}$ 组成的对角矩阵。则 $\delta_k(x)$ (4.12) 的组成成分是</p>
