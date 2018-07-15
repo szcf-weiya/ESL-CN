@@ -3225,7 +3225,7 @@
 <p class="admonition-title">weiya 注：Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\tag{5.12}
+\hat\theta = (\mathbf N^T\mathbf N+\lambda\mathbf\Omega_N)^{-1}\mathbf N^T\mathbf y\tag{5.12}
 </script>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3236,6 +3236,10 @@
 </p>
 </div>
 <p>我们看到更新的操作对<strong>工作响应变量 (working response)</strong> $\mathbf z$ 拟合了加权光滑样条（<a href="https://github.com/szcf-weiya/ESL-CN/issues/107">练习 5.12</a>）。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 5.12</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/107">Issue 107: Ex. 5.12</a>。</p>
+</div>
 <p>式 (5.34) 的形式很有指导意义。它试图用任何非参（加权）回归算子代替 $\mathbf S_{\lambda,w}$，并且得到一般的非参逻辑斯底回归模型的族。尽管这里 $x$ 是一维的，但这个过程可以很自然地推广到高纬的 $x$。这些拓展是<strong>广义可加模型 (generalized additive models)</strong> 的核心，我们将在<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.0-Introduction/index.html">第 9 章</a>中讨论。</p>
                 
                   
