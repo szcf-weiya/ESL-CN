@@ -40,8 +40,7 @@ pluginFDR <- function(C, data.x, y, tk, t.stat){
 #    pvalue[i] = sum(abs(tk) > abs(t.stat[i]))/(M*K)
 #  }
   cl<-makeCluster(4)
-  clusterExport(cl, "M")
-  clusterExport(cl, "K")
+  clusterExport(cl, c("M", "K"))
   pvalue = parSapply(cl, t.stat, function(ti) sum(abs(tk) > abs(ti))/(M*K))
   stopCluster(cl)
   return(list(FDR=EV/Robs, pvalue=pvalue))
@@ -62,5 +61,12 @@ for (i in 1:5){
   pvalue.sort = sort(all.pvalue[, i])
   rightval = alpha/M * c(1:M)
   L = max(which(pvalue.sort < rightval))
-  cat("i = ", i, "L = ", L, "\n")
+  cat(paste0("i = ", i, ", L = ", L, "\n"))
 }
+# quantile
+q = quantile(tk, c(0.25, 0.75))
+pi0 = sum(t.stat > q[1] & t.stat < q[2])*2/M
+pi0
+# new FDR estimate
+FDR.new = pi0*FDR
+FDR.new
