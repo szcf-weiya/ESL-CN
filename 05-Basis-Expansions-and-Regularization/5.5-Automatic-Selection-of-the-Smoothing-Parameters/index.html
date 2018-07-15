@@ -3201,7 +3201,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=175">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3240,8 +3240,8 @@
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-Y& =f(X)+\varepsilon\\
-f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
+Y& =f(X)+\varepsilon\notag\\
+f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}\notag
 \end{align}
 \tag{5.22}
 </script>
@@ -3281,8 +3281,8 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\EPE(\hat f_\lambda) &=\E(Y-\hat f_\lambda(X))^2\\
-&= \Var(Y)+\E[\Bias^2(\hat f_\lambda(X))+\Var(\hat f_\lambda(X))]\\
+\EPE(\hat f_\lambda) &=\E(Y-\hat f_\lambda(X))^2\notag\\
+&= \Var(Y)+\E[\Bias^2(\hat f_\lambda(X))+\Var(\hat f_\lambda(X))]\notag\\
 &= \sigma^2+\MSE(\hat f_\lambda)\tag{5.25}
 \end{align}
 </script>
@@ -3298,7 +3298,7 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <script type="math/tex; mode=display">
 \begin{align}
 \CV(\hat f_\lambda) &=\frac 1N\sum\limits_{i=1}^N(y_i-\hat f_\lambda^{(-i)}(x_i))^2\tag{5.26}\\
-&= \frac 1N\sum\limits_{i=1}^N(\frac{y_i-\hat f_\lambda (x_i)}{1-S_\lambda(i, i)})\\
+&= \frac 1N\sum\limits_{i=1}^N(\frac{y_i-\hat f_\lambda (x_i)}{1-S_\lambda(i, i)})^2\tag{5.27}\\
 \end{align}
 </script>
 </p>
