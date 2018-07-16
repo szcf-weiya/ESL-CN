@@ -9,3 +9,6 @@ ywd$filter
 accessD(ywd, level = 2)
 # plot for wavelet decomposition coefficients
 plot(ywd)
+
+## produce the matrix
+W1 = t(GenW(filter.number = 1, family = "DaubExPhase"))
