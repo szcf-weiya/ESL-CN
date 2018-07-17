@@ -83,7 +83,7 @@ pages:
       - 8.3 贝叶斯方法: '08-Model-Inference-and-Averaging/8.3-Bayesian-Methods.md'
       - 8.4 自助法和贝叶斯推断之间的关系: '08-Model-Inference-and-Averaging/8.4-Relationship-Between-the-Bootstrap-and-Bayesian-Inference.md'
       - 8.5 EM 算法: '08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm.md'
-      - 8.6 MCMC 向后采样: '08-Model-Inference-and-Averaging/8.6-MCMC-for-Sampling-from-the-Posterior.md'
+      - 8.6 从后验分布采样的 MCMC: '08-Model-Inference-and-Averaging/8.6-MCMC-for-Sampling-from-the-Posterior.md'
       - 8.7 袋装法: '08-Model-Inference-and-Averaging/8.7-Bagging.md'
       - 8.8 模型平均和堆栈: '08-Model-Inference-and-Averaging/8.8-Model-Averaging-and-Stacking.md'
       - 8.9 随机搜索: '08-Model-Inference-and-Averaging/8.9-Stochastic-Search.md'
