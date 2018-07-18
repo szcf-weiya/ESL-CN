@@ -3351,6 +3351,10 @@ $\beta$ 估计为
 \end{align}
 </script>
 其中余项 $R$ 涉及 $f$ 的三阶微分和更高阶的微分，并且在合适的光滑性假设下一般是很小的。可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/148">练习 6.2</a>）对于局部线性回归，$\sum_{i=1}^Nl_i(x_0)=1$ 并且 $\sum_{i=1}^N(x_i-x_0)l_i(x_0)=0$。因此中间项为 $f(x_0)$，并且因为偏差为 $\E\hat f(x_0)-f(x_0)$，我们看到它仅仅取决于 $f$ 的平方项或更高阶的项。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/148">Issue 148: Ex. 6.2</a>。</p>
+</div>
 <p><img alt="" src="../../img/06/fig6.4.png" /></p>
 <blockquote>
 <p>图 6.4. 绿色点显示了局部回归的相等核。这是 $\hat f(x_0)=\sum_{i=1}^Nl_i(x_0)y_i$ 中的系数，是关于对应 $x_i$ 的图像。为了展示的目的，这些已经进行了缩放，因为实际上它们相加等于 1。因为黄色阴影区域是Nadaraya–Watson 局部平均的（缩放的）相等核，所以我们看到局部回归是怎样自动修改权重核来纠正由于光滑窗口的不对称窗口的偏差。</p>
