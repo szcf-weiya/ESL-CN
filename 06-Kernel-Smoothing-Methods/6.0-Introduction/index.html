@@ -3146,11 +3146,19 @@
 <td>时间</td>
 <td>2017-01-28</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2018-07-18</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
-<p>这章中我们描述一类回归技巧，这类技巧能够通过某种方式实现在定义域$R^p$中估计回归函数$f(X)$的灵活性，这种方式是在每个查询点$x_0$处分别拟合不同但简单的模型。仅仅使用离目标点很近的观测点来拟合这个简单的模型，这种方式得到的估计函数$\hat f(X)$在 $R^p$是光滑的。这个局部化可以通过一个加权的函数或者核函数$K_\lambda(x_0,x_i)$来实现，核函数是基于$x_i$到 $x_0$的距离赋予一个权重。核$K_\lambda$一般地通过参数$\lambda$来编号，参数$\lambda$规定了邻域的宽度。原则上，这些基于记忆性(memory-based)的方法需要很少或者不需要训练；所有的工作在评估时间便完成了。根据训练集唯一需要确定的参数是$\lambda$。然而，该模型是整个训练数据集。</p>
-<p>我们也讨论更加一般类别的基于核的技巧，它们与其他章节中结构化的方法联系在一起了，这在密度估计很分类中很有用。</p>
-<p>本章中的技巧不应该与最近使用最多的“核方法”混淆。这章中，核大多作为局部化的工具。我们在5.8节，14.5.4节，18.5节和第12章讨论核方法；在这些部分，核在一个高维的（隐式的）特征空间中计算内积，而且被用于正规化非线性建模。我们将在本章的6.7节的最后将这些方法联系起来。</p>
+<p>这章中我们描述一类回归技巧，这类技巧能够通过某种方式实现在定义域 $\IR^p$ 中估计回归函数 $f(X)$ 的灵活性，这种方式是在每个查询点 $x_0$ 处分别拟合不同但简单的模型。仅仅使用离目标点很近的观测点来拟合这个简单的模型，这种方式得到的估计函数 $\hat f(X)$ 在 $\IR^p$ 是光滑的。这个局部化可以通过一个加权的函数或者 <strong>核 (kernel)</strong> 函数 $K_\lambda(x_0,x_i)$ 来实现，核函数是基于 $x_i$ 到 $x_0$ 的距离赋予一个权重。核 $K_\lambda$ 一般地通过参数 $\lambda$ 来编号，参数 $\lambda$ 规定了邻域的宽度。原则上，这些 <strong>基于记忆性 (memory-based)</strong> 的方法需要很少或者不需要训练；所有的工作在 <strong>赋值 (evaluation)</strong> 阶段便完成了。根据训练集唯一需要确定的参数是 $\lambda$。然而，该模型是整个训练数据集。</p>
+<p>我们也讨论更加一般类别的基于核的技巧，它们与其他章节中结构化的方法联系在一起了，这在密度估计和分类中很有用。</p>
+<p>本章中的技巧不应该与最近使用最多的“核方法”混淆。这章中，核大多作为局部化的工具。我们在 <a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8 节</a>，<a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html">14.5.4 节</a>，<a href="../../18-High-Dimensional-Problems/18.5-Classification-When-Features-are-Unavailable/index.html">18.5 节</a>和<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>讨论核方法；在这些部分，核在一个高维的（隐式的）特征空间中计算内积，而且被用于正规化非线性建模中。我们将在本章的 <a href="../../06-Kernel-Smoothing-Methods/6.7-Radial-Basis-Functions-and-Kernels/index.html">6.7 节</a>的最后将这些方法联系起来。</p>
                 
                   
                 
