@@ -3204,7 +3204,7 @@
 <p>前面章节的知识可以用来产生更高效的集成模型。我们继续考虑下面形式的函数</p>
 <p>
 <script type="math/tex; mode=display">
-f(x)=\alpha_0+\sum\limits_{T_k\in \cal T}\alpha_kT_k(x)\qquad (16.8)
+f(x)=\alpha_0+\sum\limits_{T_k\in \cal T}\alpha_kT_k(x)\tag{16.8}
 </script>
 </p>
 <p>其中$\cal T$是基函数的字典，一般是树。对于gradient boosting和随机森林，$\vert\cal T\vert$非常大，而且最后的模型一般会涉及上千棵树。</p>
@@ -3213,7 +3213,7 @@ f(x)=\alpha_0+\sum\limits_{T_k\in \cal T}\alpha_kT_k(x)\qquad (16.8)
 <li>从训练集中导出有限的基函数字典集$\cal T_L={T_1(x), T_2(x),\ldots, T_M(x)}$;</li>
 <li>通过在字典集中拟合lasso路径来构造$f_\lambda(x)$函数族。
 <script type="math/tex; mode=display">
-\alpha(\lambda)=arg\;\underset{\alpha}{min}\sum\limits_{i=1}^NL[y_i, \alpha_0+\sum\limits_{m=1}^M\alpha_mT_m(x_i)]+\lambda\sum\limits_{m=1}^M\vert \alpha_m\vert\qquad (16.9)
+\alpha(\lambda)=arg\;\underset{\alpha}{min}\sum\limits_{i=1}^NL[y_i, \alpha_0+\sum\limits_{m=1}^M\alpha_mT_m(x_i)]+\lambda\sum\limits_{m=1}^M\vert \alpha_m\vert\tag{16.9}
 </script>
 </li>
 </ul>
@@ -3226,20 +3226,20 @@ f(x)=\alpha_0+\sum\limits_{T_k\in \cal T}\alpha_kT_k(x)\qquad (16.8)
 <p>Friedman and Popescu (2003)从数字正交（numerical quadrature）和重要性采样中获得启发。他们将未知的函数看成如下的积分</p>
 <p>
 <script type="math/tex; mode=display">
-f(x)=\int\beta(\gamma)b(x;\lambda)d\lambda\qquad (16.10)
+f(x)=\int\beta(\gamma)b(x;\lambda)d\lambda\tag{16.10}
 </script>
 </p>
 <p>其中$\gamma\in Gamma$标记了$b(x;\lambda)$。举个例子，如果基函数为树，则$\gamma$标记了分离变量，分离点以及终止结点里面的值。数字正交（numerical quadrature）意味着寻找$M$个赋值点$\gamma_m\in\Gamma$的集合，以及对应的权重$\alpha_m$使得$f_M(x)=\alpha_0+\sum\limits_{m=1}^M\alpha_mb(x;\gamma_m)$在$x$的定义域内近似$f(x)$。重要度采样意味着随机对$\gamma$采样，但是对于空间$\Gamma$的相关区域赋予更大的权重。Friedman and Popescu (2003)建议采用损失函数(16.9)来衡量相关性（的缺失）：</p>
 <p>
 <script type="math/tex; mode=display">
-Q(\lambda)=\underset{c_0,c_1}\sum\limits_{i=1}^NL(y_i, c_0+c_1b(x_i;\gamma))\qquad (16.11)
+Q(\lambda)=\underset{c_0,c_1}\sum\limits_{i=1}^NL(y_i, c_0+c_1b(x_i;\gamma))\tag{16.11}
 </script>
 </p>
 <p>上式在训练数据上取值。</p>
 <p>如果选择了单个的基函数（比如，一棵树），则会有全局最小点$\gamma^*=\text{arg min}_{\gamma\in \Gamma}Q(\lambda)$。在选择$\gamma$的时候引进随机性必然会得到次优值，$Q(\lambda)\ge Q(\lambda^*)$。他们提出采样模式$\cal S$的特征长度$\sigma$的自然度量，</p>
 <p>
 <script type="math/tex; mode=display">
-\sigma=E_{\cal S}[Q(\lambda)-Q(\lambda^\*)]\qquad (16.12)
+\sigma=E_{\cal S}[Q(\lambda)-Q(\lambda^\*)]\tag{16.12}
 </script>
 </p>
 <ul>

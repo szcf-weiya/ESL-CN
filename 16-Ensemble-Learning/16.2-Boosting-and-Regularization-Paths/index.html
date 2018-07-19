@@ -3242,21 +3242,21 @@ f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\tag{10.4
 </div>
 <p>考虑所有可能的 $J$ 个终止结点的回归树 $\cal T={T_k}$ 的字典作为 $\IR^p$ 的基函数，这在训练数据上可以实现。线性模型为
 <script type="math/tex; mode=display">
-f(x)=\sum\limits_{k=1}^K\alpha_kT_k(x)\qquad (16.1)
+f(x)=\sum\limits_{k=1}^K\alpha_kT_k(x)\tag{16.1}
 </script>
 </p>
 <p>其中$K=card(\cal T)$。假设系数通过最小二乘进行估计。因为这些树的个数可能比最大训练集大很多，所以需要一些正则化。令 $\hat\alpha(\lambda)$ 使得</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\alpha}{\min}\{\sum\limits_{i=1}^N(y_i-\sum\limits_{k=1}^K\alpha_kT_k(x_i))^2+\lambda\cdot J(\alpha)\}\qquad (16.2)
+\underset{\alpha}{\min}\{\sum\limits_{i=1}^N(y_i-\sum\limits_{k=1}^K\alpha_kT_k(x_i))^2+\lambda\cdot J(\alpha)\}\tag{16.2}
 </script>
 </p>
 <p>$J(\alpha)$ 是关于系数的函数，并且一般惩罚较大的值。比如</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-J(\alpha) &=\sum\limits_{k=1}^K\vert \alpha_k\vert^2\qquad \text{岭回归}\qquad (16.3)\\
-J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\qquad (16.4)
+J(\alpha) &=\sum\limits_{k=1}^K\vert \alpha_k\vert^2\qquad \text{岭回归}\tag{16.3}\\
+J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\tag{16.4}
 \end{align}
 </script>
 </p>
