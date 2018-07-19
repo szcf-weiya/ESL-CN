@@ -3229,12 +3229,12 @@
 <p class="admonition-title">weiya注: Recall</p>
 <p>
 <script type="math/tex; mode=display">
-L(y,f(x))=\exp(-yf(x))\qquad (10.8)
+L(y,f(x))=\exp(-yf(x))\tag{10.8}
 </script>
 </p>
 <p>
 <script type="math/tex; mode=display">
--l(Y,f(x))=\log(1+e^{-2Yf(x)})\qquad (10.18)
+-l(Y,f(x))=\log(1+e^{-2Yf(x)})\tag{10.18}
 </script>
 </p>
 </div>
@@ -3247,18 +3247,18 @@ L(y,f(x))=\exp(-yf(x))\qquad (10.8)
 <p>在训练过程的任一个时刻，指数标准对具有大的负边际的观测值上有更大的影响。二项偏差相对地在这些观测上影响较小，在所有数据上的影响分散更均匀。也因此在白噪声设定（贝叶斯误差率不接近于0）中更加鲁棒，特别在训练数据中存在误分类标签的情形中。在这些情形下，AdaBoost的表现从经验上看显著退化。</p>
 <p>图中也显示了平方误差损失。在总体上对应风险的最小值点为
 <script type="math/tex; mode=display">
-f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}\E_{Y\mid x}(Y-f(x))^2=\E(Y\mid x)=2\cdot \Pr(Y=1\mid x)-1\qquad (10.19)
+f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}\E_{Y\mid x}(Y-f(x))^2=\E(Y\mid x)=2\cdot \Pr(Y=1\mid x)-1\tag{10.19}
 </script>
 </p>
 <p>和前面一样，分类的规则为$G(x)=\sign[f(x)]$。平方误差损失不是误分类误差很好的选择。如图10.4所示，它不是关于增加的$yf(x)$的单调递减函数。对于边界值$y_if(x_i)&gt;1$平方增长，从而对正确分类为增加确定性的观测结果产生越来越大的影响（误差），从而降低了未正确分类的$y_if(x_i) &lt; 0$的相对影响。因此，如果目标是类别划分，则一个更好的损失函数要满足单调下降的准则。第12章p426的图2.4包括对平方损失的一个改动，“Huberized”平方铰链损失(Rosset et al.，2004b<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)，结合了二项偏差、平方损失和SVM铰链损失优良的性质。它与平方损失(10.19)有相同的总体最小值，当$y\cdot f(x) &gt; 1$为0，当$y\cdot f(x) &lt; -1$变成线性。因为二项函数比指数更容易计算，我们的经验表明这是二项偏差的一个有用替代。</p>
 <p>在$K$个类别的分类问题中，响应变量$Y$在无序集$\cal G=\{\cal G_1,\ldots,\cal G_k\}$中取值。我们已经在$\cal G$中寻找到了一个分类器$G(x)$。若知道类别条件概率为$p_k(x)=\Pr(Y={\cal G}_k\mid x),k=1,2,\ldots,K$，则贝叶斯分类器为
 <script type="math/tex; mode=display">
-G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\ell(x)\qquad (10.20)
+G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\ell(x)\tag{10.20}
 </script>
 尽管原则上我们不需要知道$p_k(x)$，只需要知道哪个最大。然而，在数据挖掘应用中，我们感兴趣的经常是类别概率$p_\ell(x),\ell=1,\ldots,K$本身，而不是进行类别划分。像在4.4节中那样，逻辑斯蒂回归可以很自然地推广到$K$个类别的情形，</p>
 <p>
 <script type="math/tex; mode=display">
-p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\qquad (10.21)
+p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\tag{10.21}
 </script>
 </p>
 <p>其中保证$0\le p_k(x)\le 1$且和为1。注意到这里我们有$K$个函数，每个类别一个函数。函数$f_k(x)$存在一个冗余，因为对每个加上任意函数$h(x)$，模型不会改变。传统地，设其中一个为0：举个例子，$f_K(x)=0$，就像(4.17)式一样。</p>
@@ -3272,7 +3272,7 @@ p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\qquad (10.21)
 &\ldots\\
 \log\dfrac{\Pr(G=K-1\mid X=x)}{\Pr(G=K\mid X=x)}&=\beta_{(K-1)0}+\beta_{K-1}^Tx\\
 \end{array}
-\qquad (4.17)
+\tag{4.17}
 </script>
 </p>
 </div>
@@ -3280,7 +3280,7 @@ p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\qquad (10.21)
 <script type="math/tex; mode=display">
 \begin{align}
 L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
-&=-\sum\limits_{k=1}^KI(y={\cal G_k})f_k(x)+\mathrm{log}(\sum\limits_{\ell=1}^Ke^{f_\ell(x)})\qquad (10.22)
+&=-\sum\limits_{k=1}^KI(y={\cal G_k})f_k(x)+\mathrm{log}(\sum\limits_{\ell=1}^Ke^{f_\ell(x)})\tag{10.22}
 \end{align}
 </script>
 和在两个类别的情形中一样，标准(10.22)对不正确预测的惩罚关于不正确的程度仅仅是线性的。</p>
@@ -3300,7 +3300,7 @@ L(y,f(x))=
   2\delta(\vert y-f(x)\vert-\delta^2)&\text{otherwise}
   \end{array}
 \right.
-\qquad (10.23)
+\tag{10.23}
 </script>
 图10.5比较了这三个损失函数。</p>
 <p><img alt="" src="../../img/10/fig10.5.png" /></p>

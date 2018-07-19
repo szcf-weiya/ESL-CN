@@ -3158,7 +3158,7 @@
 </table>
 <p>我们现在证明 AdaBoost.M1 算法（算法 10.1）等价于使用下列损失函数的向前逐步加法建模
 <script type="math/tex; mode=display">
-L(y,f(x))=\exp(-yf(x))\qquad (10.8)
+L(y,f(x))=\exp(-yf(x))\tag{10.8}
 </script>
 这个准则的合理性将在下一节中讨论</p>
 <!--
@@ -3174,12 +3174,12 @@ L(y,f(x))=\exp(-yf(x))\qquad (10.8)
 </script>
 上式可以写成
 <script type="math/tex; mode=display">
-(\beta_m,G_m)=\mathrm{arg}\;\underset{\beta, G}{\mathrm{min}}\sum\limits_{i=1}^N\omega_i^{(m)}\exp(-\beta y_iG(x_i))\qquad (10.9)
+(\beta_m,G_m)=\mathrm{arg}\;\underset{\beta, G}{\mathrm{min}}\sum\limits_{i=1}^N\omega_i^{(m)}\exp(-\beta y_iG(x_i))\tag{10.9}
 </script>
 其中，$w^{(m)}_i=\exp(-y_if_{m-1}(x))$。因为每个$w^{(m)}_i$既不依赖$\beta$也不依赖$G(x)$，可以看成是应用到每个观测上的权重。权重取决于$f_{m-1}(x_i)$，因此个体的权重值随着迭代次数$m$而变化。</p>
 <p>(10.9)式的解可以通过两步得到。首先，对于任意$\beta &gt; 0$，(10.9)式$G_m(x)$的解为
 <script type="math/tex; mode=display">
-G_m=\mathrm{arg}\;\underset{G}{\mathrm{min}}\sum\limits_{i=1}^N\omega_i^{(m)}I(y_i\neq G(x_i))\qquad (10.10)
+G_m=\mathrm{arg}\;\underset{G}{\mathrm{min}}\sum\limits_{i=1}^N\omega_i^{(m)}I(y_i\neq G(x_i))\tag{10.10}
 </script>
 这是使得在预测$y$时加权误差率最小化的分类器。这个可以通过将（10.9）的准则表达成下式看出来
 <script type="math/tex; mode=display">
@@ -3188,7 +3188,7 @@ e^{-\beta}\sum\limits_{y_i=G(x_i)}\omega_i^{(m)}+e^\beta\sum\limits_{y_i\neq G(x
 </p>
 <p>进一步，这个也可以写成
 <script type="math/tex; mode=display">
-(e^{\beta}-e^{-\beta})\sum\limits_{i=1}^N\omega_i^{(m)}I(y_i\neq G(x_i)) + e^{-\beta}\sum\limits_{i=1}^N\omega_i^{(m)}\qquad (10.11)
+(e^{\beta}-e^{-\beta})\sum\limits_{i=1}^N\omega_i^{(m)}I(y_i\neq G(x_i)) + e^{-\beta}\sum\limits_{i=1}^N\omega_i^{(m)}\tag{10.11}
 </script>
 </p>
 <div class="admonition note">
@@ -3201,7 +3201,7 @@ e^{-\beta}\sum\limits_{y_i=G(x_i)}\omega_i^{(m)}+e^\beta\sum\limits_{y_i\neq G(x
 </script>
 其中$\err_m$为最小化的加权误差率
 <script type="math/tex; mode=display">
-\err_m=\frac{\sum_{i=1}^N \omega_i^{(m)}I(y_i\neq G_m(x_i))}{\sum_{i=1}^N\omega_i^{(m)}}\qquad (10.13)
+\err_m=\frac{\sum_{i=1}^N \omega_i^{(m)}I(y_i\neq G_m(x_i))}{\sum_{i=1}^N\omega_i^{(m)}}\tag{10.13}
 </script>
 </p>
 <div class="admonition note">
@@ -3214,11 +3214,11 @@ f_m(x)=f_{m-1}(x)+\beta_mG_m(x)
 </script>
 导出下一次迭代的权重为
 <script type="math/tex; mode=display">
-\omega_i^{(m+1)}=\omega_i^{(m)}\cdot e^{-\beta_my_iG_m(x_i)}\qquad (10.14)
+\omega_i^{(m+1)}=\omega_i^{(m)}\cdot e^{-\beta_my_iG_m(x_i)}\tag{10.14}
 </script>
 使用$-y_iG_m(x_i)=2\cdot I(y_i\neq G_m(x_i))-1$的事实，（10.14）式变成
 <script type="math/tex; mode=display">
-\omega_i^{(m+1)}=\omega_i^{(m)}\cdot e^{\alpha_mI(y_i\neq G_m(x_i))}\cdot e^{-\beta_m}\qquad (10.15)
+\omega_i^{(m+1)}=\omega_i^{(m)}\cdot e^{\alpha_mI(y_i\neq G_m(x_i))}\cdot e^{-\beta_m}\tag{10.15}
 </script>
 其中$\alpha_m=2\beta_m$在AdaBoost.M1算法（算法10.1）中第2(c)行定义的常数。(10.15)式的因子$e^{-\beta_m}$对所有的权重都乘以同样的值，所以没有影响。因此(10.15)等价于算法10.1中的第2(d)行。</p>
 <p>我们可以把AdaBoost.M1算法的第2(a)行看成近似求解(10.11)最小化问题的方法，从而得到(10.10)式。因此我们将AdaBoost.M1总结为通过向前逐步加法建模方式来最小化指数损失函数。</p>

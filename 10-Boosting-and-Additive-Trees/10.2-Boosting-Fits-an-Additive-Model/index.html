@@ -3161,14 +3161,14 @@
 <p class="admonition-title">weiya注：Recall</p>
 <p>
 <script type="math/tex; mode=display">
-G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\qquad (10.1)
+G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\tag{10.1}
 </script>
 </p>
 </div>
 <p>boosting是在一组基本的“基”函数集合中拟合加性展开(additive expansions)的方法。这里基函数是单个的分类器$G_m(x)\in \{-1,1\}$。更一般地，基函数展开式采用下列形式</p>
 <p>
 <script type="math/tex; mode=display">
-f(x)=\sum\limits_{m=1}^M\beta_mb(x;\gamma_m)\qquad (10.3)
+f(x)=\sum\limits_{m=1}^M\beta_mb(x;\gamma_m)\tag{10.3}
 </script>
 </p>
 <p>其中$\beta_m,m=1,2,\ldots,M$是展开的系数，$b(x;\gamma)\in \IR$是普通的关于多元变量$x$的简单函数，$\gamma$是其参数。我们在第5章中详细讨论了基的展开。</p>
@@ -3180,7 +3180,7 @@ f(x)=\sum\limits_{m=1}^M\beta_mb(x;\gamma_m)\qquad (10.3)
 </ul>
 <p>一般地，通过使训练数据上的平均损失函数最小化来拟合这些模型，比如平方误差或者基于概率的损失函数，
 <script type="math/tex; mode=display">
-\underset{\{\beta_m,\gamma_m\}_1^M}{\mathrm {min}}\;\sum\limits_{i=1}^NL(y_i,\sum\limits_{m=1}^M\beta_mb(x_i;\gamma_m))\qquad (10.4)
+\underset{\{\beta_m,\gamma_m\}_1^M}{\mathrm {min}}\;\sum\limits_{i=1}^NL(y_i,\sum\limits_{m=1}^M\beta_mb(x_i;\gamma_m))\tag{10.4}
 </script>
 对于许多损失函数$L(y,f(x))$和/或基函数$b(x;\gamma)$，这需要计算密集型的(computationally intensive)数值优化技术。</p>
 <div class="admonition note">
@@ -3192,7 +3192,7 @@ f(x)=\sum\limits_{m=1}^M\beta_mb(x;\gamma_m)\qquad (10.3)
 </div>
 <p>然而，当可以快速求解只有一个单一的基函数的子问题时，经常可以找到简单的替代方案，单一的基函数为
 <script type="math/tex; mode=display">
-\underset{\beta,\gamma}{\mathrm{min}}\sum\limits_{i=1}^NL(y_i,\beta b(x_i;\gamma))\qquad (10.5)
+\underset{\beta,\gamma}{\mathrm{min}}\sum\limits_{i=1}^NL(y_i,\beta b(x_i;\gamma))\tag{10.5}
 </script>
 </p>
                 
