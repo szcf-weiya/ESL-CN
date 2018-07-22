@@ -3244,13 +3244,13 @@
 <p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in \{-1,1\}$。定义超平面</p>
 <p>
 <script type="math/tex; mode=display">
-\{x:f(x)=x^T\beta+\beta_0=0\}\qquad (12.1)
+\{x:f(x)=x^T\beta+\beta_0=0\}\tag{12.1}
 </script>
 </p>
 <p>其中$\beta$是单位向量$\Vert \beta\Vert=1$。由$f(x)$导出的分类准则为</p>
 <p>
 <script type="math/tex; mode=display">
-G(x)=\sign[x^T\beta+\beta_0]\qquad (12.2)
+G(x)=\sign[x^T\beta+\beta_0]\tag{12.2}
 </script>
 </p>
 <p>超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$，满足$y_if(x_i)&gt;0,\forall i$。因此我们可以找到超平面在类别1和-1的训练点之间创造最大的margin（图12.1）。</p>
@@ -3265,7 +3265,7 @@ G(x)=\sign[x^T\beta+\beta_0]\qquad (12.2)
 \underset{\beta,\beta_0,\Vert \beta\Vert=1}{\max}\; M\\
 s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
 \end{array}
-\qquad (12.3)
+\tag{12.3}
 </script>
 </p>
 <p>图中的条纹宽度为$M$，它是分离超平面到其中一边的距离，因此总共宽度为$2M$。这称为margin。</p>
@@ -3276,20 +3276,20 @@ s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
 &\underset{\beta,\beta_0}{min}\;\Vert\beta\Vert\\
 s.t.&\; y_i(x_i^T\beta+\beta_0)\ge 1,\; i=1,\ldots,N
 \end{array}
-\qquad (12.4)
+\tag{12.4}
 </script>
 </p>
 <p>我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$。表达式(12.4)是稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解在<a href="../../04-Linear-Methods-for-Classification/4.5-Separating-Hyperplanes/index.html#452">4.5.2节</a>已经讨论了。</p>
 <p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$，但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$。有两种自然的方式去修改(12.3)中的约束：</p>
 <p>
 <script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\qquad (12.5)
+y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\tag{12.5}
 </script>
 </p>
 <p>或者</p>
 <p>
 <script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\qquad (12.6)
+y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\tag{12.6}
 </script>
 </p>
 <p>$\forall i,\xi_i\ge 0,\sum_{i=1}^N\xi_i\le constant$。这两个选择会导出不同的解。第一个选择似乎更加自然，因为它衡量了到margin的实际距离；第二个选择衡量了相对距离，它会随着margin的宽度$M$的改变而改变。然而，第一个选择是一个非凸的优化问题，而第二个是凸的；因此(12.6)导出标准的支持向量分类器，我们从这里开始使用它。</p>
@@ -3298,7 +3298,7 @@ y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\qquad (12.6)
 <p>
 <script type="math/tex; mode=display">
 min\;\Vert\beta\Vert\qquad s.t.\;\left\{\begin{array}{ll}y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i\;\forall i,\\
-\xi_i\ge 0,\sum\xi_i\le constant.\end{array}\right.\qquad (12.7)
+\xi_i\ge 0,\sum\xi_i\le constant.\end{array}\right.\tag{12.7}
 </script>
 </p>
 <p>这是非分离情形下支持向量分类器定义的通常方式。然而我们会对约束$y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i$中的固定常数1感到误解，更喜欢使用(12.6)式。图12.1的右图说明了重叠的情形。</p>
@@ -3311,14 +3311,14 @@ min\;\Vert\beta\Vert\qquad s.t.\;\left\{\begin{array}{ll}y_i(x_i^T\beta+\beta_0)
 \underset{\beta,\beta_0}{min}&\;\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i\\
 s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 \end{array}
-\qquad (12.8)
+\tag{12.8}
 </script>
 </p>
 <p>其中“代价”参数$C$替换（12.7）中的常数；可分情况下对应$C=\infty$</p>
 <p>Lagrange函数（原问题）为</p>
 <p>
 <script type="math/tex; mode=display">
-L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\qquad (12.9)
+L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\tag{12.9}
 </script>
 </p>
 <p>我们需要关于$\beta,\beta_0$和$\xi_i$求最小值。令对应的微分为0，我们有</p>
@@ -3334,7 +3334,7 @@ L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\a
 <p>同样有正值约束$\alpha_i,\mu_i,\xi_i\ge 0\;\forall i$。把(12.10)-(12.12)代入(12.9)，我们得到Lagrangian(Wolfe)对偶目标函数</p>
 <p>
 <script type="math/tex; mode=display">
-L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\qquad (12.13)
+L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\tag{12.13}
 </script>
 </p>
 <div class="admonition note">
@@ -3389,7 +3389,7 @@ y_i(x_i^T\beta+\beta_0)-(1-\xi_i)&\ge 0& (12.16)
 <p>从(12.10)我们看到$\beta$的解有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\beta=\sum\limits_{i=1}^N\hat\alpha_iy_ix_i\qquad (12.17)
+\hat\beta=\sum\limits_{i=1}^N\hat\alpha_iy_ix_i\tag{12.17}
 </script>
 </p>
 <p>非负系数$\hat\alpha_i$只针对约束(12.16)等号成立的观测（由于(12.14)）。因为$\hat\beta$用这些观测单独表示，所以把它们称之为<strong>支持向量</strong>。在这些支持点中，有些会在margin的边缘处($\hat\xi_i=0$)，因此根据式(12.15)，式(12.12)可以用$0 &lt; \hat\alpha_i &lt; C$来表示；剩余部分($\hat \xi_i &gt; 0$)有$\hat\alpha_i=C$（由(12.15)式得到）。从(12.14)我们可以看到每个边缘点($0 &lt; \hat\alpha_i,\;\hat \xi_i = 0$)都可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值。</p>
@@ -3398,7 +3398,7 @@ y_i(x_i^T\beta+\beta_0)-(1-\xi_i)&\ge 0& (12.16)
 <script type="math/tex; mode=display">
 \begin{array}{ll}
 \hat G(x)&=sign[\hat f(x)]\\
-&=sign[x^T\hat\beta+\hat\beta_0]\qquad (12.18)
+&=sign[x^T\hat\beta+\hat\beta_0]\tag{12.18}
 \end{array}
 </script>
 这个过程的调整参数是代价参数$C$。</p>

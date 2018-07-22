@@ -3326,7 +3326,7 @@
 <p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\qquad (12.9)
+L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\tag{12.9}
 </script>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3336,7 +3336,7 @@ L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\a
 \end{align}
 </script>
 <script type="math/tex; mode=display">
-L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\qquad (12.13)
+L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\tag{12.13}
 </script>
 </p>
 </div>
@@ -3344,7 +3344,7 @@ L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=
 <p>lagrange对偶函数(12.13)有如下形式：</p>
 <p>
 <script type="math/tex; mode=display">
-L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}\langle h(x_i), h(x_{i'})\rangle\qquad (12.19)
+L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}\langle h(x_i), h(x_{i'})\rangle\tag{12.19}
 </script>
 </p>
 <p>从(12.10)中我们看到解函数$f(x)$可以写成</p>
@@ -3352,7 +3352,7 @@ L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}
 <script type="math/tex; mode=display">
 \begin{align}
 f(x)&=h(x)^T\beta+\beta_0\\
-&=\sum\limits_{i=1}^N\alpha_iy_i\langle h(x),h(x_i) \rangle+\beta_0\qquad (12.20)
+&=\sum\limits_{i=1}^N\alpha_iy_i\langle h(x),h(x_i) \rangle+\beta_0\tag{12.20}
 \end{align}
 </script>
 </p>
@@ -3360,7 +3360,7 @@ f(x)&=h(x)^T\beta+\beta_0\\
 <p>所以(12.19)和(12.20)仅仅通过内积涉及$h(x)$。实际上，我们根本不需要明确变换关系$h(x)$，而仅仅要求知道在转换后的空间中计算内积的核函数</p>
 <p>
 <script type="math/tex; mode=display">
-K(x,x')=\langle h(x), h(x') \rangle\qquad (12.21)
+K(x,x')=\langle h(x), h(x') \rangle\tag{12.21}
 </script>
 </p>
 <p>$K$应该是一个对称的(半)正定函数：见<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html#_1">5.8.1节</a>。</p>
@@ -3369,7 +3369,7 @@ K(x,x')=\langle h(x), h(x') \rangle\qquad (12.21)
 <script type="math/tex; mode=display">
 \begin{array}{rl}
 d\text{阶多项式：} & K(x,x')=(1+\langle x,x' \rangle)^d\\
-\text{径向基：} & K(x, x')=\exp(-\gamma \Vert x-x'\Vert^2)\qquad (12.22)\\
+\text{径向基：} & K(x, x')=\exp(-\gamma \Vert x-x'\Vert^2)\tag{12.22}\\
 \text{神经网络：} & K(x,x')=\tanh(\kappa_1\langle x,x' \rangle+\kappa_2)\\
 \end{array}
 </script>
@@ -3388,7 +3388,7 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <p>从$(12.20)$我们可以看出该解可以写成</p>
 <p>
 <script type="math/tex; mode=display">
-\hat f(x)=\sum\limits_{i=1}^N\hat \alpha_iy_iK(x,x_i)+\hat\beta_0\qquad (12.24)
+\hat f(x)=\sum\limits_{i=1}^N\hat \alpha_iy_iK(x,x_i)+\hat\beta_0\tag{12.24}
 </script>
 </p>
 <p>在增广的特征空间中，参数$C$的角色更加清晰，因为在这里经常会存在完美的分割。较大的$C$会抑制任何正的$\xi_i$，并且得到在原始特征空间中过拟合的弯弯曲曲的边界；较小的$C$值会鼓励较小的$\Vert\beta\Vert$，反过来会导致$f(x)$以及边界更加地光滑。图12.3显示了应用到第2章中的混合模型的两个支持向量机。两种情形下的正则化参数都是为了实现更好的测试误差。对该例子而言，径向基得到类似贝叶斯最优边界；与图2.5进行比较。</p>
@@ -3403,7 +3403,7 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <p>对于$f(x)=h(x)^T\beta+\beta_0$，考虑下列的优化问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta_0,\beta}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{\lambda}{2}\Vert\beta\Vert^2\qquad (12.25)
+\underset{\beta_0,\beta}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{\lambda}{2}\Vert\beta\Vert^2\tag{12.25}
 </script>
 </p>
 <p>其中下标“$+$”表示正的部分。上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例。可以很简单地证明当$\lambda=1/C$时，(12.25)的解与(12.8)的解相同（<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">练习12.1</a>）。</p>
@@ -3415,7 +3415,7 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 \underset{\beta,\beta_0}{\min}&\;\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i\\
 s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 \end{array}
-\qquad (12.8)
+\tag{12.8}
 </script>
 </p>
 </div>
@@ -3449,7 +3449,7 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 <p>假设基$h$来自与正定核$K$的（可能是有限的）特征展开，</p>
 <p>
 <script type="math/tex; mode=display">
-K(x, x')=\sum\limits_{m=1}^{\infty}\phi_m(x)\phi_m(x')\delta_m\qquad (12.26)
+K(x, x')=\sum\limits_{m=1}^{\infty}\phi_m(x)\phi_m(x')\delta_m\tag{12.26}
 </script>
 </p>
 <div class="admonition note">
@@ -3464,39 +3464,39 @@ K(x, x')=\sum\limits_{m=1}^{\infty}\phi_m(x)\phi_m(x')\delta_m\qquad (12.26)
 \underset{\beta_0, \theta}{\min}\sum\limits_{i=1}^N\Big[
     1-y_i(\beta_0+\sum\limits_{m=1}^{\infty}\theta_m\phi_m(x_i))
     \Big]_+ + \frac{\lambda}{2}\sum\limits_{m=1}^{\infty}\frac{\theta_m^2}{\delta_m}
-    \qquad (12.27)
+    \tag{12.27}
 </script>
 </p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{c_j\}_1^\infty}{\min}\Big[\sum\limits_{i=1}^NL(y_i, \sum\limits_{j=1}^\infty c_j\phi_j(x_i))+\lambda \sum\limits_{j=1}^\infty c_j^2/\gamma_j\Big]\qquad (5.49)
+\underset{\{c_j\}_1^\infty}{\min}\Big[\sum\limits_{i=1}^NL(y_i, \sum\limits_{j=1}^\infty c_j\phi_j(x_i))+\lambda \sum\limits_{j=1}^\infty c_j^2/\gamma_j\Big]\tag{5.49}
 </script>
 <script type="math/tex; mode=display">
 \underset{\alpha_0,\aalpha}{\min}\Big\{
 \sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \frac{\lambda}{2}\aalpha^T\K\aalpha
-\Big\}\qquad (5.67)
+\Big\}\tag{5.67}
 </script>
 </p>
 </div>
 <p>现在(12.27)与5.8节中的(5.49)形式相同，并且重生希尔伯特空间的理论保证了形如下式的有限维的解</p>
 <p>
 <script type="math/tex; mode=display">
-f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\qquad (12.28)
+f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}
 </script>
 </p>
 <p>特别地，我们看到存在等价的优化准则[5.8.2节的式(5.67)；也可以参见Wahba et al. (2000)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>]</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta_0, \alpha}{\min}\sum\limits_{i=1}^N(1-y_if(x_i))_++\frac{\lambda}{2}\alpha^T\K\alpha\qquad (12.29)
+\underset{\beta_0, \alpha}{\min}\sum\limits_{i=1}^N(1-y_if(x_i))_++\frac{\lambda}{2}\alpha^T\K\alpha\tag{12.29}
 </script>
 </p>
 <p>其中$\K$是所有成对训练特征的核的赋值（<a href="https://github.com/szcf-weiya/ESL-CN/issues/80">练习12.2</a>）。</p>
 <p>这些模型非常一般，举个例子，包含第5和第9章中讨论的整个光滑样条族，可加和交叉样条模型，更多细节参见Wahba (1990)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>和Hastie and Tibshirani (1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>。它们可以更一般地表示为</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{f\in{\cal H}}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \lambda J(f)\qquad (12.30)
+\underset{f\in{\cal H}}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \lambda J(f)\tag{12.30}
 </script>
 </p>
 <p>其中$\cal H$是<strong>函数的结构空间(the structured space of functions)</strong>，并且$J(f)$是在该空间上合适的正则器。举个例子，假设$\cal H$是可加函数$f(x)=\sum_{j=1}^pf_j(x_j)$，并且$J(f)=\sum_j\int\{f^{\prime\prime}_j(x_j)\}^2dx_j$。则(12.30)的解为可加三次样条，并且有核表示$K(x,x&rsquo;)=\sum_{j=1}^pK_j(x_j,x_j&rsquo;)$。每个$K_j$是关于$x_j$的合适的单变量光滑样条的核(Wahba, 1990)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>。</p>
@@ -3505,14 +3505,14 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\qquad (12.28)
 <script type="math/tex; mode=display">
 \begin{align}
 \hat f(x) &=\LOG \frac{\hat\pr (Y=+1\mid x)}{\hat\pr (Y=-1\mid x)}\\
-&=\hat\beta_0+\sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\qquad (12.31)
+&=\hat\beta_0+\sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\tag{12.31}
 \end{align}
 </script>
 </p>
 <p>或者反过来，我们得到类别概率的估计</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\pr(Y=+1\mid x)=\frac{1}{1+e^{-\hat\beta_0-\sum_{i=1}^N\hat\alpha_iK(x,x_i)}}\qquad (12.32)
+\hat\pr(Y=+1\mid x)=\frac{1}{1+e^{-\hat\beta_0-\sum_{i=1}^N\hat\alpha_iK(x,x_i)}}\tag{12.32}
 </script>
 </p>
 <p>这些拟合的模型在形状和表现效果上都非常相似。<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>给出了例子以及更多的细节。</p>
@@ -3540,7 +3540,7 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\qquad (12.28)
 <p>使用(12.25)的损失+惩罚的形式以及图12.4中的损失函数是很方便的。这可以得到在给定$\lambda$处$\beta$的解：</p>
 <p>
 <script type="math/tex; mode=display">
-\beta_\lambda = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_ix_i\qquad (12.33)
+\beta_\lambda = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_ix_i\tag{12.33}
 </script>
 </p>
 <p>其中$\alpha_i$仍然是Lagrange乘子，但是在这种情形下它们都在[0, 1]中取值。</p>
@@ -3560,7 +3560,7 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\qquad (12.28)
 <p>尽管我们只介绍了线性SVMs的方法，但是对于非线性模型，想法完全一样，只需要将(12.33)换成</p>
 <p>
 <script type="math/tex; mode=display">
-f_\lambda(x) = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_iK(x,x_i)\qquad (12.34)
+f_\lambda(x) = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_iK(x,x_i)\tag{12.34}
 </script>
 </p>
 <p>细节可以在Hastie et al. (2004)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>中找到。CRAN上<code>R</code>包<code>svmpath</code>可以用来拟合这些模型。</p>
@@ -3568,13 +3568,13 @@ f_\lambda(x) = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_iK(x,x_i)\qquad (12
 <p>在这一节，我们将要展示SVMs如何用于定量响应变量的回归问题，方法继承了SVM分类器的某些性质。我们首先讨论线性回归模型</p>
 <p>
 <script type="math/tex; mode=display">
-f(x)=x^T\beta+\beta_0\qquad (12.35)
+f(x)=x^T\beta+\beta_0\tag{12.35}
 </script>
 </p>
 <p>接下来处理非线性的推广情形。为了估计$\beta$，我们考虑下式的最小化</p>
 <p>
 <script type="math/tex; mode=display">
-H(\beta, \beta_0) = \sum\limits_{i=1}^N V(y_i-f(x_i)) + \frac{\lambda}{2}\Vert \beta\Vert^2\qquad (12.36)
+H(\beta, \beta_0) = \sum\limits_{i=1}^N V(y_i-f(x_i)) + \frac{\lambda}{2}\Vert \beta\Vert^2\tag{12.36}
 </script>
 </p>
 <p>其中</p>
@@ -3587,7 +3587,7 @@ V_{\epsilon}(r)=
 \vert r\vert -\epsilon, &\text{otherwise}
 \end{array}
 \right.
-\qquad (12.37)
+\tag{12.37}
 </script>
 </p>
 <p>这是一种“$\epsilon$-insensitive”的误差度量，它忽略了大小小于$\epsilon$的误差（图12.8的左图）。</p>
@@ -3603,7 +3603,7 @@ r^2/2 & \text{if}\; \vert r\vert \le c\\
 c\vert r\vert -c^2/2, &\vert r\vert > c
 \end{array}
 \right.
-\qquad (12.38)
+\tag{12.38}
 </script>
 </p>
 <p>当绝对残差大于预先给定的某个常值$c$时，函数将观测的贡献从二次降至一次。这使得拟合对离群点更加不敏感。支持向量误差衡量(12.37)也有线性尾(tail)（大于$\epsilon$），但是除此之外，它压缩了小偏差情形下观测点的贡献。</p>
@@ -3630,7 +3630,7 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
 \sum\limits_{i=1}^N(\alpha_i^*-\alpha_i)=0\\
 \alpha_i\alpha_i^*=0
 \end{align}
-\qquad (12.41)
+\tag{12.41}
 </script>
 </p>
 <p>考虑到这些约束的本质，一般仅仅有部分的解$(\hat \alpha_i^*-\hat\alpha_i)$非零， 并且对应的数据称为支持向量。和分类问题中的设定一样，解仅仅通过内积$\langle x_i, x_{i&rsquo;}\rangle$来关联输入的数据。因此我们可以通过定义合适的内积将这个方法推广到高维空间，举个例子，采用(12.22)中定义的任意一个。</p>
@@ -3639,19 +3639,19 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
 <p>正如12.3.3节讨论的一样，SVM的核性质不唯一。假设我们考虑用基函数$\{h_m(x)\},m=1,2,\ldots,M$近似的回归函数：</p>
 <p>
 <script type="math/tex; mode=display">
-f(x) = \sum\limits_{m=1}^M\beta_mh_m(x)+\beta_0\qquad (12.42)
+f(x) = \sum\limits_{m=1}^M\beta_mh_m(x)+\beta_0\tag{12.42}
 </script>
 </p>
 <p>为了估计$\beta$和$\beta_0$，对于一般的误差度量$V(r$，我们需要最小化</p>
 <p>
 <script type="math/tex; mode=display">
-H(\beta, \beta_0) = \sum\limits_{i=1}^NV(y_i-f(x_i)) + \frac{\lambda}{2}\sum\beta_m^2\qquad (12.43)
+H(\beta, \beta_0) = \sum\limits_{i=1}^NV(y_i-f(x_i)) + \frac{\lambda}{2}\sum\beta_m^2\tag{12.43}
 </script>
 </p>
 <p>对于任意选择的$V(r)$，解$\hat f(x)=\sum\hat\beta_mh_m(x)+\hat\beta_0$有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-\hat f(x) = \sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\qquad (12.44)
+\hat f(x) = \sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\tag{12.44}
 </script>
 </p>
 <p>其中$K(x,y)=\sum_{m=1}^Mh_m(x)h_m(y)$。注意到这与径向基函数展开和正则化估计的形式一样，它们在第5章和第6章有讨论。</p>
@@ -3659,25 +3659,25 @@ H(\beta, \beta_0) = \sum\limits_{i=1}^NV(y_i-f(x_i)) + \frac{\lambda}{2}\sum\bet
 <p>通过最小化带惩罚的最小二乘准则来估计$\beta$</p>
 <p>
 <script type="math/tex; mode=display">
-H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\qquad (12.45)
+H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\tag{12.45}
 </script>
 </p>
 <p>解为</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\y = \H\hat\beta\qquad (12.46)
+\hat\y = \H\hat\beta\tag{12.46}
 </script>
 </p>
 <p>其中$\hat\beta$由下式确定</p>
 <p>
 <script type="math/tex; mode=display">
--\H^T(\y-\H\hat\beta)+\lambda\hat\beta=0\qquad (12.47)
+-\H^T(\y-\H\hat\beta)+\lambda\hat\beta=0\tag{12.47}
 </script>
 </p>
 <p>从这里看，我们似乎需要在转换后的空间中对内积的$N\times M$的矩阵进行赋值。然而，我们可以乘以$\H$得到</p>
 <p>
 <script type="math/tex; mode=display">
-\H\hat\beta = (\H\H^T+\lambda\I)^{-1}\H\H^T\y\qquad (12.48)
+\H\hat\beta = (\H\H^T+\lambda\I)^{-1}\H\H^T\y\tag{12.48}
 </script>
 </p>
 <p>$N\times N$的矩阵$\H\H^T$包含了成对观测$i,i&rsquo;$间的内积；也就是，内积核$\{\H\H^T\}_{i.i&rsquo;}=K(x_i,x_{i&rsquo;}=K(x,x_{i&rsquo;})$的赋值。易证(12.44)正是这种情形，在任意点$x$的预测值满足</p>
@@ -3685,7 +3685,7 @@ H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\qquad (12.45)
 <script type="math/tex; mode=display">
 \begin{align}
 \hat f(x) & = h(x)^T\hat\beta\\
-&=\sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\qquad (12.49)
+&=\sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\tag{12.49}
 \end{align}
 </script>
 </p>
@@ -3702,7 +3702,7 @@ H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\qquad (12.45)
 Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
 &=\sigma_\varepsilon^2+[E\hat f(x_0)-f(x_0)]^2+E[\hat f(x_0)-E\hat f(x_0)]^2\\
 &=\sigma_\varepsilon^2+Bias^2(\hat f(x_0))+Var(\hat f(x_0))\\
-&=\text{Irreducible Error} + \text{Bias}^2+\text{Variance}\qquad (7.9)
+&=\text{Irreducible Error} + \text{Bias}^2+\text{Variance}\tag{7.9}
 \end{align}
 </script>
 </p>
@@ -3712,20 +3712,20 @@ Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
 <p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-G(x)=\sign[x^T\beta+\beta_0]\qquad (12.2)
+G(x)=\sign[x^T\beta+\beta_0]\tag{12.2}
 </script>
 </p>
 </div>
 <p>则可以证明类别函数${G(x),\Vert\beta\Vert\le A}$的VC维$h$满足</p>
 <p>
 <script type="math/tex; mode=display">
-h\le R^2A^2\qquad (12.50)
+h\le R^2A^2\tag{12.50}
 </script>
 </p>
 <p>如果$f(x)$分离训练数据，对于$\Vert \beta\Vert\le A$是最优的，则在训练集上至少有概率$1-\eta$满足</p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm{Error}_{\mathrm{Test}}\le 4\frac{h[\log(2N/h)+1]-\log(\eta/4)}{N}\qquad (12.51)
+\mathrm{Error}_{\mathrm{Test}}\le 4\frac{h[\log(2N/h)+1]-\log(\eta/4)}{N}\tag{12.51}
 </script>
 </p>
 <p>支持向量分类器是第一个可以得到VC维的有效界的实际学习过程，因此SRM程序可以运行。然而，在推导的时候，依赖特征的观测值，称为“balls are put around the data points”。因此在严格意义上，类别的VC复杂度不是在知道特征之前预先固定的。</p>
