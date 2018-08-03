@@ -3,6 +3,7 @@ install:
   - pip install mkdocs
   - pip install mkdocs-material
   - pip install pymdown-extensions
+  - pip install mdx_math
 script:
   - mkdocs build --verbose --clean
 deploy:
