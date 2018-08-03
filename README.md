@@ -1,6 +1,6 @@
 # ESL-CN 
 
-![](https://img.shields.io/badge/update-daily-brightgreen.svg) [![](https://img.shields.io/badge/sina-sync-brightgreen.svg)](https://weibo.com/5615090129/profile?profile_ftype=1&is_all=1#_0)
+[![Build Status](https://travis-ci.org/szcf-weiya/ESL-CN.svg?branch=master)](https://travis-ci.org/szcf-weiya/ESL-CN) 
 
 The Elements of Statistical Learning (ESL) 的中文翻译、代码实现及其习题解答。
 
