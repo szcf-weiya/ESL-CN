@@ -4,7 +4,7 @@ install:
   - pip install mkdocs-material
   - pip install pymdown-extensions
 script:
-  - mkdocs build --verbose --clean --strict
+  - mkdocs build --verbose --clean
 deploy:
   provider: pages
   skip-cleanup: true
