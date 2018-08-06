@@ -3279,7 +3279,7 @@ ASR(\{\theta_\ell,\eta_\ell\}^{\ell=1}^L)=\frac 1N\sum\limits_{\ell=1}^L[\sum\li
 <p>FDA 模型采用自适应的可加样条回归函数来对 $\eta_\ell(x)$ 建模，并且在右图中的点有坐标 $\hat\eta_1(x_i)$ 和 $\hat\eta_2(x_i)$。在 S-PLUS 用的程序叫做 <code>bruto</code>，因此有了图的标题以及表格中的名称。我们看到这种情形下灵活模型帮助分离类别。表 12.3 展示了一系列分类技巧的训练误差和测试误差。FDA/MARS 指的是 Friedman 的多元自适应回归样条；degree = 2 表明允许成对交叉项。注意到对于 FDA/MARS，最优的分类记过是在降维后的子空间中得到的。</p>
 <p><img alt="" src="../../img/12/tab12.3.png" /></p>
 <h2 id="fda">计算 FDA 估计<a class="headerlink" href="#fda" title="Permanent link">&para;</a></h2>
-<p>FDA 坐标的计算在许多重要的情形中可以简化，特别是当非参回归过程可以表示成线性算子的情形。我们将这种算子用 $\mathbf S_\lambda$ 表示，也就是 $\hat{\mathbf y}=\mathbf S_\lambda\mathbf y$，其中 $\mathbf y$ 是响应变量向量，而 $\hat {\mathbf y}$ 是拟合的向量。可加样条有这样的性质，如果固定光滑参数，MARS 也会一次性选出基函数。下标 $\lambda$ 表示整个光滑参数集。在这种情形中，最优得分等价于典则相关系数问题，并且解可以通过单特征值分解进行求解。这在<a href="https://github.com/szcf-weiya/ESL-CN/issues/156">练习 12.6</a> 中有讨论，并且得到的算法展现在这里。</p>
+<p>FDA 坐标的计算在许多重要的情形中可以简化，特别是当非参回归过程可以表示成线性算子。我们将这种算子用 $\mathbf S_\lambda$ 表示，也就是 $\hat{\mathbf y}=\mathbf S_\lambda\mathbf y$，其中 $\mathbf y$ 是响应变量向量，而 $\hat {\mathbf y}$ 是拟合值的向量。如果固定光滑参数，可加样条有这样的性质，如果 MARS 一次性选出基函数，它也有这个性质。下标 $\lambda$ 表示整个光滑参数集。在这种情形中，最优得分等价于典则相关系数问题，并且解可以通过单特征值分解进行求解。这在<a href="https://github.com/szcf-weiya/ESL-CN/issues/156">练习 12.6</a> 中有讨论，并且将得到的算法展现在这里。</p>
 <p>我们从响应变量 $g_i$ 构造一个 $N\times K$ 的指示变量响应矩阵 $\mathbf Y$，使得若 $g_i=k$ 则 $y_{ik}=1$，否则 $y_{ik}=0$。对于五类别的问题 $\mathbf Y$ 形式可能如下：</p>
 <p><img alt="" src="../../img/12/cl5example.png" /></p>
 <p>计算步骤如下：</p>
