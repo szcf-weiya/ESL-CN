@@ -1,7 +1,7 @@
 language: python
 install:
   - pip install mkdocs==0.17.2
-  - pip install mkdocs-material==2.9.4
+  - pip install mkdocs-material==2.5.2
   - pip install pymdown-extensions
   - pip install python-markdown-math
 script:
