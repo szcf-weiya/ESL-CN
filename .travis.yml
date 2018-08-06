@@ -5,7 +5,7 @@ install:
   - pip install pymdown-extensions
   - pip install python-markdown-math
 script:
-  - mkdocs build --clean
+  - mkdocs build
 deploy:
   provider: pages
   skip-cleanup: true
