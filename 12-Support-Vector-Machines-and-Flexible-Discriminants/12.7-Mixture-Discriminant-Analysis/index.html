@@ -15,7 +15,7 @@
         <meta name="description" content="The Elements of Statistical Learning(ESL) 的中文笔记、代码实现以及习题解答">
       
       
-        <link rel="canonical" href="https://esl.hohoweiya.xyz/06-Kernel-Smoothing-Methods/6.6-Kernel-Density-Estimation-and-Classification/index.html">
+        <link rel="canonical" href="https://esl.hohoweiya.xyz/12-Support-Vector-Machines-and-Flexible-Discriminants/12.7-Mixture-Discriminant-Analysis/index.html">
       
       
         <meta name="author" content="szcf-weiya">
@@ -48,7 +48,7 @@
     
     
       
-        <title>6.6 核密度估计和分类 - ESL CN</title>
+        <title>12.7 混合判别分析 - ESL CN</title>
       
     
     
@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#127" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -148,7 +148,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                6.6 核密度估计和分类
+                12.7 混合判别分析
               </span>
             
           
@@ -452,12 +452,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       上篇
@@ -1049,12 +1047,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
     
     <label class="md-nav__link" for="nav-2-6">
       6 核光滑方法
@@ -1072,7 +1068,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.0-Introduction/index.html" title="6.0 导言" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.0-Introduction/index.html" title="6.0 导言" class="md-nav__link">
       6.0 导言
     </a>
   </li>
@@ -1084,7 +1080,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.1-One-Dimensional-Kernel-Smoothers/index.html" title="6.1 一维核光滑器" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.1-One-Dimensional-Kernel-Smoothers/index.html" title="6.1 一维核光滑器" class="md-nav__link">
       6.1 一维核光滑器
     </a>
   </li>
@@ -1096,7 +1092,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.2-Selecting-the-Width-of-the-Kernel/index.html" title="6.2 选择核的宽度" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.2-Selecting-the-Width-of-the-Kernel/index.html" title="6.2 选择核的宽度" class="md-nav__link">
       6.2 选择核的宽度
     </a>
   </li>
@@ -1108,7 +1104,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.3-Local-Regression-in-Rp/index.html" title="6.3 $\IR^p$中的局部回归" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.3-Local-Regression-in-Rp/index.html" title="6.3 $\IR^p$中的局部回归" class="md-nav__link">
       6.3 $\IR^p$中的局部回归
     </a>
   </li>
@@ -1120,7 +1116,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.4-Structured-Local-Regression-Models-in-Rp/index.html" title="6.4 $\IR^p$中的结构化局部回归模型" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.4-Structured-Local-Regression-Models-in-Rp/index.html" title="6.4 $\IR^p$中的结构化局部回归模型" class="md-nav__link">
       6.4 $\IR^p$中的结构化局部回归模型
     </a>
   </li>
@@ -1132,7 +1128,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.5-Local-Likelihood-and-Other-Models/index.html" title="6.5 局部似然和其他模型" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.5-Local-Likelihood-and-Other-Models/index.html" title="6.5 局部似然和其他模型" class="md-nav__link">
       6.5 局部似然和其他模型
     </a>
   </li>
@@ -1142,67 +1138,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        6.6 核密度估计和分类
-      </label>
-    
-    <a href="index.html" title="6.6 核密度估计和分类" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../06-Kernel-Smoothing-Methods/6.6-Kernel-Density-Estimation-and-Classification/index.html" title="6.6 核密度估计和分类" class="md-nav__link">
       6.6 核密度估计和分类
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="核密度估计" class="md-nav__link">
-    核密度估计
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="核密度分类" class="md-nav__link">
-    核密度分类
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="朴素贝叶斯分类器" class="md-nav__link">
-    朴素贝叶斯分类器
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1212,7 +1152,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.7-Radial-Basis-Functions-and-Kernels/index.html" title="6.7 径向基函数和核" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.7-Radial-Basis-Functions-and-Kernels/index.html" title="6.7 径向基函数和核" class="md-nav__link">
       6.7 径向基函数和核
     </a>
   </li>
@@ -1224,7 +1164,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html" title="6.8 混合模型的密度估计和分类" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html" title="6.8 混合模型的密度估计和分类" class="md-nav__link">
       6.8 混合模型的密度估计和分类
     </a>
   </li>
@@ -1236,7 +1176,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../6.9-Computational-Consoderations/index.html" title="6.9 计算上的考虑" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/6.9-Computational-Consoderations/index.html" title="6.9 计算上的考虑" class="md-nav__link">
       6.9 计算上的考虑
     </a>
   </li>
@@ -1248,7 +1188,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../../06-Kernel-Smoothing-Methods/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -1268,10 +1208,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       中篇
@@ -2043,10 +1985,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" checked>
     
     <label class="md-nav__link" for="nav-3-6">
       12 支持向量机和灵活的判别方法
@@ -2064,7 +2008,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html" title="12.1 导言" class="md-nav__link">
+    <a href="../12.1-Introduction/index.html" title="12.1 导言" class="md-nav__link">
       12.1 导言
     </a>
   </li>
@@ -2076,7 +2020,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html" title="12.2 支持向量分类器" class="md-nav__link">
+    <a href="../12.2-The-Support-Vector-Classifier/index.html" title="12.2 支持向量分类器" class="md-nav__link">
       12.2 支持向量分类器
     </a>
   </li>
@@ -2088,7 +2032,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html" title="12.3 支持向量机和核" class="md-nav__link">
+    <a href="../12.3-Support-Vector-Machines-and-Kernels/index.html" title="12.3 支持向量机和核" class="md-nav__link">
       12.3 支持向量机和核
     </a>
   </li>
@@ -2100,7 +2044,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.4-Generalizing-Linear-Discriminant-Analysis/index.html" title="12.4 广义线性判别分析" class="md-nav__link">
+    <a href="../12.4-Generalizing-Linear-Discriminant-Analysis/index.html" title="12.4 广义线性判别分析" class="md-nav__link">
       12.4 广义线性判别分析
     </a>
   </li>
@@ -2112,7 +2056,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.5-Flexible-Disciminant-Analysis/index.html" title="12.5 FDA" class="md-nav__link">
+    <a href="../12.5-Flexible-Disciminant-Analysis/index.html" title="12.5 FDA" class="md-nav__link">
       12.5 FDA
     </a>
   </li>
@@ -2124,7 +2068,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.6-Penalized-Discriminant-Analysis/index.html" title="12.6 PDA" class="md-nav__link">
+    <a href="../12.6-Penalized-Discriminant-Analysis/index.html" title="12.6 PDA" class="md-nav__link">
       12.6 PDA
     </a>
   </li>
@@ -2134,11 +2078,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.7-Mixture-Discriminant-Analysis/index.html" title="12.7 混合判别分析" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+    <a href="index.html" title="12.7 混合判别分析" class="md-nav__link md-nav__link--active">
       12.7 混合判别分析
     </a>
+    
   </li>
 
         
@@ -2148,7 +2101,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
+    <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-nav__link">
       文献笔记
     </a>
   </li>
@@ -3213,40 +3166,6 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="核密度估计" class="md-nav__link">
-    核密度估计
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="核密度分类" class="md-nav__link">
-    核密度分类
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="朴素贝叶斯分类器" class="md-nav__link">
-    朴素贝叶斯分类器
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
-            Comments
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3258,12 +3177,12 @@
               
                 
                 
-                <h1 id="_1">核密度估计和分类<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+                <h1 id="127">12.7 混合判别分析<a class="headerlink" href="#127" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=446">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3273,81 +3192,44 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-03-04：2017-03-04</td>
+<td>2018-08-08</td>
 </tr>
 </tbody>
 </table>
-<p>核密度估计是非监督学习过程，在历史上先于核回归。这也很自然地得到非参分类过程的简单族。</p>
-<h2 id="_2">核密度估计<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>假设我们从概率密度$f_X(x)$中取随机样本$x_1,x_2,\ldots,x_N$，并且我们希望估计$x_0$处的$f_X$。为了简化，我们现在假设$X\in R$。与前面一样，一个自然的局部估计有如下形式
-<script type="math/tex; mode=display">
-\hat f_X(x_0)=\frac{\#x_i\in \cal N(x_0)}{N\lambda}\tag{6.21}
-</script>
-其中$\cal N(x_0)$为 $x_0$附近的宽度为$\lambda$的小度量邻域。这个估计非常振荡，并且偏向于光滑的Parzen估计
-<script type="math/tex; mode=display">
-\hat f(x_0)=\frac{1}{N\lambda}\sum\limits_{i=1}^NK_\lambda(x_0,x_i)\tag{6.22}
-</script>
-因为它统计离$x_0$近的观测，并且观测的权重系数随着到$x_0$的距离而减小。这种情形下$K_\lambda$受欢迎的选择是高斯核$K_\lambda(x_0,x)=\phi(\vert x-x_0\vert/\lambda)$。图6.13显示了根据CHD群中systolic blood pressure的样本值来拟合高斯核密度。令$\phi_\lambda$为均值为0标准误差为$\lambda$的高斯密度，则(6.22)有如下形式
-<script type="math/tex; mode=display">
-\begin{align}
-\hat f_X(x)& = \frac{1}{N}\sum\limits_{i=1}^N\phi_\lambda(x-x_i)\\
-&=(\hat F\star\phi_\lambda)(x)\qquad\tag{6.23}
-\end{align}
-</script>
-</p>
-<p>样本分布$\hat F$和 $\phi_\lambda$的卷积。分布$\hat F(x)$在每个观测$x_i$处赋予$1/N$的权重，并且是跳跃的；在$\hat f_X(x)$中我们已经对每个观测$x_i$加上独立高斯噪声来光滑$\hat F$.</p>
-<p>Parzen密度估计是局部平均的等价，并且与局部回归一起提出了改进[在密度的对数尺度；见Loader(1999)]。我们这里不继续讨论这些。在$R^p$中， 高斯密度的自然泛化意味着在（6.23）中使用高斯积的核，</p>
+<p>线性判别分析可以看成是 <strong>原型 (prototype)</strong> 分类器。每个类别都由其形心表示，并且使用某种合适的度量，将其分到最近的形心处。在许多情形下，单个原型不足以表示不均匀的类别，而混合模型是更合适的。在这节中，我们回顾高斯混合模型，并且展示怎么从之前讨论的 FDA 和 PDA 中推广得到。第 $k$ 类别的高斯混合模型密度为</p>
 <p>
 <script type="math/tex; mode=display">
-\hat f_X(x_0)=\frac{1}{N(2\lambda^2\pi)^{p/2}}\sum\limits_{i=1}^Ne^{-\frac{1}{2}(\Vert x_i-x_0\Vert/\lambda)^2}\tag{6.24}
+P(X\mid G=k)=\sum\limits_{r=1}^{R_k}\pi_{kr}\phi(X;\mu_{kr},\mathbf\Sigma),\tag{12.59}
 </script>
 </p>
-<h2 id="_3">核密度分类<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>利用贝叶斯定理采用直接方式来对分类做非参数密度估计。假设对于$J$个分类的问题，我们对每个类别拟合非参密度估计$\hat f_j(X),j=1,\ldots,J$，并且我们有类别先验概率$\hat \pi_j$的估计（通常是样本比例）。接着
-<script type="math/tex; mode=display">
-\widehat{Pr}(G=j\mid X=x_0)=\frac{\hat \pi_j\hat f_j(x_0)}{\sum_{k=1}^J\hat\pi_k\hat f_k(x_0)}\tag{6.25}
-</script>
-</p>
-<p>图6.14应用这个方法在心脏风险因子研究中估计CHD的患病率，并且应该与图6.12的左图进行比较。主要的差异出现在图6.14中右图的高SBP区域。这个区域中对于两个类别的数据都是稀疏的，并且因为高斯核密度估计采用度量核，所以密度估计在其他区域中是低的并且不好（高方差）。局部逻辑斯蒂回归方法（6.20）采用$k$-NN带宽的三次立方核；这有效地拓宽了这个区域中的核，并且利用局部线性假设来对估计进行光滑（在逻辑斯蒂尺度上）。</p>
-<p><img alt="" src="../../img/06/fig6.14.png" /></p>
-<blockquote>
-<p>左图显示了在CHD和no-CHD群体中systolic blood preesure的两个独立的密度估计，每个都采用高斯核估计。右图显示了用（6.25）估计的CHD的后验概率。</p>
-</blockquote>
-<p>如果分类是最终的目标，则很好地学习单独的类别密度可能不是必要的，并且可以实际上有误导。图6.15显示了密度都是多模式的，但是后验比例非常光滑。在从数据中学习单独的密度，可能考虑设置一个更粗糙，高方差的拟合来捕捉这些特征，这与估计后验概率的目的是不相关的。实际上，如果分类是最终目标，我们仅仅需要估计在判别边界附近的后验（对于两个类别，是集合$\{x\mid Pr(G=1\mid X=x)=\frac{1}{2}\}$）</p>
-<p><img alt="" src="../../img/06/fig6.15.png" /></p>
-<blockquote>
-<p>总体类别的密度可能会有有趣的结构（左图），但是这种结构会在后验概率中消失（右图）。</p>
-</blockquote>
-<h2 id="_4">朴素贝叶斯分类器<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>这是这些年仍然流行的技巧，尽管它的名字（也称为“白痴的贝叶斯”！）当特征空间的维数$p$很高，这种方式特别合适，使得密度估计不再吸引人。朴素贝叶斯模型假设给定类别$G=j$，特征$X_k$是独立的:</p>
+<p>其中混合比例 $\pi_{kr}$ 和为 $1$。第 $k$ 类有 $R_k$ 个原型，并且在我们的情形中，始终采用相等的协方差作为度量。对每个类别给定这样一个模型，类别后验概率由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
-f_j(X)=\prod\limits_{k=1}^pf_{jk}(X_k)\tag{6.26}
+P(G=k\mid X=x)=\frac{\sum_{r=1}^{R_k}\pi_{kr}\phi(X;\mu_{kr},\mathbf \Sigma)\Pi_k}{\sum_{\ell=1}^K\sum_{r=1}^{R_\ell}\pi_{\ell r}\phi(X;\mu_{\ell r},\mathbf \Sigma)\Pi_\ell}\tag{12.60}
 </script>
 </p>
-<p>尽管这个假设一般是不对的，但是确实很大程度上简化了估计：</p>
+<p>其中 $\Pi_k$ 表示类别的先验概率。</p>
+<p>我们在第 8 章看到两个组分的特殊情形的计算。如 LDA 中一样，我们通过极大似然估计参数，采用如下基于 $P(G,X)$ 的联合对数似然：</p>
+<p>
+<script type="math/tex; mode=display">
+\sum\limits_{k=1}^K\sum\limits_{g_i=k}\log\Big[\sum\limits_{r=1}^{R_k}\pi_{kr}\phi(x_i;\mu_{kr},\mathbf \Sigma)\Pi_k\Big]\tag{12.61}
+</script>
+</p>
+<p>如果直接处理对数中的和，会变成很复杂的优化问题。计算混合分布的极大似然估计的经典的、自然的方法是 EM 算法 (Dempster et al., 1977)，它具有良好的收敛性质。EM 在下面两步间轮换：</p>
 <ul>
-<li>单独的类别条件的边缘密度$f_{jk}$可以采用一维核密度估计分别估计出来。这实际上是原始朴素贝叶斯过程的泛化，采用单变量高斯分布来表示这些边缘密度。</li>
-<li>如果$X$的组分$X_j$是离散的，则可以使用合适的直方图估计。这提供了在特征向量中混合变量类型的完美方式。</li>
-</ul>
-<p>尽管这些假设过于乐观，朴素贝叶斯分类器经常比更复杂的分类器做得更好。原因与图6.15相关：尽管单独的类别密度估计可能是有偏的，但这个偏差或许不会对后验概率不会有太大的影响，特别是在判别区域附近。实际上，这个问题或许可以承受为了节省方差造成的相当大的偏差，比如“天真的”假设得到的。</p>
-<p>从(6.26)开始我们可以导出逻辑斯蒂变换（采用类别$J$作为基底）：</p>
-<p>
+<li>E-step：给定当前的参数，对类别 $k$ 的每个观测 ($g_i=k$) 计算类别 $k$ 的子类 $c_{kr}$ 的 responsibility：
 <script type="math/tex; mode=display">
-\begin{align}
-log\frac{Pr(G=\ell\mid X)}{Pr(G=J\mid X)}&=log\frac{\pi_\ell f_\ell(X)}{\pi_Jf_J(X)}\\
-&=log\frac{\pi_\ell\prod_{k=1}^pf_{\ell k}(X_k)}{\pi_J\prod_{k=1}^pf_{Jk}(X_k)}\\
-&=log\frac{\pi_\ell}{\pi_J}+\sum\limits_{k=1}^plog\frac{f_{\ell k}(X_k)}{f_{Jk}(X_k)}\\
-&=\alpha_\ell + \sum\limits_{k=1}^pg_{\ell k}(X_k)
-\end{align}
-\tag{6.27}
+W(c_{kr}\mid x_i, g_i)=\frac{\pi_{kr}\phi(x_i;\mu_{kr},\mathbf \Sigma)}{\sum\limits_{\ell=1}^{R_k}\pi_{k\ell}\phi(x_i;\mu_{k\ell},\mathbf \Sigma)}.\tag{12.62}
 </script>
-</p>
-<p>这有广义加性模型的形式，更多细节将在第9章中描述。尽管模型以完全不同的方式来拟合；它们的差别将在练习6.9中探索。朴素贝叶斯和广义加性模型类比于线性判别分析和逻辑斯蒂回归（4.4.5节）</p>
-<div class="admonition note">
-<p class="admonition-title">weiya</p>
-<p>附上一个用朴素贝叶斯做文本分析的例子，<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/NaiveBayes">垃圾短信分类</a>。</p>
-</div>
+</li>
+<li>M-step: 采用 E-step 的权重，计算每个类别中每个高斯组分的参数的加权 MLE。</li>
+</ul>
+<p>在 E-step，算法将类别 $k$ 中的观测的单位权重赋给属于该类的不同子类。如果观测点离某个子类的形心很近，且离其它形心很远，则它会收到离该子类很近的权重。另一方面，如果观测点在两个子类中间则它会得到两个子类近似相等的权重。</p>
+<p>在 M-step，类别 $k$ 的观测使用 $R_k$ 次，来估计 $R_k$ 个组分密度中每一个的参数，对于每个组分由不同的权重。EM 算法在第 8 章中详细介绍。算法要求初始化，这可能有影响，因为混合模型一般都是多种模型。我们的软件（后面计算上的考虑一节中有提到）允许多种策略；这里我们描述默认的策略。用户提供每个类中子类的个数 $R_k$。在类别 $k$ 中，用多重随机起始点的 $k$ 均值聚类模型对数据进行拟合。这将观测值划分到 $R_k$ 个不相交的群中，其中构造了包含 $0$ 和 $1$ 的初始权重矩阵。</p>
+<p>我们对始终相等的组分协方差矩阵 $\mathbf\Sigma$ 的假设带来额外的简化；我们可以像 LDA 中一样在混合形式中结合秩的约束。为了理解这一点，回顾下 LDA 的一些事实（<a href="../../04-Linear-Methods-for-Classification/4.3-Linear-Discriminant-Analysis/index.html">4.3.3 节</a>）。rank-$L$ 的 LDA 拟合等价于高斯模型的极大似然拟合，其中每个类别中不同的均值向量约束到 $\IR^p$ 的 rank-$L$ 子空间（<a href="https://github.com/szcf-weiya/ESL-CN/issues/143">练习 4.8</a>）。我们可以从混合模型中继承这条性质，并且在满足在所有 $\sum_kR_k$ 个形心上的秩的约束的条件（$\mathrm{rank}{\mu_{k\ell}}=L$）下最大化对数似然 $(12.61)$。</p>
+<p>又一次可以用 EM 算法，并且 M-step 事实上是加权版本的 LDA，有 $R=\sum_{k=1}^KR_k$ 个类别。而且，我们可以采用之前一样的最优得分来解决加权 LDA 问题，使得我们在这一步可以使用 FDA 或者 PDA。可以预料，除了“类别”数可以增加，第 $k$ 类中的观测书面也会类似增加 $R_k$ 倍。事实证明如果线性算子用于最优得分回归不是这种情形。增广的响应变量矩阵 $\mathbf Y$ 折叠成模糊的响应矩阵 $\mathbf Z$，直觉上令人愉快。举个例子，假设有 $K=3$ 个类别，并且每个类中有 $R_k=3$ 个子类。则 $\mathbf Z$ 可能是</p>
+<p><img alt="" src="../../img/12/eq12.63.PNG" /></p>
+<p>其中类别 $k$ 行的元素对应 $W(c_{kr}\mid x,g_i)$。</p>
                 
                   
                 
@@ -3379,7 +3261,7 @@ log\frac{Pr(G=\ell\mid X)}{Pr(G=J\mid X)}&=log\frac{\pi_\ell f_\ell(X)}{\pi_Jf_J
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../6.5-Local-Likelihood-and-Other-Models/index.html" title="6.5 局部似然和其他模型" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../12.6-Penalized-Discriminant-Analysis/index.html" title="12.6 PDA" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -3388,19 +3270,19 @@ log\frac{Pr(G=\ell\mid X)}{Pr(G=J\mid X)}&=log\frac{\pi_\ell f_\ell(X)}{\pi_Jf_J
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                6.5 局部似然和其他模型
+                12.6 PDA
               </span>
             </div>
           </a>
         
         
-          <a href="../6.7-Radial-Basis-Functions-and-Kernels/index.html" title="6.7 径向基函数和核" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Bibliographic-Notes/index.html" title="文献笔记" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                6.7 径向基函数和核
+                文献笔记
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
