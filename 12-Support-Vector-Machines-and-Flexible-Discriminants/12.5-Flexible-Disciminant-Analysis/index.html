@@ -3266,7 +3266,7 @@ w_\ell = \frac{1}{r_\ell^2(1-r_\ell^2)}\tag{12.55}
 <p>这个结果的真正力量在于它所引用的泛化。我们可以用更灵活、非参的拟合来替换线性回归拟合 $\eta_\ell(x)=x^T\beta_\ell$，并且类似地达到比 LDA 更灵活的分类器。我们考虑了广义可加拟合，样条函数，MARS 模型以及类似的。在这种更一般的形式下，回归问题通过下面准则来定义</p>
 <p>
 <script type="math/tex; mode=display">
-ASR(\{\theta_\ell,\eta_\ell\}^{\ell=1}^L)=\frac 1N\sum\limits_{\ell=1}^L[\sum\limits_{i=1}^N(\theta_\ell(g_i)-\eta_\ell(x_i))^2+\lambda J(\eta_\ell)]\tag{12.56}
+ASR(\{\theta_\ell,\eta_\ell\}_{\ell=1}^L)=\frac 1N\sum\limits_{\ell=1}^L[\sum\limits_{i=1}^N(\theta_\ell(g_i)-\eta_\ell(x_i))^2+\lambda J(\eta_\ell)]\tag{12.56}
 </script>
 </p>
 <p>其中 $J$ 是关于某种形式的非参回归的合适的正则器，比如光滑样条，可加样条以及低阶 ANOVA 样条模型。其中也包括由核生成的函数类和相关惩罚，如 12.3.3 节中一样。</p>
@@ -3284,9 +3284,9 @@ ASR(\{\theta_\ell,\eta_\ell\}^{\ell=1}^L)=\frac 1N\sum\limits_{\ell=1}^L[\sum\li
 <p><img alt="" src="../../img/12/cl5example.png" /></p>
 <p>计算步骤如下：</p>
 <ol>
-<li>多元非参回归。在 $\mathbf X$ 上拟合一个 $\mathbf Y$ 的多响应，自适应的非参回归，得到拟合值 $\hat{\mathbf Y}$。令 $\mathbf S_\lambda$ 为拟合最终选择的模型的线性算子，并且 $\eta^*(x)$ 为拟合的回归函数的向量。</li>
-<li>最优得分。计算 $\mathbf Y^T\hat{\mathbf Y}=\mathbf Y^T\mathbf S_\lambda\mathbf Y$，其中特征向量 $\mathbf \Theta$ 是标准化的：$\mathbf \Theta^T\mathbf D_\pi\mathbf \Theta = \mathbf I$。这里 $\mathbf D_\pi = \mathbf Y^T\mathbf Y/N$ 是类别先验概率的对角阵。</li>
-<li>采用最优得分 $\eta(x)=\mathbf\Theta^T\eta*(x)$ 从第一步更新模型。</li>
+<li><strong>多元非参回归 (Multivariate nonparametric regression)</strong>。在 $\mathbf X$ 上拟合 $\mathbf Y$ 的多响应、自适应的非参回归，得到拟合值 $\hat{\mathbf Y}$。令 $\mathbf S_\lambda$ 为拟合最终选择的模型的线性算子，并且 $\eta^*(x)$ 为拟合的回归函数的向量。</li>
+<li><strong>最优得分 (Optimal scores)</strong>。计算 $\mathbf Y^T\hat{\mathbf Y}=\mathbf Y^T\mathbf S_\lambda\mathbf Y$ 的特征值分解，其中特征向量 $\mathbf \Theta$ 是标准化的：$\mathbf \Theta^T\mathbf D_\pi\mathbf \Theta = \mathbf I$。这里 $\mathbf D_\pi = \mathbf Y^T\mathbf Y/N$ 是类别先验概率的对角阵。</li>
+<li><strong>更新 (Update)</strong>。采用最优得分 $\eta(x)=\mathbf\Theta^T\eta^*(x)$ 从第一步更新模型。</li>
 </ol>
 <p>$\eta(x)$ 中 $K$ 个函数的第一个函数是常值函数——平凡解；剩下的 $K-1$ 个函数是判别函数。常值函数以及标准化使得所有剩下的函数都进行了中心化。</p>
 <p>再一次，$\mathbf S_\lambda$ 可以对应任意回归方法。当 $\mathbf S_\lambda=\mathbf H_X$，也就是等于线性回归投影算子，则 FDA 是线性判别分析。我们在本章后面的“计算上的考虑”一节中引用的软件充分利用了这个模块；<code>fda</code> 函数有个 <code>method=</code> 变量允许应用任意回归函数，只要函数满足一些很自然的条件。我们提供的回归函数允许多项式回归，自适应可加模型以及 MARS。它们都能有效地处理多重响应的情形，所以第 (1) 步是简单的调用回归程序。第 (2) 步中的特征值分解同时计算了所有的最优得分函数。</p>
