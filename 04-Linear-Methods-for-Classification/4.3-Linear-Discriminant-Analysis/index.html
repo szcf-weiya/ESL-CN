@@ -3439,9 +3439,9 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <p>这里 $\mathbf B$，$\mathbf W$ 和 $\mathbf T$ 均忽略掉了自由度。若有 $N$ 个观测，$K$ 个类别，且 $\bar x_i,\,\bar x,\,\bar x_{ij}$ 均为 $p$ 维向量，则有
 <script type="math/tex; mode=display">
 \begin{align}
-\mathbf B &= \sum\limits_{i=1}^K(\bar x_i-\bar x)(\bar x_i-\bar x)'\notag\\
+\mathbf B &= \sum\limits_{i=1}^Kn_i(\bar x_i-\bar x)(\bar x_i-\bar x)'\notag\\
 \mathbf W &= \sum\limits_{i=1}^K\sum\limits_{j=1}^{n_i}(x_{ij}-\bar x_i)(x_{ij}-\bar x_i)'\notag\\
-\mathbf T &= \sum\limits_{i=1}^N(x_{ij}-\bar x)(x_{ij}-\bar x)'\notag
+\mathbf T &= \sum\limits_{i=1}^K\sum\limits_{j=1}^{n_i}(x_{ij}-\bar x)(x_{ij}-\bar x)'\notag
 \end{align}
 </script>
 它们自由度分别为 $K-1$，$N-K$ 和 $N-1$，易证 $\mathbf{T=B+W}$。</p>
