@@ -133,6 +133,7 @@ pages:
       - 12.5 FDA: '12-Support-Vector-Machines-and-Flexible-Discriminants/12.5-Flexible-Disciminant-Analysis.md'
       - 12.6 PDA: '12-Support-Vector-Machines-and-Flexible-Discriminants/12.6-Penalized-Discriminant-Analysis.md'
       - 12.7 混合判别分析: '12-Support-Vector-Machines-and-Flexible-Discriminants/12.7-Mixture-Discriminant-Analysis.md'
+      - 计算上的考虑: '12-Support-Vector-Machines-and-Flexible-Discriminants/Computational-Considerations.md'
       - 文献笔记: '12-Support-Vector-Machines-and-Flexible-Discriminants/Bibliographic-Notes.md'
 
   - 下篇:
