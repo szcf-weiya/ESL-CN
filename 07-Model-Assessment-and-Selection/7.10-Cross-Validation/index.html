@@ -3346,6 +3346,30 @@
 <blockquote>
 <p>图7.9. 预测误差（橘黄色）和从单个训练集估计的10折交叉验证曲线（蓝色），来自图7.3中右下图的情形。</p>
 </blockquote>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：one standard error rule</p>
+<p>首先定义，对于 $k=1,\ldots,K$，令
+<script type="math/tex; mode=display">
+\mathrm{CV}_k(\theta)=\frac{1}{n_k}\sum\limits_{\kappa(i)=k}(y_i-\hat f_\theta^{-k}(x_i))^2
+</script>
+然后计算<strong>样本标准偏差 (sample standard deviation)</strong>，
+<script type="math/tex; mode=display">
+\mathrm{SD}(\theta)=\sqrt{\mathrm{var}(\mathrm{CV}_1(\theta),\ldots, \mathrm{CV}_K(\theta))}
+</script>
+则<strong>标准误差 (standard error)</strong>为
+<script type="math/tex; mode=display">
+\mathrm{SE}(\theta)=\mathrm{SD}(\theta)/\sqrt{K}
+</script>
+在交叉验证中，当我们计算完
+<script type="math/tex; mode=display">
+\hat\theta=\underset{\theta\in\{\theta_1,\ldots,\theta_m\}}{\mathrm{argmin}}\;\mathrm{CV}(\theta)
+</script>
+可以采用 one standard error rule 选择最简单的模型（正则化强度最大的模型），也就是将 $\theta$ 往正则化程度增加的方向移动，直到下式不再成立
+<script type="math/tex; mode=display">
+\mathrm{CV}(\theta)\le \mathrm{CV}(\hat\theta)+\mathrm{SE}(\hat\theta)
+</script>
+<em>参考 <a href="http://www.stat.cmu.edu/~ryantibs/datamining/lectures/19-val2.pdf#page=6-7">Ryan Tibshirani, Slides for Model selection and validation</a></em>。</p>
+</div>
 <p>对于在平方误差损失下的线性拟合，广义交叉验证提供了舍一法交叉验证的一个方便的估计。正如在 7.6 节中定义的，线性拟合方法可以写成</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3366,8 +3390,8 @@
 </p>
 <p>$\trace(\mathbf S)$ 的值是有效参数个数，在<a href="../7.6-The-Effective-Number-of-Parameters/index.html"> 7.6 节</a>定义。</p>
 <p>GCV 在一些设定下有计算上的优点，其中 $\mathbf S$ 的迹计算起来比单个元素 $S_{ii}$ 更简单。在光滑问题中，GCV也可以减轻交叉验证趋向于<strong>欠光滑 (undersmooth) </strong>的趋势。GCV 和 AIC 的相似性可以从近似等式 $1/(1-x)^2\approx 1+2x$ 得到（<a href="https://github.com/szcf-weiya/ESL-CN/issues/92">练习 7.7</a>）。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注：Ex. 7.7</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 7.7</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
