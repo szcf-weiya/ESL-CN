@@ -3386,7 +3386,12 @@ J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\tag{16.4}
 \frac{\partial \alpha}{\partial \ell} = \rho^{ml}(\alpha(\ell))\tag{16.6}
 </script>
 </p>
-<p>其中初始条件为 $\alpha(0)=0$，其中 $\ell$ 是路径 $\alpha(\ell)$ 的 $L_1$ 弧长（<a href="https://github.com/szcf-weiya/ESL-CN/issues/153">练习 16.2</a>）。对于单调的 lasso，路径的 $L_1$ 弧长每增加一个单位，移动方向（速度矢量）便会以最优二次速率降低 $\rho^{ml}(\alpha(\ell))$ 的损失。因为 $\rho^{ml}(\alpha(\ell))\ge 0\;\forall k, \ell$，则解路径为单调的。</p>
+<p>以及初始条件为 $\alpha(0)=0$，其中 $\ell$ 是路径 $\alpha(\ell)$ 的 $L_1$ 弧长（<a href="https://github.com/szcf-weiya/ESL-CN/issues/153">练习 16.2</a>）。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 16.2</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/153">Issue 153: Ex. 16.2</a>。</p>
+</div>
+<p>对于单调的 lasso，路径的 $L_1$ 弧长每增加一个单位，移动方向（速度矢量）$\rho^{ml}(\alpha(\ell))$ 便会以最优二次速率降低损失。因为 $\rho^{ml}(\alpha(\ell))\ge 0\;\forall k, \ell$，则解路径为单调的。</p>
 <p>lasso 也可以类似表示成 (16.6) 式的微分方程的解，不同的是当路径的 $L_1$ 范数增加一个单位是，移动方向会最优地降低损失。结果使得它们不一定是正的，因此 lasso 路径不需要是单调的。</p>
 <p>在增广的字典中，限制参数为正的是很自然的，因为它避免了明显的矛盾。它也更自然与 tree boosting 联系在一起——我们总是发现树与当前残差正相关。</p>
 <p>有很多迹象表明 boosting 表现很好（对于二分类问题），因为它有 <strong>最大化边缘 (maximal-marginal)</strong> 的特点，很像 <a href="../../04-Linear-Methods-for-Classification/4.5-Separating-Hyperplanes/index.html">4.5.2 节</a>和 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">12 章</a>的支持向量机。Schapire et al. (1998)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 定义拟合模型 $f(x)=\sum_k\alpha_kT_k(x)$ 的标准化 $L_1$ margin 为</p>
