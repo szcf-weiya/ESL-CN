@@ -18,3 +18,4 @@ C5.0 (Quinlan, 2004[^5]) 是一个 committee 树和规则生成包，与 `Rulefi
 [^3]: MacKay, D. (1992). A practical Bayesian framework for backpropagation neural networks, Neural Computation 4: 448–472.
 [^4]: Neal, R. (1996). Bayesian Learning for Neural Networks, Springer, New York.
 [^5]: Quinlan, R. (2004). C5.0, www.rulequest.com
+[^6]: Kittler, J., Hatef, M., Duin, R. and Matas, J. (1998). On combining classifiers, IEEE Transaction on Pattern Analysis and Machine Intelligence 20(3): 226–239.
