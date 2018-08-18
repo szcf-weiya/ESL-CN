@@ -3342,7 +3342,7 @@
 <p><strong>岭回归 (Ridge regression)</strong> 根据回归系数的大小加上惩罚因子对它们进行收缩。岭回归的系数使得带惩罚的残差平方和最小</p>
 <p>
 <script type="math/tex; mode=display">
-\hat{\beta}^{ridge}=\underset{\beta}{\arg\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\beta_j^2\Big\}\qquad (3.41)
+\hat{\beta}^{ridge}=\underset{\beta}{\arg\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\beta_j^2\Big\}\tag{3.41}
 </script>
 </p>
 <p>这里$\lambda\ge 0 $是控制收缩程度的参数：$\lambda$值越大，收缩的程度越大。每个系数都向零收缩。<!--系数向零收缩（并且彼此收缩到一起）。-->通过参数的平方和来惩罚的想法也用在了神经网络，也被称作<strong>权重衰减 (weight decay)</strong>（<a href="../../11-Neural-Networks/11.3-Neural-Networks/index.html">第 11 章</a>）。</p>
@@ -3353,7 +3353,7 @@
 \hat{\beta}^{ridge}&=\underset{\beta}{\arg\min}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2\\\
 & \text{subject to }\sum\limits_{j=1}^p\beta_j^2 \le t
 \end{align}
-\qquad (3.42)
+\tag{3.42}
 </script>
 </p>
 <p>上式用参数显式表达了对回归参数大小的约束。(3.41) 中的 $\lambda$ 和 (3.42) 中的 $t$ 存在一一对应。当在线性回归模型中有许多相关变量，它们的系数可能很难确定且有高方差。某个变量的较大的正系数可以与相关性强的变量的差不多大的负系数相互抵消。通过对系数加入大小限制，如 (3.42)，这个问题能得以减轻。</p>
@@ -3369,13 +3369,13 @@
 <p>将 (3.41) 的准则写成矩阵形式</p>
 <p>
 <script type="math/tex; mode=display">
-\RSS(\lambda)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)+\lambda\beta^T\beta \qquad (3.43)
+\RSS(\lambda)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)+\lambda\beta^T\beta \tag{3.43}
 </script>
 </p>
 <p>可以简单地看出岭回归的解为</p>
 <p>
 <script type="math/tex; mode=display">
-\hat{\beta}^{ridge}=(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}\qquad (3.44)
+\hat{\beta}^{ridge}=(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}\tag{3.44}
 </script>
 </p>
 <p>其中 $\mathbf{I}$ 为 $p\times p$ 的单位矩阵。注意到选择二次函数惩罚 $\beta^T\beta$，岭回归的解仍是 $\mathbf{y}$ 的线性函数。解在求逆之前向矩阵 $\mathbf{X^TX}$ 的对角元上加入正的常数值。即使 $\mathbf{X^TX}$ 不是满秩，这样会使得问题非奇异，而且这是第一次将岭回归引入统计学中 (Hoerl and Kennard, 1970<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）的主要动力。传统的岭回归的描述从定义 (3.44) 开始。我们选择通过 (3.41) 和 (3.42) 来阐述，因为这两式让我们看清楚了它是怎样实现的。</p>
@@ -3424,7 +3424,7 @@
 <p>中心化输入矩阵 $\mathbf{X}$ 的<strong>奇异值分解 (SVD)</strong> 让我们进一步了解了岭回归的本质。这个分解在许多统计方法分析中非常有用。$N\times p$ 阶矩阵 $\mathbf{X}$ 的 SVD 分解有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf{X=UDV^T}\qquad (3.45)
+\mathbf{X=UDV^T}\tag{3.45}
 </script>
 </p>
 <p>这里 $\mathbf{U}$ 和 $\mathbf{V}$ 分别是 $N\times p$ 和 $p\times p$ 的正交矩阵，$\mathbf{U}$的列张成 $X$ 的列空间，$\mathbf{V}$ 的列张成 $X$ 的行空间。$\mathbf{D}$ 为 $p\times p$ 的对角矩阵，对角元 $d_1\ge d_2 \ge \cdots \ge d_p \ge 0$ 称作 $\mathbf{X}$ 的奇异值。如果一个或多个 $d_j=0$，则 $\mathbf{X}$ 为奇异的。</p>
@@ -3482,7 +3482,7 @@ M=U_n\Sigma_nV^T
 <script type="math/tex; mode=display">
 \begin{align}
 \mathbf{X}\hat{\beta}^{ls}&=\mathbf{X(X^TX)^{-1}X^Ty}\\\
-&=\mathbf{UU^Ty}\qquad (3.46)
+&=\mathbf{UU^Ty}\tag{3.46}
 \end{align}
 </script>
 </p>
@@ -3497,7 +3497,7 @@ M=U_n\Sigma_nV^T
 \begin{align}
 \mathbf{X}\hat{\beta}^{ridge}&=\mathbf{X}(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X^Ty}\\\
 &= \mathbf{UD}(\mathbf{D^2}+\lambda \mathbf{I})^{-1}\mathbf{DU^Ty}\\\
-&= \sum\limits_{j=1}^p\mathbf{u}_j\dfrac{d_j^2}{d_j^2+\lambda}\mathbf{u_j^Ty}\qquad (3.47)
+&= \sum\limits_{j=1}^p\mathbf{u}_j\dfrac{d_j^2}{d_j^2+\lambda}\mathbf{u_j^Ty}\tag{3.47}
 \end{align}
 </script>
 </p>
@@ -3505,13 +3505,13 @@ M=U_n\Sigma_nV^T
 <p>$d_j^2$ 值小意味着什么？中心化后的矩阵 $\mathbf{X}$ 的奇异值分解是表示 $\mathbf{X}$ 中主成分变量的另一种方式。样本协方差矩阵为 $\mathbf{S=X^TX}/N$<!--$\mathbf{S={\color{red} E((X-EX)^T(X-EX))=}X^TX}/N$-->，并且从 (3.45) 式我们得到</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf{X^T X = VD^2V^T} \qquad (3.48)
+\mathbf{X^T X = VD^2V^T} \tag{3.48}
 </script>
 </p>
 <p>上式是 $\mathbf{X^TX}$（也是 $S$，取决于因子 $N$）的<strong>特征值分解 (eigen decomposition)</strong>。特征向量 $v_j$（$\mathbf{V}$ 的列向量）也称作 $\mathbf{X}$ 的<strong>主成分</strong>（或 Karhunen-Loeve）方向。第一主成分方向 $v_1$ 有下面性质：$\mathbf{z}_1=\mathbf{X}v_1$ 在所有 $\mathbf{X}$ 列的标准化线性组合中有最大的样本方差。样本方差很容易看出来是</p>
 <p>
 <script type="math/tex; mode=display">
-\Var(\mathbf{z}_1)=\Var(\mathbf{X}v_1)=\dfrac{d_1^2}{N}\qquad (3.49)
+\Var(\mathbf{z}_1)=\Var(\mathbf{X}v_1)=\dfrac{d_1^2}{N}\tag{3.49}
 </script>
 </p>
 <p>事实上 $\mathbf{z}_1=\mathbf{X}v_1=\mathbf{u}_1d_1$。导出变量 $\mathbf{z_1}$ 称作 $\mathbf{X}$ 的第一主成分，因此 $\mathbf{u_1}$ 是标准化的第一主成分。后面的主成分 $z_j$ 在与前一个保持正交的前提下有最大的方差 $d_j^2/N$。所以，最后一个主成分有最小的方差。因此最小的奇异值 $d_j$ 对应 $\mathbf{X}$ 列空间的最小方差的方向，并且岭回归在这些方向上收缩得最厉害。</p>
@@ -3526,7 +3526,7 @@ M=U_n\Sigma_nV^T
 \begin{align}
 \df(\lambda)&=\tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\
 &=\tr(\mathbf{H}_{\lambda})\\
-&=\sum\limits_{j=1}^p\dfrac{d_j^2}{d_j^2+\lambda}\qquad (3.50)
+&=\sum\limits_{j=1}^p\dfrac{d_j^2}{d_j^2+\lambda}\tag{3.50}
 \end{align}
 </script>
 </p>
@@ -3541,7 +3541,7 @@ M=U_n\Sigma_nV^T
 <script type="math/tex; mode=display">
 \begin{align}
 \hat{\beta}^{lasso}&=\underset{\beta}{\arg\min}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2\\\
-&\text{subject to }\sum\limits_{j=1}^p\vert\beta_j\vert\le t \qquad (3.51)
+&\text{subject to }\sum\limits_{j=1}^p\vert\beta_j\vert\le t \tag{3.51}
 \end{align}
 </script>
 </p>
@@ -3554,7 +3554,7 @@ M=U_n\Sigma_nV^T
 <p>我们也可以把 lasso 问题等价地写成<strong>拉格朗日形式 (Lagrangian form)</strong></p>
 <p>
 <script type="math/tex; mode=display">
-\hat{\beta}^{lasso}=\underset{\beta}{\arg\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert\Big\}\qquad (3.52)
+\hat{\beta}^{lasso}=\underset{\beta}{\arg\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert\Big\}\tag{3.52}
 </script>
 </p>
 <p>注意到这与岭回归问题 (3.42) 或 (3.41) 的相似性：$L_2$ 的岭回归惩罚 $\sum_1^p\beta^2_j$ 替换为 $L_1$ 的 lasso 惩罚$\sum_1^p\vert\beta_j\vert$。后一约束使得解在 $y_i$ 处非线性，并且在岭回归中没有相近的表达式。计算 lasso 的解是一个二次规划问题，尽管我们在 3.4.4 节看到当 $\lambda$ 不同时计算解的整个路径存在与岭回归同样计算量的有效算法。由于该约束的本质，令 $t$ 充分小会造成一些参数恰恰等于 0。因此 lasso 完成一个温和的连续子集选择。如果所选的 $t$ 大于$t_0=\sum_1^p\vert\hat{\beta}_j\vert$（其中 $\hat{\beta}_j=\hat{\beta}_j^{ls}$，$\hat{\beta}_j^{ls}$ 为最小二乘估计），则 lasso 估计为 $\hat{\beta}_j$。另一方面，当 $t=t_0/2$，最小二乘系数平均收缩 $50\%$。然而，收缩的本质不是很显然，我们将在 3.4.4 节进一步研究。类似在变量子集选择中子集的大小，或者岭回归的惩罚参数，应该自适应地选择 $t$ 使预测误差期望值的估计最小化。</p>
@@ -3579,7 +3579,7 @@ M=U_n\Sigma_nV^T
 </blockquote>
 <p>我们可以把岭回归和 lasso 一般化，并且可以看成是贝叶斯估计。考虑下面准则
 <script type="math/tex; mode=display">
-\tilde{\beta}=\underset{\beta}{\arg\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert^q\Big\}\qquad (3.53)
+\tilde{\beta}=\underset{\beta}{\arg\min}\Big\{\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2+\lambda\sum\limits_{j=1}^p\vert\beta_j\vert^q\Big\}\tag{3.53}
 </script>
 </p>
 <p>其中 $q\ge 0$。图 3.12 显示了两个输入情形下常数值 $\sum_j\vert\beta_j\vert^q$ 的等高线。</p>
@@ -3592,7 +3592,7 @@ M=U_n\Sigma_nV^T
 <p>再一次观察准则 (3.53)，我们可能尝试除 0，1，2 外的其它 $q$ 值。尽管有人可能从数据中估计 $q$，我们的经验表明引入额外的方差不值得。$q\in (1,2)$ 表明在 lasso 和岭回归之间进行权衡。当 $ q &gt; 1$ 时尽管 $\vert\beta_j\vert^q$ 在 0 处可导，但是并没有lasso（$q=1$）的令系数恰巧为零的性质。部分由于这个原因并且考虑计算易处理，Zou and Hastie (2005)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup> 引入弹性惩罚</p>
 <p>
 <script type="math/tex; mode=display">
-\lambda \sum\limits_{j=1}^p(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)\qquad (3.54)
+\lambda \sum\limits_{j=1}^p(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)\tag{3.54}
 </script>
 </p>
 <p>这是一种岭回归和 lasso之间的平衡。图 3.13 比较了 $q=1.2$ 下的 $L_q$ 惩罚以及 $\alpha=0.2$ 的弹性网惩罚；很难从肉眼来观察出差异。弹性网像 lasso 一样选择变量，同时像岭回归一样收缩相关变量的系数。同时考虑了 $L_q$ 惩罚的计算优势。我们将在 <a href="../../18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization/index.html">18.4节</a>介绍弹性网惩罚。</p>
@@ -3623,7 +3623,7 @@ M=U_n\Sigma_nV^T
 <p>假设 $\cal A_k$ 是第 $k$ 步开始时的变量活跃集，$\beta_{\cal A_k}$ 是这一步中变量的系数向量；其中有 $k-1$ 个非零值，刚刚进入的变量系数值为 0。如果当前残差为 $\mathbf r_k=\mathbf y-\mathbf X_{\cal A_k}\beta_{\cal A_k}$，则当前步的方向为</p>
 <p>
 <script type="math/tex; mode=display">
-\delta_k=(\mathbf X^T_{ \cal A_k}\mathbf X_{\cal A_k})^{-1}\mathbf X^T_{\cal A_k}\mathbf r_k \qquad (3.55)
+\delta_k=(\mathbf X^T_{ \cal A_k}\mathbf X_{\cal A_k})^{-1}\mathbf X^T_{\cal A_k}\mathbf r_k \tag{3.55}
 </script>
 </p>
 <p>然后系数迭代为 $\beta_{\cal A_k} (\alpha) = \beta_{\cal A_k} + \alpha · \delta_k$。<a href="https://github.com/szcf-weiya/ESL-CN/issues/100">练习 3.23</a> 证明这种方式下选择的方向满足断言：<strong>保持（各个预测变量与残差间的）相关系数相等和递减（tied and decreasing）</strong>。</p>
@@ -3657,25 +3657,25 @@ M=U_n\Sigma_nV^T
 <p>我们已经给出一个为什么这些过程很相似的启发式的论据。尽管 LAR 算法是用相关性来叙述的，但如果输入特征是标准化的，它与内积是等价的并且用内积更简单。假设 $\cal A$ 是算法中某些步的变量活跃集，它们与当前残差 $\mathbf y -\mathbf X\beta$ 的内积的绝对值是结合在一起的。我们可以表达成</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf x_j^T(\mathbf y-\mathbf X\beta)=\gamma\cdot s_j,\forall j\in {\cal A} \qquad (3.56)
+\mathbf x_j^T(\mathbf y-\mathbf X\beta)=\gamma\cdot s_j,\forall j\in {\cal A} \tag{3.56}
 </script>
 </p>
 <p>其中 $s_j\in\{-1,1\}$ 表示内积的符号，$\gamma$ 是普通的数值。并且 $\vert \mathbf x_k^T(\mathbf y-\mathbf X\beta)\vert\le \gamma\; \forall k\notin \cal A$。现在我们考虑 (3.52) 的 lasso 准则，我们可以写成向量形式</p>
 <p>
 <script type="math/tex; mode=display">
-R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Vert_1\qquad (3.57)
+R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Vert_1\tag{3.57}
 </script>
 </p>
 <p>令 $\cal B$ 为在给定 $\lambda$ 值下解中的变量的活跃集。对于这些变量 $R(\beta)$ 是可导的，并且<strong>平稳条件 (stationary condition)</strong> 为</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf x_j^T(\mathbf y-\mathbf X\beta)=\lambda\cdot \sign(\beta_j),\forall j\in {\cal B}\qquad (3.58)
+\mathbf x_j^T(\mathbf y-\mathbf X\beta)=\lambda\cdot \sign(\beta_j),\forall j\in {\cal B}\tag{3.58}
 </script>
 </p>
 <p>比较（3.58）和（3.56），我们看到只有当$\beta_j$的符号与内积的符号相同。这也就是为什么 LAR 算法和 lasso 当一个活跃系数经过零开始出现不同；对于不满足条件 (3.58) 的变量，会被踢出活跃集 $\cal B$。<a href="">练习 3.23</a> 证明了这些等式表明随$\lambda$ 减小的分段线性系数曲线。对于不活跃的变量的平稳条件要求</p>
 <p>
 <script type="math/tex; mode=display">
-\vert\mathbf x_k^T(\mathbf y-\mathbf X\beta)\vert\le\lambda,\forall k\notin{\cal B}\qquad (3.59)
+\vert\mathbf x_k^T(\mathbf y-\mathbf X\beta)\vert\le\lambda,\forall k\notin{\cal B}\tag{3.59}
 </script>
 </p>
 <p>这与 LAR 算法一致。</p>
@@ -3689,7 +3689,7 @@ R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Ver
 <p>首先考虑采用 $k$ 个特征的子集的线性回归。如果这个子集是没有通过训练数据而事先确定好的，然后在该拟合模型中的自由度定义为$k$。当然，在经典统计学中，线性独立参数的个数也就是自由度。另外地，假设我们用一个最优子集选择确定了最优的 $k$ 个预测变量。于是结果模型中有 $k$ 个参数，但在某种意义上我们用了大于 $k$ 个的自由度。</p>
 <p>我们需要一个对于自适应拟合模型的有效自由度的一般定义。我们定义拟合向量 $\hat{\mathbf y}=(\hat y_1,\hat y_2,\ldots,\hat y_N)$ 的自由度为
 <script type="math/tex; mode=display">
-\df(\hat{\mathbf y})=\frac{1}{\sigma^2}\sum\limits_{i=1}^N\Cov(\hat y_i,y_i)\qquad (3.60)
+\df(\hat{\mathbf y})=\frac{1}{\sigma^2}\sum\limits_{i=1}^N\Cov(\hat y_i,y_i)\tag{3.60}
 </script>
 这里 $\Cov(\hat y_i,y_i)$ 指的是预测值 $\hat y_i$ 和其对应的输出向量 $y_i$ 之间的协方差。直观上看有意义：当拟合数据越困难，协方差会越大，从而 $\df(\hat{\mathbf y})$ 越大。表达式（3.60）是一个有用的自由度的概念，可以应用到任何模型的预测向量 $\hat{\mathbf y}$。其中包括那些对训练数据自适应拟合的模型。这个定义将在 <a href="../../07-Model-Assessment-and-Selection/7.6-The-Effective-Number-of-Parameters/index.html">7.4-7.6 节</a> 中进一步讨论。</p>
 <p>现在对于有 $k$ 个固定预测变量的线性回归模型，可以简单地证明 $\df(\hat{\mathbf y})=k$。同样地，对于岭回归，这一定义导出表达式（3.50）的<strong>闭型解 (closed-form)</strong>：$\df(\hat{\mathbf{y}})=\tr(\mathbf S_\lambda)$。</p>

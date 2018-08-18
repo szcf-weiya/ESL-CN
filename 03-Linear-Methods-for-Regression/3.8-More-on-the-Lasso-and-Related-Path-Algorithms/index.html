@@ -3380,12 +3380,12 @@ $$
 <p>最小角回归过程探索了lasso解的路径分段线性的本质。这导出了其他正则化问题类似的“路径算法”。假设我们求解</p>
 <p>
 <script type="math/tex; mode=display">
-\hat \beta(\lambda)=\mathrm{argmin}_\beta[R(\beta)+\lambda J(\beta)]\qquad (3.76)
+\hat \beta(\lambda)=\mathrm{argmin}_\beta[R(\beta)+\lambda J(\beta)]\tag{3.76}
 </script>
 </p>
 <p>
 <script type="math/tex; mode=display">
-R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77)
+R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\tag{3.77}
 </script>
 </p>
 <p>其中损失函数$L$和惩罚函数$J$都是凸函数。则下面是解的路径$\hat\beta(\lambda)$为分段线性的充分条件(Rosset and Zhu, 2007)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup></p>
@@ -3398,13 +3398,13 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 <p>Candes and Tao (2007)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup> 提出下面的准则：</p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm{min}_\beta\Vert\beta\Vert_1\text{ subject to }\Vert \mathbf X^T(\mathbf y-\mathbf X\beta)\Vert_\infty\le s\qquad (3.78)
+\mathrm{min}_\beta\Vert\beta\Vert_1\text{ subject to }\Vert \mathbf X^T(\mathbf y-\mathbf X\beta)\Vert_\infty\le s\tag{3.78}
 </script>
 </p>
 <p>他们称这个解为Dantzig选择器(DS)。可以等价地写成</p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm{min}_\infty \Vert \mathbf X^T(\mathbf y-\mathbf X\beta)\Vert_\infty\text{ subject to } \Vert\beta\Vert\le t\qquad (3.79)
+\mathrm{min}_\infty \Vert \mathbf X^T(\mathbf y-\mathbf X\beta)\Vert_\infty\text{ subject to } \Vert\beta\Vert\le t\tag{3.79}
 </script>
 </p>
 <p>这里$\Vert\cdot\Vert_\infty$为$L_\infty$范数，也就是该向量中绝对值最大的组分。这种形式类似lasso，用梯度绝对值的最大值替换平方误差损失。注意到当$t$变大，如果$N&lt;p$两个过程都得到最小二乘解。如果$p\ge N$，它们都得到最小的$L_1$范数的最小二乘解。然而，对于较小的$t$，DS过程得到与lasso不同的解的路径。</p>
@@ -3414,7 +3414,7 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 <p>在一些问题中，预测变量属于预定义的群体中；举个例子，属于同一个生物路径的基因，或者表示类别型数据层次的指示变量（哑变量）。在这种情形中，或许想要对群体中每个成员一起进行收缩或者选择操作。grouped lasso便是一种实现方式。假设$p$个预测变量被分到$L$个群中，在第$\ell$个群中有$p_\ell$个成员。为了简便，我们采用矩阵$\mathbf X_\ell$来表示对应第$\ell$个群的预测变量，对应的系数向量为$\beta_\ell$。grouped-lasso最小化下列的凸准则</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta\in R^p}{\mathrm{min}}(\Vert \mathbf y-\beta_0\boldsymbol 1-\sum\limits_{\ell=1}^L\mathbf X_\ell\beta_\ell\Vert_2^2+\lambda \sum\limits_{\ell=1}^L\sqrt{p_\ell}\Vert \beta_\ell\Vert_2)\qquad (3.80)
+\underset{\beta\in R^p}{\mathrm{min}}(\Vert \mathbf y-\beta_0\boldsymbol 1-\sum\limits_{\ell=1}^L\mathbf X_\ell\beta_\ell\Vert_2^2+\lambda \sum\limits_{\ell=1}^L\sqrt{p_\ell}\Vert \beta_\ell\Vert_2)\tag{3.80}
 </script>
 </p>
 <p>其中$\sqrt{p_\ell}$项对应不同的群体大小，并且$\Vert\cdot\Vert_2$是欧几里得范数。因为一个向量$\beta_\ell$的欧式范数为0当且仅当其各组分都为0，这个过程保证了群体层次和个体水平的稀疏性。也就是，对于某些$\lambda$，预测变量的整个群体都排除在模型之外。这个过程由Bakin (1999)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>和Lin and Zhang (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>提出，以及Yuan and Lin (2007)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>的研究和推广。推广包括更一般的$L_2$范数$\Vert \eta\Vert=(\eta^TK\eta)^{1/2}$，并且允许重复的预测变量(Zhao et al., 2008<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)。拟合离散的可加模型的方法之间也有联系（Lin and Zhang, 2006<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Ravikumar et al., 2008<sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup>）</p>
@@ -3423,7 +3423,7 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 <p>许多这领域的结果对模型矩阵假设了如下条件</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{j\in \cal S^c}{\mathrm{max}}\Vert \mathbf x_j^T\mathbf X_{\cal S}(\mathbf X_{\cal S^T\mathbf X_{\cal S}})^{-1}\Vert_1\le (1-\epsilon)\text{ for some }\epsilon\in (0, 1]\qquad (3.81)
+\underset{j\in \cal S^c}{\mathrm{max}}\Vert \mathbf x_j^T\mathbf X_{\cal S}(\mathbf X_{\cal S^T\mathbf X_{\cal S}})^{-1}\Vert_1\le (1-\epsilon)\text{ for some }\epsilon\in (0, 1]\tag{3.81}
 </script>
 </p>
 <p>这里$\cal S$标记真实的潜在模型中非零系数特征的子集，$\mathbf X_{\cal S}$是$\mathbf X$中对应的这些特征的列。类似地，$\cal S^c$是真实系数为0的特征的集合，$\mathbf X_{\cal S^c}$是对应的列。这说明$\mathbf X_{\cal S^c}$的列在$\mathbf X_{\cal S}$上的最小二乘系数不会太大，也就是，“好”的变量$\cal S$与多余的变量$\cal S^c$直接不是高度相关。</p>
@@ -3431,7 +3431,7 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\qquad (3.77
 <p>另外，也可以修改lasso惩罚函数使得更大的系数收缩得不要太剧烈；Fan and Li (2005)<sup id="fnref:25"><a class="footnote-ref" href="#fn:25" rel="footnote">25</a></sup>的平稳削减绝对偏差法(smoothly clipped absolute deviation, SCAD)用$J_a(\beta,\lambda)$替换$\lambda\vert\beta \vert$，其中对于$a\ge 2$</p>
 <p>
 <script type="math/tex; mode=display">
-\frac{dJ_a(\beta,\lambda)}{d\beta}=\lambda \cdot \mathrm{sign}(\beta)[I(\vert \beta\vert\le \lambda)+\frac{(a\lambda-\vert \beta\vert)_\+}{(a-1)\lambda}I(\vert\beta\vert>\lambda)]\qquad (3.82)
+\frac{dJ_a(\beta,\lambda)}{d\beta}=\lambda \cdot \mathrm{sign}(\beta)[I(\vert \beta\vert\le \lambda)+\frac{(a\lambda-\vert \beta\vert)_\+}{(a-1)\lambda}I(\vert\beta\vert>\lambda)]\tag{3.82}
 </script>
 </p>
 <p>方括号中的第二项降低了lasso对于较大$\beta$的收缩程度，在极限状态时，当$a\rightarrow \infty$，没有收缩。图 3.20 显示了 SCAD 惩罚，以及 lasso 和 $\beta^{1-\nu} $。然而这个准则不是凸的，这是一个缺陷，因为它会使得计算变得很困难。adaptive lasso (Zou, 2006)<sup id="fnref:26"><a class="footnote-ref" href="#fn:26" rel="footnote">26</a></sup>采用形如 $\sum_{j=1}^pw_j\vert\beta_j\vert$ 的加权惩罚，其中$w_j=1/\vert\hat\beta_j\vert^\nu$，$\hat\beta_j$是一般最小二乘估计并且$\nu&gt;0$。这是对3.4.3节中讨论的$\vert\beta\vert^q$惩罚的实际近似（这里$q=1-\nu$）。adaptive lasso在保证lasso吸引人的凸性基础上还得到了参数的一致估计。</p>
@@ -3447,7 +3447,7 @@ R(\tilde\beta(\lambda),\beta_j)=\frac{1}{2}\sum\limits_{i=1}^N(y_i-\sum\limits_{
 <p>其中我们压缩了截距并且为了方便引出因子 $\frac 12$。这个可以看成是响应变量为部分残差 $y_i-\tilde y_i^{(j)}=y_i-\sum_{k\neq j}x_{ik}\tilde \beta_k(\lambda)$。这有显式解，得到下面的更新</p>
 <p>
 <script type="math/tex; mode=display">
-\tilde \beta_j(\lambda)\leftarrow S(\sum\limits_{i=1}^Nx_{ij}(y_i-\tilde y_i^{(j)}),\lambda)\qquad (3.84)
+\tilde \beta_j(\lambda)\leftarrow S(\sum\limits_{i=1}^Nx_{ij}(y_i-\tilde y_i^{(j)}),\lambda)\tag{3.84}
 </script>
 </p>
 <p>这里 $S(t,\lambda)=sign(t)(\vert t\vert-\lambda)_+$ 是表 3.4 中的软阈值算子。$S(\cdot)$ 中的第一个变量是部分残差在标准化变量 $x_{ij}$ 上的简单最小二乘系数。(3.84) 的重复迭代——轮流考虑每个变量直到收敛——得到 lasso 估计 $\hat\beta(\lambda)$。</p>

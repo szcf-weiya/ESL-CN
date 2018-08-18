@@ -3297,13 +3297,13 @@
 <p>主成分回归构造派生的输入列 $\mathbf z_m=\mathbf Xv_m$，然后在 $\mathbf z_1,\mathbf z_2,\ldots,\mathbf z_M,\; M\le p$ 上回归 $\mathbf y$。因为 $\mathbf z_m$ 是正交的，则这个回归只是单变量回归的和</p>
 <p>
 <script type="math/tex; mode=display">
-\hat{\mathbf y}^{pcr}_{(M)}=\bar y\mathbf 1+\sum\limits_{m=1}^M\hat{\theta}_m\mathbf z_m\qquad (3.61)
+\hat{\mathbf y}^{pcr}_{(M)}=\bar y\mathbf 1+\sum\limits_{m=1}^M\hat{\theta}_m\mathbf z_m\tag{3.61}
 </script>
 </p>
 <p>其中，$\hat\theta_m=\langle \mathbf z_m,\mathbf y\rangle/\langle\mathbf z_m,\mathbf z_m\rangle$。因为每个 $\mathbf z_m$ 是原输入变量 $\mathbf x_j$ 的线性组合，我们可以将解 (3.61) 表达成关于 $\mathbf x_j$ 的系数（<a href="https://github.com/szcf-weiya/ESL-CN/issues/102">练习 3.13</a>）:</p>
 <p>
 <script type="math/tex; mode=display">
-\hat\beta^{pcr}(M)=\sum\limits_{m=1}^M\hat\theta_mv_m\qquad (3.62)
+\hat\beta^{pcr}(M)=\sum\limits_{m=1}^M\hat\theta_mv_m\tag{3.62}
 </script>
 </p>
 <div class="admonition info">
@@ -3356,7 +3356,7 @@ $\mathbf b$ 在 $\mathbf a$ 上的无截距的简单单变量回归，回归系�
 \max_{\alpha} &\Var(\mathbf X\alpha)\\
 \st&\Vert \alpha\Vert=1,\alpha^T\mathbf Sv_\ell=0,\;\ell=1,\ldots,m-1
 \end{align}
-\qquad (3.63)
+\tag{3.63}
 </script>
 </p>
 <p>其中，$\mathbf S$ 为 $\mathbf x_j$ 的样本协方差矩阵。$\alpha^T\mathbf Sv_\ell=0$ 保证了 $\mathbf z_m=\mathbf X\alpha$ 与之前所有的线性组合 $\mathbf z_\ell=\mathbf v_\ell$ 都不相关。第 $m$ 个 PLS 方向 $\hat \varphi_m$ 是下面的解：</p>
@@ -3366,7 +3366,7 @@ $\mathbf b$ 在 $\mathbf a$ 上的无截距的简单单变量回归，回归系�
 \max_\alpha& \mathrm{Corr}^2(\mathbf y,\mathbf X\alpha)\Var(\mathbf X\alpha)\\
 \st& \Vert\alpha\Vert=1,\alpha^T\mathbf S\hat \varphi_\ell=0,\ell=1,\ldots,m-1
 \end{align}
-\qquad (3.64)
+\tag{3.64}
 </script>
 </p>
 <p>进一步的分析揭示了，方差项趋向于占主导地位，而且因此偏最小二乘表现得很像岭回归和主成分回归。我们将在下一节讨论这些。</p>
