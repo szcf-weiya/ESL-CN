@@ -3349,24 +3349,29 @@
 <p>岭回归问题可以等价地写成</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 \hat{\beta}^{ridge}&=\underset{\beta}{\arg\min}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2\\\
 & \text{subject to }\sum\limits_{j=1}^p\beta_j^2 \le t
-\end{align}
+\end{align*}
 \tag{3.42}
 </script>
 </p>
-<p>上式用参数显式表达了对回归参数大小的约束。(3.41) 中的 $\lambda$ 和 (3.42) 中的 $t$ 存在一一对应。当在线性回归模型中有许多相关变量，它们的系数可能很难确定且有高方差。某个变量的较大的正系数可以与相关性强的变量的差不多大的负系数相互抵消。通过对系数加入大小限制，如 (3.42)，这个问题能得以减轻。</p>
+<p>上式用参数显式表达了对回归参数大小的约束。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>这里说的是，在没有对参数大小进行限制前，会存在一对相关性强的变量，它们系数取值符号相反，但绝对值差不多大，会大大增加方差，这也就是高方差的体现，但其实它们的合作用效果近似为 0，所以考虑引进对参数大小的惩罚。</p>
+<p>式 $(3.41)$ 其实是对式 $(3.42)$ 应用 Lagrange 乘子法得到的。</p>
 </div>
-<p>对输入按比例进行缩放时，岭回归的解不相等，因此求解 (3.41) 前我们需要对输入进行标准化。另外，注意到惩罚项不包含截距 $\beta_0$。对截距的惩罚会使得过程依赖于 $\mathbf{Y}$ 的初始选择；也就是，对每个 $y_i$ 加上常数 $c$ 不是简单地导致预测值会偏离同样的量 $c$。可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/95">练习 3.5</a>）经过对输入进行中心化（每个 $x_{ij}$ 替换为 $x_{ij}-\bar x_j$）后，(3.41) 的解可以分成两部分。我们用 $\bar y=\frac{1}{N}\sum_1^Ny_i$ 来估计 $\beta_0$。剩余的参数利用中心化的 $x_{ij}$ 通过无截距的岭回归来估计。今后我们假设中心化已经完成，则输入矩阵 $\mathbf X$ 有 $p$（不是 $p+1$）列。</p>
+<p>$(3.41)$ 中的 $\lambda$ 和 $(3.42)$ 中的 $t$ 存在一一对应。当在线性回归模型中有许多相关变量，它们的系数可能很难确定且有高方差。某个变量的较大的正系数可以与相关性强的变量的差不多大的负系数相互抵消。通过对系数加入大小限制，如 $(3.42)$，这个问题能得以减轻。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>这里说的是，在没有对参数大小进行限制前，会存在一对相关性强的变量，它们系数取值符号相反，但绝对值差不多大，会大大增加方差，这也就是高方差的体现，但其实它们的合作用效果近似为 $0$，所以考虑引进对参数大小的惩罚。</p>
+</div>
+<p>对输入按比例进行缩放时，岭回归的解不相等，因此求解 $(3.41)$ 前我们需要对输入进行标准化。另外，注意到惩罚项不包含截距 $\beta_0$。对截距的惩罚会使得过程依赖于 $\mathbf{Y}$ 的初始选择；也就是，对每个 $y_i$ 加上常数 $c$ 不是简单地导致预测值会偏离同样的量 $c$。可以证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/95">练习 3.5</a>）经过对输入进行中心化（每个 $x_{ij}$ 替换为 $x_{ij}-\bar x_j$）后，$(3.41)$ 的解可以分成两部分。我们用 $\bar y=\frac{1}{N}\sum_1^Ny_i$ 来估计 $\beta_0$。剩余的参数利用中心化的 $x_{ij}$ 通过无截距的岭回归来估计。今后我们假设中心化已经完成，则输入矩阵 $\mathbf X$ 有 $p$（不是 $p+1$）列。</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.5</p>
 <p>已解答，详细证明过程见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/95">Issue 95: Ex. 3.5</a></p>
 </div>
-<p>将 (3.41) 的准则写成矩阵形式</p>
+<p>将 $(3.41)$ 的准则写成矩阵形式</p>
 <p>
 <script type="math/tex; mode=display">
 \RSS(\lambda)=(\mathbf{y}-\mathbf{X}\beta)^T(\mathbf{y}-\mathbf{X}\beta)+\lambda\beta^T\beta \tag{3.43}
@@ -3481,7 +3486,7 @@ M=U_n\Sigma_nV^T
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\mathbf{X}\hat{\beta}^{ls}&=\mathbf{X(X^TX)^{-1}X^Ty}\\\
+\mathbf{X}\hat{\beta}^{ls}&=\mathbf{X(X^TX)^{-1}X^Ty}\notag\\
 &=\mathbf{UU^Ty}\tag{3.46}
 \end{align}
 </script>
@@ -3495,8 +3500,8 @@ M=U_n\Sigma_nV^T
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\mathbf{X}\hat{\beta}^{ridge}&=\mathbf{X}(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X^Ty}\\\
-&= \mathbf{UD}(\mathbf{D^2}+\lambda \mathbf{I})^{-1}\mathbf{DU^Ty}\\\
+\mathbf{X}\hat{\beta}^{ridge}&=\mathbf{X}(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X^Ty}\notag\\
+&= \mathbf{UD}(\mathbf{D^2}+\lambda \mathbf{I})^{-1}\mathbf{DU^Ty}\notag\\
 &= \sum\limits_{j=1}^p\mathbf{u}_j\dfrac{d_j^2}{d_j^2+\lambda}\mathbf{u_j^Ty}\tag{3.47}
 \end{align}
 </script>
@@ -3518,14 +3523,14 @@ M=U_n\Sigma_nV^T
 <p>图 3.9 展示了两个维度下部分数据点的主成分。如果我们考虑在这个区域（$Y$ 轴垂直纸面）内拟合线性曲面，数据的结构形态使得确定梯度时长方向会比短方向更精确。岭回归防止在短方向上估计梯度可能存在的高方差。隐含的假设是响应变量往往在高方差的输入方向上变化。这往往是个合理的假设，因为我们所研究的预测变量随响应变量变化而变化，而不需要保持不变。</p>
 <p><img alt="" src="../../img/03/fig3.9.png" /></p>
 <blockquote>
-<p>图3.9 部分输入数据点的主成分。最大主成分是使得投影数据方差最大的方向，最小主成分是使得方差最小的方向。岭回归将 $\mathbf{y}$ 投射到这些成分上，然后对低方差成分的系数比高方差收缩得更厉害。</p>
+<p>图 3.9 部分输入数据点的主成分。最大主成分是使得投影数据方差最大的方向，最小主成分是使得方差最小的方向。岭回归将 $\mathbf{y}$ 投射到这些成分上，然后对低方差成分的系数比高方差收缩得更厉害。</p>
 </blockquote>
 <p>在图 3.7 中我们已经画了预测误差估计值关于 $\df(\lambda)$ 的曲线</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\df(\lambda)&=\tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\\
-&=\tr(\mathbf{H}_{\lambda})\\
+\df(\lambda)&=\tr[\mathbf{X}(\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T]\notag\\
+&=\tr(\mathbf{H}_{\lambda})\notag\\
 &=\sum\limits_{j=1}^p\dfrac{d_j^2}{d_j^2+\lambda}\tag{3.50}
 \end{align}
 </script>
@@ -3540,7 +3545,7 @@ M=U_n\Sigma_nV^T
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\hat{\beta}^{lasso}&=\underset{\beta}{\arg\min}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2\\\
+\hat{\beta}^{lasso}&=\underset{\beta}{\arg\min}\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2\notag\\
 &\text{subject to }\sum\limits_{j=1}^p\vert\beta_j\vert\le t \tag{3.51}
 \end{align}
 </script>
