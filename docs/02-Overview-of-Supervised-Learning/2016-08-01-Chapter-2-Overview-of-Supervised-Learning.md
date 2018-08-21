@@ -197,7 +197,7 @@ $$
 最邻近方法用训练集$\mathcal{T}$中在输入空间中离$x$最近的观测组成$\hat{Y}$。特别地，对$\hat{Y}$的$k$-最近邻拟合定义如下：
 
 $$
-\hat{Y}(x)=\frac{1}{k}\sum\limits_{x_i\in N_k(x)}y_i\qquad (2.8)
+\hat{Y}(x)=\frac{1}{k}\sum\limits_{x_i\in N_k(x)}y_i\tag{2.8}
 $$
 
 > where $N_k(x)$ is the neighborhood of $x$ defined by the $k$ closest points $x_i$ in the training sample. Closeness implies a metric, which for the moment we assume is Euclidean distance. So, in words, we find the $k$ observations with $x_i$ closest to $x$ in input space, and average their responses.
@@ -281,8 +281,8 @@ $k$-最近邻平均的方法实际上是对定量的输出变量$Y$的回归，�
 
 $$
 \begin{align*}
-EPE(f)&=E(Y-f(X))^2\qquad\qquad\qquad(2.9)\\
-&=\int[y-f(x)]^2Pr(dx,dy)\qquad(2.10)
+EPE(f)&=E(Y-f(X))^2\qquad\qquad\tag{2.9}\\
+&=\int[y-f(x)]^2Pr(dx,dy)\tag{2.10}
 \end{align*}
 $$
 
@@ -291,7 +291,7 @@ $$
 在$X$的**条件**下，我们可以把EPE写成
 
 $$
-EPE(f) = E_XE_{Y\mid X}([Y-f(X)]^2\mid X)\qquad(2.11)
+EPE(f) = E_XE_{Y\mid X}([Y-f(X)]^2\mid X)\tag{2.11}
 $$
 
 > and we see that it suffices to minimize EPE pointwise:
@@ -299,14 +299,14 @@ $$
 而且满足使EPE逐点最小：
 
 $$
-f(x) = argmin_cE_{Y\mid X}([Y-c]^2\mid X=x)\qquad (2.12)
+f(x) = argmin_cE_{Y\mid X}([Y-c]^2\mid X=x)\tag{2.12}
 $$
 > The solution is
 
 解为
 
 $$
-f(x) = E(Y\mid X=x)\qquad (2.13)
+f(x) = E(Y\mid X=x)\tag{2.13}
 $$
 
 > the conditional expectation, also known as the regression function. Thus the best prediction of $Y$ at any point $X = x$ is the conditional mean, when best is measured by average squared error.
@@ -332,7 +332,7 @@ $$
 - 在每一点的条件是在对于某个目标点的“闭”区域的松弛。
 
 $$
-\hat{f}(x)=Ave(y_i\mid x_i\in N_k(x))\qquad(2.14)
+\hat{f}(x)=Ave(y_i\mid x_i\in N_k(x))\tag{2.14}
 $$
 
 > For large training sample size $N$, the points in the neighborhood are likely to be close to $x$, and as $k$ gets large the average will get more stable. In fact, under mild regularity conditions on the joint probability distribution $Pr(X,Y)$, one can show that as $N,k \longrightarrow \infty$ such that $k/N \longrightarrow 0$, $\hat{f}(x) \longrightarrow E(Y\mid  X = x)$. In light of this, why look further, since it seems we have a universal approximator? We often do not have very large samples. If the linear or some more structured model is appropriate, then we can usually get a more stable estimate than k-nearest neighbors, although such knowledge has to be learned from the data as well. There are other problems though, sometimes disastrous. In Section 2.5 we see that as the dimension $p$ gets large, so does the metric size of the $k$-nearest neighborhood. So settling for nearest neighborhood as a surrogate for conditioning will fail us miserably. The convergence above still holds, but the rate of convergence decreases as the dimension increases.
@@ -344,14 +344,14 @@ $$
 线性回归怎样适应这个框架？最简单的解释是假设回归函数$f(x)$近似线性
 
 $$
-f(x)\approx x^T\beta\qquad (2.15)
+f(x)\approx x^T\beta\tag{2.15}
 $$
 
 > This is a model-based approach—we specify a model for the regression function. Plugging this linear model for f(x) into EPE (2.9) and differentiating
 
 这是个基本模型的方式——对于明确回归函数的模型。将$f(x)$的线性模型插入EPE(2.9)然后微分可以理论上解出$\beta$
 $$
-\beta = [E(XX^T)]^{-1}E(XY)\qquad(2.16)
+\beta = [E(XX^T)]^{-1}E(XY)\tag{2.16}
 $$
 
 > Note we have not conditioned on $X$; rather we have used our knowledge of the functional relationship to pool over values of $X$. The least squares solution (2.6) amounts to replacing the expectation in (2.16) by averages over the training data.
@@ -374,7 +374,7 @@ $$
 很多这本书中描述的技巧都是基于基本模型的，尽管比严格的线性模型更加的灵活。举个例子，可加性模型假设
 
 $$
-f(X) = \sum\limits_{j=1}^{p}f_j(X_j)\qquad(2.17)
+f(X) = \sum\limits_{j=1}^{p}f_j(X_j)\tag{2.17}
 $$
 
 > This retains the additivity of the linear model, but each coordinate function $f_j$ is arbitrary. It turns out that the optimal estimate for the additive model uses techniques such as $k$-nearest neighbors to approximate univariate conditional expectations simultaneously for each of the coordinate functions. Thus the problems of estimating a conditional expectation in high dimensions are swept away in this case by imposing some (often unrealistic) model assumptions, in this case additivity.
@@ -385,7 +385,7 @@ $$
 
 是否为(2.11)的标准而高兴？如果我们用$L_1$损失函数$E\mid Y-f(X)\mid $来替换$L_2$损失函数会怎么样。这种情况下解是条件中位数，
 $$
-\hat{f}(x) = median(Y \mid X = x)\qquad (2.18)
+\hat{f}(x) = median(Y \mid X = x)\tag{2.18}
 $$
 
 > which is a different measure of location, and its estimates are more robust than those for the conditional mean. $L_1$ criteria have discontinuities in their derivatives, which have hindered their widespread use. Other more resistant loss functions will be mentioned in later chapters, but squared error is analytically convenient and the most popular.
@@ -397,28 +397,28 @@ $$
 当输出为类变量$G$时，我们应该怎样处理？同样的范例在这里也是可行的，除了我们需要一个不同的损失函数来惩罚预测错误。预测值$\hat{G}$在$\cal G$中取值，$\cal G$是可能的类别的集合。我们的损失函数可以用$K\times K$的矩阵$\mathbf{L}$来表示，其中$K=card({\cal G})$。矩阵$\mathbf{L}$对角元为0且其它地方值非负，其中$L(k,\ell)$为把属于${\cal G}_k$的类分到${\cal G}_{\ell}$的代价。大多数情况下我们用0-1(*zero-one*)损失函数，其中所有的错误分类都被要求一个单位的惩罚。预测错误的期望为
 
 $$
-EPE = E[L(G,\hat{G}(X))]\qquad (2.19)
+EPE = E[L(G,\hat{G}(X))]\tag{2.19}
 $$
 > where again the expectation is taken with respect to the joint distribution $Pr(G,X)$. Again we condition, and can write EPE as
 
 关于联合分布$Pr(G,X)$，期望再一次起作用。再一次考虑条件分布，我们可以写出如下的EPE
 
 $$
-EPE = E_X\sum\limits_{k=1}^KL[{\cal{G}}_k,\hat{G}(X)]Pr({\cal{G}}_k\mid X)\qquad(2.20)
+EPE = E_X\sum\limits_{k=1}^KL[{\cal{G}}_k,\hat{G}(X)]Pr({\cal{G}}_k\mid X)\tag{2.20}
 $$
 > and again it suffices to minimize EPE pointwise:
 
 再一次满足逐点最小化:
 
 $$
-\hat{G}(x) = argmin_{g\in \cal{G}}\sum\limits_{k=1}^KL({\cal{G}}_k,g)Pr({\cal G}_k\mid X = x)\qquad(2.21)
+\hat{G}(x) = argmin_{g\in \cal{G}}\sum\limits_{k=1}^KL({\cal{G}}_k,g)Pr({\cal G}_k\mid X = x)\tag{2.21}
 $$
 > With the 0–1 loss function this simplifies to
 
 结合0-1损失函数上式简化为
 
 $$
-\hat{G}(x) = argmin_{g\in \cal{G}}[1 − Pr(g\mid X = x)]\qquad(2.22)
+\hat{G}(x) = argmin_{g\in \cal{G}}[1 − Pr(g\mid X = x)]\tag{2.22}
 $$
 
 > or simply
@@ -426,7 +426,7 @@ $$
 或者简单地
 
 $$
-\hat{G}(X) = {\cal{G}}_k \text{ if } Pr({\cal{G}}_k\mid X = x) = \underset{g\in{\cal{G}}}{max } Pr(g\mid X = x)\qquad (2.23)
+\hat{G}(X) = {\cal{G}}_k \text{ if } Pr({\cal{G}}_k\mid X = x) = \underset{g\in{\cal{G}}}{max } Pr(g\mid X = x)\tag{2.23}
 $$
 
 > This reasonable solution is known as the *Bayes classifier*, and says that we classify to the most probable class, using the conditional (discrete) distribution $Pr(G\mid X)$. Figure 2.5 shows the Bayes-optimal decision boundary for our simulation example. The error rate of the Bayes classifier is called the $Bayes rate$.
@@ -493,7 +493,7 @@ $$
 \begin{align*}
 MSE(x_0)&=E_{\cal{T}}[f(x_0)-\hat{y}_0]^2\notag\\
 &=E_{\cal{T}}[\hat{y}_0-E_{\cal{T}}(\hat{y}_0)]^2\notag\\
-&=Var_{\cal{T}}(\hat{y}_0)+Bias^2(\hat{y}_0)\qquad (2.25)
+&=Var_{\cal{T}}(\hat{y}_0)+Bias^2(\hat{y}_0)\tag{2.25}
 \end{align*}
 $$
 > Figure 2.7 illustrates the setup. We have broken down the MSE into two components that will become familiar as we proceed: variance and squared bias. Such a decomposition is always possible and often useful, and is known as the *bias–variance decomposition*. Unless the nearest neighbor is at 0, $\hat{y}_0$ will be smaller than $f(0)$ in this example, and so the average estimate will be biased downward. The variance is due to the sampling variance of the 1-nearest neighbor. In low dimensions and with $N = 1000$, the nearest neighbor is very close to 0, and so both the bias and variance are small. As the dimension increases, the nearest neighbor tends to stray further from the target point, and both bias and variance are incurred. By $p = 10$, for more than $99\%$ of the samples the nearest neighbor is a distance greater than 0.5 from the origin. Thus as $p$ increases, the estimate tends to be 0 more often than not, and hence the MSE levels off at 1.0, as does the bias, and the variance starts dropping (an artifact of this example).
@@ -517,7 +517,7 @@ $$
 另一方面假设我们知道$Y$与$X$之间的关系为线性的
 
 $$
-Y = X^T\beta + \varepsilon\qquad(2.26)
+Y = X^T\beta + \varepsilon\tag{2.26}
 $$
 
 > where $\varepsilon \sim N(0,\sigma^2)$ and we fit the model by least squares to the training data. For an arbitrary test point $x_0$, we have $\hat{y}_0=x_0^T\hat{\beta}$, which can be written as $\hat{y}_0=x_0^T\beta+\sum_{i=1}^N\ell_i(x_0)\epsilon_i$, where $\ell_i{x_0}$ is the $i$th element of ${\mathbf{X(X^TX)}}^{-1}x_0$. Since under this model the least squares estimates are unbiased, we find that
@@ -532,7 +532,7 @@ EPE(x_0) &= E_{y_0\mid x_0}E_{{\cal T}}(y_0-\hat{y}_0)^2\notag\\
 &={\color{red} {E_{y_0\mid x_0}\varepsilon ^2+E_{\cal T}(x_0^T\beta-\hat{y}_0)^2\qquad\qquad \because E_{y_0\mid x_0}\varepsilon = 0}}\notag\\
 &=Var(y_0\mid x_0)+E_{\cal T}[\hat{y}_0-E_{\cal T}\hat{y}_0]^2+[E_{\cal T}\hat{y}_0-x_0^T\beta]^2\notag\\
 &=Var(y_0\mid x_0)+Var_{\cal T}(\hat{y}_0)+Bias^2(\hat{y}_0)\notag\\
-&=\sigma^2+E_{\cal T}x_0^T(\mathbf{X^TX})^{-1}x_0\sigma^2+0^2\qquad\qquad\qquad (2.27)
+&=\sigma^2+E_{\cal T}x_0^T(\mathbf{X^TX})^{-1}x_0\sigma^2+0^2\qquad\qquad\tag{2.27}
 \end{align}
 $$
 
@@ -544,7 +544,7 @@ $$
 \begin{align*}
 E_{x_0}EPE(x_0)&\sim E_{x_0}x_0^TCov(X)^{-1}x_0\sigma^2/N+\sigma^2\notag\\
 &=trace[Cov(X)^{-1}Cov(x_0)]\sigma^2/N+\sigma^2\notag\\
-&=\sigma^2(p/N)+\sigma^2\qquad\qquad\qquad(2.28)
+&=\sigma^2(p/N)+\sigma^2\qquad\qquad\tag{2.28}
 \end{align*}
 $$
 
@@ -591,7 +591,7 @@ We anticipate using other classes of models for f(x), in many cases specifically
 假设事实上我们的数据是从统计模型
 
 $$
-Y=f(X)+\epsilon\qquad(2.29)
+Y=f(X)+\epsilon\tag{2.29}
 $$
 
 > where the random error $\epsilon$ has $E(\epsilon) = 0$ and is independent of $X$. Note that for this model, $f(x) = E(Y \mid X = x)$, and in fact the conditional distribution $Pr(Y \mid X)$ depends on $X$ only through the conditional mean $f(x)$.
@@ -635,14 +635,14 @@ $$
 我们将要遇到的许多近似都与一系列系数$\theta$有关，可以修改这些系数去适应手头上数据。举个例子，线性模型$f(x)=x^T\beta$有$\theta=\beta$。另外一种有用的近似可以表示为基本线性展开(*linear basis expansions*)
 
 $$
-f_{\theta}(x)=\sum\limits_{k=1}^{K}h_k(x)\theta_k\qquad (2.30)
+f_{\theta}(x)=\sum\limits_{k=1}^{K}h_k(x)\theta_k\tag{2.30}
 $$
 > where the $h_k$ are a suitable set of functions or transformations of the input vector $x$. Traditional examples are polynomial and trigonometric expansions, where for example $h_k$ might be $x_1^2,x_1x_2^2,cos(x_1)$ and so on. We also encounter nonlinear expansions, such as the sigmoid transformation common to neural network models,
 
 其中，$h_k$是适合输入向量$x$的一系列函数或转换关系。传统的例子都是多项式或者三角函数，其中$h_k$可能是$x_1^2,x_1x_2^2,cos(x_1)$以及其它。我们也会遇到非线性的情况，比如说普遍的转换为神经网络模型的S型转换关系
 
 $$
-h_k(x)=\dfrac{1}{1+exp(-x^T\beta_k)}\qquad (2.31)
+h_k(x)=\dfrac{1}{1+exp(-x^T\beta_k)}\tag{2.31}
 $$
 
 > We can use least squares to estimate the parameters $\theta$ in $f_{\theta}$ as we did for the linear model, by minimizing the residual sum-of-squares
