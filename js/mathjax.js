@@ -50,7 +50,10 @@ window.MathJax = {
       max: "{\\mathrm{max}}",
       min: "{\\mathrm{min}}",
       RSS: "{\\mathrm{RSS}}",
-      
+      argmin: "{\\mathrm{argmin}}",
+      Ave: "{\\mathrm{Ave}}",
+      median: "{\\mathrm{median}}",
+      card: "{\\mathrm{card}}",
       
       inf: "{\\mathrm{inf}}",
       sign: "{\\mathrm{sign}}",
