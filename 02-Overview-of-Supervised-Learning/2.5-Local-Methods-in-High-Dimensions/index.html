@@ -3221,7 +3221,7 @@
 <p>高纬下的稀疏取样的另外一个后果是所有的样本点离样本的某一边很近。考虑在$p$维以原点为中心的单位球中均匀分布的$N$个数据点。假设我们考虑原点处的最近邻估计。距离原点最近的数据点距离的中位数由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
-d(p,N)=(1-(\frac{1}{2})^{1/N})^{1/p}\qquad (2.24)
+d(p,N)=(1-(\frac{1}{2})^{1/N})^{1/p}\tag{2.24}
 </script>
 </p>
 <div class="admonition note">
@@ -3251,7 +3251,7 @@ Y = f(X) = e^{−8\mid \mid X\mid \mid ^2},
 \begin{align*}
 MSE(x_0)&=E_{\cal{T}}[f(x_0)-\hat{y}_0]^2\notag\\
 &=E_{\cal{T}}[\hat{y}_0-E_{\cal{T}}(\hat{y}_0)]^2\notag\\
-&=Var_{\cal{T}}(\hat{y}_0)+Bias^2(\hat{y}_0)\qquad (2.25)
+&=Var_{\cal{T}}(\hat{y}_0)+Bias^2(\hat{y}_0)\tag{2.25}
 \end{align*}
 </script>
 </p>
@@ -3268,7 +3268,7 @@ MSE(x_0)&=E_{\cal{T}}[f(x_0)-\hat{y}_0]^2\notag\\
 <p>另一方面假设我们知道$Y$与$X$之间的关系为线性的</p>
 <p>
 <script type="math/tex; mode=display">
-Y = X^T\beta + \varepsilon\qquad(2.26)
+Y = X^T\beta + \varepsilon\tag{2.26}
 </script>
 </p>
 <p>其中$\varepsilon \sim N(0,\sigma^2)$,而且我们用最小二乘对训练数据进行拟合模型。对于任意测试点$x_0$,我们有$\hat y_0=x_0^T\hat{\beta}$,可以写成$\hat y_0=x_0^T\beta+\sum_{i=1}^N\ell_i(x_0)\epsilon_i$,其中$\ell_i{x_0}$是${\mathbf{X(X^TX)}}^{-1}x_0$的第$i$个元素。因为在这个模型下，最小二乘估计是无偏的，我们发现</p>
@@ -3281,7 +3281,7 @@ EPE(x_0) &= E_{y_0\mid x_0}E_{{\cal T}}(y_0-\hat{y}_0)^2\notag\\
 &={\color{red} {E_{y_0\mid x_0}\varepsilon ^2+E_{\cal T}(x_0^T\beta-\hat{y}_0)^2\qquad\qquad \because E_{y_0\mid x_0}\varepsilon = 0}}\notag\\
 &=Var(y_0\mid x_0)+E_{\cal T}[\hat{y}_0-E_{\cal T}\hat{y}_0]^2+[E_{\cal T}\hat{y}_0-x_0^T\beta]^2\notag\\
 &=Var(y_0\mid x_0)+Var_{\cal T}(\hat{y}_0)+Bias^2(\hat{y}_0)\notag\\
-&=\sigma^2+E_{\cal T}x_0^T(\mathbf{X^TX})^{-1}x_0\sigma^2+0^2\qquad\qquad\qquad (2.27)
+&=\sigma^2+E_{\cal T}x_0^T(\mathbf{X^TX})^{-1}x_0\sigma^2+0^2\qquad\qquad\tag{2.27}
 \end{align}
 </script>
 </p>
@@ -3291,7 +3291,7 @@ EPE(x_0) &= E_{y_0\mid x_0}E_{{\cal T}}(y_0-\hat{y}_0)^2\notag\\
 \begin{align*}
 E_{x_0}EPE(x_0)&\sim E_{x_0}x_0^TCov(X)^{-1}x_0\sigma^2/N+\sigma^2\notag\\
 &=trace[Cov(X)^{-1}Cov(x_0)]\sigma^2/N+\sigma^2\notag\\
-&=\sigma^2(p/N)+\sigma^2\qquad\qquad\qquad(2.28)
+&=\sigma^2(p/N)+\sigma^2\qquad\qquad\tag{2.28}
 \end{align*}
 </script>
 </p>
