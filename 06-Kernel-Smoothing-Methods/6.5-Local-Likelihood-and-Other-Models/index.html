@@ -3216,34 +3216,34 @@
 </tr>
 </tbody>
 </table>
-<p><strong>局部回归(local regression)</strong>和<strong>可变参数模型(varying coefficient models)</strong>的概念非常广泛：如果拟合方法适合(accommodates)观测点的权重系数，则任意参数模型可以变得局部。</p>
+<p><strong>局部回归 (local regression)</strong> 和 <strong>可变参数模型 (varying coefficient models)</strong> 的概念非常广泛：如果拟合方法适合(accommodates)观测点的权重系数，则任意参数模型可以变得局部。</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>怎么理解“accommodate”？</p>
 </div>
 <p>这里有一些例子：</p>
 <ul>
-<li>每个观测$y_i$与协变量$x_i$成线性的参数$\theta_i=\theta(x_i)=x_i^T\beta$有关，并且基于对数似然$l(\beta)=\sum_{i=1}^Nl(y_i,x_i^T\beta)$对$\beta$进行推断。为了更灵活地对$\theta(X)$建模，我们可以用$x_0$处局部的概率来推断$\theta(x_0)=x_0^T\beta(x_0)$：</li>
+<li>每个观测 $y_i$ 与协变量 $x_i$ 成线性的参数 $\theta_i=\theta(x_i)=x_i^T\beta$ 有关，并且基于对数似然 $l(\beta)=\sum_{i=1}^Nl(y_i,x_i^T\beta)$ 对 $\beta$ 进行推断。为了更灵活地对 $\theta(X)$ 建模，我们可以用 $x_0$ 处局部的概率来推断 $\theta(x_0)=x_0^T\beta(x_0)$：</li>
 </ul>
 <p>
 <script type="math/tex; mode=display">
 l(\beta(x_0))=\sum\limits_{i=1}^NK_\lambda(x_0,x_i)l(y_i,x_i^T\beta(x_0))
 </script>
 </p>
-<p>许多似然模型，特别是包含<strong>逻辑斯蒂回归(logistic)</strong>和<strong>对数线性模型(log-linear models)</strong>的<strong>广义线性模型(generalized linear models)</strong>。局部似然允许对全局线性模型进行松弛得到局部线性。</p>
+<p>许多似然模型，特别是包含 <strong>逻辑斯蒂回归 (logistic)</strong> 和 <strong>对数线性模型 (log-linear models)</strong> 的 <strong>广义线性模型 (generalized linear models)</strong>。局部似然允许对全局线性模型进行松弛得到局部线性。</p>
 <ul>
 <li>
-<p>同上所述，区别是不同的变量与用于定义局部似然性的$\theta$相关联：
+<p>同上所述，区别是不同的变量与用于定义局部似然性的 $\theta$ 相关联：
 <script type="math/tex; mode=display">
 l(\theta(z_0))=\sum\limits_{i=1}^NK_\lambda(z_0,z_i)l(y_i,\eta(x_i,\theta(z_0)))
 </script>
-举个例子，$\eta(x,\theta)=x^T\theta$可以是关于$x$的线性模型。这通过最大化局部似然可以拟合可变参数模型$\theta(z)$。</p>
+举个例子，$\eta(x,\theta)=x^T\theta$ 可以是关于 $x$ 的线性模型。这通过最大化局部似然可以拟合可变参数模型$\theta(z)$。</p>
 </li>
 <li>
 <p>阶数为$k$的<strong>自回归(autoregressive)</strong>时间序列形式为$y_t=\beta_0+\beta_1y_{t-1}+\beta_2y_{t-2}+\cdots+\beta_ky_{t-k}+\varepsilon_t$。用$z_t=(y_{t-1},y_{t-2},\cdots,y_{t-k})$记<strong>滞后集(lag set)</strong>，模型则看起来是一个标准的线性模型$y_t=z_t^T\beta+\varepsilon_t$，而且一般使用最小二乘来拟合。采用核为$K(z_0,z_t)$的局部最小二乘拟合允许模型根据<strong>序列的短期记忆(short-term history of the series)</strong>来变化。这区别于更传统的因窗口时间变化的动态线性模型。</p>
 </li>
 </ul>
-<p>为了解释局部似然，我们考虑<a href="../../04-Linear-Methods-for-Classification/4.4-Logistic-Regression/index.html">第4章</a>中<strong>多类别线性逻辑斯蒂回归模型</strong>(4.36)的局部形式。</p>
+<p>为了解释局部似然，我们考虑<a href="../../04-Linear-Methods-for-Classification/4.4-Logistic-Regression/index.html">第 4 章</a>中<strong>多类别线性逻辑斯蒂回归模型</strong>(4.36)的局部形式。</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
@@ -3274,8 +3274,8 @@ l(\theta(z_0))=\sum\limits_{i=1}^NK_\lambda(z_0,z_i)l(y_i,\eta(x_i,\theta(z_0)))
 \widehat{\Pr}(G=j\mid X=x_0)=\frac{e^{\hat \beta_{j0}(x_0)}}{1+\sum_{k=1}^{J-1}e^{\hat\beta_{k0}(x_0)}}\tag{6.20}
 </script>
 </p>
-<p>尽管该方法在高维的ZIP号码分类问题中效果显著，但它也可以用来在适当低维度(moderately low dimensions)中的灵活多类别分类。与之相关的方法是广义加性模型（<a href="../../09%20Additive%20Models,%20Trees,%20and%20Related%20Methods/9.1%20Generalized%20Additive%20Models/index.html">第9章</a>）采用的核光滑方法，并且通过假设回归函数的加性结构来避免了维数问题。</p>
-<p>作为一个简单的说明，我们对第4章中的心脏病数据拟合两个类别的<strong>局部线性逻辑斯蒂回归模型(local linear logistic model)</strong>。图6.12显示了对两个风险因子<strong>分别</strong>拟合单变量局部逻辑斯蒂回归模型。当数据本身提供很少的可视信息，这是检测非线性是很有用的筛选工具。这种情形下会发现意外的异常值，而用传统的方法可能会没注意到。</p>
+<p>尽管该方法在高维的ZIP号码分类问题中效果显著，但它也可以用来在适当低维度(moderately low dimensions)中的灵活多类别分类。与之相关的方法是广义加性模型（<a href="../../09%20Additive%20Models,%20Trees,%20and%20Related%20Methods/9.1%20Generalized%20Additive%20Models/index.html">第 9 章</a>）采用的核光滑方法，并且通过假设回归函数的加性结构来避免了维数问题。</p>
+<p>作为一个简单的说明，我们对第4章中的心脏病数据拟合两个类别的 <strong>局部线性逻辑斯蒂回归模型(local linear logistic model)</strong>。图 6.12 显示了对两个风险因子<strong>分别</strong>拟合单变量局部逻辑斯蒂回归模型。当数据本身提供很少的可视信息，这是检测非线性是很有用的筛选工具。这种情形下会发现意外的异常值，而用传统的方法可能会没注意到。</p>
 <p><img alt="" src="../../img/06/fig6.12.png" /></p>
 <blockquote>
 <p>对于南非心脏病数据，每张图显示了二值响应变量<code>CHD</code>（冠状心脏病）作为风险因子的函数。每张图我们采用局部线性逻辑斯蒂回归模型来计算拟合的<code>CHD</code>患病率。<code>CHD</code>患病率在横轴取值较小时意外增加是因为它们是retrospective data，并且一些个体已经接受了降低血压和减轻体重的处理方式。图中的阴影区域表明逐点估计的标准误差带。</p>
