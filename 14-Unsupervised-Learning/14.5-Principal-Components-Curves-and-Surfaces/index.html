@@ -3502,7 +3502,7 @@ $$
 </script>
 </p>
 <p>也就是，在所有的形状中寻找Procrustes距离平方最近的形状$\mathbf X$。这可以通过简单的算法实现：</p>
-<ol>
+<ol start="0">
 <li>初始化$\mathbf M=\mathbf X_1$（举个例子）</li>
 <li>固定$\mathbf M$，求解$L$个Procrustes旋转问题，得到$\mathbf X_\ell&rsquo;\leftarrow \mathbf X\hat{\mathbf R_\ell}$</li>
 <li>令$\mathbf M\leftarrow \frac 1L\sum\limits_{\ell=1}^L\mathbf X_\ell&rsquo;$</li>

@@ -3289,7 +3289,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-04-29</td>
+<td>2018-04-29, 2018-10-04</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3394,7 +3394,7 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 <p>上面的过程是对于特定问题的类别下最大化概率的 EM（或者 Baum-Welch）算法。这些问题的概率最大化是困难的，但是通过运用潜在数据（未观测）增大样本会变得简单。这也称作数据增广。这里潜在数据是模型成员 $\Delta_i$。在其它问题中，潜在数据是理应被观测到的实际数据但是缺失了。</p>
 <p>算法 8.2 给出了 EM 算法的一般形式。我们的观测数据是 $\mathbf Z$，其对数概率 $\ell(\theta;\mathbf Z)$ 取决于参数 $\theta$。潜在数据或者缺失数据为 $\mathbf Z^m$，因此完整数据为 $\mathbf {T=(Z,Z^m)}$，对数似然函数为 $\ell_0(\theta;\mathbf T)$，$\ell_0$ 基于完整的密度函数。在混合问题中，$(\mathbf{Z,Z^m)=(y,}\Delta)$，且 $\ell_0(\theta;\mathbf T)$ 由 (8.40) 式给出。</p>
 <p><img alt="" src="../../img/08/alg8.2.png" /></p>
-<p>在我们的混合例子中，$E(\ell_0(\theta&rsquo;;\mathbf T)\mid \mathbf Z,\hat \theta^{(j)})$ 是式(8.40)，至少后者中的 $\Delta_i$ 替换成了解释度 $\hat\gamma_i(\hat \theta)$。第三步的最大化仅仅是加权均值和方差。</p>
+<p>在我们的混合例子中，$\E(\ell_0(\theta&rsquo;;\mathbf T)\mid \mathbf Z,\hat \theta^{(j)})$ 是式(8.40)，只是后者中的 $\Delta_i$ 替换成了解释度 $\hat\gamma_i(\hat \theta)$。第三步的最大化仅仅是加权均值和方差。</p>
 <p>我们现在给出一个为什么一般情况下 EM 算法有用的解释。</p>
 <p>因为
 <script type="math/tex; mode=display">
@@ -3407,40 +3407,39 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 表示成对数似然函数，我们有 $\ell(\theta&rsquo;;\mathbf Z)=\ell_0(\theta&rsquo;;\mathbf T)-\ell_1(\theta&rsquo;;\mathbf{Z^m\mid Z})$，其中 $\ell_1$ 是基于条件密度 $\Pr(\mathbf{Z^m\mid Z,\theta&rsquo;})$。取关于由参数 $\theta$ 确定的 $\mathbf{T\mid Z}$ 分布的条件期望有
 <script type="math/tex; mode=display">
 \begin{align}
-\ell(\theta';\mathbf Z)&=E[\ell_0(\theta';\mathbf T)\mid \mathbf Z,\theta]-E[\ell_1(\theta';\mathbf{Z^m\mid Z)\mid Z,\theta}]\\
+\ell(\theta';\mathbf Z)&=\E[\ell_0(\theta';\mathbf T)\mid \mathbf Z,\theta]-\E[\ell_1(\theta';\mathbf{Z^m\mid Z)\mid Z,\theta}]\notag\\
 &\equiv Q(\theta',\theta)-R(\theta',\theta)\qquad\tag{8.46}
 \end{align}
 </script>
-在最大化那一步，EM 算法最大化关于 $\theta&rsquo;$ 的 $Q(\theta&rsquo;,\theta)$，而不是实际的目标函数 $\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化 $\ell(\theta&rsquo;;\mathbf Z)$？注意到 $R(\theta^*,\theta)$ 是由 $\theta^*$ 指示的密度的期望，这个密度同时由 $\theta$ 指示，因此（由琴生不等式）当$\theta^*=\theta$ 时（见<a href="https://github.com/szcf-weiya/ESL-CN/issues/125">练习 8.1</a>）最大化关于 $\theta^*$ 的函数。</p>
-<div class="admonition note">
-<p class="admonition-title">weiya注<p>练习 8.1 如下：
-<img alt="" src="../../img/08/ex8.1.png" />
-证明想法如下:
-在给定$Y=y$的情况下，记$x=r(y), c=q(y)$
-<script type="math/tex; mode=display">
-\phi(x)=-\mathrm{log}\frac{c}{x}=\mathrm{log}x-\mathrm{log}c
-</script>
-为凸函数，则有
-<script type="math/tex; mode=display">
-\E(\LOG(\frac{r(y)}{q(y)}))=\E(-\LOG(\frac{q(y)}{r(y)}))\ge-\LOG\frac{q(y)}{E(r(y))}=\LOG \E\frac{r(y)}{q(y)}
-</script>
-当$r(y)=q(y)$时取等。
-于是$\E(\LOG r(Y)/q(Y))$在$r(y)=q(y)$时取等。
-对于$R(\theta&rsquo;,\theta)$，我们有
-<script type="math/tex; mode=display">
-R(\theta',\theta)=\frac{\E (\1_{\mathbf Z,\theta}\ell_1(\theta';\mathbf Z^m\mid \mathbf Z))}{P(\mathbf Z,\theta)}
-</script>
-注意到$\ell_1$其实是对数似然，分母为是与$\theta$有关的常数，所以满足题目中结论的形式，于是$R(\theta,\theta)\ge R(\theta&rsquo;,\theta)$</p>
-</p>
-</div>
+在最大化那一步，EM 算法最大化关于 $\theta&rsquo;$ 的 $Q(\theta&rsquo;,\theta)$，而不是实际的目标函数 $\ell(\theta&rsquo;;\mathbf Z)$。为什么这样能成功地最大化 $\ell(\theta&rsquo;;\mathbf Z)$？注意到 $R(\theta^*,\theta)$ 是关于 $\theta^*$ 的密度的期望，得到的密度是关于 $\theta$ 的，因此（由琴生不等式）当 $\theta^*=\theta$ 时（见<a href="https://github.com/szcf-weiya/ESL-CN/issues/125">练习 8.1</a>）最大化关于 $\theta^*$ 的函数。</p>
+<!-- !!! note "weiya注"
+        练习 8.1 如下：
+        ![](../img/08/ex8.1.png)
+        证明想法如下:
+        在给定$Y=y$的情况下，记$x=r(y), c=q(y)$
+        $$
+        \phi(x)=-\mathrm{log}\frac{c}{x}=\mathrm{log}x-\mathrm{log}c
+        $$
+        为凸函数，则有
+        $$
+        \E(\LOG(\frac{r(y)}{q(y)}))=\E(-\LOG(\frac{q(y)}{r(y)}))\ge-\LOG\frac{q(y)}{E(r(y))}=\LOG \E\frac{r(y)}{q(y)}
+        $$
+        当$r(y)=q(y)$时取等。
+        于是$\E(\LOG r(Y)/q(Y))$在$r(y)=q(y)$时取等。
+        对于$R(\theta',\theta)$，我们有
+        $$
+        R(\theta',\theta)=\frac{\E (\1_{\mathbf Z,\theta}\ell_1(\theta';\mathbf Z^m\mid \mathbf Z))}{P(\mathbf Z,\theta)}
+        $$
+        注意到$\ell_1$其实是对数似然，分母为是与$\theta$有关的常数，所以满足题目中结论的形式，于是$R(\theta,\theta)\ge R(\theta',\theta)$ -->
+
 <div class="admonition info">
 <p class="admonition-title">Ex. 8.1</p>
-<p>详细解答过程也可以参见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/125">Issue 125: Ex. 8.1</a>。</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/125">Issue 125: Ex. 8.1</a>。</p>
 </div>
 <p>所以如果 $\theta&rsquo;$ 最大化 $Q(\theta&rsquo;,\theta)$，我们可以看到
 <script type="math/tex; mode=display">
 \begin{align}
-\ell(\theta';\mathbf Z) - \ell(\theta;\mathbf Z) &= [Q(\theta',\theta)-Q(\theta,\theta)]-[R(\theta',\theta)-R(\theta,\theta)]\\
+\ell(\theta';\mathbf Z) - \ell(\theta;\mathbf Z) &= [Q(\theta',\theta)-Q(\theta,\theta)]-[R(\theta',\theta)-R(\theta,\theta)]\notag\\
 &\ge 0\qquad\qquad\qquad \tag{8.47}
 \end{align}
 </script>
