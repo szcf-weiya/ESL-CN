@@ -3340,7 +3340,7 @@ RSS(\theta)=\sum\limits_{i=1}^N(y_i-f_{\theta}(x_i))^2
 <p><img alt="" src="../../img/02/fig2.10.png" /></p>
 <p>两个输入的函数的最小二乘拟合。选择$f_{\theta}(x)$的系数使得垂直误差平方和最小。</p>
 <p>对于线性模型我们得到该最小化问题的一个简单的近似形式（<em>closed???</em>）的解决方法。如果基本函数本身没有任何隐藏的参数，这种方法也适用。否则这种解决方法不是需要迭代的方法就是需要数值优化。</p>
-<p>尽管最小二乘一般情况下非常方便，但并不是唯一的准则，而且在一些情形下没有意义。一个更一般的估计准则是极大似然估计(<em>maximum likelihood estimation</em>)。假设我们有一个指标为$\theta$的密度为$Pr_{\theta}(y)$的随机样本$y_i,i=1,\ldots,N$。观测样本的概率的对数值为
+<p>尽管最小二乘一般情况下非常方便，但并不是唯一的准则，而且在一些情形下没有意义。一个更一般的估计准则是极大似然估计(<em>maximum likelihood estimation</em>)。假设我们有一个指标为 $\theta$ 的密度为$Pr_{\theta}(y)$的随机样本$y_i,i=1,\ldots,N$。观测样本的概率的对数值为
 <script type="math/tex; mode=display">\begin{equation}
 L(\theta) = \sum\limits_{i=1}^NlogPr_{\theta}(y_i)
 \end{equation}</script>
