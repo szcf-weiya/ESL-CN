@@ -3194,7 +3194,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=41">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3250,7 +3250,7 @@ Y = f(X) = e^{−8\mid \mid X\mid \mid ^2},
 <script type="math/tex; mode=display">
 \begin{align*}
 \MSE(x_0)&=\E_{\cal{T}}[f(x_0)-\hat{y}_0]^2\notag\\
-&=\E_{\cal{T}}[\hat{y}_0-E_{\cal{T}}(\hat{y}_0)]^2\notag\\
+&=\E_{\cal{T}}[\hat{y}_0-E_{\cal{T}}(\hat{y}_0)]^2+[\E_{\cal T}(\hat y_0)-f(x_0)]^2\notag\\
 &=\Var_{\cal{T}}(\hat{y}_0)+Bias^2(\hat{y}_0)\tag{2.25}
 \end{align*}
 </script>
@@ -3265,6 +3265,7 @@ Y = f(X) = e^{−8\mid \mid X\mid \mid ^2},
 <p>图 2.8：同图 2.7一样的配置的模拟例子。函数除了一个维数外都为常数，该维数下 $F(X)=\frac{1}{2}(X_1+1)^3$。方差占主导地位。</p>
 </blockquote>
 <p>尽管这是一个非常不自然的例子，类型的情形发生的更一般。多变量的函数复杂度随着维数呈指数增长，而且如果我们希望以在低维中以相同的精度来估计高维中的函数，我们将会需要呈指数增长规模的训练集。在这个例子中，函数是所有 $p$ 个变量参与的复杂交互。</p>
+<p>偏差项关于距离的依赖性取决于真实值，而且在 $1$-最近邻情况它并不总是占主要部分。举个例子，如果像图 2.8 一样函数总是仅仅与少量的维度有关，方差便会占主要部分。</p>
 <p>另一方面假设我们知道 $Y$ 与 $X$ 之间的关系为线性的</p>
 <p>
 <script type="math/tex; mode=display">
