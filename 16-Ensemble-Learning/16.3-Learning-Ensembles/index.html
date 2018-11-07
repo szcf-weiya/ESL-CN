@@ -3350,7 +3350,7 @@ f(X)=10\cdot \prod\limits_{j=1}^5e^{-2X_j^2}+\sum\limits_{j=6}^{35}X_j\tag{16.13
 <p>其中 $X\sim U[0,1]^{100}$（最后 65 个元素是噪声变量）。响应变量 $Y=f(X)+\varepsilon$，其中 $\varepsilon\sim N(0,\sigma^2)$；我们选择 $\sigma=1.3$ 是的信噪比大致为 2。我们采用大小为 1000 的训练样本，并且通过在 500 个样本的测试集上平均来估计 $\E(\hat f(X)-f(X))^2$。子采样的 GBM 曲线（浅蓝色）是在 10.12 节讨论的 stochastic gradient boosting (Friedman, 1999) 的例子，并且在这个例子上比 gradient boosting 要好。</p>
 <h2 id="_2">规则增强<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>这里我们描述一种对增强树模型的修改模型，它针对单个规则（Friedman and Popescu, 2003）。我们在 9.3 节 PRIM 方法的讨论中碰到过规则。想法是通过从集合中的每棵树构造一系列规则来增强树。</p>
-<p><img alt="" src="../../img/12/fig12.9.png" /></p>
+<p><img alt="" src="../../img/16/fig16.9.png" /></p>
 <p>图 16.9 描述了一棵小树，带编号的结点。下面的规则可以从这棵树导出：</p>
 <p>
 <script type="math/tex; mode=display">
