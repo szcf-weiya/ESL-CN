@@ -3343,7 +3343,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=553">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3384,10 +3384,10 @@ f(\lambda)=\mu+\mathbf V_q\lambda\tag{14.49}
 <p>我们可以对上式关于 $\mu$ 和 $\lambda_i$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/45">练习 14.7</a>）求微分得到</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{array}{lll}
+\begin{align}
 \hat\mu&=&\bar x\tag{14.51}\\
 \hat\lambda_i&=&\mathbf V_q^T(x_i-\bar x)\tag{14.52}
-\end{array}
+\end{align}
 </script>
 </p>
 <div class="admonition note">
@@ -3426,7 +3426,7 @@ f(\lambda)=\mu+\mathbf V_q\lambda\tag{14.49}
 </script>
 </p>
 <p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。这里 $\mathbf U$ 是$N\times p$ 的正交矩阵 ($\mathbf{U^TU}=\mathbf I_p$)，它的列向量 $\mathbf u_j$ 称为左奇异向量，$\mathbf V$ 是$p\times p$ 的正交矩阵 ($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量 $\mathbf v_j$ 称之为右奇异向量。对每个秩 $q$，(14.53) 的解 $\mathbf V_q$ 包含 $\mathbf V$ 的前 $q$ 列。$\mathbf{UD}$ 的列称为 $X$ 的主成分（见3.5.1节）。(14.52) 中 $N$ 个最优的 $\hat\lambda_i$ 由前 $q$ 个主成分给出（$N\times q$ 的矩阵 $\mathbf U_q\mathbf D_q$的$N$ 个行向量）。</p>
-<p>图 14.20 展示了 $R^2$ 中的一维主成分分析。</p>
+<p>图 14.20 展示了 $\IR^2$ 中的一维主成分分析。</p>
 <p><img alt="" src="../../img/14/fig14.20.png" /></p>
 <p>对于每个数据点 $x_i$，在直线上有个离它最近的点，由 $u_{i1}d_1v_1$ 给出。这里 $v_1$ 是该直线的方向，并且 $\hat \lambda_i=u_{i1}d_1$ 衡量了沿着直线离原点的距离。类似地，图 14.21 展示了拟合 half-sphere 数据的二维主成分曲面（左图）。右图显示了数据在前两个主成分上的投影。这个投影是之前介绍的 SOM 方法的初始化的基础。这个过程在分离簇方面表现得非常成功。因为 half-sphere 是非线性的，非线性的投影会做得更好，这将是下一节的主题。</p>
 <p><img alt="" src="../../img/14/fig14.21.png" /></p>
