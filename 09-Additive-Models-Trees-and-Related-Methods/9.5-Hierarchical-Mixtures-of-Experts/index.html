@@ -3194,7 +3194,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=348">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3239,7 +3239,7 @@ g_{\ell\mid j}(x,\gamma_{j\ell})=\frac{e^{\gamma_{j\ell}^Tx}}{\sum_{k=1}^Ke^{\ga
 <p>在每个专家（终止结点），我们有如下形式的响应变量的模型</p>
 <p>
 <script type="math/tex; mode=display">
-Y\sim  Pr(y\mid x,\theta_{jl})\tag{9.27}
+Y\sim  \Pr(y\mid x,\theta_{jl})\tag{9.27}
 </script>
 </p>
 <p>这根据问题而有不同。</p>
@@ -3253,7 +3253,7 @@ Y=\beta_{k\ell}^Tx+\varepsilon\text{  and  }\varepsilon\sim N(0,\sigma_{j\ell}^2
 </script>
 用$\Psi=\{\gamma_j,\gamma_{j\ell},\theta_{j\ell}\}$表示参数的集合，$Y=y$ 整体概率为
 <script type="math/tex; mode=display">
-Pr(y\mid x,\Psi)=\sum\limits_{j=1}^Kg_j(x,\gamma_j)\sum\limits_{\ell=1}^Kg_{\ell\mid j}(x,\gamma_{j\ell})Pr(y\mid x,\theta_{j\ell})\tag{9.30}
+\Pr(y\mid x,\Psi)=\sum\limits_{j=1}^Kg_j(x,\gamma_j)\sum\limits_{\ell=1}^Kg_{\ell\mid j}(x,\gamma_{j\ell})Pr(y\mid x,\theta_{j\ell})\tag{9.30}
 </script>
 这是个混合模型，其中混合概率由门控网络模型确定。</p>
 <p>为了估计这些参数，我们在 $\Psi$ 的参数上最大化数据的对数似然，$\sum_i \log \Pr(y_i\mid x_i,\Psi)$。处理这个的最方便是 EM 算法，我们已经在<a href="../../08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm/index.html">8.5节</a>中描述了。我们定义潜在变量 $\Delta_j$， 除了一个元素为 1，所有的都是 0。我们把这个解释为由顶层门控网络作出的分支判断。类似地，我们定义潜在变量 $\Delta_{\ell\mid j}$ 来描述第二层的门控判断。</p>
