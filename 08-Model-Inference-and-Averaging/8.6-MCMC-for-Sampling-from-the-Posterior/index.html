@@ -3194,7 +3194,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=298">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3233,9 +3233,10 @@
 </script>
 有人会想到有 Monte Carlo 来近似上述的积分值（关于应用 Monte Carlo 进行积分近似，可以参见 <a href="https://stats.hohoweiya.xyz//montecarlo/2017/09/07/The-Need-of-Monte-Carlo/">The Applications of Monte Carlo</a>），但这也是不实际的。因为如果要用 Monte Carlo 近似，则首先我们需要在从 $\theta$ 的后验分布中 sample 出 $m$ 个样本来（注意到我们需要求的就是 $\theta$ 的后验分布），进而采用下式进行近似
 <script type="math/tex; mode=display">
-\hat \Pr(x) = \int _{\theta}d\theta\cdot \frac{1}{m}\sum\limits_{i=1}^m\Pr(x, \theta^{(m)})
+\hat \Pr(x) = \int d\theta\cdot \frac{1}{m}\sum\limits_{i=1}^m\Pr(x, \theta^{(m)})
 </script>
-但幸好可以通过构造一个 Markov chain 来进行 Monte Carlo 近似，称为 MCMC。在 <a href="http://nbviewer.jupyter.org/github/szcf-weiya/MonteCarlo/blob/master/MCMC/MCMC_example.ipynb">MCMC_example.ipynb</a> 里面用一个例子说明了怎么用 MCMC 得到参数的后验分布。</p>
+但幸好可以通过构造一个 Markov chain 来进行 Monte Carlo 近似，称为 MCMC。在 <a href="http://nbviewer.jupyter.org/github/szcf-weiya/MonteCarlo/blob/master/MCMC/MCMC_example.ipynb">MCMC_example.ipynb</a> 里面用一个例子说明了怎么用 MCMC 得到参数的后验分布。
+更多 Monte Carlo 方法的细节可以参见 <a href="https://mc.hohoweiya.xyz/">Notes: Monte-Carlo</a>.</p>
 </div>
 <p>这节我们讨论用于后验采样的 <strong>马尔科夫蒙特卡洛法 (Markov chain Monte Carlo)</strong>。我们将要看到吉布斯采样（一个 MCMC 过程）与 EM 算法非常相关：主要的区别在于前者从条件分布中采样而非对它们最大化。</p>
 <p>首先考虑下面的抽象问题。我们有随机变量 $U_1,U_2,\ldots,U_K$，而且希望从他们的联合分布中采样。假设这很难实现，但是从条件分布 $\Pr(U_j\mid U_1,U_2,\ldots,U_{j-1},U_{j+1},\ldots,U_K),j=1,\ldots,K$ 中模拟是非常简单的。吉布斯采样过程也可以从他们的每个分布来模拟，而且当这个过程稳定下来，吉布斯采样得到了需要的联合分布中的一个样本。这个过程表现在算法 8.3 中。</p>
