@@ -3227,8 +3227,8 @@
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\Pr(G=1\mid X=x)&=\dfrac{\exp(\beta_0+\beta^Tx)}{1+\exp(\beta_0+\beta^Tx)}\\
-\Pr(G=2\mid X=x)&=\dfrac{1}{1+\exp(\beta_0+\beta^Tx)}
+\Pr(G=1\mid X=x)&=\dfrac{\exp(\beta_0+\beta^Tx)}{1+\exp(\beta_0+\beta^Tx)}\notag\\
+\Pr(G=2\mid X=x)&=\dfrac{1}{1+\exp(\beta_0+\beta^Tx)}\notag
 \end{align}
 \qquad \tag{4.1}
 </script>
@@ -3249,7 +3249,7 @@
 <p>举个例子，我们可以对变量集 $X_1,X_2,\ldots,X_p$ 加上他们的交叉积 $X_1^2,X_2^2,\ldots,X_1X_2,\ldots,$ （因此加入了$p(p+1)/2$ 个额外的变量）进行推广。当增广空间的线性函数投影到原空间的线性函数，则线性判别边界转换为二次判别边界。图 4.1 解释了这个想法。数据集是一样的，左边是在二维空间中用线性判别函数，而右图在增广的五维空间中用线性判别函数。这种方式可以跟任意基变换 $h(X)$ 一起使用，其中 $h:\IR^p\rightarrow \IR^q,q &gt; p$，这将在后面章节中讨论。</p>
 <p><img alt="" src="../../img/04/fig4.1.png" /></p>
 <blockquote>
-<p>图4.1：左图显示了三个类别的一些数据，以及通过线性判别分析得到的线性判别边界。右图显示了二次判别边界。这是通过在五维空间$X_1,X_2,X_1X_2,X_1^2,X_2^2$找到线性边界得到。这个空间里面的线性不等式是原空间的二次不等式。</p>
+<p>图4.1：左图显示了三个类别的一些数据，以及通过线性判别分析得到的线性判别边界。右图显示了二次判别边界。这是通过在五维空间 $X_1,X_2,X_1X_2,X_1^2,X_2^2$ 找到线性边界得到。这个空间里面的线性不等式是原空间的二次不等式。</p>
 </blockquote>
 <div class="footnote">
 <hr />
