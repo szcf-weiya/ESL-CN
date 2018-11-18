@@ -3354,7 +3354,7 @@
 <p>考虑16.1节提出的向前逐渐boosting(forward-stagewise boosting)算法16.1的线性版本。它通过重复更新与当前残差最相关的变量的系数（乘以一个小量$\epsilon$）得到系数曲线。算法3.4给出了具体的细节。图3.19（左边）展示了前列腺癌数据中步长$\epsilon=0.01$的过程。如果$\delta_j=\langle \mathbf x_j,\mathbf r\rangle$（残差在第 $j$ 个预测变量的最小二乘系数），则这恰恰是 3.3 节中介绍的一般向前逐渐过程（FS）。</p>
 <p><img alt="" src="../../img/03/fig3.19.png" /></p>
 <p>这里我们主要对小的 $\epsilon$ 值感兴趣。令 $\epsilon\rightarrow0$ 则有图3.19的右图，在这种情形下与图3.10的lasso路径相同。我们称这个极限过程为无穷小的向前逐渐回归(infinitesimal forward stagewise regression)或者$FS_0$。这个过程在非线性、自适应方法中有着很重要的作用，比如boosting（第10和16章），并且是增长的向前逐渐回归的，这是最能禁得起理论分析的版本。由于它与boosting的关系，Buhlmann and Hothorn (2007)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>称这个过程为&rdquo;L2boost&rdquo;</p>
-<p>Efron 最初认为 LAR 算法 3.2 是 $FS_0$的一个实现，允许每个连结变量(tied predictor)以一种平衡的方式更新他们的系数，并且在相关性方面保持连结。然而，他接着意识到LAR在这些连结预测变量中的最小二乘拟合可以导致系数向相反的方向移动到它们的相关系数，这在算法3.4中是不可能发生的。下面对LAR算法的修正实现了$FS_0$：</p>
+<p>Efron 最初认为 LAR 算法 3.2 是 $FS_0$ 的一个实现，允许每个连结变量(tied predictor)以一种平衡的方式更新他们的系数，并且在相关性方面保持连结。然而，他接着意识到 LAR 在这些连结预测变量中的最小二乘拟合可以导致系数向相反的方向移动到它们的相关系数，这在算法3.4中是不可能发生的。下面对LAR算法的修正实现了$FS_0$：</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
 <p>直观上看，在算法3.2的第4步中，系数朝着联合最小二乘方向移动，注意此时方向与最小二乘方向可能一致或者相反。然而算法3.4中的移动方向始终与最小二乘方向保持一致。因此需要算法3.2b的修改。</p>
