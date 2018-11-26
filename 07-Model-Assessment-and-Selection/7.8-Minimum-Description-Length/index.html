@@ -3239,7 +3239,7 @@ length = -\log \Pr(\mathbf y\mid \theta,M,\mathbf X)-\log \Pr(\theta\mid M)\tag{
 </p>
 <p>这是在给定输入的情况下目标值的对数似然。第二项是传递模型参数 $\theta$ 的平均编码长度，而第一项是传递模型与真实目标值之间差异的平均编码长度。举个例子假设我们有单目标 $y\sim N(\theta,\sigma^2)$，参数为 $\theta\sim N(0,1)$，并且没有输入（为了简单）。则模型长度为
 <script type="math/tex; mode=display">
-length = constant + \log\sigma + \frac{(y-\theta)^2}{\sigma^2} + \frac{\theta^2}{2}\tag{7.45}
+length = constant + \log\sigma + \frac{(y-\theta)^2}{2\sigma^2} + \frac{\theta^2}{2}\tag{7.45}
 </script>
 注意到 $\sigma$ 越小，平均信息长度越短，因为 $y$ 更集中在 $\theta$ 附近。</p>
 <p>MDL 准则说我们应该选择最小化 (7.44) 的模型。我们将 (7.44) 看成（负）对数后验分布，因此最小化描述长度等价于最大化后验概率。因此，作为近似对数后验概率导出的 BIC 准则，也可以看成是通过最小描述长度来（近似）模型选择的工具。</p>
