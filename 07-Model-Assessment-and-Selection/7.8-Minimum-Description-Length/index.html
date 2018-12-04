@@ -3243,7 +3243,7 @@ length = constant + \log\sigma + \frac{(y-\theta)^2}{2\sigma^2} + \frac{\theta^2
 </script>
 注意到 $\sigma$ 越小，平均信息长度越短，因为 $y$ 更集中在 $\theta$ 附近。</p>
 <p>MDL 准则说我们应该选择最小化 (7.44) 的模型。我们将 (7.44) 看成（负）对数后验分布，因此最小化描述长度等价于最大化后验概率。因此，作为近似对数后验概率导出的 BIC 准则，也可以看成是通过最小描述长度来（近似）模型选择的工具。</p>
-<p>注意到我们忽略随机变量 $z$ 编码的精确性。我们不可能使用有限的编码长度对连续变量进行精确地编码。然而，如果我们对编码 $z$ 有容忍度 $\delta z$，需要的信息长度是区在间 $[z,z+\delta z]$ 中的概率的对数，如果 $\delta z$ 很小，可以用 $\delta z\Pr(z)$ 来近似。因为$\log\delta z\mathrm{Pr}(z)=\mathrm{log}\delta z + \mathrm{log}\;\mathrm{Pr}(z)$，这意味着我们可以仅仅忽略掉常数$\mathrm{log}\;\delta z$，并且使用 $\mathrm{log\; \Pr}(z)$ 来作为我们信息长度的衡量，就像我们上面做的那样。</p>
+<p>注意到我们忽略随机变量 $z$ 编码的精确性。我们不可能使用有限的编码长度对连续变量进行精确地编码。然而，如果我们对编码 $z$ 有容忍度 $\delta z$，需要的信息长度是区在间 $[z,z+\delta z]$ 中的概率的对数，如果 $\delta z$ 很小，可以用 $\delta z\Pr(z)$ 来近似。因为$\log\delta z\mathrm{Pr}(z)=\mathrm{log}\delta z + \mathrm{log}\;\mathrm{Pr}(z)$，这意味着我们可以仅仅忽略掉常数 $\mathrm{log}\;\delta z$，并且使用 $\mathrm{log\; \Pr}(z)$ 来作为我们信息长度的衡量，就像我们上面做的那样。</p>
 <p>用于模型选择的 MDL 的上述观点表明我们应该选择后验概率达到最大的模型。然而，许多贝叶斯学家会通过从后验分布中取样来做推断。</p>
                 
                   
