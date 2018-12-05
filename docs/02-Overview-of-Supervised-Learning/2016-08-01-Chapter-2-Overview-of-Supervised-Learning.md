@@ -254,7 +254,7 @@ $k$-最近邻平均的方法实际上是对定量的输出变量$Y$的回归，�
 
 ![]({{ site.github.url }}/media/learningImg/fig2.4.png)
 
-图四：在图2.1，图2.2，图2.3中运用的模拟例子的错误分类曲线。我们用的是200个样本作为训练数据，检测数据规模为10000个。橘黄色的曲线对应$k$-最近邻分类的测试数据，蓝色的曲线对应$k$-最近邻分类的训练数据。线性回归的结果是在自由度为3上的大橘黄色和蓝色的方块。粉红色的直线是最优的贝叶斯错误率。
+图四：在图2.1，图2.2，图2.3中运用的模拟例子的错误分类曲线。我们用的是200个样本作为训练数据，检测数据规模为10000个。橘黄色的曲线对应$k$-最近邻分类的测试数据，蓝色的曲线对应$k$-最近邻分类的训练数据。线性回归的结果是在自由度为3上的大橘黄色和蓝色的方块。紫色的直线是最优的贝叶斯错误率。
 
 > A large subset of the most popular techniques in use today are variants of these two simple procedures. In fact 1-nearest-neighbor, the simplest of all, captures a large percentage of the market for low-dimensional problems. The following list describes some ways in which these simple procedures have been enhanced:
 > - Kernel methods use weights that decrease smoothly to zero with distance from the target point, rather than the effective 0/1 weights used by k-nearest neighbors.
