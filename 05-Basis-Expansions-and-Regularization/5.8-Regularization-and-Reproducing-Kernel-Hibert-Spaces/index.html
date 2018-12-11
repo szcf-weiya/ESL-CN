@@ -3377,7 +3377,7 @@ f(x)=\sum\limits_{i=1}^\infty c_i\phi_i(x)\tag{5.46}
 <p>并且约束条件为</p>
 <p>
 <script type="math/tex; mode=display">
-\Vert f \Vert_{{\cal H}_K}\overset{def}{=}\sum\limits_{i=1}^\infty c_i^2/\gamma_i < \infty\tag{5.47}
+\Vert f \Vert_{{\cal H}_K}^2\overset{def}{=}\sum\limits_{i=1}^\infty c_i^2/\gamma_i < \infty\tag{5.47}
 </script>
 </p>
 <p>其中 $\Vert f\Vert_{{\cal H}_K}$ 由 $K$ 导出的范数。</p>
@@ -3429,7 +3429,7 @@ J(f)=\sum\limits_{i=1}^N\sum\limits_{j=1}^NK(x_i,x_j)\alpha_i\alpha_j\tag{5.51}
 \underset{\aalpha}{\min} L(\y+\K\aalpha)+\lambda\aalpha^T\K\aalpha\tag{5.52}
 </script>
 </p>
-<p>我们在使用向量记号，其中 $\K$ 是第 $ij$ 个元素为 $K(x_i,x_j)$ 的 $N\times N$ 的矩阵。简单的数值算法可以用来优化 (5.52)。无限维问题 (5.48) 或 (5.49) 退化为有限维优化问题的现象在支持向量机（见<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>）中被称为核性质 (kernel property)。</p>
+<p>我们正在使用向量记号，其中 $\K$ 是第 $ij$ 个元素为 $K(x_i,x_j)$ 的 $N\times N$ 的矩阵。简单的数值算法可以用来优化 (5.52)。无限维问题 (5.48) 或 (5.49) 退化为有限维优化问题的现象在支持向量机（见<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>）中被称为 <strong>核性质 (kernel property)</strong>。</p>
 <p>这类模型有一个贝叶斯解释，其中 $f$ 被解释为零均值平稳高斯过程的实现，其中先验协方差函数为 $K$。特征值分解得到一系列方差为 $\gamma_j$ 的正交特征函数 $\phi_j(x)$。一般的情形是，“光滑”函数 $\phi_j$ 有更大的先验方差，而“粗糙”的 $\phi_j$ 有较小的先验方差。$(5.48)$ 中的惩罚是先验对联合概率的贡献度，并且方差越小惩罚越大（与 $(5.43)$ 相比）。</p>
 <p>为了简便，我们这里处理所有 $\cal H$ 中的成员都被惩罚的情形，如 $(5.48)$。更一般地，$\cal H$ 中可能有些组分我们希望单独留下来，比如 <a href="../5.4-Smoothing-Splines/index.html">5.4 节</a> 中的三次光滑样条的线性函数。<a href="../5.7-Multidimensional-Splines/index.html">5.7 节</a> 的多维 thin-plate 样条以及张量积样条也都属于这类。在这些情形下，有个更方便的表示 $\cal H=\cal H_0\oplus\cal H_1$，举个例子，其中零空间 $\cal H_0$ 由没有被惩罚的 $x$ 的低阶多项式组成。惩罚项变为 $J(f)=\Vert P_1f\Vert$，其中 $P_1$ 是 $f$ 在 $\cal H_1$ 上的正交投影。这个解形式为 $f(x)=\sum_{j=1}^M\beta_jh_j(x)+\sum_{i=1}^N\alpha_iK(x,x_i)$，其中第一项表示 $\cal H_0$ 中的展开。从贝叶斯的观点看，$\cal H_0$ 中组分的系数的先验的方差无穷大。</p>
 <h2 id="rkhs">RKHS 的例子<a class="headerlink" href="#rkhs" title="Permanent link">&para;</a></h2>
@@ -3527,7 +3527,7 @@ K(x, y)=\Vert x-y\Vert^2\LOG(\Vert x-y\Vert)\tag{5.66}
 </p>
 <p>径向基函数将在 <a href="../../6.7-Radial-Basis-Functions-and-Kernels/index.html">6.7 节</a>详细讨论。</p>
 <h3 id="_4">支持向量机<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p><a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>中用于两个类别分类的支持向量机有形式 $f(x)=\alpha_0+\sum_{i=1}^N\alpha_iK(x,x_i)$，其中的参数要最小化</p>
+<p><a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>中用于两个类别分类的支持向量机有形式 $f(x)=\alpha_0+\sum_{i=1}^N\alpha_iK(x,x_i)$，选择参数使下式最小化</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{\alpha_0,\aalpha}{\min}\Big\{
@@ -3638,7 +3638,7 @@ K(x, y)=\Vert x-y\Vert^2\LOG(\Vert x-y\Vert)\tag{5.66}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-11 14:52:34
+        Last Build Date UTC : 2018-12-11 15:05:25
       </div>
       
         
