@@ -3368,7 +3368,14 @@ f(X)=\sum\limits_{k=1}^K\alpha_k\phi_k(X)+\sum\limits_{i=1}^N\theta_iG(X-x_i)\ta
 K(x, y)=\sum\limits_{i=1}^\infty \gamma_i \phi_i(x)\phi_i(y)\tag{5.45}
 </script>
 </p>
-<p>其中 $\gamma_i\ge 0,\sum_{i=1}^\infty \gamma_i^2 &lt; \infty$。${\cal H}_K$ 的元素是关于这些 <strong>特征函数 (eigen-functions)</strong> 的展开，即</p>
+<p>其中 $\gamma_i\ge 0,\sum_{i=1}^\infty \gamma_i^2 &lt; \infty$。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya注：Mercer&rsquo;s theorem</p>
+<p>$(5.45)$ 的分解由 Mercer&rsquo;s theorem 保证，Mercer&rsquo;s theorem 将半正定矩阵的特征分解推广到半正定核函数的特征分解，具体地，
+<img alt="" src="../../../img/12/wiki_mercer.PNG" />
+图片来源: <a href="https://en.wikipedia.org/wiki/Mercer%27s_theorem">Wiki: Mercer&rsquo;s theorem</a>。</p>
+</div>
+<p>${\cal H}_K$ 的元素是关于这些 <strong>特征函数 (eigen-functions)</strong> 的展开，即</p>
 <p>
 <script type="math/tex; mode=display">
 f(x)=\sum\limits_{i=1}^\infty c_i\phi_i(x)\tag{5.46}
@@ -3638,7 +3645,7 @@ K(x, y)=\Vert x-y\Vert^2\LOG(\Vert x-y\Vert)\tag{5.66}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-11 15:05:25
+        Last Build Date UTC : 2018-12-12 03:12:45
       </div>
       
         
