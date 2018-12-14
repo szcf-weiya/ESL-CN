@@ -3012,6 +3012,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../notes/ModelSelection/sim7_9/index.html" title="模拟 Fig. 7.9" class="md-nav__link">
+      模拟 Fig. 7.9
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../notes/Prototype/sim13_5/index.html" title="模拟 Fig. 13.5" class="md-nav__link">
       模拟 Fig. 13.5
     </a>
@@ -3344,8 +3356,12 @@
 <p>图 7.9 显示了预测误差和从单个训练集估计的 10 折交叉验证曲线，这来源于图 7.3 右下图的情形。这是两个类别的分类问题，采用子集大小为 $p$ 的最优子集回归的线性模型。图中显示了标准差，它是 10 个部分中的单个部分的个体误分类误差率的标准差。两条曲线都在 $p=10$ 处有最小值，尽管 CV 曲线在 10 以后更加平坦。经常将<strong>“一个标准差（one-standard error）”</strong>准则和交叉验证一起使用，我们选择最简模型，它的误差不超过最佳模型的误差以上的一个标准差。这里看起来像是选择 $p=9$ 个预测变量的模型，而真实模型采用 $p=10$。</p>
 <p><img alt="" src="../../img/07/fig7.9.png" /></p>
 <blockquote>
-<p>图7.9. 预测误差（橘黄色）和从单个训练集估计的10折交叉验证曲线（蓝色），来自图7.3中右下图的情形。</p>
+<p>图 7.9. 预测误差（橘黄色）和从单个训练集估计的10折交叉验证曲线（蓝色），来自图7.3中右下图的情形。</p>
 </blockquote>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Fig. 7.9</p>
+<p><a href="../../notes/ModelSelection/sim7_9/index.html">此笔记</a>重现了该图。</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：one standard error rule</p>
 <p>首先定义，对于 $k=1,\ldots,K$，令
@@ -3364,7 +3380,7 @@
 <script type="math/tex; mode=display">
 \hat\theta=\underset{\theta\in\{\theta_1,\ldots,\theta_m\}}{\mathrm{argmin}}\;\mathrm{CV}(\theta)
 </script>
-可以采用 one standard error rule 选择最简单的模型（正则化强度最大的模型），也就是将 $\theta$ 往正则化程度增加的方向移动，直到下式不再成立
+可以采用 one standard error rule 选择 <strong>最简单的</strong> 模型（正则化强度最大的模型），也就是将 $\theta$ 往正则化程度增加的方向移动，直到下式不再成立
 <script type="math/tex; mode=display">
 \mathrm{CV}(\theta)\le \mathrm{CV}(\hat\theta)+\mathrm{SE}(\hat\theta)
 </script>
@@ -3542,7 +3558,7 @@ AIC=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-13 03:31:35
+        Last Build Date UTC : 2018-12-14 06:05:26
       </div>
       
         
