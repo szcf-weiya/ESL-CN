@@ -3388,13 +3388,13 @@ S=XA_0^{-1}
 </script>
 </p>
 <p>用鸡尾酒酒会的例子来说就是，来自不同个体的说话声经过麦克风混合之后得到我们实际接收到的信号。假设有两组独立同分布的数据，分布都为<code>n</code>（对应图14.42中的编号），每组数据个数均为$N=1024$，混合矩阵为<code>A0</code>，用R代码描述这一过程如下</p>
-<div class="codehilite"><pre><span></span><span class="kn">library</span><span class="p">(</span>ProDenICA<span class="p">)</span>
-p <span class="o">=</span> <span class="m">2</span>
-dist <span class="o">=</span> <span class="s">&quot;n&quot;</span>
-N <span class="o">=</span> <span class="m">1024</span>
-A0 <span class="o">=</span> mixmat<span class="p">(</span>p<span class="p">)</span>
-s <span class="o">=</span> <span class="kp">scale</span><span class="p">(</span><span class="kp">cbind</span><span class="p">(</span>rjordan<span class="p">(</span>dist<span class="p">,</span>N<span class="p">),</span>rjordan<span class="p">(</span>dist<span class="p">,</span>N<span class="p">)))</span>
-x <span class="o">=</span> s <span class="o">%*%</span> A0
+<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ProDenICA</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="m">2</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span>
+<span class="n">N</span> <span class="o">=</span> <span class="m">1024</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="nf">mixmat</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nf">scale</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="nf">rjordan</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="nf">rjordan</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="n">N</span><span class="p">)))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">s</span> <span class="o">%*%</span> <span class="n">A0</span>
 </pre></div>
 
 
@@ -3424,79 +3424,79 @@ X^*=SA^T
 </script>
 </p>
 <p>用R语言表示如下</p>
-<div class="codehilite"><pre><span></span>x <span class="o">&lt;-</span> <span class="kp">scale</span><span class="p">(</span>x<span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="c1"># central</span>
-sx <span class="o">&lt;-</span> <span class="kp">svd</span><span class="p">(</span>x<span class="p">)</span>
-x <span class="o">&lt;-</span> <span class="kp">sqrt</span><span class="p">(</span>N<span class="p">)</span> <span class="o">*</span> sx<span class="o">$</span>u <span class="c1"># satisfy cov(x) = I</span>
-target <span class="o">&lt;-</span> <span class="kp">solve</span><span class="p">(</span>A0<span class="p">)</span>
-target <span class="o">&lt;-</span> <span class="kp">diag</span><span class="p">(</span>sx<span class="o">$</span>d<span class="p">)</span> <span class="o">%*%</span> <span class="kp">t</span><span class="p">(</span>sx<span class="o">$</span>v<span class="p">)</span> <span class="o">%*%</span> target<span class="o">/</span><span class="kp">sqrt</span><span class="p">(</span>N<span class="p">)</span> <span class="c1"># new mixing maxtrix</span>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="c1"># central</span>
+<span class="n">sx</span> <span class="o">&lt;-</span> <span class="nf">svd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">sx</span><span class="o">$</span><span class="n">u</span> <span class="c1"># satisfy cov(x) = I</span>
+<span class="n">target</span> <span class="o">&lt;-</span> <span class="nf">solve</span><span class="p">(</span><span class="n">A0</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">&lt;-</span> <span class="nf">diag</span><span class="p">(</span><span class="n">sx</span><span class="o">$</span><span class="n">d</span><span class="p">)</span> <span class="o">%*%</span> <span class="nf">t</span><span class="p">(</span><span class="n">sx</span><span class="o">$</span><span class="n">v</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">target</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="c1"># new mixing maxtrix</span>
 </pre></div>
 
 
 <h3 id="prodenica"><code>ProDenICA</code>法<a class="headerlink" href="#prodenica" title="Permanent link">&para;</a></h3>
 <p>细节不再展开，直接利用<code>ProDenICA</code>中的包进行计算</p>
-<div class="codehilite"><pre><span></span>W0 <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
-W0 <span class="o">&lt;-</span> ICAorthW<span class="p">(</span>W0<span class="p">)</span>
-W1 <span class="o">&lt;-</span> ProDenICA<span class="p">(</span>x<span class="p">,</span> W0<span class="o">=</span>W0<span class="p">,</span>trace<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>Gfunc<span class="o">=</span>GPois<span class="p">)</span><span class="o">$</span>W
+<div class="codehilite"><pre><span></span><span class="n">W0</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">W0</span> <span class="o">&lt;-</span> <span class="nf">ICAorthW</span><span class="p">(</span><span class="n">W0</span><span class="p">)</span>
+<span class="n">W1</span> <span class="o">&lt;-</span> <span class="nf">ProDenICA</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W0</span><span class="o">=</span><span class="n">W0</span><span class="p">,</span><span class="n">trace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">Gfunc</span><span class="o">=</span><span class="n">GPois</span><span class="p">)</span><span class="o">$</span><span class="n">W</span>
 </pre></div>
 
 
 <p>得到$A$的估计值<code>W1</code></p>
 <h3 id="amari">计算Amari距离<a class="headerlink" href="#amari" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span>amari<span class="p">(</span>W1<span class="p">,</span> target<span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="nf">amari</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 </pre></div>
 
 
 <h2 id="_3">比较两种算法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>这一部分试图重现Fig. 14.42。</p>
-<div class="codehilite"><pre><span></span>N <span class="o">=</span> <span class="m">1024</span>
+<div class="codehilite"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="m">1024</span>
 
-genData <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>dist<span class="p">,</span> N <span class="o">=</span> <span class="m">1024</span><span class="p">,</span> p <span class="o">=</span> <span class="m">2</span><span class="p">){</span>
+<span class="n">genData</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="m">1024</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">2</span><span class="p">){</span>
   <span class="c1"># original sources</span>
-  s <span class="o">=</span> <span class="kp">scale</span><span class="p">(</span><span class="kp">cbind</span><span class="p">(</span>rjordan<span class="p">(</span>dist<span class="p">,</span> N<span class="p">),</span> rjordan<span class="p">(</span>dist<span class="p">,</span> N<span class="p">)))</span>
+  <span class="n">s</span> <span class="o">=</span> <span class="nf">scale</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="nf">rjordan</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="nf">rjordan</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">N</span><span class="p">)))</span>
   <span class="c1"># mixing matrix</span>
-  mix.mat <span class="o">=</span> mixmat<span class="p">(</span><span class="m">2</span><span class="p">)</span>
+  <span class="n">mix.mat</span> <span class="o">=</span> <span class="nf">mixmat</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
   <span class="c1"># original observation</span>
-  x <span class="o">=</span> s <span class="o">%*%</span> mix.mat
+  <span class="n">x</span> <span class="o">=</span> <span class="n">s</span> <span class="o">%*%</span> <span class="n">mix.mat</span>
 
   <span class="c1"># central x</span>
-  x <span class="o">=</span> <span class="kp">scale</span><span class="p">(</span>x<span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span>
   <span class="c1"># whiten x</span>
-  xs <span class="o">=</span> <span class="kp">svd</span><span class="p">(</span>x<span class="p">)</span>
-  x <span class="o">=</span> <span class="kp">sqrt</span><span class="p">(</span>N<span class="p">)</span> <span class="o">*</span> xs<span class="o">$</span>u <span class="c1"># new observations</span>
-  mix.mat2 <span class="o">=</span> <span class="kp">diag</span><span class="p">(</span>xs<span class="o">$</span>d<span class="p">)</span> <span class="o">%*%</span> <span class="kp">t</span><span class="p">(</span>xs<span class="o">$</span>v<span class="p">)</span> <span class="o">%*%</span> <span class="kp">solve</span><span class="p">(</span>mix.mat<span class="p">)</span> <span class="o">/</span> <span class="kp">sqrt</span><span class="p">(</span>N<span class="p">)</span> <span class="c1"># new mixing matrix</span>
-  <span class="kr">return</span><span class="p">(</span><span class="kt">list</span><span class="p">(</span>x <span class="o">=</span> x<span class="p">,</span> A <span class="o">=</span> mix.mat2<span class="p">))</span>
+  <span class="n">xs</span> <span class="o">=</span> <span class="nf">svd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">xs</span><span class="o">$</span><span class="n">u</span> <span class="c1"># new observations</span>
+  <span class="n">mix.mat2</span> <span class="o">=</span> <span class="nf">diag</span><span class="p">(</span><span class="n">xs</span><span class="o">$</span><span class="n">d</span><span class="p">)</span> <span class="o">%*%</span> <span class="nf">t</span><span class="p">(</span><span class="n">xs</span><span class="o">$</span><span class="n">v</span><span class="p">)</span> <span class="o">%*%</span> <span class="nf">solve</span><span class="p">(</span><span class="n">mix.mat</span><span class="p">)</span> <span class="o">/</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="c1"># new mixing matrix</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">mix.mat2</span><span class="p">))</span>
 <span class="p">}</span>
 
-res <span class="o">=</span> <span class="kt">array</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">18</span><span class="p">,</span> <span class="m">30</span><span class="p">))</span>
-<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">)){</span>
-  <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">)){</span>
-    data <span class="o">=</span> genData<span class="p">(</span><span class="kc">letters</span><span class="p">[</span>i<span class="p">])</span>
-    x <span class="o">=</span> data<span class="o">$</span>x
-    A <span class="o">=</span> data<span class="o">$</span>A
-    W0 <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
-    W0 <span class="o">&lt;-</span> ICAorthW<span class="p">(</span>W0<span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="nf">array</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">18</span><span class="p">,</span> <span class="m">30</span><span class="p">))</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">)){</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">)){</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="kc">letters</span><span class="n">[i]</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="o">$</span><span class="n">x</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">data</span><span class="o">$</span><span class="n">A</span>
+    <span class="n">W0</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+    <span class="n">W0</span> <span class="o">&lt;-</span> <span class="nf">ICAorthW</span><span class="p">(</span><span class="n">W0</span><span class="p">)</span>
     <span class="c1"># ProDenICA</span>
-    W1 <span class="o">&lt;-</span> ProDenICA<span class="p">(</span>x<span class="p">,</span> W0<span class="o">=</span>W0<span class="p">,</span>trace<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>Gfunc<span class="o">=</span>GPois<span class="p">,</span> restarts <span class="o">=</span> <span class="m">5</span><span class="p">)</span><span class="o">$</span>W
+    <span class="n">W1</span> <span class="o">&lt;-</span> <span class="nf">ProDenICA</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W0</span><span class="o">=</span><span class="n">W0</span><span class="p">,</span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">Gfunc</span><span class="o">=</span><span class="n">GPois</span><span class="p">,</span> <span class="n">restarts</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span><span class="o">$</span><span class="n">W</span>
     <span class="c1"># FastICA</span>
-    W2 <span class="o">&lt;-</span> ProDenICA<span class="p">(</span>x<span class="p">,</span> W0<span class="o">=</span>W0<span class="p">,</span>trace<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>Gfunc<span class="o">=</span>G1<span class="p">,</span> restarts <span class="o">=</span> <span class="m">5</span><span class="p">)</span><span class="o">$</span>W
-    res<span class="p">[</span><span class="m">1</span><span class="p">,</span> i<span class="p">,</span> j<span class="p">]</span> <span class="o">=</span> amari<span class="p">(</span>W1<span class="p">,</span> A<span class="p">)</span>
-    res<span class="p">[</span><span class="m">2</span><span class="p">,</span> i<span class="p">,</span> j<span class="p">]</span> <span class="o">=</span> amari<span class="p">(</span>W2<span class="p">,</span> A<span class="p">)</span>
+    <span class="n">W2</span> <span class="o">&lt;-</span> <span class="nf">ProDenICA</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W0</span><span class="o">=</span><span class="n">W0</span><span class="p">,</span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">Gfunc</span><span class="o">=</span><span class="n">G1</span><span class="p">,</span> <span class="n">restarts</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span><span class="o">$</span><span class="n">W</span>
+    <span class="n">res[1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j]</span> <span class="o">=</span> <span class="nf">amari</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">res[2</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j]</span> <span class="o">=</span> <span class="nf">amari</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-res.mean <span class="o">=</span> <span class="kp">log</span><span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="kp">apply</span><span class="p">(</span>res<span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="kp">mean</span><span class="p">))</span>
+<span class="n">res.mean</span> <span class="o">=</span> <span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="nf">apply</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">mean</span><span class="p">))</span>
 <span class="c1">#offset = apply(res, c(1,2), sd)</span>
 <span class="c1">#offset = 0</span>
 <span class="c1">#res.max = res.mean + offset/4</span>
 <span class="c1">#res.min = res.mean - offset/4</span>
-res.max <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>res<span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="kp">max</span><span class="p">)</span>
-res.min <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>res<span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="kp">min</span><span class="p">)</span>
+<span class="n">res.max</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">max</span><span class="p">)</span>
+<span class="n">res.min</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">min</span><span class="p">)</span>
 
 <span class="c1"># plot</span>
-plot<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> res.mean<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="p">],</span> xlab <span class="o">=</span> <span class="s">&quot;Distribution&quot;</span><span class="p">,</span> ylab <span class="o">=</span> <span class="s">&quot;Amari Distance from True A&quot;</span><span class="p">,</span> xaxt <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">19</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">,</span> ylim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span>
-axis<span class="p">(</span><span class="m">1</span><span class="p">,</span> at <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> labels <span class="o">=</span> <span class="kc">letters</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">])</span>
-lines<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> res.mean<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="p">],</span> type <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">19</span><span class="p">,</span> lwd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
-legend<span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;ProDenICA&quot;</span><span class="p">,</span> <span class="s">&quot;FastICA&quot;</span><span class="p">),</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">19</span><span class="p">,</span> col <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">res.mean[1</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Distribution&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Amari Distance from True A&quot;</span><span class="p">,</span> <span class="n">xaxt</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span>
+<span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">at</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="kc">letters</span><span class="n">[1</span><span class="o">:</span><span class="m">18</span><span class="n">]</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">res.mean[2</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;ProDenICA&quot;</span><span class="p">,</span> <span class="s">&quot;FastICA&quot;</span><span class="p">),</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">))</span>
 <span class="c1">#for(i in 1:18)</span>
 <span class="c1">#{</span>
 <span class="c1">#  for (j in 1:2)</span>
@@ -3595,7 +3595,7 @@ legend<span class="p">(</span><span class="s">&quot;topright&quot;</span><span c
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-16 03:40:25
+        Last Build Date UTC : 2018-12-17 05:23:54
       </div>
       
         

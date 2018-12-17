@@ -3459,24 +3459,24 @@
 <h2 id="_1">线性类别边界<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <h3 id="_2">生成数据<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="c1">## generate data</span>
-<span class="kp">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
-x <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span><span class="m">20</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> ncol <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
-y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="kp">rep</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> <span class="kp">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">))</span>
-x<span class="p">[</span>y<span class="o">==</span><span class="m">1</span><span class="p">,</span> <span class="p">]</span> <span class="o">=</span> x<span class="p">[</span>y<span class="o">==</span><span class="m">1</span><span class="p">,</span> <span class="p">]</span> <span class="o">+</span> <span class="m">1</span>
-png<span class="p">(</span><span class="s">&quot;ex1.png&quot;</span><span class="p">)</span>
-plot<span class="p">(</span>x<span class="p">,</span> col <span class="o">=</span> <span class="p">(</span><span class="m">3</span><span class="o">-</span>y<span class="p">))</span>
-dev.off<span class="p">()</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">))</span>
+<span class="n">x[y</span><span class="o">==</span><span class="m">1</span><span class="p">,</span> <span class="n">]</span> <span class="o">=</span> <span class="n">x[y</span><span class="o">==</span><span class="m">1</span><span class="p">,</span> <span class="n">]</span> <span class="o">+</span> <span class="m">1</span>
+<span class="nf">png</span><span class="p">(</span><span class="s">&quot;ex1.png&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="p">(</span><span class="m">3</span><span class="o">-</span><span class="n">y</span><span class="p">))</span>
+<span class="nf">dev.off</span><span class="p">()</span>
 </pre></div>
 
 
 <p><img alt="" src="../ex1.png" /></p>
 <h3 id="_3">拟合<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>应用支持向量分类器</p>
-<div class="codehilite"><pre><span></span>dat <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> x<span class="p">,</span> y <span class="o">=</span> <span class="kp">as.factor</span><span class="p">(</span>y<span class="p">))</span>
-svmfit <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">,</span> kernel <span class="o">=</span> <span class="s">&quot;linear&quot;</span><span class="p">,</span> cost <span class="o">=</span> <span class="m">10</span><span class="p">,</span> scale <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
-png<span class="p">(</span><span class="s">&quot;ex1_svm.png&quot;</span><span class="p">)</span>
-plot<span class="p">(</span>svmfit<span class="p">,</span> dat<span class="p">)</span>
-dev.off<span class="p">()</span>
+<div class="codehilite"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">svmfit</span> <span class="o">=</span> <span class="nf">svm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;linear&quot;</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">png</span><span class="p">(</span><span class="s">&quot;ex1_svm.png&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">svmfit</span><span class="p">,</span> <span class="n">dat</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
 </pre></div>
 
 
@@ -3488,10 +3488,10 @@ dev.off<span class="p">()</span>
 <p><code>svmfit$index</code>返回支持向量的序号。</p>
 </div>
 <div class="codehilite"><pre><span></span><span class="c1">## a smaller cost</span>
-svmfit <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">,</span> kernel <span class="o">=</span> <span class="s">&quot;linear&quot;</span><span class="p">,</span> cost <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> scale <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
-png<span class="p">(</span><span class="s">&quot;ex1_svm_smaller.png&quot;</span><span class="p">)</span>
-plot<span class="p">(</span>svmfit<span class="p">,</span> dat<span class="p">)</span>
-dev.off<span class="p">()</span>
+<span class="n">svmfit</span> <span class="o">=</span> <span class="nf">svm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;linear&quot;</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">png</span><span class="p">(</span><span class="s">&quot;ex1_svm_smaller.png&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">svmfit</span><span class="p">,</span> <span class="n">dat</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
 </pre></div>
 
 
@@ -3499,13 +3499,13 @@ dev.off<span class="p">()</span>
 <h3 id="_4">交叉验证<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>当然也可以通过交叉验证选择最优的<code>cost</code></p>
 <div class="codehilite"><pre><span></span><span class="c1">## cross-validation</span>
-<span class="kp">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
-tune.out <span class="o">=</span> tune<span class="p">(</span>svm<span class="p">,</span> y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">,</span> kernel<span class="o">=</span><span class="s">&quot;linear&quot;</span><span class="p">,</span> ranges <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>cost<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0.001</span><span class="p">,</span> <span class="m">0.01</span><span class="p">,</span> <span class="m">0.1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">100</span><span class="p">)))</span>
-<span class="kp">summary</span><span class="p">(</span>tune.out<span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">tune.out</span> <span class="o">=</span> <span class="nf">tune</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s">&quot;linear&quot;</span><span class="p">,</span> <span class="n">ranges</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.001</span><span class="p">,</span> <span class="m">0.01</span><span class="p">,</span> <span class="m">0.1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">100</span><span class="p">)))</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">tune.out</span><span class="p">)</span>
 
 <span class="c1">## pick up the best model</span>
-bestmod <span class="o">=</span> tune.out<span class="o">$</span>best.model
-<span class="kp">summary</span><span class="p">(</span>bestmod<span class="p">)</span>
+<span class="n">bestmod</span> <span class="o">=</span> <span class="n">tune.out</span><span class="o">$</span><span class="n">best.model</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">bestmod</span><span class="p">)</span>
 </pre></div>
 
 
@@ -3536,12 +3536,12 @@ bestmod <span class="o">=</span> tune.out<span class="o">$</span>best.model
 <h3 id="_5">预测<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>应用通过交叉验证选择出的最优模型进行预测</p>
 <div class="codehilite"><pre><span></span><span class="c1">## prediction</span>
-xtest <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span><span class="m">20</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> ncol <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
-ytest <span class="o">=</span> <span class="kp">sample</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="m">20</span><span class="p">,</span> rep <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-xtest<span class="p">[</span>ytest <span class="o">==</span> <span class="m">1</span><span class="p">,</span> <span class="p">]</span> <span class="o">=</span> xtest<span class="p">[</span>ytest <span class="o">==</span> <span class="m">1</span><span class="p">,</span> <span class="p">]</span> <span class="o">+</span> <span class="m">1</span>
-testdat <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> xtest<span class="p">,</span> y <span class="o">=</span> <span class="kp">as.factor</span><span class="p">(</span>ytest<span class="p">))</span>
-ypred <span class="o">=</span> predict<span class="p">(</span>bestmod<span class="p">,</span> testdat<span class="p">)</span>
-<span class="kp">table</span><span class="p">(</span>predict <span class="o">=</span> ypred<span class="p">,</span> truth <span class="o">=</span> testdat<span class="o">$</span>y<span class="p">)</span>
+<span class="n">xtest</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">ytest</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="m">20</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">xtest[ytest</span> <span class="o">==</span> <span class="m">1</span><span class="p">,</span> <span class="n">]</span> <span class="o">=</span> <span class="n">xtest[ytest</span> <span class="o">==</span> <span class="m">1</span><span class="p">,</span> <span class="n">]</span> <span class="o">+</span> <span class="m">1</span>
+<span class="n">testdat</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xtest</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">ytest</span><span class="p">))</span>
+<span class="n">ypred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">bestmod</span><span class="p">,</span> <span class="n">testdat</span><span class="p">)</span>
+<span class="nf">table</span><span class="p">(</span><span class="n">predict</span> <span class="o">=</span> <span class="n">ypred</span><span class="p">,</span> <span class="n">truth</span> <span class="o">=</span> <span class="n">testdat</span><span class="o">$</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 
 
@@ -3555,28 +3555,28 @@ ypred <span class="o">=</span> predict<span class="p">(</span>bestmod<span class
 
 <h2 id="_6">非线性类别边界<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <h3 id="_7">生成数据<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="kp">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
-x <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span><span class="m">200</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> ncol <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
-x<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="p">]</span> <span class="o">=</span> x<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="p">]</span> <span class="o">+</span> <span class="m">2</span>
-x<span class="p">[</span><span class="m">101</span><span class="o">:</span><span class="m">150</span><span class="p">,</span> <span class="p">]</span> <span class="o">=</span> x<span class="p">[</span><span class="m">101</span><span class="o">:</span><span class="m">150</span><span class="p">,</span> <span class="p">]</span> <span class="o">-</span> <span class="m">2</span>
-y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="kp">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">150</span><span class="p">),</span> <span class="kp">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">50</span><span class="p">))</span>
-dat <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> x<span class="p">,</span> y <span class="o">=</span> <span class="kp">as.factor</span><span class="p">(</span>y<span class="p">))</span>
-png<span class="p">(</span><span class="s">&quot;ex2.png&quot;</span><span class="p">)</span>
-plot<span class="p">(</span>x<span class="p">,</span> col <span class="o">=</span> y<span class="p">)</span>
-dev.off<span class="p">()</span>
+<div class="codehilite"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">200</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">x[1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="n">]</span> <span class="o">=</span> <span class="n">x[1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="n">]</span> <span class="o">+</span> <span class="m">2</span>
+<span class="n">x[101</span><span class="o">:</span><span class="m">150</span><span class="p">,</span> <span class="n">]</span> <span class="o">=</span> <span class="n">x[101</span><span class="o">:</span><span class="m">150</span><span class="p">,</span> <span class="n">]</span> <span class="o">-</span> <span class="m">2</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">150</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">50</span><span class="p">))</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="nf">png</span><span class="p">(</span><span class="s">&quot;ex2.png&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
 </pre></div>
 
 
 <p><img alt="" src="../ex2.png" /></p>
 <h3 id="_8">训练<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="c1">## randomly split into training and testing groups</span>
-train <span class="o">=</span> <span class="kp">sample</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 
 <span class="c1">## training data using radial kernel</span>
-svmfit <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">[</span>train<span class="p">,</span> <span class="p">],</span> kernel <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">,</span> cost <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
-png<span class="p">(</span><span class="s">&quot;ex2_svm.png&quot;</span><span class="p">)</span>
-plot<span class="p">(</span>svmfit<span class="p">,</span> dat<span class="p">[</span>train<span class="p">,</span> <span class="p">])</span>
-dev.off<span class="p">()</span>
+<span class="n">svmfit</span> <span class="o">=</span> <span class="nf">svm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat[train</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">png</span><span class="p">(</span><span class="s">&quot;ex2_svm.png&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">svmfit</span><span class="p">,</span> <span class="n">dat[train</span><span class="p">,</span> <span class="n">]</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
 </pre></div>
 
 
@@ -3584,11 +3584,11 @@ dev.off<span class="p">()</span>
 <h3 id="_9">交叉验证<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>采用交叉验证选择最优的模型，注意<code>radial</code>核有两个调整参数，<code>gamma</code>和<code>cost</code>。</p>
 <div class="codehilite"><pre><span></span><span class="c1">## cross-validation </span>
-<span class="kp">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
-tune.out <span class="o">=</span> tune<span class="p">(</span>svm<span class="p">,</span> y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">[</span>train<span class="p">,</span> <span class="p">],</span> kernel <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">,</span>
-                ranges <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>cost <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">1000</span><span class="p">),</span>
-                              gamma <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">)))</span>
-<span class="kp">summary</span><span class="p">(</span>tune.out<span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">tune.out</span> <span class="o">=</span> <span class="nf">tune</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat[train</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">,</span>
+                <span class="n">ranges</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">cost</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">1000</span><span class="p">),</span>
+                              <span class="n">gamma</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">)))</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">tune.out</span><span class="p">)</span>
 </pre></div>
 
 
@@ -3636,7 +3636,7 @@ tune.out <span class="o">=</span> tune<span class="p">(</span>svm<span class="p"
 <h3 id="_10">预测<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>采用上述交叉验证得到的最优模型进行预测</p>
 <div class="codehilite"><pre><span></span><span class="c1">## prediction</span>
-<span class="kp">table</span><span class="p">(</span>true <span class="o">=</span> dat<span class="p">[</span><span class="o">-</span>train<span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">],</span> pred <span class="o">=</span> predict<span class="p">(</span>tune.out<span class="o">$</span>best.model<span class="p">,</span> newdata <span class="o">=</span> dat<span class="p">[</span><span class="o">-</span>train<span class="p">,</span> <span class="p">]))</span>
+<span class="nf">table</span><span class="p">(</span><span class="n">true</span> <span class="o">=</span> <span class="n">dat[</span><span class="o">-</span><span class="n">train</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="n">]</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">tune.out</span><span class="o">$</span><span class="n">best.model</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="n">dat[</span><span class="o">-</span><span class="n">train</span><span class="p">,</span> <span class="n">]</span><span class="p">))</span>
 </pre></div>
 
 
@@ -3651,14 +3651,14 @@ tune.out <span class="o">=</span> tune<span class="p">(</span>svm<span class="p"
 <h3 id="roc">ROC曲线<a class="headerlink" href="#roc" title="Permanent link">&para;</a></h3>
 <p>采用ROC曲线来衡量分类模型效果。<code>ROCR</code>包可以用来生成ROC曲线。首先自定义<code>rocplot</code>用于绘图</p>
 <div class="codehilite"><pre><span></span><span class="c1">## ROC curves</span>
-<span class="kn">library</span><span class="p">(</span>ROCR<span class="p">)</span>
-rocplot <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>pred<span class="p">,</span> truth<span class="p">,</span> <span class="kc">...</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">if</span> <span class="p">(</span><span class="kp">mean</span><span class="p">(</span>pred<span class="p">[</span>truth<span class="o">==</span><span class="m">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="kp">mean</span><span class="p">(</span>pred<span class="p">[</span>truth<span class="o">==</span><span class="m">2</span><span class="p">]))</span>
-    predob <span class="o">=</span> prediction<span class="p">(</span>pred<span class="p">,</span> truth<span class="p">,</span> label.ordering <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">,</span> <span class="s">&quot;1&quot;</span><span class="p">))</span>
-  <span class="kp">else</span>
-    predob <span class="o">=</span> prediction<span class="p">(</span>pred<span class="p">,</span> truth<span class="p">,</span> label.ordering <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;2&quot;</span><span class="p">))</span>
-  perf <span class="o">=</span> performance<span class="p">(</span>predob <span class="p">,</span> <span class="s">&quot;tpr&quot;</span> <span class="p">,</span> <span class="s">&quot;fpr&quot;</span><span class="p">)</span>
-  plot<span class="p">(</span>perf<span class="p">,</span> <span class="kc">...</span><span class="p">)</span> 
+<span class="nf">library</span><span class="p">(</span><span class="n">ROCR</span><span class="p">)</span>
+<span class="n">rocplot</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">pred[truth</span><span class="o">==</span><span class="m">1</span><span class="n">]</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nf">mean</span><span class="p">(</span><span class="n">pred[truth</span><span class="o">==</span><span class="m">2</span><span class="n">]</span><span class="p">))</span>
+    <span class="n">predob</span> <span class="o">=</span> <span class="nf">prediction</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">label.ordering</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">,</span> <span class="s">&quot;1&quot;</span><span class="p">))</span>
+  <span class="n">else</span>
+    <span class="n">predob</span> <span class="o">=</span> <span class="nf">prediction</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">label.ordering</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;2&quot;</span><span class="p">))</span>
+  <span class="n">perf</span> <span class="o">=</span> <span class="nf">performance</span><span class="p">(</span><span class="n">predob</span> <span class="p">,</span> <span class="s">&quot;tpr&quot;</span> <span class="p">,</span> <span class="s">&quot;fpr&quot;</span><span class="p">)</span>
+  <span class="nf">plot</span><span class="p">(</span><span class="n">perf</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span> 
 <span class="p">}</span>
 </pre></div>
 
@@ -3668,30 +3668,30 @@ rocplot <span class="o">=</span> <span class="kr">function</span><span class="p"
 <p>上述代码值得说明的是<code>prediction</code>函数中的<code>label.ordering</code>参数，具体用法参见help文档，初次调用时也被困惑了一时，详细过程参见<a href="https://tech.hohoweiya.xyz/R/#rocrprediction">R | 技术博客</a></p>
 </div>
 <p>训练集的ROC曲线</p>
-<div class="codehilite"><pre><span></span>svmfit.opt <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">[</span>train<span class="p">,</span> <span class="p">],</span> kernel <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">,</span>
-                 gamma <span class="o">=</span> <span class="m">3</span><span class="p">,</span> cost <span class="o">=</span> <span class="m">10</span><span class="p">,</span> decision.values <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
-fitted <span class="o">=</span> <span class="kp">attributes</span><span class="p">(</span>predict<span class="p">(</span>svmfit.opt<span class="p">,</span> dat<span class="p">[</span>train<span class="p">,</span> <span class="p">],</span> decision.values <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="o">$</span>decision.values
-png<span class="p">(</span><span class="s">&quot;roc.png&quot;</span><span class="p">)</span>
-par<span class="p">(</span>mfrow <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
-rocplot <span class="p">(</span> fitted <span class="p">,</span> dat <span class="p">[</span> train <span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">]</span> <span class="p">,</span> main <span class="o">=</span><span class="s">&quot;Training Data&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">svmfit.opt</span> <span class="o">=</span> <span class="nf">svm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat[train</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">,</span>
+                 <span class="n">gamma</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">decision.values</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+<span class="n">fitted</span> <span class="o">=</span> <span class="nf">attributes</span><span class="p">(</span><span class="nf">predict</span><span class="p">(</span><span class="n">svmfit.opt</span><span class="p">,</span> <span class="n">dat[train</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">decision.values</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="o">$</span><span class="n">decision.values</span>
+<span class="nf">png</span><span class="p">(</span><span class="s">&quot;roc.png&quot;</span><span class="p">)</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+<span class="nf">rocplot </span><span class="p">(</span> <span class="n">fitted</span> <span class="p">,</span> <span class="n">dat</span> <span class="n">[</span> <span class="n">train</span> <span class="p">,</span><span class="s">&quot;y&quot;</span><span class="n">]</span> <span class="p">,</span> <span class="n">main</span> <span class="o">=</span><span class="s">&quot;Training Data&quot;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>增大<code>gamma</code>得到更flexible的模型，与最优的模型进行比较</p>
 <div class="codehilite"><pre><span></span><span class="c1">## increasing gamma to produce a more flexible fit</span>
-svmfit.flex <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span> <span class="p">,</span> data <span class="o">=</span> dat <span class="p">[</span> train <span class="p">,]</span> <span class="p">,</span> kernel <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">,</span> gamma <span class="o">=</span><span class="m">50</span> <span class="p">,</span> cost <span class="o">=</span><span class="m">1</span> <span class="p">,</span> decision.values <span class="o">=</span> <span class="bp">T</span> <span class="p">)</span>
-fitted <span class="o">=</span> <span class="kp">attributes</span><span class="p">(</span>predict<span class="p">(</span>svmfit.flex<span class="p">,</span> dat<span class="p">[</span>train <span class="p">,],</span> decision.values <span class="o">=</span> <span class="bp">T</span> <span class="p">)</span> <span class="p">)</span> <span class="o">$</span>decision.values
-rocplot<span class="p">(</span>fitted<span class="p">,</span> dat<span class="p">[</span>train<span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">],</span> add <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> col <span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">svmfit.flex</span> <span class="o">=</span> <span class="nf">svm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">. </span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span> <span class="n">[</span> <span class="n">train</span> <span class="p">,</span><span class="n">]</span> <span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;radial&quot;</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=</span><span class="m">50</span> <span class="p">,</span> <span class="n">cost</span> <span class="o">=</span><span class="m">1</span> <span class="p">,</span> <span class="n">decision.values</span> <span class="o">=</span> <span class="bp">T</span> <span class="p">)</span>
+<span class="n">fitted</span> <span class="o">=</span> <span class="nf">attributes</span><span class="p">(</span><span class="nf">predict</span><span class="p">(</span><span class="n">svmfit.flex</span><span class="p">,</span> <span class="n">dat[train</span> <span class="p">,</span><span class="n">]</span><span class="p">,</span> <span class="n">decision.values</span> <span class="o">=</span> <span class="bp">T</span> <span class="p">)</span> <span class="p">)</span> <span class="o">$</span><span class="n">decision.values</span>
+<span class="nf">rocplot</span><span class="p">(</span><span class="n">fitted</span><span class="p">,</span> <span class="n">dat[train</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="n">]</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>画出这两个模型在测试集上的ROC曲线</p>
 <div class="codehilite"><pre><span></span><span class="c1">## on test data</span>
-fitted <span class="o">=</span> <span class="kp">attributes</span><span class="p">(</span>predict<span class="p">(</span>svmfit.opt<span class="p">,</span> dat<span class="p">[</span><span class="o">-</span>train<span class="p">,</span> <span class="p">],</span> decision.values <span class="o">=</span> <span class="bp">T</span> <span class="p">)</span> <span class="p">)</span> <span class="o">$</span>decision.values
-rocplot<span class="p">(</span>fitted<span class="p">,</span> dat<span class="p">[</span><span class="o">-</span>train<span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">]</span> <span class="p">,</span> main <span class="o">=</span> <span class="s">&quot;Test Data&quot;</span><span class="p">)</span>
-fitted <span class="o">=</span> <span class="kp">attributes</span><span class="p">(</span>predict<span class="p">(</span>svmfit.flex<span class="p">,</span> dat<span class="p">[</span><span class="o">-</span>train<span class="p">,</span> <span class="p">],</span> decision.values <span class="o">=</span> <span class="bp">T</span> <span class="p">)</span> <span class="p">)</span> <span class="o">$</span>decision.values
-rocplot<span class="p">(</span>fitted<span class="p">,</span> dat<span class="p">[</span><span class="o">-</span>train<span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">]</span> <span class="p">,</span> add <span class="o">=</span><span class="bp">T</span><span class="p">,</span> col <span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
-dev.off<span class="p">()</span>
+<span class="n">fitted</span> <span class="o">=</span> <span class="nf">attributes</span><span class="p">(</span><span class="nf">predict</span><span class="p">(</span><span class="n">svmfit.opt</span><span class="p">,</span> <span class="n">dat[</span><span class="o">-</span><span class="n">train</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">decision.values</span> <span class="o">=</span> <span class="bp">T</span> <span class="p">)</span> <span class="p">)</span> <span class="o">$</span><span class="n">decision.values</span>
+<span class="nf">rocplot</span><span class="p">(</span><span class="n">fitted</span><span class="p">,</span> <span class="n">dat[</span><span class="o">-</span><span class="n">train</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="n">]</span> <span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Test Data&quot;</span><span class="p">)</span>
+<span class="n">fitted</span> <span class="o">=</span> <span class="nf">attributes</span><span class="p">(</span><span class="nf">predict</span><span class="p">(</span><span class="n">svmfit.flex</span><span class="p">,</span> <span class="n">dat[</span><span class="o">-</span><span class="n">train</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">decision.values</span> <span class="o">=</span> <span class="bp">T</span> <span class="p">)</span> <span class="p">)</span> <span class="o">$</span><span class="n">decision.values</span>
+<span class="nf">rocplot</span><span class="p">(</span><span class="n">fitted</span><span class="p">,</span> <span class="n">dat[</span><span class="o">-</span><span class="n">train</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="n">]</span> <span class="p">,</span> <span class="n">add</span> <span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
 </pre></div>
 
 
@@ -3701,41 +3701,41 @@ dev.off<span class="p">()</span>
 <p>本节内容是知乎问题<a href="https://www.zhihu.com/question/269082342/answer/345343234">MATLAB上libsvm的使用？ - 知乎</a>的回答过程。</p>
 <p>虽然问题是问 Matlab，但系统上没装 matlab，而且不同语言中的算法应该是基本一致的。所以先用 R 来研究一下</p>
 <p>数据生成代码</p>
-<div class="codehilite"><pre><span></span>x <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
              <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
              <span class="m">0</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span>
              <span class="m">-1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
              <span class="m">0</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span>
              <span class="m">0</span><span class="p">,</span> <span class="m">-2</span><span class="p">,</span>
-             <span class="m">-2</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> byrow <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
-y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
-phi <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">){</span>
-  <span class="kr">return</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span>x<span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">^</span><span class="m">2</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span>x<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">+</span> <span class="m">3</span><span class="p">,</span> x<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">^</span><span class="m">2</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span>x<span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="o">-</span> <span class="m">3</span><span class="p">))</span>
+             <span class="m">-2</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">byrow</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">phi</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x[2]^2</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span><span class="n">x[1]</span> <span class="o">+</span> <span class="m">3</span><span class="p">,</span> <span class="n">x[1]^2</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span><span class="n">x[2]</span> <span class="o">-</span> <span class="m">3</span><span class="p">))</span>
 <span class="p">}</span>
-z <span class="o">=</span> <span class="kp">t</span><span class="p">(</span><span class="kp">apply</span><span class="p">(</span>x<span class="p">,</span> <span class="m">1</span><span class="p">,</span> phi<span class="p">))</span>
-df <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span>z<span class="p">,</span> <span class="kp">factor</span><span class="p">(</span>y<span class="p">))</span>
-<span class="kp">colnames</span><span class="p">(</span>df<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;z1&quot;</span><span class="p">,</span> <span class="s">&quot;z2&quot;</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">phi</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="nf">factor</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;z1&quot;</span><span class="p">,</span> <span class="s">&quot;z2&quot;</span><span class="p">,</span> <span class="s">&quot;y&quot;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>注意要设定 <code>scale = FALSE</code>，当采用默认 <code>cost</code> 时，</p>
 <div class="codehilite"><pre><span></span><span class="c1"># cost = 1</span>
-svmfit <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> df<span class="p">,</span> kernel<span class="o">=</span><span class="s">&quot;linear&quot;</span><span class="p">,</span> scale <span class="o">=</span> <span class="bp">F</span><span class="p">,</span>cost<span class="o">=</span><span class="m">1</span><span class="p">)</span>
-w <span class="o">=</span> <span class="kp">t</span><span class="p">(</span>svmfit<span class="o">$</span>coefs<span class="p">)</span> <span class="o">%*%</span> svmfit<span class="o">$</span>SV
-b <span class="o">=</span> <span class="o">-</span>svmfit<span class="o">$</span>rho
-w
-b
+<span class="n">svmfit</span> <span class="o">=</span> <span class="nf">svm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s">&quot;linear&quot;</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span><span class="n">cost</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="n">svmfit</span><span class="o">$</span><span class="n">coefs</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">svmfit</span><span class="o">$</span><span class="n">SV</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">svmfit</span><span class="o">$</span><span class="n">rho</span>
+<span class="n">w</span>
+<span class="n">b</span>
 </pre></div>
 
 
 <p><img alt="" src="../line-1.png" /></p>
 <p>此时线性边界为 $z_1=5$，不是问题中的最优分离超平面。注意到当 $C\rightarrow\infty$ 时会得到最优超平面，所以我们取个较大的 <code>cost</code> 进行训练，即</p>
 <div class="codehilite"><pre><span></span><span class="c1"># cost = 10000</span>
-svmfit <span class="o">=</span> svm<span class="p">(</span>y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> df<span class="p">,</span> kernel<span class="o">=</span><span class="s">&quot;linear&quot;</span><span class="p">,</span> scale <span class="o">=</span> <span class="bp">F</span><span class="p">,</span>cost<span class="o">=</span><span class="m">1000000</span><span class="p">)</span>
-w <span class="o">=</span> <span class="kp">t</span><span class="p">(</span>svmfit<span class="o">$</span>coefs<span class="p">)</span> <span class="o">%*%</span> svmfit<span class="o">$</span>SV
-b <span class="o">=</span> <span class="o">-</span>svmfit<span class="o">$</span>rho
-w
-b
+<span class="n">svmfit</span> <span class="o">=</span> <span class="nf">svm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s">&quot;linear&quot;</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span><span class="n">cost</span><span class="o">=</span><span class="m">1000000</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="n">svmfit</span><span class="o">$</span><span class="n">coefs</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">svmfit</span><span class="o">$</span><span class="n">SV</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">svmfit</span><span class="o">$</span><span class="n">rho</span>
+<span class="n">w</span>
+<span class="n">b</span>
 </pre></div>
 
 
@@ -3831,7 +3831,7 @@ b
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-16 03:40:26
+        Last Build Date UTC : 2018-12-17 05:23:55
       </div>
       
         

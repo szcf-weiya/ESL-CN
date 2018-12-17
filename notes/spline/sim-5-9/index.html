@@ -3450,17 +3450,17 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 </p>
 <p>其中 $X\sim U[0,1], \varepsilon\sim N(0, 1)$。</p>
 <div class="codehilite"><pre><span></span><span class="c1">## generate dataset</span>
-func <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span>
+<span class="n">func</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="kr">return</span><span class="p">(</span><span class="kp">sin</span><span class="p">(</span><span class="m">12</span><span class="o">*</span><span class="p">(</span>x<span class="m">+0.2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span>x<span class="m">+0.2</span><span class="p">))</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">sin</span><span class="p">(</span><span class="m">12</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="m">+0.2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="m">+0.2</span><span class="p">))</span>
 <span class="p">}</span>
-genXY <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>N <span class="o">=</span> <span class="m">100</span><span class="p">)</span>
+<span class="n">genXY</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">N</span> <span class="o">=</span> <span class="m">100</span><span class="p">)</span>
 <span class="p">{</span>
-  x <span class="o">=</span> runif<span class="p">(</span>N<span class="p">)</span>
-  noise <span class="o">=</span> rnorm<span class="p">(</span>N<span class="p">)</span>
-  y <span class="o">=</span> func<span class="p">(</span>x<span class="p">)</span> <span class="o">+</span> noise
-  <span class="kr">return</span><span class="p">(</span><span class="kt">list</span><span class="p">(</span>X <span class="o">=</span> x<span class="p">,</span>
-              Y <span class="o">=</span> y<span class="p">))</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+  <span class="n">noise</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span>
+              <span class="n">Y</span> <span class="o">=</span> <span class="n">y</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -3468,13 +3468,13 @@ genXY <span class="o">&lt;-</span> <span class="kr">function</span><span class="
 <h2 id="cv">计算 CV<a class="headerlink" href="#cv" title="Permanent link">&para;</a></h2>
 <h3 id="_2">错误的做法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>在 <code>R</code> 中，可以用<code>smooth.spline()</code> 来拟合三次光滑样条。一开始，注意到该函数返回值有 <code>LOOCV</code> （或 <code>GCV</code>），于是觉得只用一个循环就可以得到交叉验证随自由度变化的曲线（原图中的交叉验证便是舍一法），即</p>
-<div class="codehilite"><pre><span></span>nrep <span class="o">=</span> <span class="m">15</span>
-df.seq <span class="o">=</span> <span class="p">(</span><span class="m">1</span><span class="o">:</span>nrep<span class="p">)</span><span class="m">+1</span>
-models <span class="o">=</span> <span class="kt">vector</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">,</span> nrep<span class="p">)</span>
-cvs <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span>nrep<span class="p">)</span>
-<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>nrep<span class="p">){</span>
-    models<span class="p">[[</span>i<span class="p">]]</span> <span class="o">=</span> smooth.spline<span class="p">(</span>X<span class="p">,</span> Y<span class="p">,</span> df <span class="o">=</span> df.seq<span class="p">[</span>i<span class="p">],</span> cv<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> all.knots <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-    cvs<span class="p">[</span>i<span class="p">]</span> <span class="o">=</span> models<span class="p">[[</span>i<span class="p">]]</span><span class="o">$</span>cv.crit
+<div class="codehilite"><pre><span></span><span class="n">nrep</span> <span class="o">=</span> <span class="m">15</span>
+<span class="n">df.seq</span> <span class="o">=</span> <span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nrep</span><span class="p">)</span><span class="m">+1</span>
+<span class="n">models</span> <span class="o">=</span> <span class="nf">vector</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">,</span> <span class="n">nrep</span><span class="p">)</span>
+<span class="n">cvs</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nrep</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nrep</span><span class="p">){</span>
+    <span class="n">models[[i]]</span> <span class="o">=</span> <span class="nf">smooth.spline</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df.seq[i]</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">all.knots</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+    <span class="n">cvs[i]</span> <span class="o">=</span> <span class="n">models[[i]]</span><span class="o">$</span><span class="n">cv.crit</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -3489,20 +3489,20 @@ cvs <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</s
 \CV(\hat f_\lambda) =\frac 1N\sum\limits_{i=1}^N(y_i-\hat f_\lambda^{(-i)}(x_i))^2\qquad (5.26)
 </script>
 </p>
-<div class="codehilite"><pre><span></span>mysmooth.spline <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>X<span class="p">,</span> Y<span class="p">,</span> df<span class="p">){</span>
-  nY <span class="o">=</span> <span class="kp">length</span><span class="p">(</span>Y<span class="p">)</span>
-  nX <span class="o">=</span> <span class="kp">length</span><span class="p">(</span>X<span class="p">)</span>
-  cv.i <span class="o">=</span> <span class="kp">as.numeric</span><span class="p">(</span>nX<span class="p">)</span>
-  <span class="kr">if</span> <span class="p">(</span>nX <span class="o">!=</span> nY<span class="p">)</span>
-    <span class="kr">return</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">mysmooth.spline</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">df</span><span class="p">){</span>
+  <span class="n">nY</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+  <span class="n">nX</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+  <span class="n">cv.i</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">nX</span><span class="p">)</span>
+  <span class="nf">if </span><span class="p">(</span><span class="n">nX</span> <span class="o">!=</span> <span class="n">nY</span><span class="p">)</span>
+    <span class="nf">return</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
   <span class="c1"># calculate LOOCV</span>
-  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>nX<span class="p">){</span>
-    x <span class="o">=</span> X<span class="p">[</span><span class="o">-</span>i<span class="p">]</span>
-    y <span class="o">=</span> Y<span class="p">[</span><span class="o">-</span>i<span class="p">]</span>
-    model <span class="o">=</span> smooth.spline<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> df <span class="o">=</span> df<span class="p">,</span> all.knots <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-    cv.i<span class="p">[</span>i<span class="p">]</span> <span class="o">=</span> <span class="p">(</span>Y<span class="p">[</span>i<span class="p">]</span> <span class="o">-</span> predict<span class="p">(</span>model<span class="p">,</span> X<span class="p">[</span>i<span class="p">])</span><span class="o">$</span>y<span class="p">)</span><span class="o">^</span><span class="m">2</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nX</span><span class="p">){</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">X[</span><span class="o">-</span><span class="n">i]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">Y[</span><span class="o">-</span><span class="n">i]</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="nf">smooth.spline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">all.knots</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+    <span class="n">cv.i[i]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y[i]</span> <span class="o">-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X[i]</span><span class="p">)</span><span class="o">$</span><span class="n">y</span><span class="p">)</span><span class="n">^2</span>
   <span class="p">}</span>
-  cv <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>cv.i<span class="p">)</span>
+  <span class="n">cv</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">cv.i</span><span class="p">)</span>
   <span class="c1"># calculate EPE</span>
   <span class="c1"># ...</span>
 <span class="p">}</span>
@@ -3527,42 +3527,42 @@ cvs <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</s
 <p>the penalized criterion, a non-negative number; simply the (weighted) residual sum of squares (RSS), sum(.$w * residuals(.)^2)</p>
 </blockquote>
 <p>于是用</p>
-<div class="codehilite"><pre><span></span>crits<span class="p">[</span>i<span class="p">]</span> <span class="o">=</span> models<span class="p">[[</span>i<span class="p">]]</span><span class="o">$</span>crit
+<div class="codehilite"><pre><span></span><span class="n">crits[i]</span> <span class="o">=</span> <span class="n">models[[i]]</span><span class="o">$</span><span class="n">crit</span>
 </pre></div>
 
 
 <p>来估计 EPE，但发现这样还是与原图有很多差异，非常重要的一点是这个准则是随着 $\lambda$ 变大而单调降低的。</p>
 <h3 id="_5">第二次尝试<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>观察 (5.25) 的最后一行，认为 $\sigma^2=\sigma_\varepsilon^2=1$，然后估计 <code>MSE</code> ，最后效果也不好</p>
-<div class="codehilite"><pre><span></span>Y.pred <span class="o">=</span> model.full<span class="o">$</span>y
-Y.true <span class="o">=</span> func<span class="p">(</span>model.full<span class="o">$</span>yin<span class="p">)</span> <span class="c1"># DO NOT use Y directly, because they have reordered.</span>
-epe <span class="o">=</span> <span class="m">1</span> <span class="o">+</span> <span class="kp">mean</span><span class="p">((</span> Y.true <span class="o">-</span> Y.pred<span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">Y.pred</span> <span class="o">=</span> <span class="n">model.full</span><span class="o">$</span><span class="n">y</span>
+<span class="n">Y.true</span> <span class="o">=</span> <span class="nf">func</span><span class="p">(</span><span class="n">model.full</span><span class="o">$</span><span class="n">yin</span><span class="p">)</span> <span class="c1"># DO NOT use Y directly, because they have reordered.</span>
+<span class="n">epe</span> <span class="o">=</span> <span class="m">1</span> <span class="o">+</span> <span class="nf">mean</span><span class="p">((</span> <span class="n">Y.true</span> <span class="o">-</span> <span class="n">Y.pred</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span>
 </pre></div>
 
 
 <p>效果也和原书有差异，遂放弃。</p>
 <h3 id="_6">第三次尝试<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>这时，意识到计算 EPE 时应该不能在测试集上计算，所以这次尝试和下面的尝试都是在测试集上进行。这一次，测试时重新生成测试集，然后计算 EPE（直接用定义式来估计），即</p>
-<div class="codehilite"><pre><span></span>data.test <span class="o">=</span> genXY<span class="p">(</span>N <span class="o">=</span> <span class="m">500</span><span class="p">)</span>
-x.test <span class="o">=</span> data.test<span class="o">$</span>X
-y.test <span class="o">=</span> data.test<span class="o">$</span>Y
-y.pred <span class="o">=</span> predict<span class="p">(</span>model.full<span class="p">,</span> x.test<span class="p">)</span><span class="o">$</span>y
-epe <span class="o">=</span> <span class="kp">mean</span><span class="p">((</span>y.test <span class="o">-</span> y.pred<span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">data.test</span> <span class="o">=</span> <span class="nf">genXY</span><span class="p">(</span><span class="n">N</span> <span class="o">=</span> <span class="m">500</span><span class="p">)</span>
+<span class="n">x.test</span> <span class="o">=</span> <span class="n">data.test</span><span class="o">$</span><span class="n">X</span>
+<span class="n">y.test</span> <span class="o">=</span> <span class="n">data.test</span><span class="o">$</span><span class="n">Y</span>
+<span class="n">y.pred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model.full</span><span class="p">,</span> <span class="n">x.test</span><span class="p">)</span><span class="o">$</span><span class="n">y</span>
+<span class="n">epe</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">((</span><span class="n">y.test</span> <span class="o">-</span> <span class="n">y.pred</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span>
 </pre></div>
 
 
 <p>此时的效果已经非常接近图 5.9 了，但突然意识到一个问题，我们应该是不知道真实数据的生成过程，不然还需要拟合么？所以测试集还是只来自仅有的 $N=100$ 个观测值。</p>
 <h3 id="_7">第四次尝试<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>这一次，将 $N=100$ 划分为测试集和训练集，在测试集上计算 EPE，即</p>
-<div class="codehilite"><pre><span></span>n2 <span class="o">=</span> <span class="m">100</span>
-epe.i <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span>n2<span class="p">)</span>
-<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n2<span class="p">){</span>
-ind <span class="o">=</span> <span class="kp">sample</span><span class="p">(</span>N<span class="p">,</span> <span class="m">50</span><span class="p">)</span>
-model <span class="o">=</span> smooth.spline<span class="p">(</span>X<span class="p">[</span>ind<span class="p">],</span> Y<span class="p">[</span>ind<span class="p">],</span> df <span class="o">=</span> df<span class="p">)</span>
-y.pred <span class="o">=</span> predict<span class="p">(</span>model<span class="p">,</span> X<span class="p">[</span><span class="o">-</span>ind<span class="p">])</span><span class="o">$</span>y
-epe.i<span class="p">[</span>i<span class="p">]</span> <span class="o">=</span> <span class="kp">mean</span><span class="p">((</span>y.pred <span class="o">-</span> Y<span class="p">[</span><span class="o">-</span>ind<span class="p">])</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">n2</span> <span class="o">=</span> <span class="m">100</span>
+<span class="n">epe.i</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">n2</span><span class="p">){</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="m">50</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="nf">smooth.spline</span><span class="p">(</span><span class="n">X[ind]</span><span class="p">,</span> <span class="n">Y[ind]</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span>
+<span class="n">y.pred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X[</span><span class="o">-</span><span class="n">ind]</span><span class="p">)</span><span class="o">$</span><span class="n">y</span>
+<span class="n">epe.i[i]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">((</span><span class="n">y.pred</span> <span class="o">-</span> <span class="n">Y[</span><span class="o">-</span><span class="n">ind]</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span>
 <span class="p">}</span>
-epe <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>epe.i<span class="p">)</span>
+<span class="n">epe</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">epe.i</span><span class="p">)</span>
 </pre></div>
 
 
@@ -3571,32 +3571,32 @@ epe <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span
 <p>虽然个别误差比原图稍大，但趋势与原图完全一致，最小值也在 $9$ 附近取得。</p>
 <h2 id="lambda">给定 $\lambda$<a class="headerlink" href="#lambda" title="Permanent link">&para;</a></h2>
 <p>现在已经重现了左上图，对于剩下三幅图，我们需要计算平均的拟合值以及方差，这可以直接在上述求 EPE 的过程（或者求 CV 时）中计算，</p>
-<div class="codehilite"><pre><span></span>yhat <span class="o">=</span> <span class="kt">array</span><span class="p">(</span>dim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span>n2<span class="p">,</span> nY<span class="p">))</span>
-epe.i <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span>n2<span class="p">)</span>
-<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n2<span class="p">){</span>
+<div class="codehilite"><pre><span></span><span class="n">yhat</span> <span class="o">=</span> <span class="nf">array</span><span class="p">(</span><span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">n2</span><span class="p">,</span> <span class="n">nY</span><span class="p">))</span>
+<span class="n">epe.i</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">n2</span><span class="p">){</span>
     <span class="c1"># ...</span>
     <span class="c1"># predict the whole dataset</span>
-    yhat<span class="p">[</span>i<span class="p">,</span> <span class="p">]</span> <span class="o">=</span> predict<span class="p">(</span>model<span class="p">,</span> <span class="kp">sort</span><span class="p">(</span>X<span class="p">))</span><span class="o">$</span>y
+    <span class="n">yhat[i</span><span class="p">,</span> <span class="n">]</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nf">sort</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">$</span><span class="n">y</span>
 <span class="p">}</span>
 <span class="c1">## calculate the mean and sd of fitted value</span>
-yhat.mean <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>yhat<span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
-yhat.sd <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>yhat<span class="p">,</span> <span class="m">2</span><span class="p">,</span> sd<span class="p">)</span>
+<span class="n">yhat.mean</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+<span class="n">yhat.sd</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">sd</span><span class="p">)</span>
 </pre></div>
 
 
 <p>然后在编写下面的绘图函数</p>
 <div class="codehilite"><pre><span></span><span class="c1">## plot function for (b)-(d)</span>
-plot.lambda <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>X<span class="p">,</span> Y<span class="p">,</span> lambda<span class="p">)</span>
+<span class="n">plot.lambda</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">)</span>
 <span class="p">{</span>
-  res <span class="o">=</span> mysmooth.spline<span class="p">(</span>X<span class="p">,</span> Y<span class="p">,</span> lambda<span class="p">)</span>
-  fitted <span class="o">=</span> res<span class="o">$</span>fitted
-  sd <span class="o">=</span> res<span class="o">$</span>sd
-  plot<span class="p">(</span>X<span class="p">,</span> Y<span class="p">,</span> xlab <span class="o">=</span> <span class="kp">expression</span><span class="p">(</span>X<span class="p">),</span> ylab <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">,</span>
-       main <span class="o">=</span> <span class="kp">substitute</span><span class="p">(</span><span class="kp">paste</span><span class="p">(</span>df<span class="p">[</span>lambda<span class="p">],</span><span class="s">&quot; = &quot;</span><span class="p">,</span> l<span class="p">),</span> <span class="kt">list</span><span class="p">(</span>l<span class="o">=</span>lambda<span class="p">)))</span>
-  lines<span class="p">(</span><span class="m">0.01</span><span class="o">*</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> func<span class="p">(</span><span class="m">0.01</span><span class="o">*</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="p">),</span> col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> lwd<span class="o">=</span><span class="m">3</span><span class="p">)</span>
-  lines<span class="p">(</span><span class="kp">sort</span><span class="p">(</span>X<span class="p">),</span> fitted<span class="p">,</span> lwd <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
-  polygon<span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="kp">rev</span><span class="p">(</span><span class="kp">sort</span><span class="p">(</span>X<span class="p">)),</span> <span class="kp">sort</span><span class="p">(</span>X<span class="p">)),</span> <span class="kt">c</span><span class="p">(</span><span class="kp">rev</span><span class="p">(</span>fitted<span class="m">-2</span><span class="o">*</span>sd<span class="p">),</span> fitted<span class="m">+2</span><span class="o">*</span>sd<span class="p">),</span> 
-          col<span class="o">=</span>rgb<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> border <span class="o">=</span> <span class="kc">NA</span><span class="p">)</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="nf">mysmooth.spline</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">)</span>
+  <span class="n">fitted</span> <span class="o">=</span> <span class="n">res</span><span class="o">$</span><span class="n">fitted</span>
+  <span class="n">sd</span> <span class="o">=</span> <span class="n">res</span><span class="o">$</span><span class="n">sd</span>
+  <span class="nf">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">,</span>
+       <span class="n">main</span> <span class="o">=</span> <span class="nf">substitute</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">df[lambda]</span><span class="p">,</span><span class="s">&quot; = &quot;</span><span class="p">,</span> <span class="n">l</span><span class="p">),</span> <span class="nf">list</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">lambda</span><span class="p">)))</span>
+  <span class="nf">lines</span><span class="p">(</span><span class="m">0.01</span><span class="o">*</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="nf">func</span><span class="p">(</span><span class="m">0.01</span><span class="o">*</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+  <span class="nf">lines</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">fitted</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+  <span class="nf">polygon</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rev</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="nf">sort</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rev</span><span class="p">(</span><span class="n">fitted</span><span class="m">-2</span><span class="o">*</span><span class="n">sd</span><span class="p">),</span> <span class="n">fitted</span><span class="m">+2</span><span class="o">*</span><span class="n">sd</span><span class="p">),</span> 
+          <span class="n">col</span><span class="o">=</span><span class="nf">rgb</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> <span class="n">border</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -3608,8 +3608,8 @@ plot.lambda <span class="o">&lt;-</span> <span class="kr">function</span><span c
 <p>这与原图是一致的！</p>
 <h2 id="510">练习 5.10<a class="headerlink" href="#510" title="Permanent link">&para;</a></h2>
 <p>Ex. 5.10 要求添加 $\hat f(\lambda)$ 的逐点分位数，直接在上面的代码中加入计算分位数的代码即可</p>
-<div class="codehilite"><pre><span></span>yhat75 <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>yhat<span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> quantile<span class="p">(</span>x<span class="p">,</span> <span class="m">0.75</span><span class="p">))</span>
-yhat25 <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>yhat<span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> quantile<span class="p">(</span>x<span class="p">,</span> <span class="m">0.25</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><span class="n">yhat75</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.75</span><span class="p">))</span>
+<span class="n">yhat25</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.25</span><span class="p">))</span>
 </pre></div>
 
 
@@ -3695,7 +3695,7 @@ yhat25 <span class="o">=</span> <span class="kp">apply</span><span class="p">(</
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-16 03:40:25
+        Last Build Date UTC : 2018-12-17 05:23:54
       </div>
       
         

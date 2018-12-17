@@ -3374,23 +3374,23 @@
 <span class="c1">## `No Noise Features`: num_noise = 0</span>
 <span class="c1">## `Six Noise Features`: num_noise = 6</span>
 <span class="c1">## #####################################</span>
-genXY <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>n <span class="o">=</span> <span class="m">100</span><span class="p">,</span> num_noise <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+<span class="n">genXY</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">num_noise</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="c1">## class 1</span>
-  m1 <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span>n<span class="o">*</span><span class="p">(</span><span class="m">4</span><span class="o">+</span>num_noise<span class="p">)),</span> ncol <span class="o">=</span> <span class="m">4</span> <span class="o">+</span> num_noise<span class="p">)</span>
+  <span class="n">m1</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="m">4</span><span class="o">+</span><span class="n">num_noise</span><span class="p">)),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">4</span> <span class="o">+</span> <span class="n">num_noise</span><span class="p">)</span>
   <span class="c1">## class 2</span>
-  m2 <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>nrow <span class="o">=</span> n<span class="p">,</span> ncol <span class="o">=</span> <span class="m">4</span> <span class="o">+</span> num_noise<span class="p">)</span>
-  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n<span class="p">)</span> <span class="p">{</span>
-    <span class="kr">while</span> <span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span> <span class="p">{</span>
-      m2<span class="p">[</span>i<span class="p">,</span> <span class="p">]</span> <span class="o">=</span> rnorm<span class="p">(</span><span class="m">4</span> <span class="o">+</span> num_noise<span class="p">)</span>
-      tmp <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>m2<span class="p">[</span>i<span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">]</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
-      <span class="kr">if</span><span class="p">(</span>tmp <span class="o">&gt;=</span> <span class="m">9</span> <span class="o">&amp;</span> tmp <span class="o">&lt;=</span> <span class="m">16</span><span class="p">)</span>
-        <span class="kr">break</span>
+  <span class="n">m2</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">4</span> <span class="o">+</span> <span class="n">num_noise</span><span class="p">)</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">while </span><span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">m2[i</span><span class="p">,</span> <span class="n">]</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">4</span> <span class="o">+</span> <span class="n">num_noise</span><span class="p">)</span>
+      <span class="n">tmp</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">m2[i</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="n">]^2</span><span class="p">)</span>
+      <span class="nf">if</span><span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;=</span> <span class="m">9</span> <span class="o">&amp;</span> <span class="n">tmp</span> <span class="o">&lt;=</span> <span class="m">16</span><span class="p">)</span>
+        <span class="n">break</span>
     <span class="p">}</span>
   <span class="p">}</span>
-  X <span class="o">=</span> <span class="kp">rbind</span><span class="p">(</span>m1<span class="p">,</span> m2<span class="p">)</span>
-  Y <span class="o">=</span> <span class="kp">rep</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> each <span class="o">=</span> n<span class="p">)</span>
-  <span class="kr">return</span><span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span>X <span class="o">=</span> X<span class="p">,</span> Y <span class="o">=</span> <span class="kp">as.factor</span><span class="p">(</span>Y<span class="p">)))</span>
+  <span class="n">X</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span>
+  <span class="n">Y</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> <span class="n">each</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Y</span><span class="p">)))</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -3409,17 +3409,17 @@ genXY <span class="o">&lt;-</span> <span class="kr">function</span><span class="
 </ol>
 <p>注意避免最优值取在边界值。以 SVM/poly5 为例进行说明，其他类似</p>
 <div class="codehilite"><pre><span></span><span class="c1">## SVM/poly5</span>
-<span class="kp">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
-poly5 <span class="o">=</span> tune.svm<span class="p">(</span>Y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">,</span> kernel <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> degree <span class="o">=</span> <span class="m">5</span><span class="p">,</span> cost <span class="o">=</span> <span class="m">2</span><span class="o">^</span><span class="p">(</span><span class="m">-4</span><span class="o">:</span><span class="m">8</span><span class="p">))</span>
-<span class="kp">summary</span><span class="p">(</span>poly5<span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">poly5</span> <span class="o">=</span> <span class="nf">tune.svm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="m">2</span><span class="nf">^</span><span class="p">(</span><span class="m">-4</span><span class="o">:</span><span class="m">8</span><span class="p">))</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">poly5</span><span class="p">)</span>
 </pre></div>
 
 
 <p><img alt="" src="../poly5_cv_1.PNG" /></p>
 <p>此时选取的最优 $C$ 为 $32$，进一步细化</p>
-<div class="codehilite"><pre><span></span><span class="kp">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
-poly5 <span class="o">=</span> tune.svm<span class="p">(</span>Y<span class="o">~</span><span class="m">.</span><span class="p">,</span> data <span class="o">=</span> dat<span class="p">,</span> kernel <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> degree <span class="o">=</span> <span class="m">5</span><span class="p">,</span> cost <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">16</span><span class="p">,</span> <span class="m">64</span><span class="p">,</span> by <span class="o">=</span> <span class="m">2</span><span class="p">))</span>
-<span class="kp">summary</span><span class="p">(</span>poly5<span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+<span class="n">poly5</span> <span class="o">=</span> <span class="nf">tune.svm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">16</span><span class="p">,</span> <span class="m">64</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="m">2</span><span class="p">))</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">poly5</span><span class="p">)</span>
 </pre></div>
 
 
@@ -3457,28 +3457,28 @@ poly5 <span class="o">=</span> tune.svm<span class="p">(</span>Y<span class="o">
 <p>当然，实际中我们并不需要重新设置参数来训练模型，因为<code>tune.svm()</code>的返回结果就包含了最优模型，直接调用，比如<code>poly5$best.model</code></p>
 </div>
 <h2 id="_4">计算测试误差<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>predict.mars2 <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>model<span class="p">,</span> newdata<span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">predict.mars2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span><span class="p">)</span>
 <span class="p">{</span>
-  pred <span class="o">=</span> predict<span class="p">(</span>model<span class="p">,</span> newdata<span class="p">)</span>
-  <span class="kp">ifelse</span><span class="p">(</span>pred <span class="o">&lt;</span> <span class="m">1.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+  <span class="n">pred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span><span class="p">)</span>
+  <span class="nf">ifelse</span><span class="p">(</span><span class="n">pred</span> <span class="o">&lt;</span> <span class="m">1.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
 <span class="p">}</span>
 
-calcErr <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>model<span class="p">,</span> n <span class="o">=</span> <span class="m">1000</span><span class="p">,</span> nrep <span class="o">=</span> <span class="m">50</span><span class="p">,</span> num_noise <span class="o">=</span> <span class="m">0</span><span class="p">,</span> method <span class="o">=</span> <span class="s">&quot;SVM&quot;</span><span class="p">)</span>
+<span class="n">calcErr</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">1000</span><span class="p">,</span> <span class="n">nrep</span> <span class="o">=</span> <span class="m">50</span><span class="p">,</span> <span class="n">num_noise</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;SVM&quot;</span><span class="p">)</span>
 <span class="p">{</span>
-  err <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span>nrep<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">){</span>
-    dat <span class="o">=</span> genXY<span class="p">(</span>n<span class="p">,</span> num_noise <span class="o">=</span> num_noise<span class="p">)</span>
-    datX <span class="o">=</span> dat<span class="p">[,</span> <span class="o">-</span><span class="kp">ncol</span><span class="p">(</span>dat<span class="p">)]</span>
-    datY <span class="o">=</span> dat<span class="p">[,</span> <span class="kp">ncol</span><span class="p">(</span>dat<span class="p">)]</span>
-    <span class="kr">if</span> <span class="p">(</span>method <span class="o">==</span> <span class="s">&quot;SVM&quot;</span><span class="p">)</span>
-      pred <span class="o">=</span> predict<span class="p">(</span>model<span class="p">,</span> newdata <span class="o">=</span> datX<span class="p">)</span>
-    <span class="kr">else</span> <span class="kr">if</span> <span class="p">(</span>method <span class="o">==</span> <span class="s">&quot;MARS&quot;</span><span class="p">)</span>
-      pred <span class="o">=</span> predict.mars2<span class="p">(</span>model<span class="p">,</span> newdata <span class="o">=</span> datX<span class="p">)</span>
-    <span class="kr">else</span> <span class="kr">if</span> <span class="p">(</span>method <span class="o">==</span> <span class="s">&quot;BRUTO&quot;</span><span class="p">)</span>
-      pred <span class="o">=</span> predict.mars2<span class="p">(</span>model<span class="p">,</span> newdata <span class="o">=</span> <span class="kp">as.matrix</span><span class="p">(</span>datX<span class="p">))</span>
-    <span class="kp">sum</span><span class="p">(</span>pred <span class="o">!=</span> datY<span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">2</span><span class="o">*</span>n<span class="p">)</span> <span class="c1"># Attention!! The total number of observations is 2n, not n</span>
+  <span class="n">err</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nrep</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">){</span>
+    <span class="n">dat</span> <span class="o">=</span> <span class="nf">genXY</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">num_noise</span> <span class="o">=</span> <span class="n">num_noise</span><span class="p">)</span>
+    <span class="n">datX</span> <span class="o">=</span> <span class="n">dat[</span><span class="p">,</span> <span class="o">-</span><span class="nf">ncol</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="n">]</span>
+    <span class="n">datY</span> <span class="o">=</span> <span class="n">dat[</span><span class="p">,</span> <span class="nf">ncol</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="n">]</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;SVM&quot;</span><span class="p">)</span>
+      <span class="n">pred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="n">datX</span><span class="p">)</span>
+    <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;MARS&quot;</span><span class="p">)</span>
+      <span class="n">pred</span> <span class="o">=</span> <span class="nf">predict.mars2</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="n">datX</span><span class="p">)</span>
+    <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;BRUTO&quot;</span><span class="p">)</span>
+      <span class="n">pred</span> <span class="o">=</span> <span class="nf">predict.mars2</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">datX</span><span class="p">))</span>
+    <span class="nf">sum</span><span class="p">(</span><span class="n">pred</span> <span class="o">!=</span> <span class="n">datY</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span> <span class="c1"># Attention!! The total number of observations is 2n, not n</span>
   <span class="p">})</span>
-  <span class="kr">return</span><span class="p">(</span><span class="kt">list</span><span class="p">(</span>TestErr <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>err<span class="p">),</span>
-              SE <span class="o">=</span> sd<span class="p">(</span>err<span class="p">)))</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">TestErr</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">err</span><span class="p">),</span>
+              <span class="n">SE</span> <span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">err</span><span class="p">)))</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -3638,7 +3638,7 @@ r(X) = \min\{q_1(X), q_2(X)\}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-16 03:40:26
+        Last Build Date UTC : 2018-12-17 05:23:55
       </div>
       
         

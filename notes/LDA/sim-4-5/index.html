@@ -3359,15 +3359,15 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1) > \frac 12(\hat\mu_1+\hat\m
 </p>
 <h2 id="lda">利用 <code>lda()</code> 的结果计算<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
 <p>关键点在于怎么根据 <code>R</code> 中 <code>lda()</code> 的返回结果写出判别边界，不然就得自己编写代码计算（下一节介绍）。所以我选择去阅读源代码，不过源代码中最后做预测时都是计算后验概率，似乎不能从中得到我们想要的有关判别边界的信息，但返回结果确实已经包含了判别边界的信息。摘录部分源代码</p>
-<div class="codehilite"><pre><span></span>predict.lda <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>object<span class="p">,</span> newdata<span class="p">,</span> prior <span class="o">=</span> object<span class="o">$</span>prior<span class="p">,</span> dimen<span class="p">,</span>
-            method <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;plug-in&quot;</span><span class="p">,</span> <span class="s">&quot;predictive&quot;</span><span class="p">,</span> <span class="s">&quot;debiased&quot;</span><span class="p">),</span> <span class="kc">...</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">predict.lda</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">newdata</span><span class="p">,</span> <span class="n">prior</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">prior</span><span class="p">,</span> <span class="n">dimen</span><span class="p">,</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;plug-in&quot;</span><span class="p">,</span> <span class="s">&quot;predictive&quot;</span><span class="p">,</span> <span class="s">&quot;debiased&quot;</span><span class="p">),</span> <span class="kc">...</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kc">...</span>
 
     <span class="c1">## remove overall means to keep distances small</span>
-    means <span class="o">&lt;-</span> <span class="kp">colSums</span><span class="p">(</span>prior<span class="o">*</span>object<span class="o">$</span>means<span class="p">)</span>
-    scaling <span class="o">&lt;-</span> object<span class="o">$</span>scaling
-    x <span class="o">&lt;-</span> <span class="kp">scale</span><span class="p">(</span>x<span class="p">,</span> center <span class="o">=</span> means<span class="p">,</span> scale <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">%*%</span> scaling
+    <span class="n">means</span> <span class="o">&lt;-</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">prior</span><span class="o">*</span><span class="n">object</span><span class="o">$</span><span class="n">means</span><span class="p">)</span>
+    <span class="n">scaling</span> <span class="o">&lt;-</span> <span class="n">object</span><span class="o">$</span><span class="n">scaling</span>
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="n">means</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">scaling</span>
 
     <span class="kc">...</span>
 <span class="p">}</span>
@@ -3394,13 +3394,13 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 </p>
 <p>其中 $\mu_x=\frac 12(\mu_{1x}+\mu_{2x})$，$\mu_y=\frac 12(\mu_{1y}+\mu_{2y})$</p>
 <p>所以可以用下面代码计算判别边界的截距和斜率</p>
-<div class="codehilite"><pre><span></span>calcLD <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>object<span class="p">)</span> <span class="p">{</span>
-  mu <span class="o">=</span> object<span class="o">$</span>means
-  mu.pool <span class="o">=</span> <span class="kp">colSums</span><span class="p">(</span>mu<span class="p">)</span><span class="o">/</span><span class="m">2</span> <span class="c1">## (mu1+mu2)/2</span>
-  scaling <span class="o">=</span> object<span class="o">$</span>scaling
-  intercept <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>scaling <span class="o">*</span> mu.pool<span class="p">)</span><span class="o">/</span>scaling<span class="p">[</span><span class="m">2</span><span class="p">]</span>
-  slope <span class="o">=</span> <span class="m">-1</span><span class="o">*</span> scaling<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span>scaling<span class="p">[</span><span class="m">2</span><span class="p">]</span>
-  <span class="kr">return</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span>intercept<span class="p">,</span> slope<span class="p">))</span>
+<div class="codehilite"><pre><span></span><span class="n">calcLD</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">mu</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">means</span>
+  <span class="n">mu.pool</span> <span class="o">=</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="m">2</span> <span class="c1">## (mu1+mu2)/2</span>
+  <span class="n">scaling</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">scaling</span>
+  <span class="n">intercept</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">scaling</span> <span class="o">*</span> <span class="n">mu.pool</span><span class="p">)</span><span class="o">/</span><span class="n">scaling[2]</span>
+  <span class="n">slope</span> <span class="o">=</span> <span class="m">-1</span><span class="o">*</span> <span class="n">scaling[1]</span><span class="o">/</span><span class="n">scaling[2]</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -3412,26 +3412,26 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <p>这部分参考了多元分析的<a href="../../../references/module7.pdf">课件</a>。</p>
 </div>
 <div class="codehilite"><pre><span></span><span class="c1">## sample mean</span>
-zmu1 <span class="o">=</span> <span class="kp">colMeans</span><span class="p">(</span>dm1<span class="p">)</span>
+<span class="n">zmu1</span> <span class="o">=</span> <span class="nf">colMeans</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
 
 <span class="c1">## sample variance</span>
-zs1 <span class="o">=</span> var<span class="p">(</span>dm1<span class="p">)</span>
-zs12 <span class="o">=</span> <span class="p">(</span>zs1<span class="o">+</span>zs2<span class="p">)</span><span class="o">/</span><span class="m">2</span> <span class="c1">## ((n1-1)S1+(n2-1)S2)/(n1+n2-2)</span>
+<span class="n">zs1</span> <span class="o">=</span> <span class="nf">var</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+<span class="n">zs12</span> <span class="o">=</span> <span class="p">(</span><span class="n">zs1</span><span class="o">+</span><span class="n">zs2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span> <span class="c1">## ((n1-1)S1+(n2-1)S2)/(n1+n2-2)</span>
 
 <span class="c1">## #############################</span>
 <span class="c1">## coef:</span>
 <span class="c1">##   a = S^{-1}(mu1-mu2)</span>
 <span class="c1">## #############################</span>
-za12 <span class="o">=</span> <span class="kp">solve</span><span class="p">(</span>zs12<span class="p">)</span> <span class="o">%*%</span> <span class="p">(</span>zmu1<span class="o">-</span>zmu2<span class="p">)</span>
+<span class="n">za12</span> <span class="o">=</span> <span class="nf">solve</span><span class="p">(</span><span class="n">zs12</span><span class="p">)</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">zmu1</span><span class="o">-</span><span class="n">zmu2</span><span class="p">)</span>
 
 <span class="c1">## ############################</span>
 <span class="c1">## constant</span>
 <span class="c1">##    0.5*a&#39;(mu1+mu2)</span>
 <span class="c1">## ############################</span>
-c12 <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>za12 <span class="o">*</span> <span class="p">(</span>zmu1<span class="o">+</span>zmu2<span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+<span class="n">c12</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">za12</span> <span class="o">*</span> <span class="p">(</span><span class="n">zmu1</span><span class="o">+</span><span class="n">zmu2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
 
-calcLD2 <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>za<span class="p">,</span> <span class="kt">c</span><span class="p">)</span> <span class="p">{</span><span class="kr">return</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="kt">c</span><span class="o">/</span>za<span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="o">-</span>za<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span>za<span class="p">[</span><span class="m">2</span><span class="p">]))}</span>
-calcLD2<span class="p">(</span>za12<span class="p">,</span> c12<span class="p">)</span>
+<span class="n">calcLD2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">za</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span><span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="n">za[2]</span><span class="p">,</span> <span class="o">-</span><span class="n">za[1]</span><span class="o">/</span><span class="n">za[2]</span><span class="p">))}</span>
+<span class="nf">calcLD2</span><span class="p">(</span><span class="n">za12</span><span class="p">,</span> <span class="n">c12</span><span class="p">)</span>
 </pre></div>
 
 
@@ -3444,18 +3444,18 @@ calcLD2<span class="p">(</span>za12<span class="p">,</span> c12<span class="p">)
 <p>直接用 <code>abline()</code> 绘图时，会充满整个区域，这与原书图 4.5 不符，可以在 <code>abline()</code> 前加上 <code>clip()</code> 来预习选定绘图区域。这个技巧参考<a href="https://stackoverflow.com/questions/26472563/how-to-define-graphical-bounds-of-abline-linear-regression-in-r">how-to-define-graphical-bounds-of-abline-linear-regression-in-r</a></p>
 </div>
 <p>图 4.5 的右图重现代码为</p>
-<div class="codehilite"><pre><span></span>plot<span class="p">(</span>dm1<span class="p">[,</span> <span class="m">1</span><span class="p">],</span> dm1<span class="p">[,</span> <span class="m">2</span><span class="p">],</span> col <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> pch<span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">,</span> 
-     xlim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> ylim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> 
-     xaxt<span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> yaxt<span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> xlab <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> ylab <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-points<span class="p">(</span>dm2<span class="p">[,</span> <span class="m">1</span><span class="p">],</span> dm2<span class="p">[,</span> <span class="m">2</span><span class="p">],</span> col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> pch<span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">)</span>
-points<span class="p">(</span>dm3<span class="p">[,</span> <span class="m">1</span><span class="p">],</span> dm3<span class="p">[,</span> <span class="m">2</span><span class="p">],</span> col <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span> pch<span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">)</span>
-points<span class="p">(</span><span class="kp">rbind</span><span class="p">(</span>mu1<span class="p">,</span> mu2<span class="p">,</span> mu3<span class="p">),</span> pch<span class="o">=</span><span class="s">&quot;+&quot;</span><span class="p">,</span> col<span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
-clip<span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">0</span><span class="p">)</span> 
-abline<span class="p">(</span>calcLD<span class="p">(</span>m12<span class="p">))</span>
-clip<span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
-abline<span class="p">(</span>calcLD<span class="p">(</span>m13<span class="p">))</span>
-clip<span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
-abline<span class="p">(</span>calcLD<span class="p">(</span>m23<span class="p">))</span>
+<div class="codehilite"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">dm1[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm1[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">,</span> 
+     <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> 
+     <span class="n">xaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">yaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">dm2[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm2[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">dm3[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm3[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="nf">rbind</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">mu3</span><span class="p">),</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;+&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
+<span class="nf">clip</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">0</span><span class="p">)</span> 
+<span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m12</span><span class="p">))</span>
+<span class="nf">clip</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m13</span><span class="p">))</span>
+<span class="nf">clip</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m23</span><span class="p">))</span>
 </pre></div>
 
 
@@ -3545,7 +3545,7 @@ abline<span class="p">(</span>calcLD<span class="p">(</span>m23<span class="p">)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-16 03:40:25
+        Last Build Date UTC : 2018-12-17 05:23:54
       </div>
       
         

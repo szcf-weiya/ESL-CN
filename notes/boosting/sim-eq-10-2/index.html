@@ -3486,47 +3486,47 @@ Y=
 <p>完整代码参见<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/boosting">这里</a></p>
 <h2 id="r">R语言实现<a class="headerlink" href="#r" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><span class="c1">## generate dataset</span>
-genData <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>N<span class="p">,</span> p <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+<span class="n">genData</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
 <span class="p">{</span>
-  p <span class="o">=</span> <span class="m">10</span>
-  x <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span>N<span class="o">*</span>p<span class="p">),</span>nrow <span class="o">=</span> N<span class="p">)</span>
-  x2 <span class="o">=</span> x<span class="o">^</span><span class="m">2</span>
-  y <span class="o">=</span> <span class="kp">rowSums</span><span class="p">(</span>x2<span class="p">)</span>
-  y <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span>y<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">ifelse</span><span class="p">(</span>x <span class="o">&gt;</span> qchisq<span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="m">-1</span><span class="p">))</span>
-  <span class="kr">return</span><span class="p">(</span><span class="kt">list</span><span class="p">(</span>x <span class="o">=</span> x<span class="p">,</span> y <span class="o">=</span> y<span class="p">))</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="m">10</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">p</span><span class="p">),</span><span class="n">nrow</span> <span class="o">=</span> <span class="n">N</span><span class="p">)</span>
+  <span class="n">x2</span> <span class="o">=</span> <span class="n">x^2</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="nf">qchisq</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="m">-1</span><span class="p">))</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">))</span>
 <span class="p">}</span>
-<span class="kp">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
-train.data <span class="o">=</span> genData<span class="p">(</span><span class="m">2000</span><span class="p">)</span>
-<span class="kp">table</span><span class="p">(</span>train.data<span class="o">$</span>y<span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">train.data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
+<span class="nf">table</span><span class="p">(</span><span class="n">train.data</span><span class="o">$</span><span class="n">y</span><span class="p">)</span>
 <span class="c1"># y</span>
 <span class="c1"># -1    1 </span>
 <span class="c1"># 980 1020</span>
 
-AdaBoost <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> m <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+<span class="n">AdaBoost</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
 <span class="p">{</span>
-  p <span class="o">=</span> <span class="kp">ncol</span><span class="p">(</span>x<span class="p">)</span>
-  N <span class="o">=</span> <span class="kp">nrow</span><span class="p">(</span>x<span class="p">)</span>
-  res <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>nrow <span class="o">=</span> m<span class="p">,</span> ncol <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="nf">ncol</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">N</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
   <span class="c1">## initialize weight</span>
-  w <span class="o">=</span> <span class="kp">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> N<span class="p">)</span><span class="o">/</span>N
+  <span class="n">w</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
   <span class="c1">## indicate the classification direction</span>
   <span class="c1">## consider observation obs which is larger than cutpoint.val </span>
   <span class="c1">## if flag = 1, then classify obs as 1</span>
   <span class="c1">## else if flag = -1, classify obs as -1</span>
-  flag <span class="o">=</span> <span class="m">1</span>
-  cutpoint.val <span class="o">=</span> <span class="m">0</span>
-  cutpoint.idx <span class="o">=</span> <span class="m">0</span>
-  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>m<span class="p">)</span>
+  <span class="n">flag</span> <span class="o">=</span> <span class="m">1</span>
+  <span class="n">cutpoint.val</span> <span class="o">=</span> <span class="m">0</span>
+  <span class="n">cutpoint.idx</span> <span class="o">=</span> <span class="m">0</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">m</span><span class="p">)</span>
   <span class="p">{</span>
     <span class="c1">## step 2(a): stump</span>
-    tol <span class="o">=</span> <span class="m">1e10</span>
-    <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>p<span class="p">)</span>
+    <span class="n">tol</span> <span class="o">=</span> <span class="m">1e10</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">p</span><span class="p">)</span>
     <span class="p">{</span>
-      <span class="kr">for</span> <span class="p">(</span>k <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>N<span class="p">)</span>
+      <span class="nf">for </span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
       <span class="p">{</span>
         <span class="c1">#err = 0</span>
-        flag.tmp <span class="o">=</span> <span class="m">1</span>
-        cutpoint.val.tmp <span class="o">=</span> x<span class="p">[</span>k<span class="p">,</span> j<span class="p">]</span>
+        <span class="n">flag.tmp</span> <span class="o">=</span> <span class="m">1</span>
+        <span class="n">cutpoint.val.tmp</span> <span class="o">=</span> <span class="n">x[k</span><span class="p">,</span> <span class="n">j]</span>
         <span class="c1"># for (kk in 1:N)</span>
         <span class="c1"># {</span>
         <span class="c1">#   pred = 1</span>
@@ -3535,167 +3535,167 @@ AdaBoost <span class="o">&lt;-</span> <span class="kr">function</span><span clas
         <span class="c1">#     pred = -1</span>
         <span class="c1">#   err = err + w[kk] * as.numeric(y[kk] != pred) </span>
         <span class="c1"># }</span>
-        xj <span class="o">=</span> x<span class="p">[,</span> j<span class="p">]</span>
-        pred <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span>xj<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">ifelse</span><span class="p">(</span>x <span class="o">&lt;</span> cutpoint.val.tmp<span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
-        err <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>w<span class="o">*</span><span class="kp">as.numeric</span><span class="p">(</span>y <span class="o">!=</span> pred<span class="p">))</span>
+        <span class="n">xj</span> <span class="o">=</span> <span class="n">x[</span><span class="p">,</span> <span class="n">j]</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">cutpoint.val.tmp</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">pred</span><span class="p">))</span>
       <span class="p">}</span>
-      <span class="kr">if</span> <span class="p">(</span>err <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)</span>
+      <span class="nf">if </span><span class="p">(</span><span class="n">err</span> <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">)</span>
       <span class="p">{</span>
-        err <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> err
-        flag.tmp <span class="o">=</span> <span class="m">-1</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="n">err</span>
+        <span class="n">flag.tmp</span> <span class="o">=</span> <span class="m">-1</span>
       <span class="p">}</span>
-      <span class="kr">if</span> <span class="p">(</span>err <span class="o">&lt;</span> tol<span class="p">)</span>
+      <span class="nf">if </span><span class="p">(</span><span class="n">err</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">)</span>
       <span class="p">{</span>
-        tol <span class="o">=</span> err
-        cutpoint.val <span class="o">=</span> cutpoint.val.tmp
-        cutpoint.idx <span class="o">=</span> j
-        flag <span class="o">=</span> flag.tmp
+        <span class="n">tol</span> <span class="o">=</span> <span class="n">err</span>
+        <span class="n">cutpoint.val</span> <span class="o">=</span> <span class="n">cutpoint.val.tmp</span>
+        <span class="n">cutpoint.idx</span> <span class="o">=</span> <span class="n">j</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="n">flag.tmp</span>
       <span class="p">}</span>
     <span class="p">}</span>
     <span class="c1">## step 2(c)</span>
     <span class="c1">#alpha = 0.5 * log((1-tol)/tol)</span>
-    alpha <span class="o">=</span> <span class="m">0.5</span> <span class="o">*</span> <span class="kp">log</span><span class="p">((</span><span class="m">1+1e-6</span><span class="o">-</span>tol<span class="p">)</span><span class="o">/</span><span class="p">(</span>tol<span class="m">+1e-6</span><span class="p">))</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span> <span class="o">*</span> <span class="nf">log</span><span class="p">((</span><span class="m">1+1e-6</span><span class="o">-</span><span class="n">tol</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tol</span><span class="m">+1e-6</span><span class="p">))</span>
     <span class="c1">## step 2(d)</span>
-    <span class="kr">for</span> <span class="p">(</span>k <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>N<span class="p">)</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
     <span class="p">{</span>
-      pred <span class="o">=</span> <span class="m">1</span>
-      xx <span class="o">=</span> x<span class="p">[</span>k<span class="p">,</span> cutpoint.idx<span class="p">]</span>
-      <span class="kr">if</span> <span class="p">(</span>flag <span class="o">*</span> xx <span class="o">&lt;</span> flag <span class="o">*</span> cutpoint.val<span class="p">)</span>
-        pred <span class="o">=</span> <span class="m">-1</span>
-      w<span class="p">[</span>k<span class="p">]</span> <span class="o">=</span> w<span class="p">[</span>k<span class="p">]</span> <span class="o">*</span> <span class="kp">exp</span><span class="p">(</span><span class="o">-</span>alpha<span class="o">*</span>y<span class="p">[</span>k<span class="p">]</span><span class="o">*</span>pred<span class="p">)</span>
+      <span class="n">pred</span> <span class="o">=</span> <span class="m">1</span>
+      <span class="n">xx</span> <span class="o">=</span> <span class="n">x[k</span><span class="p">,</span> <span class="n">cutpoint.idx]</span>
+      <span class="nf">if </span><span class="p">(</span><span class="n">flag</span> <span class="o">*</span> <span class="n">xx</span> <span class="o">&lt;</span> <span class="n">flag</span> <span class="o">*</span> <span class="n">cutpoint.val</span><span class="p">)</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="m">-1</span>
+      <span class="n">w[k]</span> <span class="o">=</span> <span class="n">w[k]</span> <span class="o">*</span> <span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">y[k]</span><span class="o">*</span><span class="n">pred</span><span class="p">)</span>
     <span class="p">}</span>
-    res<span class="p">[</span>i<span class="p">,</span> <span class="p">]</span> <span class="o">=</span> <span class="kt">c</span><span class="p">(</span>cutpoint.idx<span class="p">,</span> cutpoint.val<span class="p">,</span> flag<span class="p">,</span> alpha<span class="p">)</span>
+    <span class="n">res[i</span><span class="p">,</span> <span class="n">]</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">cutpoint.idx</span><span class="p">,</span> <span class="n">cutpoint.val</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
   <span class="p">}</span>
-  <span class="kp">colnames</span><span class="p">(</span>res<span class="p">)</span> <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;idx&quot;</span><span class="p">,</span> <span class="s">&quot;val&quot;</span><span class="p">,</span> <span class="s">&quot;flag&quot;</span><span class="p">,</span> <span class="s">&quot;alpha&quot;</span><span class="p">)</span>
-  model <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>M <span class="o">=</span> m<span class="p">,</span> G <span class="o">=</span> res<span class="p">)</span>
-  <span class="kp">class</span><span class="p">(</span>model<span class="p">)</span> <span class="o">=</span> <span class="s">&quot;AdaBoost&quot;</span>
-  <span class="kr">return</span><span class="p">(</span>model<span class="p">)</span>
+  <span class="nf">colnames</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;idx&quot;</span><span class="p">,</span> <span class="s">&quot;val&quot;</span><span class="p">,</span> <span class="s">&quot;flag&quot;</span><span class="p">,</span> <span class="s">&quot;alpha&quot;</span><span class="p">)</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">M</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">G</span> <span class="o">=</span> <span class="n">res</span><span class="p">)</span>
+  <span class="nf">class</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;AdaBoost&quot;</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <span class="p">}</span>
 
-print.AdaBoost <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>model<span class="p">)</span>
+<span class="n">print.AdaBoost</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="kp">cat</span><span class="p">(</span>model<span class="o">$</span>M<span class="p">,</span> <span class="s">&quot; weak classifers are as follows: \n\n&quot;</span><span class="p">)</span>
-  <span class="kp">cat</span><span class="p">(</span><span class="kp">sprintf</span><span class="p">(</span><span class="s">&quot;%4s%12s%8s%12s\n&quot;</span><span class="p">,</span> <span class="kp">colnames</span><span class="p">(</span>model<span class="o">$</span>G<span class="p">)[</span><span class="m">1</span><span class="p">],</span> <span class="kp">colnames</span><span class="p">(</span>model<span class="o">$</span>G<span class="p">)[</span><span class="m">2</span><span class="p">],</span> <span class="kp">colnames</span><span class="p">(</span>model<span class="o">$</span>G<span class="p">)[</span><span class="m">3</span><span class="p">],</span> <span class="kp">colnames</span><span class="p">(</span>model<span class="o">$</span>G<span class="p">)[</span><span class="m">4</span><span class="p">]))</span>
-  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>model<span class="o">$</span>M<span class="p">)</span>
+  <span class="nf">cat</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">M</span><span class="p">,</span> <span class="s">&quot; weak classifers are as follows: \n\n&quot;</span><span class="p">)</span>
+  <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%4s%12s%8s%12s\n&quot;</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)</span><span class="n">[2]</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)</span><span class="n">[3]</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)</span><span class="n">[4]</span><span class="p">))</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">model</span><span class="o">$</span><span class="n">M</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="kp">cat</span><span class="p">(</span><span class="kp">sprintf</span><span class="p">(</span><span class="s">&quot;%4d%12f%8d%12f\n&quot;</span><span class="p">,</span> model<span class="o">$</span>G<span class="p">[</span>i<span class="p">,</span> <span class="m">1</span><span class="p">],</span> model<span class="o">$</span>G<span class="p">[</span>i<span class="p">,</span> <span class="m">2</span><span class="p">],</span> model<span class="o">$</span>G<span class="p">[</span>i<span class="p">,</span> <span class="m">3</span><span class="p">],</span> model<span class="o">$</span>G<span class="p">[</span>i<span class="p">,</span> <span class="m">4</span><span class="p">]))</span>
+    <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%4d%12f%8d%12f\n&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G[i</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G[i</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G[i</span><span class="p">,</span> <span class="m">3</span><span class="n">]</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G[i</span><span class="p">,</span> <span class="m">4</span><span class="n">]</span><span class="p">))</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-predict.AdaBoost <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>model<span class="p">,</span> x<span class="p">)</span>
+<span class="n">predict.AdaBoost</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="p">{</span>
-  n <span class="o">=</span> <span class="kp">nrow</span><span class="p">(</span>x<span class="p">)</span>
-  res <span class="o">=</span> <span class="kt">integer</span><span class="p">(</span>n<span class="p">)</span>
-  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n<span class="p">)</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="nf">integer</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span>
   <span class="p">{</span>
-    s <span class="o">=</span> <span class="m">0</span>
-    xx <span class="o">=</span> x<span class="p">[</span>i<span class="p">,</span> <span class="p">]</span>
-    <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>model<span class="o">$</span>M<span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="m">0</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">x[i</span><span class="p">,</span> <span class="n">]</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">model</span><span class="o">$</span><span class="n">M</span><span class="p">)</span>
     <span class="p">{</span>
-      pred <span class="o">=</span> <span class="m">1</span>
-      idx <span class="o">=</span> model<span class="o">$</span>G<span class="p">[</span>j<span class="p">,</span> <span class="m">1</span><span class="p">]</span>
-      val <span class="o">=</span> model<span class="o">$</span>G<span class="p">[</span>j<span class="p">,</span> <span class="m">2</span><span class="p">]</span>
-      flag <span class="o">=</span> model<span class="o">$</span>G<span class="p">[</span>j<span class="p">,</span> <span class="m">3</span><span class="p">]</span>
-      alpha <span class="o">=</span> model<span class="o">$</span>G<span class="p">[</span>j<span class="p">,</span> <span class="m">4</span><span class="p">]</span>
-      cutpoint <span class="o">=</span> xx<span class="p">[</span>idx<span class="p">]</span>
-      <span class="kr">if</span> <span class="p">(</span>flag <span class="o">*</span> cutpoint <span class="o">&lt;</span> flag<span class="o">*</span>val<span class="p">)</span>
-        pred <span class="o">=</span> <span class="m">-1</span>
-      s <span class="o">=</span> s <span class="o">+</span> alpha<span class="o">*</span>pred
+      <span class="n">pred</span> <span class="o">=</span> <span class="m">1</span>
+      <span class="n">idx</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G[j</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span>
+      <span class="n">val</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G[j</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span>
+      <span class="n">flag</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G[j</span><span class="p">,</span> <span class="m">3</span><span class="n">]</span>
+      <span class="n">alpha</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G[j</span><span class="p">,</span> <span class="m">4</span><span class="n">]</span>
+      <span class="n">cutpoint</span> <span class="o">=</span> <span class="n">xx[idx]</span>
+      <span class="nf">if </span><span class="p">(</span><span class="n">flag</span> <span class="o">*</span> <span class="n">cutpoint</span> <span class="o">&lt;</span> <span class="n">flag</span><span class="o">*</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="m">-1</span>
+      <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">pred</span>
     <span class="p">}</span>
-    res<span class="p">[</span>i<span class="p">]</span> <span class="o">=</span> <span class="kp">sign</span><span class="p">(</span>s<span class="p">)</span>
+    <span class="n">res[i]</span> <span class="o">=</span> <span class="nf">sign</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
   <span class="p">}</span>
-  <span class="kr">return</span><span class="p">(</span>res<span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 <span class="p">}</span>
 
-testAdaBoost <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">()</span>
+<span class="n">testAdaBoost</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="c1">## train datasets</span>
-  train.data <span class="o">=</span> genData<span class="p">(</span><span class="m">2000</span><span class="p">)</span>
-  x <span class="o">=</span> train.data<span class="o">$</span>x
-  y <span class="o">=</span> train.data<span class="o">$</span>y
+  <span class="n">train.data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">train.data</span><span class="o">$</span><span class="n">x</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">train.data</span><span class="o">$</span><span class="n">y</span>
   <span class="c1">## test datasets</span>
-  test.data <span class="o">=</span> genData<span class="p">(</span><span class="m">10000</span><span class="p">)</span>
-  test.x <span class="o">=</span> test.data<span class="o">$</span>x
-  test.y <span class="o">=</span> test.data<span class="o">$</span>y
+  <span class="n">test.data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="m">10000</span><span class="p">)</span>
+  <span class="n">test.x</span> <span class="o">=</span> <span class="n">test.data</span><span class="o">$</span><span class="n">x</span>
+  <span class="n">test.y</span> <span class="o">=</span> <span class="n">test.data</span><span class="o">$</span><span class="n">y</span>
 
-  m <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">400</span><span class="p">,</span> by <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
-  err <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span><span class="kp">length</span><span class="p">(</span>m<span class="p">))</span>
-  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">length</span><span class="p">(</span>m<span class="p">))</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">400</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+  <span class="n">err</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="p">{</span>
-    model <span class="o">=</span> AdaBoost<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> m <span class="o">=</span> m<span class="p">[</span>i<span class="p">])</span>
-    res <span class="o">=</span> <span class="kp">table</span><span class="p">(</span>test.y<span class="p">,</span> predict<span class="p">(</span>model<span class="p">,</span> test.x<span class="p">))</span>
-    err<span class="p">[</span>i<span class="p">]</span> <span class="o">=</span> <span class="p">(</span>res<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="o">+</span> res<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">])</span><span class="o">/</span><span class="kp">length</span><span class="p">(</span>test.y<span class="p">)</span>
-    <span class="kp">cat</span><span class="p">(</span><span class="kp">sprintf</span><span class="p">(</span><span class="s">&quot;epoch = %d, err = %f&quot;</span><span class="p">,</span> i<span class="p">,</span> err<span class="p">[</span>i<span class="p">]))</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="nf">AdaBoost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">m[i]</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nf">table</span><span class="p">(</span><span class="n">test.y</span><span class="p">,</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test.x</span><span class="p">))</span>
+    <span class="n">err[i]</span> <span class="o">=</span> <span class="p">(</span><span class="n">res[1</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span> <span class="o">+</span> <span class="n">res[2</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">test.y</span><span class="p">)</span>
+    <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;epoch = %d, err = %f&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">err[i]</span><span class="p">))</span>
   <span class="p">}</span>
-  <span class="kr">return</span><span class="p">(</span>err<span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
 
 <p>运行速度要比Julia的慢很多。</p>
 <h2 id="r-gbm">R GBM实现<a class="headerlink" href="#r-gbm" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="kn">library</span><span class="p">(</span>gbm<span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">gbm</span><span class="p">)</span>
 
 <span class="c1">## generate dataset</span>
-genData <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>N<span class="p">,</span> p <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="p">{</span>
-  p <span class="o">=</span> <span class="m">10</span>
-  x <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>rnorm<span class="p">(</span>N <span class="o">*</span> p<span class="p">),</span> nrow <span class="o">=</span> N<span class="p">)</span>
-  x2 <span class="o">=</span> x<span class="o">^</span><span class="m">2</span>
-  y <span class="o">=</span> <span class="kp">rowSums</span><span class="p">(</span>x2<span class="p">)</span>
-  y <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span>y<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">ifelse</span><span class="p">(</span>x <span class="o">&gt;</span> qchisq<span class="p">(</span><span class="m">0.5</span><span class="p">,</span> 
+<span class="n">genData</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="m">10</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">p</span><span class="p">),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">N</span><span class="p">)</span>
+  <span class="n">x2</span> <span class="o">=</span> <span class="n">x^2</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="nf">qchisq</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> 
                                               <span class="m">10</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="m">-1</span><span class="p">))</span>
-  <span class="kr">return</span><span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span>x<span class="p">,</span> y<span class="p">))</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 <span class="p">}</span>
 
-<span class="kp">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
-train.data <span class="o">=</span> genData<span class="p">(</span><span class="m">2000</span><span class="p">)</span>
-<span class="kp">table</span><span class="p">(</span>train.data<span class="o">$</span>y<span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">train.data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
+<span class="nf">table</span><span class="p">(</span><span class="n">train.data</span><span class="o">$</span><span class="n">y</span><span class="p">)</span>
 <span class="c1"># y</span>
 <span class="c1"># -1 1 </span>
 <span class="c1"># 980 1020</span>
 
 <span class="c1">## train datasets</span>
-train.data <span class="o">=</span> genData<span class="p">(</span><span class="m">2000</span><span class="p">)</span>
-train.data<span class="p">[</span>train.data<span class="o">$</span>y <span class="o">==</span> <span class="m">-1</span><span class="p">,</span> <span class="m">11</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="n">train.data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
+<span class="n">train.data[train.data</span><span class="o">$</span><span class="n">y</span> <span class="o">==</span> <span class="m">-1</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
 <span class="c1">## test datasets</span>
-test.data <span class="o">=</span> genData<span class="p">(</span><span class="m">10000</span><span class="p">)</span>
-test.data<span class="p">[</span>test.data<span class="o">$</span>y <span class="o">==</span> <span class="m">-1</span><span class="p">,</span> <span class="m">11</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="n">test.data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="m">10000</span><span class="p">)</span>
+<span class="n">test.data[test.data</span><span class="o">$</span><span class="n">y</span> <span class="o">==</span> <span class="m">-1</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
 
 <span class="c1"># Do training with the maximum number of trees:</span>
-Adaboost <span class="o">=</span> <span class="kc">TRUE</span>
-n_trees <span class="o">=</span> <span class="m">400</span>
-<span class="kr">if</span> <span class="p">(</span>Adaboost<span class="p">)</span> <span class="p">{</span>
-  <span class="kp">print</span><span class="p">(</span><span class="s">&quot;Running Adaboost ...&quot;</span><span class="p">)</span>
-  m <span class="o">=</span> gbm<span class="p">(</span>y <span class="o">~</span> <span class="m">.</span><span class="p">,</span> data <span class="o">=</span> train.data<span class="p">,</span> distribution <span class="o">=</span> <span class="s">&quot;adaboost&quot;</span><span class="p">,</span> 
-          n.trees <span class="o">=</span> n_trees<span class="p">,</span> shrinkage <span class="o">=</span> <span class="m">1</span><span class="p">,</span> verbose <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-<span class="p">}</span> <span class="kr">else</span> <span class="p">{</span>
-  <span class="kp">print</span><span class="p">(</span><span class="s">&quot;Running Bernoulli Boosting ...&quot;</span><span class="p">)</span>
-  m <span class="o">=</span> gbm<span class="p">(</span>y <span class="o">~</span> <span class="m">.</span><span class="p">,</span> data <span class="o">=</span> train.data<span class="p">,</span> distribution <span class="o">=</span> <span class="s">&quot;bernoulli&quot;</span><span class="p">,</span> 
-          n.trees <span class="o">=</span> n_trees<span class="p">,</span> verbose <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">Adaboost</span> <span class="o">=</span> <span class="kc">TRUE</span>
+<span class="n">n_trees</span> <span class="o">=</span> <span class="m">400</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">Adaboost</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">&quot;Running Adaboost ...&quot;</span><span class="p">)</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="nf">gbm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">train.data</span><span class="p">,</span> <span class="n">distribution</span> <span class="o">=</span> <span class="s">&quot;adaboost&quot;</span><span class="p">,</span> 
+          <span class="n">n.trees</span> <span class="o">=</span> <span class="n">n_trees</span><span class="p">,</span> <span class="n">shrinkage</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">&quot;Running Bernoulli Boosting ...&quot;</span><span class="p">)</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="nf">gbm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">train.data</span><span class="p">,</span> <span class="n">distribution</span> <span class="o">=</span> <span class="s">&quot;bernoulli&quot;</span><span class="p">,</span> 
+          <span class="n">n.trees</span> <span class="o">=</span> <span class="n">n_trees</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 <span class="p">}</span>
 
-training_error <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> nrow <span class="o">=</span> n_trees<span class="p">,</span> ncol <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
-<span class="kr">for</span> <span class="p">(</span>nti <span class="kr">in</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> n_trees<span class="p">))</span> <span class="p">{</span>
-  Fhat <span class="o">=</span> predict<span class="p">(</span>m<span class="p">,</span> train.data<span class="p">[,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">],</span> n.trees <span class="o">=</span> nti<span class="p">)</span>
-  pcc <span class="o">=</span> <span class="kp">mean</span><span class="p">(((</span>Fhat <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>train.data<span class="p">[,</span> <span class="m">11</span><span class="p">]</span> <span class="o">==</span> 
-                               <span class="m">0</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span>Fhat <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>train.data<span class="p">[,</span> <span class="m">11</span><span class="p">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)))</span>
-  training_error<span class="p">[</span>nti<span class="p">]</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> pcc
+<span class="n">training_error</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n_trees</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">nti</span> <span class="n">in</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">n_trees</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">Fhat</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">train.data[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span><span class="p">,</span> <span class="n">n.trees</span> <span class="o">=</span> <span class="n">nti</span><span class="p">)</span>
+  <span class="n">pcc</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(((</span><span class="n">Fhat</span> <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">train.data[</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">==</span> 
+                               <span class="m">0</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span><span class="n">Fhat</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">train.data[</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)))</span>
+  <span class="n">training_error[nti]</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="n">pcc</span>
 <span class="p">}</span>
 
-test_error <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> nrow <span class="o">=</span> n_trees<span class="p">,</span> ncol <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
-<span class="kr">for</span> <span class="p">(</span>nti <span class="kr">in</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> n_trees<span class="p">))</span> <span class="p">{</span>
-  Fhat <span class="o">=</span> predict<span class="p">(</span>m<span class="p">,</span> test.data<span class="p">[,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">],</span> n.trees <span class="o">=</span> nti<span class="p">)</span>
-  pcc <span class="o">=</span> <span class="kp">mean</span><span class="p">(((</span>Fhat <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>test.data<span class="p">[,</span> <span class="m">11</span><span class="p">]</span> <span class="o">==</span> <span class="m">0</span><span class="p">))</span> <span class="o">|</span> 
-               <span class="p">((</span>Fhat <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>test.data<span class="p">[,</span> <span class="m">11</span><span class="p">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)))</span>
-  test_error<span class="p">[</span>nti<span class="p">]</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> pcc
+<span class="n">test_error</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n_trees</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">nti</span> <span class="n">in</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">n_trees</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">Fhat</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">test.data[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span><span class="p">,</span> <span class="n">n.trees</span> <span class="o">=</span> <span class="n">nti</span><span class="p">)</span>
+  <span class="n">pcc</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(((</span><span class="n">Fhat</span> <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">test.data[</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">==</span> <span class="m">0</span><span class="p">))</span> <span class="o">|</span> 
+               <span class="p">((</span><span class="n">Fhat</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">test.data[</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)))</span>
+  <span class="n">test_error[nti]</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="n">pcc</span>
 <span class="p">}</span>
 
-plot<span class="p">(</span><span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> n_trees<span class="p">),</span> training_error<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> main <span class="o">=</span> <span class="s">&quot;Boosting Probability of Error&quot;</span><span class="p">,</span> 
-     col <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> xlab <span class="o">=</span> <span class="s">&quot;number of boosting iterations&quot;</span><span class="p">,</span> 
-     ylab <span class="o">=</span> <span class="s">&quot;classification error&quot;</span><span class="p">)</span>
-lines<span class="p">(</span><span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> n_trees<span class="p">),</span> test_error<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
-legend<span class="p">(</span><span class="m">275</span><span class="p">,</span> <span class="m">0.45</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;training error&quot;</span><span class="p">,</span> <span class="s">&quot;testing error&quot;</span><span class="p">),</span> 
-       col <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;green&quot;</span><span class="p">),</span> lty <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">n_trees</span><span class="p">),</span> <span class="n">training_error</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Boosting Probability of Error&quot;</span><span class="p">,</span> 
+     <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;number of boosting iterations&quot;</span><span class="p">,</span> 
+     <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;classification error&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">n_trees</span><span class="p">),</span> <span class="n">test_error</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="m">275</span><span class="p">,</span> <span class="m">0.45</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;training error&quot;</span><span class="p">,</span> <span class="s">&quot;testing error&quot;</span><span class="p">),</span> 
+       <span class="n">col</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;green&quot;</span><span class="p">),</span> <span class="n">lty</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
 </pre></div>
                 
                   
@@ -3775,7 +3775,7 @@ legend<span class="p">(</span><span class="m">275</span><span class="p">,</span>
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-16 03:40:26
+        Last Build Date UTC : 2018-12-17 05:23:55
       </div>
       
         

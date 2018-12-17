@@ -3319,102 +3319,102 @@
 <h2 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>这部分代码与 <a href="../sim7_3/index.html">模拟：Fig. 7.3</a> 相同，但这里我们只考虑 case 2 的情形。</p>
 <div class="codehilite"><pre><span></span><span class="c1"># generate dataset</span>
-genX <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>n <span class="o">=</span> <span class="m">80</span><span class="p">,</span> p <span class="o">=</span> <span class="m">20</span><span class="p">){</span>
-  X <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>runif<span class="p">(</span>n<span class="o">*</span>p<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> ncol <span class="o">=</span> p<span class="p">,</span> nrow <span class="o">=</span> n<span class="p">)</span>
-  <span class="kr">return</span><span class="p">(</span>X<span class="p">)</span>
+<span class="n">genX</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">80</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">20</span><span class="p">){</span>
+  <span class="n">X</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="c1"># generate response</span>
-genY <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>X<span class="p">,</span> case <span class="o">=</span> <span class="m">1</span><span class="p">){</span>
-  n <span class="o">=</span> <span class="kp">nrow</span><span class="p">(</span>X<span class="p">)</span>
-  Y <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span>n<span class="p">)</span>
-  <span class="kr">if</span> <span class="p">(</span>case <span class="o">==</span> <span class="m">1</span><span class="p">){</span> <span class="c1"># for the left panel of fig. 7.3</span>
-    Y <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span>X<span class="p">[,</span> <span class="m">1</span><span class="p">],</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">ifelse</span><span class="p">(</span>x <span class="o">&lt;=</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+<span class="n">genY</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="m">1</span><span class="p">){</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+  <span class="n">Y</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="nf">if </span><span class="p">(</span><span class="n">case</span> <span class="o">==</span> <span class="m">1</span><span class="p">){</span> <span class="c1"># for the left panel of fig. 7.3</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">X[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
   <span class="p">}</span>
-  <span class="kr">else</span> <span class="p">{</span>
-    Y <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>X<span class="p">[,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">],</span> <span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">ifelse</span><span class="p">(</span><span class="kp">sum</span><span class="p">(</span>x<span class="p">)</span> <span class="o">&gt;</span> <span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+  <span class="n">else</span> <span class="p">{</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">X[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
   <span class="p">}</span>
-  <span class="kr">return</span><span class="p">(</span>Y<span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="kp">set.seed</span><span class="p">(</span><span class="m">1111</span><span class="p">)</span>
-X <span class="o">=</span> genX<span class="p">()</span>
-Y <span class="o">=</span> genY<span class="p">(</span>X<span class="p">,</span> case <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1111</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">()</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
 </pre></div>
 
 
 <h2 id="_2">最优子集回归的预测<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>采用<code>leaps</code>包中的<code>regsubsets</code>函数进行最优子集回归，因为该类没有对应<code>predict</code>函数，于是编写自己的预测函数，这部分代码也与 <a href="../sim7_3/index.html">模拟：Fig. 7.3</a> 相同。</p>
 <div class="codehilite"><pre><span></span><span class="c1">## use leaps package to do best subset selection</span>
-<span class="kn">library</span><span class="p">(</span>leaps<span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">leaps</span><span class="p">)</span>
 <span class="c1">## predict test dataset by using the best subset model with size p</span>
-predict.regsub <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>model<span class="p">,</span> p<span class="p">,</span> X.test<span class="p">){</span>
-  which <span class="o">=</span> <span class="kp">summary</span><span class="p">(</span>model<span class="p">)</span><span class="o">$</span><span class="kp">which</span>
-  coef.raw <span class="o">=</span> coef<span class="p">(</span>model<span class="p">,</span> p<span class="p">)</span>
+<span class="n">predict.regsub</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">X.test</span><span class="p">){</span>
+  <span class="n">which</span> <span class="o">=</span> <span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">$</span><span class="n">which</span>
+  <span class="n">coef.raw</span> <span class="o">=</span> <span class="nf">coef</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
   <span class="c1"># construct coef vector</span>
-  <span class="kr">if</span> <span class="p">(</span><span class="kp">length</span><span class="p">(</span>coef.raw<span class="p">)</span> <span class="o">==</span> p<span class="m">+1</span><span class="p">)</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">coef.raw</span><span class="p">)</span> <span class="o">==</span> <span class="n">p</span><span class="m">+1</span><span class="p">)</span>
   <span class="p">{</span>
-    coef.vec <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="kp">ncol</span><span class="p">(</span>X.test<span class="p">))</span> <span class="c1"># include intercept</span>
-    coef.vec<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> coef.raw<span class="p">[</span><span class="m">1</span><span class="p">]</span>
-    flag <span class="o">=</span> <span class="m">1</span>
+    <span class="n">coef.vec</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="nf">ncol</span><span class="p">(</span><span class="n">X.test</span><span class="p">))</span> <span class="c1"># include intercept</span>
+    <span class="n">coef.vec[1]</span> <span class="o">=</span> <span class="n">coef.raw[1]</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="m">1</span>
   <span class="p">}</span>
-  <span class="kp">else</span>
+  <span class="n">else</span>
   <span class="p">{</span>
-    coef.vec <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span><span class="kp">ncol</span><span class="p">(</span>X.test<span class="p">))</span>
-    flag <span class="o">=</span> <span class="m">0</span>
+    <span class="n">coef.vec</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">X.test</span><span class="p">))</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="m">0</span>
   <span class="p">}</span>
-  j <span class="o">=</span> flag <span class="o">+</span> <span class="m">1</span> <span class="c1"># point to raw coef</span>
-  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="kp">ncol</span><span class="p">(</span>X.test<span class="p">))</span> <span class="o">+</span> flag<span class="p">){</span>
-    <span class="kr">if</span> <span class="p">(</span><span class="kp">which</span><span class="p">[</span>p<span class="p">,</span> i<span class="p">]){</span>
-      coef.vec<span class="p">[</span>i<span class="p">]</span> <span class="o">=</span> coef.raw<span class="p">[</span>j<span class="p">]</span>
-      j <span class="o">=</span> j <span class="o">+</span> <span class="m">1</span>
+  <span class="n">j</span> <span class="o">=</span> <span class="n">flag</span> <span class="o">+</span> <span class="m">1</span> <span class="c1"># point to raw coef</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">X.test</span><span class="p">))</span> <span class="o">+</span> <span class="n">flag</span><span class="p">){</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">which[p</span><span class="p">,</span> <span class="n">i]</span><span class="p">){</span>
+      <span class="n">coef.vec[i]</span> <span class="o">=</span> <span class="n">coef.raw[j]</span>
+      <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="m">1</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="c1"># for simplicity, consider intercept; and in fact, every regsubset models have intercept</span>
-  pred <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span><span class="kp">cbind</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> X.test<span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">sum</span><span class="p">(</span>x<span class="o">*</span>coef.vec<span class="p">))</span>
-  <span class="kr">return</span><span class="p">(</span>pred<span class="p">)</span>
+  <span class="n">pred</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">X.test</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">coef.vec</span><span class="p">))</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
 
 <h2 id="_3">交叉验证<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>根据单个训练集进行估计，</p>
-<div class="codehilite"><pre><span></span>reg.pred <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>nrow <span class="o">=</span> <span class="kp">nrow</span><span class="p">(</span>X.test<span class="p">),</span> ncol <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="n">reg.pred</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X.test</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
 <span class="c1"># divide into 10 fold randomly</span>
-parts <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="kp">sample</span><span class="p">(</span><span class="m">80</span><span class="p">,</span> <span class="m">80</span><span class="p">),</span> nrow <span class="o">=</span> <span class="m">8</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+<span class="n">parts</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">80</span><span class="p">,</span> <span class="m">80</span><span class="p">),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">8</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
 <span class="c1"># store prediction</span>
-cl.pred <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>nrow <span class="o">=</span> <span class="m">80</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
-cv.err <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span>nrow <span class="o">=</span> <span class="m">10</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
-<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+<span class="n">cl.pred</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span> <span class="o">=</span> <span class="m">80</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+<span class="n">cv.err</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
 <span class="p">{</span>
-    X.test <span class="o">=</span> X<span class="p">[</span>parts<span class="p">[,</span>i<span class="p">],</span> <span class="p">]</span>
-    X.train <span class="o">=</span> X<span class="p">[</span><span class="o">-</span>parts<span class="p">[,</span>i<span class="p">],</span> <span class="p">]</span>
-    Y.train <span class="o">=</span> Y<span class="p">[</span><span class="o">-</span>parts<span class="p">[,</span>i<span class="p">]]</span>
-    reg.sub <span class="o">=</span> regsubsets<span class="p">(</span>X.train<span class="p">,</span> Y.train<span class="p">,</span> nvmax <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
-    <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">){</span>
-        rawpred <span class="o">=</span> predict.regsub<span class="p">(</span>reg.sub<span class="p">,</span> j<span class="p">,</span> X.test<span class="p">)</span>
-        cl.pred<span class="p">[</span>parts<span class="p">[,</span>i<span class="p">],</span> j<span class="p">]</span> <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span>rawpred<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="kp">ifelse</span><span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>        
-        cv.err<span class="p">[</span>i<span class="p">,</span> j<span class="p">]</span> <span class="o">=</span> <span class="kp">mean</span><span class="p">((</span>cl.pred<span class="p">[</span>parts<span class="p">[,</span>i<span class="p">],</span>j<span class="p">]</span> <span class="o">-</span> Y<span class="p">[</span>parts<span class="p">[,</span>i<span class="p">]])</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+    <span class="n">X.test</span> <span class="o">=</span> <span class="n">X[parts[</span><span class="p">,</span><span class="n">i]</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">X.train</span> <span class="o">=</span> <span class="n">X[</span><span class="o">-</span><span class="n">parts[</span><span class="p">,</span><span class="n">i]</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">Y.train</span> <span class="o">=</span> <span class="n">Y[</span><span class="o">-</span><span class="n">parts[</span><span class="p">,</span><span class="n">i]]</span>
+    <span class="n">reg.sub</span> <span class="o">=</span> <span class="nf">regsubsets</span><span class="p">(</span><span class="n">X.train</span><span class="p">,</span> <span class="n">Y.train</span><span class="p">,</span> <span class="n">nvmax</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">){</span>
+        <span class="n">rawpred</span> <span class="o">=</span> <span class="nf">predict.regsub</span><span class="p">(</span><span class="n">reg.sub</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">X.test</span><span class="p">)</span>
+        <span class="n">cl.pred[parts[</span><span class="p">,</span><span class="n">i]</span><span class="p">,</span> <span class="n">j]</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">rawpred</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>        
+        <span class="n">cv.err[i</span><span class="p">,</span> <span class="n">j]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">((</span><span class="n">cl.pred[parts[</span><span class="p">,</span><span class="n">i]</span><span class="p">,</span><span class="n">j]</span> <span class="o">-</span> <span class="n">Y[parts[</span><span class="p">,</span><span class="n">i]]</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1"># # for each subset size</span>
-cverr <span class="o">=</span> <span class="kt">numeric</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
-<span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">)</span>
+<span class="n">cverr</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">)</span>
 <span class="p">{</span>
-    cverr<span class="p">[</span>j<span class="p">]</span> <span class="o">=</span> <span class="kp">mean</span><span class="p">((</span>cl.pred<span class="p">[,</span>j<span class="p">]</span> <span class="o">-</span> Y<span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+    <span class="n">cverr[j]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">((</span><span class="n">cl.pred[</span><span class="p">,</span><span class="n">j]</span> <span class="o">-</span> <span class="n">Y</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span>
 <span class="p">}</span>
-cverr <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>cv.err<span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
-sd2.err <span class="o">=</span> <span class="kp">apply</span><span class="p">(</span>cv.err<span class="p">,</span> <span class="m">2</span><span class="p">,</span> var<span class="p">)</span>
-se.err <span class="o">=</span> <span class="kp">sqrt</span><span class="p">(</span> sd2.err <span class="o">/</span> <span class="m">10</span> <span class="p">)</span>
+<span class="n">cverr</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">cv.err</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+<span class="n">sd2.err</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">cv.err</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+<span class="n">se.err</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span> <span class="n">sd2.err</span> <span class="o">/</span> <span class="m">10</span> <span class="p">)</span>
 </pre></div>
 
 
 <h2 id="_4">画图<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>采用下面代码绘制不同 subset size 情形下交叉验证误差以及一个标准误差的变化范围，</p>
-<div class="codehilite"><pre><span></span>plot<span class="p">(</span>cverr<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> ylim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.6</span><span class="p">),</span> ylab <span class="o">=</span> <span class="s">&quot;Misclassification Error&quot;</span><span class="p">,</span> xlab <span class="o">=</span> <span class="s">&quot;Subset Size p&quot;</span><span class="p">)</span>
-<span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">cverr</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.6</span><span class="p">),</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Misclassification Error&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Subset Size p&quot;</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">)</span>
 <span class="p">{</span>
-    lines<span class="p">(</span><span class="kt">c</span><span class="p">(</span>i<span class="p">,</span> i<span class="p">),</span> <span class="kt">c</span><span class="p">(</span>cverr<span class="p">[</span>i<span class="p">]</span> <span class="o">-</span> se.err<span class="p">[</span>i<span class="p">],</span> cverr<span class="p">[</span>i<span class="p">]</span> <span class="o">+</span> se.err<span class="p">[</span>i<span class="p">]),</span> col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
-    lines<span class="p">(</span><span class="kt">c</span><span class="p">(</span>i<span class="m">-0.2</span><span class="p">,</span> i<span class="m">+0.2</span><span class="p">),</span> <span class="kt">c</span><span class="p">(</span>cverr<span class="p">[</span>i<span class="p">]</span> <span class="o">-</span> se.err<span class="p">[</span>i<span class="p">],</span> cverr<span class="p">[</span>i<span class="p">]</span> <span class="o">-</span> se.err<span class="p">[</span>i<span class="p">]),</span> col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
-    lines<span class="p">(</span><span class="kt">c</span><span class="p">(</span>i<span class="m">-0.2</span><span class="p">,</span> i<span class="m">+0.2</span><span class="p">),</span> <span class="kt">c</span><span class="p">(</span>cverr<span class="p">[</span>i<span class="p">]</span> <span class="o">+</span> se.err<span class="p">[</span>i<span class="p">],</span> cverr<span class="p">[</span>i<span class="p">]</span> <span class="o">+</span> se.err<span class="p">[</span>i<span class="p">]),</span> col <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+    <span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="n">cverr[i]</span> <span class="o">-</span> <span class="n">se.err[i]</span><span class="p">,</span> <span class="n">cverr[i]</span> <span class="o">+</span> <span class="n">se.err[i]</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+    <span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">i</span><span class="m">-0.2</span><span class="p">,</span> <span class="n">i</span><span class="m">+0.2</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="n">cverr[i]</span> <span class="o">-</span> <span class="n">se.err[i]</span><span class="p">,</span> <span class="n">cverr[i]</span> <span class="o">-</span> <span class="n">se.err[i]</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+    <span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">i</span><span class="m">-0.2</span><span class="p">,</span> <span class="n">i</span><span class="m">+0.2</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="n">cverr[i]</span> <span class="o">+</span> <span class="n">se.err[i]</span><span class="p">,</span> <span class="n">cverr[i]</span> <span class="o">+</span> <span class="n">se.err[i]</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -3500,7 +3500,7 @@ se.err <span class="o">=</span> <span class="kp">sqrt</span><span class="p">(</s
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-16 03:40:25
+        Last Build Date UTC : 2018-12-17 05:23:54
       </div>
       
         
