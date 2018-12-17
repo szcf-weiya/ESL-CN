@@ -3346,11 +3346,13 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 <p>因此 $\mathbf\Theta$ 捕捉了所有二阶信息（结构上的和定量的），这些信息是描述每个顶点在给定剩余点时的条件分布所需要的，这也称为高斯图模型的“自然”参数。</p>
 <p>另外一个（不同）图模型为 <strong>协方差图 (covariance)</strong> 或者 <strong>相关网络 (relevance network)</strong>，其中如果顶点的对应变量间的协方差（不是偏协方差）为 0 则用双向边连接这些顶点。这在基因问题中很常见，特别地见 Butteet et al. (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>。这些模型的负对数似然是非凸的，使得计算更加有挑战（Chaudhuri et al.，2007<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）。</p>
 <h2 id="_1">图结构已知时参数的估计<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>给定 $X$ 的一些观测值，我们想要估计无向图的参数，该无向图近似了它们的联合分布。首先假设图是完全的（全连通）。我们假设有 $N$ 个多维正态观测值 $x_i,i=1,\ldots,N$，均值为$\mu$，协方差为$\mathbf \Sigma$。令
+<p>给定 $X$ 的一些观测值，我们想要估计无向图的参数，该无向图近似了它们的联合分布。首先假设图是完全的（全连通）。我们假设有 $N$ 个多维正态观测值 $x_i,i=1,\ldots,N$，均值为$\mu$，协方差为$\mathbf \Sigma$。令</p>
+<p>
 <script type="math/tex; mode=display">
-\mathbf S = \frac{1}{N}\sum\limits_{i=1}^N(x_i-\bar x)(x_i-\bar x)^T\tag{17.10}
+\mathbf S = \frac{1}{N}\sum_{i=1}^N(x_i-\bar x)(x_i-\bar x)^T\tag{17.10}
 </script>
-为观测值的协方差矩阵，$\bar x$ 为样本均值向量。忽略掉常数，其对数似然可以写成
+</p>
+<p>为观测值的协方差矩阵，$\bar x$ 为样本均值向量。忽略掉常数，其对数似然可以写成
 <script type="math/tex; mode=display">
 \ell(\mathbf \Theta)=\mathrm{log \;det}\mathbf\Theta-\mathrm{trace}(\mathbf{S\Theta})\tag{17.11}
 </script>
@@ -3608,7 +3610,7 @@ Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Ju
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-17 05:35:07
+        Last Build Date UTC : 2018-12-17 09:40:19
       </div>
       
         
