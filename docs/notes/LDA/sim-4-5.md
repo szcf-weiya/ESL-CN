@@ -126,7 +126,7 @@ calcLD2(za12, c12)
 直接将上述计算得到的截距和斜率代入 `abline()` 函数中，便可以得到判别边界
 
 !!! tip "weiya 注：绘图技巧"
-    直接用 `abline()` 绘图时，会充满整个区域，这与原书图 4.5 不符，可以在 `abline()` 前加上 `clip()` 来预习选定绘图区域。这个技巧参考[how-to-define-graphical-bounds-of-abline-linear-regression-in-r](https://stackoverflow.com/questions/26472563/how-to-define-graphical-bounds-of-abline-linear-regression-in-r)
+    直接用 `abline()` 绘图时，会充满整个区域，这与原书图 4.5 不符，可以在 `abline()` 前加上 `clip()` 来预先选定绘图区域。这个技巧参考[how-to-define-graphical-bounds-of-abline-linear-regression-in-r](https://stackoverflow.com/questions/26472563/how-to-define-graphical-bounds-of-abline-linear-regression-in-r)
 
 图 4.5 的右图重现代码为
 
