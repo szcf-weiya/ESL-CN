@@ -3288,7 +3288,7 @@ Y = f(X) = e^{−8\mid \mid X\mid \mid ^2},
 Y = X^T\beta + \varepsilon\tag{2.26}
 </script>
 </p>
-<p>其中 $\varepsilon \sim N(0,\sigma^2)$，而且我们用最小二乘对训练数据进行拟合模型。对于任意测试点 $x_0$，我们有 $\hat y_0=x_0^T\hat{\beta}$，可以写成 $\hat y_0=x_0^T\beta+\sum_{i=1}^N\ell_i(x_0)\epsilon_i$，其中 $\ell_i{x_0}$ 是 ${\mathbf{X(X^TX)}}^{-1}x_0$ 的第 $i$ 个元素。因为在这个模型下，最小二乘估计是无偏的，我们发现</p>
+<p>其中 $\varepsilon \sim N(0,\sigma^2)$，而且我们用最小二乘对训练数据进行拟合模型。对于任意测试点 $x_0$，我们有 $\hat y_0=x_0^T\hat{\beta}$，可以写成 $\hat y_0=x_0^T\beta+\sum_{i=1}^N\ell_i(x_0)\epsilon_i$，其中 $\ell_i(x_0)$ 是 ${\mathbf{X(X^TX)}}^{-1}x_0$ 的第 $i$ 个元素。因为在这个模型下，最小二乘估计是无偏的，我们发现</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3296,7 +3296,7 @@ Y = X^T\beta + \varepsilon\tag{2.26}
 &={\color{red} {\E_{y_0\mid x_0}\E_{\cal T}(x_0^T\beta+\varepsilon-\hat{y}_0)^2}}\notag\\
 &={\color{red} {\E_{y_0\mid x_0}\E_{\cal T}[(x_0^T\beta-\hat{y}_0)^2+2\varepsilon (x_0^T\beta-\hat{y}_0)+\varepsilon ^2]}}\notag\\
 &={\color{red} {\E_{y_0\mid x_0}\varepsilon ^2+\E_{\cal T}(x_0^T\beta-\hat{y}_0)^2\qquad\qquad \because \E_{y_0\mid x_0}\varepsilon = 0}}\notag\\
-&=Var(y_0\mid x_0)+\E_{\cal T}[\hat{y}_0-\E_{\cal T}\hat{y}_0]^2+[\E_{\cal T}\hat{y}_0-x_0^T\beta]^2\notag\\
+&=\Var(y_0\mid x_0)+\E_{\cal T}[\hat{y}_0-\E_{\cal T}\hat{y}_0]^2+[\E_{\cal T}\hat{y}_0-x_0^T\beta]^2\notag\\
 &=\Var(y_0\mid x_0)+\Var_{\cal T}(\hat{y}_0)+\Bias^2(\hat{y}_0)\notag\\
 &=\sigma^2+E_{\cal T}x_0^T(\mathbf{X^TX})^{-1}x_0\sigma^2+0^2\qquad\qquad\tag{2.27}
 \end{align}
@@ -3312,7 +3312,11 @@ Y = X^T\beta + \varepsilon\tag{2.26}
 \end{align*}
 </script>
 </p>
-<p>我们可以看到 $\EPE$ 的期望作为 $p$ 的函数线性增长，斜率$\sigma^2/N$。如果$N$大且/或$\sigma^2$小，方差的增长可以忽略（在确定情形下为 $0$）。通过在拟合的模型的类别上插入一些强的限制，我们避免了维数的灾难。一些技巧细节在式 $(2.27)$ 和 $(2.28)$ 中，这也是源自<a href="https://github.com/szcf-weiya/ESL-CN/issues/160">练习 2.5</a>。</p>
+<p>我们可以看到 $\EPE$ 的期望作为 $p$ 的函数线性增长，斜率 $\sigma^2/N$。如果 $N$ 大且/或 $\sigma^2$ 小，方差的增长可以忽略（在确定情形下为 $0$）。通过在拟合的模型的类别上插入一些强的限制，我们避免了维数的灾难。一些技巧细节在式 $(2.27)$ 和 $(2.28)$ 中，这也是源自<a href="https://github.com/szcf-weiya/ESL-CN/issues/160">练习 2.5</a>。</p>
+<div class="admonition info">
+<p class="admonition-title">Ex. 2.5</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/160">Issue 160: Ex. 2.5</a>.</p>
+</div>
 <p>图 2.9 在两种情形下比较 $1$-最近邻和最小二乘法，两种情形下形式均为 $Y=f(X)+\epsilon$，$X$ 和前面一样都是均匀分布的，而且$\epsilon\sim N(0,1)$。样本规模为 $N=500$。对于红色的曲线，$f(X)$ 在第一个坐标下为线性的，对于绿色曲线，如图 2.8 中的立方。图中显示了相对于最小二乘而言，$1$-最近邻的相对 $\EPE$ 值。线性情况下大概是从 $2$ 开始。在这个情况下最小二乘是无偏的，而且上述讨论的 $\EPE$ 略高于 $\sigma^2=1$。$1$-最近邻的 $\EPE$ 总是大于 $2$，因为这种情形下 $\hat{f}_0$ 至少是 $\sigma^2$，而且随着维数增长比率增加，因为随着维数增加最近邻会远离目标点。对于立方体的情形，最小二乘是有偏的，使比率变得缓和。显然我们可以构造最小二乘的偏差主导方差的例子，然后 $1$-最近邻就会变成胜利者。</p>
 <p><img alt="" src="../../img/02/fig2.9.png" /></p>
 <p>通过依赖严格的假设，线性模型没有偏差而且方差几乎可以忽略，然后 $1$-最近邻的误差就会相当的大。然而，如果假设是错误的，所有的东西都不复存在，而 $1$-最近邻将占主导地位。我们将会看到介于严格的线性模型和非常灵活的 $1$-最近邻模型之间的模型谱，每个都有它们各自的假设和偏差，这些假设已经具体提到过，通过在很大程度上借鉴这些假设来避免高维下函数复杂度呈指数增长。</p>
@@ -3403,7 +3407,7 @@ Y = X^T\beta + \varepsilon\tag{2.26}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-17 14:34:42
+        Last Build Date UTC : 2018-12-17 15:13:59
       </div>
       
         
