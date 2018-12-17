@@ -3381,7 +3381,11 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}\hat\mu^T_2\hat\
 x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\mu_1)^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)-\log(N_2/N_1)\tag{4.11}
 </script>
 </p>
-<p>否则分为第一类。假设我们将两个类别分别编码为 $+1$ 和 $-1$。可以简单地证明得出最小二乘的系数向量与 (4.11) 式给出的 LDA 方向成比例。（<a href="https://github.com/szcf-weiya/ESL-CN/issues/88">练习 4.2</a>）。【实际上，这种对应关系对于任意的编码都会有，见练习4.2】。然而除了 $N_1=N_2$ 的情形，截距不同因此得到的判别边界不一样。</p>
+<p>否则分为第一类。假设我们将两个类别分别编码为 $+1$ 和 $-1$。可以简单地证明得出最小二乘的系数向量与 (4.11) 式给出的 LDA 方向成比例。（<a href="https://github.com/szcf-weiya/ESL-CN/issues/108">练习 4.2</a>）。【实际上，这种对应关系对于任意的编码都会有，见练习4.2】。然而除了 $N_1=N_2$ 的情形，截距不同因此得到的判别边界不一样。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 4.2</p>
+<p>已解决，但是 (e) 小问需要进一步改善，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/108">Issue 108: Ex. 4.2</a>。</p>
+</div>
 <p>因为通过最小二乘得到的 LDA 方向不需要对特征做高斯分布的假设，它的应用可以不局限于高斯分布的数据。然而，(4.11)式给出的特定的截距和分离点确实需要高斯分布的数据。因此对于给定的数据集凭经验地选择分割点最小化训练误差是有意义的。这也是我们在实际中发现效果很好，但是在理论中没有提到的原因。</p>
 <p>多于两个类别的情形时，LDA 与类别指示矩阵的线性回归不是一样的，而且它避免了跟这个方法有关的掩藏问题(Hastie et al., 1994<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。 回归与 LDA 之间的对应可以通过在 12.5 节中讨论的最优评分来建立。</p>
 <p>回到一般的判别问题 (4.8)，如果没有假设 $\boldsymbol\Sigma_k$ 相等，则 (4.9) 中方便的抵消不会发生；特别地，关于 $x$ 的平方项保留了下来。于是我们得到了平方判别函数 QDA
@@ -3593,7 +3597,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-17 05:30:25
+        Last Build Date UTC : 2018-12-17 05:35:01
       </div>
       
         
