@@ -3301,7 +3301,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=63">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3345,7 +3345,7 @@ f(X)=\beta_0+\sum\limits_{j=1}^pX_j\beta_j \tag{3.1}
 <p>一般地，我们有一个用来估计参数 $\beta$ 的训练数据集合 $(x_1,y_1),\ldots,(x_N,y_N)$。每个 $x_i=(x_{i1},x_{i2},\ldots,x_{ip})^T$ 是第 $i$ 种情形的特征测量值的向量。最受欢迎的估计方法是<strong>最小二乘 (least squares)</strong>，我们取参数 $\beta=(\beta_0,\beta_1,\ldots,\beta_p)^T$ 使得下式的残差平方和最小
 <script type="math/tex; mode=display">
 \begin{align}
-RSS(\beta)&=\sum\limits_{i=1}^N(y_i-f(x_i))^2\\
+RSS(\beta)&=\sum\limits_{i=1}^N(y_i-f(x_i))^2\notag\\
 &=\sum\limits_{i=1}^N(y_i-\beta_0-\sum\limits_{j=1}^px_{ij}\beta_j)^2\tag{3.2}
 \end{align}
 </script>
@@ -3405,7 +3405,7 @@ Var(\hat{\beta})=(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\tag{3.8}
 <p>为了对参数和模型进行推断，需要一些额外的假设。我们现在假设式 $(3.1)$ 是关于均值的正确模型；则 $Y$ 的条件期望关于 $X_1,X_2,\ldots,X_p$ 是线性的。我们也假设 $Y$ 与其期望的偏差是可加的且是正态的。因此
 <script type="math/tex; mode=display">
 \begin{align}
-Y&=E(Y\mid X_1,\ldots,X_p)+\varepsilon\\
+Y&=E(Y\mid X_1,\ldots,X_p)+\varepsilon\notag\\
 &=\beta_0+\sum\limits_{j=1}^pX_j\beta_j+\varepsilon\tag{3.9}
 \end{align}
 </script>
@@ -3438,14 +3438,18 @@ z_j=\dfrac{\hat{\beta}_j}{\hat{\sigma}\sqrt{v_j}}\tag{3.12}
 F=\dfrac{(\RSS_0-\RSS_1)/(p_1-p_0)}{\RSS_1/(N-p_1-1)}\tag{3.13}
 </script>
 </p>
-<p>其中 $\RSS_1$ 是有 $p_1+1$ 个参数的大模型的最小二乘法拟合的残差平方和，$\RSS_0$ 是有 $p_0+1$ 参数的小模型的最小二乘法拟合的残差平方和，其有 $p_1-p_0$ 个参数约束为 0。$F$ 统计量衡量了在大模型中每个增加的系数对残差平方和的改变，而且用 $\sigma^2$ 的估计值进行标准化。在高斯分布以及小模型的零假设为正确的情况下，$F$ 统计量服从 $F_{p_1-p_0,N-p_1-1}$ 分布。可以证明 (3.12) 式中的 $z_j$ 等于从模型中去除单系数 $\beta_j$ 的 $F$ 统计量（<a href="https://github.com/szcf-weiya/ESL-CN/issues/69">习题 3.1</a>），当 $N$ 足够大时，$F_{p_1-p_0,N-p_1-1}$ 近似 $\chi^2_{p_1-p_0}$</p>
+<p>其中 $\RSS_1$ 是有 $p_1+1$ 个参数的大模型的最小二乘法拟合的残差平方和，$\RSS_0$ 是有 $p_0+1$ 参数的小模型的最小二乘法拟合的残差平方和，其有 $p_1-p_0$ 个参数约束为 0。$F$ 统计量衡量了在大模型中每个增加的系数对残差平方和的改变，而且用 $\sigma^2$ 的估计值进行标准化。在高斯分布以及小模型的零假设为正确的情况下，$F$ 统计量服从 $F_{p_1-p_0,N-p_1-1}$ 分布。可以证明 (3.12) 式中的 $z_j$ 等于从模型中去除单系数 $\beta_j$ 的 $F$ 统计量（<a href="https://github.com/szcf-weiya/ESL-CN/issues/69">习题 3.1</a>），当 $N$ 足够大时，$F_{p_1-p_0,N-p_1-1}$ 近似 $\chi^2_{p_1-p_0}$。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.1</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/69">Issue 69: Ex. 3.1</a>。</p>
+</div>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
+<p class="admonition-title">weiya 注</p>
 <p>在 R 语言中，可以采用<code>pwr</code>包来进行power analysis。这里举一个实际例子来说明如何在线性回归模型中进行power analysis。
 假设我们要研究老板的领导风格对公司员工满意度的影响，同时员工满意度还与薪酬有关，其中薪酬用3个变量来衡量，而老板领导风格用4个变量来衡量。根据以往经验，薪酬能够解释员工满意度方差的30%，现在问题是确定多少的调查个体，使得显著度为.05，而且power为.90。求解代码为<code>pwr.f2.test(u=3, f2=0.0769, sig.level=0.05, power=0.90)</code>，输出<code>v=184.2426</code>。
 其中<code>u</code>和<code>v</code>分别被称为分子、分母自由度。结合(3.13)式，我们可以看出$p_1-p_0=u, N-p_1-1=v$，并且这里$p_0=4, p_1=7$。换个角度看，其实式(3.13)就是用于power analysis的检验统计量，原假设为可以将领导力水平的四个变量系数设为0，若F足够大，则会拒绝原假设。</p>
 </div>
-<p>类似地，我们可以分离式(3.10)中的$\beta_j$得到$\beta_j$的置信水平为$1-2\alpha$的置信区间</p>
+<p>类似地，我们可以分离式 (3.10) 中的 $\beta_j$ 得到 $\beta_j$ 的置信水平为 $1-2\alpha$ 的置信区间</p>
 <p>
 <script type="math/tex; mode=display">
 (\hat{\beta}_j-z^{1-\alpha}v_j^{1/2}\hat{\sigma},\hat{\beta}_j+z^{1-\alpha}v_j^{1/2}\hat{\sigma})\tag{3.14}
@@ -3453,20 +3457,24 @@ F=\dfrac{(\RSS_0-\RSS_1)/(p_1-p_0)}{\RSS_1/(N-p_1-1)}\tag{3.13}
 </p>
 <p>这里，$z^{1-\alpha}$ 是正态分布的 $1-\alpha$ 分位数。
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 z^{1-0.025}&=1.96,\\
 z^{1-0.05}&=1.645,etc.
-\end{align}
+\end{align*}
 </script>
 </p>
 <p>因此报告 $\hat{\beta}\pm 2\cdot se(\hat{\beta})$ 的标准做法是约 $95\%$ 的置信区间。即便没有高斯误差的假设，区间也近似正确，因为当样本规模 $N\sim \infty$ 时，覆盖范围近似为 $1-2\alpha$。</p>
 <p>运用类似的方法我们可以得到全体系数向量 $\beta$ 的近似置信集，记作</p>
 <p>
 <script type="math/tex; mode=display">
-C_{\beta} = \{\beta \mid (\hat{\beta}-\beta\mathbf\bf{X^TX}(\hat{\beta}-\beta)\le \hat{\sigma}^2\chi^{2^{(1-\alpha)}}_{p+1} \}
+C_{\beta} = \{\beta \mid ((\hat{\beta}-\beta)^T\mathbf{X^TX}(\hat{\beta}-\beta)\le \hat{\sigma}^2\chi^{2^{(1-\alpha)}}_{p+1} \}\tag{3.15}
 </script>
 </p>
-<p>其中，$\chi_\ell^{2^{(1-\alpha)}}$ 是 $\ell$ 个自由度的卡方分布的 $1-\alpha$ 的分位数：举个例子，$\chi^{2^{(1-0.05)}}_5=11.1,\chi^{2^{(1-0.1)}}_5=9.2$。这个关于$\beta$的置信集导出关于真函数$f(x)=x^T\beta$对应的置信集，记作${x^T\beta\mid \beta \in C_\beta}$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/120">练习 3.2</a>；并见 5.2.2 节中函数置信带的例子图 5.4）</p>
+<p>其中，$\chi_\ell^{2^{(1-\alpha)}}$ 是 $\ell$ 个自由度的卡方分布的 $1-\alpha$ 的分位数：举个例子，$\chi^{2^{(1-0.05)}}_5=11.1,\chi^{2^{(1-0.1)}}_5=9.2$。这个关于$\beta$的置信集导出关于真函数$f(x)=x^T\beta$对应的置信集，记作$\{x^T\beta\mid \beta \in C_\beta\}$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/120">练习 3.2</a>；并见 5.2.2 节中函数置信带的例子图 5.4）</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.2</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/120">Issue 120: Ex. 3.2</a>。</p>
+</div>
 <h2 id="_1">例子：前列腺癌<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>这个例子的数据来自 Stamey et al. (1989)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。他们检验即将接受彻底前列腺切除术的男性的前列腺特定抗原水平和一系列临床措施之间的相关性。变量有癌体积的对数值 (lcavol)、前列腺重量的对数值 (lweight)、良性前列腺增生数量 (lbph)、精囊浸润 (svi)、包膜浸透的对数值 (lcp)、Gleason 得分 (gleason)、Gleason 得分为 4 或 5 的比例 (pgg45)。表 3.1 中给出的预测变量的相关性矩阵显示了很多强相关性。第 1 章的图 1.1 是散点图矩阵，显示了变量两两间的图象。我们看到svi是二进制变量，gleason是有序分类变量。举个例子，我们看到 lcavol 和 lcp 都与响应变量 lpsa 有强的相关性。我们需要联合拟合这些影响来解开预测变量和响应变量之间的关系。</p>
 <p><img alt="" src="../../img/03/tab3.1.png" /></p>
@@ -3491,8 +3499,8 @@ F=\dfrac{(32.81-29.43)/(9-5)}{29.43/(67-9)}=1.67\tag{3.16}
 <p>考虑固定 $\mathbf{X}$，则上式是关于响应变量 $\mathbf{y}$ 的线性函数 $\mathbf{c}_0^T\mathbf{y}$。如果我们假设线性模型是正确的，则 $a^T\hat{\beta}$ 是无偏的，因为
 <script type="math/tex; mode=display">
 \begin{align}
-E(a^T\hat{\beta})&=E(a^T\mathbf{(X^TX)^{-1}X^Ty})\\
-&=a^T\mathbf{(X^TX)^{-1}X^TX}\beta\\
+E(a^T\hat{\beta})&=E(a^T\mathbf{(X^TX)^{-1}X^Ty})\notag\\
+&=a^T\mathbf{(X^TX)^{-1}X^TX}\beta\notag\\
 &=a^T\beta\tag{3.18}
 \end{align}
 </script>
@@ -3512,13 +3520,13 @@ Var(a^T\hat{\beta})\le Var(\mathbf{c}^T\mathbf{y})\tag{3.19}
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-MSE(\tilde{\theta})&=E(\tilde{\theta}-\theta)^2\\
+MSE(\tilde{\theta})&=E(\tilde{\theta}-\theta)^2\notag\\
 &=Var(\tilde{\theta})+[E(\tilde{\theta})-\theta]^2\tag{3.20}
 \end{align}
 </script>
 </p>
-<p>第一项为方差，第二项为平方偏差。Gauss-Markov 定理表明最小二乘估计在所有无偏线性估计中有最小的均方误差。然而，或许存在有较小均方误差的有偏估计。这样的估计用小的偏差来换取方差大幅度的降低。实际中也会经常使用有偏估计。任何收缩或者将最小二乘的一些参数设为0的方法都可能导致有偏估计。我们将在这章的后半部分讨论许多例子，包括<strong>变量子集选择</strong>和<strong>岭回归</strong>。从一个更加实际的观点来看，许多模型是对事实的曲解，因此是有偏的；挑选一个合适的模型意味着要在偏差和方差之间创造某种良好的平衡。我们将在第7章中详细讨论这些问题。</p>
-<p>正如在第2章中讨论的那样，均方误差与预测的正确性紧密相关。考虑在输入$x_0$处的新的响应变量</p>
+<p>第一项为方差，第二项为平方偏差。Gauss-Markov 定理表明最小二乘估计在所有无偏线性估计中有最小的均方误差。然而，或许存在有较小均方误差的有偏估计。这样的估计用小的偏差来换取方差大幅度的降低。实际中也会经常使用有偏估计。任何收缩或者将最小二乘的一些参数设为0的方法都可能导致有偏估计。我们将在这章的后半部分讨论许多例子，包括 <strong>变量子集选择</strong> 和 <strong>岭回归</strong>。从一个更加实际的观点来看，许多模型是对事实的曲解，因此是有偏的；挑选一个合适的模型意味着要在偏差和方差之间创造某种良好的平衡。我们将在第7章中详细讨论这些问题。</p>
+<p>正如在第2章中讨论的那样，均方误差与预测的正确性紧密相关。考虑在输入 $x_0$ 处的新的响应变量</p>
 <p>
 <script type="math/tex; mode=display">
 Y_0=f(x_0)+\varepsilon_0 \tag{3.21}
@@ -3528,14 +3536,14 @@ Y_0=f(x_0)+\varepsilon_0 \tag{3.21}
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-E(Y_0-\tilde{f}(x_0))^2 &=\sigma^2+E(x_0^T\tilde{\beta}-f(x_0))^2\\
+E(Y_0-\tilde{f}(x_0))^2 &=\sigma^2+E(x_0^T\tilde{\beta}-f(x_0))^2\notag\\
 &= \sigma^2+MSE(\tilde{f}(x_0))\tag{3.22}
 \end{align}
 </script>
 </p>
-<p>因此，预测误差的估计值和均方误差只有常数值$\sigma^2$的差别，$\sigma^2$表示了新观测$y_0$的方差。</p>
+<p>因此，预测误差的估计值和均方误差只有常数值 $\sigma^2$ 的差别，$\sigma^2$ 表示了新观测 $y_0$ 的方差。</p>
 <h2 id="_2">从简单单变量回归到多重回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>有$p &gt; 1$个输入的线性模型(3.1)称作<strong>多重线性回归模型</strong>。用单($p=1$)变量线性模型的估计能更好理解模型(3.6)的最小二乘估计，我们将在这节中指出。</p>
+<p>有 $p &gt; 1$ 个输入的线性模型 (3.1) 称作 <strong>多重线性回归模型</strong>。用单($p=1$)变量线性模型的估计能更好理解模型(3.6)的最小二乘估计，我们将在这节中指出。</p>
 <p>首先假设我们有一个没有截距的单变量模型，也就是</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3545,47 +3553,47 @@ Y=X\beta + \varepsilon \tag{3.23}
 <p>最小二乘估计和残差为</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 \hat{\beta}&=\dfrac{\sum_1^Nx_iy_i}{\sum_1^Nx_i^2}\\
 r_i &= y_i -x_i\hat{\beta}
-\end{align}
+\end{align*}
 \tag{3.24}
 </script>
 </p>
-<p>为了简便用向量表示，我们令$\mathbf{y}=(y_1,\ldots,y_N)^T$,$\mathbf{x}=(x_1,\ldots,x_N)^T$，并且定义
+<p>为了简便用向量表示，我们令 $\mathbf{y}=(y_1,\ldots,y_N)^T$，$\mathbf{x}=(x_1,\ldots,x_N)^T$，并且定义
 <script type="math/tex; mode=display">
 \begin{align}
-\langle\mathbf{x},\mathbf{y}\rangle &= \sum\limits_{i=1}^Nx_iy_i\\
+\langle\mathbf{x},\mathbf{y}\rangle &= \sum\limits_{i=1}^Nx_iy_i\notag\\
 &=\mathbf{x^Ty}\tag{3.25}
 \end{align}
 </script>
 </p>
-<p>$\mathbf{x}$和$\mathbf{y}$之间的内积，于是我们可以写成</p>
+<p>$\mathbf{x}$ 和 $\mathbf{y}$ 之间的内积，于是我们可以写成</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 \hat{\beta}&=\dfrac{\langle \mathbf{x,y}\rangle}{\langle\mathbf{x,x} \rangle}\\
 \mathbf{r}&=\mathbf{y}-\mathbf{x}\hat{\beta}
-\end{align}
+\end{align*}
 \tag{3.26}
 </script>
 </p>
 <div class="admonition note">
-<p class="admonition-title">weiya注：原书脚注</p>
+<p class="admonition-title">weiya 注：原书脚注</p>
 <p>The inner-product notation is suggestive of generalizations of linear regression to different metric spaces, as well as to probability spaces. 内积表示是线性回归模型一般化到不同度量空间（包括概率空间）建议的方式。</p>
 </div>
-<p>正如我们所看到的，这个简单的单变量回归提供了多重线性回归的框架(building block)。进一步假设输入变量$\mathbf{x}_1,\mathbf{x_2,\ldots,x_p}$（数据矩阵$\mathbf{X}$的列）是正交的；也就是对于所有的$j\neq k$有$\langle \x_j,\x_k\rangle=0$。于是很容易得到多重最小二乘估计$\hat{\beta}_j$等于$\langle \mathbf{x}_j,\mathbf{y}\rangle/\langle\mathbf{x}_j,\mathbf{x}_j\rangle $——单变量估计。换句话说，当输入变量为正交的，它们对模型中其它的参数估计没有影响。</p>
-<p>正交输入变量经常发生于平衡的、设定好的实验（强制了正交），但是对于实验数据几乎不会发生。因此为了后面实施这一想法我们将要对它们进行正交化。进一步假设我们有一个截距和单输入$\bf{x}$。则$\bf{x}$的最小二乘系数有如下形式</p>
+<p>正如我们所看到的，这个简单的单变量回归提供了多重线性回归的框架(building block)。进一步假设输入变量$\mathbf{x}_1,\mathbf{x_2,\ldots,x_p}$（数据矩阵 $\mathbf{X}$ 的列）是正交的；也就是对于所有的$j\neq k$有$\langle \x_j,\x_k\rangle=0$。于是很容易得到多重最小二乘估计 $\hat{\beta}_j$ 等于$\langle \mathbf{x}_j,\mathbf{y}\rangle/\langle\mathbf{x}_j,\mathbf{x}_j\rangle $——单变量估计。换句话说，当输入变量为正交的，它们对模型中其它的参数估计没有影响。</p>
+<p>正交输入变量经常发生于平衡的、设定好的实验（强制了正交），但是对于实验数据几乎不会发生。因此为了后面实施这一想法我们将要对它们进行正交化。进一步假设我们有一个截距和单输入$\bf{x}$。则 $\bf{x}$ 的最小二乘系数有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
 \hat{\beta}_1=\dfrac{\langle \mathbf{x}-\bar{x}\mathbf{1},\mathbf{y}\rangle}{\langle \mathbf{x}-\bar{x}\mathbf{1},\mathbf{x}-\bar{x}\mathbf{1}\rangle}\tag{3.27}
 </script>
 </p>
-<p>其中，$\bar{x}=\sum_ix_i/N$,且$N$维单位向量$\mathbf{1}=x_0$。我们可以将式(3.27)的估计看成简单回归(3.26)的两次应用。这两步是：</p>
+<p>其中，$\bar{x}=\sum_ix_i/N$,且 $N$ 维单位向量 $\mathbf{1}=x_0$。我们可以将式 (3.27) 的估计看成简单回归 (3.26) 的两次应用。这两步是：</p>
 <ol>
-<li>在$\bf{1}$上回归$\bf{x}$产生残差$\mathbf{z}=\mathbf{x}-\bar{x}\mathbf{1}$;</li>
-<li>在残差$\bf{z}$上回归$\bf{y}$得到系数$\hat{\beta}_1$
-   在这个过程中，“在$\bf{a}$上回归$\bf{b}$”意思是$\bf{b}$在$\bf{a}$上的无截距的简单单变量回归，产生系数$\hat{\gamma}=\langle\mathbf{a,b}\rangle/\langle\mathbf{a,a}\rangle$以及残差向量$\mathbf{b}-\hat{\gamma}\mathbf{a}$。我们称$\bf{b}$由$\bf{a}$校正(adjusted)，或者关于$\bf{a}$正交化。</li>
+<li>在$\bf{1}$上回归 $\bf{x}$ 产生残差 $\mathbf{z}=\mathbf{x}-\bar{x}\mathbf{1}$;</li>
+<li>在残差$\bf{z}$上回归 $\bf{y}$ 得到系数 $\hat{\beta}_1$
+   在这个过程中，“在 $\bf{a}$ 上回归 $\bf{b}$”意思是 $\bf{b}$ 在 $\bf{a}$ 上的无截距的简单单变量回归，产生系数$\hat{\gamma}=\langle\mathbf{a,b}\rangle/\langle\mathbf{a,a}\rangle$以及残差向量$\mathbf{b}-\hat{\gamma}\mathbf{a}$。我们称 $\bf{b}$ 由 $\bf{a}$ 校正(adjusted)，或者关于 $\bf{a}$ 正交化。</li>
 </ol>
 <p>第一步对 $\mathbf{x}$ 作关于 $\mathbf{x}_0=\mathbf{1}$ 的正交化。第二步是一个利用正交预测变量 $\mathbf{1}$ 和$\mathbf{z}$ 简单的单变量回归。图 3.4 展示了两个一般输入 $\mathbf{x}_1$ 和 $\mathbf{x}_2$ 的过程。正交化不会改变由$\mathbf{x}_1$ 和 $\mathbf{x}_2$ 张成的子空间，它简单地产生一个正交基来表示子空间。</p>
 <p><img alt="" src="../../img/03/fig3.4.png" /></p>
@@ -3629,7 +3637,7 @@ r_i &= y_i -x_i\hat{\beta}
 <p>其中 $\mathbf{Z}$ 是 $\mathbf{z_j}$（按顺序）作为列向量的矩阵，$\mathbf{\Gamma}$ 是值为 $\hat\gamma_{kj}$ 的上三角矩阵。引入第 $j$ 个对角元 $D_{jj}=\Vert \mathbf{z}_j \Vert$ 的对角矩阵 $\mathbf{D}$，我们有
 <script type="math/tex; mode=display">
 \begin{align}
-\mathbf{X}&=\mathbf{ZD^{-1}D\Gamma}\\
+\mathbf{X}&=\mathbf{ZD^{-1}D\Gamma}\notag\\
 &=\mathbf{QR}\tag{3.31}
 \end{align}
 </script>
@@ -3643,13 +3651,13 @@ r_i &= y_i -x_i\hat{\beta}
 \end{align}
 </script>
 </p>
-<p>等式（3.32）很容易求解，因为$\mathbf{R}$为上三角（练习3.4）</p>
+<p>等式（3.32）很容易求解，因为 $\mathbf{R}$ 为上三角（练习 3.4）</p>
 <h2 id="_3">多重输出<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>假设我们有多重输出$Y_1,Y_2,\ldots,Y_K$，我们希望通过我们的输入$X_0,X_1,X_2,\ldots,X_p$去预测。我们假设对于每一个输出有线性模型</p>
+<p>假设我们有多重输出$Y_1,Y_2,\ldots,Y_K$，我们希望通过我们的输入 $X_0,X_1,X_2,\ldots,X_p$ 去预测。我们假设对于每一个输出有线性模型</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-Y_k&=\beta_{0k}+\sum\limits_{j=1}^pX_j\beta_{jk}+\varepsilon_k \tag{3.34}\\\\
+Y_k&=\beta_{0k}+\sum\limits_{j=1}^pX_j\beta_{jk}+\varepsilon_k \tag{3.34}\\
 &= f_k(X)+\varepsilon_k \tag{3.35}
 \end{align}
 </script>
@@ -3660,7 +3668,7 @@ Y_k&=\beta_{0k}+\sum\limits_{j=1}^pX_j\beta_{jk}+\varepsilon_k \tag{3.34}\\\\
 \mathbf{Y=XB+E}\tag{3.36}
 </script>
 </p>
-<p>这里$\mathbf{Y}$为$N\times K$的响应矩阵，$ik$处值为$y_{ik}$，$\mathbf{X}$为$N\times (p+1)$的输入矩阵，$\mathbf{B}$为$(p+1)\times K$的系数矩阵 $\mathbf{E}$为$N\times K$的误差矩阵。单变量损失函数（3.2）的直接推广为
+<p>这里 $\mathbf{Y}$ 为 $N\times K$ 的响应矩阵，$ik$ 处值为 $y_{ik}$，$\mathbf{X}$为$N\times (p+1)$的输入矩阵，$\mathbf{B}$为$(p+1)\times K$的系数矩阵 $\mathbf{E}$为$N\times K$的误差矩阵。单变量损失函数（3.2）的直接推广为
 <script type="math/tex; mode=display">
 \begin{align}
 \RSS(\mathbf{B})&=\sum\limits_{k=1}^K\sum\limits_{i=1}^N(y_{ik}-f_k(x_i))^2\tag{3.37}\\
@@ -3675,14 +3683,14 @@ Y_k&=\beta_{0k}+\sum\limits_{j=1}^pX_j\beta_{jk}+\varepsilon_k \tag{3.34}\\\\
 </script>
 </p>
 <p>因此第$k$个输出的系数恰恰是$\mathbf{y}_k$在$\mathbf{x}_0,\mathbf{x}_1,\ldots,\mathbf{x}_p$上回归的最小二乘估计。多重输出不影响其他的最小二乘估计。</p>
-<p>如果式(3.34)中的误差$\varepsilon = (\varepsilon_1,\ldots,\varepsilon_K)$相关，则似乎更恰当的方式是修正(3.37)来改善多重变量版本。特别地，假设$Cov(\varepsilon)=\Sigma$，则<strong>多重变量加权准则</strong>为</p>
+<p>如果式(3.34)中的误差$\varepsilon = (\varepsilon_1,\ldots,\varepsilon_K)$相关，则似乎更恰当的方式是修正(3.37)来改善多重变量版本。特别地，假设$Cov(\varepsilon)=\Sigma$，则 <strong>多重变量加权准则</strong> 为</p>
 <p>
 <script type="math/tex; mode=display">
 \RSS(\mathbf{B;\Sigma})=\sum\limits_{i=1}^N(y_i-f(x_i))^T\Sigma^{-1}(y_i-f(x_i))\tag{3.40}
 </script>
 </p>
-<p>这可以由<strong>多变量高斯定理</strong>自然得出。这里$f(x)$为向量函数$(f_1(x),\ldots,f_K(x))$，而且$y_i$为观测值$i$的$K$维响应向量。然而，可以证明解也是由式(3.39)给出；$K$个分离的回归忽略了相关性（<a href="https://github.com/szcf-weiya/ESL-CN/issues/73">练习3.11</a>）。如果$\Sigma_i$不同观测为不同值，则不再是这种情形，而且关于$\mathbf{B}$的解不再退化(decouple).</p>
-<p>在3.7节我们继续讨论多重输出的问题，并且考虑需要合并回归的情形。</p>
+<p>这可以由 <strong>多变量高斯定理</strong> 自然得出。这里 $f(x)$ 为向量函数 $(f_1(x),\ldots,f_K(x))$，而且 $y_i$ 为观测值 $i$ 的 $K$ 维响应向量。然而，可以证明解也是由式 (3.39) 给出；$K$ 个分离的回归忽略了相关性（<a href="https://github.com/szcf-weiya/ESL-CN/issues/73">练习3.11</a>）。如果$\Sigma_i$不同观测为不同值，则不再是这种情形，而且关于$\mathbf{B}$的解不再退化(decouple).</p>
+<p>在 3.7 节我们继续讨论多重输出的问题，并且考虑需要合并回归的情形。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3769,7 +3777,7 @@ Y_k&=\beta_{0k}+\sum\limits_{j=1}^pX_j\beta_{jk}+\varepsilon_k \tag{3.34}\\\\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-17 15:13:59
+        Last Build Date UTC : 2018-12-18 05:14:02
       </div>
       
         
