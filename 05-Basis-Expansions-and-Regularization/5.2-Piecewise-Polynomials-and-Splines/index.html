@@ -122,7 +122,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#52" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -955,21 +955,21 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" title="自然三次样条" class="md-nav__link">
+  <a href="#_1" title="自然三次样条" class="md-nav__link">
     自然三次样条
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="例子：南非心脏病（继续）" class="md-nav__link">
+  <a href="#_2" title="例子：南非心脏病（继续）" class="md-nav__link">
     例子：南非心脏病（继续）
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="例子：音素识别" class="md-nav__link">
+  <a href="#_3" title="例子：音素识别" class="md-nav__link">
     例子：音素识别
   </a>
   
@@ -3241,21 +3241,21 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" title="自然三次样条" class="md-nav__link">
+  <a href="#_1" title="自然三次样条" class="md-nav__link">
     自然三次样条
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="例子：南非心脏病（继续）" class="md-nav__link">
+  <a href="#_2" title="例子：南非心脏病（继续）" class="md-nav__link">
     例子：南非心脏病（继续）
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="例子：音素识别" class="md-nav__link">
+  <a href="#_3" title="例子：音素识别" class="md-nav__link">
     例子：音素识别
   </a>
   
@@ -3282,7 +3282,7 @@
               
                 
                 
-                <h1 id="_1">分段多项式和样条<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+                <h1 id="52">5.2 分段多项式和样条<a class="headerlink" href="#52" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3307,39 +3307,49 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">更新笔记</p>
-<p>@2017.09.13 这一节在FRM课程上，张老师特别介绍了三次样条，当时才意识到样条的order和degree是不同的，当时看这一节时还挺纳闷为啥阶数比自己理解的多1。<a href="https://en.wikipedia.org/wiki/Order_of_a_polynomial">wiki</a>上也提到了“the order of a spline, either the degree+1 of the polynomials defining the spline or the number of knot points used to determine it.” 比如3次样条的order为4，但degree才是我们熟悉的阶数，degree等于3。<strong>故在本节的翻译中，原文为order的直接用order，其它情况了类似称“三次多项式”均指degree。</strong> 当然上面仅限于样条，对于微分方程的order与degree，用下面的例子来说明
+<p>@2017.09.13 这一节在 FRM 课程上，张老师特别介绍了三次样条，当时才意识到样条的order和degree是不同的，当时看这一节时还挺纳闷为啥阶数比自己理解的多1。<a href="https://en.wikipedia.org/wiki/Order_of_a_polynomial">wiki</a>上也提到了“the order of a spline, either the degree+1 of the polynomials defining the spline or the number of knot points used to determine it.” 比如3次样条的order为4，但degree才是我们熟悉的阶数，degree等于3。<strong>故在本节的翻译中，原文为order的直接用order，其它情况了类似称“三次多项式”均指degree。</strong> 当然上面仅限于样条，对于微分方程的order与degree，用下面的例子来说明
 <script type="math/tex; mode=display">
 \frac{d^2y}{d x^2}+3\frac{dy}{dx}+2y=0
 </script>
 微分方程的order指的是方程中最高次的微分，所以上式的order为2；而degree指的是最高次微分的幂，所以上式degree为1。值得注意的是，order的定义是完整的，但degree的定义是不完整的，对于非多项式的微分方程，不能定义其degree，也就是并不知道$sin(\frac{dy}{dx})$的degree是多少。
-关于这两者的区别，可以参见Quora上的一篇回答<a href="https://www.quora.com/What-is-the-difference-between-the-degree-and-order-of-a-differential-equation">What is the difference between the degree and order of a differential equation?</a>
-@2017.10.18 今天跟yy同学简要讨论了一下样条方法，ta觉得“样条方法本身其实就是最小二乘，惩罚样条也不过就是跟最小二乘的Lasso 之类一个原理，没什么新意，不过这种非参估计因为假设放宽所以渐进性要比线性模型证明起来复杂的多。” 说得很对，但我觉得并非没有新意，看上去确实是像最小二乘（或者说是广义最小二乘或者加权最小二乘），但想到样条方法的初衷，不就是将线性模型拓展到超线性吗，而这种超线性的体现在于可加的分量是$h(X)$，是原始变量$X$的某个变换，比如样条基。所以我觉得表现形式很像最小二乘（或广义最小二乘）是很自然的，并且其惩罚也应该对应着线性中的惩罚，无论是lasso，还是$L_2$。另外，我个人一个很大的感受是，看上去很general的东西但看他们的论文或者书并不会觉得没有新意，比如esl中很多方法你似乎看上去都可以归结为最最一般的方法，但还是惊叹于新方法的巧妙。</p>
+关于这两者的区别，可以参见Quora上的一篇回答<a href="https://www.quora.com/What-is-the-difference-between-the-degree-and-order-of-a-differential-equation">What is the difference between the degree and order of a differential equation?</a></p>
+<p>@2017.10.18 今天跟yy同学简要讨论了一下样条方法，ta觉得“样条方法本身其实就是最小二乘，惩罚样条也不过就是跟最小二乘的Lasso 之类一个原理，没什么新意，不过这种非参估计因为假设放宽所以渐近性要比线性模型证明起来复杂的多。” 说得很对，但我觉得并非没有新意，看上去确实是像最小二乘（或者说是广义最小二乘或者加权最小二乘），但想到样条方法的初衷，不就是将线性模型拓展到超线性吗，而这种超线性的体现在于可加的分量是$h(X)$，是原始变量$X$的某个变换，比如样条基。所以我觉得表现形式很像最小二乘（或广义最小二乘）是很自然的，并且其惩罚也应该对应着线性中的惩罚，无论是lasso，还是 $L_2$。另外，我个人一个很大的感受是，看上去很general的东西但看他们的论文或者书并不会觉得没有新意，比如esl中很多方法你似乎看上去都可以归结为最最一般的方法，但还是惊叹于新方法的巧妙。</p>
 </div>
-<p>直到5.7节我们都假设$X$为一维向量。分段多项式函数$f(X)$通过将$X$的定义域分成连续的区间，然后在每个区间内用单独的多项式来表示$f$。图5.1显示了两个简单的分段多项式。第一个是分段常值，含有三个基函数：
+<p>直到 <a href="../5.7-Multidimensional-Splines/index.html">5.7 节</a> 我们都假设 $X$ 为一维向量。分段多项式函数 $f(X)$ 通过将 $X$ 的定义域分成连续的区间得到，并且在每个区间内用单独的多项式来表示 $f$。图 5.1 显示了两个简单的分段多项式。第一个是分段常值，含有三个基函数：
 <script type="math/tex; mode=display">
 h_1(X)=I(X<\xi_1),\;h_2(X)=I(\xi_1\le X\le \xi_2),\;h_3(X)=I(\xi_2\le X)
 </script>
-因为这些在不连续区域为正值，模型$f(X)=\sum_{m=1}^3\beta_mh_m(X)$等价于$\hat\beta_m=\overline{Y}_m$,即为$Y$在第$m$个区域的均值。</p>
+因为这些在不连续区域都为正值，模型 $f(X)=\sum_{m=1}^3\beta_mh_m(X)$ 的最小二乘估计等价于 $\hat\beta_m=\overline{Y}_m$，即为 $Y$ 在第 $m$ 个区域的均值。</p>
 <p><img alt="" src="../../img/05/fig5.1.png" /></p>
 <blockquote>
-<p>图5.1. 上面两张图显示了对一些拟合数据的分段常值函数拟合。垂直虚线表示两个结点$\xi_1$和$\xi_2$。蓝色曲线表示真正的函数，数据是通过函数加上高斯噪声产生的。下面板的图显示了对同样数据的分段线性函数拟合——上面板的图没有限制，而下面板的图限制为在结点处连续——右上图没有限制，而左下图限制为在结点处连续。右下图显示了分段线性的基函数，$h_3(X)=(X-\xi_1)_+$,它在$\xi_1$处连续。黑色点表示样本取值$h_3(x_i),i=1,2,\ldots,N$</p>
+<p>图 5.1. 上面两张图显示了对一些模拟数据的分段常值函数拟合。垂直虚线表示两个结点 $\xi_1$ 和 $\xi_2$。蓝色曲线表示真正的函数，数据是通过函数加上高斯噪声产生的。下面板的图显示了对同样数据的分段线性函数拟合——上面板的图没有限制，而下面板的图限制为在结点处连续——右上图没有限制，而左下图限制为在结点处连续。右下图显示了分段线性的基函数，$h_3(X)=(X-\xi_1)_+$,它在 $\xi_1$ 处连续。黑色点表示样本取值 $h_3(x_i),i=1,2,\ldots,N$。</p>
 </blockquote>
-<p>右上图显示了分段线性拟合。需要三个额外的基函数：$h_{m+3}=h_m(X)X,m=1,2,3$.除了特殊的情形，我们一般更想要第三个面板的图，也是分段线性，但在间隔点上连续。这些连续性的约束导致在参数上的线性约束；举个例子，$f(\xi_1^-)=f(\xi_1^+)$意味着$\beta_1+\xi_1\beta_4=\beta_2+\xi_1\beta_5$.在这种情形下，因为存在两个约束，我们则减少了两个参数，最终得到4个自由参数。</p>
+<p>右上图显示了分段线性拟合。需要三个额外的基函数：$h_{m+3}=h_m(X)X,m=1,2,3$。除了在特殊情况下，我们一般更想要第三个面板的图，也是分段线性，但在间隔点上连续。这些连续性的约束导致在参数上存在线性约束；举个例子，$f(\xi_1^-)=f(\xi_1^+)$ 意味着 $\beta_1+\xi_1\beta_4=\beta_2+\xi_1\beta_5$。在这种情形下，因为存在两个约束，我们则减少了两个参数，最终得到 4 个自由参数。</p>
 <p>这种情形下更直接的方式是将约束结合起来的基函数：
 <script type="math/tex; mode=display">
 h_1(X)=1,\;h_2(X)=X,\;h_3(X)=(X-\xi_1)_+,\;h_4(X)=(X-\xi_2)_+
 </script>
-其中$t_+$记为正的部分。函数$h_3$的图象如图5.1显示。我们经常偏好光滑函数，这个可以通过增加局部多项式的阶数实现。图5.2显示了一系列对同样数据进行的分段3次多项式拟合，增加了结点处的连续性的阶数。右下图的函数是连续的，且在结点处的一阶微分和二阶微分均连续。这称为三次样条。再加一阶的连续性可以导致全局三次多项式。不难证明（练习5.1）下面的基函数表示结点为$\xi_1$和$\xi_2$的三次样条。
+其中 $t_+$ 记为正的部分。函数 $h_3$ 的图象如图 5.1 右下角图所示。我们经常偏好光滑函数，这个可以通过增加局部多项式的阶数实现。</p>
+<p><img alt="" src="../../img/05/fig5.2.png" /></p>
+<blockquote>
+<p>图 5.2. 一系列分段 3 次多项式拟合，其中增加了连续性的阶数。</p>
+</blockquote>
+<p>图 5.2 展示了一系列对同样数据进行的分段 3 次多项式拟合，增加了结点处连续性的阶数。右下图的函数是连续的，且在结点处的一阶微分和二阶微分均连续。这称为三次样条。再加一阶的连续性可以得到全局三次多项式。不难证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/29">练习 5.1</a>）下面的基函数表示结点为 $\xi_1$ 和 $\xi_2$ 的三次样条。
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 h_1(X)=1,\;h_3(X)=X^2,\;&h_5(X)=(X-\xi_1)_+^3\\
 h_2(X)=X,\;h_4(X)=X^3,\;&h_6(X)=(X-\xi_2)_+^3
-\end{align}
+\end{align*}
 \tag{5.3}
 </script>
-这里6个基函数对应6维函数的线性空间。快速地确定参数个数：（3个区域）$\times$ (每个区域4个参数)-（2个结点）$\times$（每个结点3个限制）=6.</p>
+</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 5.1</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/29">Issue 29: Ex. 5.1</a>。</p>
+</div>
+<p>这里 6 个基函数对应 6 维函数的线性空间。快速地确定参数个数：（3 个区域）$\times$ (每个区域 4 个参数)-（2 个结点）$\times$（每个结点 3 个限制）=6.</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
+<p class="admonition-title">weiya 注</p>
 <p>单独考虑每个区域，因每个区域是三阶多项式，则需要确定的参数有四个，每个结点处，需要保持连续、一阶微分连续、二阶微分连续，所以每个结点3个限制。
 从另一个角度看，因$\sum_{m=1}^6\beta_mh_m$需要确定的就是$\beta_m$这6个参数。</p>
 </div>
@@ -3348,10 +3358,6 @@ h_2(X)=X,\;h_4(X)=X^3,\;&h_6(X)=(X-\xi_2)_+^3
 从另一个角度看，因$\sum_{i=1}^6\beta_mh_m$需要确定的就是$\beta_i$这6个参数。
 -->
 
-<p><img alt="" src="../../img/05/fig5.2.png" /></p>
-<blockquote>
-<p>图5.2. 一系列分段3次多项式拟合，增加了连续性的阶数。</p>
-</blockquote>
 <p>更一般地，结点为$\xi_j,j=1,\ldots,K$的order为$M$的样条是order为$M$的分段多项式，而且有连续的$M-2$次微分。三次样条的$M=4$。实际上图5.1的分段常数函数是order为1的样条，而连续的分段线性函数是order为2的样条。同样地，截断（truncated-power）基的集合是
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3372,7 +3378,7 @@ M(K+1)-(M-1)K=K+M
 </div>
 <p>然而，也可以更明确地指出，`bs(x, degree=1, knots=c(0.2,0.4,0.6))``产生有三个内结点的线性样条的基，并且返回一个$N\times 4$的矩阵。</p>
 <p>因为特定order以及结点序列的样条函数的空间是向量空间，所以表示它们会有许多等价的基底（就像普通多项式一样。）尽管truncated power基在概念上很简单，但是数值计算时不是很吸引人：较大的幂次会导致非常严重的舍入问题。在本章附录中描述的B样条的基即使在结点数$K$很大时也有很高的计算效率。</p>
-<h2 id="_2">自然三次样条<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_1">自然三次样条<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>我们知道对数据的多项式拟合的行为在边界处有不稳定的趋势，而且外推法会很危险。样条进一步恶化了这些问题。边界结点之外的多项式拟合的表现比该区域对应的全局多项式拟合更野蛮。从最小二乘拟合的样条函数的逐点方差(pairwise variance)，可以很方便地看到这一点（更多细节见下一节的计算这些方差的例子）。图5.3比较了不同模型的逐点方差。在边界处的方差爆炸是显而易见的，对于三次样条这必要会更糟糕。</p>
 <p><img alt="" src="../../img/05/fig5.3.png" /></p>
 <p>自然三次样条(natural cubic spline)添加额外的限制，具体地，令边界结点之外的函数是线性的。这样减少了4个自由度（两个边界区域分别两个限制条件），这四个自由度可以通过在内部区域取更多的结点花费掉。图5.3用方差表示了这种权衡。在边界附近需要在偏差上付出代价，但是假设边界附近（不管怎样，我们的信息很少）为线性函数通常是合理的考虑。</p>
@@ -3394,7 +3400,7 @@ d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\tag{5.5}
 </script>
 也就是$K$个基函数。</p>
 </div>
-<h2 id="_3">例子：南非心脏病（继续）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_2">例子：南非心脏病（继续）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在4.4.2节我们对南非心脏病数据进行了线性逻辑斯蒂回归拟合。这里我们以采用自然样条的函数来探索非线性。模型的函数有如下形式：
 <script type="math/tex; mode=display">
 \mathrm{logit}[Pr(chd\mid X)]=\theta_0+h_1(X_1)^T\theta_1+h_2(X_2)^T\theta_2+\cdots+h_p(X_p)^T\theta_p\tag{5.6}
@@ -3442,7 +3448,7 @@ d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\tag{5.5}
 <p>我们采用向后逐步删除过程，从模型中删除项并且保持每个项的整体结构，而不是每次删除一个系数。AIC统计量（7.5节）用来删除项，并且在最后模型中保留下来的所有项如果被删掉都会导致AIC增大（见表5.1）。图5.4显示了通过逐步回归选择出的最终模型的图象。对于每个变量$X_j$，画出的函数是$\hat f_j(X_j)=h_j(X_j)^T\hat\theta_j$。协方差矩阵$Cov(\hat\theta)=\mathbf\Sigma$通过$\mathbf{\hat\Sigma=(H^TWH)^{-1}}$来估计，其中$\mathbf W$为逻辑斯蒂回归的对角元素构成的权重矩阵。因此$v_j(X_j)=Var[\hat f_j(X_j)]=h_j(X_j)^T\mathbf{\hat \Sigma}_{jj}h_j(X_j)$是$\hat f_j$的逐点方差函数，其中$Cov(\hat\theta_j)=\hat{\mathbf\Sigma}_{jj}$是$\hat{\mathbf\Sigma}$对应的子矩阵。图5.4中每张图的阴影区域由$\hat f_j(X_j)\pm2\sqrt{v_j(X_j)}$定义。</p>
 <p>AIC统计量比似然比检验（偏差检验）更“宽容”（generous）。<code>sbp</code>和<code>obesity</code>都被包含进模型中，而这两个量都不在线性模型中。图象解释了为什么它们的贡献本质上是非线性。这些影响乍看或许很奇怪，但这因为是回顾性数据的本质。这些指标有时是当病人患上心脏病后测出来的，而且在很多情形下他们已经受益于健康饮食和生活状态，因此在<code>obesity</code>和<code>sbp</code>值较低时会有明显的增长。表5.1总结了部分模型的效果。</p>
 <p><img alt="" src="../../img/05/tab5.1.png" /></p>
-<h2 id="_4">例子：音素识别<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_3">例子：音素识别<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>在这个例子中我们采用样条来降低灵活性而非增大灵活性；这个应用是属于一般的函数型(functional)建模。图5.5的上图显示了在256个频率下分别测量两个音素“aa”和“ao”的15个对数周期图。目标是应用这些数据对口语音素进行分类。选择这两个音素是因为它们很难被分开。</p>
 <p><img alt="" src="../../img/05/fig5.5.png" /></p>
 <blockquote>
@@ -3569,7 +3575,7 @@ h_1(f_p)&h_2(f_p)&\ldots&h_M(f_p)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-18 09:11:47
+        Last Build Date UTC : 2018-12-18 14:32:38
       </div>
       
         
