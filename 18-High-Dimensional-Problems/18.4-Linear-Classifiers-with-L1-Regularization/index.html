@@ -2726,8 +2726,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fused-lasso" title="对于功能型数据的 Fused Lasso" class="md-nav__link">
-    对于功能型数据的 Fused Lasso
+  <a href="#fused-lasso" title="对于函数型数据的 Fused Lasso" class="md-nav__link">
+    对于函数型数据的 Fused Lasso
   </a>
   
 </li>
@@ -3241,8 +3241,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fused-lasso" title="对于功能型数据的 Fused Lasso" class="md-nav__link">
-    对于功能型数据的 Fused Lasso
+  <a href="#fused-lasso" title="对于函数型数据的 Fused Lasso" class="md-nav__link">
+    对于函数型数据的 Fused Lasso
   </a>
   
 </li>
@@ -3350,7 +3350,7 @@
 <p>为了解决这个，我们对每个质谱应用标准的波峰提取算法，在 217 个训练质谱中得到总数为 5178 个波峰。我们的想法是将所有病人的波峰的集合放在一起，因此构造了共同的波峰集。为了这个目的，我们对沿着 $\log\; m/z$ 坐标的波峰的位置进行系统分类。我们在高度为 $\log(0.005)^3$ 处水平切分树状图，并且计算每个得到的簇中波峰位置的平均。这个过程得到 728 个共同的簇以及对应的波峰中心。</p>
 <p>给定这些 728 个共同波峰，我们确定在每个质谱中出现的波峰，并且如果出现，确定波峰的高度。如果没有找到波峰，则设其高度为 0。这得到 $217\times 728$ 维波峰高度作为特征的矩阵，这将用在 lasso 回归中。我们对这 728 个共同波峰的测试质谱进行打分。</p>
 <p>对波峰应用 lasso 的预测结果展示在表 18.2 的最后一行中：它确实表现很好，但是没有原始波峰上的 lasso 一样好。然而，这个拟合模型对生物学家更合适，因为产生了 35 个波峰的位置，这可以用于后续研究。另一方面，结果表明在质谱的波峰间可能有有用的判别信息，并且表中第 (2) 行的 lasso 方法得到的位置也值得进一步检验。</p>
-<h2 id="fused-lasso">对于功能型数据的 Fused Lasso<a class="headerlink" href="#fused-lasso" title="Permanent link">&para;</a></h2>
+<h2 id="fused-lasso">对于函数型数据的 Fused Lasso<a class="headerlink" href="#fused-lasso" title="Permanent link">&para;</a></h2>
 <p>在上一个例子中，特征有一个自然的顺序，这个顺序是由 mass-to-charge 比率 $m/z$ 决定的。更一般地，我们可能有函数形特征 $x_i(t)$，它们根据某些指标变量 $t$ 进行排序。我们已经讨论了探索这个结构的一些方法。</p>
 <p>我们可以用关于 $t$ 的基函数的系数来表示 $x_i(t)$，比如样条，小波或者傅里叶基，接着将它们的系数看成是预测变量的回归。等价地，可以用这些基底来表示原始特征的系数。这些方法在 5.3 节中有描述。</p>
 <p>在分类设定中，我们讨论类似 12.6 节中带惩罚的判别分析。这用一个惩罚来显式地控制系数向量的光滑度。</p>
@@ -3484,7 +3484,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-18 05:14:09
+        Last Build Date UTC : 2018-12-18 08:11:45
       </div>
       
         
