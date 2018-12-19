@@ -1,0 +1,245 @@
+---
+title: "R Notebook"
+output:
+  html_notebook: default
+---
+
+# Basic Graphs
+
+## Undirected Graph
+
+```{r}
+# undirected graphs 
+library(gRbase)
+ug0 = ug(~a:b, ~b:c:d, ~e)
+ug0 = ug(~a:b+b:c:d+e)
+ug0 = ug(~a*b+b*c*c+e)
+ug0 = ug(c("a", "b"), c("b", "c", "d"), "e")
+ug0
+library(Rgraphviz)
+plot(ug0)
+```
+
+```{r}
+# igraph object
+library(igraph)
+ug0i = ug(~a:b+b:c:d+e, result = "igraph")
+ug0i
+plot(ug0i, layout = layout.spring)
+```
+
+```{r}
+# customed plot function
+myiplot = function(x, ...){
+  V(x)$size = 30
+  V(x)$label.cex = 3
+  plot(x, ...)
+}
+myiplot(ug0i, layout = layout.fruchterman.reingold)
+```
+
+```{r}
+ug0a = addEdge("a", "c", ug0)
+ug0a = removeEdge("c", "d", ug0)
+nodes(ug0)
+edges(ug0)
+str(edgeList(ug0))
+```
+
+A clique is a maximal complete subset. The set of cliques of a graph $\cal G$ is denoted by $\cal C(G)$. 
+
+NOTE: In literature the term clique is often used to denoted a complete subset and may not necessarily be maximal.
+
+```{r}
+is.complete(ug0)
+is.complete(ug0, c("b", "c", "d"))
+library(RBGL)
+maxClique(ug0)
+# or
+getCliques(ug0) 
+```
+
+path: $\alpha = \alpha_0,\alpha_1,\ldots,\alpha_n=\beta$.
+
+cycle: $\alpha=\beta$.
+
+separate: every path between a vertex in $A\subset V$ and a vertex in $B\subset V$ contains a vertex from $D\subset V$.
+
+```{r}
+separates("a", "d", c("b", "c"), ug0)
+```
+
+subgraph: 
+
+subgraph induced by $A\subseteq V$: 
+
+```{r}
+ug1 = subGraph(c("b", "c", "d", "e"), ug0)
+plot(ug1)
+```
+
+boundary: $\mathrm{bd}(\alpha)=\mathrm{adj}(\alpha)$
+
+neighbours: $\mathrm{ne}(\alpha)$
+
+closure: $\mathrm{cl}(\alpha)=\mathrm{bd}(\alpha)\cup \{\alpha\}$.
+
+```{r}
+adj(ug0, "c")
+closure("c", ug0)
+```
+
+## Directed Acyclic Graphs
+
+```{r}
+dag0 = dag(~a, ~b*a, ~c*a*b, ~d*c*e, ~e*a, ~g*f)
+dag0 = dag(~a+b*a+c*a*b+d*c*e+e*a+g*f)
+dag0 = dag(~a+b|a+c|a*b+d|c*e+e|a+g|f)
+dag0 = dag("a", c("b", "a"), c("c", "a", "b"), c("d", "c", "e"), c("e", "a"), c("g", "f"))
+dag0
+plot(dag0)
+```
+
+```{r}
+nodes(dag0)
+str(edges(dag0))
+str(edgeList(dag0))
+vpardag0 = vpar(dag0)
+vpardag0$c
+```
+
+path:
+
+parents:
+
+children:
+
+ancestor:
+
+ancestral set:
+
+ancestral graph:
+
+```{r}
+parents("d", dag0)
+children("c", dag0)
+ancestralSet(c("b", "e"), dag0)
+ancestralGraph(c("b", "e"), dag0)
+plot(ancestralGraph(c("b", "e"), dag0))
+```
+
+moralization: 
+
+1. add edges between the parents of each node
+2. replace all directed edges with undirected ones
+
+```{r}
+dag0m = moralize(dag0)
+plot(dag0m)
+```
+
+## Mixed Graphs
+
+path: $v_i-v_{i+1}$, $v_i\leftrightarrow v_{i+1}$ or $v_i\rightarrow v_{i+1}$.
+
+undirected: all are $v_i-v_{i+1}$
+
+directed: all are $v_i\rightarrow v_{i+1}$.
+
+semi-directed (?): at least one $v_i\rightarrow v_{i+1}$.
+
+cycle: $v_i=v_{k+1}$
+
+```{r}
+adjm = matrix(c(0,1,1,0,1,0,0,1,1,0,0,0,1,1,1,0), nrow=4)
+rownames(adjm) <- colnames(adjm) <- letters[1:4]
+adjm
+gG = as(adjm, "graphNEL")
+plot(gG, "neato")
+```
+
+```{r}
+gG1 <- as(adjm, "igraph")
+myiplot(gG1, layout = layout.spring)
+# display undirected instead of bidirected edges
+E(gG1)$arrow.mode = c(2, 0)[1+is.mutual(gG1)]
+myiplot(gG1, layout = layout.fruchterman.reingold)
+```
+
+chain graph: mixed graph with no bidirected edges and no semi-directed cycles
+
+```{r}
+d1 = matrix(0, 11, 11)
+d1[1,2] <- d1[2,1] <- d1[1,3] <- d1[3,1] <- d1[2,4] <- d1[4,2] <- d1[5,6] <- d1[6,5] <- 1
+d1[9,10] <- d1[10,9] <- d1[7,8] <- d1[8,7] <- d1[3,5] <- d1[5,10] <- d1[4,6] <- d1[4,7] <- 1
+d1[6,11] <- d1[7,11] <- 1
+rownames(d1) <- colnames(d1) <- letters[1:11]
+cG1 <- as(d1, "igraph")
+E(cG1)$arrow.mode <- c(2,0)[1+is.mutual(cG1)]
+myiplot(cG1, layout=layout.spring)
+```
+
+components: the connected components of the graph formed after removing all directed edges from $\cal G$. All edges within a component are undirected, and all edges between components are directed. Also, all arrows between any two components have the same direction.
+
+```{r}
+# lcd package had been removed from CRAN
+# the source package is also cannot be installed.
+# so I extract the source code as follows (which depends on another package `ggm`)
+library(ggm)
+`is.chaingraph` <-
+function(amat)
+{
+    wmat <- matrix(as.integer((amat + t(amat)) > 1), nrow = nrow(amat))
+    wg <- graph.adjacency(wmat, mode = "undirected")
+    cc <- clusters(wg)
+    neworder <- order(cc$membership)
+    a <- matrix(0, nrow = length(cc$csize), ncol = length(cc$csize))
+    b <- cumsum(cc$csize)
+    wmat <- amat[neworder, neworder]
+    for(i in 1: length(cc$csize)){
+        for(j in 1: length(cc$csize)){
+            if(j != i){
+                a[i,j] <- as.integer(sum(wmat[(max(b[i-1],0)+1):b[i],
+                                              (max(b[j-1],0)+1):b[j]]) > 0)
+            }
+        }
+    }
+    rownames(a) <- colnames(a) <- as.character(1:length(b))
+    output <- isAcyclic(a)
+    for(i in 1:length(b)){
+        temp <- wmat[(max(b[i-1],0)+1):b[i], (max(b[i-1],0)+1):b[i]]
+        if (!all(temp == t(temp))) {
+            output <- FALSE
+            break
+        }
+    }
+    chainorder <- topOrder(a)
+    vertorder<-c()
+    chainsize<-c()
+    if(output == TRUE){
+        for(k in 1:length(b)){
+            ## vertorder <- c(vertorder, which(cc$membership == chainorder[k]-1))
+            vertorder <- c(vertorder, which(cc$membership == chainorder[k]))
+            chainsize <- c(chainsize, cc$csize[chainorder[k]])
+        }
+    }
+    return(list(result = output,
+                vert.order = vertorder,
+                chain.size = chainsize))
+}
+is.chaingraph(as(cG1, "matrix"))
+```
+
+condition independence graph (CIG): or Markov graph
+
+One way to construct the CIG: first draw the complete graph, and then remove those conditional independent pairs.
+
+In $k$ dimensions, there are $2^{\binom{k}{2}}$ different graphs. If it also includes the subgraph, the number of figures would be 
+
+$$
+\sum_{i=0}^k\binom{k}{i}2^{\binom{i}{2}}
+$$
+
+\begin{theorem}
+The separation theorem
+\end{theorem}

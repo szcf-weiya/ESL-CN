@@ -75,7 +75,9 @@ window.MathJax = {
       oomega: "{\\boldsymbol\\Omega}",
       aalpha: "{\\boldsymbol\\alpha}",
 
-      def: "{\\;\\overset{\\mathrm{def}}{=}\\;}"
+      def: "{\\;\\overset{\\mathrm{def}}{=}\\;}",
+
+      ind: "{\\perp \\!\\!\\! \\perp}" 
     },
     entensions: ["color.js"],
     equationNumbers: { autoNumber: "AMS" }
