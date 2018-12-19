@@ -3246,9 +3246,12 @@
 </script>
 这称作 $\cal G$ 的 <strong>全局马尔科夫性质 (global Markov properties)</strong>。事实上，图的 <strong>逐对马尔科夫性质 (pairwise Markov properties)</strong> 和 <strong>整体马尔科夫性质 (global Markov properties)</strong> 是等价的（对于有正分布的图）。也就是，<strong>相关概率分布 (associated probability distribution)</strong> 满足逐对马尔科夫独立性和全局马尔科夫假设的图的集合是相同的。这个结果对于从简单成对性质中推断整体独立关系是很有用的。举个例子，在图 17.2 (d) 中 $X\bot Z\mid\{Y,W\}$，因为这是一个马尔科夫图，且 $X$ 和 $Z$ 之间没有连接。但是 $Y$ 也将 $X$ 从 $Z$ 和 $W$ 中分离，因此由整体马尔科夫假设我们得出 $X\bot Z\mid Y$ 和 $X\bot W\mid Y$。类似地，我们有 $Y\bot W\mid Z$。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>pairwise markov properties: 寻找缺失边，在给定其他结点的情况下，缺失边的两个顶点相互独立；</p>
-<p>global markov properties: 寻找分离集，在给定分离集的情况下，被分离的子图相互独立。</p>
+<p class="admonition-title">weiya 注：三种等价的 Markov 性质</p>
+<p><!--pairwise Markov properties: 寻找缺失边，在给定其他结点的情况下，缺失边的两个顶点相互独立；
+global Markov properties: 寻找分离集，在给定分离集的情况下，被分离的子图相互独立；-->
+pairwise Markov properties: 对于所有的非邻接顶点 $i$ 和 $j$，$a$ 为剩余结点的集合，则 $X_i\ind X_j\mid X_a$，</p>
+<p>global Markov properties: 对于所有的不相交的子集 $a$, $b$ 和 $c$，若 $a$ 分离 $b$ 和 $c$，则 $X_b\ind X_c\mid X_a$，</p>
+<p>local Markov properties: 对于每个顶点 $i$，$a=\mathrm{bd}(i)$ 是边界集，$b$ 为剩余结点的集合，则 $X_i\ind X_b\mid X_a$。</p>
 </div>
 <p>全局马尔科夫性质允许我们将图分解成更小的易控制的片段，因此在计算和解释性上有本质上的简化。基于这个目的，我们将图分解成 <strong>团 (clique)</strong>。团是一个完全子图——所有顶点都与其他点邻接的顶点集；如果一个团，没有其他顶点可以加进去仍保持是一个团的称为最大团。图 17.2 的最大团为</p>
 <ul>
@@ -3411,7 +3414,7 @@ f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-18 16:19:09
+        Last Build Date UTC : 2018-12-19 11:10:03
       </div>
       
         
