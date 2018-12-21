@@ -240,6 +240,259 @@ $$
 \sum_{i=0}^k\binom{k}{i}2^{\binom{i}{2}}
 $$
 
-\begin{theorem}
-The separation theorem
-\end{theorem}
+**The separation theorem**: 
+
+Minimal separating subsets:
+
+**local Markov property:** $i\perp \!\!\! \perp rest | boundary$.
+
+**pairwise Markov property:**
+
+**global Markov property:**
+
+directed independence graph
+
+recursive factorisation identity
+
+wermuth condition
+
+moral graph
+
+$a\mkern b$
+
+chain independence graph
+
+**d-separation:** $A$ and $B$ are $d$-separated by a set $C$ iff they are separated in the graph formed by moralizing the anterior graph of $A\cup B\cup C$.
+
+```{r}
+d.separates <- function(a, b, c, dag){
+  separates(a, b, c,
+            gRbase::moralize(ancestralGraph(union(union(a,b),c),
+                                            dag)))
+}
+d.separates("c", "e", "a", dag0)
+# alternatively
+dSep(as(dag0, "matrix"), "c", "e", "a")
+```
+
+c-separation in chain graphs is similar to that of $d$-separation. $A$ and $B$ are $c$-separated by a set $C$ iff they are separated in the graph formed by moralizing the anterior graph of $A\cup B\cup C$.
+
+## More about graphs
+
+A node in an undirected graph is **simplicial** if its boundary is complete.
+
+```{r}
+is.simplicial("b", ug0)
+simplicialNodes(ug0)
+```
+
+connected components
+
+```{r}
+conComp(ug0)
+```
+
+chord:
+
+chordless: no chords
+
+triangulated or chordal: no chordless cycles of length $\ge 4$.
+
+decompose: complete and separates, and union equals to the whole set
+
+```{r}
+is.decomposition("a", "d", c("b", "c"), ug0)
+```
+
+decomposable: complete or it can be decomposed into decompsable subgraphs. equivalent to triangulated.
+
+perfect ordering: if $bd(i)\cap \{1,\ldots,i-1\}$ is complete for all $i$. if the graph is triangulated, then a perfect ordering can be obtained with the maximum cardinality search (or mcs) algorithm.
+
+```{r}
+is.decomposition(c("a", "b", "c", "d"), character(0), "e", ug0)
+mcs(ug0)
+# or control the order
+mcs(ug0, root = c("d", "c", "a"))
+```
+
+running interaction property (RIP ordering): 
+
+```{r}
+rip(ug0)
+```
+
+fill-ins
+
+```{r}
+ug2 = ug(~a:b:c+c:d+d:e+a:e)
+is.triangulated(ug2)
+plot(ug2)
+```
+
+```{r}
+ug3 = triangulate(ug2)
+is.triangulated(ug3)
+plot(ug3)
+```
+
+some of the fill-ins may be superfluous in the sense that they could be removed and still give a triangulated graph. A triangulation with no superfluous fill-ins is called a minimal triangulation.
+
+finding a minimum triangulation is known to be NP-hard.
+
+```{r}
+G1 <- ug(~a:b+b:c+c:d+d:e+e:f+a:f+b:e)
+mt1.G1 <- minimalTriang(G1)
+G2 <- ug(~a:b:e:f+b:c:d:e)
+mt2.G1<-minimalTriang(G1, tobject=G2)
+par(mfrow=c(2,2))
+plot(G1, sub="G1")
+plot(mt1.G1, sub="mt1.G1")
+plot(G2, sub="G2")
+plot(mt2.G1, sub="mt2.G1")
+```
+
+maximal prime subgraph decomposition: the smallest subgraphs into which the graph can be decomposed.
+
+```{r}
+G1 <- ug(~a:b+b:c+c:d+d:e+e:f+a:f+b:e)
+G1.rip <- mpd(G1)
+G1.rip
+par(mfrow=c(1,3))
+plot(G1, main="G1")
+plot(subGraph(G1.rip$cliques[[1]], G1), main="subgraph 1")
+plot(subGraph(G1.rip$cliques[[2]], G1), main="subgraph 2")
+```
+
+Markov blanket of a vertex $v$ in a DAG $\cal G$ may be defined as the minimal set that $d$-separates $v$ from the remaining variables. It is easily derived as the set of neighbors to $v$ in the moral graph of $\cal G$.
+
+```{r}
+adj(moralize(dag0), "e")
+```
+
+## Graph layout in Rgraphviz
+
+```{r}
+plot(dag0, attrs=list(node = list(fillcolor="lightgrey", fontcolor="red")))
+```
+
+```{r}
+edgeNames(ug3)
+ng3 <- agopen(ug3, name="ug3", layoutType="neato")
+ng4 <- ng3
+AgEdge(ng4) <- AgEdge(ng4)[-3]
+plot(ng3)
+```
+
+```{r}
+plot(ng4)
+```
+
+```{r}
+cG1a <- as(cG1, "graphNEL")
+nodes(cG1a) <- c("alpha","theta","tau","beta","pi","upsilon","gamma", "iota","phi","delta","kappa")
+edges <- buildEdgeList(cG1a)
+for (i in 1:length(edges)) {
+  if (edges[[i]]@attrs$dir=="both") edges[[i]]@attrs$dir <- "none"
+  edges[[i]]@attrs$color <- "blue"
+}
+nodes <- buildNodeList(cG1a)
+for (i in 1:length(nodes)) {
+  nodes[[i]]@attrs$fontcolor <- "red"
+  nodes[[i]]@attrs$shape <- "ellipse"
+  nodes[[i]]@attrs$fillcolor <- "lightgrey"
+  if (i <= 4) {
+    nodes[[i]]@attrs$fillcolor <- "lightblue"
+    nodes[[i]]@attrs$shape <- "box"
+  }
+}
+cG1al <- agopen(cG1a, edges=edges, nodes=nodes, name="cG1a", layoutType="neato")
+plot(cG1al)
+```
+
+```{r}
+ug4 <- graph.formula(a -- b:c, c -- b:d, e -- a:d)
+plot(ug4, layout=layout.graphopt)
+```
+
+```{r}
+ug4.2 <- graph.empty(n=5, directed=FALSE)
+V(ug4.2)$name <- V(ug4.2)$label <- letters[1:5]
+ug4.2 <- add.edges(ug4.2, c(0,1, 0,2, 0,4, 1,2, 2,3, 3,4)+1) # now labelled from 1, not 0
+ug4.2
+myiplot(ug4, layout=layout.graphopt)
+```
+
+```{r}
+ug4$layout <- layout.graphopt(ug4)
+V(ug4)$label <- V(ug4)$name
+V(ug4)$color <- "red"
+V(ug4)[1]$color <- "green"
+V(ug4)$size <- 40
+V(ug4)$label.cex <- 3
+plot(ug4)
+```
+
+```{r}
+ug5 <- set.vertex.attribute(ug4, "discrete", value=c(T,T,F,F,T))
+V(ug5)[discrete]$color <- "green"
+V(ug5)[!discrete]$color <- "red"
+plot(ug5)
+```
+
+```{r}
+tkplot(ug4)
+xy <- tkplot.getcoords(2)
+plot(ug4, layout=xy)
+layout.spring(ug4)
+```
+
+```{r}
+# same layout
+ug5 <- ug(~A*B*C + B*C*D + D*E, result='igraph')
+ug6 <- ug(~A*B+B*C+C*D+D*E, result='igraph')
+ug6$layout <- ug5$layout <- layout.spring(ug5)
+V(ug5)$size <- V(ug6)$size <- 50
+V(ug5)$label.cex <- V(ug6)$label.cex <- 3
+par(mfrow=c(1,2))
+plot(ug5); plot(ug6)
+```
+
+```{r}
+em1 <- c(0,0,1,0,1,0,0,1,1,0,0,0,0,1,1,0)
+dim(em1) <- c(4,4)
+iG <- graph.adjacency(em1)
+V(iG)$shape <- c("circle","square","circle","square")
+V(iG)$color <- c("red","green")
+V(iG)$label <- c("A", "B", "C", "D")
+E(iG)$arrow.mode <- c(2,0)[1+is.mutual(iG)]
+E(iG)$color <- c("blue", "black")
+E(iG)$curved <- c(T,F,F,F,F,F)
+iG$layout <- layout.graphopt(iG)
+myiplot(iG)
+```
+
+```{r}
+library(sna)
+aG <- as(graph.famous("Meredith"),"matrix")
+gplot3d(aG)
+```
+
+```{r}
+# alternative graph representations
+V <- c("a","b","c","d")
+edL <- vector("list", length=4)
+names(edL) <- V
+for (i in 1:4) {
+  edL[[i]] <- list(edges=5-i)
+}
+gR <- new("graphNEL", nodes=V, edgeL=edL)
+plot(gR)
+```
+
+```{r}
+ug_NEL <- ug(~a:b+b:c:d+e)
+ug_igraph <- as(ug_NEL, "igraph")
+separates("a","d",c("b","c"), ug_NEL)
+# equivalent to
+querygraph(ug_igraph, 'separates', "a","d",c("b","c"))
+```
