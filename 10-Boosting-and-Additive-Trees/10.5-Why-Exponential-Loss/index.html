@@ -3206,7 +3206,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=364">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3228,9 +3228,9 @@
 </tr>
 </tbody>
 </table>
-<p>AdaBoost.M1算法最初是从一个非常不一样的角度出发得到的，而不是上一节中提出的。它与基于指数损失的向前逐步加性建模的等价性仅在其提出后五年后就被发现。通过研究指数损失函数准则的性质，可以深入了解这个过程并且找出可能改善的方式。</p>
-<p>在加性模型中指数损失的主要吸引点在于计算上的方便；它导出简单的模块化重加权的AdaBoost算法。然而，研究它的统计性质也是我们关注的。它估计什么，估计有多么好？第一个问题可以通过寻找总体最小化来回答。</p>
-<p>可以很简单地证明(Friedman et al., 2000)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>
+<p>AdaBoost.M1 算法最初是从一个非常不一样的角度出发得到的，而不是上一节中提出的。它与基于指数损失的向前逐步加性建模的等价性仅在其提出后五年后就被发现。通过研究指数损失函数准则的性质，可以深入了解这个过程并且找出可能改善的方式。</p>
+<p>在加性模型中指数损失的主要吸引点在于计算上的方便；它导出简单的模块化重加权的 AdaBoost 算法。然而，研究它的统计性质也是我们关注的。它估计什么，估计有多么好？第一个问题可以通过寻找总体最小化来回答。</p>
+<p>可以很简单地证明 (Friedman et al., 2000)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>
 <script type="math/tex; mode=display">
 f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{1}{2}\log\frac{\Pr(Y=1\mid X)}{\Pr(Y=-1\mid X)}\tag{10.16}
 </script>
@@ -3238,19 +3238,19 @@ f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}E_{Y\mid X}(e^{-Yf(x)})=\frac{
 <script type="math/tex; mode=display">
 \Pr(Y=1\mid x)=\frac{1}{1+e^{-2f^*(x)}}
 </script>
-因此，由AdaBoost得到的加性展开是在估计$P(Y=1\mid x)$比率对数值的二分之一。这证明使用它的符号作为(10.1)的分类规则是合理的。</p>
+因此，由 AdaBoost 得到的加性展开是在估计 $P(Y=1\mid x)$ 比率对数值的二分之一。这证明使用它的符号作为 (10.1) 的分类规则是合理的。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
-<p>此处$f^*(x)$相当于$\sum\alpha_mG_m$，当其大于0，表明$P(Y=1\mid x)&gt;P(Y=-1\mid x)$，所以称使用其符号作为分类规则是合理的。</p>
+<p>此处 $f^*(x)$ 相当于 $\sum\alpha_mG_m$，当其大于 0，表明 $P(Y=1\mid x)&gt;P(Y=-1\mid x)$，所以称使用其符号作为分类规则是合理的。</p>
 </div>
-<p>另外一个有着同样的总体最小化的损失准则为二项分布负对数似然(the binomial negative log-likelihood)或者偏差(deviance)（也称为交叉熵），将$f$解释为logit变换。</p>
+<p>另外一个有着同样的总体最小化的损失准则为 <strong>二项分布负对数似然 (the binomial negative log-likelihood)</strong> 或者 <strong>偏差 (deviance)</strong>（也称为交叉熵），将 $f$ 解释为 logit 变换。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
+<p class="admonition-title">weiya 注</p>
 <p>考虑
 <script type="math/tex; mode=display">
 z = \logit(p) = \log\frac{p}{1-p}
 </script>
-我们有$p=\frac{1}{1+e^{-z}}$，则二项分布似然函数为
+我们有 $p=\frac{1}{1+e^{-z}}$，则二项分布似然函数为
 <script type="math/tex; mode=display">
 f=p^y(1-p)^{1-y},\; y=0,1
 </script>
@@ -3258,13 +3258,13 @@ f=p^y(1-p)^{1-y},\; y=0,1
 <script type="math/tex; mode=display">
 L(p, y) = -\log(f)=-(y\log p+(1-y)\log(1-p))
 </script>
-也称为logit损失函数。</p>
+也称为 logit 损失函数。</p>
 </div>
 <p>令
 <script type="math/tex; mode=display">
 p(x)=\Pr(Y=1\mid x)=\frac{e^{f(x)}}{e^{-f(x)}+e^{f(x)}}=\frac{1}{1+e^{-2f(x)}}\tag{10.17}
 </script>
-并且定义$Y&rsquo;=(Y+1)/2\in \{0,1\}$。则二项对数概率损失函数为</p>
+并且定义 $Y&rsquo;=(Y+1)/2\in \{0,1\}$。则二项对数对数似然损失函数为</p>
 <p>
 <script type="math/tex; mode=display">
 l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
@@ -3295,10 +3295,10 @@ l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
     $$
 -->
 
-<p>因为对数概率的总体最大在真实概率$p(x)=Pr(Y=1\mid x)$处，我们从(10.17)看到偏差$E_{Y\mid x}[-l(Y,f(x))]$和$E_{Y\mid x}[e^{-Yf(x)}]$的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到$e^{-Yf}$本身不是一个合适的对数似然函数，因为它不是一个二项随机变量$Y\in \{-1,1\}$的任意概率密度函数的对数。</p>
+<p>因为对数概率的总体最大在真实概率 $p(x)=\Pr(Y=1\mid x)$ 处，我们从 (10.17) 看到偏差 $\E_{Y\mid x}[-l(Y,f(x))]$ 和 $\E_{Y\mid x}[e^{-Yf(x)}]$ 的总体最小点是一样的。因此，使用任意一个准则在总体的水平下得到相同的解。注意到 $e^{-Yf}$ 本身不是一个合适的对数似然函数，因为它不是二项随机变量 $Y\in \{-1,1\}$ 的概率密度函数的对数。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注</p>
-<p>也就是说，不存在一个二项随机变量的密度函数，使得$e^{-Yf}$称为对数似然函数。</p>
+<p class="admonition-title">weiya 注</p>
+<p>也就是说，不存在一个二项随机变量的密度函数，使得 $e^{-Yf}$ 成为其对数似然函数。</p>
 </div>
 <div class="footnote">
 <hr />
@@ -3386,7 +3386,7 @@ l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-26 15:46:41
+        Last Build Date UTC : 2018-12-26 15:53:15
       </div>
       
         
