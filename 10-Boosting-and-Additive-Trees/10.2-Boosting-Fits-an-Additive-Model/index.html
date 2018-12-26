@@ -3201,12 +3201,12 @@
               
                 
                 
-                <h1 id="102-boosting">10.2 boosting拟合可加模型<a class="headerlink" href="#102-boosting" title="Permanent link">&para;</a></h1>
+                <h1 id="102-boosting">10.2 Boosting 拟合可加模型<a class="headerlink" href="#102-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=360">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3228,38 +3228,38 @@
 </tr>
 </tbody>
 </table>
-<p>boosting的成功真的不是很神秘。关键在于(10.1)式。</p>
+<p>Boosting 的成功真的不是很神秘。关键在于 (10.1) 式。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注：Recall</p>
+<p class="admonition-title">weiya 注：Recall</p>
 <p>
 <script type="math/tex; mode=display">
 G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\tag{10.1}
 </script>
 </p>
 </div>
-<p>boosting是在一组基本的“基”函数集合中拟合加性展开(additive expansions)的方法。这里基函数是单个的分类器$G_m(x)\in \{-1,1\}$。更一般地，基函数展开式采用下列形式</p>
+<p>Boosting 是在一组基本的“基”函数集合中拟合 <strong>加性展开 (additive expansions)</strong> 的方法。这里基函数是单个的分类器 $G_m(x)\in \{-1,1\}$。更一般地，基函数展开式采用下列形式</p>
 <p>
 <script type="math/tex; mode=display">
 f(x)=\sum\limits_{m=1}^M\beta_mb(x;\gamma_m)\tag{10.3}
 </script>
 </p>
-<p>其中$\beta_m,m=1,2,\ldots,M$是展开的系数，$b(x;\gamma)\in \IR$是普通的关于多元变量$x$的简单函数，$\gamma$是其参数。我们在第5章中详细讨论了基的展开。</p>
+<p>其中 $\beta_m,m=1,2,\ldots,M$ 是展开的系数，$b(x;\gamma)\in \IR$ 是普通的关于多元变量 $x$ 的简单函数，$\gamma$ 是其参数。我们在 <a href="../../05-Basis-Expansions-and-Regularization/5.1-Introduction/index.html">第 5 章</a> 中详细讨论了基的展开。</p>
 <p>类似的加性展开是本书介绍的许多学习方法的核心：</p>
 <ul>
-<li>在单层神经网络中（第11章），$b(x;\gamma)=\sigma(\gamma_0+\gamma_1^Tx)$，其中$\sigma(t)=1/(1+e^{-t})$是sigmoid函数，并且$\gamma$参量化输入变量的线性组合。</li>
-<li>在信号处理中，微波（5.9.1节）用$\gamma$参量化“母”微波的位置和偏移量是很流行的选择。多元自适应回归样条（9.4节）采用截断幂样条基函数，其中$\gamma$对变量和结点的值进行参量化。</li>
-<li>对于树，$\gamma$对中间结点的分离变量和分离点以及终止结点的预测值进行参量化。</li>
+<li>在单层神经网络中（<a href="../../11-Neural-Networks/11.1-Introduction/index.html">第 11 章</a>），$b(x;\gamma)=\sigma(\gamma_0+\gamma_1^Tx)$，其中 $\sigma(t)=1/(1+e^{-t})$ 是 sigmoid 函数，并且 $\gamma$ 参量化输入变量的线性组合。</li>
+<li>在信号处理中，小波（<a href="../../05-Basis-Expansions-and-Regularization/5.9-Wavelet-Smoothing/index.html">5.9.1 节</a>）用 $\gamma$ 参量化“母”微波的位置和偏移量是很流行的选择。多元自适应回归样条（<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.4-MARS/index.html">9.4 节</a>）采用截断幂样条基函数，其中 $\gamma$ 对变量和结点的值进行参量化。</li>
+<li>对于树，$\gamma$ 对中间结点的分离变量和分离点以及终止结点的预测值进行参量化。</li>
 </ul>
 <p>一般地，通过使训练数据上的平均损失函数最小化来拟合这些模型，比如平方误差或者基于概率的损失函数，
 <script type="math/tex; mode=display">
 \underset{\{\beta_m,\gamma_m\}_1^M}{\mathrm {min}}\;\sum\limits_{i=1}^NL(y_i,\sum\limits_{m=1}^M\beta_mb(x_i;\gamma_m))\tag{10.4}
 </script>
-对于许多损失函数$L(y,f(x))$和/或基函数$b(x;\gamma)$，这需要计算密集型的(computationally intensive)数值优化技术。</p>
+对于许多损失函数 $L(y,f(x))$ 和/或基函数 $b(x;\gamma)$，这需要 <strong>计算密集型的 (computationally intensive)</strong> 数值优化技术。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注：computationally intensive</p>
+<p class="admonition-title">weiya 注：computationally intensive</p>
 <p>引用<a href="https://www.zhihu.com/question/23243435">什么是计算密集型（computationally intensive）？ - 知乎</a>的回答</p>
 <blockquote>
-<p>程序系统大部分在做计算、逻辑判断、循环导致cpu占用率很高的情况，称之为计算密集型；频繁网络传输、读取硬盘及其他io设备称之为io密集型</p>
+<p>程序系统大部分在做计算、逻辑判断、循环导致 cpu 占用率很高的情况，称之为计算密集型；频繁网络传输、读取硬盘及其他 io 设备称之为 io 密集型</p>
 </blockquote>
 </div>
 <p>然而，当可以快速求解只有一个单一的基函数的子问题时，经常可以找到简单的替代方案，单一的基函数为
@@ -3345,7 +3345,7 @@ f(x)=\sum\limits_{m=1}^M\beta_mb(x;\gamma_m)\tag{10.3}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2018-12-25 12:38:31
+        Last Build Date UTC : 2018-12-26 15:43:57
       </div>
       
         
