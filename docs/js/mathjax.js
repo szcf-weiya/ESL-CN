@@ -30,6 +30,10 @@ window.MathJax = {
       x: "{\\mathbf{x}}",
       z: "{\\mathbf{z}}",
       u: "{\\mathbf{u}}",
+
+      calC: "{{\\cal{C}}}",
+      calS: "{{\\cal{S}}}",
+      calI: "{{\\cal{I}}}",
       
 
       LOG: "{\\mathrm{log}}",
