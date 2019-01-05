@@ -85,5 +85,6 @@ window.MathJax = {
     },
     entensions: ["color.js"],
     equationNumbers: { autoNumber: "AMS" }
-  }
+  },
+  showMathMenu: false,
 };
