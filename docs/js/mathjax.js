@@ -73,9 +73,10 @@ window.MathJax = {
       diag: "{\\mathrm{diag}}",
       st: "{\\mathrm{subject\\; to}\\;}",
       pr: "{\\mathrm{Pr}}",
-      Pr: "{\\mathrm{Pr}}",
+      rank: "{\\mathrm{rank}}",
 
       ssigma: "{\\boldsymbol\\Sigma}",
+      bSigma: "{\\boldsymbol\\Sigma}",
       oomega: "{\\boldsymbol\\Omega}",
       aalpha: "{\\boldsymbol\\alpha}",
 
