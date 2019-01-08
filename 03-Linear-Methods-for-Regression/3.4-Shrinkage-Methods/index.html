@@ -3661,6 +3661,11 @@ M=U_n\Sigma_nV^T
 <li>按这种方式继续直到所有的 $p$ 个预测变量加入到模型中。经过 $\min(N-1, p)$ 步，我们达到了全最小二乘的解。</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">weiya 注：LAR 示意图</p>
+<p>结合原论文的示意图能帮助理解最小角回归的逻辑。</p>
+<p><img alt="" src="../../img/03/lars.png" /></p>
+</div>
 <p>假设 $\cal A_k$ 是第 $k$ 步开始时的变量活跃集，$\beta_{\cal A_k}$ 是这一步中变量的系数向量；其中有 $k-1$ 个非零值，刚刚进入的变量系数值为 0。如果当前残差为 $\mathbf r_k=\mathbf y-\mathbf X_{\cal A_k}\beta_{\cal A_k}$，则当前步的方向为</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3841,7 +3846,7 @@ R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Ver
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-01-08 03:56:47
+        Last Build Date UTC : 2019-01-08 13:27:10
       </div>
       
         
