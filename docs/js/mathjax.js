@@ -13,6 +13,7 @@ window.MathJax = {
       L: "{\\mathbf{L}}",
       M: "{\\mathbf{M}}",
       N: "{\\mathbf{N}}",
+      P: "{\\mathbf{P}}",
       R: "{\\mathbf{R}}",
       IR: "{\\mathrm{I\\!R}}",
       S: "{\\mathbf{S}}",
@@ -79,6 +80,7 @@ window.MathJax = {
       ssigma: "{\\boldsymbol\\Sigma}",
       bSigma: "{\\boldsymbol\\Sigma}",
       oomega: "{\\boldsymbol\\Omega}",
+      bLambda: "{\\boldsymbol\\Lambda}",
       aalpha: "{\\boldsymbol\\alpha}",
 
       def: "{\\;\\overset{\\mathrm{def}}{=}\\;}",
