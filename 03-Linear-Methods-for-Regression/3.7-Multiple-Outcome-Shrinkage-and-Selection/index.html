@@ -3280,10 +3280,30 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 \hat\B^{rr}(m)=\hat\B\U_m\U_m^-\,,\tag{3.69}\label{3.69}
 </script>
 </p>
-<p>其中 $\U_m$ 是 $\U$ 中由前 $m$ 列构成的 $K\times m$ 的子矩阵，$\U$ 是 $K\times M$ 的左典则向量 $u_1,u_2,\ldots,u_M$ 构成的矩阵。</p>
+<p>其中 $\U_m$ 是 $\U$ 中由前 $m$ 列构成的 $K\times m$ 的子矩阵，$\U$ 是 $K\times M$ 的左典则向量 $u_1,u_2,\ldots,u_M$ 构成的矩阵。$\U_m^-$ 是其广义逆。</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.21</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/174">Issue 174: Ex. 3.21</a>，欢迎讨论交流！</p>
+</div>
+<p>将解改写成</p>
+<p>
+<script type="math/tex; mode=display">
+\hat\B^{rr}(M) = (\X^T\X)^{-1}\X^T(\Y\U_m)\U_m^-\,, \tag{3.70}
+</script>
+</p>
+<p>我们看到降秩回归在合并的响应矩阵 $\Y\U_m$ 上进行线性回归，然后将系数映射回原来的响应变量空间中（因此能拟合得很好）。降秩拟合由下式给出：</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat\Y^{rr}(m) &= \X(\X^T\X)^{-1}\X^T\Y\U_m\U_m^-\notag\\
+&=\H\Y\P_m\,,\tag{3.71}
+\end{aligned}
+</script>
+</p>
+<p>其中 $\H$ 是一般的线性回归映射算子，而 $\P_m$ 是秩为 $m$ 的 CCA 响应变量投影算子。尽管 $\bSigma$ 更好的估计为 $(\Y-\X\hat\B)^T(\Y-\X\hat\B)/(N-pK)$，但是可以证明解是一样的（<a href="https://github.com/szcf-weiya/ESL-CN/issues/175">练习 3.22</a>）。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.22</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/175">Issue 175: Ex. 3.22</a>，欢迎交流讨论！</p>
 </div>
 <div class="footnote">
 <hr />
@@ -3374,7 +3394,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-01-14 15:01:06
+        Last Build Date UTC : 2019-01-14 15:19:46
       </div>
       
         
