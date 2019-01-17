@@ -3230,7 +3230,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=247">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3246,75 +3246,83 @@
 <td>更新</td>
 <td>2017-09-17</td>
 </tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
-<p>讨论误差率的估计可能令人困惑，因为我们必须弄清楚哪些量是固定的哪些量是随机的。在我们继续之前，我们需要一些定义，详细阐述第7.2节的内容。给出训练集$\cal{T}=\{(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)\}$，模型$\hat f$的泛化误差为</p>
+<p>讨论误差率的估计可能令人困惑，因为我们必须弄清楚哪些量是固定的哪些量是随机的。在我们继续之前，我们需要一些定义，详细阐述第 <a href="../7.2-Bias-Variance-and-Model-Complexity/index.html">7.2 节</a>的内容。给出训练集 $\cal{T}=\{(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)\}$，模型 $\hat f$ 的泛化误差为</p>
 <p>
 <script type="math/tex; mode=display">
-\Err_{\cal T} = \mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid {\cal T}]\tag{7.15}
+\Err_{\cal T} = \mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid {\cal T}]\tag{7.15}\label{7.15}
 </script>
 </p>
-<p>注意到在表达式（7.15）中训练集$\cal T$是固定的。点$(X^0,Y^0)$是新的测试点，从数据的联合分布$F$中取的。对数据集平均得到期望误差</p>
+<p>注意到在表达式 $\eqref{7.15}$ 中训练集 $\cal T$ 是固定的。点 $(X^0,Y^0)$ 是新的测试点，从数据的联合分布 $F$ 中取的。对数据集平均得到期望误差</p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm{Err} = \mathrm E_{\cal T}\mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid {\cal T}]\tag{7.16}
+\mathrm{Err} = \mathrm E_{\cal T}\mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid {\cal T}]\tag{7.16}\label{7.16}
 </script>
 </p>
-<p>它更适合于统计分析。正如之前提到的，事实证明大部分方法能够有效估计期望误差而非$E_{\cal T}$；这一点详见7.12节。</p>
+<p>它更适合于统计分析。正如之前提到的，事实证明大部分方法能够有效估计期望误差而非 $\Err_{\cal T}$；这一点详见 <a href="../7.12-Conditional-or-Expected-Test-Error/index.html">7.12 节</a>。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>这里原文为 $\E_{\cal T}$，但结合上下文此处应为 $\Err_{\cal T}$.</p>
+</div>
 <p>现在一般地，训练误差</p>
 <p>
 <script type="math/tex; mode=display">
-\overline{err} = \frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f(x_i))\tag{7.17}
+\overline{\err} = \frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f(x_i))\tag{7.17}\label{7.17}
 </script>
 </p>
-<p>会比真实误差$\mathrm{Err}_{\cal T}$小，因为数据被同时用来拟合方法并且评估误差（见练习2.9）。拟合方法一般适应于训练数据，因此训练误差$\overline{err}$是过度乐观估计的泛化误差$\mathrm {Err}_{\cal T}$。</p>
-<p>部分差异是因为取值点的选取。值$\mathrm {Err}_{\cal T}$可以看成是样本外（extra-sample）误差，因为测试输入向量不需要与训练输入向量一致。当我们去关注样本内（in-sample）误差，可以很简单地理解$\overline{err}$乐观估计的本质</p>
+<p>会比真实误差 $\Err_{\cal T}$ 小，因为数据被同时用来拟合方法并且评估误差（见<a href="https://github.com/szcf-weiya/ESL-CN/issues/176">练习 2.9</a>）。拟合方法一般适应于训练数据，因此训练误差 $\overline{\err}$ 是对泛化误差 $\mathrm {Err}_{\cal T}$过度的乐观估计。</p>
+<p>部分差异是因为取值点的选取。值 $\Err_{\cal T}$ 可以看成是 <strong>样本外 (extra-sample)</strong> 误差，因为测试输入向量不需要与训练输入向量一致。当我们去关注 <strong>样本内 (in-sample)</strong> 误差，可以很简单地理解 $\overline{\err}$ 乐观估计的本质</p>
 <p>
 <script type="math/tex; mode=display">
-\Err_{in}=\frac{1}{N}\sum\limits_{i=1}^N\mathrm E_{Y^0}[L(Y_i^0,\hat f(x_i))\mid {\cal T}]\tag{7.18}
+\Err_{in}=\frac{1}{N}\sum\limits_{i=1}^N\mathrm E_{Y^0}[L(Y_i^0,\hat f(x_i))\mid {\cal T}]\tag{7.18}\label{7.18}
 </script>
 </p>
-<p>$Y^0$表示我们在每个训练点$x_i,i=1,2,\ldots,N$处观测$N$个新响应变量的值。我们定义$\mathrm{Err}_{in}$与训练误差$\overline{err}$的差为乐观（optimism）：</p>
+<p>$Y^0$ 表示我们在每个训练点 $x_i,i=1,2,\ldots,N$ 处观测 $N$ 个新响应变量的值。我们定义 $\Err_{in}$ 与训练误差 $\overline{\err}$ 的差为 <strong>乐观 (optimism)</strong>：</p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm {op}\equiv \mathrm{Err}_{in}-\overline{err}\tag{7.19}
+\mathrm {op}\equiv \mathrm{Err}_{in}-\overline{\err}\tag{7.19}\label{7.19}
 </script>
 </p>
-<p>一般情形下这是正的，因为$\overline{err}$经常是预测误差的向下有偏估计。最后，平均乐观是在训练集上乐观的期望</p>
+<p>一般情形下这是正的，因为 $\overline{\err}$ 经常是预测误差的向下有偏估计。最后，平均乐观是在训练集上乐观的期望</p>
 <p>
 <script type="math/tex; mode=display">
-\omega \equiv E_{\mathbf y}(\mathrm{op})\tag{7.20}
+\omega \equiv E_{\mathbf y}(\mathrm{op})\tag{7.20}\label{7.20}
 </script>
 </p>
-<p>这里训练集中的预测变量是固定的，期望在对训练集的输出值上的；因此我们已经用记号$E_{\mathbf y}$而不是$E_{\cal T}$。我们通常仅仅估计期望误差$\omega$而不是op，同样的方式我们可以估计期望误差$Err$而不是条件误差$\mathrm {Err}_{\cal T}$。</p>
+<p>这里训练集中的预测变量是固定的，期望在对训练集的输出值上的；因此我们已经用记号 $\E_{\mathbf y}$ 而不是 $\E_{\cal T}$。我们通常仅仅估计期望误差 $\omega$ 而不是 op，同样的方式我们可以估计期望误差 $\Err$ 而不是条件误差 $\Err_{\cal T}$。</p>
 <p>对于平方误差，0-1，以及其他损失函数，可以证明一般性的结论</p>
 <p>
 <script type="math/tex; mode=display">
-\omega=\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\tag{7.21}
+\omega=\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\tag{7.21}\label{7.21}
 </script>
 </p>
-<p>其中$Cov$表示协方差。因此$\overline{err}$低估真实误差的程度取决于$y_i$影响它本身估计的程度。数据越难拟合，$Cov(\hat y_i,y_i)$将越大，因此增大了乐观。练习7.4证明了平方损失函数时的结果，其中$\hat y_i$为根据回归拟合好的值。对于0-1损失，$\hat y_i\in\{0,1\}$是在$x_i$处的分类，另外对于熵损失，$\hat y_i\in[0,1]$是在$x_i$处类别1的拟合概率。</p>
+<p>其中 $\Cov$ 表示协方差。因此 $\overline{\err}$ 低估真实误差的程度取决于 $y_i$ 影响它本身估计的程度。数据越难拟合，$\Cov(\hat y_i,y_i)$ 将越大，因此增大了乐观。<a href="https://github.com/szcf-weiya/ESL-CN/issues/27">练习 7.4</a> 证明了平方损失函数时的结果，其中 $\hat y_i$ 为根据回归拟合好的值。对于 0-1 损失，$\hat y_i\in\{0,1\}$ 是在 $x_i$ 处的分类，另外对于熵损失，$\hat y_i\in[0,1]$ 是在 $x_i$ 处类别 1 的拟合概率。</p>
 <p>总结一下，我们有重要的关系式</p>
 <p>
 <script type="math/tex; mode=display">
-E_{\mathbf y}(Err_{in})=E_{\mathbf y}(\overline{err})+\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\tag{7.22}
+\E_{\mathbf y}(\Err_{in})=\E_{\mathbf y}(\overline{\err})+\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\tag{7.22}\label{7.22}
 </script>
 </p>
-<p>如果$\hat y_i$通过含$d$个输入或者基函数的线性拟合得到，上面表达式可以简化。例如，对于可加误差模型$Y=f(X)+\varepsilon$，</p>
+<p>如果 $\hat y_i$ 通过含 $d$ 个输入或者基函数的线性拟合得到，上面表达式可以简化。例如，对于可加误差模型 $Y=f(X)+\varepsilon$，</p>
 <p>
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^NCov(\hat y_i,y_i) = d\sigma_{\varepsilon}^2\tag{7.23}
+\sum\limits_{i=1}^N\Cov(\hat y_i,y_i) = d\sigma_{\varepsilon}^2\tag{7.23}\label{7.23}
 </script>
 </p>
 <p>因此</p>
 <p>
 <script type="math/tex; mode=display">
-E_{\mathbf y}(Err_{in})=E_{\mathbf y}(\overline{err})+2\cdot\frac{d}{N}\sigma_\varepsilon^2\tag{7.24}
+\E_{\mathbf y}(\Err_{in})=\E_{\mathbf y}(\overline{\err})+2\cdot\frac{d}{N}\sigma_\varepsilon^2\tag{7.24}\label{7.24}
 </script>
 </p>
-<p>表达式（7.23）是将在7.6节讨论的有效参数个数（effective number of parameters）的定义的基础。optimism随着我们使用的输入或基函数的个数$d$线性增长，但是当训练样本大小增大时会降低。（7.24）的其它版本对其它误差模型也近似成立，比如二值数据和熵损失。</p>
-<p>估计预测误差的一种明显方法是先估计optimism然后加到训练误差$\overline{err}$上。下一节将要描述的方法——$C_p$，AIC，BIC以及其它方法——对于估计关于参数是线性的特殊估计类，都是通过这种方式实现。</p>
-<p>相反地，将在本章后面描述的交叉验证以及自助法是对样本外（extra-sample）误差Err直接估计的方法。这些一般工具可以用于任意损失函数以及非线性自适应拟合技巧。</p>
+<p>表达式 $\eqref{7.23}$ 是将在 <a href="../7.6-The-Effective-Number-of-Parameters/index.html">7.6 节</a>讨论的 <strong>有效参数个数 (effective number of parameters)</strong> 的定义的基础。optimism 随着我们使用的输入或基函数的个数 $d$ 线性增长，但是当训练样本大小增大时会降低。$\eqref{7.24}$ 的其它版本对其它误差模型也近似成立，比如二值数据和熵损失。</p>
+<p>估计预测误差的一种明显方法是先估计 optimism 然后加到训练误差 $\overline{\err}$ 上。下一节将要描述的方法—— $C_p$，AIC，BIC以及其它方法——对于估计关于参数是线性的特殊估计类，都是通过这种方式实现。</p>
+<p>相反地，将在本章后面描述的交叉验证以及自助法是对 <strong>样本外 (extra-sample)</strong> 误差 $\Err$ 直接估计的方法。这些一般工具可以用于任意损失函数以及非线性自适应拟合技巧。</p>
 <p>样本内误差通常不是直接感兴趣的，因为特征的未来值不可能与它们训练集值一致。但是为了模型之间的比较，样本内误差是很方便的，并且经常能够有效地模型选择。原因在于误差的相对（而不是绝对）大小是我们所关心的。</p>
                 
                   
@@ -3394,7 +3402,7 @@ E_{\mathbf y}(Err_{in})=E_{\mathbf y}(\overline{err})+2\cdot\frac{d}{N}\sigma_\v
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-01-17 15:21:11
+        Last Build Date UTC : 2019-01-17 16:15:21
       </div>
       
         
