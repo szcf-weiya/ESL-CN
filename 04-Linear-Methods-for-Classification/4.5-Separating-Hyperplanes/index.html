@@ -895,8 +895,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#451-rosenblatt" title="4.5.1 Rosenblatt的感知器学习算法" class="md-nav__link">
-    4.5.1 Rosenblatt的感知器学习算法
+  <a href="#451-rosenblatt" title="4.5.1 Rosenblatt 感知器学习算法" class="md-nav__link">
+    4.5.1 Rosenblatt 感知器学习算法
   </a>
   
 </li>
@@ -3258,8 +3258,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#451-rosenblatt" title="4.5.1 Rosenblatt的感知器学习算法" class="md-nav__link">
-    4.5.1 Rosenblatt的感知器学习算法
+  <a href="#451-rosenblatt" title="4.5.1 Rosenblatt 感知器学习算法" class="md-nav__link">
+    4.5.1 Rosenblatt 感知器学习算法
   </a>
   
 </li>
@@ -3328,7 +3328,7 @@
 <p>这些点可以被线性边界分离开。图中的蓝色线条是无穷种可能<strong>分离超平面</strong>中的两个。黄色的线条表示该问题的最小二乘解，通过在 $X$ 上对 $-1/1$ 响应变量 $Y$ 回归得到（带有截距）；该直线由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
-\{x:\hat\beta_0+\hat\beta_1x_1+\hat\beta_2x_2=0\}\tag{4.39}
+\{x:\hat\beta_0+\hat\beta_1x_1+\hat\beta_2x_2=0\}\tag{4.39}\label{4.39}
 </script>
 </p>
 <p>最小二乘解并不能很好地把点分离开，而且有一个误判。这与通过 LDA 找到的边界相同，这因为在两个类别的情况下 LDA 与线性回归是等价的。（<a href="../../4.3-Linear-Discriminant-Analysis/index.html">4.3 节</a>和<a href="https://github.com/szcf-weiya/ESL-CN/issues/108">练习 4.2</a>）</p>
@@ -3336,7 +3336,7 @@
 <p class="admonition-title">weiya 注：Ex. 4.2</p>
 <p>具体证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/108">Issue 108: Ex. 4.2</a></p>
 </div>
-<p>类似 (4.39) 的分类器计算输入特征的线性组合并且返回符号，在 1950s 末期称之为<strong>感知器 (perceptrons)</strong> (Rosenblatt,1958<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>) 。感知器是 1980s 和 1990s 神经网络模型的基础。</p>
+<p>类似 $\eqref{4.39}$ 的分类器计算输入特征的线性组合并且返回符号，在 1950s 末期称之为<strong>感知器 (perceptrons)</strong> (Rosenblatt,1958<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>) 。感知器是 1980s 和 1990s 神经网络模型的基础。</p>
 <p>在我们继续之前，稍微岔开去回顾一些向量代数的知识。图 4.15 描述了由等式 $f(x)=\beta_0+\beta^Tx=0$ 定义的超平面或仿射集$L$；因为我们是在 $R^2$ 空间中，所以这是一条直线。这里我们列出一些性质：</p>
 <ol>
 <li>对于在 $L$ 中的两点 $x_1$ 和 $x_2$，$\beta^T(x_1-x_2)=0$，因此 $L$ 表面的 法向量为$\beta^*=\beta/\Vert\beta\Vert$</li>
@@ -3344,8 +3344,8 @@
 <li>任意点  $x$ 到 $L$ 的符号距离为
 <script type="math/tex; mode=display">
 \begin{align}
-{\beta^*}^T(x-x_0)&=\frac{1}{\Vert\beta\Vert}(\beta^Tx+\beta_0)\\
-&=\frac{1}{\Vert f'(x)\Vert}f(x)\tag{4.40}
+{\beta^*}^T(x-x_0)&=\frac{1}{\Vert\beta\Vert}(\beta^Tx+\beta_0)\notag\\
+&=\frac{1}{\Vert f'(x)\Vert}f(x)\tag{4.40}\label{4.40}
 \end{align}
 </script>
 因此 $f(x)$ 与 $x$ 到由 $f(x)=0$ 定义的超平面符号距离成比例。</li>
@@ -3354,19 +3354,19 @@
 <blockquote>
 <p>图4.15. 超平面（仿射集）的线性代数</p>
 </blockquote>
-<h2 id="451-rosenblatt">4.5.1 Rosenblatt的感知器学习算法<a class="headerlink" href="#451-rosenblatt" title="Permanent link">&para;</a></h2>
+<h2 id="451-rosenblatt">4.5.1 Rosenblatt 感知器学习算法<a class="headerlink" href="#451-rosenblatt" title="Permanent link">&para;</a></h2>
 <p><strong>感知器学习算法 (perceptron learning algorithm)</strong> 试图通过最小化误分类的点到判别边界距离来寻找分离超平面。如果响应变量 $y_i=1$ 是误分类的，则 $x_i^T\beta+\beta_0 &lt; 0$，对于误分类的响应变量 $y_i=-1 $是反过来的。目标是最小化</p>
 <p>
 <script type="math/tex; mode=display">
-D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\tag{4.41}
+D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\tag{4.41}\label{4.41}
 </script>
 </p>
 <p>其中 $\cal M$ 是误分类点的指标集。上式是非负的且与误分类的点到由 $\beta^Tx+\beta_0=0$ 定义的判别边界的距离成比例。梯度（假设 $\cal M$ 固定）由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\dfrac{\partial D(\beta,\beta_0)}{\partial \beta}&=-\sum\limits_{i\in \cal M}y_ix_i\tag{4.42}\\
-\dfrac{\partial D(\beta,\beta_0)}{\partial \beta_0}&=-\sum\limits_{i\in \cal M}y_i\tag{4.43}
+\dfrac{\partial D(\beta,\beta_0)}{\partial \beta}&=-\sum\limits_{i\in \cal M}y_ix_i\tag{4.42}\label{4.42}\\
+\dfrac{\partial D(\beta,\beta_0)}{\partial \beta_0}&=-\sum\limits_{i\in \cal M}y_i\tag{4.43}\label{4.43}
 \end{align}
 </script>
 </p>
@@ -3376,10 +3376,10 @@ D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\tag{4.41}
 \left(\begin{array}{}\beta\\\beta_0\end{array}\right)\leftarrow
 \left(\begin{array}{}\beta\\\beta_0\end{array}\right)+
 \rho\left(\begin{array}{}y_ix_i\\y_i\end{array}\right)
-\tag{4.44}
+\tag{4.44}\label{4.44}
 </script>
 </p>
-<p>这里 $\beta$ 是学习速率，不失一般性这种情形下可以取1。如果类别是线性可分的，则可以证明在有限步后该算法收缩到一个分离超平面（<a href="https://github.com/szcf-weiya/ESL-CN/issues/109">练习 4.6</a>）。图 4.14 显示了对一个简单问题的两个解，每个都是从不同的随机猜测开始的。</p>
+<p>这里 $\rho$ 是学习速率，不失一般性这种情形下可以取1。如果类别是线性可分的，则可以证明在有限步后该算法收缩到一个分离超平面（<a href="https://github.com/szcf-weiya/ESL-CN/issues/109">练习 4.6</a>）。图 4.14 显示了对一个简单问题的两个解，每个都是从不同的随机猜测开始的。</p>
 <p>Ripley (1996)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 总结了该算法有以下一些问题：</p>
 <ul>
 <li>当数据是线性可分时，有许多解，且解基于初始值的设定。</li>
@@ -3390,63 +3390,63 @@ D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\tag{4.41}
 <p>对于第一个问题的优雅解决方式是对分离超平面加上额外的约束条件。</p>
 <h2 id="452">4.5.2 最优分离超平面<a class="headerlink" href="#452" title="Permanent link">&para;</a></h2>
 <p>最优分离超平面将两个类别分离开且使得超平面到每一个类别最近点的距离最大 (Vapnik, 1996)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>。这样不仅得到分离超平面问题的唯一解，而且通过使得在训练集上两个类别的<strong>边缘 (margin)</strong> 最大，这使得在测试集上有更好的分类表现。</p>
-<p>我们需要推广准则 (4.41)。考虑下面的优化问题</p>
+<p>我们需要推广准则 $\eqref{4.41}$。考虑下面的优化问题</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 \underset{\beta,\beta_0,\Vert\beta\Vert=1}{\max}& M\\
 \st& y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N
-\end{align}
-\tag{4.45}
+\end{align*}
+\tag{4.45}\label{4.45}
 </script>
 </p>
 <p>这一系列条件保证了所有点到由 $\beta$ 和 $\beta_0$ 定义的判别边界的符号距离至少为 $M$，我们寻找最大的 $M$ 和相关的参数。我们可以通过把条件替换为下面的形式来摆脱 $\Vert\beta\Vert=1$ 的限制</p>
 <p>
 <script type="math/tex; mode=display">
-\frac{1}{\Vert\beta\Vert}y_i(x_i^T\beta+\beta_0)\ge M\tag{4.46}
+\frac{1}{\Vert\beta\Vert}y_i(x_i^T\beta+\beta_0)\ge M\tag{4.46}\label{4.46}
 </script>
 </p>
 <p>（重新定义了 $\beta_0$）或者等价于</p>
 <p>
 <script type="math/tex; mode=display">
-y_i(x_i^T\beta+\beta_0)\ge M\Vert\beta\Vert\tag{4.47}
+y_i(x_i^T\beta+\beta_0)\ge M\Vert\beta\Vert\tag{4.47}\label{4.47}
 </script>
 </p>
 <p>因为对于任意满足这些不等式的 $\beta$ 和 $\beta_0$，任意正的放缩因子同样成立，我们可以任意令 $\Vert\beta\Vert=1/M$。因此 (4.45) 等价于</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 \underset{\beta,\beta_0}{\min}&\frac{1}{2}\Vert\beta\Vert^2\\
-\st & y_i(x_i^T\beta+\beta_0)\ge \; i=1,\ldots,N 
-\end{align}
-\tag{4.48}
+\st & y_i(x_i^T\beta+\beta_0)\ge 1 \; i=1,\ldots,N 
+\end{align*}
+\tag{4.48}\label{4.48}
 </script>
 </p>
-<p>根据 (4.40)，上面的约束条件定义了一个判别边界周围厚度为 $1/\Vert\beta\Vert$ 的<strong>平板 (slab)</strong> 或者<strong>空白 (margin)</strong>。因此我们选择 $\beta$ 和 $\beta_0$ 最大化厚度。这是一个凸优化问题（线性不等约束的二次准则）。Lagrange（原问题）函数关于 $\beta$ 和 $\beta_0$ 进行最小化是</p>
+<p>根据 $\eqref{4.40}$，上面的约束条件定义了一个判别边界周围厚度为 $1/\Vert\beta\Vert$ 的<strong>平板 (slab)</strong> 或者<strong>空白 (margin)</strong>。因此我们选择 $\beta$ 和 $\beta_0$ 最大化厚度。这是一个凸优化问题（线性不等约束的二次准则）。Lagrange（原问题）函数关于 $\beta$ 和 $\beta_0$ 进行最小化是</p>
 <p>
 <script type="math/tex; mode=display">
-L_P=\frac{1}{2}\Vert\beta\Vert^2-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-1]\tag{4.49}
+L_P=\frac{1}{2}\Vert\beta\Vert^2-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-1]\tag{4.49}\label{4.49}
 </script>
 </p>
 <p>令微分为 0，则有</p>
 <p>
 <script type="math/tex; mode=display">
-\beta=\sum\limits_{i=1}^N\alpha_iy_ix_i\tag{4.50}
+\beta=\sum\limits_{i=1}^N\alpha_iy_ix_i\tag{4.50}\label{4.50}
 </script>
 </p>
 <p>
 <script type="math/tex; mode=display">
-0=\sum\limits_{i=1}^N\alpha_iy_i\tag{4.51}
+0=\sum\limits_{i=1}^N\alpha_iy_i\tag{4.51}\label{4.51}
 </script>
 </p>
-<p>替换掉 (4.49) 中的这些项我们得到被称作 Wolfe 的对偶问题
+<p>替换掉 $\eqref{4.49}$ 中的这些项我们得到被称作 Wolfe 的对偶问题
 <script type="math/tex; mode=display">
 L_D=\sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{k=1}^N\alpha_i\alpha_ky_iy_kx_i^Tx_k\\
-\qquad\qquad \qquad \qquad \qquad \st \; \alpha_i\ge 0\qquad \tag{4.52}
+\qquad\qquad \qquad \qquad \qquad \st \; \alpha_i\ge 0\qquad \tag{4.52}\label{4.52}
 </script>
 </p>
 <div class="admonition note">
-<p class="admonition-title">weiya注：对偶问题</p>
+<p class="admonition-title">weiya 注：对偶问题</p>
 <p>对于无等值约束的优化问题</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3461,11 +3461,11 @@ c(x)\def(c_1(x), c_2(x),\ldots, c_m(x))^T
 <script type="math/tex; mode=display">
 \underset{x\in\IR^n}{\min}f(x)\; \st c(x)\ge 0
 </script>
-Lagrangian函数为
+Lagrangian 函数为
 <script type="math/tex; mode=display">
 {\cal L}(x,\lambda)=f(x)-\lambda^Tc(x)
 </script>
-定义对偶目标函数$q:\IR^n\rightarrow \IR$：
+定义对偶目标函数 $q:\IR^n\rightarrow \IR$：
 <script type="math/tex; mode=display">
 q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
 </script>
@@ -3473,17 +3473,17 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
 <script type="math/tex; mode=display">
 \cal D\def\{\lambda\mid q(\lambda)>-\infty\}
 </script>
-<strong>若$f$和$-c_i$均为凸函数</strong>，则$\cal L(\cdot, \lambda)$也为凸函数，则可以很容易计算$q(\lambda)$。</p>
+<strong>若 $f$ 和 $-c_i$ 均为凸函数</strong>，则$\cal L(\cdot, \lambda)$也为凸函数，则可以很容易计算$q(\lambda)$。</p>
 <p>参考资料: <a href="../../references/opbook2.pdf">Wright S, Nocedal J. Numerical optimization (Second Edition). Springer Science.</a></p>
 </div>
-<p>通过在正象限内最大化 $L_D$ 得到解，这是一个简单的凸优化问题，可以使用标准的软件来求解。另外解必须满足 KKT(Karush-Kuhn-Tucker) 条件,它包括（4.50)，(4.51)，(4.52) 以及</p>
+<p>通过在正象限内最大化 $L_D$ 得到解，这是一个简单的凸优化问题，可以使用标准的软件来求解。另外解必须满足 KKT(Karush-Kuhn-Tucker) 条件,它包括 $\eqref{4.50}$，$\eqref{4.51}$，$\eqref{4.52}$ 以及</p>
 <p>
 <script type="math/tex; mode=display">
-\alpha_i[y_i(x_i^T\beta+\beta_0)-1]=0\;\forall i.\tag{4.53}
+\alpha_i[y_i(x_i^T\beta+\beta_0)-1]=0\;\forall i.\tag{4.53}\label{4.53}
 </script>
 </p>
 <div class="admonition note">
-<p class="admonition-title">weiya注：KKT条件</p>
+<p class="admonition-title">weiya 注：KKT条件</p>
 <p>对于带约束的优化问题
 <img alt="" src="../../img/12/def12.1.png" />
 一阶必要条件为
@@ -3495,7 +3495,7 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
 <li>如果 $\alpha_i\gt 0$，则 $y_i(x_i^T+\beta_0)=1$，或者换句话说，$x_i$ 在 slab 的边界上；</li>
 <li>如果 $y_i(x_i^T\beta+\beta_0)&gt;1$，$x_i$ 不在平板的边界上，而且 $\alpha_i=0$。</li>
 </ul>
-<p>从 (4.50) 我们可以看到解向量 $\beta$ 定义为<strong>支撑点 (support points)</strong> $x_i$ 的线性组合——这些点通过 $\alpha_i &gt;0$ 定义在 slab 的边界上。图 4.16 显示了我们那个简单例子的最优分离超平面；这里有三个支撑点。同样地，$\beta_0$ 可以通过对任意支撑点求解 (4.53) 得到。</p>
+<p>从 $\eqref{4.50}$ 我们可以看到解向量 $\beta$ 定义为<strong>支撑点 (support points)</strong> $x_i$ 的线性组合——这些点通过 $\alpha_i &gt;0$ 定义在 slab 的边界上。图 4.16 显示了我们那个简单例子的最优分离超平面；这里有三个支撑点。同样地，$\beta_0$ 可以通过对任意支撑点求解 $\eqref{4.53}$ 得到。</p>
 <p><img alt="" src="../../img/04/fig4.16.png" /></p>
 <blockquote>
 <p>图 4.16. 和图 4.14 同样的数据。阴影区域描绘了分离两个类别的最大边缘空白。这里有三个支撑点；它们位于边缘空白的边界上，最优分离超平面（蓝色线条）平分了平板。这张图里面的边界是通过逻辑斯蒂回归得到的（红色线条），它与最优分离超平面非常接近（见<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.3 节</a>）</p>
@@ -3503,7 +3503,7 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
 <p>最优分离超平面得到函数 $\hat f(x)=x^T\hat\beta+\hat\beta_0$ 来对新的观测分类</p>
 <p>
 <script type="math/tex; mode=display">
-\hat G(x)=\sign \hat f(x)\tag{4.54}
+\hat G(x)=\sign \hat f(x)\tag{4.54}\label{4.54}
 </script>
 </p>
 <p>尽管没有训练观测点会落在空白边缘里面（由构造可知），但这对于测试观测点不一定正确。直觉上，若训练数据边缘空白较大，会使得在测试数据集上良好的分离。</p>
@@ -3602,7 +3602,7 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-01-17 11:47:03
+        Last Build Date UTC : 2019-01-17 14:50:12
       </div>
       
         
