@@ -3391,7 +3391,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3413,15 +3413,15 @@
 </tr>
 </tbody>
 </table>
-<p>多元数据经常被看成是从未知来源中多重间接测量的数据，一般不能直接测量。包括以下例子：</p>
+<p>多元数据经常被看成是从未知来源多次间接测量的数据，一般不能被直接测量。例子有：</p>
 <ul>
-<li>在教育或心理学测试中，采用问卷的答案来衡量潜在的智商以及其他的心理特征。</li>
-<li>EEG脑扫描通过放置在头部的不同位置的感受器的电子信号来间接衡量脑的不同部分的神经元活性。</li>
-<li>股票交易价格随着时间持续变化，并且反映了各种各样的未测量的因素，如市场信心，外部影响以及其他很难识别和测量的推动力。</li>
+<li>在教育或心理学测试中，采用问卷调查来衡量潜在的智商以及其他的心理特征。</li>
+<li>EEG 脑扫描通过放置在头部不同位置的感受器的电子信号来间接衡量脑的不同部分的神经元活性。</li>
+<li>股票交易价格随着时间持续变化，并且反映了各种各样的未测量的因素，如 <em>市场信心 (market confidence)</em>，外部影响以及其他很难识别和测量的推动力。</li>
 </ul>
-<p><strong>因子分析(Factor Analysis)</strong>是统计学领域为了识别潜在因素的一个经典方法。因子分析模型通常是用在高斯分布中，某种程度上阻碍了它的适用性。最近，<strong>独立成分分析(Independent Component Analysis)</strong>成为了因子分析的强劲对手，我们将会看到，它对非高斯分布的依赖是其成功的根本来源。</p>
+<p><strong>因子分析(Factor Analysis)</strong> 是统计学领域为了识别潜在因素的一个经典方法。因子分析模型通常是用在高斯分布中，所以某种程度上阻碍了它的适用性。最近，<strong>独立成分分析(Independent Component Analysis)</strong> 成为了因子分析强劲的对手，我们将会看到，它对非高斯分布的依赖是其成功的根本来源。</p>
 <h2 id="_1">潜变量和因子分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>奇异值分解(14.54) $\mathbf X=\mathbf{UDV}^T$ 有潜变量的表示。记 $\mathbf S=\sqrt{N}\mathbf U$，以及$\mathbf A^T=\mathbf{DV}^T/\sqrt{N}$，我们有 $\mathbf{X=SA}^T$，因此 $\mathbf X$ 的每一列是$\mathbf S$的列的线性组合。现在因为$\mathbf U$是正交的，并且和之前一样假设$\mathbf X$的列均值为0（因此$\mathbf U$也是），这意味着 $\mathbf S$ 列均值为 0，而且不相关，有单位方差。用随机变量表示，我们可以把SVD或者对应的主成分分析看成是下列潜变量模型的一个估计</p>
+<p>奇异值分解 (14.54) $\mathbf X=\mathbf{UDV}^T$ 可以表示成潜变量。记 $\mathbf S=\sqrt{N}\mathbf U$，以及 $\mathbf A^T=\mathbf{DV}^T/\sqrt{N}$，我们有 $\mathbf{X=SA}^T$，因此 $\mathbf X$ 的每一列是 $\mathbf S$ 的列的线性组合。现在因为 $\mathbf U$ 是正交的，并且和之前一样假设 $\mathbf X$ 的列均值为 0（因此 $\mathbf U$ 也是），这意味着 $\mathbf S$ 列均值为 0，而且不相关，有单位方差。用随机变量表示，我们可以把 SVD 或者对应的主成分分析看成是下列潜变量模型的一个估计</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3433,31 +3433,31 @@ X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pp}S_p
 \tag{14.78}
 </script>
 </p>
-<p>或者简单地写成$X=\A S$。相关的$X_j$都表示成不相关的、单位方差的变量$S_\ell$的线性展开。尽管这不是太满意，因为对于任意给定的$p\times p$的正交矩阵$\R$，我们可以写出</p>
+<p>或者简单地写成 $X=\A S$。相关的 $X_j$ 都表示成不相关的、单位方差的变量 $S_\ell$ 的线性展开。尽管这不是太满意，因为对于任意给定的 $p\times p$ 的正交矩阵 $\R$，我们可以写出</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
 X&=\A S\\
-&=\A\R^T\R S
+&=\A\R^T\R S\\
 &=\A^*S^*
 \end{align}
 \tag{14.79}
 </script>
 </p>
-<p>并且$\Cov (S^*)=\R\Cov(S)\R^T=\I$。因此存在许多这样的分解，也因此不可能将任意特定的潜变量作为唯一的潜在来源。SVD分解确实有这样的性质，以最优的方式得到使得任意$q &lt; p$的截断分解。</p>
+<p>并且 $\Cov (S^*)=\R\Cov(S)\R^T=\I$。因此存在许多这样的分解，也因此不可能将任意特定的潜变量作为唯一的潜在来源。SVD 分解确实有这样的性质，以最优的方式得到使得任意 $q &lt; p$ 的截断分解。</p>
 <p>经典的因子分析模型，主要由心理测量学(psychometrics)的研究者发展而来。某种程度上缓解了这个问题；举个例子，Mardia et al. (1979)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。当$q &lt; p$，因子分析模型有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 X_1&=a_{11}S_1+a_{12}S_2+\cdots+a_{1q}S_q+\varepsilon_1\\
 X_2&=a_{21}S_1+a_{22}S_2+\cdots+a_{2q}S_q+\varepsilon_2\\
 \vdots &\qquad\vdots\\
 X_p&=a_{p1}S_1+a_{p2}S_2+\cdots+a_{pq}S_q+\varepsilon_p
-\end{align}
+\end{align*}
 \tag{14.80}
 </script>
 </p>
-<p>或者写成$X=\A S+\epsilon$。这里$S$是 $q &lt; p$个揭示潜变量或者因子的向量，$\A$ 是$p\times q$的因子载荷(loadings)矩阵，$\varepsilon_j$是零均值不相干的扰动。想法是潜变量$S_\ell$是$X_j$公共方差的来源，意味着它们之间的相关性结构，而$\varepsilon_j$对每个$X_j$是唯一的，并且解释了剩下的方差。一般地，$S_\ell$和$\varepsilon_j$假设为高斯随机变量，并且采用极大似然法来拟合模型。参数都存在于下面的协方差阵中</p>
+<p>或者写成 $X=\A S+\epsilon$。这里 $S$ 是 $q &lt; p$个揭示潜变量或者因子的向量，$\A$ 是$p\times q$的因子载荷(loadings)矩阵，$\varepsilon_j$是零均值不相干的扰动。想法是潜变量$S_\ell$是$X_j$公共方差的来源，意味着它们之间的相关性结构，而$\varepsilon_j$对每个$X_j$是唯一的，并且解释了剩下的方差。一般地，$S_\ell$和$\varepsilon_j$假设为高斯随机变量，并且采用极大似然法来拟合模型。参数都存在于下面的协方差阵中</p>
 <p>
 <script type="math/tex; mode=display">
 \Sigma=\A\A^T+\D_\varepsilon \tag{14.81}
@@ -3865,7 +3865,7 @@ d(\A_0, \A)=\frac{1}{2p}\sum\limits_{i=1}^p\Big(\frac{\sum\limits_{j=1}^p\vert r
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-01-16 06:27:13
+        Last Build Date UTC : 2019-01-17 09:35:40
       </div>
       
         
