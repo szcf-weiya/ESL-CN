@@ -3,7 +3,7 @@
 ## copyright (C) 2018 Lijun Wang <szcfweiya@gamil.com>
 ##
 ## This program is to simulate figure 4.2 in the book called The Elements of Statistical Learning.
-## You also can found the translated documents from https://esl.hohoweiya.xyz
+## You also can find the translated documents from https://esl.hohoweiya.xyz
 ##
 ## #############################################################################################
 
