@@ -3274,6 +3274,7 @@
 <p>
 <script type="math/tex; mode=display">
 \hat G(x)=\mathrm{argmax}_{k\in\cal G}\hat f_k(x)\tag{4.4}
+\label{eq:4.4}
 </script>
 </p>
 <p>这种方式的理论根据是什么？更加正式的理由是把回归看成条件期望的估计。对于随机变量 $Y_k$，$\E(Y_k\mid X=x)=\Pr(G=k\mid X=x)$，则每个随机变量 $Y_k$ 的条件期望似乎是一个明智的选择。真正问题是，除了刚性的 (rigid) 线性回归模型，条件期望的近似还可以达到什么程度？或者说，$\hat f_k(x)$ 是否是后验概率 $\Pr(G=k\mid X=x)$ 的合理估计，以及更重要地，这是否有用？</p>
@@ -3281,19 +3282,20 @@
 <p>一个更简单的角度是对每个类别构造<strong>目标值 (target)</strong> $t_k$，其中 $t_k$ 是 $K\times K$ 单位矩阵的第 $k$ 列。我们的预测问题是对一个观测尝试并且再生出合适的目标值。和之前的编码一样，对于第 $i$ 个观测的响应向量 $y_i$（$\mathbf Y$ 的第 $i$ 行），当 $g_i=k$ 时，$y_i=t_k$。我们可以通过最小二乘法来拟合线性模型</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\B}{\min}\sum\limits_{i=1}^N\Vert y_i-[(1,x_i)\mathbf B]^T\Vert^2\tag{4.5}
+\underset{\B}{\min}\sum\limits_{i=1}^N\Vert y_i-[(1,x_i^T)\mathbf B]^T\Vert^2\tag{4.5}
 </script>
 </p>
 <p>这个准则是目标值到拟合向量的欧几里得距离的平方和。对于新观测值，通过计算它的拟合向量 $\hat f(x)$ 从而把它分到最近的目标：</p>
 <p>
 <script type="math/tex; mode=display">
 \hat G(x)=\underset{k}{\mathrm{argmin}}\Vert \hat f(x)-t_k\Vert^2\tag{4.6}
+\label{eq:4.6}
 </script>
 </p>
 <p>这恰好与之前的方式相同：</p>
 <ul>
 <li>平方和准则恰巧是<strong>多重响应变量线性回归</strong>的准则，仅仅是理解的角度不同。因为二范数自身也是一个平方和，其组成成分可以分解然后重排列成关于每个元素的单独的线性模型。注意到这仅仅是可能的，因为在模型中没有办法将不同的响应变量结合在一起。</li>
-<li>可以很简单地发现最近目标分类准则 (4.6) 与 (4.4) 的最大拟合成分准则是一样的。</li>
+<li>可以很简单地发现最近目标分类准则 $\eqref{eq:4.6}$ 与 $\eqref{eq:4.4}$ 的最大拟合成分准则是一样的。</li>
 </ul>
 <!--
 ，但是需要要求拟合值的和为 1。
@@ -3406,7 +3408,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-01-31 15:37:33
+        Last Build Date UTC : 2019-01-31 15:48:00
       </div>
       
         
