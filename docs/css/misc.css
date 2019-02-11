@@ -62,3 +62,11 @@ label.md-nav__title {
 .md-typeset ul li a {
   color: blue!important;
 }
+
+
+/* disqus a tag color will inherit the site's link color (https://help.disqus.com/installation/disqus-appearance-tweaks)
+*/
+
+#comment a{
+  color: #288ce4;
+}
