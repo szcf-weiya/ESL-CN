@@ -379,7 +379,7 @@ $$
 
 > This retains the additivity of the linear model, but each coordinate function $f_j$ is arbitrary. It turns out that the optimal estimate for the additive model uses techniques such as $k$-nearest neighbors to approximate univariate conditional expectations simultaneously for each of the coordinate functions. Thus the problems of estimating a conditional expectation in high dimensions are swept away in this case by imposing some (often unrealistic) model assumptions, in this case additivity.
 
-这保留着线性模型的可加性，但是每个并列的函数$f_j$是任意的。结果是可加模型的最优估计是对于每个并列的函数同时（*simultaneously*）用$k$-最邻近去近似单变量(*univariate*)的条件期望。因此在可加性的情况下，通过加上某些（通常不现实）的模型假设在高纬中估计条件期望的问题被扫除了。
+这保留着线性模型的可加性，但是每个并列的函数$f_j$是任意的。结果是可加模型的最优估计是对于每个并列的函数同时（*simultaneously*）用$k$-最邻近去近似单变量(*univariate*)的条件期望。因此在可加性的情况下，通过加上某些（通常不现实）的模型假设在高维中估计条件期望的问题被扫除了。
 
 > Are we happy with the criterion (2.11)? What happens if we replace the $L_2$ loss function with the $L_1: E\mid Y −f(X)\mid $? The solution in this case is the conditional median,
 
@@ -447,11 +447,11 @@ $$
 
 > ## 2.5 Local Methods in High Dimensions
 
-## 2.5 高纬问题的局部方法
+## 2.5 高维问题的局部方法
 
 > We have examined two learning techniques for prediction so far: the stable but biased linear model and the less stable but apparently less biased class of $k$-nearest-neighbor estimates. It would seem that with a reasonably large set of training data, we could always approximate the theoretically optimal conditional expectation by $k$-nearest-neighbor averaging, since we should be able to find a fairly large neighborhood of observations close to any $x$ and average them. This approach and our intuition breaks down in high dimensions, and the phenomenon is commonly referred to as the curse of dimensionality (Bellman, 1961). There are many manifestations of this problem, and we will examine a few here.
 
-至今为止我们已经仔细讨论了两个关于预测的学习方法：稳定但是有偏差的线性模型和不稳定但显然偏差较小的$k$-最近邻估计。当有充分大的训练数据，我们似乎总会选择$k$-最近邻平均来近似理论上的最优条件期望，因为我们能够找到一个相当大的离$x$近的观测构成的邻域并且平均里面的观测值。在高纬情形下这种方法以及我们的直觉没有用，而且这种现象通常被称作维数的诅咒(Bellman,1961)。关于这个问题有很多的证明，我们将要仔细讨论一些。
+至今为止我们已经仔细讨论了两个关于预测的学习方法：稳定但是有偏差的线性模型和不稳定但显然偏差较小的$k$-最近邻估计。当有充分大的训练数据，我们似乎总会选择$k$-最近邻平均来近似理论上的最优条件期望，因为我们能够找到一个相当大的离$x$近的观测构成的邻域并且平均里面的观测值。在高维情形下这种方法以及我们的直觉没有用，而且这种现象通常被称作维数的诅咒(Bellman,1961)。关于这个问题有很多的证明，我们将要仔细讨论一些。
 
 > Consider the nearest-neighbor procedure for inputs uniformly distributed in a p-dimensional unit hypercube, as in Figure 2.6. Suppose we send out a hypercubical neighborhood about a target point to capture a fraction $r$ of the observations. Since this corresponds to a fraction $r$ of the unit volume, the expected edge length will be $e^p(r) = r^{1/p}$. In ten dimensions $e^{10}(0.01) = 0.63$ and $e^{10}(0.1) = 0.80$, while the entire range for each input is only 1.0. So to capture $1\%$ or $10\%$ of the data to form a local average, we must cover $63\%$ or $80\%$ of the range of each input variable. Such neighborhoods are no longer “local.” Reducing $r$ dramatically does not help much either, since the fewer observations we average, the higher is the variance of our fit.
 
@@ -463,7 +463,7 @@ $$
 
 > Another consequence of the sparse sampling in high dimensions is that all sample points are close to an edge of the sample. Consider $N$ data points uniformly distributed in a p-dimensional unit ball centered at the origin. Suppose we consider a nearest-neighbor estimate at the origin. The median distance from the origin to the closest data point is given by the expression
 
-高纬下的稀疏取样的另外一个后果是所有的样本点离样本的某一边很近。考虑在$p$维以原点为中心的单位球中均匀分布的$N$个数据点。假设我们考虑原点处的最近邻估计。距离原点最近的数据点距离的中位数由下式给出
+高维下的稀疏取样的另外一个后果是所有的样本点离样本的某一边很近。考虑在$p$维以原点为中心的单位球中均匀分布的$N$个数据点。假设我们考虑原点处的最近邻估计。距离原点最近的数据点距离的中位数由下式给出
 
 $$
 d(p,N)=(1-(\frac{1}{2})^{1/N})^{1/p}
@@ -475,7 +475,7 @@ $$
 
 > Another manifestation of the curse is that the sampling density is proportional to $N^{ 1/p}$, where $p$ is the dimension of the input space and $N$ is the sample size. Thus, if $N_1 = 100$ represents a dense sample for a single input problem, then $N_{10} = 100^{10}$ is the sample size required for the same sampling density with 10 inputs. Thus in high dimensions all feasible training samples sparsely populate the input space.
 
-另外一个证明这个灾难是取样密度是跟$N^{1/p}$成比例，其中$p$为输入空间的维数，$N$为样本的规模。因此，如果$N_1=100$表示对于单输入问题的大密度取样，然后$N_{10}=100^{10}$是10个输入时取样密度同上面相同时所需要的样本规模大小。因此在高纬空间中所有可行的训练样本在输入空间中很稀少。
+另外一个证明这个灾难是取样密度是跟$N^{1/p}$成比例，其中$p$为输入空间的维数，$N$为样本的规模。因此，如果$N_1=100$表示对于单输入问题的大密度取样，然后$N_{10}=100^{10}$是10个输入时取样密度同上面相同时所需要的样本规模大小。因此在高维空间中所有可行的训练样本在输入空间中很稀少。
 
 > Let us construct another uniform example. Suppose we have 1000 training examples $x_i$ generated uniformly on $[−1,1]^p$. Assume that the true relationship between $X$ and $Y$ is
 
@@ -510,7 +510,7 @@ $$
 
 > Although this is a highly contrived example, similar phenomena occur more generally. The complexity of functions of many variables can grow exponentially with the dimension, and if we wish to be able to estimate such functions with the same accuracy as function in low dimensions, then we need the size of our training set to grow exponentially as well. In this example, the function is a complex interaction of all $p$ variables involved.
 
-尽管这是一个非常不自然的例子，类型的情形发生的更一般。多变量的函数复杂度随着维数呈指数增长，而且如果我们希望以在低维中以相同的精度来估计高纬中的函数，我们将会需要呈指数增长规模的训练集。在这个例子中，函数是所有$p$个变量参与的复杂交互。
+尽管这是一个非常不自然的例子，类型的情形发生的更一般。多变量的函数复杂度随着维数呈指数增长，而且如果我们希望以在低维中以相同的精度来估计高维中的函数，我们将会需要呈指数增长规模的训练集。在这个例子中，函数是所有$p$个变量参与的复杂交互。
 
 > Suppose, on the other hand, that we know that the relationship between $Y$ and $X$ is linear,
 
@@ -561,7 +561,7 @@ $$
 > By relying on rigid assumptions, the linear model has no bias at all and negligible variance, while the error in 1-nearest neighbor is substantially
 > larger. However, if the assumptions are wrong, all bets are off and the 1-nearest neighbor may dominate. We will see that there is a whole spectrum of models between the rigid linear models and the extremely flexible 1-nearest-neighbor models, each with their own assumptions and biases, which have been proposed specifically to avoid the exponential growth in complexity of functions in high dimensions by drawing heavily on these assumptions.
 
-通过依赖严格的假设，线性模型没有偏差而且方差几乎可以忽略，然后1-最近邻的误差就会相当的大。然而，如果假设是错误的，所有的东西都不复存在，而1-最近邻将占主导地位。我们将会看到介于严格的线性模型和非常灵活的1-最近邻模型之间的模型谱，每个都有它们各自的假设和偏差，这些假设已经具体提到过，通过在很大程度上借鉴这些假设来避免高纬下函数复杂度呈指数增长。
+通过依赖严格的假设，线性模型没有偏差而且方差几乎可以忽略，然后1-最近邻的误差就会相当的大。然而，如果假设是错误的，所有的东西都不复存在，而1-最近邻将占主导地位。我们将会看到介于严格的线性模型和非常灵活的1-最近邻模型之间的模型谱，每个都有它们各自的假设和偏差，这些假设已经具体提到过，通过在很大程度上借鉴这些假设来避免高维下函数复杂度呈指数增长。
 
 > Before we delve more deeply, let us elaborate a bit on the concept of statistical models and see how they fit into the prediction framework.
 
@@ -714,7 +714,7 @@ L(\theta)=\sum\limits_{i=1}^Nlogp_{g_i,\theta}(x_i)
 
 > We have seen that although nearest-neighbor and other local methods focus directly on estimating the function at a point, they face problems in high dimensions. They may also be inappropriate even in low dimensions in cases where more structured approaches can make more efficient use of the data. This section introduces classes of such structured approaches. Before we proceed, though, we discuss further the need for such classes.
 
-尽管最近邻和其它局部的方法都是直接关注在某一点估计函数，在高纬遇到困难。甚至在低维下有很多结构化的充分利用数据的方式的情形这些方法也不合适。这个部分介绍了结构化方式的类别。在我们讨论之前，我们更深入地讨论这些类别的需要。
+尽管最近邻和其它局部的方法都是直接关注在某一点估计函数，在高维遇到困难。甚至在低维下有很多结构化的充分利用数据的方式的情形这些方法也不合适。这个部分介绍了结构化方式的类别。在我们讨论之前，我们更深入地讨论这些类别的需要。
 
 > ### 2.7.1 Difficulty of the Problem
 
@@ -751,7 +751,7 @@ RSS(f)=\sum\limits_{i=1}^{N}(y_i-f(x_i))^2
 
 > One fact should be clear by now. Any method that attempts to produce locally varying functions in small isotropic neighborhoods will run into problems in high dimensions—again the curse of dimensionality. And conversely, all methods that overcome the dimensionality problems have an associated—and often implicit or adaptive—metric for measuring neighborhoods, which basically does not allow the neighborhood to be simultaneously small in all directions.
 
-现在必须澄清一个事实。任何在等方性的邻域中试图产生局部不同的函数会在高纬中遇到问题——再一次是维数的灾难。相反地，所有克服维数问题的方法在测量邻域时有一个对应的——经常是隐式的或者适应的——度量，该度量基本要求是不允许邻域在各个方向都同时小。
+现在必须澄清一个事实。任何在等方性的邻域中试图产生局部不同的函数会在高维中遇到问题——再一次是维数的灾难。相反地，所有克服维数问题的方法在测量邻域时有一个对应的——经常是隐式的或者适应的——度量，该度量基本要求是不允许邻域在各个方向都同时小。
 
 > ## 2.8 Classes of Restricted Estimators
 
@@ -842,7 +842,7 @@ K_k(x,x_0)=I(\mid \mid x-x_0\mid \mid \le \mid \mid x_{(k)}-x_0\mid \mid )
 
 > These methods of course need to be modified in high dimensions, to avoid the curse of dimensionality. Various adaptations are discussed in Chapter 6.
 
-为了避免维数的灾难，这些方法在高纬情形下要做修正。将在第6章讨论不同的改编。
+为了避免维数的灾难，这些方法在高维情形下要做修正。将在第6章讨论不同的改编。
 
 > ### 2.8.3 Basis Functions and Dictionary Methods
 
