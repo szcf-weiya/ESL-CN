@@ -3437,6 +3437,19 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\tag{3.77}
 <li>$J$ 关于 $\beta$ 分段线性</li>
 </ol>
 <p>这也意味着（原则上）解的路径可以有效地计算出来。例子包括平方损失和绝对误差损失，“Huberized”损失，以及关于 $\beta$ 的 $L_1, L_\infty$ 惩罚。另一个例子是支持向量机中的“hinge loss”。那里损失是分段线性，惩罚是二次的。有趣的是，这导出了对偶空间的分段线性路径算法；更多的细节在 12.3.5 节给出。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Huber Loss</p>
+<p>Huber loss 损失函数为：
+<script type="math/tex; mode=display">
+\rho(t;\lambda) = \begin{cases}
+\lambda \vert t\vert - \lambda^2/2 & \text{ if }\vert t\vert >\lambda\\
+t^2/2 & \text{ if }\vert t\vert \le \lambda
+\end{cases}\,.
+</script>
+其图象为
+<img alt="" src="../assets/huber.png" /></p>
+<p><a href="https://github.com/szcf-weiya/ESL-CN/issues/178">SLS 的 Ex. 2.11 <strong>(已解决！)</strong></a> 讨论了 Huber 损失函数与 $\ell_1$-norm 的等价性。</p>
+</div>
 <h2 id="dantzig">Dantzig 选择器<a class="headerlink" href="#dantzig" title="Permanent link">&para;</a></h2>
 <p>Candes and Tao (2007)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup> 提出下面的准则：</p>
 <p>
@@ -3671,7 +3684,7 @@ R(\tilde\beta(\lambda),\beta_j)=\frac{1}{2}\sum\limits_{i=1}^N(y_i-\sum\limits_{
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-02-16 13:47:41
+        Last Build Date UTC : 2019-02-18 07:41:44
       </div>
       
         
