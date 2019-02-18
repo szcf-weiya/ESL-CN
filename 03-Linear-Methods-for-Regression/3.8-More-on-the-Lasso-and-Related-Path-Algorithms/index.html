@@ -822,8 +822,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lasso" title="lasso的更多性质" class="md-nav__link">
-    lasso的更多性质
+  <a href="#lasso" title="lasso 的更多性质" class="md-nav__link">
+    lasso 的更多性质
   </a>
   
 </li>
@@ -3321,8 +3321,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lasso" title="lasso的更多性质" class="md-nav__link">
-    lasso的更多性质
+  <a href="#lasso" title="lasso 的更多性质" class="md-nav__link">
+    lasso 的更多性质
   </a>
   
 </li>
@@ -3370,11 +3370,15 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2016-10-21:2016-10-21</td>
+<td>2016-10-21</td>
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-12-05</td>
+<td>2019-02-18 16:25:57</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
@@ -3436,9 +3440,9 @@ R(\beta)=\sum\limits_{i=1}^NL(y_i,\beta_0+\sum_{j=1}^px_{ij}\beta_j)\tag{3.77}
 <li>$R$ 作为 $\beta$ 的函数是二次的或者是分段二次</li>
 <li>$J$ 关于 $\beta$ 分段线性</li>
 </ol>
-<p>这也意味着（原则上）解的路径可以有效地计算出来。例子包括平方损失和绝对误差损失，“Huberized”损失，以及关于 $\beta$ 的 $L_1, L_\infty$ 惩罚。另一个例子是支持向量机中的“hinge loss”。那里损失是分段线性，惩罚是二次的。有趣的是，这导出了对偶空间的分段线性路径算法；更多的细节在 12.3.5 节给出。</p>
+<p>这也意味着（原则上）解的路径可以有效地计算出来。例子包括平方损失和绝对误差损失，“Huberized”损失，以及关于 $\beta$ 的 $L_1, L_\infty$ 惩罚。另一个例子是支持向量机中的“hinge loss”。那里损失是分段线性，惩罚是二次的。有趣的是，这导出了对偶空间的分段线性路径算法；更多的细节在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.5 节</a>给出。</p>
 <div class="admonition note">
-<p class="admonition-title">weiya 注：Huber Loss</p>
+<p class="admonition-title">weiya 注：Huber Loss &amp; Hinge Loss</p>
 <p>Huber loss 损失函数为：
 <script type="math/tex; mode=display">
 \rho(t;\lambda) = \begin{cases}
@@ -3449,6 +3453,13 @@ t^2/2 & \text{ if }\vert t\vert \le \lambda
 其图象为
 <img alt="" src="../assets/huber.png" /></p>
 <p><a href="https://github.com/szcf-weiya/ESL-CN/issues/178">SLS 的 Ex. 2.11 <strong>(已解决！)</strong></a> 讨论了 Huber 损失函数与 $\ell_1$-norm 的等价性。</p>
+<p>Hinge Loss 是用于分类器的损失函数，定义为</p>
+<p>
+<script type="math/tex; mode=display">
+L(y, f) = [1-yf]_+\,,
+</script>
+</p>
+<p>其中 $f\in\{-1,+1\}$.</p>
 </div>
 <h2 id="dantzig">Dantzig 选择器<a class="headerlink" href="#dantzig" title="Permanent link">&para;</a></h2>
 <p>Candes and Tao (2007)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup> 提出下面的准则：</p>
@@ -3463,27 +3474,32 @@ t^2/2 & \text{ if }\vert t\vert \le \lambda
 \min_\infty \Vert \mathbf X^T(\mathbf y-\mathbf X\beta)\Vert_\infty\text{ subject to } \Vert\beta\Vert\le t\tag{3.79}
 </script>
 </p>
-<p>这里 $\Vert\cdot\Vert_\infty$ 为 $L_\infty$ 范数，也就是该向量中绝对值最大的组分。这种形式类似 lasso，用梯度绝对值的最大值替换平方误差损失。注意到当 $t$ 变大，如果 $N &lt; p$ 两个过程都得到最小二乘解。如果 $p\ge N$，它们都得到最小的 $L_1$ 范数的最小二乘解。然而，对于较小的$t$，DS 过程得到与 lasso 不同的解的路径。</p>
+<p>这里 $\Vert\cdot\Vert_\infty$ 为 $L_\infty$ 范数，也就是该向量中绝对值最大的组分。这种形式类似 lasso，用梯度绝对值的最大值替换平方误差损失。注意到当 $t$ 变大，如果 $N &lt; p$，则两个过程都会得到最小二乘解。如果 $p\ge N$，它们都得到最小的 $L_1$ 范数的最小二乘解。然而，对于较小的 $t$，DS 过程的解的路径与 lasso 不同。</p>
 <p>Candes and Tao (2007)<sup id="fnref2:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>证明了求解 DS 是线性规划问题；为了纪念 George Dantzig（线性规划中单纯形法的发明者），因此称为 Dantzig。他们也证明了该方法的一系列有趣的数学问题，这些性质与重建潜在的稀疏系数向量的能力有关。如 Bickel et al. (2008)<sup id="fnref:13"><a class="footnote-ref" href="#fn:13" rel="footnote">13</a></sup> 所证明，这些性质对于 lasso 也适用。</p>
-<p>不幸的是 DS 方法的运算性质有些不足。这个方法想法上与 lasso 类似，特别是当我们观察 lasso 的平稳条件 (3.58)。和 LAR 算法一样，对于活跃集中的所有变量，lasso 保持着与当前残差相同的内积（以及相关系数），并且将它们的系数向残差平方和的最优下降方向变化。在这个过程中，相同的相关系数单调下降（<a href="">练习 3.23</a>），并且在任何时刻这个相关性大于非活跃集中的变量。而 Dantzig 选择器试图最小化当前残差与所有变量之间的最大内积。因此它可以达到比 lasso 更小的最大值，但是在这一过程中会发生奇怪的现象。如果活跃集的大小为 $m$，则会有 $m$ 个变量与最大相关性绑在一起。然而，这些变量不需要与活跃集重合！因此它可以在模型中包含这样一个变量，其与当前残差的相关性小于不在活跃集中的变量与残差的相关性(Efron et al., 2007<sup id="fnref:14"><a class="footnote-ref" href="#fn:14" rel="footnote">14</a></sup>)。这似乎不合理，而且有时会导致较差的预测误差。Efron et al. (2007) 也证明了随着正则化参数 $s$ 的变化，DS 可能得到非常不稳定的系数曲线。</p>
+<p>不幸的是 DS 方法的运算性质不够令人满意。这个方法想法上与 lasso 类似，特别是当我们观察 lasso 的平稳条件 (3.58)。和 LAR 算法一样，对于活跃集中的所有变量，lasso 保持着与当前残差相同的内积（以及相关系数），并且将它们的系数向残差平方和的最优下降方向变化。在这个过程中，相同的相关系数单调下降（<a href="https://github.com/szcf-weiya/ESL-CN/issues/100">练习 3.23</a>），并且在任何时刻这个相关性大于非活跃集中的变量。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.23</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/100">Issue 100: Ex. 3.23</a>，欢迎讨论交流。</p>
+</div>
+<p>而 Dantzig 选择器试图最小化当前残差与所有变量之间的最大内积。因此它可以达到比 lasso 更小的最大值，但是在这一过程中会发生奇怪的现象。如果活跃集的大小为 $m$，则会有 $m$ 个变量与最大相关性绑在一起。然而，这些变量不需要与活跃集重合！因此它可以在模型中包含这样一个变量，其与当前残差的相关性小于不在活跃集中的变量与残差的相关性 (Efron et al., 2007<sup id="fnref:14"><a class="footnote-ref" href="#fn:14" rel="footnote">14</a></sup>)。这似乎不合理，而且有时会导致较差的预测误差。Efron et al. (2007)<sup id="fnref2:14"><a class="footnote-ref" href="#fn:14" rel="footnote">14</a></sup> 也证明了随着正则化参数 $s$ 的变化，DS 可能得到非常不稳定的系数曲线。</p>
 <h2 id="the-grouped-lasso">The Grouped Lasso<a class="headerlink" href="#the-grouped-lasso" title="Permanent link">&para;</a></h2>
-<p>在一些问题中，预测变量属于预定义的群体中；举个例子，属于同一个生物路径的基因，或者表示类别型数据层次的指示变量（哑变量）。在这种情形中，或许想要对群体中每个成员一起进行收缩或者选择操作。grouped lasso 便是一种实现方式。假设 $p$ 个预测变量被分到 $L$ 个群中，在第 $\ell$ 个群中有 $p_\ell$ 个成员。为了简便，我们采用矩阵 $\mathbf X_\ell$ 来表示对应第 $\ell$ 个群的预测变量，对应的系数向量为$\beta_\ell$。grouped-lasso 最小化下面的凸准则</p>
+<p>在一些问题中，预测变量属于预定义的群体中；举个例子，属于同一个生物路径的基因，或者表示类别型数据层次的指示变量（哑变量）。在这种情形中，或许想要对群体中每个成员一起进行收缩或选择。grouped lasso 便是一种实现方式。假设 $p$ 个预测变量被分到 $L$ 个群中，在第 $\ell$ 个群中有 $p_\ell$ 个成员。为了简便，我们采用矩阵 $\mathbf X_\ell$ 来表示对应第 $\ell$ 个群的预测变量，对应的系数向量为$\beta_\ell$。grouped-lasso 最小化下面的凸准则</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta\in R^p}{\mathrm{min}}(\Vert \mathbf y-\beta_0\boldsymbol 1-\sum\limits_{\ell=1}^L\mathbf X_\ell\beta_\ell\Vert_2^2+\lambda \sum\limits_{\ell=1}^L\sqrt{p_\ell}\Vert \beta_\ell\Vert_2)\tag{3.80}
+\underset{\beta\in \IR^p}{\mathrm{min}}\Big(\Vert \mathbf y-\beta_0\boldsymbol 1-\sum\limits_{\ell=1}^L\mathbf X_\ell\beta_\ell\Vert_2^2+\lambda \sum\limits_{\ell=1}^L\sqrt{p_\ell}\Vert \beta_\ell\Vert_2\Big)\tag{3.80}
 </script>
 </p>
-<p>其中 $\sqrt{p_\ell}$项对应不同的群体大小，并且$\Vert\cdot\Vert_2$是欧几里得范数。因为一个向量$\beta_\ell$的欧式范数为0当且仅当其各组分都为0，这个过程保证了群体层次和个体水平的稀疏性。也就是，对于某些$\lambda$，预测变量的整个群体都排除在模型之外。这个过程由Bakin (1999)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>和Lin and Zhang (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>提出，以及Yuan and Lin (2007)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>的研究和推广。推广包括更一般的$L_2$范数$\Vert \eta\Vert=(\eta^TK\eta)^{1/2}$，并且允许重复的预测变量(Zhao et al., 2008<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)。拟合离散的可加模型的方法之间也有联系（Lin and Zhang, 2006<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Ravikumar et al., 2008<sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup>）</p>
-<h2 id="lasso">lasso的更多性质<a class="headerlink" href="#lasso" title="Permanent link">&para;</a></h2>
-<p>许多作者已经研究了当$N$和$p$增长时，lasso的能力以及重建模型相关的过程。这个工作的例子有Knight and Fu (2000)<sup id="fnref:15"><a class="footnote-ref" href="#fn:15" rel="footnote">15</a></sup>, Greenshtein and Ritov (2004)<sup id="fnref:16"><a class="footnote-ref" href="#fn:16" rel="footnote">16</a></sup>, Tropp (2004)<sup id="fnref:17"><a class="footnote-ref" href="#fn:17" rel="footnote">17</a></sup>, Donoho (2006b)<sup id="fnref:18"><a class="footnote-ref" href="#fn:18" rel="footnote">18</a></sup>, Meinshausen (2007)<sup id="fnref:19"><a class="footnote-ref" href="#fn:19" rel="footnote">19</a></sup>, Meinshausen and Bühlmann (2006)<sup id="fnref:20"><a class="footnote-ref" href="#fn:20" rel="footnote">20</a></sup>, Tropp (2006)<sup id="fnref:21"><a class="footnote-ref" href="#fn:21" rel="footnote">21</a></sup>, Zhao and Yu (2006)<sup id="fnref:22"><a class="footnote-ref" href="#fn:22" rel="footnote">22</a></sup>, Wainwright (2006)<sup id="fnref:23"><a class="footnote-ref" href="#fn:23" rel="footnote">23</a></sup>, 以及 Bunea et al. (2007)<sup id="fnref:24"><a class="footnote-ref" href="#fn:24" rel="footnote">24</a></sup>。举个例子，Donoho (2006b)<sup id="fnref2:18"><a class="footnote-ref" href="#fn:18" rel="footnote">18</a></sup>集中在$p&gt;N$的情形并且当边界$t$变大时lasso的解。极限情形下，这给出了在所有零训练误差的模型中最小的$L_1$范数解。他证明了对模型矩阵$\mathbf X$加上具体的假设，如果真实模型为稀疏的，则解能以高概率识别出正确的预测变量。</p>
+<p>其中 $\sqrt{p_\ell}$ 项对应不同的群体大小，并且 $\Vert\cdot\Vert_2$ 是欧几里得范数。因为一个向量 $\beta_\ell$ 的欧式范数为 0 当且仅当其各组分都为 0，这个过程保证了群体层次和个体水平的稀疏性。也就是，对于某些 $\lambda$，预测变量的整个群体都排除在模型之外。这个过程由 Bakin (1999)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup> 和 Lin and Zhang (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 提出，以及 Yuan and Lin (2007)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup> 的研究和推广。推广包括更一般的 $L_2$ 范数 $\Vert \eta\Vert=(\eta^TK\eta)^{1/2}$，并且允许重复的预测变量 (Zhao et al., 2008<sup id="fnref:11"><a class="footnote-ref" href="#fn:11" rel="footnote">11</a></sup>)。拟合离散的可加模型的方法之间也有联系（Lin and Zhang, 2006<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Ravikumar et al., 2008<sup id="fnref:12"><a class="footnote-ref" href="#fn:12" rel="footnote">12</a></sup>）</p>
+<h2 id="lasso">lasso 的更多性质<a class="headerlink" href="#lasso" title="Permanent link">&para;</a></h2>
+<p>许多作者已经研究了当 $N$ 和 $p$ 增长时，lasso 的能力以及重建模型相关的过程。这个工作的例子有 Knight and Fu (2000)<sup id="fnref:15"><a class="footnote-ref" href="#fn:15" rel="footnote">15</a></sup>, Greenshtein and Ritov (2004)<sup id="fnref:16"><a class="footnote-ref" href="#fn:16" rel="footnote">16</a></sup>, Tropp (2004)<sup id="fnref:17"><a class="footnote-ref" href="#fn:17" rel="footnote">17</a></sup>, Donoho (2006b)<sup id="fnref:18"><a class="footnote-ref" href="#fn:18" rel="footnote">18</a></sup>, Meinshausen (2007)<sup id="fnref:19"><a class="footnote-ref" href="#fn:19" rel="footnote">19</a></sup>, Meinshausen and Bühlmann (2006)<sup id="fnref:20"><a class="footnote-ref" href="#fn:20" rel="footnote">20</a></sup>, Tropp (2006)<sup id="fnref:21"><a class="footnote-ref" href="#fn:21" rel="footnote">21</a></sup>, Zhao and Yu (2006)<sup id="fnref:22"><a class="footnote-ref" href="#fn:22" rel="footnote">22</a></sup>, Wainwright (2006)<sup id="fnref:23"><a class="footnote-ref" href="#fn:23" rel="footnote">23</a></sup>, 以及 Bunea et al. (2007)<sup id="fnref:24"><a class="footnote-ref" href="#fn:24" rel="footnote">24</a></sup>。举个例子，Donoho (2006b)<sup id="fnref2:18"><a class="footnote-ref" href="#fn:18" rel="footnote">18</a></sup> 集中在 $p&gt;N$ 的情形并且当边界 $t$ 变大时 lasso 的解。极限情形下，这给出了在所有零训练误差的模型中最小的 $L_1$ 范数解。他证明了对模型矩阵 $\mathbf X$ 加上具体的假设，如果真实模型为稀疏的，则解能以高概率识别出正确的预测变量。</p>
 <p>许多这领域的结果对模型矩阵假设了如下条件</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{j\in \cal S^c}{\mathrm{max}}\Vert \mathbf x_j^T\mathbf X_{\cal S}(\mathbf X_{\cal S^T\mathbf X_{\cal S}})^{-1}\Vert_1\le (1-\epsilon)\text{ for some }\epsilon\in (0, 1]\tag{3.81}
+\underset{j\in \cal S^c}{\mathrm{max}}\Vert \mathbf x_j^T\mathbf X_{\cal S}(\mathbf X_{\cal S}^T\mathbf X_{\cal S})^{-1}\Vert_1\le (1-\epsilon)\text{ for some }\epsilon\in (0, 1]\tag{3.81}
 </script>
 </p>
-<p>这里 $\cal S$ 标记真实的潜在模型中非零系数特征的子集，$\mathbf X_{\cal S}$ 是 $\mathbf X$ 中对应的这些特征的列。类似地，$\cal S^c$是真实系数为0的特征的集合，$\mathbf X_{\cal S^c}$是对应的列。这说明 $\mathbf X_{\cal S^c}$ 的列在$\mathbf X_{\cal S}$上的最小二乘系数不会太大，也就是，“好”的变量 $\cal S$ 与多余的变量 $\cal S^c$ 直接不是高度相关。</p>
-<p>考虑这些系数本身，lasso收缩导致非零系数的估计偏向0，并且一般地他们不是一致的。降低这种偏差的一种方式是运行lasso来识别非零系数的集合，接着对选出的特征进行无约束线性模型拟合。另外，也可以采用 lasso 来选择非零预测变量，接着再次运用 lasso，但是从第一步开始便只用选择出的变量。这称为 relaxed lasso (Meinshausen, 2007<sup id="fnref2:19"><a class="footnote-ref" href="#fn:19" rel="footnote">19</a></sup>)。这个想法是采用交叉验证来估计lasso初始的惩罚参数，然后接着对选择出的变量再用一次惩罚参数。因为第二步中的变量与噪声变量之间的竞争变小，所以交叉验证会趋向于选择较小的$\lambda$，因此它们的系数会比初始估计时收缩得要小。</p>
+<p>这里 $\cal S$ 标记真实的潜在模型中非零系数特征的子集，$\mathbf X_{\cal S}$ 是 $\mathbf X$ 中对应的这些特征的列。类似地，$\cal S^c$是真实系数为 0 的特征的集合，$\mathbf X_{\cal S^c}$ 是对应的列。这说明 $\mathbf X_{\cal S^c}$ 的列在 $\mathbf X_{\cal S}$ 上的最小二乘系数不会太大，也就是，“好”的变量 $\cal S$ 与多余的变量 $\cal S^c$ 之间不是高度相关。</p>
+<p>考虑这些系数本身，lasso 收缩导致非零系数的估计偏向 0，并且一般地他们不是一致的。降低这种偏差的一种方式是运行 lasso 来识别非零系数的集合，接着对选出的特征进行无约束线性模型拟合。另外，也可以采用 lasso 来选择非零预测变量，接着再次运用 lasso，但是从第一步开始便只用选择出的变量。这称为 relaxed lasso (Meinshausen, 2007<sup id="fnref2:19"><a class="footnote-ref" href="#fn:19" rel="footnote">19</a></sup>)。这个想法是采用交叉验证来估计 lasso 初始的惩罚参数，然后接着对选择出的变量再用一次惩罚参数。因为第二步中的变量与噪声变量之间的竞争变小，所以交叉验证会趋向于选择较小的 $\lambda$，因此它们的系数会比初始估计时收缩得要小。</p>
 <p>另外，也可以修改 lasso 惩罚函数使得更大的系数收缩得不要太剧烈；Fan and Li (2005)<sup id="fnref:25"><a class="footnote-ref" href="#fn:25" rel="footnote">25</a></sup>的 <strong>平稳削减绝对偏差法 (smoothly clipped absolute deviation, SCAD)</strong> 用 $J_a(\beta,\lambda)$ 替换 $\lambda\vert\beta \vert$，其中对于 $a\ge 2$</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3493,7 +3509,7 @@ t^2/2 & \text{ if }\vert t\vert \le \lambda
 <p>方括号中的第二项降低了 lasso 对于较大 $\beta$ 的收缩程度，在极限状态时，当 $a\rightarrow \infty$，没有收缩。图 3.20 显示了 SCAD 惩罚，以及 lasso 和 $\beta^{1-\nu} $。然而这个准则不是凸的，这是一个缺陷，因为它会使得计算变得很困难。adaptive lasso (Zou, 2006)<sup id="fnref:26"><a class="footnote-ref" href="#fn:26" rel="footnote">26</a></sup>采用形如 $\sum_{j=1}^pw_j\vert\beta_j\vert$ 的加权惩罚，其中 $w_j=1/\vert\hat\beta_j\vert^\nu$，$\hat\beta_j$ 是一般最小二乘估计并且 $\nu &gt;0$。这是对 <a href="../3.4-Shrinkage-Methods/index.html#lasso_1">3.4.3 节</a>中讨论的 $\vert\beta\vert^q$ 惩罚的实际近似（这里 $q=1-\nu$）。adaptive lasso 在保证 lasso 吸引人的凸性基础上还得到了参数的一致估计。</p>
 <p><img alt="" src="../../img/03/fig3.20.png" /></p>
 <h2 id="pathwise-coordinate-optimization">Pathwise Coordinate Optimization<a class="headerlink" href="#pathwise-coordinate-optimization" title="Permanent link">&para;</a></h2>
-<p>一种替代计算 lasso 的 LARS 算法是简单的坐标下降(simple coordinate descent)。这个想法由 Fu (1998)<sup id="fnref:27"><a class="footnote-ref" href="#fn:27" rel="footnote">27</a></sup> 和 Daubechies et al. (2004)<sup id="fnref:28"><a class="footnote-ref" href="#fn:28" rel="footnote">28</a></sup> 提出，后来被 Friedman et al. (2007)<sup id="fnref:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>, Wu and Lange (2008)<sup id="fnref:30"><a class="footnote-ref" href="#fn:30" rel="footnote">30</a></sup> 和其他人研究及推广。想法是固定 Lagrangian 形式 (3.52) 中的惩罚参数 $\lambda$，在控制其它参数固定不变时，相继地优化每一个参数。</p>
+<p>一种替代计算 lasso 的 LARS 算法是 <strong>简单坐标下降 (simple coordinate descent)</strong>。这个想法由 Fu (1998)<sup id="fnref:27"><a class="footnote-ref" href="#fn:27" rel="footnote">27</a></sup> 和 Daubechies et al. (2004)<sup id="fnref:28"><a class="footnote-ref" href="#fn:28" rel="footnote">28</a></sup> 提出，后来被 Friedman et al. (2007)<sup id="fnref:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>, Wu and Lange (2008)<sup id="fnref:30"><a class="footnote-ref" href="#fn:30" rel="footnote">30</a></sup> 和其他人研究及推广。想法是固定 Lagrangian 形式 (3.52) 中的惩罚参数 $\lambda$，在控制其它参数固定不变时，相继地优化每一个参数。</p>
 <p>假设预测变量都经过标准化得到 0 均值和单位范数。用 $\tilde\beta_k(\lambda)$ 表示惩罚参数为 $\lambda$ 时对 $\beta_k$ 的当前估计。我们可以分离出 (3.52) 的 $\beta_j$,</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3503,11 +3519,11 @@ R(\tilde\beta(\lambda),\beta_j)=\frac{1}{2}\sum\limits_{i=1}^N(y_i-\sum\limits_{
 <p>其中我们压缩了截距并且为了方便引出因子 $\frac 12$。这个可以看成是响应变量为部分残差 $y_i-\tilde y_i^{(j)}=y_i-\sum_{k\neq j}x_{ik}\tilde \beta_k(\lambda)$。这有显式解，得到下面的更新</p>
 <p>
 <script type="math/tex; mode=display">
-\tilde \beta_j(\lambda)\leftarrow S(\sum\limits_{i=1}^Nx_{ij}(y_i-\tilde y_i^{(j)}),\lambda)\tag{3.84}
+\tilde \beta_j(\lambda)\leftarrow S(\sum\limits_{i=1}^Nx_{ij}(y_i-\tilde y_i^{(j)}),\lambda)\tag{3.84}\label{eq:3.84}
 </script>
 </p>
-<p>这里 $S(t,\lambda)=sign(t)(\vert t\vert-\lambda)_+$ 是表 3.4 中的软阈值算子。$S(\cdot)$ 中的第一个变量是部分残差在标准化变量 $x_{ij}$ 上的简单最小二乘系数。(3.84) 的重复迭代——轮流考虑每个变量直到收敛——得到 lasso 估计 $\hat\beta(\lambda)$。</p>
-<p>我们也采用这种简单的算法来有效地计算在 $\lambda$ 的每个网格结点上 lasso 的解。我们从使得 $\hat\beta(\lambda_{max})=0$ 的最小 $\lambda_{\max}$ 开始，每次降低一点点来循环考虑每个变量直到收敛。采用前一个解作为 $\lambda$ 新值的“warm start”，$\lambda$ 再一次降低，并且重复该过程。这个可以比 LARS 算法快，特别是在大型问题中。它速度的关键在于 (3.84) 中的量随着 $j$ 变化可以快速更新，并且通常更新后有 $\tilde \beta_j=0$。另一方面，它在 $\lambda$ 的网格处求解，而不是整个解的路径。同样类型的算法可以应用到 elastic net，grouped lasso 以及许多其它惩罚为个体参数的函数之和的模型（Friedman et al., 2010<sup id="fnref:31"><a class="footnote-ref" href="#fn:31" rel="footnote">31</a></sup>）。通过一些修改，这也可以应用到 fused lasso（18.4.2 节）；细节在 Friedman et al. (2007)<sup id="fnref2:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>中给出。</p>
+<p>这里 $S(t,\lambda)=\sign(t)(\vert t\vert-\lambda)_+$ 是表 3.4 中的软阈值算子。$S(\cdot)$ 中的第一个变量是部分残差在标准化变量 $x_{ij}$ 上的简单最小二乘系数。\eqref{eq:3.84} 的重复迭代——轮流考虑每个变量直到收敛——得到 lasso 估计 $\hat\beta(\lambda)$。</p>
+<p>我们也可以采用这种简单的算法来有效地计算在 $\lambda$ 的每个网格结点上 lasso 的解。我们从使得 $\hat\beta(\lambda_{max})=0$ 的最小 $\lambda_{\max}$ 开始，每次降低一点点来循环考虑每个变量直到收敛。采用前一个解作为 $\lambda$ 新值的“warm start”，$\lambda$ 再一次降低，并且重复该过程。这个可能比 LARS 算法快，特别是在大型问题中。它速度的关键在于 \eqref{3.84} 中的量随着 $j$ 变化可以快速更新，并且通常更新后有 $\tilde \beta_j=0$。另一方面，它在 $\lambda$ 的网格处求解，而不是整个解的路径。同样类型的算法可以应用到 elastic net，grouped lasso 以及许多其它惩罚为个体参数的函数之和的模型（Friedman et al., 2010<sup id="fnref:31"><a class="footnote-ref" href="#fn:31" rel="footnote">31</a></sup>）。通过一些修改，这也可以应用到 fused lasso（<a href="../../18-High-Dimensional-Problems/18.4-Linear-Classifiers-with-L1-Regularization/index.html">18.4.2 节</a>）；细节在 Friedman et al. (2007)<sup id="fnref2:29"><a class="footnote-ref" href="#fn:29" rel="footnote">29</a></sup>中给出。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3551,7 +3567,7 @@ R(\tilde\beta(\lambda),\beta_j)=\frac{1}{2}\sum\limits_{i=1}^N(y_i-\sum\limits_{
 <p>Bickel, P. J., Ritov, Y. and Tsybakov, A. (2008). Simultaneous analysis of lasso and Dantzig selector, Annals of Statistics. to appear.&#160;<a class="footnote-backref" href="#fnref:13" rev="footnote" title="Jump back to footnote 13 in the text">&#8617;</a></p>
 </li>
 <li id="fn:14">
-<p>Efron, B., Hastie, T. and Tibshirani, R. (2007). Discussion of “Dantzig selector” by Candes and Tao, Annals of Statistics 35(6): 2358–2364.&#160;<a class="footnote-backref" href="#fnref:14" rev="footnote" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+<p>Efron, B., Hastie, T. and Tibshirani, R. (2007). Discussion of “Dantzig selector” by Candes and Tao, Annals of Statistics 35(6): 2358–2364.&#160;<a class="footnote-backref" href="#fnref:14" rev="footnote" title="Jump back to footnote 14 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:14" rev="footnote" title="Jump back to footnote 14 in the text">&#8617;</a></p>
 </li>
 <li id="fn:15">
 <p>Knight, K. and Fu, W. (2000). Asymptotics for lasso-type estimators, Annals of Statistics 28(5): 1356–1378.&#160;<a class="footnote-backref" href="#fnref:15" rev="footnote" title="Jump back to footnote 15 in the text">&#8617;</a></p>
@@ -3684,7 +3700,7 @@ R(\tilde\beta(\lambda),\beta_j)=\frac{1}{2}\sum\limits_{i=1}^N(y_i-\sum\limits_{
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-02-18 07:41:44
+        Last Build Date UTC : 2019-02-18 08:28:13
       </div>
       
         

@@ -6,6 +6,6 @@ function huber(t; λ = 1)
     y2 = λ * abs.(t) .- λ^2 / 2
     return y1, y2
 end
-y1, y2 = huber(t)
-plot(t, y1, label = "Huber", legend = :top)
+y1, y2 = huber(t, λ = 2)
+plot(t, y1, label = "Huber", legend = :bottomright)
 plot!(t, y2, label = "Linear")
