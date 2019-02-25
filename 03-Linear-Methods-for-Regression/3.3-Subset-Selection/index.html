@@ -3376,6 +3376,10 @@
 <li>统计 (statistical)；在每个规模下选择最优子集需要在方差上付出代价；向前逐步是一种有更多约束的搜索，而且将会有更低的方差，但是或许有更大的偏差。</li>
 </ul>
 <p><strong>向后逐步选择 (backward-stepwise selection)</strong> 从整个模型开始，并且逐步删掉对拟合影响最低的预测变量。要删掉的候选变量是 Z 分数最低的变量（<a href="https://github.com/szcf-weiya/ESL-CN/issues/180">练习 3.10</a>）。向后只能用于 $N&gt;p$ 时，而向前逐步总是可以使用。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.10</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/180">Issue 180: Ex. 3.10</a>。</p>
+</div>
 <p>图 3.6 展示了一个用于比较最优子集回归和简单的向前向后选择的小型模拟研究的结果。它们的表现非常相似，而且总是这样的结果。图中也包含了 <strong>Forward Stagewise</strong> 回归（下一节），它需要更长时间达到最小误差。</p>
 <p><img alt="" src="../../img/03/fig3.6.png" /></p>
 <blockquote>
@@ -3481,7 +3485,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-02-25 03:16:42
+        Last Build Date UTC : 2019-02-25 03:18:48
       </div>
       
         
