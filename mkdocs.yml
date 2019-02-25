@@ -257,7 +257,7 @@ markdown_extensions:
 
 extra_css:
   - css/misc.css
-  - css/iDisqus.min.css
+  - css/iDisqus-20190225.min.css
 #  - css/newsprint.css
 #  - css/admonition_fix.css
 
