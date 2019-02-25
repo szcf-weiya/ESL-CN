@@ -3369,7 +3369,12 @@
 </blockquote>
 <p>本章中我们讨论的许多方法都是相似的，因为它们使用训练数据去得到区别于复杂度和由单参数编码的模型序列。下一节我们采用交叉验证去估计预测误差并选择 $k$；AIC 准则是一个受欢迎的选择。我们将更多的细节讨论和其他方法推迟到第 7 章讨论。</p>
 <h2 id="_2">向前和向后逐步选择<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>与其搜索所有可能的子集（当 $p$ 大于 40 不可行），我们可以寻找一个很好的通过它们的途径。<strong>向前逐步选择 (Forward-stepwise selection)</strong> 从截距开始，然后向模型中依次添加最大程度提升拟合效果的预测变量。有大量的备选预测变量时，会需要大量的计算；然而，聪明的更新算法可以利用 QR 分解从当前拟合快速得到下一步的备选预测变量（<a href="https://github.com/szcf-weiya/ESL-CN/issues/179">练习 3.9</a>）。类似最优子集回归，向前逐步产生由 $k$ 索引的模型序列，$k$ 为子集规模，也是必须要确定的值。</p>
+<p>与其搜索所有可能的子集（当 $p$ 大于 40 不可行），我们可以寻找一个很好的通过它们的途径。<strong>向前逐步选择 (Forward-stepwise selection)</strong> 从截距开始，然后向模型中依次添加最大程度提升拟合效果的预测变量。有大量的备选预测变量时，会需要大量的计算；然而，聪明的更新算法可以利用 QR 分解从当前拟合快速得到下一步的备选预测变量（<a href="https://github.com/szcf-weiya/ESL-CN/issues/179">练习 3.9</a>）。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.9</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/179">Issue 179: Ex. 3.9</a>。简单说，假设当前残差为 $\r$，下一步选择的 $\x_i$ 能够最大化 $\vert \r^T\x_i \vert/\Vert \x_i\Vert$.</p>
+</div>
+<p>类似最优子集回归，向前逐步产生由 $k$ 索引的模型序列，$k$ 为子集规模，也是必须要确定的值。</p>
 <p>向前逐步选择是 <strong>贪心算法 (greedy algorithm)</strong>，产生一个嵌套的模型序列。从这点来看与最优子集选择相比似乎是次优的。然而，有许多原因表明向前逐步可能是更好的：</p>
 <ul>
 <li>计算 (computational)；对于大的 $p$ 值，我们不能计算最优子集序列，但是我们总是可以计算向前逐步序列（即使 $p&gt;&gt;N$）</li>
@@ -3485,7 +3490,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-02-25 08:21:05
+        Last Build Date UTC : 2019-02-25 08:39:39
       </div>
       
         
