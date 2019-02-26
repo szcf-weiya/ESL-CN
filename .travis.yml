@@ -1,14 +1,14 @@
-- language: python
-  install:
-    - pip install mkdocs==0.17.2
-    - pip install mkdocs-material==2.5.2
-    - pip install pymdown-extensions
-    - pip install python-markdown-math
-    - sudo apt-get install -y r-base
-    - Rscript -e 'install.packages("rmarkdown")'
-  script:
-    - mkdocs build
-    - cd rmds && Rscript -e "rmarkdown::render_site()" && mv _site/ ../site/rmds
+language: python
+install:
+  - pip install mkdocs==0.17.2
+  - pip install mkdocs-material==2.5.2
+  - pip install pymdown-extensions
+  - pip install python-markdown-math
+  - sudo apt-get install -y r-base
+  - Rscript -e 'install.packages("rmarkdown")'
+script:
+  - mkdocs build
+  - cd rmds && Rscript -e "rmarkdown::render_site()" && mv _site/ ../site/rmds
     
     
 deploy:
