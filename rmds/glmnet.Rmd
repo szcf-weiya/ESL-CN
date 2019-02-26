@@ -84,6 +84,7 @@ y = X %*% beta + 3 * rnorm(n)
 We fit two models, one uses the default options, another use `penalty.factor=rep(2,5)`
 
 ```{r}
+install.packages("glmnet")
 library(glmnet)
 fit = glmnet(X, y)
 fit2 = glmnet(X, y, penalty.factor = rep(2, 5))
