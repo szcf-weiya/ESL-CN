@@ -1,7 +1,7 @@
 language: python
 before_install:
   - sudo apt-get install -y r-base
-  - echo "r = getOption("repos"); r["CRAN"] = "https://cloud.r-project.org/"; options(repos = r); rm(r)" > .Rprofile
+  - echo 'local({r = getOption("repos"); r["CRAN"] = "https://cloud.r-project.org/"; options(repos = r)})' > .Rprofile
   - sudo Rscript -e 'install.packages("rmarkdown")'
 install:
   - pip install mkdocs==0.17.2
