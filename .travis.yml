@@ -13,7 +13,7 @@ install:
   - pip install python-markdown-math
 script:
   - mkdocs build
-  - cd rmds && Rscript -e "library(rmarkdown); rmarkdown::render_site()" && mv _site/ ../site/rmds
+  - cd rmds && Rscript -e "rmarkdown::render_site()" && mv _site/ ../site/rmds
     
 deploy:
   provider: pages
