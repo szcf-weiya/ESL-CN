@@ -6,6 +6,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install r-base
   - sudo apt-get install pandoc
+  - sudo apt-get install gfortran
   - echo 'local({r = getOption("repos"); r["CRAN"] = "http://cloud.r-project.org/"; options(repos = r)})' > .Rprofile
   - sudo Rscript -e 'install.packages(c("digest", "stringr", "knitr", "yaml", "htmltools", "rmarkdown"))'
 install:
