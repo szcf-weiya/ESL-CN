@@ -1,3 +1,4 @@
+dist: xenial
 language: python
 before_install:
   - sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -sc)/"
