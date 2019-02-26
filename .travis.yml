@@ -2,7 +2,7 @@ language: python
 before_install:
   - sudo apt-get install -y r-base
   - echo 'local({r = getOption("repos"); r["CRAN"] = "http://cloud.r-project.org/"; options(repos = r)})' > .Rprofile
-  - mkdir ~/Rpackage && Rscript -e 'install.packages("rmarkdown", lib="~/Rpackage")'
+  - mkdir ~/Rpackage && Rscript -e 'install.packages(c("knitr", "yaml", "htmltools", "stringr", "rmarkdown"), lib="~/Rpackage")'
 install:
   - pip install mkdocs==0.17.2
   - pip install mkdocs-material==2.5.2
