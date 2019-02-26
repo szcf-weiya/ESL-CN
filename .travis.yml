@@ -1,15 +1,16 @@
 language: python
+before_install:
+  - sudo apt-get install -y r-base
+  - echo "r = getOption("repos"); r["CRAN"] = "https://cloud.r-project.org/"; options(repos = r); rm(r)" > .Rprofile
+  - sudo Rscript -e 'install.packages("rmarkdown")'
 install:
   - pip install mkdocs==0.17.2
   - pip install mkdocs-material==2.5.2
   - pip install pymdown-extensions
   - pip install python-markdown-math
-  - sudo apt-get install -y r-base
-  - sudo Rscript -e 'install.packages("rmarkdown")'
 script:
   - mkdocs build
   - cd rmds && Rscript -e "rmarkdown::render_site()" && mv _site/ ../site/rmds
-    
     
 deploy:
   provider: pages
