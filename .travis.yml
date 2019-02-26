@@ -1,14 +1,5 @@
 dist: xenial
 language: python
-before_install:
-  - sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -sc)/"
-  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-  - sudo apt-get update
-  - sudo apt-get install r-base
-  - sudo apt-get install pandoc
-  - sudo apt-get install gfortran
-  - echo 'local({r = getOption("repos"); r["CRAN"] = "http://cloud.r-project.org/"; options(repos = r)})' > .Rprofile
-  - sudo Rscript -e 'install.packages(c("digest", "stringr", "knitr", "yaml", "htmltools", "rmarkdown"))'
 install:
   - pip install mkdocs==0.17.2
   - pip install mkdocs-material==2.5.2
@@ -16,7 +7,7 @@ install:
   - pip install python-markdown-math
 script:
   - mkdocs build
-  - cd rmds && sudo Rscript -e 'library(rmarkdown); rmarkdown::render_site()' && sudo mv _site/ ../site/rmds
+  - mv rmds/_site/ site/rmds
     
 deploy:
   provider: pages
