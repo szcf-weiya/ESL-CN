@@ -1,10 +1,8 @@
 language: python
 before_install:
-  - sudo add-apt-repository "deb http://cran.rstudio.com/bin/linux/ubuntu $(lsb_release -sc)/"
-  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-  - sudo add-apt-repository -y ppa:marutter/rdev
+  - sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -sc)/"
+  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
   - sudo apt-get update
-  - sudo apt-get upgrade
   - sudo apt-get install r-base
   - echo 'local({r = getOption("repos"); r["CRAN"] = "http://cloud.r-project.org/"; options(repos = r)})' > .Rprofile
   - mkdir ~/Rpackage && Rscript -e 'install.packages(c("digest", "stringr", "knitr", "yaml", "htmltools", "rmarkdown"), lib="~/Rpackage")'
