@@ -1,0 +1,9 @@
+$$
+\newcommand\E{\mathbb{E}}
+\newcommand\y{\mathbf{y}}
+\newcommand\1{\boldsymbol{1}}
+\newcommand\0{\boldsymbol{0}}
+\newcommand\bmu{\boldsymbol\mu}
+\newcommand\Dev{\mathrm{Dev}}
+\newcommand\null{\mathrm{null}}
+$$

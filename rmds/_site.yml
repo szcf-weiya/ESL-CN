@@ -1,0 +1,22 @@
+name: "rmd-collections"
+navbar:
+  title: "Rmd Gallery"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: https://hohoweiya.xyz
+    - text: "ESL CN"
+      href: https://esl.hohoweiya.xyz
+    - text: "Work Yard"
+      href: https://stats.hohoweiya.xyz
+    - text: "Tech Note"
+      href: https://tech.hohoweiya.xyz
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    include:
+      in_header: header.html
+      after_body: footer.html
+    css: style.css

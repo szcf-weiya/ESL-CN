@@ -1,11 +1,21 @@
-language: python
-install:
-  - pip install mkdocs==0.17.2
-  - pip install mkdocs-material==2.5.2
-  - pip install pymdown-extensions
-  - pip install python-markdown-math
-script:
-  - mkdocs build
+matrix:
+  include:
+    - language: python
+      install:
+        - pip install mkdocs==0.17.2
+        - pip install mkdocs-material==2.5.2
+        - pip install pymdown-extensions
+        - pip install python-markdown-math
+      script:
+        - mkdocs build
+    
+    - language: r
+      r_packages:
+        - rmarkdown
+      script:
+        - cd rmds && Rscript -e "rmarkdown::render_site()"
+        - mv _site/ ../site/rmds
+    
 deploy:
   provider: pages
   skip-cleanup: true

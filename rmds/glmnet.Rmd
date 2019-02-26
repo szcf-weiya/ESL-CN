@@ -1,0 +1,116 @@
+---
+title: "Overview of `glmnet`"
+author: "weiya"
+date: "February 26, 2019"
+output: html_document
+---
+
+The full signature of the `glmnet` function is:
+
+```{r, eval = FALSE}
+glmnet(x, y, 
+       family=c("gaussian","binomial","poisson","multinomial","cox","mgaussian"),
+       weights, offset=NULL, alpha = 1, nlambda = 100,
+       lambda.min.ratio = ifelse(nobs<nvars,0.01,0.0001), lambda=NULL,
+       standardize = TRUE, intercept=TRUE, thresh = 1e-07,  dfmax = nvars + 1,
+       pmax = min(dfmax * 2+20, nvars), exclude, penalty.factor = rep(1, nvars),
+       lower.limits=-Inf, upper.limits=Inf, maxit=100000,
+       type.gaussian=ifelse(nvars<500,"covariance","naive"),
+       type.logistic=c("Newton","modified.Newton"),
+       standardize.response=FALSE, type.multinomial=c("ungrouped","grouped"))
+```
+
+## Family
+
+- `gaussian`
+- `binomial`
+- `multinomial`
+- `poisson`
+- `cox`
+
+### Deviance Measure
+
+- $\hat\bmu_\lambda$: the $N$-vector of fitted mean values when the parameter is $\lambda$
+- $\tilde\bmu$: the unrestricted or [**saturated** fit](https://stats.stackexchange.com/questions/283/what-is-a-saturated-model)(having $\hat y=y_i$).
+
+Define
+
+$$
+\Dev_\lambda \doteq 2[\ell(\y, \tilde \bmu)-\ell(\y,\hat\bmu_\lambda)]\,,
+$$
+where $\ell(\y,\bmu)$ is the log-likelihood of the model $\bmu$, a sum of $N$ terms. 
+
+#### Null deviance
+
+$$
+\Dev_\null = \Dev_\infty\,.
+$$
+Typically, $\hat\bmu_\infty=\bar y\1$, or $\hat\bmu_\infty=\0$ in the `cox` family.
+
+`glmnet` reports the **fraction of deviance explained**
+
+$$
+D^2_\lambda = \frac{\Dev_\null-\Dev_\lambda}{\Dev_\null}\,.
+$$
+
+The name $D^2$ is by analogy with $R^2$, the fraction of variance explained in regression.
+
+## Penalties
+
+For all models, the `glmnet` algorithm admits a range of elastic-net penalties ranging from $\ell_2$ to $\ell_1$. The general form of the penalized optimization problem is
+
+$$
+\min_{\beta_0,\beta}\Big\{-\frac 1N\ell(\y;\beta_0,\beta)+\lambda\sum_{j=1}^p\gamma_j\{(1-\alpha)\beta_j^2+\alpha\vert \beta_j\vert\}\Big\}\,.
+$$
+
+- $\lambda$ determines the overall complexity of the model
+- the elastic-net parameter $\alpha\in[0,1]$ provides a mix between ridge regression and the lasso
+- $\gamma_j\ge 0$ is a penalty modifier. 
+
+### Example
+
+As [kjytay](http://kjytay.github.io/) discussed in his post, [A deep dive into glmnet: penalty.factor](https:// https://statisticaloddsandends.wordpress.com/2018/11/13/a-deep-dive-into-glmnet-penalty-factor/), we can find that the sum of penalty modifiers is exactly 1. 
+
+First generate some data,
+
+```{r}
+n = 100; p = 5; p.true = 2
+set.seed(1234)
+X = matrix(rnorm(n * p), nrow = n)
+beta = matrix(c(rep(1, p.true), rep(0, p - p.true)), ncol = 1)
+y = X %*% beta + 3 * rnorm(n)
+```
+
+We fit two models, one uses the default options, another use `penalty.factor=rep(2,5)`
+
+```{r}
+library(glmnet)
+fit = glmnet(X, y)
+fit2 = glmnet(X, y, penalty.factor = rep(2, 5))
+```
+
+We can find that these two models have the exact same `lambda` sequence and produce the same `beta` coefficients.
+
+```{r}
+sum(fit$lambda != fit2$lambda)
+sum(fit$beta != fit2$beta)
+```
+
+## Offset
+
+All the models allow for an **offset** term. That is a real valued number $o_i$ for each observation, that gets added to the linear predictor, and is not associated with any parameter:
+
+$$
+\eta(x_i) = o_i + \beta_0 + \beta^Tx_i\,.
+$$
+
+For Poisson models the offset allows us to model rates rather than mean counts, if the observation period differs for each observation. Suppose we observe a count $Y$ over period $t$, then $\E[Y\mid T=t,X=x]=t\mu(x)$, where $\mu(x)$ is the rate per unit time. Using the log link, we would supply $o_i=\log t_i$ for each observation.
+
+## Standardize
+
+The necessity of standardizing our features before model fitting is common practice in statistical learning. This is because that our features are on vastly different scales, the features with larger scales will tend to dominate the action
+
+## References
+
+Hastie, T., Tibshirani, R., & Wainwright, M. (n.d.). Statistical Learning with Sparsity, 362.
+
