@@ -5,3 +5,5 @@ title: "Rmd Gallery"
 Here are my rmarkdown notes:
 
 - [Overview of `glmnet`](glmnet.html)
+- [`Glmnet` for Linear Regression](glmnet_linear.html)
+- [Tree-Based Methods](tree-based-methods.html)

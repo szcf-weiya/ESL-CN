@@ -380,11 +380,8 @@ X = matrix(rnorm(n * p), nrow = n)
 beta = matrix(c(rep(1, p.true), rep(0, p - p.true)), ncol = 1)
 y = X %*% beta + 3 * rnorm(n)</code></pre>
 <p>We fit two models, one uses the default options, another use <code>penalty.factor=rep(2,5)</code></p>
-<pre class="r"><code>library(glmnet)</code></pre>
-<pre><code>## Loading required package: Matrix</code></pre>
-<pre><code>## Loading required package: foreach</code></pre>
-<pre><code>## Loaded glmnet 2.0-16</code></pre>
-<pre class="r"><code>fit = glmnet(X, y)
+<pre class="r"><code>library(glmnet)
+fit = glmnet(X, y)
 fit2 = glmnet(X, y, penalty.factor = rep(2, 5))</code></pre>
 <p>We can find that these two models have the exact same <code>lambda</code> sequence and produce the same <code>beta</code> coefficients.</p>
 <pre class="r"><code>sum(fit$lambda != fit2$lambda)</code></pre>
