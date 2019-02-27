@@ -285,16 +285,7 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="https://hohoweiya.xyz">About</a>
-</li>
-<li>
   <a href="https://esl.hohoweiya.xyz">ESL CN</a>
-</li>
-<li>
-  <a href="https://stats.hohoweiya.xyz">Work Yard</a>
-</li>
-<li>
-  <a href="https://tech.hohoweiya.xyz">Tech Note</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -317,11 +308,8 @@ $(document).ready(function () {
 
 <div id="fit" class="section level2">
 <h2>fit</h2>
-<pre class="r"><code>library(glmnet)</code></pre>
-<pre><code>## Loading required package: Matrix</code></pre>
-<pre><code>## Loading required package: foreach</code></pre>
-<pre><code>## Loaded glmnet 2.0-16</code></pre>
-<pre class="r"><code>x = matrix(rnorm(100*20), 100, 20)
+<pre class="r"><code>library(glmnet)
+x = matrix(rnorm(100*20), 100, 20)
 y = rnorm(100)
 
 fit = glmnet(x, y, alpha = 0.2, weights = c(rep(1,50),rep(2,50)), nlambda = 20)
@@ -330,22 +318,23 @@ print(fit)</code></pre>
 ## Call:  glmnet(x = x, y = y, weights = c(rep(1, 50), rep(2, 50)), alpha = 0.2,      nlambda = 20) 
 ## 
 ##       Df    %Dev    Lambda
-##  [1,]  0 0.00000 1.0430000
-##  [2,]  4 0.04503 0.6424000
-##  [3,] 12 0.12730 0.3956000
-##  [4,] 16 0.20470 0.2436000
-##  [5,] 17 0.25100 0.1501000
-##  [6,] 17 0.27380 0.0924100
-##  [7,] 19 0.28460 0.0569100
-##  [8,] 19 0.28970 0.0350500
-##  [9,] 19 0.29180 0.0215800
-## [10,] 19 0.29260 0.0132900
-## [11,] 19 0.29300 0.0081860
-## [12,] 20 0.29310 0.0050410
-## [13,] 20 0.29310 0.0031050
-## [14,] 20 0.29320 0.0019120
-## [15,] 20 0.29320 0.0011780
-## [16,] 20 0.29320 0.0007252</code></pre>
+##  [1,]  0 0.00000 1.3760000
+##  [2,]  2 0.06964 0.8472000
+##  [3,]  6 0.14930 0.5217000
+##  [4,] 10 0.21410 0.3213000
+##  [5,] 13 0.26790 0.1979000
+##  [6,] 16 0.29910 0.1219000
+##  [7,] 16 0.31450 0.0750500
+##  [8,] 16 0.32120 0.0462200
+##  [9,] 17 0.32400 0.0284600
+## [10,] 18 0.32530 0.0175300
+## [11,] 19 0.32590 0.0108000
+## [12,] 20 0.32620 0.0066480
+## [13,] 20 0.32630 0.0040940
+## [14,] 20 0.32630 0.0025210
+## [15,] 20 0.32630 0.0015530
+## [16,] 20 0.32630 0.0009563
+## [17,] 20 0.32630 0.0005889</code></pre>
 </div>
 <div id="plot" class="section level2">
 <h2>plot</h2>
@@ -374,28 +363,28 @@ coef.exact = coef(x=x, y=y,  weights = c(rep(1,50),rep(2,50)), fit, s = 0.5, exa
 coef.apprx = coef(fit, s = 0.5, exact = FALSE)
 cbind2(coef.exact, coef.apprx)</code></pre>
 <pre><code>## 21 x 2 sparse Matrix of class &quot;dgCMatrix&quot;
-##                        1             1
-## (Intercept)  0.046212189  0.0470316352
-## V1          -0.012161377 -0.0215899041
-## V2           .            0.0027446774
-## V3           .            .           
-## V4           .           -0.0038383005
-## V5          -0.009373481 -0.0135640946
-## V6           .            .           
-## V7           .            .           
-## V8           .            .           
-## V9           0.001235477  0.0126457250
-## V10          0.062959043  0.0655027870
-## V11          .            .           
-## V12          0.039345557  0.0416415226
-## V13          .            .           
-## V14         -0.042778838 -0.0446068675
-## V15         -0.014433114 -0.0178172920
-## V16         -0.048409442 -0.0501720210
-## V17          0.011849625  0.0160494813
-## V18          .            .           
-## V19          .            .           
-## V20          .           -0.0008912026</code></pre>
+##                       1             1
+## (Intercept) -0.09558839 -0.0962268209
+## V1           .           .           
+## V2           .           0.0008620452
+## V3           .           .           
+## V4           0.02064205  0.0208827476
+## V5           0.01829474  0.0188439820
+## V6           .           0.0010590269
+## V7           .           .           
+## V8           .           .           
+## V9          -0.11159124 -0.1122539451
+## V10         -0.10672665 -0.1070586065
+## V11         -0.03583638 -0.0364817443
+## V12          .           .           
+## V13          .          -0.0018652429
+## V14          .           .           
+## V15          .           .           
+## V16          .           .           
+## V17          .           .           
+## V18          .          -0.0011403887
+## V19         -0.01912082 -0.0191996255
+## V20          .           .</code></pre>
 </div>
 <div id="predictions" class="section level2">
 <h2>predictions</h2>
@@ -406,11 +395,11 @@ cbind2(coef.exact, coef.apprx)</code></pre>
 </ul>
 <pre class="r"><code>predict(fit, newx = x[1:5, ], type = &quot;response&quot;, s = 0.05)</code></pre>
 <pre><code>##               1
-## [1,] -0.4628719
-## [2,]  0.5305368
-## [3,] -0.1575243
-## [4,] -0.2153972
-## [5,] -0.2219223</code></pre>
+## [1,]  0.4287051
+## [2,] -0.5522176
+## [3,] -0.3379823
+## [4,] -0.9540268
+## [5,]  0.1122584</code></pre>
 </div>
 <div id="cross-validation" class="section level2">
 <h2>cross-validation</h2>
@@ -422,39 +411,36 @@ cbind2(coef.exact, coef.apprx)</code></pre>
 </div>
 <div id="parallel" class="section level2">
 <h2>parallel</h2>
-<pre class="r"><code>require(doMC)</code></pre>
-<pre><code>## Loading required package: doMC</code></pre>
-<pre><code>## Loading required package: iterators</code></pre>
-<pre><code>## Loading required package: parallel</code></pre>
-<pre class="r"><code>registerDoMC(cores = 4)
+<pre class="r"><code>require(doMC)
+registerDoMC(cores = 4)
 X = matrix(rnorm(1e4 * 200), 1e4, 200)
 Y = rnorm(1e4)
 system.time(cv.glmnet(X, Y))</code></pre>
 <pre><code>##    user  system elapsed 
-##   3.728   0.000   3.726</code></pre>
+##   3.376   0.000   3.380</code></pre>
 <pre class="r"><code>system.time(cv.glmnet(X, Y, parallel = TRUE))</code></pre>
 <pre><code>##    user  system elapsed 
-##   3.744   0.116   1.552</code></pre>
+##   3.792   0.120   1.563</code></pre>
 </div>
 <div id="coef-and-predict-for-cv.glmnet" class="section level2">
 <h2>coef and predict for cv.glmnet</h2>
 <pre class="r"><code>cvfit$lambda.min</code></pre>
-<pre><code>## [1] 0.1913295</code></pre>
+<pre><code>## [1] 0.1070167</code></pre>
 <pre class="r"><code>coef(cvfit, s = &quot;lambda.min&quot;)</code></pre>
 <pre><code>## 21 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                       1
-## (Intercept) -0.02758749
+## (Intercept) -0.09456403
 ## V1           .         
 ## V2           .         
 ## V3           .         
-## V4           .         
+## V4           0.01136755
 ## V5           .         
 ## V6           .         
 ## V7           .         
 ## V8           .         
-## V9           .         
-## V10          .         
-## V11          .         
+## V9          -0.13276151
+## V10         -0.10992192
+## V11         -0.11022062
 ## V12          .         
 ## V13          .         
 ## V14          .         
@@ -462,15 +448,15 @@ system.time(cv.glmnet(X, Y))</code></pre>
 ## V16          .         
 ## V17          .         
 ## V18          .         
-## V19          .         
+## V19         -0.01983920
 ## V20          .</code></pre>
 <pre class="r"><code>predict(cvfit, newx = x[1:5, ], s = &quot;lambda.min&quot;)</code></pre>
 <pre><code>##                1
-## [1,] -0.02758749
-## [2,] -0.02758749
-## [3,] -0.02758749
-## [4,] -0.02758749
-## [5,] -0.02758749</code></pre>
+## [1,]  0.23279558
+## [2,] -0.40358392
+## [3,] -0.08862785
+## [4,] -0.48245766
+## [5,] -0.09485886</code></pre>
 </div>
 <div id="control-the-folds" class="section level2">
 <h2>control the folds</h2>
@@ -575,14 +561,17 @@ plot(cvmfit)</code></pre>
 ## [8] base     
 ## 
 ## other attached packages:
-## [1] doMC_1.3.5       iterators_1.0.10 glmnet_2.0-16    foreach_1.4.4   
-## [5] Matrix_1.2-15   
+##  [1] gbm_2.1.5           randomForest_4.6-14 MASS_7.3-51.1      
+##  [4] ISLR_1.2            tree_1.0-39         doMC_1.3.5         
+##  [7] iterators_1.0.10    glmnet_2.0-16       foreach_1.4.4      
+## [10] Matrix_1.2-15      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.0       codetools_0.2-16 lattice_0.20-38  digest_0.6.18   
-##  [5] grid_3.5.2       magrittr_1.5     evaluate_0.12    stringi_1.2.4   
-##  [9] rmarkdown_1.11   tools_3.5.2      stringr_1.3.1    xfun_0.4        
-## [13] yaml_2.2.0       compiler_3.5.2   htmltools_0.3.6  knitr_1.21</code></pre>
+##  [1] Rcpp_1.0.0       knitr_1.21       magrittr_1.5     splines_3.5.2   
+##  [5] lattice_0.20-38  stringr_1.3.1    tools_3.5.2      grid_3.5.2      
+##  [9] gtable_0.2.0     xfun_0.4         htmltools_0.3.6  survival_2.43-3 
+## [13] yaml_2.2.0       digest_0.6.18    gridExtra_2.3    codetools_0.2-16
+## [17] evaluate_0.12    rmarkdown_1.11   stringi_1.2.4    compiler_3.5.2</code></pre>
 </div>
 </div>
 

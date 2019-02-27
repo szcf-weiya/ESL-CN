@@ -285,16 +285,7 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="https://hohoweiya.xyz">About</a>
-</li>
-<li>
   <a href="https://esl.hohoweiya.xyz">ESL CN</a>
-</li>
-<li>
-  <a href="https://stats.hohoweiya.xyz">Work Yard</a>
-</li>
-<li>
-  <a href="https://tech.hohoweiya.xyz">Tech Note</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -411,30 +402,17 @@ attach(Carseats)</code></pre>
 ##     High</code></pre>
 <pre><code>## The following objects are masked from Carseats (pos = 4):
 ## 
-##     Advertising, Age, CompPrice, Education, High, Income,
+##     Advertising, Age, CompPrice, Education, High, High.1, Income,
 ##     Population, Price, Sales, ShelveLoc, Urban, US</code></pre>
 <pre><code>## The following objects are masked from Carseats (pos = 6):
+## 
+##     Advertising, Age, CompPrice, Education, High, Income,
+##     Population, Price, Sales, ShelveLoc, Urban, US</code></pre>
+<pre><code>## The following objects are masked from Carseats (pos = 8):
 ## 
 ##     Advertising, Age, CompPrice, Education, Income, Population,
 ##     Price, Sales, ShelveLoc, Urban, US</code></pre>
 <pre class="r"><code>head(Carseats)</code></pre>
-<pre><code>##   Sales CompPrice Income Advertising Population Price ShelveLoc Age
-## 1  9.50       138     73          11        276   120       Bad  42
-## 2 11.22       111     48          16        260    83      Good  65
-## 3 10.06       113     35          10        269    80    Medium  59
-## 4  7.40       117    100           4        466    97    Medium  55
-## 5  4.15       141     64           3        340   128       Bad  38
-## 6 10.81       124    113          13        501    72       Bad  78
-##   Education Urban  US High High.1
-## 1        17   Yes Yes  Yes    Yes
-## 2        10   Yes Yes  Yes    Yes
-## 3        12   Yes Yes  Yes    Yes
-## 4        14   Yes Yes   No     No
-## 5        13   Yes  No   No     No
-## 6        16    No Yes  Yes    Yes</code></pre>
-<pre class="r"><code>High = ifelse(Sales &lt;= 8, &quot;No&quot;, &quot;Yes&quot;)
-Carseats = data.frame(Carseats, High)
-head(Carseats)</code></pre>
 <pre><code>##   Sales CompPrice Income Advertising Population Price ShelveLoc Age
 ## 1  9.50       138     73          11        276   120       Bad  42
 ## 2 11.22       111     48          16        260    83      Good  65
@@ -449,6 +427,23 @@ head(Carseats)</code></pre>
 ## 4        14   Yes Yes   No     No     No
 ## 5        13   Yes  No   No     No     No
 ## 6        16    No Yes  Yes    Yes    Yes</code></pre>
+<pre class="r"><code>High = ifelse(Sales &lt;= 8, &quot;No&quot;, &quot;Yes&quot;)
+Carseats = data.frame(Carseats, High)
+head(Carseats)</code></pre>
+<pre><code>##   Sales CompPrice Income Advertising Population Price ShelveLoc Age
+## 1  9.50       138     73          11        276   120       Bad  42
+## 2 11.22       111     48          16        260    83      Good  65
+## 3 10.06       113     35          10        269    80    Medium  59
+## 4  7.40       117    100           4        466    97    Medium  55
+## 5  4.15       141     64           3        340   128       Bad  38
+## 6 10.81       124    113          13        501    72       Bad  78
+##   Education Urban  US High High.1 High.2 High.3
+## 1        17   Yes Yes  Yes    Yes    Yes    Yes
+## 2        10   Yes Yes  Yes    Yes    Yes    Yes
+## 3        12   Yes Yes  Yes    Yes    Yes    Yes
+## 4        14   Yes Yes   No     No     No     No
+## 5        13   Yes  No   No     No     No     No
+## 6        16    No Yes  Yes    Yes    Yes    Yes</code></pre>
 <pre class="r"><code>tree.carseats = tree(High~.-Sales, Carseats)
 summary(tree.carseats)</code></pre>
 <pre><code>## 
@@ -629,9 +624,8 @@ mean((yhat.rf-boston.test)^2)</code></pre>
 </div>
 <div id="boosting-1" class="section level3">
 <h3>Boosting</h3>
-<pre class="r"><code>library(gbm)</code></pre>
-<pre><code>## Loaded gbm 2.1.5</code></pre>
-<pre class="r"><code>set.seed(1)
+<pre class="r"><code>library(gbm)
+set.seed(1)
 boost.boston = gbm(medv~., data = Boston[train, ], distribution = &quot;gaussian&quot;, n.trees = 5000, interaction.depth = 4)
 summary(boost.boston)</code></pre>
 <p><img src="tree-based-methods_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>

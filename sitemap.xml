@@ -1030,13 +1030,7 @@
           
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/notes/manual/index.html</loc>
-               <lastmod>2019-02-27</lastmod>
-               <changefreq>daily</changefreq>
-              </url>
-            
-              <url>
-               <loc>https://esl.hohoweiya.xyz/notes/Graph/ex-17-7/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/notes/ipynb/list/index.html</loc>
                <lastmod>2019-02-27</lastmod>
                <changefreq>daily</changefreq>
               </url>
@@ -1046,7 +1040,13 @@
           
             
               <url>
-               <loc>https://esl.hohoweiya.xyz/notes/ipynb/list/index.html</loc>
+               <loc>https://esl.hohoweiya.xyz/notes/manual/index.html</loc>
+               <lastmod>2019-02-27</lastmod>
+               <changefreq>daily</changefreq>
+              </url>
+            
+              <url>
+               <loc>https://esl.hohoweiya.xyz/notes/Graph/ex-17-7/index.html</loc>
                <lastmod>2019-02-27</lastmod>
                <changefreq>daily</changefreq>
               </url>
