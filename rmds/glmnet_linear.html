@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="weiya" />
+
+
+<title>Glmnet for Linear Regression</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="mathjax.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rmd Gallery</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="https://hohoweiya.xyz">About</a>
+</li>
+<li>
+  <a href="https://esl.hohoweiya.xyz">ESL CN</a>
+</li>
+<li>
+  <a href="https://stats.hohoweiya.xyz">Work Yard</a>
+</li>
+<li>
+  <a href="https://tech.hohoweiya.xyz">Tech Note</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Glmnet for Linear Regression</h1>
+<h4 class="author"><em>weiya</em></h4>
+<h4 class="date"><em>April 27, 2017 (update: February 27, 2019)</em></h4>
+
+</div>
+
+
+<div id="fit" class="section level2">
+<h2>fit</h2>
+<pre class="r"><code>library(glmnet)</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## Loaded glmnet 2.0-16</code></pre>
+<pre class="r"><code>x = matrix(rnorm(100*20), 100, 20)
+y = rnorm(100)
+
+fit = glmnet(x, y, alpha = 0.2, weights = c(rep(1,50),rep(2,50)), nlambda = 20)
+print(fit)</code></pre>
+<pre><code>## 
+## Call:  glmnet(x = x, y = y, weights = c(rep(1, 50), rep(2, 50)), alpha = 0.2,      nlambda = 20) 
+## 
+##       Df    %Dev    Lambda
+##  [1,]  0 0.00000 1.0430000
+##  [2,]  4 0.04503 0.6424000
+##  [3,] 12 0.12730 0.3956000
+##  [4,] 16 0.20470 0.2436000
+##  [5,] 17 0.25100 0.1501000
+##  [6,] 17 0.27380 0.0924100
+##  [7,] 19 0.28460 0.0569100
+##  [8,] 19 0.28970 0.0350500
+##  [9,] 19 0.29180 0.0215800
+## [10,] 19 0.29260 0.0132900
+## [11,] 19 0.29300 0.0081860
+## [12,] 20 0.29310 0.0050410
+## [13,] 20 0.29310 0.0031050
+## [14,] 20 0.29320 0.0019120
+## [15,] 20 0.29320 0.0011780
+## [16,] 20 0.29320 0.0007252</code></pre>
+</div>
+<div id="plot" class="section level2">
+<h2>plot</h2>
+<ul>
+<li>norm</li>
+<li>lambda</li>
+<li>dev</li>
+</ul>
+<pre class="r"><code>plot(fit, xvar = &quot;lambda&quot;, label = TRUE)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>plot(fit, xvar = &quot;dev&quot;, label = TRUE)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+</div>
+<div id="extract-coefficients" class="section level2">
+<h2>extract coefficients</h2>
+<ul>
+<li><code>exact = TRUE</code>: refit with the <code>s</code> which not included in the original fit</li>
+<li><code>exact = FALSE</code>: uses linear interpolation to make predications for values of <code>s</code></li>
+</ul>
+<pre class="r"><code>any(fit$lambda == 0.5) # false</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>#coef.exact = coef(fit, s = 0.5, exact = TRUE)
+#used coef.glmnet() or predict.glmnet() with `exact=TRUE` so must in addition supply original argument(s) x and y and weights in order to safely rerun glmnet
+
+coef.exact = coef(x=x, y=y,  weights = c(rep(1,50),rep(2,50)), fit, s = 0.5, exact = TRUE)
+coef.apprx = coef(fit, s = 0.5, exact = FALSE)
+cbind2(coef.exact, coef.apprx)</code></pre>
+<pre><code>## 21 x 2 sparse Matrix of class &quot;dgCMatrix&quot;
+##                        1             1
+## (Intercept)  0.046212189  0.0470316352
+## V1          -0.012161377 -0.0215899041
+## V2           .            0.0027446774
+## V3           .            .           
+## V4           .           -0.0038383005
+## V5          -0.009373481 -0.0135640946
+## V6           .            .           
+## V7           .            .           
+## V8           .            .           
+## V9           0.001235477  0.0126457250
+## V10          0.062959043  0.0655027870
+## V11          .            .           
+## V12          0.039345557  0.0416415226
+## V13          .            .           
+## V14         -0.042778838 -0.0446068675
+## V15         -0.014433114 -0.0178172920
+## V16         -0.048409442 -0.0501720210
+## V17          0.011849625  0.0160494813
+## V18          .            .           
+## V19          .            .           
+## V20          .           -0.0008912026</code></pre>
+</div>
+<div id="predictions" class="section level2">
+<h2>predictions</h2>
+<ul>
+<li>response</li>
+<li>coefficients</li>
+<li>nonzero</li>
+</ul>
+<pre class="r"><code>predict(fit, newx = x[1:5, ], type = &quot;response&quot;, s = 0.05)</code></pre>
+<pre><code>##               1
+## [1,] -0.4628719
+## [2,]  0.5305368
+## [3,] -0.1575243
+## [4,] -0.2153972
+## [5,] -0.2219223</code></pre>
+</div>
+<div id="cross-validation" class="section level2">
+<h2>cross-validation</h2>
+<pre class="r"><code>cvfit = cv.glmnet(x, y, type.measure = &quot;mse&quot;, nfolds = 20)
+# plot(cvfit, xvar = &quot;norm&quot;, label = TRUE)
+# #####
+# Question: plot is not for cvfit??
+# #####</code></pre>
+</div>
+<div id="parallel" class="section level2">
+<h2>parallel</h2>
+<pre class="r"><code>require(doMC)</code></pre>
+<pre><code>## Loading required package: doMC</code></pre>
+<pre><code>## Loading required package: iterators</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre class="r"><code>registerDoMC(cores = 4)
+X = matrix(rnorm(1e4 * 200), 1e4, 200)
+Y = rnorm(1e4)
+system.time(cv.glmnet(X, Y))</code></pre>
+<pre><code>##    user  system elapsed 
+##   3.728   0.000   3.726</code></pre>
+<pre class="r"><code>system.time(cv.glmnet(X, Y, parallel = TRUE))</code></pre>
+<pre><code>##    user  system elapsed 
+##   3.744   0.116   1.552</code></pre>
+</div>
+<div id="coef-and-predict-for-cv.glmnet" class="section level2">
+<h2>coef and predict for cv.glmnet</h2>
+<pre class="r"><code>cvfit$lambda.min</code></pre>
+<pre><code>## [1] 0.1913295</code></pre>
+<pre class="r"><code>coef(cvfit, s = &quot;lambda.min&quot;)</code></pre>
+<pre><code>## 21 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                       1
+## (Intercept) -0.02758749
+## V1           .         
+## V2           .         
+## V3           .         
+## V4           .         
+## V5           .         
+## V6           .         
+## V7           .         
+## V8           .         
+## V9           .         
+## V10          .         
+## V11          .         
+## V12          .         
+## V13          .         
+## V14          .         
+## V15          .         
+## V16          .         
+## V17          .         
+## V18          .         
+## V19          .         
+## V20          .</code></pre>
+<pre class="r"><code>predict(cvfit, newx = x[1:5, ], s = &quot;lambda.min&quot;)</code></pre>
+<pre><code>##                1
+## [1,] -0.02758749
+## [2,] -0.02758749
+## [3,] -0.02758749
+## [4,] -0.02758749
+## [5,] -0.02758749</code></pre>
+</div>
+<div id="control-the-folds" class="section level2">
+<h2>control the folds</h2>
+<pre class="r"><code>foldid = sample(1:10, size = length(y), replace = TRUE)
+cv1 = cv.glmnet(x, y, foldid = foldid, alpha = 1)
+cv.5 = cv.glmnet(x, y, foldid = foldid, alpha = 0.5)
+cv0 = cv.glmnet(x, y, foldid = foldid, alpha = 0)</code></pre>
+<pre class="r"><code>par(mfrow = c(2, 2))
+plot(cv1); plot(cv.5); plot(cv0)
+plot(log(cv1$lambda), cv1$cvm, pch = 19, col = &quot;red&quot;, xlab = &quot;log(Lambda)&quot;, ylab = cv1$name)
+points(log(cv.5$lambda), cv.5$cvm, pch = 19, col = &quot;grey&quot;)
+points(log(cv0$lambda), cv0$cvm, pch = 19, col = &quot;blue&quot;)
+legend(&quot;topleft&quot;, legend = c(&quot;alpha= 1&quot;, &quot;alpha= .5&quot;, &quot;alpha 0&quot;), pch = 19, col = c(&quot;red&quot;, &quot;grey&quot;, &quot;blue&quot;))</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="coefficients-upper-and-lower-bounds" class="section level2">
+<h2>coefficients upper and lower bounds</h2>
+<pre class="r"><code>tfit = glmnet(x, y, lower = -.7, upper = .5)
+plot(tfit)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="penalty-factors" class="section level2">
+<h2>penalty factors</h2>
+<pre class="r"><code>p.fac = rep(1, 20)
+p.fac[c(5, 10, 15)] = 0
+pfit = glmnet(x, y, penalty.factor = p.fac)
+plot(pfit, label = TRUE)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="customizing-plots" class="section level2">
+<h2>customizing plots</h2>
+<pre class="r"><code>set.seed(101)
+x = matrix(rnorm(1000), 100, 10)
+y = rnorm(100)
+vn = paste(&quot;var&quot;, 1:10)
+fit = glmnet(x, y)
+plot(fit)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>par(mar = c(4.5,4.5,1,4))
+plot(fit)
+vnat = coef(fit)
+vnat = vnat[-1, ncol(vnat)]
+axis(4, at=vnat, line = .5, label = vn, las = 1, tick = FALSE, cex.axis = 0.5)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>where las = 0, 1, 2, 3; - 0: parallel to the axis; - 1: horizons; - 2: perpendicular to the axis - 3: vertical</p>
+</div>
+<div id="multiresponse-gaussian-family" class="section level1">
+<h1>multiresponse gaussian family</h1>
+<pre class="r"><code>data(MultiGaussianExample)
+
+mfit = glmnet(x, y, family = &quot;mgaussian&quot;)
+plot(mfit, xvar = &quot;lambda&quot;, label = TRUE, type.coef = &quot;2norm&quot;)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>plot(mfit, xvar = &quot;lambda&quot;, label = TRUE, type.coef = &quot;coef&quot;)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-14-2.png" width="672" /><img src="glmnet_linear_files/figure-html/unnamed-chunk-14-3.png" width="672" /><img src="glmnet_linear_files/figure-html/unnamed-chunk-14-4.png" width="672" /><img src="glmnet_linear_files/figure-html/unnamed-chunk-14-5.png" width="672" /></p>
+<pre class="r"><code>predict(mfit, newx = x[1:5, ], s = c(0.1, 0.01))</code></pre>
+<pre><code>## , , 1
+## 
+##              y1         y2         y3       y4
+## [1,] -4.7106263 -1.1634574  0.6027634 3.740989
+## [2,]  4.1301735 -3.0507968 -1.2122630 4.970141
+## [3,]  3.1595229 -0.5759621  0.2607981 2.053976
+## [4,]  0.6459242  2.1205605 -0.2252050 3.146286
+## [5,] -1.1791890  0.1056262 -7.3352965 3.248370
+## 
+## , , 2
+## 
+##              y1         y2         y3       y4
+## [1,] -4.6415158 -1.2290282  0.6118289 3.779521
+## [2,]  4.4712843 -3.2529658 -1.2572583 5.266039
+## [3,]  3.4735228 -0.6929231  0.4684037 2.055574
+## [4,]  0.7353311  2.2965083 -0.2190297 2.989371
+## [5,] -1.2759930  0.2892536 -7.8259206 3.205211</code></pre>
+<pre class="r"><code>cvmfit = cv.glmnet(x, y, family = &quot;mgaussian&quot;)
+plot(cvmfit)</code></pre>
+<p><img src="glmnet_linear_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code>cvmfit$lambda.min</code></pre>
+<pre><code>## [1] 0.04731812</code></pre>
+<pre class="r"><code>cvmfit$lambda.1se</code></pre>
+<pre><code>## [1] 0.1316655</code></pre>
+<div id="session-info" class="section level2">
+<h2>Session Info</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 3.5.2 (2018-12-20)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.6 LTS
+## 
+## Matrix products: default
+## BLAS: /usr/lib/openblas-base/libblas.so.3
+## LAPACK: /usr/lib/libopenblasp-r0.2.18.so
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.utf8         LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=zh_CN.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=zh_CN.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=zh_CN.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] parallel  stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+## [1] doMC_1.3.5       iterators_1.0.10 glmnet_2.0-16    foreach_1.4.4   
+## [5] Matrix_1.2-15   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.0       codetools_0.2-16 lattice_0.20-38  digest_0.6.18   
+##  [5] grid_3.5.2       magrittr_1.5     evaluate_0.12    stringi_1.2.4   
+##  [9] rmarkdown_1.11   tools_3.5.2      stringr_1.3.1    xfun_0.4        
+## [13] yaml_2.2.0       compiler_3.5.2   htmltools_0.3.6  knitr_1.21</code></pre>
+</div>
+</div>
+
+<p>Copyright &copy; 2016-2019 weiya</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
