@@ -380,10 +380,6 @@ X = matrix(rnorm(n * p), nrow = n)
 beta = matrix(c(rep(1, p.true), rep(0, p - p.true)), ncol = 1)
 y = X %*% beta + 3 * rnorm(n)</code></pre>
 <p>We fit two models, one uses the default options, another use <code>penalty.factor=rep(2,5)</code></p>
-<pre class="r"><code>install.packages(&quot;glmnet&quot;)</code></pre>
-<pre><code>## Installing package into &#39;/usr/local/lib/R/site-library&#39;
-## (as &#39;lib&#39; is unspecified)</code></pre>
-<pre><code>## also installing the dependencies &#39;iterators&#39;, &#39;foreach&#39;</code></pre>
 <pre class="r"><code>library(glmnet)</code></pre>
 <pre><code>## Loading required package: Matrix</code></pre>
 <pre><code>## Loading required package: foreach</code></pre>
