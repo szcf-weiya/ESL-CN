@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="weiya" />
+
+
+<title>Resampling Methods</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="mathjax.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rmd Gallery</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="https://esl.hohoweiya.xyz">ESL CN</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Resampling Methods</h1>
+<h4 class="author"><em>weiya</em></h4>
+<h4 class="date"><em>April 28, 2017 (update: February 27, 2019)</em></h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#resampling-methods">Resampling Methods</a></li>
+<li><a href="#cross-validation">Cross-Validation</a><ul>
+<li><a href="#the-validation-set-approach">The Validation Set Approach</a></li>
+</ul></li>
+<li><a href="#bootstrap">Bootstrap</a><ul>
+<li><a href="#example">Example</a></li>
+</ul></li>
+<li><a href="#lab">Lab</a><ul>
+<li><a href="#the-validation-set-approach-1">The Validation Set Approach</a></li>
+<li><a href="#bootstrap-1">Bootstrap</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="resampling-methods" class="section level2">
+<h2>Resampling Methods</h2>
+<p><strong>Resampling methods</strong> involve repeatedly drawing samples from a training set and refitting a model of interest on each sample in order to obtain additional information about the fitted model.</p>
+<p>estimate the variability of a linear regression fit:</p>
+<ul>
+<li>repeatedly draw different samples from the training data</li>
+<li>fit a linear regression to each new sample</li>
+<li>examine the extent to which the resulting fits differ</li>
+</ul>
+<p>two of the most commonly used resampling methods</p>
+<ul>
+<li>cross-validation</li>
+<li>bootstrap</li>
+</ul>
+</div>
+<div id="cross-validation" class="section level2">
+<h2>Cross-Validation</h2>
+<div id="the-validation-set-approach" class="section level3">
+<h3>The Validation Set Approach</h3>
+<p>It involves randomly dividing the available set of observations into two parts, a training set and a validation set or hold-out set.</p>
+<ul>
+<li>LOOCV</li>
+<li><span class="math inline">\(k\)</span>-fold CV</li>
+</ul>
+<div id="remark" class="section level4">
+<h4>Remark:</h4>
+<ul>
+<li>When we examine real data, we do not know the true test MSE, and so it is difficult to determine the accuracy of the cross-validation estimate</li>
+<li>If we examine simulated data, then we can compute the true test MSE, and can thereby evaluate the accuracy of our cross-validation results.</li>
+</ul>
+</div>
+<div id="our-goal" class="section level4">
+<h4>our goal</h4>
+<p>determine how well a given statistical learning procedure can be expected to perform on independent data; in this case, the actual estimate of the test MSE is of interest. we are interested only in the location of the minimum point in the estimated test MSE curve.</p>
+</div>
+</div>
+</div>
+<div id="bootstrap" class="section level2">
+<h2>Bootstrap</h2>
+<p>can be used to estimate the standard errors of the coefficients from a linear regression fit</p>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>two financial assets that yield returns of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span></p>
+<p><span class="math inline">\(\alpha X+(1-\alpha)Y\)</span>, where</p>
+<p><span class="math display">\[
+\alpha = \frac{\sigma_Y^2-\sigma_{XY}}{\sigma_X^2+\sigma^2_Y-2\sigma_{XY}}
+\]</span></p>
+<p>we want to estimate</p>
+<p><span class="math display">\[
+\hat\alpha = \frac{\hat\sigma_Y^2-\hat\sigma_{XY}}{\hat\sigma_X^2+\hat\sigma^2_Y-2\hat\sigma_{XY}}
+\]</span></p>
+<p><span class="math display">\[
+SE_B(\hat\alpha)=\sqrt{\frac{1}{B-1}\sum\limits_{r=1}^B(\alpha^{*r}-\frac{1}{B}\sum\limits_{r&#39;=1}^B\hat\alpha^{*r&#39;})^2}
+\]</span></p>
+<div class="figure">
+<img src="20170428bootstrap.png" />
+
+</div>
+</div>
+</div>
+<div id="lab" class="section level2">
+<h2>Lab</h2>
+<div id="the-validation-set-approach-1" class="section level3">
+<h3>The Validation Set Approach</h3>
+<pre class="r"><code>library(ISLR)
+set.seed(1)
+train = sample(392, 196)
+attach(Auto)</code></pre>
+<pre><code>## The following objects are masked from Auto (pos = 4):
+## 
+##     acceleration, cylinders, displacement, horsepower, mpg, name,
+##     origin, weight, year</code></pre>
+<pre class="r"><code>## linear regression
+lm.fit = lm(mpg ~ horsepower, data = Auto, subset = train)
+mean((mpg - predict(lm.fit, Auto))[-train]^2)</code></pre>
+<pre><code>## [1] 26.14142</code></pre>
+<pre class="r"><code>## polynomial regression
+lm.fit2 = lm(mpg ~ poly(horsepower, 2), data = Auto, subset = train)
+mean((mpg-predict(lm.fit2, Auto))[-train]^2)</code></pre>
+<pre><code>## [1] 19.82259</code></pre>
+<pre class="r"><code>## cubic regression
+lm.fit3 = lm(mpg ~ poly(horsepower, 3), data = Auto, subset = train)
+mean((mpg-predict(lm.fit3, Auto))[-train]^2)</code></pre>
+<pre><code>## [1] 19.78252</code></pre>
+<div id="loocv" class="section level4">
+<h4>LOOCV</h4>
+<pre class="r"><code>library(boot)
+glm.fit = glm(mpg ~ horsepower, data = Auto)
+cv.err = cv.glm(Auto, glm.fit)
+cv.err$delta</code></pre>
+<pre><code>## [1] 24.23151 24.23114</code></pre>
+<p>It would return a vector of length two. The first component is the raw cross-validation estimate of prediction error. The second component is the adjusted cross-validation estimate. The adjustment is designed to compensate for the bias introduced by not using leave-one-out cross-validation.</p>
+<pre class="r"><code>cv.error = rep(0, 5)
+for (i in 1:5){
+  glm.fit = glm(mpg ~ poly(horsepower, i), data = Auto)
+  cv.error[i] = cv.glm(Auto, glm.fit)$delta[1]
+}
+cv.error</code></pre>
+<pre><code>## [1] 24.23151 19.24821 19.33498 19.42443 19.03321</code></pre>
+</div>
+<div id="k-fold-cv" class="section level4">
+<h4><span class="math inline">\(k\)</span>-fold CV</h4>
+<pre class="r"><code>set.seed(17)
+cv.error.10 = rep(0, 10)
+for (i in 1:10){
+  glm.fit = glm(mpg~poly(horsepower, i), data = Auto)
+  cv.error.10[i] = cv.glm(Auto, glm.fit, K = 10)$delta[1]
+}
+cv.error.10</code></pre>
+<pre><code>##  [1] 24.20520 19.18924 19.30662 19.33799 18.87911 19.02103 18.89609
+##  [8] 19.71201 18.95140 19.50196</code></pre>
+</div>
+</div>
+<div id="bootstrap-1" class="section level3">
+<h3>Bootstrap</h3>
+<div id="estimating-the-accuracy-of-a-statistic-of-interest" class="section level4">
+<h4>Estimating the Accuracy of a Statistic of Interest</h4>
+<p>Two steps:</p>
+<ol style="list-style-type: decimal">
+<li>create a function that computes the statistic of interest</li>
+<li>use the <code>boot()</code> function, which is part of the boot library, to perform the bootstrap by repeatedly sampling observations from the data set with replacement.</li>
+</ol>
+<pre class="r"><code>alpha.fn = function(data, index){
+  X = data$X[index]
+  Y = data$Y[index]
+  return((var(Y)-cov(X,Y))/(var(X)+var(Y)-2*cov(X,Y)))
+}
+alpha.fn(Portfolio, 1:100)</code></pre>
+<pre><code>## [1] 0.5758321</code></pre>
+<pre class="r"><code>set.seed(1)
+alpha.fn(Portfolio, sample(100, 100, replace = T))</code></pre>
+<pre><code>## [1] 0.5963833</code></pre>
+<pre class="r"><code>boot(Portfolio, alpha.fn, R = 1000)</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Portfolio, statistic = alpha.fn, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##      original        bias    std. error
+## t1* 0.5758321 -7.315422e-05  0.08861826</code></pre>
+</div>
+<div id="estimating-the-accuracy-of-a-linear-regression-model" class="section level4">
+<h4>Estimating the Accuracy of a Linear Regression Model</h4>
+<p>The bootstrap approach can be used to assess the variability of the coefficient estimates and predictions from a statistical learning method.</p>
+<pre class="r"><code>boot.fn = function(data, index)
+  return(coef(lm(mpg~horsepower, data = data, subset = index)))
+
+boot.fn(Auto, 1:392)</code></pre>
+<pre><code>## (Intercept)  horsepower 
+##  39.9358610  -0.1578447</code></pre>
+<pre class="r"><code>set.seed(1)
+boot.fn(Auto, sample(392, 392, replace = T))</code></pre>
+<pre><code>## (Intercept)  horsepower 
+##  38.7387134  -0.1481952</code></pre>
+<pre class="r"><code>boot(Auto, boot.fn, 1000)</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Auto, statistic = boot.fn, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##       original        bias    std. error
+## t1* 39.9358610  0.0296667441 0.860440524
+## t2* -0.1578447 -0.0003113047 0.007411218</code></pre>
+<pre class="r"><code>summary(lm(mpg~horsepower, data = Auto))$coef</code></pre>
+<pre><code>##               Estimate  Std. Error   t value      Pr(&gt;|t|)
+## (Intercept) 39.9358610 0.717498656  55.65984 1.220362e-187
+## horsepower  -0.1578447 0.006445501 -24.48914  7.031989e-81</code></pre>
+<ul>
+<li>although the formula for the standard errors do not rely on the linear model being correct, the estimate for <span class="math inline">\(\sigma^2\)</span> does.</li>
+<li>the standard formulas assume (somewhat unrealistically) that the <span class="math inline">\(x_i\)</span> are fixed, and all the variability comes from the variation in the errors <span class="math inline">\(\epsilon_i\)</span>. The bootstrap approach does not rely on any of these assumptions</li>
+</ul>
+<pre class="r"><code>boot.fn = function(data, index)
+coef(lm(mpg~horsepower+I(horsepower^2), data = data, subset = index))
+set.seed(1)
+boot(Auto, boot.fn, 1000)</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Auto, statistic = boot.fn, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##         original        bias     std. error
+## t1* 56.900099702  6.098115e-03 2.0944855842
+## t2* -0.466189630 -1.777108e-04 0.0334123802
+## t3*  0.001230536  1.324315e-06 0.0001208339</code></pre>
+<pre class="r"><code>summary(lm(mpg~horsepower+I(horsepower^2), data = Auto))$coef</code></pre>
+<pre><code>##                     Estimate   Std. Error   t value      Pr(&gt;|t|)
+## (Intercept)     56.900099702 1.8004268063  31.60367 1.740911e-109
+## horsepower      -0.466189630 0.0311246171 -14.97816  2.289429e-40
+## I(horsepower^2)  0.001230536 0.0001220759  10.08009  2.196340e-21</code></pre>
+</div>
+</div>
+</div>
+
+<p>Copyright &copy; 2016-2019 weiya</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

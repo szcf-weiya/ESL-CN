@@ -4,6 +4,8 @@ title: "Rmd Gallery"
 
 Here are my rmarkdown notes:
 
+- [PCA Practice](pca-practice.html)
 - [Overview of `glmnet`](glmnet.html)
 - [`Glmnet` for Linear Regression](glmnet_linear.html)
 - [Tree-Based Methods](tree-based-methods.html)
+- [Resampling Methods](resampling-methods.html)
