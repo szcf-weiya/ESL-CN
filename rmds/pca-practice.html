@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="weiya" />
+
+
+<title>PCA Practice</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="mathjax.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rmd Gallery</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="https://esl.hohoweiya.xyz">ESL CN</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">PCA Practice</h1>
+<h4 class="author"><em>weiya</em></h4>
+<h4 class="date"><em>March 3, 2019</em></h4>
+
+</div>
+
+
+<p>对 R 内置的数据集 <code>USArrests</code> 演示主成分的使用方法。</p>
+<p>数据包含 50 个州，</p>
+<pre class="r"><code>states = row.names(USArrests)
+states</code></pre>
+<pre><code>##  [1] &quot;Alabama&quot;        &quot;Alaska&quot;         &quot;Arizona&quot;        &quot;Arkansas&quot;      
+##  [5] &quot;California&quot;     &quot;Colorado&quot;       &quot;Connecticut&quot;    &quot;Delaware&quot;      
+##  [9] &quot;Florida&quot;        &quot;Georgia&quot;        &quot;Hawaii&quot;         &quot;Idaho&quot;         
+## [13] &quot;Illinois&quot;       &quot;Indiana&quot;        &quot;Iowa&quot;           &quot;Kansas&quot;        
+## [17] &quot;Kentucky&quot;       &quot;Louisiana&quot;      &quot;Maine&quot;          &quot;Maryland&quot;      
+## [21] &quot;Massachusetts&quot;  &quot;Michigan&quot;       &quot;Minnesota&quot;      &quot;Mississippi&quot;   
+## [25] &quot;Missouri&quot;       &quot;Montana&quot;        &quot;Nebraska&quot;       &quot;Nevada&quot;        
+## [29] &quot;New Hampshire&quot;  &quot;New Jersey&quot;     &quot;New Mexico&quot;     &quot;New York&quot;      
+## [33] &quot;North Carolina&quot; &quot;North Dakota&quot;   &quot;Ohio&quot;           &quot;Oklahoma&quot;      
+## [37] &quot;Oregon&quot;         &quot;Pennsylvania&quot;   &quot;Rhode Island&quot;   &quot;South Carolina&quot;
+## [41] &quot;South Dakota&quot;   &quot;Tennessee&quot;      &quot;Texas&quot;          &quot;Utah&quot;          
+## [45] &quot;Vermont&quot;        &quot;Virginia&quot;       &quot;Washington&quot;     &quot;West Virginia&quot; 
+## [49] &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
+<p>有四个特征</p>
+<pre class="r"><code>names(USArrests)</code></pre>
+<pre><code>## [1] &quot;Murder&quot;   &quot;Assault&quot;  &quot;UrbanPop&quot; &quot;Rape&quot;</code></pre>
+<p>先计算下这四个变量的均值和方差，可以发现差异很大</p>
+<pre class="r"><code>apply(USArrests, 2, mean)</code></pre>
+<pre><code>##   Murder  Assault UrbanPop     Rape 
+##    7.788  170.760   65.540   21.232</code></pre>
+<pre class="r"><code>apply(USArrests, 2, var)</code></pre>
+<pre><code>##     Murder    Assault   UrbanPop       Rape 
+##   18.97047 6945.16571  209.51878   87.72916</code></pre>
+<p>所以对数据进行 scale 是很必要的，不然大部分主成分都会被 <code>Assault</code> 主导。采用下面命令进行主成分，</p>
+<pre class="r"><code>pr.out = prcomp(USArrests, scale = TRUE)</code></pre>
+<p><code>prcomp()</code> 默认会对数据中心化，但只有指定 <code>scale=TRUE</code> 才能对数据方差进行标准化（标准差为 1）。返回结果中包含以下变量</p>
+<pre class="r"><code>names(pr.out)</code></pre>
+<pre><code>## [1] &quot;sdev&quot;     &quot;rotation&quot; &quot;center&quot;   &quot;scale&quot;    &quot;x&quot;</code></pre>
+<p>其中 <code>center</code> 和 <code>scale</code> 对应进行中心化和标准化时变量的均值和标准差。<code>rotation</code> 返回主成分载荷。注意到一般会有 <span class="math inline">\(\min(n-1,p)\)</span> 个主成分。</p>
+<p>我们不需要另外计算 scores，因为 <code>pr.out$x</code> 就是 scores。</p>
+<p>利用下面命令可以画出前两个主成分图象，</p>
+<pre class="r"><code>biplot(pr.out, scale = 0)</code></pre>
+<p><img src="pca-practice_files/figure-html/unnamed-chunk-6-1.png" width="1344" /></p>
+<p>下面计算每个主成分解释的方差比例</p>
+<pre class="r"><code>pr.var = pr.out$sdev^2
+pve = pr.var / sum(pr.var)</code></pre>
+<p>然后绘制 <strong>方差解释比例 (PVE)</strong> 及 <strong>累计方差解释比例 (cumulative PVE)</strong>，</p>
+<pre class="r"><code>plot(pve, xlab = &quot;PC&quot;, ylab = &quot;PVE&quot;, ylim = c(0, 1), type = &#39;b&#39;)</code></pre>
+<p><img src="pca-practice_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>plot(cumsum(pve), xlab = &quot;PC&quot;, ylab = &quot;CPVE&quot;, ylim = c(0,1), type = &#39;b&#39;)</code></pre>
+<p><img src="pca-practice_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><a href="https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf">James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (Eds.). (2013). An introduction to statistical learning: with applications in R. New York: Springer.</a></p>
+</div>
+
+<p>Copyright &copy; 2016-2019 weiya</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
