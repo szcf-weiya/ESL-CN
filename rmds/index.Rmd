@@ -4,15 +4,9 @@ title: "Rmd Gallery"
 
 Here are my rmarkdown notes:
 
-## Statistical Learning
-
 - [PCA Practice](pca-practice.html)
 - [Clustering Practice](cluster-practice.html)
 - [Overview of `glmnet`](glmnet.html)
 - [`Glmnet` for Linear Regression](glmnet_linear.html)
 - [Tree-Based Methods](tree-based-methods.html)
 - [Resampling Methods](resampling-methods.html)
-
-## Others
-
-- [Rstan Practice](rstan.Rmd)
