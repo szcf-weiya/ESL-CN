@@ -1,0 +1,83 @@
+---
+title: "Rstan Practice"
+author: "weiya"
+date: "March 6, 2019"
+output: html_document
+---
+
+```{r}
+set.seed(1234)
+N = 250
+K = 3
+covariates = replicate(K, rnorm(n=N))
+colnames(covariates) = c('X1', 'X2', 'X3')
+X = cbind(Intercept=1, covariates)
+
+coefs = c(5, .2, -1.5, .9)
+mu = X %*% coefs
+sigma = 2
+y = rnorm(N, mu, sigma)
+
+modlm = lm(y~., data = data.frame(X[,-1]))
+summary(modlm)
+```
+
+Time for Stan.
+
+```{r}
+# create the data list object for stan input
+dat = list(N = N, K = ncol(X), y=y, X=X)
+# create the stan model object using Stan's syntax
+stanmodelcode = "
+data {
+  int<lower=1> N;
+  int<lower=1> K;
+  matrix[N, K] X;
+  vector[N] y;
+}
+parameters {
+  vector[K] beta;
+  real<lower=0> sigma;
+}
+model {
+  vector[N] mu;
+  mu = X * beta;
+  // priors
+  beta ~ normal(0, 10);
+  sigma ~ cauchy(0, 5);
+  // likelihood
+  y ~ normal(mu, sigma);
+}
+"
+```
+
+Run the stan model
+
+```{r}
+library(rstan)
+
+### run the model and examine results
+fit = stan(model_code = stanmodelcode,
+           data = dat,
+           iter = 5000,
+           warmup = 2500,
+           thin = 10,
+           chains = 4)
+# summary
+print(fit, pars = c('beta', 'sigma'), digits = 3, probs = c(.025, .5, .975))
+# visualize
+stan_trace(fit, pars = c('beta[4]'))
+```
+
+Diagnostics with `coda` package:
+
+```{r, fig.width=16, fig.height=20}
+library(coda)
+betas = extract(fit, pars='beta')$beta
+betas.mcmc = as.mcmc(betas)
+plot(betas.mcmc)
+```
+
+## Reference
+
+[Rstan: Regression Models](https://m-clark.github.io/bayesian-basics/models.html)
