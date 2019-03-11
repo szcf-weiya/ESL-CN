@@ -3380,7 +3380,7 @@
 </tr>
 </tbody>
 </table>
-<p>通过保留一部分预测变量而丢弃剩余的变量，<strong>子集选择 (subset selection)</strong> 可得到一个可解释的、预测误差可能比全模型低的模型。然而，因为这是一个离散的过程（变量不是保留就是丢弃），所以经常表现为高方差，因此不会降低全模型的预测误差。而<strong>收缩方法 (shrinkage methods)</strong> 更加连续，因此不会受<strong>高易变性 (high variability)</strong> 太大的影响。</p>
+<p>通过保留一部分预测变量而丢弃剩余的变量，<strong>子集选择 (subset selection)</strong> 可得到一个可解释的、预测误差可能比全模型低的模型。然而，因为这是一个离散的过程（变量不是保留就是丢弃），所以经常表现为高方差，因此不会降低全模型的预测误差。而<strong>收缩方法 (shrinkage methods)</strong> 更加连续，因此不会受 <strong>高易变性 (high variability)</strong> 太大的影响。</p>
 <h2 id="_1">岭回归<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><strong>岭回归 (Ridge regression)</strong> 根据回归系数的大小加上惩罚因子对它们进行收缩。岭回归的系数使得带惩罚的残差平方和最小</p>
 <p>
@@ -3649,21 +3649,21 @@ M=U_n\Sigma_nV^T
 <p>图3.13 $q=1.2$ 时 $\sum_j\vert\beta_j\vert^q$ 为常数值的轮廓线（左图）以及 $\alpha=0.2$ 时弹性网惩罚 $\sum_j(\alpha\beta_j^2+(1-\alpha)\vert\beta_j\vert)$ 为常数值的轮廓线（右图）。尽管看起来很相似，弹性网有尖角（不可导），而 $q=1.2$ 的惩罚不会有尖角。</p>
 </blockquote>
 <h2 id="_2">最小角回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>最小角回归（LAR）是相对较新的方法（Efron et al., 2004<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>），而且可以看成是一种向前逐步回归（3.3.2节）的“民主”版本。正如我们所看到的，LAR 与 lasso 联系紧密，并且事实上提供了如图 3.10 所示的计算整个 lasso 路径的非常有效的算法。</p>
+<p><strong>最小角回归 (LAR)</strong> 是相对较新的方法 (Efron et al., 2004<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>)，而且可以看成是一种向前逐步回归（3.3.2 节）的“民主 (democratic)”版本。正如我们将看到的，LAR 与 lasso 联系紧密，并且事实上提供了如图 3.10 所示的计算整个 lasso 路径的非常有效的算法。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>在 Efron 的论文中，最小角回归缩写为 LARS（S 表示 “Lasso” 和 “Stagewise”），我们这里仍以 ESL 书上的缩写为准——LAR</p>
+<p>在 Efron 的论文中，最小角回归缩写为 LARS，我们这里仍以 ESL 书上的缩写为准——LAR</p>
 </div>
-<p>向前逐步回归逐步建立了一个模型，每次添加一个变量。每一步，它选出最好的变量加入活跃集，然后更新最小二乘来加入所有的活跃变量。</p>
-<p>最小角回归采用类似的策略，但是仅仅加入一个变量应有的程度。第一步它确定与响应变量最相关的变量。不是完全的拟合该变量，LAR 使得该变量的系数向最小二乘值连续变化（使得它与进化的残差之间的相关系数绝对值降低）。只要其他变量与残差的相关性与该变量和残差的相关性相等，则该过程暂停。第二个变量加入活跃集，然后它们的系数一起以保持相关性连接以及降低的方式变化。这个过程一直继续直到所有的变量都在模型中，然后在全最小二乘拟合处停止。算法 3.2 给出了详细过程。第 5 步的终止条件需要一些解释。如果 $p &gt;N-1$，LAR 算法经过 $N-1$ 步达到 0 残差解（$-1$ 是因为我们已经对数据进行了中心化）</p>
+<p>向前逐步回归逐步建立模型，每次添加一个变量。每一步，它选出最好的变量加入活跃集，然后更新最小二乘来加入所有的活跃变量。</p>
+<p>最小角回归采用类似的策略，但是仅仅加入一个变量应有的程度。第一步它确定与响应变量最相关的变量。不是完全的拟合该变量，LAR 使得该变量的系数向最小二乘值连续变化（使得它与进化的残差之间的相关系数绝对值降低）。只要其他变量与残差的相关性与该变量和残差的相关性相等，则该过程暂停。第二个变量加入活跃集，然后它们的系数一起以保持相关性相等并降低的方式变化。这个过程一直继续直到所有的变量都在模型中，然后在全最小二乘拟合处停止。算法 3.2 给出了详细过程。第 5 步的终止条件需要一些解释。如果 $p &gt;N-1$，LAR 算法经过 $N-1$ 步达到 0 残差解（$-1$ 是因为我们已经对数据进行了中心化）</p>
 <p><img alt="" src="../../img/03/Alg3.2.png" /></p>
 <hr />
 <p><strong>算法 3.2</strong> 最小角回归</p>
 <hr />
 <ol>
-<li>对预测变量进行标准化处理得到零均值和标准差。从残差向量$\mathbf{r=y-\bar{y}},\beta_1,\ldots,\beta_p=0$ 开始。</li>
+<li>对预测变量进行标准化处理得到零均值和单位范数。以残差向量 $\mathbf{r=y-\bar{y}},\beta_1,\ldots,\beta_p=0$ 开始。</li>
 <li>找出与 $\mathbf{r}$ 最相关的预测变量 $\mathbf x_j$</li>
-<li>从 0 开始移动 $\beta_j$ 一直到最小二乘系数 $\langle\mathbf x_j, \mathbf r\rangle$，直到存在其它的预测变量$\mathbf x_k$ 使得其与当前残差的相关性等于 $\mathbf x_j$ 与当前残差的相关性。</li>
+<li>从 0 开始移动 $\beta_j$ 一直到最小二乘系数 $\langle\mathbf x_j, \mathbf r\rangle$，直到存在其它的预测变量 $\mathbf x_k$ 使得其与当前残差的相关性等于 $\mathbf x_j$ 与当前残差的相关性。</li>
 <li>在由当前残差在 $(\mathbf x_j,\mathbf x_k)$ 上的联合最小二乘系数方向上移动 $\beta_j$ 和 $\beta_k$，直到存在其它的预测变量 $x_l$ 与当前残差的相关性和当前残差与 $(\mathbf x_j,\mathbf x_k)$ 的相关性相等。</li>
 <li>按这种方式继续直到所有的 $p$ 个预测变量加入到模型中。经过 $\min(N-1, p)$ 步，我们达到了全最小二乘的解。</li>
 </ol>
@@ -3684,7 +3684,12 @@ M=U_n\Sigma_nV^T
 <p class="admonition-title">weiya 注：Ex. 3.23</p>
 <p>已解决，具体证明过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/100">Issue 100: Ex. 3.23</a>。起初翻译时，对 tied 的理解不够，通过求解该练习题，认为 tied 意思其实就是<strong>各个预测变量与残差之间的相关系数保持相等</strong>。</p>
 </div>
-<p>如果该步的开始拟合向量为 $\hat{\mathbf f}_k$，则迭代为 $\hat{\mathbf f}_k(\alpha)=\mathbf f_k+\alpha\cdot\mathbf u_k$，其中 $\mathbf u_k=\mathbf X_{\cal A_k}\delta_k$ 是新的拟合方向。“最小角”由该过程的几何解释得到；$\mathbf u_k$ 使得活跃集 ${\cal A}_k $中预测变量间的角度最小（<a href="https://github.com/szcf-weiya/ESL-CN/issues/101">练习 3.24</a>）。图 3.14 使用模拟数据显示了相关系数的绝对值下降以及每一步 LAR 算法中变量进入的顺序。</p>
+<p>如果该步的开始拟合向量为 $\hat{\mathbf f}_k$，则迭代为 $\hat{\mathbf f}_k(\alpha)=\mathbf f_k+\alpha\cdot\mathbf u_k$，其中 $\mathbf u_k=\mathbf X_{\cal A_k}\delta_k$ 是新的拟合方向。“最小角”由该过程的几何解释得到；$\mathbf u_k$ 使得活跃集 ${\cal A}_k $中预测变量间的角度最小（<a href="https://github.com/szcf-weiya/ESL-CN/issues/101">练习 3.24</a>）。</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 3.24</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/101">Issue 101: Ex. 3.24</a>。</p>
+</div>
+<p>图 3.14 使用模拟数据显示了相关系数的绝对值下降以及每一步 LAR 算法中变量进入的顺序。</p>
 <p><img alt="" src="../../img/03/fig3.14.png" /></p>
 <blockquote>
 <p>图 3.14：通过 6 个预测变量的拟合数据集，每一步 LAR 过程中的相关性绝对值的变化。图象上方的标签表示在每一步哪些变量加进了活跃集。步长是用单位 $L_1$ 弧长来测量的。</p>
@@ -3853,7 +3858,7 @@ R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Ver
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-07 13:16:59
+        Last Build Date UTC : 2019-03-11 02:03:51
       </div>
       
         
