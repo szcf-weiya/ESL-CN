@@ -3383,7 +3383,7 @@
 <blockquote>
 <p>图7.8. 在给定任务下某分类器假定的学习曲线：$1-\Err$ 关于训练集大小 $N$ 的曲线。含有 200 个观测的数据集，5 折交叉验证会使用大小为 160 的训练集，这与全数据集表现很相似。然而，含有 50 个观测的数据集，5 折交叉验证会使用大小为 40 的训练集，这会导致预测误差有一个相当大的高估。</p>
 </blockquote>
-<p>总结一下，如果学习曲线在给定训练集大小处有相当大的斜率，5 或 10 折交叉验证将会高估真实的预测误差。实际问题中偏差是否是一个缺点取决于目标。另一方面，舍一法交叉验证有低偏差但会有高方差。总的来说，5 或 10 折交叉验证是推荐的一个好的妥协方式：见Breiman and Spector（1992）<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>以及 Kohavi（1995）<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>。</p>
+<p>总结一下，如果学习曲线在给定训练集大小处有相当大的斜率，5 或 10 折交叉验证将会高估真实的预测误差。实际问题中偏差是否是一个缺点取决于目标。另一方面，舍一法交叉验证有低偏差但会有高方差。总的来说，5 或 10 折交叉验证是推荐的一个好的妥协方式：见Breiman and Spector（1992）<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>以及 Kohavi（1995）<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
 <p>图 7.9 显示了预测误差和从单个训练集估计的 10 折交叉验证曲线，这来源于图 7.3 右下图的情形。这是两个类别的分类问题，采用子集大小为 $p$ 的最优子集回归的线性模型。图中显示了标准差，它是 10 个部分中的单个部分的个体误分类误差率的标准差。两条曲线都在 $p=10$ 处有最小值，尽管 CV 曲线在 10 以后更加平坦。经常将<strong>“一个标准差（one-standard error）”</strong>准则和交叉验证一起使用，我们选择最简模型，它的误差不超过最佳模型的误差以上的一个标准差。这里看起来像是选择 $p=9$ 个预测变量的模型，而真实模型采用 $p=10$。</p>
 <p><img alt="" src="../../img/07/fig7.9.png" /></p>
 <blockquote>
@@ -3480,7 +3480,7 @@ AIC=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon
 </ol>
 <p>在第 2(c) 步的误差估计接着在所有 $K$ 折上进行累积，得到预测误差的交叉验证估计。图 7.10 的下图显示了在某个特定的 $k$ 折样本上，正确步骤的第 2(a) 步选择的 100 个预测变量与类别的相关性。我们看到它们平均值近似为 0，恰恰是它们应该取的值。</p>
 <p>一般地，在多步建模过程中，交叉验证必须应用到整个模型步骤的序列中。特别地，“丢弃”样本必须在任何选择或者过滤之前。有一个条件：初始非监督筛选步骤可以在丢弃样本之前完成。举个例子，开始交叉验证前，我们可以选择 1000 个在 50 个样本上有着最大方差的预测变量。因为这个过滤不涉及到类别，所以它不会给预测变量不公平的好处。</p>
-<p>尽管这点对于读者来说是显然的，但是我们看到这个错误在顶级期刊中发表的文章中犯了很多次。因为大量预测变量在基因和其他领域是很常见的，这个错误潜在的后果也显著增加；见 Ambroise and McLachlan(2002)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> 对这个问题的详细讨论。</p>
+<p>尽管这点对于读者来说是显然的，但是我们看到这个错误在顶级期刊中发表的文章中犯了很多次。因为大量预测变量在基因和其他领域是很常见的，这个错误潜在的后果也显著增加；见 Ambroise and McLachlan(2002)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 对这个问题的详细讨论。</p>
 <h2 id="_2">交叉验证是否真的有用？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们再一次在高维分类问题中检验交叉验证的效果。考虑 $N=20$ 个样本的情形，样本被均分为两个类别，而且有 $p=500$ 个与类别独立的定量变量。同样，任一分类器的真实误差率为 $50\%$。考虑一个简单的单变量分类器：最小化误差率的单分割（“stump”）。Stumps是一棵单分割的树，而且应用在增强方法中（第10章）。一个简单的论断表明交叉验证在这种设定下不会很好地起作用</p>
 <blockquote>
@@ -3501,13 +3501,13 @@ AIC=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon
 <hr />
 <ol>
 <li id="fn:1">
-<p>Breiman, L. and Spector, P. (1992). Submodel selection and evaluation in regression: the X-random case, International Statistical Review 60: 291–319.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Breiman, L. and Spector, P. (1992). Submodel selection and evaluation in regression: the X-random case, International Statistical Review 60: 291–319.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Kohavi, R. (1995). A study of cross-validation and bootstrap for accuracy estimation and model selection, International Joint Conference on Artificial Intelligence (IJCAI), Morgan Kaufmann, pp. 1137–1143.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Kohavi, R. (1995). A study of cross-validation and bootstrap for accuracy estimation and model selection, International Joint Conference on Artificial Intelligence (IJCAI), Morgan Kaufmann, pp. 1137–1143.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Ambroise, C. and McLachlan, G. (2002). Selection bias in gene extraction on the basis of microarray gene-expression data, Proceedings of the National Academy of Sciences 99: 6562–6566.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Ambroise, C. and McLachlan, G. (2002). Selection bias in gene extraction on the basis of microarray gene-expression data, Proceedings of the National Academy of Sciences 99: 6562–6566.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3589,7 +3589,7 @@ AIC=\overline{err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:15
+        Last Build Date UTC : 2019-03-28 08:36:57
       </div>
       
         

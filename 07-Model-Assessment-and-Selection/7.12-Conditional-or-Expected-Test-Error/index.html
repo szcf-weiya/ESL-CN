@@ -3277,7 +3277,7 @@
 <p>图 7.14. 从图 7.3 的右上图得到的 100 个模拟值的条件预测误差 $\Err_{\cal T}$，10 折交叉验证，以及舍一交叉验证的曲线。红色粗线为期望预测误差 $\Err$，而黑色粗线为期望 CV 曲线 $\E_{\cal T}CV_{10}$ 和 $\E_{\cal T}CV_N$。右下图显示了 CV 曲线与条件误差的绝对偏差的期望 $\E_{\cal T}\vert CV_k-\Err_{\cal T}\vert$，$K=10$（蓝色）以及 $K=N$（绿色），并且也显示了 CV 曲线与期望误差之间绝对偏差的期望 $\E_{\cal T}\vert CV_{10}-\Err\vert$（橘黄色）。</p>
 </blockquote>
 <p>对于图 7.3 中右上图的 “reg/linear” 的设定中产生的 100 个训练集中的每一个训练集，图 7.14 展示了条件误差 $\Err_{\cal T}$ 作为子集大小的函数图象（左上图）。接下来两张图显示了 $10$ 折交叉验证和 $N$ 折交叉验证，后者也称作<strong>舍一法 (LOO)</strong>。每张图的红色粗线表示<strong>期望（预测）误差</strong> $\Err$，而黑色粗线表示<strong>期望交叉验证</strong>。右下图则显示了交叉验证近似<strong>条件误差</strong>和<strong>期望误差</strong>的程度。</p>
-<p>可能会认为 $N$ 折交叉验证能很好地近似 $\Err_{\cal T}$，因为它几乎用了整个训练样本来拟合新的测试点。另一方面，可能会期望 $10$ 折交叉验证会很好地估计 $\Err$，因为它平均了不同的训练集。从图中看到估计 $\Err_{\cal T}$ 时 $10$ 折交叉验证比 $N$ 折做得更好，对 $\Err$ 的估计甚至更好。确实如此，两条黑色曲线与红色曲线的相似性表明两个 CV 曲线对 $\Err$ 近似无偏，且 $10$ 折有更小的方差。类似的趋势由 Efron (1983)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> 给出。</p>
+<p>可能会认为 $N$ 折交叉验证能很好地近似 $\Err_{\cal T}$，因为它几乎用了整个训练样本来拟合新的测试点。另一方面，可能会期望 $10$ 折交叉验证会很好地估计 $\Err$，因为它平均了不同的训练集。从图中看到估计 $\Err_{\cal T}$ 时 $10$ 折交叉验证比 $N$ 折做得更好，对 $\Err$ 的估计甚至更好。确实如此，两条黑色曲线与红色曲线的相似性表明两个 CV 曲线对 $\Err$ 近似无偏，且 $10$ 折有更小的方差。类似的趋势由 Efron (1983)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 给出。</p>
 <p><img alt="" src="../../img/07/fig7.15.png" /></p>
 <blockquote>
 <p>图 7.15.  对 100 个训练集的每个 CV 估计误差关于真实条件误差的图象，模拟的设定与图 7.3 的右上图相同。前三张图对应不同的子集大小 $p$，且水平直线和垂直直线是在 $\Err(p)$ 处画的。尽管看起来这些图象没有多大的关联，但是我们从右下图看到大部分是负相关的。</p>
@@ -3293,7 +3293,7 @@
 <hr />
 <ol>
 <li id="fn:1">
-<p>Efron, B. (1983). Estimating the error rate of a prediction rule: some improvements on cross-validation, Journal of the American Statistical Association 78: 316–331.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Efron, B. (1983). Estimating the error rate of a prediction rule: some improvements on cross-validation, Journal of the American Statistical Association 78: 316–331.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3375,7 +3375,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:15
+        Last Build Date UTC : 2019-03-28 08:36:57
       </div>
       
         

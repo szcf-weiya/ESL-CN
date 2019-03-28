@@ -3343,7 +3343,7 @@
 <p class="admonition-title">weiya 注：Ex. 4.2</p>
 <p>具体证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/108">Issue 108: Ex. 4.2</a></p>
 </div>
-<p>类似 $\eqref{4.39}$ 的分类器计算输入特征的线性组合并且返回符号，在 1950s 末期称之为<strong>感知器 (perceptrons)</strong> (Rosenblatt,1958<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>) 。感知器是 1980s 和 1990s 神经网络模型的基础。</p>
+<p>类似 $\eqref{4.39}$ 的分类器计算输入特征的线性组合并且返回符号，在 1950s 末期称之为<strong>感知器 (perceptrons)</strong> (Rosenblatt,1958<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>) 。感知器是 1980s 和 1990s 神经网络模型的基础。</p>
 <p>在我们继续之前，稍微岔开去回顾一些向量代数的知识。图 4.15 描述了由等式 $f(x)=\beta_0+\beta^Tx=0$ 定义的超平面或仿射集$L$；因为我们是在 $R^2$ 空间中，所以这是一条直线。这里我们列出一些性质：</p>
 <ol>
 <li>对于在 $L$ 中的两点 $x_1$ 和 $x_2$，$\beta^T(x_1-x_2)=0$，因此 $L$ 表面的 法向量为$\beta^*=\beta/\Vert\beta\Vert$</li>
@@ -3387,7 +3387,7 @@ D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\tag{4.41}\lab
 </script>
 </p>
 <p>这里 $\rho$ 是学习速率，不失一般性这种情形下可以取1。如果类别是线性可分的，则可以证明在有限步后该算法收缩到一个分离超平面（<a href="https://github.com/szcf-weiya/ESL-CN/issues/109">练习 4.6</a>）。图 4.14 显示了对一个简单问题的两个解，每个都是从不同的随机猜测开始的。</p>
-<p>Ripley (1996)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 总结了该算法有以下一些问题：</p>
+<p>Ripley (1996)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 总结了该算法有以下一些问题：</p>
 <ul>
 <li>当数据是线性可分时，有许多解，且解基于初始值的设定。</li>
 <li>“有限”步可以非常大。差异越小，需要花的时间就越久。</li>
@@ -3396,7 +3396,7 @@ D(\beta,\beta_0)=-\sum\limits_{i\in\cal M}y_i(x_i^T\beta+\beta_0),\tag{4.41}\lab
 <p>第二个问题经常通过不在原空间中寻找超平面消除，而在一个通过构造在原空间中变量的基函数变换得到的增广空间中。这类似于在多项式回归问题中为了将残差降为 0 而使得阶数特别大。完美的分离不总是可以达到：举个例子，如果来自两个类别的观测值有一个共同输入。当然或许也不需要完美分割，因为得到的模型很可能是过拟合从而不能很好地进行推广。我们将在下一节的最后回到这个问题的讨论。</p>
 <p>对于第一个问题的优雅解决方式是对分离超平面加上额外的约束条件。</p>
 <h2 id="452">4.5.2 最优分离超平面<a class="headerlink" href="#452" title="Permanent link">&para;</a></h2>
-<p>最优分离超平面将两个类别分离开且使得超平面到每一个类别最近点的距离最大 (Vapnik, 1996)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>。这样不仅得到分离超平面问题的唯一解，而且通过使得在训练集上两个类别的<strong>边缘 (margin)</strong> 最大，这使得在测试集上有更好的分类表现。</p>
+<p>最优分离超平面将两个类别分离开且使得超平面到每一个类别最近点的距离最大 (Vapnik, 1996)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>。这样不仅得到分离超平面问题的唯一解，而且通过使得在训练集上两个类别的<strong>边缘 (margin)</strong> 最大，这使得在测试集上有更好的分类表现。</p>
 <p>我们需要推广准则 $\eqref{4.41}$。考虑下面的优化问题</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3521,13 +3521,13 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
 <hr />
 <ol>
 <li id="fn:1">
-<p>Rosenblatt, F. (1958). The perceptron: a probabilistic model for information storage and organization in the brain, Psychological Review 65: 386–408.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Rosenblatt, F. (1958). The perceptron: a probabilistic model for information storage and organization in the brain, Psychological Review 65: 386–408.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Ripley, B. D. (1996). Pattern Recognition and Neural Networks, Cambridge University Press.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Ripley, B. D. (1996). Pattern Recognition and Neural Networks, Cambridge University Press.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Vapnik, V. (1996). The Nature of Statistical Learning Theory, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Vapnik, V. (1996). The Nature of Statistical Learning Theory, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3609,7 +3609,7 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:14
+        Last Build Date UTC : 2019-03-28 08:36:55
       </div>
       
         

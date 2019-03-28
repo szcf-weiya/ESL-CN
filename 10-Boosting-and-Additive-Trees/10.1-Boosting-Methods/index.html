@@ -3317,7 +3317,7 @@
 <p>@2017.08.26 很早以前，略读了杨灿学长的<a href="https://cosx.org/2011/12/stories-about-statistical-learning/">《统计学习那些事》</a>，但其实没什么感受，因为当时也没看到boosting，对lasso了解也不多。而当我早早完成boosting的翻译后，又一直搁着没有再次阅读学长的文章。杨灿学长用风趣的笔墨从lasso和boosting的发展来看统计学习的那些事，个人觉得对于了解统计大佬们开创这些“绝世武功”的历史进程是很有帮助的。杨灿学长的<a href="https://cosx.org/2014/04/lmmandme">《昔日因，今日意》</a>和<a href="https://cosx.org/2012/05/chase-after-eb/">《那些年，我们一起追的 EB》</a>，我也是非常喜欢的，相信看了这么有趣的标题，不去拜读都不行啊hhh<img alt="😀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f600.svg" title=":grinning:" />在今年北京R会议上还听了杨灿学长的汇报，报告的主题也是跟boosting有关，当时还激动地跟他互动了一下，提了几个问题 <img alt="✋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/270b.svg" title=":raised_hand:" />。也是从那时候才知道，杨灿学长原来还是校友。</p>
 </div>
 <p>boosting是在最近20年内提出的最有力的学习方法。最初是为了分类问题而设计的，但是我们将在这章中看到，它也可以很好地扩展到回归问题上。boosting的动机是集合许多弱学习的结果来得到有用的“committee”。从这点看boosting与bagging以及其他的基于committee的方式（8.8节）类似。然而，我们应该看到这种联系最多是表面上的，boosting在根本上存在不同。</p>
-<p>我们以最流行的被称为“AdaBoost.M1”的boosting算法开始，这归功于Freund and Schapire (1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。考虑两个类别的分类问题，输出变量编码为$Y\in\{-1,1\}$。给定预报向量$X$，分类器$G(X)$在二值$\{-1,1\}$中取一个值得到一个预测。在训练样本上的误差率是</p>
+<p>我们以最流行的被称为“AdaBoost.M1”的boosting算法开始，这归功于Freund and Schapire (1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。考虑两个类别的分类问题，输出变量编码为$Y\in\{-1,1\}$。给定预报向量$X$，分类器$G(X)$在二值$\{-1,1\}$中取一个值得到一个预测。在训练样本上的误差率是</p>
 <p>
 <script type="math/tex; mode=display">
 \overline{err}=\frac{1}{N}\sum\limits_{i=1}^NI(y_i\neq G(x_i))
@@ -3338,7 +3338,7 @@ G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\tag{10.1}
 <p>在每步boosting的数据修改时，对每个训练观测$(x_i,y_i),i=1,2,\ldots,N$赋予权重$w_1,w_2,\ldots,w_N$。初始化所有的权重设为$w_i=1/N$，使得第一步以通常的方式对数据进行训练分类器。对每个接下来的迭代$m=2,3,\ldots,M$，单独修改观测的权重，然后将分类算法重新应用到加权观测值上。在第$m$步，上一步中被分类器$G_{m-1}(x)$的误分类的观测值增大了权重，而正确分类的观测值权重降低了。因此当迭代继续，很难正确分类的观测受到越来越大的影响。每个相继的分类器因此被强制集中在上一步误分类的训练数据上。</p>
 <p>算法10.1显示了AdaBoost.M1算法的详细细节。当前的分类器$G_m(x)$由第2(a)行的加权观测值得到。在第2(b)行计算加权误差率。第2(c)行计算赋予$G_m(x)$的权重$\alpha_m$来得到最终的分类器$G(x)$(第3行)。每个观测的个体权重在第2(d)行进行更新。在导出序列中下一个分类器$G_{m+1}(x)$时，被分类器$G(x)$错误分类的观测值的权重被因子$\exp(\alpha_m)$进行缩放以提高它们的相对影响。</p>
 <p><img alt="" src="../../img/10/alg10.1.png" /></p>
-<p>在Firedman et al.(2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 的工作中，AdaBoost.M1算法也称作“离散 AdaBoost”，因为基分类器$G_m(x)$返回一个离散的类别标签。如果基分类器返回实值预测（如映射到[-1,1]的概率），AdaBoost可以合适地修改（见Firedman et al. (2000)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 的“Real AdaBoost”）</p>
+<p>在Firedman et al.(2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 的工作中，AdaBoost.M1算法也称作“离散 AdaBoost”，因为基分类器$G_m(x)$返回一个离散的类别标签。如果基分类器返回实值预测（如映射到[-1,1]的概率），AdaBoost可以合适地修改（见Firedman et al. (2000)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 的“Real AdaBoost”）</p>
 <p>AdaBoost显著提高非常弱的分类器的效果的能力展现在图10.2中。特征$X_1,\ldots,X_{10}$是标准独立高斯分布，目标$Y$定义如下
 <script type="math/tex; mode=display">
 Y=
@@ -3375,10 +3375,10 @@ the world)。这对于数据挖掘方面的应用尤其如此，本章的后面�
 <hr />
 <ol>
 <li id="fn:1">
-<p>Freund, Y. and Schapire, R. (1997). A decision-theoretic generalization of online learning and an application to boosting, Journal of Computer and System Sciences 55: 119–139.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Freund, Y. and Schapire, R. (1997). A decision-theoretic generalization of online learning and an application to boosting, Journal of Computer and System Sciences 55: 119–139.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Friedman, J., Hastie, T. and Tibshirani, R. (2000). Additive logistic regression: a statistical view of boosting (with discussion), Annals of Statistics 28: 337–307.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Friedman, J., Hastie, T. and Tibshirani, R. (2000). Additive logistic regression: a statistical view of boosting (with discussion), Annals of Statistics 28: 337–307.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3460,7 +3460,7 @@ the world)。这对于数据挖掘方面的应用尤其如此，本章的后面�
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:16
+        Last Build Date UTC : 2019-03-28 08:36:58
       </div>
       
         

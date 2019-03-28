@@ -3368,7 +3368,7 @@
 </tr>
 </tbody>
 </table>
-<p>Ramaswamy et al. (2001)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>提出一个更加困难的微阵列分类问题，涉及 144 个病人的 14 种癌症类型的训练集，以及含有 54 个病人的测试集。已知 16063 个基因的表达值。</p>
+<p>Ramaswamy et al. (2001)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>提出一个更加困难的微阵列分类问题，涉及 144 个病人的 14 种癌症类型的训练集，以及含有 54 个病人的测试集。已知 16063 个基因的表达值。</p>
 <p><img alt="" src="../../img/18/table18.1.png" /></p>
 <p>表 18.1 显示了通过 8 个不同的分类方法得到的预测结果。每个病人的数据首先经过标准化后使得均值为 0，方差为 1；这似乎提高了整个例子的预测正确性，表明每个基因表达谱的形状是很重要的，而不是表达的绝对水平。在每种情形中，选取正则参数使得交叉验证误差最小，并且展现了每个参数值的测试误差。当有多余一个的正则参数得到最小的交叉验证误差，报告该值对应的测试误差的平均值。</p>
 <p>RDA（正则判别分析），正则多元逻辑斯底回归，以及支持向量机是更复杂的方法，试图研究数据的多变量信息。我们依次描述每个方法，以及一系列正则化方法，包括 $L_1$ 和 $L_2$，以及两个都有的方法。</p>
@@ -3391,7 +3391,7 @@
 </p>
 </div>
 <p>注意到 $\gamma = 0$ 对应对角 LDA，也是最近收缩重心的“无收缩”版本。(18.9) 的收缩形式很像岭回归（<a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">3.4.1 节</a>），将整个特征的协方差矩阵收缩到对角（标量值）矩阵。实际上，将线性判别分析看成是类别响应变量的最优得分的线性回归（见 <a href="">12.6 节</a>的 (12.57)），这个等价性变得更加精确。</p>
-<p>求大型 $p\times p$ 矩阵逆的计算负担通过采用 18.3.5 节的方法可以克服。$\gamma$ 的值通过交叉验证取为表 18.1 中第二行的值；所有 $\gamma\in(0.002,0.550)$ 给出了相同的 CV 和测试误差。RDA 进一步的发展，除了协方差矩阵还包括重心的收缩，可以在 Guo et al. (2006)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>的工作中找到。</p>
+<p>求大型 $p\times p$ 矩阵逆的计算负担通过采用 18.3.5 节的方法可以克服。$\gamma$ 的值通过交叉验证取为表 18.1 中第二行的值；所有 $\gamma\in(0.002,0.550)$ 给出了相同的 CV 和测试误差。RDA 进一步的发展，除了协方差矩阵还包括重心的收缩，可以在 Guo et al. (2006)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>的工作中找到。</p>
 <h2 id="_2">二次正则的逻辑斯底回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>逻辑斯底回归（<a href="../../04-Linear-Methods-for-Classification/4.4-Logistic-Regression/index.html">4.4 节</a>）可以用相似的方式进行改进用来处理 $p &gt;&gt; N$ 的情形。在 $K$ 个类别的情形下，我们采用多类别逻辑斯底回归模型 (4.17):</p>
 <p>
@@ -3405,14 +3405,14 @@
 \underset{\{\beta_{0k},\beta_k\}_1^K}{\max}[\sum\limits_{i=1}^N\log\;\Pr(g_i\mid x_i)-\frac{\lambda}{2}\sum\limits_{k=1}^K\Vert\beta_k\Vert]_2^2\tag{18.11}
 </script>
 </p>
-<p>正则化自动解决了参数化中的冗余，并且使得 $\sum_{k=1}^K\hat\beta_{kj}=0,j=1,\ldots,p$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/119">练习 18.3</a>）。注意到常数项 $\beta_{k0}$ 没有正则化（并且应该被设成 0）。结果得到的优化问题是凸的，而且可以通过牛顿算法或者其他数值技巧求解。详细细节在 Zhu and Hastie(2004)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>的工作中给出。Friedman et al.(2010)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup> 提供了计算两个和多个类别逻辑斯底回归模型的正则化路径的软件。表 18.1，第 6 行报告了多重类别逻辑斯底回归模型的结果，称之为“多项式”。可以证明 (Rosset et al., 2004a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>)，对于可分数据，当 $\lambda\rightarrow 0$，正则（两个类别）逻辑斯底回归估计（重标准化）收敛到<strong>最大边界分类器(maximal margin classifier)</strong>（<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">12.2 节</a>）。这给出了支持向量机的一种受欢迎的替代方式，特别是在多重类别的情形中，这将在下面讨论。</p>
+<p>正则化自动解决了参数化中的冗余，并且使得 $\sum_{k=1}^K\hat\beta_{kj}=0,j=1,\ldots,p$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/119">练习 18.3</a>）。注意到常数项 $\beta_{k0}$ 没有正则化（并且应该被设成 0）。结果得到的优化问题是凸的，而且可以通过牛顿算法或者其他数值技巧求解。详细细节在 Zhu and Hastie(2004)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>的工作中给出。Friedman et al.(2010)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 提供了计算两个和多个类别逻辑斯底回归模型的正则化路径的软件。表 18.1，第 6 行报告了多重类别逻辑斯底回归模型的结果，称之为“多项式”。可以证明 (Rosset et al., 2004a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>)，对于可分数据，当 $\lambda\rightarrow 0$，正则（两个类别）逻辑斯底回归估计（重标准化）收敛到<strong>最大边界分类器(maximal margin classifier)</strong>（<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">12.2 节</a>）。这给出了支持向量机的一种受欢迎的替代方式，特别是在多重类别的情形中，这将在下面讨论。</p>
 <h2 id="_3">支持向量分类器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>两个类别情形的支持向量机在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">12.2 节</a>中讨论。当 $p &gt; N$ 时，特别受欢迎，因为一般情形下类别是可以被超平面完全可分的，除非在不同类别中有相同的特征向量。没有任何正则化，支持向量分类器寻找具有最大空白的分离超平面；也就是，超平面得到训练数据之间最大的间距。有点吃惊的是，当 $p &gt;&gt; N$ 时未正则化的支持向量机通常和最优正则版本表现得一样好。过拟合经常似乎不是一个问题，部分是因为误分类损失的不敏感性。</p>
-<p>有许多不同的方式将两个类别的支持向量分类器推广为 $K &gt; 2$ 个类别的情形。在<strong>一对一方法(ovo)</strong>中，我们计算所有的 $\binom{K}{2}$ 成对分类器。对每个测试点，预测类别是在大多数成对比较中获胜的那个。在<strong>一对多方法(ova)</strong>中，每个类别与所有的其他类别在 $K$ 次两类别比较中进行比较。为了对某个测试点分类，我们计算 $K$ 个分类器中的每一个计算置信度（到超平面的符号距离）。胜利者是有最高置信度的类别。最后，Vapnik(1998)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>，Weston and Watins(1999)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup> 提出推广两类别准则 (12.7) 的（有点复杂）多重类别准则。</p>
-<p>Tibshirani and Hastie（2007）<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>提出<strong>边际树(margin tree)</strong>分类器，这是支持向量分类器用在二叉树中，很像在 CART（<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.0-Introduction/index.html">第 9 章</a>）中一样。类别以分层形式进行组织，举个例子，对于将病人分类成不同的癌症类型是很有用的。</p>
-<p>表 18.1 的第三行显示了支持向量机采用 ova 方法的结果，Ramaswamy et al. (2001)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>报告了（并且我们证实了）这个方法对于这个问题表现得很好。误差与第 6 行的误差很相似，正如我们在上一节的最后做出的评论那样。对于 $C &gt; 0.001$，误差率对 $C$ 的选择不是很敏感[式(12.8)的正则化参数]，。因为 $p &gt; N$，支持向量超平面可以通过设置 $C=\infty$ 完美地分离训练数据。</p>
+<p>有许多不同的方式将两个类别的支持向量分类器推广为 $K &gt; 2$ 个类别的情形。在<strong>一对一方法(ovo)</strong>中，我们计算所有的 $\binom{K}{2}$ 成对分类器。对每个测试点，预测类别是在大多数成对比较中获胜的那个。在<strong>一对多方法(ova)</strong>中，每个类别与所有的其他类别在 $K$ 次两类别比较中进行比较。为了对某个测试点分类，我们计算 $K$ 个分类器中的每一个计算置信度（到超平面的符号距离）。胜利者是有最高置信度的类别。最后，Vapnik(1998)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>，Weston and Watins(1999)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 提出推广两类别准则 (12.7) 的（有点复杂）多重类别准则。</p>
+<p>Tibshirani and Hastie（2007）<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>提出<strong>边际树(margin tree)</strong>分类器，这是支持向量分类器用在二叉树中，很像在 CART（<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.0-Introduction/index.html">第 9 章</a>）中一样。类别以分层形式进行组织，举个例子，对于将病人分类成不同的癌症类型是很有用的。</p>
+<p>表 18.1 的第三行显示了支持向量机采用 ova 方法的结果，Ramaswamy et al. (2001)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>报告了（并且我们证实了）这个方法对于这个问题表现得很好。误差与第 6 行的误差很相似，正如我们在上一节的最后做出的评论那样。对于 $C &gt; 0.001$，误差率对 $C$ 的选择不是很敏感[式(12.8)的正则化参数]，。因为 $p &gt; N$，支持向量超平面可以通过设置 $C=\infty$ 完美地分离训练数据。</p>
 <h2 id="_4">特征选择<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>当 $p$ 值很大时，特征选择对于分类器来说是很重要的科学要求。判别分析、逻辑斯底回归，以及支持向量分类器都不能自动表现出特征选择，因为它们都用到了二次正则化。在这些模型中所有特征都有非零权重。举个例子，已经提出的用于特征选择的 Ad-hoc 方法，除掉系数较小的基因，然后重新拟合分类器。这可以用一种向后逐步的方式进行，以最小的权重开始，然后移动到较大的权重上去。这被称作<strong>递归特征消去(recursive feature elimination)</strong>(Guyon et. al，2002<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。在这个例子中，不是很成功；Ramaswamy et al.（2001）<sup id="fnref4:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>称，举个例子，支持向量分类器的正确性随着基因数目（从全集 16063 开始）的下降而退化。这是非常重要的，因为训练样本的数目只有 44 个。我们对这个表现病没有一个解释。</p>
+<p>当 $p$ 值很大时，特征选择对于分类器来说是很重要的科学要求。判别分析、逻辑斯底回归，以及支持向量分类器都不能自动表现出特征选择，因为它们都用到了二次正则化。在这些模型中所有特征都有非零权重。举个例子，已经提出的用于特征选择的 Ad-hoc 方法，除掉系数较小的基因，然后重新拟合分类器。这可以用一种向后逐步的方式进行，以最小的权重开始，然后移动到较大的权重上去。这被称作<strong>递归特征消去(recursive feature elimination)</strong>(Guyon et. al，2002<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)。在这个例子中，不是很成功；Ramaswamy et al.（2001）<sup id="fnref4:1"><a class="footnote-ref" href="#fn:1">1</a></sup>称，举个例子，支持向量分类器的正确性随着基因数目（从全集 16063 开始）的下降而退化。这是非常重要的，因为训练样本的数目只有 44 个。我们对这个表现病没有一个解释。</p>
 <p>本节讨论的三个方法（RDA，LR，SVM）可以修改为用核来拟合非线性判别边界。通常这种方法的目的是增加模型的复杂度。当 $p &gt; &gt; N$，模型已经充分复杂，并且过拟合通常是很危险的。然而尽管高维度，径向核（12.3.3 节）有时在这些高维问题中表现出更好的结果。径向核趋向于抑制相距很远的点之间的内积，反过来导致离群点很鲁棒。这通常发生在高维的情形中，并且或许可以解释积极的结果。我们在表18.1中对 svm 试了一种径向核，但是这种情形下表现不好。</p>
 <h2 id="pn">当 $p&gt;&gt;N$ 时的计算捷径<a class="headerlink" href="#pn" title="Permanent link">&para;</a></h2>
 <p>这一节中讨论的计算技巧可以应用到任何对参数二次正则化的线性模型拟合中。这包含这节中讨论的所有方法，以及其他更多的方法。当 $p &gt; N$ 时，通过在 <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html">14.5 节</a>中介绍的奇异值分解方法，计算可以在 $N$ 维空间中进行，而不是 $p$。几何上直观的解释为：恰恰像三维空间中两点总是在一条直线上一样，在 $p$ 维空间中的 $N$ 个点位于 $(N-1)$ 维仿射子空间中。</p>
@@ -3456,7 +3456,7 @@
 </script>
 于是有 $\hat\beta_0=\hat\theta_0, \hat\beta=\mathbf V\hat\theta$。</p>
 </blockquote>
-<p>这个定理说我们可以用 $N$ 维的向量替换 $p$ 维向量，并且像之前一样进行带惩罚的拟合，但是有更少的预测变量。$N$ 维向量的解 $\hat\theta$ 接着通过简单的矩阵运算转化为 $p$ 维向量的解。这个结果是统计学传说之一，理应当被广泛知道——更多细节详见 Hastie and Tibshirani(2004)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 等人的工作。</p>
+<p>这个定理说我们可以用 $N$ 维的向量替换 $p$ 维向量，并且像之前一样进行带惩罚的拟合，但是有更少的预测变量。$N$ 维向量的解 $\hat\theta$ 接着通过简单的矩阵运算转化为 $p$ 维向量的解。这个结果是统计学传说之一，理应当被广泛知道——更多细节详见 Hastie and Tibshirani(2004)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 等人的工作。</p>
 <p>几何上看，我们把特征旋转到除了前 $N$ 个坐标分量外其余分量都为 0 的坐标系中。这个旋转是允许的，因为二次惩罚在旋转下是不变的，并且线性模型是等价的。</p>
 <p>这个结果可以应用到本章中讨论的许多学习算法，比如正则化（多类别）逻辑斯底回归，线性判别分析（<a href="https://github.com/szcf-weiya/ESL-CN/issues/118">练习 18.6</a>），以及支持向量机。</p>
 <div class="admonition info">
@@ -3470,31 +3470,31 @@
 <hr />
 <ol>
 <li id="fn:1">
-<p>Ramaswamy, S., Tamayo, P., Rifkin, R., Mukherjee, S., Yeang, C., Angelo, M., Ladd, C., Reich, M., Latulippe, E., Mesirov, J., Poggio, T., Gerald, W., Loda, M., Lander, E. and Golub, T. (2001). Multiclass cancer diagnosis using tumor gene expression signature, PNAS 98: 15149–15154.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Ramaswamy, S., Tamayo, P., Rifkin, R., Mukherjee, S., Yeang, C., Angelo, M., Ladd, C., Reich, M., Latulippe, E., Mesirov, J., Poggio, T., Gerald, W., Loda, M., Lander, E. and Golub, T. (2001). Multiclass cancer diagnosis using tumor gene expression signature, PNAS 98: 15149–15154.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Guo, Y., Hastie, T. and Tibshirani, R. (2006). Regularized linear discriminant analysis and its application in microarrays, Biostatistics 8: 86–100.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Guo, Y., Hastie, T. and Tibshirani, R. (2006). Regularized linear discriminant analysis and its application in microarrays, Biostatistics 8: 86–100.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Zhu, J. and Hastie, T. (2004). Classification of gene microarrays by penalized logistic regression, Biostatistics 5(2): 427–443.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Zhu, J. and Hastie, T. (2004). Classification of gene microarrays by penalized logistic regression, Biostatistics 5(2): 427–443.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Friedman, J., Hastie, T. and Tibshirani, R. (2010). Regularization paths for generalized linear models via coordinate descent, Journal of Statistical Software 33(1): 1–22.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Friedman, J., Hastie, T. and Tibshirani, R. (2010). Regularization paths for generalized linear models via coordinate descent, Journal of Statistical Software 33(1): 1–22.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p>Rosset, S., Zhu, J. and Hastie, T. (2004a). Boosting as a regularized path to a maximum margin classifier, Journal of Machine Learning Research 5: 941–973.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>Rosset, S., Zhu, J. and Hastie, T. (2004a). Boosting as a regularized path to a maximum margin classifier, Journal of Machine Learning Research 5: 941–973.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
-<p>Vapnik, V. (1998). Statistical Learning Theory, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p>Vapnik, V. (1998). Statistical Learning Theory, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 <li id="fn:7">
-<p>Weston, J. and Watkins, C. (1999). Multiclass support vector machines, in M. Verleysen (ed.), Proceedings of ESANN99, D. Facto Press, Brussels.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+<p>Weston, J. and Watkins, C. (1999). Multiclass support vector machines, in M. Verleysen (ed.), Proceedings of ESANN99, D. Facto Press, Brussels.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 <li id="fn:8">
-<p>Tibshirani, R. and Hastie, T. (2007). Margin trees for high-dimensional classification, Journal of Machine Learning Research 8: 637–652.&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+<p>Tibshirani, R. and Hastie, T. (2007). Margin trees for high-dimensional classification, Journal of Machine Learning Research 8: 637–652.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 <li id="fn:9">
-<p>Hastie, T. and Tibshirani, R. (2004). Efficient quadratic regularization for expression arrays, Biostatistics 5(3): 329–340. <a href="../../references/hastie_tibs_2004.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+<p>Hastie, T. and Tibshirani, R. (2004). Efficient quadratic regularization for expression arrays, Biostatistics 5(3): 329–340. <a href="../../references/hastie_tibs_2004.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3576,7 +3576,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:19
+        Last Build Date UTC : 2019-03-28 08:37:01
       </div>
       
         

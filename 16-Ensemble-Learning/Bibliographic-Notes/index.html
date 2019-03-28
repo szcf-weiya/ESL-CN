@@ -3259,29 +3259,29 @@
 </tr>
 </tbody>
 </table>
-<p>如在导言中说到的那样，机器学习中的许多新方法都被称为“ensemble”方法。这其中包括 neural networks boosting, bagging 和 随机森林； Dietterich (2000a)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> 调查了基于树的<strong>集成 (ensemble)</strong> 方法。神经网络（<a href="../../11-Neural-Networks/11.1-Introduction/index.html">第 11 章</a>）或许更值得这个名字，因为他们同事学习隐藏单元（基函数）的参数，并且考虑怎样结合他们。Bishop (2006)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 在某些细节上讨论了神经网络，以及贝叶斯观点 (MacKay, 1992<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>; Neal, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>)。支持向量机（<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>）也可以看成是集成方法；它们在高维特征空间中拟合 $L_2$ 正则化模型。Boosting 和 Lasso 通过 $L_1$ 正则化利用稀疏性来解决高维问题，而 SVMs 依赖 $L_2$ 惩罚的“核技巧”的性质。</p>
-<p>C5.0 (Quinlan, 2004<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>) 是一个 committee 树和规则生成包，与 <code>Rulefit</code> 有相同的目标。</p>
-<p>有大量且不同的文献经常被称作“组合分类器”，它在用于混合不同类型的方法的 ad-hoc 模式中大量存在，能够达到更好的性能。有关原则的方法，参见 Kittler et al. (1998)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>.</p>
+<p>如在导言中说到的那样，机器学习中的许多新方法都被称为“ensemble”方法。这其中包括 neural networks boosting, bagging 和 随机森林； Dietterich (2000a)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 调查了基于树的<strong>集成 (ensemble)</strong> 方法。神经网络（<a href="../../11-Neural-Networks/11.1-Introduction/index.html">第 11 章</a>）或许更值得这个名字，因为他们同事学习隐藏单元（基函数）的参数，并且考虑怎样结合他们。Bishop (2006)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 在某些细节上讨论了神经网络，以及贝叶斯观点 (MacKay, 1992<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>; Neal, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>)。支持向量机（<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>）也可以看成是集成方法；它们在高维特征空间中拟合 $L_2$ 正则化模型。Boosting 和 Lasso 通过 $L_1$ 正则化利用稀疏性来解决高维问题，而 SVMs 依赖 $L_2$ 惩罚的“核技巧”的性质。</p>
+<p>C5.0 (Quinlan, 2004<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>) 是一个 committee 树和规则生成包，与 <code>Rulefit</code> 有相同的目标。</p>
+<p>有大量且不同的文献经常被称作“组合分类器”，它在用于混合不同类型的方法的 ad-hoc 模式中大量存在，能够达到更好的性能。有关原则的方法，参见 Kittler et al. (1998)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Dietterich, T. (2000a). Ensemble methods in machine learning, Lecture Notes in Computer Science 1857: 1–15.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Dietterich, T. (2000a). Ensemble methods in machine learning, Lecture Notes in Computer Science 1857: 1–15.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Bishop, C. (2006). Pattern Recognition and Machine Learning, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Bishop, C. (2006). Pattern Recognition and Machine Learning, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>MacKay, D. (1992). A practical Bayesian framework for backpropagation neural networks, Neural Computation 4: 448–472.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>MacKay, D. (1992). A practical Bayesian framework for backpropagation neural networks, Neural Computation 4: 448–472.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Neal, R. (1996). Bayesian Learning for Neural Networks, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Neal, R. (1996). Bayesian Learning for Neural Networks, Springer, New York.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p>Quinlan, R. (2004). C5.0, www.rulequest.com&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>Quinlan, R. (2004). C5.0, www.rulequest.com&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
-<p>Kittler, J., Hatef, M., Duin, R. and Matas, J. (1998). On combining classifiers, IEEE Transaction on Pattern Analysis and Machine Intelligence 20(3): 226–239.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p>Kittler, J., Hatef, M., Duin, R. and Matas, J. (1998). On combining classifiers, IEEE Transaction on Pattern Analysis and Machine Intelligence 20(3): 226–239.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3363,7 +3363,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:19
+        Last Build Date UTC : 2019-03-28 08:37:01
       </div>
       
         

@@ -3327,7 +3327,7 @@ P(G=k\mid X=x)=\frac{\sum_{r=1}^{R_k}\pi_{kr}\phi(X;\mu_{kr},\mathbf \Sigma)\Pi_
 \sum\limits_{k=1}^K\sum\limits_{g_i=k}\log\Big[\sum\limits_{r=1}^{R_k}\pi_{kr}\phi(x_i;\mu_{kr},\mathbf \Sigma)\Pi_k\Big]\tag{12.61}
 </script>
 </p>
-<p>如果直接处理对数中的和，会变成很复杂的优化问题。计算混合分布的极大似然估计的经典的、自然的方法是 EM 算法 (Dempster et al., 1977<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)，它具有良好的收敛性质。EM 在下面两步间轮换：</p>
+<p>如果直接处理对数中的和，会变成很复杂的优化问题。计算混合分布的极大似然估计的经典的、自然的方法是 EM 算法 (Dempster et al., 1977<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)，它具有良好的收敛性质。EM 在下面两步间轮换：</p>
 <ul>
 <li><strong>E-step</strong>：给定当前的参数，对类别 $k$ 的每个观测 ($g_i=k$) 计算其子类 $c_{kr}$ 的 responsibility：
 <script type="math/tex; mode=display">
@@ -3357,7 +3357,7 @@ W(c_{kr}\mid x_i, g_i)=\frac{\pi_{kr}\phi(x_i;\mu_{kr},\mathbf \Sigma)}{\sum\lim
 <p>图 12.13 在混合例子中比较了 FDA 和 MDA。</p>
 <p><img alt="" src="../../img/12/fig12.13.png" /></p>
 <h2 id="_1">例子：波形数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>现在我们在一个流行的模拟数据中说明这些想法，这个模拟数据取自 Breiman et al. (1984, pages 49–55)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>，并且用在了 Hastie and Tibshirani (1996b)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> 和其它地方。这是有着 21 个变量的三类别问题，并且被认为是复杂的模型识别问题。预测变量由下式定义</p>
+<p>现在我们在一个流行的模拟数据中说明这些想法，这个模拟数据取自 Breiman et al. (1984, pages 49–55)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>，并且用在了 Hastie and Tibshirani (1996b)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 和其它地方。这是有着 21 个变量的三类别问题，并且被认为是复杂的模型识别问题。预测变量由下式定义</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3372,18 +3372,18 @@ X_j &= Uh_2(j) + (1-U)h_3(j)+\epsilon_j\qquad \text{Class 3,}\notag\\
 <p><img alt="" src="../../img/12/fig12.14.png" /></p>
 <p>表 12.4 展示了 MDA 应用到波形数据上的结果，以及本章和其他章的一些其它方法。每个训练样本有 300 个观测，并且使用的优先级相等，所以每个类大概有 100 个观测。我们采用大小为 500 的测试样本。这两个 MDA 模型在表头有描述。</p>
 <p><img alt="" src="../../img/12/fig12.15.png" /></p>
-<p>图 12.15 展示了在测试数据上取值的带惩罚的 MDA 模型的第一个典则变量。如我们可能猜测的一样，类别看上去位于三角形的三边。这是因为 $h_j(i)$ 用 21 维空间中的三个点来表示，因此构成了三角形的顶点，并且每个类别用成对顶点的凸组合来表示，因此位于一条边上。也清楚地看出所有的信息都在前两个维度中；前两个维度解释的方差的比例是 $99.8\%$，所以在这里截断解不会有损失。这个问题的贝叶斯风险已经估计大约为 0.14 (Breiman et al., 1984<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)。MDA 接近最优的比例，这个结果也不是很惊奇，因为 MDA 模型的结构类似生成模型。</p>
+<p>图 12.15 展示了在测试数据上取值的带惩罚的 MDA 模型的第一个典则变量。如我们可能猜测的一样，类别看上去位于三角形的三边。这是因为 $h_j(i)$ 用 21 维空间中的三个点来表示，因此构成了三角形的顶点，并且每个类别用成对顶点的凸组合来表示，因此位于一条边上。也清楚地看出所有的信息都在前两个维度中；前两个维度解释的方差的比例是 $99.8\%$，所以在这里截断解不会有损失。这个问题的贝叶斯风险已经估计大约为 0.14 (Breiman et al., 1984<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)。MDA 接近最优的比例，这个结果也不是很惊奇，因为 MDA 模型的结构类似生成模型。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Dempster, A., Laird, N. and Rubin, D. (1977). Maximum likelihood from incomplete data via the EM algorithm (with discussion), Journal of the Royal Statistical Society Series B 39: 1–38.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Dempster, A., Laird, N. and Rubin, D. (1977). Maximum likelihood from incomplete data via the EM algorithm (with discussion), Journal of the Royal Statistical Society Series B 39: 1–38.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Breiman, L. and Ihaka, R. (1984). Nonlinear discriminant analysis via scaling and ACE, Technical report, University of California, Berkeley.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Breiman, L. and Ihaka, R. (1984). Nonlinear discriminant analysis via scaling and ACE, Technical report, University of California, Berkeley.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Hastie, T. and Tibshirani, R. (1996b). Discriminant analysis by Gaussian mixtures, Journal of the Royal Statistical Society Series B. 58: 155–176.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Hastie, T. and Tibshirani, R. (1996b). Discriminant analysis by Gaussian mixtures, Journal of the Royal Statistical Society Series B. 58: 155–176.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3465,7 +3465,7 @@ X_j &= Uh_2(j) + (1-U)h_3(j)+\epsilon_j\qquad \text{Class 3,}\notag\\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:17
+        Last Build Date UTC : 2019-03-28 08:36:59
       </div>
       
         

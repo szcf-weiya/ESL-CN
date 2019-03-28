@@ -3301,12 +3301,12 @@ Y=\beta_{k\ell}^Tx+\varepsilon\text{  and  }\varepsilon\sim N(0,\sigma_{j\ell}^2
 这是个混合模型，其中混合概率由门控网络模型确定。</p>
 <p>为了估计这些参数，我们在 $\Psi$ 的参数上最大化数据的对数似然，$\sum_i \log \Pr(y_i\mid x_i,\Psi)$。处理这个的最方便是 EM 算法，我们已经在<a href="../../08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm/index.html">8.5节</a>中描述了。我们定义潜在变量 $\Delta_j$， 除了一个元素为 1，所有的都是 0。我们把这个解释为由顶层门控网络作出的分支判断。类似地，我们定义潜在变量 $\Delta_{\ell\mid j}$ 来描述第二层的门控判断。</p>
 <p>在 E 步，EM 算法在给定当前参数值的情况下计算 $\Delta_j$ 和 $\Delta_{\ell\mid j}$ 的期望。这些期望接着作为 M 步的观测权重，来估计专家网络的参数。中间结点的参数由多重逻辑斯蒂回归来估计。$\Delta_j$ 和 $\Delta_{\ell\mid j}$ 的期望是概率，并且这些用作逻辑斯蒂回归的响应向量。</p>
-<p>专家的分层混合方式是 CART 树的一个有潜力的对手。采用<strong>软分割 (soft splits)</strong>，而不是硬分割，它可以捕捉到从低到高响应变量的转变是渐增的情形。对数似然是未知系数的光滑函数，因此更适合数值优化。和 CART 类似，都是线性组合的分割，但是后者更难优化。另一方面，基于我们的了解，寻找 HME 模型的一个好的树拓扑结构是没有方法的，正如 CART 中一样。一般地，可以采用一些深度固定的树，很可能得到 CART 过程的输出。HMEs 上的研究强调预测而不是最终模型的解释。与 HME 很相近的模型是<strong>潜类别模型(latent class model)</strong> (Lin et. al, 2000<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)，一般只有一层；且结点或者潜在类别解释成表现出相似响应变量行为的个体的群体。</p>
+<p>专家的分层混合方式是 CART 树的一个有潜力的对手。采用<strong>软分割 (soft splits)</strong>，而不是硬分割，它可以捕捉到从低到高响应变量的转变是渐增的情形。对数似然是未知系数的光滑函数，因此更适合数值优化。和 CART 类似，都是线性组合的分割，但是后者更难优化。另一方面，基于我们的了解，寻找 HME 模型的一个好的树拓扑结构是没有方法的，正如 CART 中一样。一般地，可以采用一些深度固定的树，很可能得到 CART 过程的输出。HMEs 上的研究强调预测而不是最终模型的解释。与 HME 很相近的模型是<strong>潜类别模型(latent class model)</strong> (Lin et. al, 2000<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)，一般只有一层；且结点或者潜在类别解释成表现出相似响应变量行为的个体的群体。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Lin, H., McCulloch, C., Turnbull, B., Slate, E. and Clark, L. (2000). A latent class mixed model for analyzing biomarker trajectories in longitudinal data with irregularly scheduled observations, Statistics in Medicine 19: 1303–1318.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Lin, H., McCulloch, C., Turnbull, B., Slate, E. and Clark, L. (2000). A latent class mixed model for analyzing biomarker trajectories in longitudinal data with irregularly scheduled observations, Statistics in Medicine 19: 1303–1318.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3388,7 +3388,7 @@ Y=\beta_{k\ell}^Tx+\varepsilon\text{  and  }\varepsilon\sim N(0,\sigma_{j\ell}^2
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:16
+        Last Build Date UTC : 2019-03-28 08:36:58
       </div>
       
         

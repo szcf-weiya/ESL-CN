@@ -3325,7 +3325,7 @@
 <p>单个决策树有着很高的解释性。整个模型可以用简单的二维图象（二叉树）完整地表示，其中二叉树也很容易可视化。树的线性组合 (10.28) 丢失了这条重要的特性，所以必须考虑用不同的方式来解释。</p>
 <h2 id="_1">预测变量的相对重要性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在数据挖掘应用中，输入的预测变量与响应变量的相关程度很少是相等的。通常只有一小部分会对响应变量有显著的影响，而绝大部分的变量是不相关的，并且可以简单地不用包含进模型。研究每个输入变量在预测响应变量时的相关重要度或者贡献是很有用的。</p>
-<p>对于单个决策树 $T$，Breiman et al. (1984)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> 提出</p>
+<p>对于单个决策树 $T$，Breiman et al. (1984)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出</p>
 <p>
 <script type="math/tex; mode=display">
 {\cal I}_\ell^2(T) = \sum_{t=1}^{J-1}\hat\iota^2_tI(v(t)=\ell)\tag{10.42}
@@ -3361,7 +3361,7 @@ f_k(x)=\sum_{m=1}^MT_{km}(x)\tag{10.14}
 <p>图 10.23 和 10.24 图示了这些平均的以及单独的相关重要度的用法。</p>
 <h2 id="_2">偏相依性图<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>当确定出最相关的变量，下一步则是理解 $f(X)$ 在他们联合值上近似时依赖性的本质。$f(X)$ 的图象渲染作为其参数的函数提供了其对输入变量的联合值的依赖性的全面总结。</p>
-<p>不幸的是，任何可视化都会受到低维视角的限制。我们可以简单地通过各种不同的方式呈现出函数的一个或两个参数，无论是连续还是离散（又或者混合的）；这本书充满了这样的图象。维度稍微高点的函数可以通过给定除一个或两个参数以外的参数值，画出 <strong>网格 (trellis)</strong> 图 (Becker et al., 1996<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>).</p>
+<p>不幸的是，任何可视化都会受到低维视角的限制。我们可以简单地通过各种不同的方式呈现出函数的一个或两个参数，无论是连续还是离散（又或者混合的）；这本书充满了这样的图象。维度稍微高点的函数可以通过给定除一个或两个参数以外的参数值，画出 <strong>网格 (trellis)</strong> 图 (Becker et al., 1996<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>).</p>
 <div class="admonition note">
 <p class="admonition-title">原书脚注：trellis of plots</p>
 <p>R 中的 <code>lattice</code>.</p>
@@ -3412,10 +3412,10 @@ f_k(X) = \log p_k(X) -\frac 1K \sum_{l=1}^K\log p_l(X)\tag{10.52}
 <hr />
 <ol>
 <li id="fn:1">
-<p>Breiman, L., Friedman, J., Olshen, R. and Stone, C. (1984). Classification and Regression Trees, Wadsworth, New York.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Breiman, L., Friedman, J., Olshen, R. and Stone, C. (1984). Classification and Regression Trees, Wadsworth, New York.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Becker, R., Cleveland, W. and Shyu, M. (1996). The visual design and control of trellis display, Journal of Computational and Graphical Statistics 5: 123–155.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Becker, R., Cleveland, W. and Shyu, M. (1996). The visual design and control of trellis display, Journal of Computational and Graphical Statistics 5: 123–155.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3497,7 +3497,7 @@ f_k(X) = \log p_k(X) -\frac 1K \sum_{l=1}^K\log p_l(X)\tag{10.52}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:17
+        Last Build Date UTC : 2019-03-28 08:36:59
       </div>
       
         

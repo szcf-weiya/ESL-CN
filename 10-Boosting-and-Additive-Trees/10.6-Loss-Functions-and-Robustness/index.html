@@ -3353,7 +3353,7 @@ L(y,f(x))=\exp(-yf(x))\tag{10.8}
 f^*(x)=\mathrm{arg}\;\underset{f(x)}{\mathrm{min}}\E_{Y\mid x}(Y-f(x))^2=\E(Y\mid x)=2\cdot \Pr(Y=1\mid x)-1\tag{10.19}
 </script>
 </p>
-<p>和前面一样，分类的规则为 $G(x)=\sign[f(x)]$。平方误差损失不是误分类误差很好的选择。如图10.4所示，它不是关于增加的$yf(x)$的单调递减函数。对于边界值$y_if(x_i)&gt;1$平方增长，从而对正确分类为增加确定性的观测结果产生越来越大的影响（误差），从而降低了未正确分类的$y_if(x_i) &lt; 0$的相对影响。因此，如果目标是类别划分，则一个更好的损失函数要满足单调下降的准则。第12章p426的图2.4包括对平方损失的一个改动，“Huberized”平方铰链损失 (Rosset et al.，2004b<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)，结合了二项偏差、平方损失和SVM铰链损失优良的性质。它与平方损失(10.19)有相同的总体最小值，当$y\cdot f(x) &gt; 1$为0，当$y\cdot f(x) &lt; -1$变成线性。因为二项函数比指数更容易计算，我们的经验表明这是二项偏差的一个有用替代。</p>
+<p>和前面一样，分类的规则为 $G(x)=\sign[f(x)]$。平方误差损失不是误分类误差很好的选择。如图10.4所示，它不是关于增加的$yf(x)$的单调递减函数。对于边界值$y_if(x_i)&gt;1$平方增长，从而对正确分类为增加确定性的观测结果产生越来越大的影响（误差），从而降低了未正确分类的$y_if(x_i) &lt; 0$的相对影响。因此，如果目标是类别划分，则一个更好的损失函数要满足单调下降的准则。第12章p426的图2.4包括对平方损失的一个改动，“Huberized”平方铰链损失 (Rosset et al.，2004b<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)，结合了二项偏差、平方损失和SVM铰链损失优良的性质。它与平方损失(10.19)有相同的总体最小值，当$y\cdot f(x) &gt; 1$为0，当$y\cdot f(x) &lt; -1$变成线性。因为二项函数比指数更容易计算，我们的经验表明这是二项偏差的一个有用替代。</p>
 <p>在$K$个类别的分类问题中，响应变量$Y$在无序集$\cal G=\{\cal G_1,\ldots,\cal G_k\}$中取值。我们已经在$\cal G$中寻找到了一个分类器$G(x)$。若知道类别条件概率为$p_k(x)=\Pr(Y={\cal G}_k\mid x),k=1,2,\ldots,K$，则贝叶斯分类器为
 <script type="math/tex; mode=display">
 G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\ell(x)\tag{10.20}
@@ -3387,13 +3387,13 @@ L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\mathrm{log}p_k(x)\\
 \end{align}
 </script>
 和在两个类别的情形中一样，标准 $(10.22)$ 对不正确预测的惩罚关于不正确的程度仅仅是线性的。</p>
-<p>Zhu et al. (2005)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>一般化了 $K$ 类别问题的指数损失。更多细节见<a href="https://github.com/szcf-weiya/ESL-CN/issues/74">练习 10.5</a>。</p>
+<p>Zhu et al. (2005)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>一般化了 $K$ 类别问题的指数损失。更多细节见<a href="https://github.com/szcf-weiya/ESL-CN/issues/74">练习 10.5</a>。</p>
 <div class="admonition info">
 <p class="admonition-title">weiya注：Ex. 10.5</p>
 <p>详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/74">Issue 74: Ex. 10.5</a></p>
 </div>
 <h2 id="_2">鲁棒的回归损失函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>在回归问题中，平方误差 $L(y,f(x))=(y-f(x))^2$ 和绝对值损失 $L(y,f(x))=\vert y-f(x)\vert$ 之间的关系类似指数损失和二项对数似然的关系。平方误差的总体解为 $f(x)=E(Y\mid x)$，而绝对值损失的总体解为$f(x)=\mathrm{median}(Y\mid x)$；对于对称的误差分布这些是一样的。然而，在有限样本上拟合过程中，平方误差损失更多地强调具有大的绝对值残差 $\vert y_i-f(x_i)\vert$ 的观测值上。因此它更不鲁棒，而且它的表现对于长尾误差分布严重退化，特别是对于总体错误测量的 $y$ 值（异常点）。其它更鲁棒的标准，比如绝对损失，在这些情形下表现得很好。在统计鲁棒性领域里，已经提出各种不同的回归损失标准，这些标准对总体异常点表现强烈的抵抗性（不是绝对的免疫），尽管这些异常点近似最小二乘的高斯误差。它们经常比任一适度的重尾的误差分布要好。其中一个这样的标准是用于<strong>$M$ 回归</strong>(Huber，1964)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>的Huber损失标准</p>
+<p>在回归问题中，平方误差 $L(y,f(x))=(y-f(x))^2$ 和绝对值损失 $L(y,f(x))=\vert y-f(x)\vert$ 之间的关系类似指数损失和二项对数似然的关系。平方误差的总体解为 $f(x)=E(Y\mid x)$，而绝对值损失的总体解为$f(x)=\mathrm{median}(Y\mid x)$；对于对称的误差分布这些是一样的。然而，在有限样本上拟合过程中，平方误差损失更多地强调具有大的绝对值残差 $\vert y_i-f(x_i)\vert$ 的观测值上。因此它更不鲁棒，而且它的表现对于长尾误差分布严重退化，特别是对于总体错误测量的 $y$ 值（异常点）。其它更鲁棒的标准，比如绝对损失，在这些情形下表现得很好。在统计鲁棒性领域里，已经提出各种不同的回归损失标准，这些标准对总体异常点表现强烈的抵抗性（不是绝对的免疫），尽管这些异常点近似最小二乘的高斯误差。它们经常比任一适度的重尾的误差分布要好。其中一个这样的标准是用于<strong>$M$ 回归</strong>(Huber，1964)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>的Huber损失标准</p>
 <p>
 <script type="math/tex; mode=display">
 L(y,f(x))=
@@ -3415,13 +3415,13 @@ L(y,f(x))=
 <hr />
 <ol>
 <li id="fn:1">
-<p>Rosset, S., Zhu, J. and Hastie, T. (2004b). Margin maximizing loss functions, in S. Thrun, L. Saul and B. Sch¨olkopf (eds), Advances in Neural Information Processing Systems 16, MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Rosset, S., Zhu, J. and Hastie, T. (2004b). Margin maximizing loss functions, in S. Thrun, L. Saul and B. Sch¨olkopf (eds), Advances in Neural Information Processing Systems 16, MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Zhu, J., Zou, H., Rosset, S. and Hastie, T. (2005). Multiclass adaboost, Unpublished. <a href="../../references/samme.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Zhu, J., Zou, H., Rosset, S. and Hastie, T. (2005). Multiclass adaboost, Unpublished. <a href="../../references/samme.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Huber, P. (1964). Robust estimation of a location parameter, Annals of Mathematical Statistics 53: 73–101.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Huber, P. (1964). Robust estimation of a location parameter, Annals of Mathematical Statistics 53: 73–101.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3503,7 +3503,7 @@ L(y,f(x))=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:16
+        Last Build Date UTC : 2019-03-28 08:36:58
       </div>
       
         

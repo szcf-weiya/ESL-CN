@@ -3336,7 +3336,7 @@ f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\tag{10.4
 </script>
 </p>
 <p>参数$\nu$可以看成是控制boosting过程的学习速率。较小的$\nu$（更多的收缩）会导致同样大小的迭代次数$M$下更大的训练风险。因此，$\nu$和$M$都控制了训练数据的预测风险。然而，这些参数并不单独作用。对于同样的训练风险较小的$\nu$会导致较大的$M$，所以它们之间存在权衡。</p>
-<p>经验上，(Friedman, 2001<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)已经发现较小的 $\nu$ 会得到更好的测试误差，并且需要更大的 $M$ 与之对应。事实上，最好的策略是将$\nu$设得很小($\nu &lt; 0.1$)，然后通过早停(early stopping)来选择$M$。这会给回归和概率估计带来重大的改善（与没有收缩时相比，$\nu = 1$）。通过 (10.20) 式改善对应的误分类风险虽然很小，但是仍然显著。</p>
+<p>经验上，(Friedman, 2001<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)已经发现较小的 $\nu$ 会得到更好的测试误差，并且需要更大的 $M$ 与之对应。事实上，最好的策略是将$\nu$设得很小($\nu &lt; 0.1$)，然后通过早停(early stopping)来选择$M$。这会给回归和概率估计带来重大的改善（与没有收缩时相比，$\nu = 1$）。通过 (10.20) 式改善对应的误分类风险虽然很小，但是仍然显著。</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
@@ -3351,7 +3351,7 @@ G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\el
 <p>16.2.1 节将 boosting的向前逐步收缩和为了正则化模型参数使用的$L_1$惩罚(lasso)联系起来。我们认为$L_1$惩罚可能会比用在一些方法（比如支持向量机）中的$L_2$惩罚要更好。</p>
 <h2 id="_2">子采样<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们在8.7节看到bootstrap averaging (bagging) 通过averaging提高了噪声分类器的表现效果。第15章详细讨论了通过平均实现的降低方差的机制。我们也可以在gradient boosting中采用这一方法，同时提高了效果和计算效率。</p>
-<p>采用stochastic gradient boosting (Friedman, 1999<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)，在每一步我们采样$\eta$倍的训练观测值（无放回），并且采用这种子采样来生成下一棵树。剩下的算法同样。一般可以取$\eta$为$\frac{1}{2}$，尽管对于大的$N$，$\eta$可以比$\frac{1}{2}$小很多。</p>
+<p>采用stochastic gradient boosting (Friedman, 1999<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)，在每一步我们采样$\eta$倍的训练观测值（无放回），并且采用这种子采样来生成下一棵树。剩下的算法同样。一般可以取$\eta$为$\frac{1}{2}$，尽管对于大的$N$，$\eta$可以比$\frac{1}{2}$小很多。</p>
 <p>这种采样不仅仅降低了 $\eta$ 倍的计算时间，在很多情况下也实际上得到了更精确的模型。</p>
 <p><img alt="" src="../../img/10/fig10.12.png" /></p>
 <p>图10.12说明了采用模拟例子(10.2)的子采样的效果，既可以看成是分类的例子，也可以看成是回归的例子。我们看到这两种情形下，采用收缩的的子采样比剩下的表现要好。似乎没有收缩的子采样会表现得很差。</p>
@@ -3360,10 +3360,10 @@ G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\el
 <hr />
 <ol>
 <li id="fn:1">
-<p>Friedman, J. (2001). Greedy function approximation: A gradient boosting machine, Annals of Statistics 29(5): 1189–1232.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Friedman, J. (2001). Greedy function approximation: A gradient boosting machine, Annals of Statistics 29(5): 1189–1232.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Friedman, J. (1999). Stochastic gradient boosting, Technical report, Stanford University.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Friedman, J. (1999). Stochastic gradient boosting, Technical report, Stanford University.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3445,7 +3445,7 @@ G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\el
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:17
+        Last Build Date UTC : 2019-03-28 08:36:59
       </div>
       
         

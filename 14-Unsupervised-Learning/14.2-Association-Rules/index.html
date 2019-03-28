@@ -3450,13 +3450,13 @@ K=\sum\limits_{j=1}^p\vert \cal S_j\vert
 </script>
 </p>
 <h2 id="apriori">Apriori 算法<a class="headerlink" href="#apriori" title="Permanent link">&para;</a></h2>
-<p>如果调整阈值 $t$ 使得式 (14.6) 仅由所有 $2^K$ 个可能的项集合中的一小部分，则对于非常大的数据集，可以通过可行的计算得到 (14.6) 的解。“Apriori”算法（Argawal et al.，1995<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）探究维数灾难的某些方面，采用小部分的数据传递求解 (14.6)。具体地，对于给定的支撑阈值 $t$：</p>
+<p>如果调整阈值 $t$ 使得式 (14.6) 仅由所有 $2^K$ 个可能的项集合中的一小部分，则对于非常大的数据集，可以通过可行的计算得到 (14.6) 的解。“Apriori”算法（Argawal et al.，1995<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）探究维数灾难的某些方面，采用小部分的数据传递求解 (14.6)。具体地，对于给定的支撑阈值 $t$：</p>
 <ul>
 <li>$\{{\cal K}\mid T(\cal K)&gt;t \}$ 的<strong>基数(cardinality)</strong>相对小。</li>
 <li>任意由项目集 $\cal K$ 中子集组成的集合 $\cal L$ 必须有比 $\cal K$ 大或相等的支撑，${\cal L\subseteq K}\Rightarrow T({\cal L})\ge T({\cal K})$</li>
 </ul>
 <p>第一次传递数据计算所有单项目集合的支撑。舍弃那些支撑小于阈值的项目集。第二次传递数据计算所有可以由第一次传递中保留下来的单项目集合组成对的大小为 2 的项目集合的支撑。换句话说，为了产生所有大小为 $\cal K=m$ 的高频率项目集，我们仅仅需要考虑那些候选项目，那些候选项目使得所有大小为 $m-1$ 的上一级项目得到的大小为 $m$ 的项目集是高频率的。舍弃那些支撑小于阈值的大小为 2 的项目集。每个后继的传递数据只考虑了那些可以通过结合上一次传递数据存留的项目集与第一次传递数据保留下的项目集得到的项目集。数据传递过程一直进行下去，直到来自上一次传递的所有候选规则的支撑都小于指定阈值。Apriori 算法仅仅要求在 $\vert\cal K\vert$ 的每个值的一侧进行数据传递，这是很重要的，因为我们假设数据不能放在计算机的主存中。如果数据是充分稀疏（或者如果阈值 $t$ 充分大），则会在合理次数之后终止过程，甚至对非常大的数据集也是如此。</p>
-<p>许多额外的技巧可以作为这个策略的一部分来提高速度和收敛（Agrawal et al., 1995<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。Apriori 算法标志数据挖掘技术的主要进步。</p>
+<p>许多额外的技巧可以作为这个策略的一部分来提高速度和收敛（Agrawal et al., 1995<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）。Apriori 算法标志数据挖掘技术的主要进步。</p>
 <p>通过 Apriori 算法返回的每个高支撑的数据集 $\cal K$（14.6）被放到“关联规则”的集合中。项目 $Z_k,k\in\cal K$ 被分成两个分离的子集，$A\cup B=\cal K$，并且写成</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3502,7 +3502,7 @@ L(A\mid B)=\frac{C(A\Rightarrow B)}{T(B)}
 </script>
 </p>
 </div>
-<p>Agrawal et al. (1995)<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> 提出 Apriori 算法的一个变体，它可以从由项目集 (14.6) 构造的所有可能的规则中快速确定哪些规则会在置信阈值 (14.9) 下存留下来。</p>
+<p>Agrawal et al. (1995)<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出 Apriori 算法的一个变体，它可以从由项目集 (14.6) 构造的所有可能的规则中快速确定哪些规则会在置信阈值 (14.9) 下存留下来。</p>
 <p>整个分析的输出是满足下面约束的关联规则（14.7）的集合。</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3658,7 +3658,7 @@ T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
 <hr />
 <ol>
 <li id="fn:1">
-<p>Agrawal, R., Mannila, H., Srikant, R., Toivonen, H. and Verkamo, A. I. (1995). Fast discovery of association rules, Advances in Knowledge Discovery and Data Mining, AAAI/MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Agrawal, R., Mannila, H., Srikant, R., Toivonen, H. and Verkamo, A. I. (1995). Fast discovery of association rules, Advances in Knowledge Discovery and Data Mining, AAAI/MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3740,7 +3740,7 @@ T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:18
+        Last Build Date UTC : 2019-03-28 08:37:00
       </div>
       
         

@@ -3514,10 +3514,10 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 <p class="admonition-title">Info</p>
 <p>练习12.1已解决。详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">Issue 78: Ex. 12.1</a></p>
 </div>
-<p>对“hinge”损失函数$L(y,f)=[1-yf]_+$的检验表明，它用于二类别分类是很合理的。图12.4将之与逻辑斯蒂回归的<strong>对数似然损失(log-likelihood loss)</strong>进行比较，以及平方误差损失及其的变种(variant)。（负）对数似然或者二项偏差和SVM损失有着类似的尾分布，对margin中的点赋予零 惩罚，对在错误一侧的点赋予线性惩罚。另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响。<strong>squared hinge</strong>损失$L(y,f)=[1-yf]_+^2$类似平方损失，但它对于各自margin中的点惩罚为0。它在左尾中平方增长，而且对于误分类的观测点，没有hinge或者偏差稳健。最近Rosset and Zhu (2007)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>提出<strong>squared hinge损失的“Huberized”版本</strong>，在$yf=-1$处将其平滑转换为了线性损失。</p>
+<p>对“hinge”损失函数$L(y,f)=[1-yf]_+$的检验表明，它用于二类别分类是很合理的。图12.4将之与逻辑斯蒂回归的<strong>对数似然损失(log-likelihood loss)</strong>进行比较，以及平方误差损失及其的变种(variant)。（负）对数似然或者二项偏差和SVM损失有着类似的尾分布，对margin中的点赋予零 惩罚，对在错误一侧的点赋予线性惩罚。另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响。<strong>squared hinge</strong>损失$L(y,f)=[1-yf]_+^2$类似平方损失，但它对于各自margin中的点惩罚为0。它在左尾中平方增长，而且对于误分类的观测点，没有hinge或者偏差稳健。最近Rosset and Zhu (2007)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>提出<strong>squared hinge损失的“Huberized”版本</strong>，在$yf=-1$处将其平滑转换为了线性损失。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：Huberized squared hinge loss</p>
-<p>文献Rosset and Zhu (2007)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>中提出的Huberized squared hinge loss的表述更一般，可以在任意$t &lt; 1$处进行Huberized，文献截图如下：
+<p>文献Rosset and Zhu (2007)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>中提出的Huberized squared hinge loss的表述更一般，可以在任意$t &lt; 1$处进行Huberized，文献截图如下：
 <img alt="" src="../../../img/12/ref_eq_11.png" />
 <img alt="" src="../../../img/12/ref_eq_15.png" /></p>
 </div>
@@ -3530,7 +3530,7 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 <p class="admonition-title">Question</p>
 <p>什么是 hierarchical basis？探索过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/79">Issues 79: hierarchical basis</a></p>
 </div>
-<p>除了平方误差，表12.1中所有的损失函数，都称之为“margin maximizing loss-functions”（Rosset et al., 2004b<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。这意味着如果数据是可分的，则当$\lambda\rightarrow 0$时，$\hat\beta_\lambda$的极限定义为最优分离超平面。</p>
+<p>除了平方误差，表12.1中所有的损失函数，都称之为“margin maximizing loss-functions”（Rosset et al., 2004b<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）。这意味着如果数据是可分的，则当$\lambda\rightarrow 0$时，$\hat\beta_\lambda$的极限定义为最优分离超平面。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：原书脚注</p>
 <p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$发散，但是$\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$收敛到最优分离超平面。</p>
@@ -3577,20 +3577,20 @@ K(x, x')=\sum\limits_{m=1}^{\infty}\phi_m(x)\phi_m(x')\delta_m\tag{12.26}
 f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}
 </script>
 </p>
-<p>特别地，我们看到存在等价的优化准则[5.8.2节的式(5.67)；也可以参见Wahba et al. (2000)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>]</p>
+<p>特别地，我们看到存在等价的优化准则[5.8.2节的式(5.67)；也可以参见Wahba et al. (2000)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>]</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{\beta_0, \alpha}{\min}\sum\limits_{i=1}^N(1-y_if(x_i))_++\frac{\lambda}{2}\alpha^T\K\alpha\tag{12.29}
 </script>
 </p>
 <p>其中$\K$是所有成对训练特征的核的赋值（<a href="https://github.com/szcf-weiya/ESL-CN/issues/80">练习12.2</a>）。</p>
-<p>这些模型非常一般，举个例子，包含第5和第9章中讨论的整个光滑样条族，可加和交叉样条模型，更多细节参见Wahba (1990)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>和Hastie and Tibshirani (1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>。它们可以更一般地表示为</p>
+<p>这些模型非常一般，举个例子，包含第5和第9章中讨论的整个光滑样条族，可加和交叉样条模型，更多细节参见Wahba (1990)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>和Hastie and Tibshirani (1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>。它们可以更一般地表示为</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{f\in{\cal H}}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \lambda J(f)\tag{12.30}
 </script>
 </p>
-<p>其中$\cal H$是<strong>函数的结构空间(the structured space of functions)</strong>，并且$J(f)$是在该空间上合适的正则器。举个例子，假设$\cal H$是可加函数$f(x)=\sum_{j=1}^pf_j(x_j)$，并且$J(f)=\sum_j\int\{f^{\prime\prime}_j(x_j)\}^2dx_j$。则(12.30)的解为可加三次样条，并且有核表示$K(x,x&rsquo;)=\sum_{j=1}^pK_j(x_j,x_j&rsquo;)$。每个$K_j$是关于$x_j$的合适的单变量光滑样条的核(Wahba, 1990)<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>。</p>
+<p>其中$\cal H$是<strong>函数的结构空间(the structured space of functions)</strong>，并且$J(f)$是在该空间上合适的正则器。举个例子，假设$\cal H$是可加函数$f(x)=\sum_{j=1}^pf_j(x_j)$，并且$J(f)=\sum_j\int\{f^{\prime\prime}_j(x_j)\}^2dx_j$。则(12.30)的解为可加三次样条，并且有核表示$K(x,x&rsquo;)=\sum_{j=1}^pK_j(x_j,x_j&rsquo;)$。每个$K_j$是关于$x_j$的合适的单变量光滑样条的核(Wahba, 1990)<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup>。</p>
 <p>反过来，这个讨论也表明，举个例子，任意(12.22)中提到的核都可以和凸损失函数一起使用，并且将会得到形如(12.28)的有限维表示。图12.5采用和图12.3同样的核函数，除了采用二项对数似然作为损失函数。因此拟合函数是log-odds的估计</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3654,7 +3654,7 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}
 f_\lambda(x) = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_iK(x,x_i)\tag{12.34}
 </script>
 </p>
-<p>细节可以在Hastie et al. (2004)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>中找到。CRAN上<code>R</code>包<code>svmpath</code>可以用来拟合这些模型。</p>
+<p>细节可以在Hastie et al. (2004)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>中找到。CRAN上<code>R</code>包<code>svmpath</code>可以用来拟合这些模型。</p>
 <h2 id="_2">用于回归的支持向量机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在这一节，我们将要展示SVMs如何用于定量响应变量的回归问题，方法继承了SVM分类器的某些性质。我们首先讨论线性回归模型</p>
 <p>
@@ -3684,7 +3684,7 @@ V_{\epsilon}(r)=
 <p>这是一种“$\epsilon$-insensitive”的误差度量，它忽略了大小小于$\epsilon$的误差（图12.8的左图）。</p>
 <p><img alt="" src="../../img/12/fig12.8.png" /></p>
 <p>这一点类似支持向量机在分类问题中的设定，处于判别边界正确一侧的点以及远离边界的点在优化过程中都被忽略了。在回归中，这些“low error”的点是残差较小的点。</p>
-<p>将这个误差度量与统计中鲁棒回归中采用的误差度量比较是很有趣的。图12.8的右图展示了鲁棒回归中误差度量的最受欢迎的形式(Huber (1964)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>)：</p>
+<p>将这个误差度量与统计中鲁棒回归中采用的误差度量比较是很有趣的。图12.8的右图展示了鲁棒回归中误差度量的最受欢迎的形式(Huber (1964)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>)：</p>
 <p>
 <script type="math/tex; mode=display">
 V_{H}(r)=
@@ -3783,7 +3783,7 @@ H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\tag{12.45}
 <p>其中$\hat\alpha=(\H\H^T+\lambda\I)^{-1}\y$。和SVM中一样，我们不需要确定或者计算函数集$h_1(x), h_2(x),\ldots,h_M(x)$。仅仅需要在$N$个训练点中，对每个$i,i&rsquo;$计算内积核$K(x_i,x_{i&rsquo;})$，以及预测时对预测点$x$计算内积核。小心选择$h_m(x)$（比如特殊的、容易计算的核$K$）会使得计算$K$时$\H\H^T$计算量为$N^2/2$，而不是直接计算时的$N^2M$。</p>
 <p>然而，注意到，这个性质取决于惩罚项中平方范数$\Vert\beta\Vert^2$的选择。举个例子，对于可能会得到更好模型的$L_1$范数$\vert\beta\vert$，这个性质并不满足。</p>
 <h2 id="_4">讨论<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>SVM可以拓展到对类别问题，本质上是求解多个两个类别的问题。对每个成对类别建立分类器，最终的分类器是起主要作用(dominates)的分类器(Kressel, 1999<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>; Friedman, 1996<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>; Hastie and Tibshirani, 1998<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>)。另外，可以采用合适核的多项损失函数，就像<a href="#_1">12.3.3节</a>一样。SVMs在许多监督学习和非监督学习的问题中都有应用。在本文的写作时间，经验表明它在许多实际学习问题中表现得非常好。</p>
+<p>SVM可以拓展到对类别问题，本质上是求解多个两个类别的问题。对每个成对类别建立分类器，最终的分类器是起主要作用(dominates)的分类器(Kressel, 1999<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>; Friedman, 1996<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>; Hastie and Tibshirani, 1998<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>)。另外，可以采用合适核的多项损失函数，就像<a href="#_1">12.3.3节</a>一样。SVMs在许多监督学习和非监督学习的问题中都有应用。在本文的写作时间，经验表明它在许多实际学习问题中表现得非常好。</p>
 <p>最后，我们提出SVM和结构风险最小化(7.9)的联系。</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
@@ -3825,34 +3825,34 @@ h\le R^2A^2\tag{12.50}
 <hr />
 <ol>
 <li id="fn:1">
-<p>Rosset, S. and Zhu, J. (2007). Piecewise linear regularized solution paths, Annals of Statistics 35(3): 1012–1030. <a href="../../../references/euclid.aos.1185303996.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Rosset, S. and Zhu, J. (2007). Piecewise linear regularized solution paths, Annals of Statistics 35(3): 1012–1030. <a href="../../../references/euclid.aos.1185303996.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Rosset, S., Zhu, J. and Hastie, T. (2004b). Margin maximizing loss functions, in S. Thrun, L. Saul and B. Schölkopf (eds), Advances in Neural Information Processing Systems 16, MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Rosset, S., Zhu, J. and Hastie, T. (2004b). Margin maximizing loss functions, in S. Thrun, L. Saul and B. Schölkopf (eds), Advances in Neural Information Processing Systems 16, MIT Press, Cambridge, MA.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Wahba, G., Lin, Y. and Zhang, H. (2000). GACV for support vector machines, in A. Smola, P. Bartlett, B. Sch¨olkopf and D. Schuurmans (eds), Advances in Large Margin Classifiers, MIT Press, Cambridge, MA., pp. 297–311.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Wahba, G., Lin, Y. and Zhang, H. (2000). GACV for support vector machines, in A. Smola, P. Bartlett, B. Sch¨olkopf and D. Schuurmans (eds), Advances in Large Margin Classifiers, MIT Press, Cambridge, MA., pp. 297–311.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Wahba, G. (1990). Spline Models for Observational Data, SIAM, Philadelphia.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Wahba, G. (1990). Spline Models for Observational Data, SIAM, Philadelphia.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p>Hastie, T. and Herman, A. (1990). An analysis of gestational age, neonatal size and neonatal death using nonparametric logistic regression, Journal of Clinical Epidemiology 43: 1179–90.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>Hastie, T. and Herman, A. (1990). An analysis of gestational age, neonatal size and neonatal death using nonparametric logistic regression, Journal of Clinical Epidemiology 43: 1179–90.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
-<p>Hastie, T., Rosset, S., Tibshirani, R. and Zhu, J. (2004). The entire regularization path for the support vector machine, Journal of Machine Learning Research 5: 1391–1415.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p>Hastie, T., Rosset, S., Tibshirani, R. and Zhu, J. (2004). The entire regularization path for the support vector machine, Journal of Machine Learning Research 5: 1391–1415.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 <li id="fn:7">
-<p>Huber, P. (1964). Robust estimation of a location parameter, Annals of Mathematical Statistics 53: 73–101.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+<p>Huber, P. (1964). Robust estimation of a location parameter, Annals of Mathematical Statistics 53: 73–101.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 <li id="fn:8">
-<p>Kressel, U. (1999). Pairwise classification and support vector machines, in B. Sch¨olkopf, C. Burges and A. Smola (eds), Advances in Kernel Methods - Support Vector Learning, MIT Press, Cambridge, MA.,pp. 255–268.&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+<p>Kressel, U. (1999). Pairwise classification and support vector machines, in B. Sch¨olkopf, C. Burges and A. Smola (eds), Advances in Kernel Methods - Support Vector Learning, MIT Press, Cambridge, MA.,pp. 255–268.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 <li id="fn:9">
-<p>Friedman, J. (1996). Another approach to polychotomous classification, Technical report, Stanford University&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+<p>Friedman, J. (1996). Another approach to polychotomous classification, Technical report, Stanford University&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
 <li id="fn:10">
-<p>Hastie, T. and Tibshirani, R. (1998). Classification by pairwise coupling, Annals of Statistics 26(2): 451–471.&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+<p>Hastie, T. and Tibshirani, R. (1998). Classification by pairwise coupling, Annals of Statistics 26(2): 451–471.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3934,7 +3934,7 @@ h\le R^2A^2\tag{12.50}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:17
+        Last Build Date UTC : 2019-03-28 08:36:59
       </div>
       
         

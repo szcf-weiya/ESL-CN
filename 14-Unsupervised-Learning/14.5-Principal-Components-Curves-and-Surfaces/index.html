@@ -3468,7 +3468,7 @@ f(\lambda)=\mu+\mathbf V_q\lambda\tag{14.49}
 \mathbf{X=UDV^T}\tag{14.54}
 </script>
 </p>
-<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。这里 $\mathbf U$ 是$N\times p$ 的正交矩阵 ($\mathbf{U^TU}=\mathbf I_p$)，它的列向量 $\mathbf u_j$ 称为左奇异向量，$\mathbf V$ 是$p\times p$ 的正交矩阵 ($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量 $\mathbf v_j$ 称之为右奇异向量。对每个秩 $q$，(14.53) 的解 $\mathbf V_q$ 包含 $\mathbf V$ 的前 $q$ 列。$\mathbf{UD}$ 的列称为 $X$ 的主成分（见3.5.1节）。(14.52) 中 $N$ 个最优的 $\hat\lambda_i$ 由前 $q$ 个主成分给出（$N\times q$ 的矩阵 $\mathbf U_q\mathbf D_q$的$N$ 个行向量）。</p>
+<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）。这里 $\mathbf U$ 是$N\times p$ 的正交矩阵 ($\mathbf{U^TU}=\mathbf I_p$)，它的列向量 $\mathbf u_j$ 称为左奇异向量，$\mathbf V$ 是$p\times p$ 的正交矩阵 ($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量 $\mathbf v_j$ 称之为右奇异向量。对每个秩 $q$，(14.53) 的解 $\mathbf V_q$ 包含 $\mathbf V$ 的前 $q$ 列。$\mathbf{UD}$ 的列称为 $X$ 的主成分（见3.5.1节）。(14.52) 中 $N$ 个最优的 $\hat\lambda_i$ 由前 $q$ 个主成分给出（$N\times q$ 的矩阵 $\mathbf U_q\mathbf D_q$的$N$ 个行向量）。</p>
 <p>图 14.20 展示了 $\IR^2$ 中的一维主成分分析。</p>
 <p><img alt="" src="../../img/14/fig14.20.png" /></p>
 <p>对于每个数据点 $x_i$，在直线上有个离它最近的点，由 $u_{i1}d_1v_1$ 给出。这里 $v_1$ 是该直线的方向，并且 $\hat \lambda_i=u_{i1}d_1$ 衡量了沿着直线离原点的距离。类似地，图 14.21 展示了拟合 half-sphere 数据的二维主成分曲面（左图）。右图显示了数据在前两个主成分上的投影。这个投影是之前介绍的 SOM 方法的初始化的基础。这个过程在分离簇方面表现得非常成功。因为 half-sphere 是非线性的，非线性的投影会做得更好，这将是下一节的主题。</p>
@@ -3502,8 +3502,8 @@ $$
 <p>在数字图象中的像素点本质上是相关的，而且因为所有这些图象都是同一个数字，因此相关性甚至更强。（疑问：前者指像素点的相关，但后者似乎是不同点的相关，两者的联系？）相对小的主成分子集是表示高维数据的极好的低维特征。</p>
 <h3 id="procrustes">例子：Procrustes转换和形状平均<a class="headerlink" href="#procrustes" title="Permanent link">&para;</a></h3>
 <p><img alt="" src="../../img/14/fig14.25.png" /></p>
-<p>图14.25在同一张图中展示了两个集合的点，橘黄色和绿色。在这里例子中，这些点表示手写&rsquo;S&rsquo;的两个数字化版本，这是从&rdquo;Suresh&rdquo;签名中提取的。图14.26展示了整个签名（第三和第四幅图）。这些签名是采用touch-screen设备（超市中很常见的设备）动态采集的。每个$S$有$N=96$个点来表示，记为$N\times 2$的矩阵$\mathbf X_1$和$\mathbf X_2$。这些点之间存在对应关系，$\mathbf X_1$和$\mathbf X_2$的第$i$行表示沿着两个&rsquo;S&rsquo;的同一位置。用形态测量(morphometrics)的术语说就是这些点表示两个物体的landmarks。怎样寻找这样一个landmark一般是很困难的，而且因情况而异。在这里，我们采用沿着每个签名的速度信号的dynamic time warping(Hastie et al., 1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)，但是在这里不展开讨论。</p>
-<p>右图中，我们已经对绿色点已经采用了平移(translation)和旋转(rotation)的方式来尽可能与橘黄色点匹配——这称之为Procrustes变换（如，Mardia et al., 1979<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）。</p>
+<p>图14.25在同一张图中展示了两个集合的点，橘黄色和绿色。在这里例子中，这些点表示手写&rsquo;S&rsquo;的两个数字化版本，这是从&rdquo;Suresh&rdquo;签名中提取的。图14.26展示了整个签名（第三和第四幅图）。这些签名是采用touch-screen设备（超市中很常见的设备）动态采集的。每个$S$有$N=96$个点来表示，记为$N\times 2$的矩阵$\mathbf X_1$和$\mathbf X_2$。这些点之间存在对应关系，$\mathbf X_1$和$\mathbf X_2$的第$i$行表示沿着两个&rsquo;S&rsquo;的同一位置。用形态测量(morphometrics)的术语说就是这些点表示两个物体的landmarks。怎样寻找这样一个landmark一般是很困难的，而且因情况而异。在这里，我们采用沿着每个签名的速度信号的dynamic time warping(Hastie et al., 1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)，但是在这里不展开讨论。</p>
+<p>右图中，我们已经对绿色点已经采用了平移(translation)和旋转(rotation)的方式来尽可能与橘黄色点匹配——这称之为Procrustes变换（如，Mardia et al., 1979<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>）。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注：Procrustes变换</p>
 <p>普罗库鲁斯提斯(Procrustes)是希腊神话中非洲的一个土匪，他经常用一个铁床来折磨别人，把抓来的人绑在铁床上，然后根据铁床的长度来裁剪他们的身体长度：那些身材短的人被拉长，那些身材长的人被砍掉多余的部分。</p>
@@ -3572,7 +3572,7 @@ $$
 f(\lambda) = E(X\mid \lambda_f(X)=\lambda)\tag{14.61}
 </script>
 </p>
-<p>则$f(\lambda)$称为随机向量$X$的分布的主曲线。这也就是说$f(\lambda)$是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点。这也称作 self-consistency性质。尽管在实际中，连续多元分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣。图14.27显示了一个主曲线。</p>
+<p>则$f(\lambda)$称为随机向量$X$的分布的主曲线。这也就是说$f(\lambda)$是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点。这也称作 self-consistency性质。尽管在实际中，连续多元分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣。图14.27显示了一个主曲线。</p>
 <p><img alt="" src="../../img/14/fig14.27.png" /></p>
 <p>主点(Principal points)是与之相关的一个有趣的概念。考虑$k$个原型的集合，对于在分布的支撑集中的每个点$x$，选出最近的原型，也就是，为之负责的那个原型。这导出了对特征空间的划分，得到Voronoi区域。这$k$个点最小化了$X$到其原型的期望距离，它们称为该分布的主点。每个主点是self-consistent，因为它等于其Voronoi区域的$X$的均值。举个例子，当$k=1$，一个圆形正态分布的主点是均值向量；当$k=2$时，成对的点对称排列在通过均值向量的射线上。主点类似$K$-means聚类中的重心的分布。主曲线可以看成是$k=\infty$时的主点，但是限制为光滑曲线，用类似的方式，包含K-means聚类中心的SOM落在一个光滑流形上。</p>
 <p>为了寻找某分布的主曲线$f(\lambda)$，我们考虑坐标函数$f(\lambda)=[f_1(\lambda),f_2(\lambda),\ldots, f_p(\lambda)]$，并且令$X^T=(X_1, X_2,\ldots, X_p)$。 考虑下面的轮换过程：</p>
@@ -3636,16 +3636,16 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 <hr />
 <ol>
 <li id="fn:1">
-<p>Golub, G. and Van Loan, C. (1983). Matrix Computations, Johns Hopkins University Press, Baltimore.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Golub, G. and Van Loan, C. (1983). Matrix Computations, Johns Hopkins University Press, Baltimore.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Hastie, T., Kishon, E., Clark, M. and Fan, J. (1992). A model for signature verification, Technical report, AT&amp;T Bell Laboratories. http://www-stat.stanford.edu/∼hastie/Papers/signature.pdf .&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Hastie, T., Kishon, E., Clark, M. and Fan, J. (1992). A model for signature verification, Technical report, AT&amp;T Bell Laboratories. http://www-stat.stanford.edu/∼hastie/Papers/signature.pdf .&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic Press.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Duchamp, T. and Stuetzle, W. (1996). Extremal properties of principal curves in the plane, Annals of Statistics 24: 1511–1520.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Duchamp, T. and Stuetzle, W. (1996). Extremal properties of principal curves in the plane, Annals of Statistics 24: 1511–1520.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3727,7 +3727,7 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:18
+        Last Build Date UTC : 2019-03-28 08:37:00
       </div>
       
         

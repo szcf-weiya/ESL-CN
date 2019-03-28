@@ -3366,7 +3366,7 @@
 </p>
 <p>右侧额外的误差来自 $\hat f^*(x)$ 在 $f_{ag}(x)$ 附近的方差。因此真实的总体整合不会增加均值和平方误差。这表明从训练样本中采样的 bagging 将会经常降低均方误差。</p>
 <p>上面的论据对于 0-1 损失下的分类并不能保证，因为偏差和方差的不可加性。在那种情形下，对一个较好的分类器进行 bagging 会变得更好，但是 bagging 一个差的分类器会变得更差。举个简单采用随机化规则的例子。假设对于所有的 $x$ 我们都有 $Y=1$，并且分类器 $\hat G(x)$ 以概率 $0.4$ 预测 $Y=1$（对所有 $x$），并且以 $0.6$ 的概率预测$ Y=0$（对所有 $x$）。则 $\hat G(x)$ 的误分类率为 $0.6$，但是 bagged 分类器的误差率为 $1.0$。</p>
-<p>对于分类，我们可以就一个独立 <strong>弱学习器 (weak learners)</strong> 的共识来理解 bagging 的效应 (Dietterich, 2000a<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。令在两类别例子中 $x$ 处的贝叶斯最优边界为 $G(x)=1$。假设每个弱分类器 $G_b^*$ 的误差率为 $e_b=e&lt;0.5$，并令 $S_1(x)=\sum_{b=1}^BI(G_b^*=1)$ 是类别 $1$ 的 <strong>共识投票 (consensus vote)</strong>。因为弱分类器假设是独立的，则 $S_1(x)\sim B(B, 1-e)$，并且当 $B$ 变大时，$\Pr(S_1&gt;B/2)\rightarrow 1$。这个概念已经作为“Wisdom of Crowds”流行于统计学之外了 (Surowiecki, 2004<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>) ——多样且独立的人们的群体知识一般会超出任何单个的个体，而且可以用于投票。当然，最主要的警告是“独立”，但 bagged 树不是。图 8.11 说明了在模拟例子中 <strong>投票共识 (consensus vote)</strong> 的力量，其中只有 $30\%$ 的投票者对候选者有一些了解。</p>
+<p>对于分类，我们可以就一个独立 <strong>弱学习器 (weak learners)</strong> 的共识来理解 bagging 的效应 (Dietterich, 2000a<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)。令在两类别例子中 $x$ 处的贝叶斯最优边界为 $G(x)=1$。假设每个弱分类器 $G_b^*$ 的误差率为 $e_b=e&lt;0.5$，并令 $S_1(x)=\sum_{b=1}^BI(G_b^*=1)$ 是类别 $1$ 的 <strong>共识投票 (consensus vote)</strong>。因为弱分类器假设是独立的，则 $S_1(x)\sim B(B, 1-e)$，并且当 $B$ 变大时，$\Pr(S_1&gt;B/2)\rightarrow 1$。这个概念已经作为“Wisdom of Crowds”流行于统计学之外了 (Surowiecki, 2004<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) ——多样且独立的人们的群体知识一般会超出任何单个的个体，而且可以用于投票。当然，最主要的警告是“独立”，但 bagged 树不是。图 8.11 说明了在模拟例子中 <strong>投票共识 (consensus vote)</strong> 的力量，其中只有 $30\%$ 的投票者对候选者有一些了解。</p>
 <p><img alt="" src="../../img/08/fig8.11.png" /></p>
 <p><a href="../../15-Random-Forests/15.1-Introduction/index.html">第 15 章</a>中我们将看到随机森林通过降低被采样的树的相关性来改善bagging。</p>
 <p>注意到当我们 bag 一个模型时，模型中任何简单的结构都会丢失。举个例子，bagged 树不再是一棵树。对于模型的解释性来说，这显然是一个缺点。更稳定的过程，如最近邻，一般不会被 bagging 所影响。不幸的是，大都被 bagging 改善的不稳定的模型其实是不稳定的，因为对解释性的重视，而且这在 bagging 过程中会丧失掉。</p>
@@ -3377,10 +3377,10 @@
 <hr />
 <ol>
 <li id="fn:1">
-<p>Dietterich, T. (2000a). Ensemble methods in machine learning, Lecture Notes in Computer Science 1857: 1–15.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Dietterich, T. (2000a). Ensemble methods in machine learning, Lecture Notes in Computer Science 1857: 1–15.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Surowiecki, J. (2004). The Wisdom of Crowds: Why the Many are Smarter than the Few and How Collective Wisdom Shapes Business, Economics, Societies and Nations., Little, Brown.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Surowiecki, J. (2004). The Wisdom of Crowds: Why the Many are Smarter than the Few and How Collective Wisdom Shapes Business, Economics, Societies and Nations., Little, Brown.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3462,7 +3462,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:15
+        Last Build Date UTC : 2019-03-28 08:36:57
       </div>
       
         

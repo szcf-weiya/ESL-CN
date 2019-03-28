@@ -3252,7 +3252,7 @@
 </tbody>
 </table>
 <p>一个或多个输入特征的观测含有缺失值是很常见的。通常的方式是以某种方式来插补（填补）缺失值。</p>
-<p>然而，处理这个问题的第一个问题是如何确定缺失数据的机制是否使观测数据失真。大致地说，如果导致其遗漏的机制与其（未观测到的）值无关，则是随机丢失数据。更精确的定义由 Little and Rubin (2002)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> 给出。假设 $\mathbf y$ 是响应变量，$\mathbf X$ 为 $N\times p$ 的输入矩阵（某些值缺失）。用 $\mathbf X_{obs}$ 记 $\mathbf X$ 中的观测值，并令 $\mathbf{Z=(y,X),Z_{obs}=(y,X_{obs})}$。最后，$\mathbf R$ 为指示矩阵，如果 $x_{ij}$ 缺失，则第 $ij$ 个元素为 1，否则为 0，则如果 $\mathbf R$ 的分布仅仅通过 $\mathbf Z_{obs}$ 来依赖 $\mathbf Z$，数据称为<strong>随机缺失 (MAR)</strong>：</p>
+<p>然而，处理这个问题的第一个问题是如何确定缺失数据的机制是否使观测数据失真。大致地说，如果导致其遗漏的机制与其（未观测到的）值无关，则是随机丢失数据。更精确的定义由 Little and Rubin (2002)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 给出。假设 $\mathbf y$ 是响应变量，$\mathbf X$ 为 $N\times p$ 的输入矩阵（某些值缺失）。用 $\mathbf X_{obs}$ 记 $\mathbf X$ 中的观测值，并令 $\mathbf{Z=(y,X),Z_{obs}=(y,X_{obs})}$。最后，$\mathbf R$ 为指示矩阵，如果 $x_{ij}$ 缺失，则第 $ij$ 个元素为 1，否则为 0，则如果 $\mathbf R$ 的分布仅仅通过 $\mathbf Z_{obs}$ 来依赖 $\mathbf Z$，数据称为<strong>随机缺失 (MAR)</strong>：</p>
 <p>
 <script type="math/tex; mode=display">
 \Pr(\mathbf R\mid \mathbf Z,\theta) = \Pr(\mathbf R\mid\mathbf Z_{obs}, \theta)\tag{9.31}
@@ -3282,7 +3282,7 @@ MCAR 是比 MAR 更强的假设：为了保证有效性，大部分的插补方�
 <hr />
 <ol>
 <li id="fn:1">
-<p>Little, R. and Rubin, D. (2002). Statistical Analysis with Missing Data (2nd Edition), Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Little, R. and Rubin, D. (2002). Statistical Analysis with Missing Data (2nd Edition), Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3364,7 +3364,7 @@ MCAR 是比 MAR 更强的假设：为了保证有效性，大部分的插补方�
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:16
+        Last Build Date UTC : 2019-03-28 08:36:58
       </div>
       
         

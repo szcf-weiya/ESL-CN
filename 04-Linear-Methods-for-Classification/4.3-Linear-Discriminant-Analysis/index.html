@@ -3418,7 +3418,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <p>已解决，但是 (e) 小问需要进一步改善，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/108">Issue 108: Ex. 4.2</a>。</p>
 </div>
 <p>因为通过最小二乘得到的 LDA 方向不需要对特征做高斯分布的假设，它的应用可以不局限于高斯分布的数据。然而，(4.11)式给出的特定的截距和分离点确实需要高斯分布的数据。因此对于给定的数据集凭经验地选择分割点最小化训练误差是有意义的。这也是我们在实际中发现效果很好，但是在理论中没有提到的原因。</p>
-<p>多于两个类别的情形时，LDA 与类别指示矩阵的线性回归不是一样的，而且它避免了跟这个方法有关的掩藏问题(Hastie et al., 1994<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。 回归与 LDA 之间的对应可以通过在 12.5 节中讨论的最优评分来建立。</p>
+<p>多于两个类别的情形时，LDA 与类别指示矩阵的线性回归不是一样的，而且它避免了跟这个方法有关的掩藏问题(Hastie et al., 1994<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)。 回归与 LDA 之间的对应可以通过在 12.5 节中讨论的最优评分来建立。</p>
 <p>回到一般的判别问题 (4.8)，如果没有假设 $\boldsymbol\Sigma_k$ 相等，则 (4.9) 中方便的抵消不会发生；特别地，关于 $x$ 的平方项保留了下来。于是我们得到了平方判别函数 QDA
 <script type="math/tex; mode=display">
 \delta_k(x)=-\frac{1}{2}\log\vert\Sigma_k\vert-\frac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)+\log\pi_k\tag{4.12}
@@ -3429,9 +3429,9 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <blockquote>
 <p>图 4.6. 拟合二次边界的两种方法。左图显示了图 4.1 的二次判别边界（在五维空间 $X_1,X_2,X_1X_2,X_1^2,X_2^2$ 中运用 LDA 得到）。右图显示了通过 QDA 寻找到的二次判别边界。两者差别很小，通常也是这种情况。</p>
 </blockquote>
-<p>QDA 的估计类似 LDA 的估计，除了协方差矩阵必须要按每一类来估计。当 $p$ 很大这意味着系数有显著性的增长。因为判别边界是系数密度的函数，参数的个数必须要考虑。对于 LDA，似乎有 $(K-1)\times(p+1)$ 个参数，因为我们仅仅需要判别函数之间的不同 $\delta_k(x)-\delta_K(x)$，其中 $K$ 是一些预先选好的类别（这里我们已经选了最后一类），每个不同需要 $p+1$ 个参数。对于 QDA 类似地，我们会有 $(K-1)\times \{p(p+3)/2+1\}$ 个参数。LDA 和 QDA 在非常大以及离散的数据集的分类上面表现得很好。举个例子，在 STATLOG 项目中 (Michie et al. 1994<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>) LDA 在 7 个数据集（总共 22 个数据集）中的表现排前三名，QDA 在四个数据集中排前三名，对于 10 个数据集两种方法的其中一种排前三名。两种方法都被广泛运用，整本书集中讨论 LDA 上。在各种外来方法风靡一时的今天，我们总是会有两种简单的方法可以使用。为什么 LDA 和 QDA 有那么好的效果？原因不可能是数据近似服从高斯分布，对于 LDA 协方差矩阵也不可能近似相等。很可能的一个原因是数据仅仅可以支持简单的判别边界比如线性和二次，并且通过高斯模型给出的估计是稳定的，这是一个偏差与方差之间的权衡——我们可以忍受线性判别边界的偏差因为它可以通过用比其它方法更低的方差来弥补。这个论点对于 QDA 更是不可想象，因为它自身有许多的参数，尽管或许比非参估计的参数要少。</p>
+<p>QDA 的估计类似 LDA 的估计，除了协方差矩阵必须要按每一类来估计。当 $p$ 很大这意味着系数有显著性的增长。因为判别边界是系数密度的函数，参数的个数必须要考虑。对于 LDA，似乎有 $(K-1)\times(p+1)$ 个参数，因为我们仅仅需要判别函数之间的不同 $\delta_k(x)-\delta_K(x)$，其中 $K$ 是一些预先选好的类别（这里我们已经选了最后一类），每个不同需要 $p+1$ 个参数。对于 QDA 类似地，我们会有 $(K-1)\times \{p(p+3)/2+1\}$ 个参数。LDA 和 QDA 在非常大以及离散的数据集的分类上面表现得很好。举个例子，在 STATLOG 项目中 (Michie et al. 1994<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>) LDA 在 7 个数据集（总共 22 个数据集）中的表现排前三名，QDA 在四个数据集中排前三名，对于 10 个数据集两种方法的其中一种排前三名。两种方法都被广泛运用，整本书集中讨论 LDA 上。在各种外来方法风靡一时的今天，我们总是会有两种简单的方法可以使用。为什么 LDA 和 QDA 有那么好的效果？原因不可能是数据近似服从高斯分布，对于 LDA 协方差矩阵也不可能近似相等。很可能的一个原因是数据仅仅可以支持简单的判别边界比如线性和二次，并且通过高斯模型给出的估计是稳定的，这是一个偏差与方差之间的权衡——我们可以忍受线性判别边界的偏差因为它可以通过用比其它方法更低的方差来弥补。这个论点对于 QDA 更是不可想象，因为它自身有许多的参数，尽管或许比非参估计的参数要少。</p>
 <h2 id="_1">正则化判别分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Friedman (1989)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> 提出 LDA 和 QDA 之间的一个权衡，使得 QDA 的协方差阵向 LDA 中的共同协方差阵收缩。这些方法非常类似岭回归。正则化协方差矩阵有如下形式
+<p>Friedman (1989)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 提出 LDA 和 QDA 之间的一个权衡，使得 QDA 的协方差阵向 LDA 中的共同协方差阵收缩。这些方法非常类似岭回归。正则化协方差矩阵有如下形式
 <script type="math/tex; mode=display">
 \hat{\boldsymbol\Sigma}_k(\alpha)=\alpha\hat{\boldsymbol\Sigma}_k+(1-\alpha)\hat{\boldsymbol\Sigma}\tag{4.13}
 </script>
@@ -3540,13 +3540,13 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <hr />
 <ol>
 <li id="fn:1">
-<p>Hastie, T., Tibshirani, R. and Buja, A. (1994). Flexible discriminant analysis by optimal scoring, Journal of the American Statistical Association 89: 1255–1270.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Hastie, T., Tibshirani, R. and Buja, A. (1994). Flexible discriminant analysis by optimal scoring, Journal of the American Statistical Association 89: 1255–1270.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Friedman, J. (1989). Regularized discriminant analysis, Journal of the American Statistical Association 84: 165–175.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Friedman, J. (1989). Regularized discriminant analysis, Journal of the American Statistical Association 84: 165–175.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Michie, D., Spiegelhalter, D. and Taylor, C. (eds) (1994). Machine Learning, Neural and Statistical Classification, Ellis Horwood Series in Artificial Intelligence, Ellis Horwood.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Michie, D., Spiegelhalter, D. and Taylor, C. (eds) (1994). Machine Learning, Neural and Statistical Classification, Ellis Horwood Series in Artificial Intelligence, Ellis Horwood.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3628,7 +3628,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:13
+        Last Build Date UTC : 2019-03-28 08:36:55
       </div>
       
         

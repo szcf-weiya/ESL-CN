@@ -3397,12 +3397,12 @@ J(\theta)=\sum\limits_{km}\frac{\beta_{km}^2}{1+\beta_{km}^2}+\sum\limits_{m\ell
 <h2 id="_4">隐藏单元和层的个数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>一般来说，太多的隐藏单元比太少的隐藏单元要好。太少的隐藏单元，模型或许没有足够的灵活性来捕捉数据的非线性；太多的隐藏单元，如果使用了合适的正则化，额外的权重系数可以收缩到 0。一般地，隐藏单元的数量处于 5 到 100 的范围之内，而且随着输入个数、训练情形的种数的增加而增加。最常见的是放入相当大数量的单元并且进行正则化训练。一些研究者采用交叉验证来估计最优的数量，但是当交叉验证用来估计正则化系数这似乎是不必要的。隐藏层的选择由背景知识和经验来指导。每一层提取输入的特征用于回归或者分类。多重隐藏层的使用允许在不同的分解层次上构造层次特征。<a href="../11.6-Example-of-Simulated-Data/index.html">第 11.6 节</a>给出了多层有效使用的一个例子。</p>
 <h2 id="_5">多重最小点<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>误差函数 $R(\theta)$ 为非凸，具有许多局部最小点。后果是最终得到的解取决于权重系数的初始值。至少需要尝试一系列随机的初始配置，然后选择给出最低（惩罚）误差的解。或许更好的方式是在对一系列网络的预测值进行平均作为最终的预测（Ripley，1996<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）。这比平均权重系数更好，因为模型的非线性表明平均的解会很差。另一种方式是通过 bagging，它是对不同网络的预测值进行平均，这些网络是对随机扰动版本的训练数据进行训练得到的。这在 <a href="../../08-Model-Inference-and-Averaging/8.7-Bagging/index.html">8.7 节</a>中有描述。</p>
+<p>误差函数 $R(\theta)$ 为非凸，具有许多局部最小点。后果是最终得到的解取决于权重系数的初始值。至少需要尝试一系列随机的初始配置，然后选择给出最低（惩罚）误差的解。或许更好的方式是在对一系列网络的预测值进行平均作为最终的预测（Ripley，1996<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）。这比平均权重系数更好，因为模型的非线性表明平均的解会很差。另一种方式是通过 bagging，它是对不同网络的预测值进行平均，这些网络是对随机扰动版本的训练数据进行训练得到的。这在 <a href="../../08-Model-Inference-and-Averaging/8.7-Bagging/index.html">8.7 节</a>中有描述。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Ripley, B. D. (1996). Pattern Recognition and Neural Networks, Cambridge University Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Ripley, B. D. (1996). Pattern Recognition and Neural Networks, Cambridge University Press.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3484,7 +3484,7 @@ J(\theta)=\sum\limits_{km}\frac{\beta_{km}^2}{1+\beta_{km}^2}+\sum\limits_{m\ell
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:17
+        Last Build Date UTC : 2019-03-28 08:36:59
       </div>
       
         

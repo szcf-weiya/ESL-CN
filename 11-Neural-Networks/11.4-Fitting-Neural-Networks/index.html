@@ -3343,19 +3343,19 @@ a^{(k)} &= g^{(k)}(z^{(k)})\,,
 <p><img alt="" src="../assets/bp_alg.png" /></p>
 <p>注意图中的符号含义与 ESL 中稍有不同。</p>
 </div>
-<p>这个 two-pass 过程称作向后传播。也被称为 delta rule (Widrow and Hoff, 1960<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)。交叉熵计算的组分与平方误差函数和有同样的形式，并且在<a href="">练习 11.3</a> 中被导出来。</p>
+<p>这个 two-pass 过程称作向后传播。也被称为 delta rule (Widrow and Hoff, 1960<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)。交叉熵计算的组分与平方误差函数和有同样的形式，并且在<a href="">练习 11.3</a> 中被导出来。</p>
 <p>向后传播的优点在于简单，局部自然。在向后传播算法中，每个隐藏层单元仅仅向（从）有其联系的单元传递（接收）信息。因此可以在并行架构的计算机上高效地实现。</p>
 <p>$\eqref{11.13}$ 式的更新是一种 batch learning，参数更新为所有训练情形的和。学习也可以 online 地进行——每次处理一个观测，每个训练情形过后更新梯度，然后对训练情形重复多次。在这种情形下，$\eqref{11.13}$ 式的和可以替换成单个被加数。训练时期 (training epoch) 指的是一次扫描整个训练集。在线 (online) 训练允许网络处理非常大的训练集，而且当新观测加入时更新权重。</p>
-<p>batch learning 的学习速率 $\gamma_r$ 经常取为常数，而且可以通过在每次更新时运用线搜索最小化误差函数来优化。online 学习中，当 $r\rightarrow \infty$ 时 $\gamma_r$ 应当下降减为 0。这个学习是 <strong>随机近似 (stochastic approximation)</strong> 的形式 (Robbins and Munro, 1951<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>)；如果 $\gamma_r\rightarrow \infty,\sum_r\gamma_r=\infty$，且 $\sum_r\gamma_r^2&lt;\infty$，（举个例子，$\gamma_r=1/r$ 便满足条件）则在这个领域内的结果保证收敛。</p>
+<p>batch learning 的学习速率 $\gamma_r$ 经常取为常数，而且可以通过在每次更新时运用线搜索最小化误差函数来优化。online 学习中，当 $r\rightarrow \infty$ 时 $\gamma_r$ 应当下降减为 0。这个学习是 <strong>随机近似 (stochastic approximation)</strong> 的形式 (Robbins and Munro, 1951<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)；如果 $\gamma_r\rightarrow \infty,\sum_r\gamma_r=\infty$，且 $\sum_r\gamma_r^2&lt;\infty$，（举个例子，$\gamma_r=1/r$ 便满足条件）则在这个领域内的结果保证收敛。</p>
 <p>向后传播可以非常慢，而且因为这个原因经常不选择这个方法。像牛顿法的二阶技巧在这里不是很好，因为 $R$ 的二阶微分矩阵（Hessian 阵）可以变得非常大。更好的拟合方式包括共轭梯度法以及变量度量方法。它们避免直接计算二阶微分矩阵但仍能提供很快的收敛性。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Widrow, B. and Hoff, M. (1960). Adaptive switching circuits, IRE WESCON Convention record, Vol. 4. pp 96-104; Reprinted in Andersen and Rosenfeld (1988).&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Widrow, B. and Hoff, M. (1960). Adaptive switching circuits, IRE WESCON Convention record, Vol. 4. pp 96-104; Reprinted in Andersen and Rosenfeld (1988).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Robbins, H. and Munro, S. (1951). A stochastic approximation method, Annals of Mathematical Statistics 22: 400–407.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Robbins, H. and Munro, S. (1951). A stochastic approximation method, Annals of Mathematical Statistics 22: 400–407.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3437,7 +3437,7 @@ a^{(k)} &= g^{(k)}(z^{(k)})\,,
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:17
+        Last Build Date UTC : 2019-03-28 08:36:59
       </div>
       
         

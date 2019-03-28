@@ -3307,7 +3307,7 @@ f(x)=\frac{1}{Z}\prod\limits_{C\in\cal C}\psi_C(x_C)\tag{17.3}
 Z=\sum\limits_{x\in \cal X}\prod\limits_{C\in \cal C}\psi_C(x_C)\tag{17.4}
 </script>
 </p>
-<p>是标准化常数，也称作 <strong>分割 (partition)</strong> 函数。另外，式 $(17.3)$ 表明图的独立性由乘积中的团定义。这个结果对于有着正分布的马尔科夫网络 $\cal G$ 成立，也称作 Hammersley-Cliffodinyrd 定理（Hammersley and Clifford, 1971<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>; Clifford, 1990<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>）。</p>
+<p>是标准化常数，也称作 <strong>分割 (partition)</strong> 函数。另外，式 $(17.3)$ 表明图的独立性由乘积中的团定义。这个结果对于有着正分布的马尔科夫网络 $\cal G$ 成立，也称作 Hammersley-Cliffodinyrd 定理（Hammersley and Clifford, 1971<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; Clifford, 1990<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）。</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注</p>
 <p>一般地，对于取值为 $x_i$ 的随机变量 $X_i$ 的集合，<strong>势函数 (potential function)</strong> 为 $H(x_1,x_2,\ldots)$，<strong>分割函数 (partition function)</strong> 定义如下
@@ -3316,7 +3316,7 @@ Z(\beta)=\sum\limits_{x_i}exp(-\beta H(x_1,x_2,\ldots))
 </script>
 </p>
 </div>
-<p>很多图的估计和计算的方法首先将图分解成最大团。然后在单个团中计算相关的量，接着在整个图上进行累加。一个著名的例子是根据联合分布计算边缘和低阶概率的 join tree（或 junction tree）算法。可以在 Pearl (1986)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>，Lauritzen and Spiegelhalter (1988)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>，Pearl (1988)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>，Shenoy and Shafer (1988)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>，Jensen et al. (1990)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>，或者 Koller and Friedman (2007)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup> 中找到具体细节。</p>
+<p>很多图的估计和计算的方法首先将图分解成最大团。然后在单个团中计算相关的量，接着在整个图上进行累加。一个著名的例子是根据联合分布计算边缘和低阶概率的 join tree（或 junction tree）算法。可以在 Pearl (1986)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>，Lauritzen and Spiegelhalter (1988)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>，Pearl (1988)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>，Shenoy and Shafer (1988)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>，Jensen et al. (1990)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>，或者 Koller and Friedman (2007)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup> 中找到具体细节。</p>
 <div class="admonition tip">
 <p class="admonition-title">weiya 注：junction tree</p>
 <p>Søren Højsgaard 的 <a href="../../references/GMwR-notes.pdf#page=22">Notes: Graphical Models with R</a> 中通过一个简单的三结点的有向图展示了如何通过 Message Passing in Junction Tree 计算边缘分布的概率。Søren Højsgaard et al. 的 <a href="../../references/Graphical-Models-with-R.pdf#page=64">Graphical Models with R</a> 介绍了更一般的 Message Passing in Junction Tree，主要分为两个过程，work inwards towards root 和 work outwards from root。另外，可以参考 Mark A. Paskin 的 <a href="http://ai.stanford.edu/~paskin/gm-short-course/">A Short Course on Graphical Models</a>。</p>
@@ -3329,41 +3329,41 @@ f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
 \end{align*}
 \tag{17.5}
 </script>
-第一个仅仅明确了二阶依赖性（并且可以用更少的参数表示）。离散数据的图模型是 loglinear models for multiway contingency tables 的一种特殊情形（如，Bishop et al., 1975<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup>）；这种情形下 $f^{(2)}$ 被称作“无二阶交叉”模型。</p>
+第一个仅仅明确了二阶依赖性（并且可以用更少的参数表示）。离散数据的图模型是 loglinear models for multiway contingency tables 的一种特殊情形（如，Bishop et al., 1975<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>）；这种情形下 $f^{(2)}$ 被称作“无二阶交叉”模型。</p>
 <p><img alt="" src="../../img/17/fig17.3.png" /></p>
 <blockquote>
 <p>图 17.3. 没有唯一地指定变量的联合分布中的高阶依赖性结构的完全图。</p>
 </blockquote>
-<p>本章的剩余部分我们关注 <strong>成对马尔科夫图 (pairwise Markov graphs)</strong> (Koller and Friedman, 2007<sup id="fnref2:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup>)。对于每条边都有势能函数（如上面 $f^{(2)}$ 的成对变量），且用至多二阶的交叉项来表示。这些在参数上是很简洁的，更容易处理，并且给出由图结构表示的最小复杂性。连续和离散数据的模型都仅仅是（关于边集中变量的）成对边缘分布的函数。</p>
+<p>本章的剩余部分我们关注 <strong>成对马尔科夫图 (pairwise Markov graphs)</strong> (Koller and Friedman, 2007<sup id="fnref2:8"><a class="footnote-ref" href="#fn:8">8</a></sup>)。对于每条边都有势能函数（如上面 $f^{(2)}$ 的成对变量），且用至多二阶的交叉项来表示。这些在参数上是很简洁的，更容易处理，并且给出由图结构表示的最小复杂性。连续和离散数据的模型都仅仅是（关于边集中变量的）成对边缘分布的函数。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Hammersley, J. M. and Clifford, P. (1971). Markov field on finite graphs and lattices, unpublished.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Hammersley, J. M. and Clifford, P. (1971). Markov field on finite graphs and lattices, unpublished.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Clifford, P. (1990). Markov random fields in statistics, in G. R. Grimmett and D. J. A. Welsh (eds), Disorder in Physical Systems. A Volume in Honour of John M. Hammersley, Clarendon Press, Oxford, pp. 19–32.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Clifford, P. (1990). Markov random fields in statistics, in G. R. Grimmett and D. J. A. Welsh (eds), Disorder in Physical Systems. A Volume in Honour of John M. Hammersley, Clarendon Press, Oxford, pp. 19–32.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Pearl, J. (1986). On evidential reasoning in a hierarchy of hypotheses, Artificial Intelligence 28: 9–15.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Pearl, J. (1986). On evidential reasoning in a hierarchy of hypotheses, Artificial Intelligence 28: 9–15.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Lauritzen, S. and Spiegelhalter, D. (1988). Local computations with proba- bilities on graphical structures and their application to expert systems, J. Royal Statistical Society B. 50: 157–224.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Lauritzen, S. and Spiegelhalter, D. (1988). Local computations with proba- bilities on graphical structures and their application to expert systems, J. Royal Statistical Society B. 50: 157–224.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p>Pearl, J. (1988). Probabilistic reasoning in intelligent systems: networks of plausible inference, Morgan Kaufmann, San Francisco, CA.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>Pearl, J. (1988). Probabilistic reasoning in intelligent systems: networks of plausible inference, Morgan Kaufmann, San Francisco, CA.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
-<p>Shenoy, P. and Shafer, G. (1988). An axiomatic framework for Bayesian and belief-function propagation, AAAI Workshop on Uncertainty in AI, North-Holland, pp. 307–314.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p>Shenoy, P. and Shafer, G. (1988). An axiomatic framework for Bayesian and belief-function propagation, AAAI Workshop on Uncertainty in AI, North-Holland, pp. 307–314.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 <li id="fn:7">
-<p>Jensen, F. V., Lauritzen, S. and Olesen, K. G. (1990). Bayesian updating in recursive graphical models by local computation, Computational Statistics Quarterly 4: 269–282.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+<p>Jensen, F. V., Lauritzen, S. and Olesen, K. G. (1990). Bayesian updating in recursive graphical models by local computation, Computational Statistics Quarterly 4: 269–282.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 <li id="fn:8">
-<p>Koller, D. and Friedman, N. (2007). Structured Probabilistic Models, Stanford Bookstore Custom Publishing. (Unpublished Draft).&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+<p>Koller, D. and Friedman, N. (2007). Structured Probabilistic Models, Stanford Bookstore Custom Publishing. (Unpublished Draft).&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 <li id="fn:9">
-<p>Bishop, Y., Fienberg, S. and Holland, P. (1975). Discrete Multivariate Analysis, MIT Press, Cambridge, MA. <a href="../../references/Discrete-Multivariate-Analysis.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+<p>Bishop, Y., Fienberg, S. and Holland, P. (1975). Discrete Multivariate Analysis, MIT Press, Cambridge, MA. <a href="../../references/Discrete-Multivariate-Analysis.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3445,7 +3445,7 @@ f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:19
+        Last Build Date UTC : 2019-03-28 08:37:01
       </div>
       
         

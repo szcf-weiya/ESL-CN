@@ -3341,7 +3341,7 @@
 <p class="admonition-title">weiya 注：Ex. 17.3</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/136">Issue 136: Ex. 17.3</a></p>
 </div>
-<p>验证某个变量在剩余的条件下的条件分布是有好处的，其中 $\mathbf\Theta$ 的作用是显然的。假设我们进行分割 $X=(Z,Y)$，其中 $Z=(X_1,\ldots,X_{p-1})$ 包含前 $p-1$ 个变量并且 $Y=X_p$ 是最后一个。于是我们在给定 $Z$ 下有条件分布（比如，Mardia et al., 1979<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>）</p>
+<p>验证某个变量在剩余的条件下的条件分布是有好处的，其中 $\mathbf\Theta$ 的作用是显然的。假设我们进行分割 $X=(Z,Y)$，其中 $Z=(X_1,\ldots,X_{p-1})$ 包含前 $p-1$ 个变量并且 $Y=X_p$ 是最后一个。于是我们在给定 $Z$ 下有条件分布（比如，Mardia et al., 1979<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）</p>
 <p>
 <script type="math/tex; mode=display">
 Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}-\sigma_{ZY}^T\mathbf\Sigma_{ZZ}^{-1}\sigma_{ZY})\tag{17.6}
@@ -3379,7 +3379,7 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 <p class="admonition-title">原书脚注：</p>
 <p>从高斯图模型得到的分布是 Wishart 分布。它属于指数族，其中自然 (natural, or &ldquo;canonical&rdquo;) 参数为 $\mathbf\Theta=\mathbf\Sigma^{-1}$. 实际上，偏最大化的对数似然 (17.11) 是 Wishart 对数似然（忽略常数差异）。</p>
 </div>
-<p>另外一个（不同）图模型为 <strong>协方差图 (covariance)</strong> 或者 <strong>相关网络 (relevance network)</strong>，其中如果顶点的对应变量间的协方差（不是偏协方差）为 $0$ 则用双向边连接这些顶点。这在基因问题中很常见，特别地见 Butteet et al. (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>。这些模型的负对数似然是非凸的，使得计算更加有挑战（Chaudhuri et al.，2007<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>）。</p>
+<p>另外一个（不同）图模型为 <strong>协方差图 (covariance)</strong> 或者 <strong>相关网络 (relevance network)</strong>，其中如果顶点的对应变量间的协方差（不是偏协方差）为 $0$ 则用双向边连接这些顶点。这在基因问题中很常见，特别地见 Butteet et al. (2000)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。这些模型的负对数似然是非凸的，使得计算更加有挑战（Chaudhuri et al.，2007<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>）。</p>
 <h2 id="_1">图结构已知时参数的估计<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>给定 $X$ 的一些观测值，我们想要估计无向图的参数，该无向图近似了它们的联合分布。首先假设图是完全的（全连通）。我们假设有 $N$ 个多维正态观测值 $x_i,i=1,\ldots,N$，均值为$\mu$，协方差为$\mathbf \Sigma$。令</p>
 <p>
@@ -3392,7 +3392,7 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 \ell(\mathbf \Theta)=\mathrm{log \;det}\mathbf\Theta-\mathrm{trace}(\mathbf{S\Theta})\tag{17.11}
 </script>
 (17.11) 中我们已经对均值参数 $\mu$ 进行了偏 (partially) 最大化。$-\ell(\mathbf \Theta)$ 是 $\mathbf \Theta$ 的凸函数。可以很简单地证明 $\mathbf\Sigma$ 的极大似然估计为 $\mathbf S$。</p>
-<p>现在为了使图更有用（特别在高维数据集中）假设某些边是缺失的，举个例子，图 17.1 中 <code>PIP3</code> 和 <code>Erk</code> 之间的边是某条缺失边。正如我们所见，对于高斯分布这意味着 $\mathbf{\Theta=\Sigma^{-1}}$ 对应的值为 0。因此我们现在想要在某些预先定义的参数为 0 的子集的约束下最大化 (17.11)。这是等值约束凸优化问题，研究者们已经提出了许多解决它的方法，特别地，迭代比例拟合过程（iterative proportional fitting procedure）（Speed and Kiiveri，1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>）。该方法及其它方法在 Whittaker (1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup> 和 Lauritzen (1996)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup> 中作了总结。这些方法研究简化问题，这产生于将图分解成最大团的过程中，正如在之前的章节中描述的那样。这里我们列出一种简单的轮换方法，用不同的方式来研究稀疏性。这种方式的效果会在我们讨论图结构估计问题时变得明显。</p>
+<p>现在为了使图更有用（特别在高维数据集中）假设某些边是缺失的，举个例子，图 17.1 中 <code>PIP3</code> 和 <code>Erk</code> 之间的边是某条缺失边。正如我们所见，对于高斯分布这意味着 $\mathbf{\Theta=\Sigma^{-1}}$ 对应的值为 0。因此我们现在想要在某些预先定义的参数为 0 的子集的约束下最大化 (17.11)。这是等值约束凸优化问题，研究者们已经提出了许多解决它的方法，特别地，迭代比例拟合过程（iterative proportional fitting procedure）（Speed and Kiiveri，1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>）。该方法及其它方法在 Whittaker (1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> 和 Lauritzen (1996)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 中作了总结。这些方法研究简化问题，这产生于将图分解成最大团的过程中，正如在之前的章节中描述的那样。这里我们列出一种简单的轮换方法，用不同的方式来研究稀疏性。这种方式的效果会在我们讨论图结构估计问题时变得明显。</p>
 <p>受 (17.6) 和 (17.9) 式的启发，这个思想基于线性回归。特别地，假设我们想要估计与给定顶点 $i$ 相连的顶点的边参数 $\theta_{ij}$，那些没有相连的边为 $0$。于是这似乎表明，顶点 $i$ 在与其相关的结点上的线性回归可能会提供一个合理的估计。但是这忽略了回归中预测变量的依赖性结构。事实表明，如果我们进行回归时采用当前（基于模型的）对预测变量叉积矩阵的估计，这会给出了正确的解，并且能精确地解出带约束的最大似然问题。我们现在给出细节。</p>
 <p>为了约束对数似然 (17.11)，我们对缺失边加上拉格朗日常数
 <script type="math/tex; mode=display">
@@ -3402,7 +3402,7 @@ Y\mid Z=z\sim N(\mu_Y+(z-\mu_Z)^T\mathbf \Sigma^{-1}_{ZZ}\sigma_{ZY},\sigma_{YY}
 <script type="math/tex; mode=display">
 \mathbf{\Theta^{-1}-S-\Gamma=0}\tag{17.13}
 </script>
-这利用了 $\mathrm{log\; det}\mathbf\Theta$ 的导数等于 $\mathbf \Theta^{-1}$ 的事实（如，Boyd and Vandenberghe, 2004，p641<sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>）。$\mathbf\Gamma$ 为所有含缺失边的对的非零拉格朗日参数值。</p>
+这利用了 $\mathrm{log\; det}\mathbf\Theta$ 的导数等于 $\mathbf \Theta^{-1}$ 的事实（如，Boyd and Vandenberghe, 2004，p641<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>）。$\mathbf\Gamma$ 为所有含缺失边的对的非零拉格朗日参数值。</p>
 <p>我们将要展示我们可以怎么应用回归来求解 $\mathbf\Theta$ 以及每次求解它的逆 $\mathbf{W=\Theta^{-1}}$ 的一行和一列。为了简单我们关注最后一行和最后一列。则 (17.13) 的右上块可以写成
 <script type="math/tex; mode=display">
 w_{12}-s_{12}-\gamma_{12}=0\tag{17.14}
@@ -3448,12 +3448,12 @@ w_{12}&=-\mathbf W_{11}\theta_{12}/\theta_{22}\tag{17.16}\\
 (采用分块矩阵求逆)。因为（17.13）的 $\mathbf\Gamma$ 对角元为 0，则 $w_{22}=s_{22}$。</p>
 <p>这导出了在缺失边的约束下，用来估计 $\hat{\mathbf W}$ 和它的逆 $\mathbf {\hat\Theta}$ 的算法 17.1 中给出的简单迭代过程。</p>
 <p><img alt="" src="../../img/17/alg17.1.png" /></p>
-<p>注意到这个算法具有概念意义 (conceptual sense)。估计图的问题不是 $p$ 个独立的回归问题，而是 $p$ 个成对问题。步骤 (b) 中公共 $\mathbf W$的应用，而不是观测的叉积矩阵，将问题以合适的方式结合在一起。奇怪的是，我们不能在这个领域内找到这个过程。然而这与 Dempster(1972)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8" rel="footnote">8</a></sup> 的协方差选择过程有关，而且在分割上与 Chaudhuri et al. (2007)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> 提出的用过协方差图的迭代条件拟合过程很相似。</p>
+<p>注意到这个算法具有概念意义 (conceptual sense)。估计图的问题不是 $p$ 个独立的回归问题，而是 $p$ 个成对问题。步骤 (b) 中公共 $\mathbf W$的应用，而不是观测的叉积矩阵，将问题以合适的方式结合在一起。奇怪的是，我们不能在这个领域内找到这个过程。然而这与 Dempster(1972)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup> 的协方差选择过程有关，而且在分割上与 Chaudhuri et al. (2007)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 提出的用过协方差图的迭代条件拟合过程很相似。</p>
 <p><img alt="" src="../../img/17/fig17.4.png" /></p>
 <blockquote>
 <p>图 17.4. 一个简单的用于说明的图，以及经验协方差阵。</p>
 </blockquote>
-<p>这里是个小例子，选自 Whittaker(1990)<sup id="fnref2:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>。假设我们的模型如图 17.4 描述，经验协方差阵为 $\mathbf S$。我们应用算法 (17.1) 来解决这个问题；举个例子，在步骤 (b) 对变量 1 的修改后的回归中，删掉变量 3。这个过程很快收敛到解</p>
+<p>这里是个小例子，选自 Whittaker(1990)<sup id="fnref2:5"><a class="footnote-ref" href="#fn:5">5</a></sup>。假设我们的模型如图 17.4 描述，经验协方差阵为 $\mathbf S$。我们应用算法 (17.1) 来解决这个问题；举个例子，在步骤 (b) 对变量 1 的修改后的回归中，删掉变量 3。这个过程很快收敛到解</p>
 <p><img alt="" src="../../img/17/matrix1.png" /></p>
 <p>注意到 $\hat{\mathbf\Sigma} ^{-1}$ 的 0 元素，对应缺失边 (1,3) 和 (2,4)。也注意到 $\hat{\mathbf \Sigma}$ 中对应的元素是唯一与 $\mathbf S$ 不同的元素。$\mathbf \Sigma$ 估计是有时称为    $\mathbf S$ 的正定“补 (completion)”。</p>
 <div class="admonition info">
@@ -3466,7 +3466,7 @@ w_{12}&=-\mathbf W_{11}\theta_{12}/\theta_{22}\tag{17.16}\\
 <p class="admonition-title">weiya 注：</p>
 <p>省略图中的边，有点类似于做变量选择，而 lasso 正是应对变量选择的“绝世武功”!<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" /></p>
 </div>
-<p>Meinshausen and Bühlmann (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 对这个问题采取简单的方式：不是试图完全估计 $\mathbf \Sigma$ 或者 $\mathbf \Theta=\mathbf \Sigma^{-1}$，他们仅仅估计非零的组分 $\theta_{ij}$。为了实现这点，它们将每个变量看成响应变量而其它的变量作为预测变量进行拟合 lasso 回归。如果变量 $i$ 在变量 $j$ 上的估计系数为非零，或者（并且）$j$ 变量在 $i$ 上的估计系数为非零，则组分 $\theta_{ij}$ 估计为非零。它们证明这个过程渐近地一致估计了 $\mathbf\Theta$ 的非零元的集合。</p>
+<p>Meinshausen and Bühlmann (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 对这个问题采取简单的方式：不是试图完全估计 $\mathbf \Sigma$ 或者 $\mathbf \Theta=\mathbf \Sigma^{-1}$，他们仅仅估计非零的组分 $\theta_{ij}$。为了实现这点，它们将每个变量看成响应变量而其它的变量作为预测变量进行拟合 lasso 回归。如果变量 $i$ 在变量 $j$ 上的估计系数为非零，或者（并且）$j$ 变量在 $i$ 上的估计系数为非零，则组分 $\theta_{ij}$ 估计为非零。它们证明这个过程渐近地一致估计了 $\mathbf\Theta$ 的非零元的集合。</p>
 <p>我们可以采取更有系统的含有 lasso 惩罚的方法，接着上一节的讨论。考虑最大化带惩罚的对数似然
 <script type="math/tex; mode=display">
 \mathrm{log\; det}\mathbf\Theta-\mathrm{trace}(\mathbf{S\Theta})-\lambda\Vert\mathbf \Theta\Vert_1\tag{17.21}
@@ -3503,7 +3503,7 @@ w_{12}&=-\mathbf W_{11}\theta_{12}/\theta_{22}\tag{17.16}\\
 \mathbf{Z^TZ}\beta-\mathbf{Z^Ty}+\lambda\cdot \mathrm{Sign}(\beta)=0\tag{17.25}
 </script>
 所以乘上因子 $1/N$，$\mathbf {Z^Ty}$ 是 $s_{12}$ 的类比，并且我们用 $\mathbf W_{11}$ 替换 $\mathbf{Z^TZ}$，从我们当前的模型估计叉积矩阵。</p>
-<p>这一过程称为 <strong>graphical lasso</strong>，由 Friedman et al. (2008b)<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 提出，这建立在 Banerjee et al. (2008)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10" rel="footnote">10</a></sup>。这总结在算法 17.2 中。</p>
+<p>这一过程称为 <strong>graphical lasso</strong>，由 Friedman et al. (2008b)<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 提出，这建立在 Banerjee et al. (2008)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>。这总结在算法 17.2 中。</p>
 <p><img alt="" src="../../img/17/alg17.2.png" /></p>
 <p>Friedman et al. (2008b) 采用成对坐标下降方法（<a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8.6 节</a>）来在一步求解修改的 lasso 问题。下面是图 lasso 算法的成对坐标下降细节。令 $\mathbf {V=W_{11}}$，更新式有如下形式
 <script type="math/tex; mode=display">
@@ -3519,7 +3519,7 @@ S(x,t)=\mathrm{sign}(x)(\vert x\vert-t)_+\tag{17.27}
 <p class="admonition-title">原书脚注：</p>
 <p>可以提出问题 (17.21) 的另一个构造，我们不对 $\mathbf \Theta$ 的对角元进行惩罚。则解矩阵的对角元 $w_{jj}$ 为 $s_{jj}$，算法的剩余部分没有改变。</p>
 </div>
-<p>Graphical lasso 算法非常快，可以在一分钟之内求解含 1000 个结点的中等稀疏的问题。可以很简单地修改算法得到特定边的惩罚参数 $\lambda_{jk}$；因为 $\lambda_{jk}=\infty$ 会强制使 $\hat\theta_{jk}$ 为 0，这个算法归入到算法 17.1 中。通过将稀疏逆协方差矩阵问题作为一系列回归，可以快速地计算并且验证解的路径作为惩罚参数$\lambda$ 的函数。更多的细节可以在 Friedman et al. (2008b)<sup id="fnref3:9"><a class="footnote-ref" href="#fn:9" rel="footnote">9</a></sup> 中找到。</p>
+<p>Graphical lasso 算法非常快，可以在一分钟之内求解含 1000 个结点的中等稀疏的问题。可以很简单地修改算法得到特定边的惩罚参数 $\lambda_{jk}$；因为 $\lambda_{jk}=\infty$ 会强制使 $\hat\theta_{jk}$ 为 0，这个算法归入到算法 17.1 中。通过将稀疏逆协方差矩阵问题作为一系列回归，可以快速地计算并且验证解的路径作为惩罚参数$\lambda$ 的函数。更多的细节可以在 Friedman et al. (2008b)<sup id="fnref3:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 中找到。</p>
 <p>图 17.1 显示了将图 lasso 应用到 flow-cytometry 数据集中的结果。这里 lasso 惩罚参数 $\lambda$ 设为14。实际中检验随着 $\lambda$ 变化而得到的不同的图是很有用的。图 17.5 显示了 4 个不同的解。当惩罚参数增大时图变得更稀疏。</p>
 <p><img alt="" src="../../img/17/fig17.5.png" /></p>
 <blockquote>
@@ -3536,34 +3536,34 @@ S(x,t)=\mathrm{sign}(x)(\vert x\vert-t)_+\tag{17.27}
 <ol>
 <li id="fn:1">
 <p>Mardia, K., Kent, J. and Bibby, J. (1979). Multivariate Analysis, Academic
-Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+Press.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Butte, A., Tamayo, P., Slonim, D., Golub, T. and Kohane, I. (2000). Discovering functional relationships between RNA expression and chemotherapeutic susceptibility using relevance networks, Proceedings of the National Academy of Sciences pp. 12182–12186.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Butte, A., Tamayo, P., Slonim, D., Golub, T. and Kohane, I. (2000). Discovering functional relationships between RNA expression and chemotherapeutic susceptibility using relevance networks, Proceedings of the National Academy of Sciences pp. 12182–12186.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Chaudhuri, S., Drton, M. and Richardson, T. S. (2007). Estimation of a covariance matrix with zeros, Biometrika 94(1): 1–18.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Chaudhuri, S., Drton, M. and Richardson, T. S. (2007). Estimation of a covariance matrix with zeros, Biometrika 94(1): 1–18.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p>Speed, T. and Kiiveri, H. T. (1986). Gaussian Markov distributions over finite graphs, Annals of Statistics 14: 138–150.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Speed, T. and Kiiveri, H. T. (1986). Gaussian Markov distributions over finite graphs, Annals of Statistics 14: 138–150.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:5">
-<p>Whittaker, J. (1990). Graphical Models in Applied Multivariate Statistics, Wiley, Chichester.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<p>Whittaker, J. (1990). Graphical Models in Applied Multivariate Statistics, Wiley, Chichester.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
-<p>Lauritzen, S. and Spiegelhalter, D. (1988). Local computations with probabilities on graphical structures and their application to expert systems, J. Royal Statistical Society B. 50: 157–224.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p>Lauritzen, S. and Spiegelhalter, D. (1988). Local computations with probabilities on graphical structures and their application to expert systems, J. Royal Statistical Society B. 50: 157–224.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 <li id="fn:7">
-<p>Boyd, S. and Vandenberghe, L. (2004). Convex Optimization, Cambridge University Press. <a href="../../references/Convex-Optimization.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+<p>Boyd, S. and Vandenberghe, L. (2004). Convex Optimization, Cambridge University Press. <a href="../../references/Convex-Optimization.pdf">下载</a>&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 <li id="fn:8">
-<p>Dempster, A. (1972). Covariance selection, Biometrics 28: 157–175.&#160;<a class="footnote-backref" href="#fnref:8" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+<p>Dempster, A. (1972). Covariance selection, Biometrics 28: 157–175.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 <li id="fn:9">
-<p>Friedman, J., Hastie, T. and Tibshirani, R. (2008b). Sparse inverse covariance estimation with the graphical lasso, Biostatistics 9: 432–441.&#160;<a class="footnote-backref" href="#fnref:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:9" rev="footnote" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+<p>Friedman, J., Hastie, T. and Tibshirani, R. (2008b). Sparse inverse covariance estimation with the graphical lasso, Biostatistics 9: 432–441.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:9" title="Jump back to footnote 9 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
 <li id="fn:10">
-<p>Banerjee, O., Ghaoui, L. E. and d’Aspremont, A. (2008). Model selection through sparse maximum likelihood estimation for multivariate gaussian or binary data, Journal of Machine Learning Research 9: 485–516.&#160;<a class="footnote-backref" href="#fnref:10" rev="footnote" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+<p>Banerjee, O., Ghaoui, L. E. and d’Aspremont, A. (2008). Model selection through sparse maximum likelihood estimation for multivariate gaussian or binary data, Journal of Machine Learning Research 9: 485–516.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3645,7 +3645,7 @@ Press.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Ju
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:19
+        Last Build Date UTC : 2019-03-28 08:37:01
       </div>
       
         

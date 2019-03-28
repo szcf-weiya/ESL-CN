@@ -3282,7 +3282,7 @@ C(x^*)=\ell\text{ if } \delta_{\ell}(x^*)=\max_k\delta_k(x^*)\tag{18.3}
 </script>
 </p>
 <p>我们看到对角LDA分类器经过合适的标准化后等价于<strong>最近重心分类器(nearest centroid classifier)</strong>。这也是朴素贝叶斯分类器的一个特殊情形，正如在<a href="../../06-Kernel-Smoothing-Methods/6.6-Kernel-Density-Estimation-and-Classification/index.html#_4">第6.6.3节</a>中描述的那样。它假设每个类别的特征是有相同方差的独立高斯分布。</p>
-<p>对角LDA分类器在高维设定中通常很有效。在Bickel and Levina(2004)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>等人的工作中称为<strong>独立规则(independent rule)</strong>，理论上证明了在高维问题中经常比标准线性回归表现要好。这里对角LDA分类器在20个测试样本中产生5个误分类误差。这种对角LDA分类器的缺点是要使用所有的特征 （基因），因此对于解释不是很方便的。进一步正则化，我们可以做得更好——不管是测试误差还是解释性。</p>
+<p>对角LDA分类器在高维设定中通常很有效。在Bickel and Levina(2004)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>等人的工作中称为<strong>独立规则(independent rule)</strong>，理论上证明了在高维问题中经常比标准线性回归表现要好。这里对角LDA分类器在20个测试样本中产生5个误分类误差。这种对角LDA分类器的缺点是要使用所有的特征 （基因），因此对于解释不是很方便的。进一步正则化，我们可以做得更好——不管是测试误差还是解释性。</p>
 <p>我们想通过某种方式自动去掉对类别预测不再起作用的项来正则化。为了实现这一点，我们分别对每个特征，将每个类的均值收缩到整体均值。这个结果是<strong>最近重心分类器(nearest centroid classifer)</strong>的正则化版本，或者等价为对角协方差形式的LDA的正则化版本。我们称这个过程为<strong>最近收缩重心(nearest shrunken centroids, NSC)</strong>。</p>
 <p>收缩过程按如下定义。令</p>
 <p>
@@ -3336,15 +3336,15 @@ d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\tag{18.6}
 </p>
 </div>
 <p>这些可以用来对类别排序，或者决定不需要对整个样本分类。</p>
-<p>注意到特征选择的其它形式也可以用在这种设定中，包括硬阈值。Fan and Fan (2008)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>理论上证明了高维问题中用对角线性判别分析进行某些特征选择的重要性。</p>
+<p>注意到特征选择的其它形式也可以用在这种设定中，包括硬阈值。Fan and Fan (2008)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>理论上证明了高维问题中用对角线性判别分析进行某些特征选择的重要性。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Bickel, P. J., Ritov, Y. and Tsybakov, A. (2008). Simultaneous analysis of lasso and Dantzig selector, Annals of Statistics. to appear.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Bickel, P. J., Ritov, Y. and Tsybakov, A. (2008). Simultaneous analysis of lasso and Dantzig selector, Annals of Statistics. to appear.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Fan, J. and Fan, Y. (2008). High dimensional classification using features annealed independence rules, Annals of Statistics. to appear.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Fan, J. and Fan, Y. (2008). High dimensional classification using features annealed independence rules, Annals of Statistics. to appear.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3426,7 +3426,7 @@ d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\tag{18.6}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:19
+        Last Build Date UTC : 2019-03-28 08:37:01
       </div>
       
         

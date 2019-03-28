@@ -3360,7 +3360,7 @@
 \widehat{\Err}^{(.632)}=.368\cdot\overline{\err}+.632\cdot\widehat{\Err}^{(1)}\tag{7.57}
 </script>
 0.632 估计的来源是很复杂的；直观上它将舍一自助的估计向训练误差率靠近，也因此降低了向上的偏差。常值 .632 与式 (7.55) 有关。</p>
-<p>.632 估计在“轻拟合”情形下表现很好，但是在过拟合情形下会变糟。Breiman et al. (1984) <sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>有一个例子。假设我们有两个相同大小的类，目标变量与类别标签独立，而且我们采用 1 最近邻规则。则 $\overline{\err}=0,\widehat{\Err}^{(1)}=0.5$，而且因此 $\widehat{\Err}^{(.632)}=.632\times 0.5=.316$。然而，真实误差率为0.5。</p>
+<p>.632 估计在“轻拟合”情形下表现很好，但是在过拟合情形下会变糟。Breiman et al. (1984) <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>有一个例子。假设我们有两个相同大小的类，目标变量与类别标签独立，而且我们采用 1 最近邻规则。则 $\overline{\err}=0,\widehat{\Err}^{(1)}=0.5$，而且因此 $\widehat{\Err}^{(.632)}=.632\times 0.5=.316$。然而，真实误差率为0.5。</p>
 <p>可以通过考虑过拟合的程度来改善 .632 估计。首先我们定义 $\gamma$ 为<strong>无信息误差率 (no-information error rate)</strong> ：这是如果输入变量与类别标签独立时的预测规则的误差率。$\gamma$ 的估计可以通过在所有可能的目标 $y_i$ 和预测 $x_{i&rsquo;}$ 的组合上应用预测规则得到
 <script type="math/tex; mode=display">
 \hat\gamma = \frac{1}{N^2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^NL(y_i,\hat f(x_{i'}))\tag{7.58}
@@ -3406,7 +3406,7 @@ $\hat q_1=\hat p_1$时采用像1-最近邻的规则，则$\hat \gamma$值为$2\h
 <hr />
 <ol>
 <li id="fn:1">
-<p>Breiman, L. and Ihaka, R. (1984). Nonlinear discriminant analysis via scaling and ACE, Technical report, University of California, Berkeley.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Breiman, L. and Ihaka, R. (1984). Nonlinear discriminant analysis via scaling and ACE, Technical report, University of California, Berkeley.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3488,7 +3488,7 @@ $\hat q_1=\hat p_1$时采用像1-最近邻的规则，则$\hat \gamma$值为$2\h
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:15
+        Last Build Date UTC : 2019-03-28 08:36:57
       </div>
       
         

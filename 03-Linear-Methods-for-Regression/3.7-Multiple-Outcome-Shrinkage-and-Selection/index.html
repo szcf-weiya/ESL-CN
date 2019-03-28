@@ -3279,7 +3279,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 <p class="admonition-title">weiya 注：Ex. 3.20</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/172">Issue 172: Ex. 3.20</a>，欢迎讨论交流！</p>
 </div>
-<p><strong>降秩回归 (reduced-rank regression)</strong> (Izenman, 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>; van der Merwe and Zidek, 1980<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>) 通过明确地合并信息的回归模型来形式化这个方法。给定误差协方差 $\Cov(\varepsilon)=\bSigma$，求解下列带约束的多元回归问题：</p>
+<p><strong>降秩回归 (reduced-rank regression)</strong> (Izenman, 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; van der Merwe and Zidek, 1980<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 通过明确地合并信息的回归模型来形式化这个方法。给定误差协方差 $\Cov(\varepsilon)=\bSigma$，求解下列带约束的多元回归问题：</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\B^{rr}(m) = \underset{\rank(\B)=m}{\argmin}\sum_{i=1}^N(y_i-\B^Tx_i)^T\bSigma^{-1}(y_i-\B^Tx_i)\,.\tag{3.68}\label{3.68}
@@ -3316,7 +3316,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 <p class="admonition-title">weiya 注：Ex. 3.22</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/175">Issue 175: Ex. 3.22</a>，欢迎交流讨论！</p>
 </div>
-<p>降秩回归通过截断 CCA 从响应变量中借来了优点。Breiman and Friedman (1997)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> 探索了 $\X$ 和 $\Y$ 间典则变量的逐步收缩，这是光滑版本的降秩回归。他们的方法有如下形式（与 $\eqref{3.69}$ 对应）</p>
+<p>降秩回归通过截断 CCA 从响应变量中借来了优点。Breiman and Friedman (1997)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 探索了 $\X$ 和 $\Y$ 间典则变量的逐步收缩，这是光滑版本的降秩回归。他们的方法有如下形式（与 $\eqref{3.69}$ 对应）</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\B^{c+w} = \hat\B\U\bLambda\U^{-1}\,,\tag{3.72}
@@ -3328,14 +3328,14 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 \lambda_m = \frac{c_m^2}{c_m^2+\frac pN(1-c_m^2)}\,,\; m = 1,\ldots,M\,,\tag{3.73}
 </script>
 </p>
-<p>其中 $c_m$ 是第 $m$ 个典则相关系数。注意到随着输入变量个数与样本大小的比率 $p/N$ 变小，收缩因子趋向于 1。Breiman and Friedman (1997)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> 基于训练数据和交叉验证提出了修改版本的 $\bLambda$，但是一般形式是相同的。这里拟合响应形式为 </p>
+<p>其中 $c_m$ 是第 $m$ 个典则相关系数。注意到随着输入变量个数与样本大小的比率 $p/N$ 变小，收缩因子趋向于 1。Breiman and Friedman (1997)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 基于训练数据和交叉验证提出了修改版本的 $\bLambda$，但是一般形式是相同的。这里拟合响应形式为 </p>
 <p>
 <script type="math/tex; mode=display">
 \hat\Y^{c+w} = \H\Y\S^{c+w}\,,\tag{3.74}
 </script>
 </p>
 <p>这里 $\S^{c+w} = \U\bLambda\U^{-1}$ 是响应变量收缩算子。</p>
-<p>Breiman and Friedman (1997)<sup id="fnref3:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup> 还建议同时在 $Y$ 和 $X$ 的空间中进行收缩。这导出混合收缩模型：</p>
+<p>Breiman and Friedman (1997)<sup id="fnref3:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 还建议同时在 $Y$ 和 $X$ 的空间中进行收缩。这导出混合收缩模型：</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\Y^{\mathrm{ridge},c+w}=\A_\lambda\Y\S^{c+w}\,,\tag{3.75}
@@ -3346,13 +3346,13 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 <hr />
 <ol>
 <li id="fn:1">
-<p>Izenman, A. (1975). Reduced-rank regression for the multivariate linear model, Journal of Multivariate Analysis 5: 248–264.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Izenman, A. (1975). Reduced-rank regression for the multivariate linear model, Journal of Multivariate Analysis 5: 248–264.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>van der Merwe, A. and Zidek, J. (1980). Multivariate regression analysis and canonical variates, The Canadian Journal of Statistics 8: 27–39.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>van der Merwe, A. and Zidek, J. (1980). Multivariate regression analysis and canonical variates, The Canadian Journal of Statistics 8: 27–39.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Breiman, L. and Friedman, J. (1997). Predicting multivariate responses in multiple linear regression (with discussion), Journal of the Royal Statistical Society Series B. 59: 3–37.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Breiman, L. and Friedman, J. (1997). Predicting multivariate responses in multiple linear regression (with discussion), Journal of the Royal Statistical Society Series B. 59: 3–37.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3434,7 +3434,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-22 03:22:13
+        Last Build Date UTC : 2019-03-28 08:36:55
       </div>
       
         
