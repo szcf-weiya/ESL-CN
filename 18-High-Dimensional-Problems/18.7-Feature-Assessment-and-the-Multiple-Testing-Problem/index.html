@@ -3396,7 +3396,7 @@ H_{1j} = \text{治疗对基因 }j\text{ 有作用}\\
 <p>在我们的例子中，如果在 $\alpha=0.05$ 水平下检验，则我们需要采用的阈值为 $0.05/12625=3.9\times 10^{-6}$。在 12625 个基因的 $p$ 值中没有比这还小。</p>
 <p>有许多对该方法的变形，通过调整单个 $p$ 值使得 FWER 至多为 $\alpha$，一些方法避免了对独立性的假设，比如，Dudoit et al. (2002b)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
 <h2 id="fdr">FDR<a class="headerlink" href="#fdr" title="Permanent link">&para;</a></h2>
-<p>多重检验的另一种不同的方式不是试图控制 FWER，但是关注假阳性基因的比例。正如我们将要看到的，这个方法在实际中有很强的吸引力。</p>
+<p>多重检验的另一种不同的方式不是试图控制 FWER，而是关注假阳性基因的比例。正如我们将要看到的，这个方法在实际中有很强的吸引力。</p>
 <p>表 18.5 总结了 $M$ 个假设检验的理论结果。注意到 FWER 为 $\Pr(V\ge 1)$。</p>
 <p><img alt="" src="../../img/18/tab18.5.png" /></p>
 <p>这里我们关注 <strong>误发现率 FDR (false discovery rate)</strong></p>
@@ -3410,14 +3410,14 @@ H_{1j} = \text{治疗对基因 }j\text{ 有作用}\\
 <p>如果假设是独立的，Benjamini and Hochberg (1995)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 证明了不管零假设对的个数以及当零假设为错的时候 $p$ 值的分布，这个过程有如下性质</p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm{FDR}\le \frac{M_0}{M}\alpha\le \alpha\tag{18.45}
+\mathrm{FDR}\le \frac{M_0}{M}\alpha\le \alpha\tag{18.45}\label{18.45}
 </script>
 </p>
 <p>为了解释这个性质，我们取 $\alpha=0.15$。图 18.19 展示了有序 $p$ 值 $p_{j}$，以及斜率为 $0.15/12625$ 的直线。</p>
 <p><img alt="" src="../../img/18/fig18.19.png" /></p>
 <p>从左边开始，并且向右移动，BH 方法找到使得 $p$ 值落在直线下方的最后一个点。这发生在 $j=11$ 处，所以我们拒绝这 11 个有更小 $p$ 值的假设。注意到第 11 小的 $p$ 值的截断值为 0.00012，且第 11 大的 $\vert t_j\vert$ 为 4.101。因此我们拒绝这 11 个 $\vert t_j\vert\ge 4.101$ 的基因。</p>
 <p>从我们简短的描述中，BH 过程怎么进行的不是很清楚；也就是，为什么对应的 FDR 至多 0.15（该例中的 $\alpha$）。实际上，这一事实的证明相当复杂 (Benjamini and Hochberg, 1995<sup id="fnref3:3"><a class="footnote-ref" href="#fn:3">3</a></sup>)</p>
-<p>更直接的方式是 plug-in 方法。不是从某个 $\alpha$ 的值开始，我们固定一个 $t$ 统计量的截断点，如上面出现的 4.101。等于或大于4.101 的 $\vert t_j\vert$ 观测值的个数为 11。在总的排列数据中，大于等于 4.101 的 $t_j^k$ 有 1518 个，对于每个排列平均为$1518/1000=1.518$。因此 FDR 的直接估计为$\widehat{\mathrm{FDR}}=1.518/11\sim 14\%$。注意到 14% 近似等于上面使用的$\alpha=0.15$（差异是由于离散化)。这个过程在算法 18.3 中有描述。概述如下：</p>
+<p>更直接的方式是 plug-in 方法。不是从某个 $\alpha$ 的值开始，我们固定一个 $t$ 统计量的截断点，如上面出现的 4.101。等于或大于 4.101 的 $\vert t_j\vert$ 观测值的个数为 11。在总的排列数据中，大于等于 4.101 的 $t_j^k$ 有 1518 个，对于每个排列平均为 $1518/1000=1.518$。因此 FDR 的直接估计为 $\widehat{\mathrm{FDR}}=1.518/11\sim 14\%$。注意到 14% 近似等于上面使用的 $\alpha=0.15$（差异是由于离散化)。这个过程在算法 18.3 中有描述。概述如下：</p>
 <blockquote>
 <p>算法 18.3 FDR 的 plug-in 估计等价于采用 (18.40) $p$ 值的排列的算法 18.2 的 BH 过程。</p>
 </blockquote>
@@ -3434,18 +3434,18 @@ H_{1j} = \text{治疗对基因 }j\text{ 有作用}\\
 \E(V/R)\approx\frac{E(V)}{E(R)}\tag{18.47}
 </script>
 </p>
-<p>而且一般地，$\widehat{\mathrm{FDR}}$ 是 FDR 的一致估计(Storey, 2002<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>; Storey et al., 2004<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>)。注意到分子$\widehat{\E(V)}$ 实际上估计了 $(M/M_0)\E(V)$，因为排列分布使用 $M$ 而非 $M_0$ 个零假设。因此如果有了 $M_0$ 的一个估计，FDR的良好估计可以从 $(\hat M_0/M)\cdot \widehat{\mathrm{FDR}}$ 中得到。<a href="https://github.com/szcf-weiya/ESL-CN/issues/133">练习 18.19</a> 展示了估计 $M_0$ 的一种方式。最保守的 FDR 估计方法是用 $M_0=M$（向上偏）。等价地，$M_0$ 的估计可以通过关系 (18.45) 用来改善 BH 方法。</p>
+<p>而且一般地，$\widehat{\mathrm{FDR}}$ 是 FDR 的一致估计(Storey, 2002<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>; Storey et al., 2004<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>)。注意到分子 $\widehat{\E(V)}$ 实际上估计了 $(M/M_0)\E(V)$，因为排列分布使用 $M$ 而非 $M_0$ 个零假设。因此如果有了 $M_0$ 的一个估计，FDR 的良好估计可以从 $(\hat M_0/M)\cdot \widehat{\mathrm{FDR}}$ 中得到。<a href="https://github.com/szcf-weiya/ESL-CN/issues/133">练习 18.19</a> 展示了估计 $M_0$ 的一种方式。最保守的 FDR 估计方法是用 $M_0=M$（向上偏）。等价地，$M_0$ 的估计可以通过关系 \eqref{18.45} 用来改善 BH 方法。</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 18.19</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/133">Issue 133: Ex. 18.19</a>。</p>
 </div>
-<p>读者可能会惊讶我们选了一个较大的数 0.15 作为 FDR 的界$\alpha$。我们必须记住 FDR 不同于第一类误差，后者经常选择0.05。对于科学家，FDR是假阳性在被统计学家称为显著的基因中比例的期望。微阵列实验表明 FDR 达到 0.15 仍然有用，特别是当我们探索自然时。</p>
+<p>读者可能会惊讶我们选了一个较大的数 0.15 作为 FDR 的界 $\alpha$。我们必须记住 FDR 不同于第一类误差，后者经常选择 0.05。对于科学家，FDR 是假阳性在被统计学家称为显著的基因中比例的期望。微阵列实验表明 FDR 达到 0.15 仍然有用，特别是当我们探索自然时。</p>
 <h2 id="sam">对称分割点和 SAM 过程<a class="headerlink" href="#sam" title="Permanent link">&para;</a></h2>
 <p>在上面描述的检验方法中，我们采用检验统计量 $t_j$ 的绝对值，因此对于统计量的正值和赋值有相同的截断点。在一些试验中，可能会出现大部分或者所有的差异表达基因在正方向上变化（或者所有都在负方向）。对于这种情形，对两种情形分布导出截断点是有利的。</p>
 <p>微阵列的显著性分析 (SAM) 提供了一种方式。SAM 方法的基本思想展现在图 18.20 中。在竖轴上，我们画出有序测试统计量 $t_{(1)}\le t_{(2)}\le \ldots t_{(M)}$，而横轴展示了从数据的排列中得到的有序统计量的期望：$\tilde t_{(j)}=(1/K)\sum_{k=1}^Kt_{(j)}^k$，其中 $t_{(1)}^k\le t_{(2)}^k\le \cdots\le t_{(M)}^k$ 是排列 $k$ 的有序检验统计量。</p>
 <p><img alt="" src="../../img/18/fig18.20.png" /></p>
 <p>图中作出了平行于角平分线，间距为 $\Delta$ 的两条横线。从原点开始向右移动，寻找离开该带的第一个点。这定义了上截断点 $C_{hi}$，并且所有高出该点的基因称为显著（标记为红色）。类似地，在左下角寻找下截断点 $C_{low}$。因此每个调整参数 $\Delta$ 定义了上下截断点，对于每个截断点，$\widehat{\mathrm{FDR}}$ 的 plug-in 估计和前面一样。一般地，计算一系列的 $\Delta$ 和与之相关的 $\widehat{\mathrm{FDR}}$，主观上从中选择一组值。</p>
-<p>SAM 的优势在于截断点的可能的不对称性。在图 18.20 的例子中，当$\Delta=0.71$，我们得到 11 个显著基因；它们都位于右上方。位于左下方的数据点从未离开带状区域，也因此有 $C_{low}=-\infty$。因此，对于该 $\Delta$，在左（负）侧没有被称为显著的基因。我们不会如18.7.1 节中一样在这些截断点上加上对称性，因为这里没有理由假设在两端有相似的行为。</p>
+<p>SAM 的优势在于截断点的可能的不对称性。在图 18.20 的例子中，当 $\Delta=0.71$，我们得到 11 个显著基因；它们都位于右上方。位于左下方的数据点从未离开带状区域，也因此有 $C_{low}=-\infty$。因此，对于该 $\Delta$，在左（负）侧没有被称为显著的基因。我们不会如 18.7.1 节中一样在这些截断点上加上对称性，因为这里没有理由假设在两端有相似的行为。</p>
 <p>似然比检验中，这个方法和非对称方法之间存在联系。假设我们在无影响的零假设下有对数似然 $\ell_0(t_j)$，并且在备择假设下有对数似然 $\ell(t_j)$。则似然比检验意味着如果对于某些 $\Delta$，</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3461,8 +3461,7 @@ H_{1j} = \text{治疗对基因 }j\text{ 有作用}\\
 </p>
 <p>再次，每个 $t_{(j)}$ 的阈值取决于对应的零假设的 $\tilde t_{(j)}$ 值。</p>
 <h2 id="fdr_1">FDR 的贝叶斯解释<a class="headerlink" href="#fdr_1" title="Permanent link">&para;</a></h2>
-<p>这里有个 FDR 的有趣的贝叶斯解释，在 Storey (2002)<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 和 
- Efron and Tibshirani (2002)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 中发展起来。首先我们需要定义 <strong>正误发现率 pFDR (positive false discovery rate)</strong></p>
+<p>这里有个 FDR 的有趣的贝叶斯解释，在 Storey (2002)<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 和 Efron and Tibshirani (2002)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 中发展起来。首先我们需要定义 <strong>正误发现率 pFDR (positive false discovery rate)</strong></p>
 <p>
 <script type="math/tex; mode=display">
 \mathrm{pFDR}=\E[\frac VR\mid R>0]
@@ -3472,7 +3471,7 @@ H_{1j} = \text{治疗对基因 }j\text{ 有作用}\\
 <p>令 $\Gamma$ 为单个测试的拒绝域；在上面的例子中我们采用 $\Gamma=(-\infty,-4.10)\cup (4.10,\infty)$。假设对独立同分布的统计量$t_1,\ldots,t_M$及拒绝域$\Gamma$ 进行了 $M$ 个相同的简单假设检验。定义随机变量 $Z_j$，如果第 $j$ 个假设是对的，则等于 0，否则等于 1。我们假设对于某分布 $F_0$ 和 $F_1$，每对 $(t_j,Z_j)$ 是独立同分布的随机变量，满足</p>
 <p>
 <script type="math/tex; mode=display">
-t_j\Z_j\sim (1-Z_j)\cdot F_0+Z_j\cdot F_1
+t_j\mid Z_j\sim (1-Z_j)\cdot F_0+Z_j\cdot F_1
 </script>
 </p>
 <p>这表明每个测试统计量 $t_j$ 都来自两个分布中的其中一个：如果零假设是对的，则为 $F_0$，否则为 $F_1$。令 $\Pr(Z_j=0)=\pi_0$，我们有边缘分布：</p>
@@ -3599,7 +3598,7 @@ t_j\sim\pi_0\cdot F_0+(1-\pi_0)\cdot F_1
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-03-28 11:36:45
+        Last Build Date UTC : 2019-04-02 11:58:21
       </div>
       
         
