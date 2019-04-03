@@ -3374,7 +3374,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=506">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3388,7 +3388,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-03-20, 2018-03-21</td>
+<td>2018-03-20, 2018-03-21, 2019-04-03</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3396,20 +3396,20 @@
 </tr>
 </tbody>
 </table>
-<p>关联规则分析已经成为挖掘贸易数据的流行的工具。目标是寻找变量 $X=(X_1,X_2,\ldots,X_p)$ 在数据中出现最频繁的联合值。大部分应用在二值数据 $X_j\in{0,1}$ 中，也称作“市场篮子”分析。这种情形下观测值为销售交易，比如出现在商店收银台的东西。变量表示所有在商店中出售的东西。对于观测 $i$，每个变量 $X_j$ 取两个值中的一个；如果第 $j$ 个物品作为该次交易购买商品的一部分则 $x_{ij}=1$，而如果没有购买则 $x_{ij}=0$。这些频繁有联合值的变量表示物品经常被一起购买。这个信息对于货架、跨营销的促销活动、商品目录的设计，以及基于购买模式的消费者划分都是很有用的。</p>
-<p>更一般地，关联分析的基本目标是寻找<strong>特征向量 (feature vector)</strong> $X$ 的<strong>原型 (prototype)</strong> $X$ 值 $v_1,\ldots,v_L$ 的集合，使得概率密度 $\Pr(v_l)$ 在这些值上的取值相对大。在一般框架下，这个问题可以看成是“<strong>模式寻找 (mode finding)</strong>”或者“<strong>碰撞狩猎 (bump hunting)</strong>”。如所阐释的，这个问题是非常困难。每个 $\Pr(v_l)$ 的自然估计 $X=v_l$ 时观测的比例。对于涉及不止一个变量的问题，每个变量都可以假定大于某较小的值，$X=v_l$ 的观测值的数目用于可靠估计几乎总是太少。</p>
-<p>进行第一次简化来修改目标。与其寻找 $\Pr(x)$ 很大时的 $x$ <strong>值 (values)</strong>，不如在 $X$ 空间中寻找相对它们大小和支撑集的大概率部分的<strong>区域 (regions)</strong>。令 $\cal S_j$ 表示第 $j$ 个变量的所有可能值的集合（<strong>支撑集 (support)</strong>），并且令  $s_j\subseteq\cal S_j$ 为这些值的子集。修改后的目标可以叙述成试图寻找变量值的子集 $s_1,\ldots,s_p$ 来使得每个变量的概率同时相对地大，假设每个子集中都有一个值，则也就是使得</p>
+<p><strong>关联规则分析 (Association rule analysis)</strong> 已经成为挖掘贸易数据的流行工具。目标是寻找变量 $X=(X_1,X_2,\ldots,X_p)$ 在数据中出现最频繁的联合值。在二值数据 $X_j\in{0,1}$ 中应用最多，也称作“市场篮子”分析。这种情形下观测值为销售交易，比如出现在商店收银台的商品。变量表示所有在商店中出售的商品。对于观测 $i$，每个变量 $X_j$ 取值为 0 或 1；如果第 $j$ 个商品作为该次交易购买的一部分则 $x_{ij}=1$，而如果没有购买则 $x_{ij}=0$。这些经常有联合值的变量表示物品经常被一起购买。这个信息对于货架、跨营销的促销活动、商品目录的设计，以及基于购买模式的消费者划分都是很有用的。</p>
+<p>更一般地，关联分析的基本目标是寻找 <strong>特征向量 (feature vector)</strong> $X$ 的 <strong>原型 (prototype)</strong> $X$ 值 $v_1,\ldots,v_L$ 的集合，使得概率密度 $\Pr(v_l)$ 在这些值上的取值相对大。在一般框架下，这个问题可以看成是“<strong>模式寻找 (mode finding)</strong>”或者“<strong>碰撞狩猎 (bump hunting)</strong>”。如所阐释的，这个问题是非常困难。每个 $\Pr(v_l)$ 一个很自然的估计是 $X=v_l$ 时观测的比例。对于涉及不止一个变量的问题，每个变量都可以假定不止一个值，要得到可靠估计，$X=v_l$ 的观测值的个数几乎总是太少。</p>
+<p>进行第一次简化来修改目标。与其寻找 $\Pr(x)$ 很大时的 $x$ <strong>值 (values)</strong>，不如在 $X$ 空间中寻找相对它们大小和支撑集而言的大概率部分的 <strong>区域 (regions)</strong>。令 $\cal S_j$ 表示第 $j$ 个变量的所有可能值的集合（<strong>支撑集 (support)</strong>），并且令  $s_j\subseteq\cal S_j$ 为这些值的子集。修改后的目标可以叙述成试图寻找变量值的子集 $s_1,\ldots,s_p$ 来使得每个变量的概率同时相对地大，假设每个子集中都有一个值，则也就是使得</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr\Big[\bigcap_{j=1}^p(X_j\in s_j)\Big]\tag{14.2}
+\Pr\Big[\bigcap_{j=1}^p(X_j\in s_j)\Big]\tag{14.2}\label{14.2}
 </script>
 </p>
-<p>相对大。子集的交 $\cap_{j=1}^p(X_j\in s_j)$ 称作<strong>联合规则 (conjunctive rule)</strong>。对于定性变量，子集 $s_j$ 为邻接区间；对于类别型变量，子集是明确界定的。注意到如果子集实际上是整个集合 $s_j=\cal S_j$，经常是这种情形，变量 $X_j$ 被称为没有出现在规则 (14.2) 中。</p>
+<p>相对大。子集的交 $\cap_{j=1}^p(X_j\in s_j)$ 称作 <strong>联合规则 (conjunctive rule)</strong>。对于定性变量，子集 $s_j$ 为邻接区间；对于类别型变量，子集是明确界定的。注意到如果子集实际上是整个集合 $s_j=\cal S_j$，经常是这种情形，变量 $X_j$ 被称为没有出现在规则 \eqref{14.2} 中。</p>
 <h2 id="_1">市场篮子分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>求解 (14.2) 的一般方法将在 14.2.5 节讨论。这在许多应用中是很有用的。然而，它们对于非常多 ($p\approx 10^4,N\approx 10^8$) 的交易数据是不可行的，但市场篮子分析经常要应用到这些数据上。需要对 (14.2) 进一步简化。首先，只考虑两种类型的子集；$s_j$ 要么包含 $X_j$ 的单个值 $s_j=v_{0j}$，或者 $X_j$ 的整个值的集合，$s_j=\cal S_j$。这将 (14.2) 简化为寻找元素为整数的子集 $\cal J\subset\{1,\ldots,p\}$，以及对应的值 $v_{0j},j\in\cal J$，使得</p>
+<p>求解 \eqref{14.2} 的一般方法将在 14.2.5 节讨论。这在许多应用中是很有用的。然而，它们对于非常多 ($p\approx 10^4,N\approx 10^8$) 的交易数据是不可行的，但市场篮子分析经常要应用到这些数据上。所以需要对 \eqref{14.2} 进一步简化。首先，只考虑两种类型的子集；$s_j$ 要么只包含 $X_j$ 的单个值 $s_j=v_{0j}$，要么包含 $X_j$ 的所有值，$s_j=\cal S_j$。这将 \eqref{14.2} 简化为寻找元素为整数的子集 $\cal J\subset\{1,\ldots,p\}$，以及对应的值 $v_{0j},j\in\cal J$，使得</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr\Big[\bigcap_{j\in \cal J}(X_j=v_{0j})\Big]\tag{14.3}
+\Pr\Big[\bigcap_{j\in \cal J}(X_j=v_{0j})\Big]\tag{14.3}\label{14.3}
 </script>
 </p>
 <p>相对大。图 14.1 解释了这个假设。</p>
@@ -3417,7 +3417,7 @@
 <blockquote>
 <p>图14.1. 关联规则的简化。这里有两个输入 $X_1$ 和 $X_2$，分别取 4 和 6 个不同的值。红色方块表示高密度的区域。为了简化计算，我们假设导出的子集要么对应输入的单个值，要么对应所有值。有了这个假设，我们可以找到图中中间或者右边的模式，而不是左边的模式。</p>
 </blockquote>
-<p>可以应用<strong>虚拟变量 (dummy variables)</strong> 的技巧将 (14.3) 转换为只涉及二值变量的问题。这里我们假设支撑集 $\cal S_j$ 对于每个变量 $X_j$ 都是有限的。具体地，构造新的变量集 $Z_1,\ldots,Z_K$，对于由每个原始变量 $X_1,X_2,\ldots,X_p$ 可获得的每个值 $v_{lj}$ ，创建一个这样的变量。虚拟变量的数目 $K$ 为</p>
+<p>可以应用 <strong>虚拟变量 (dummy variables)</strong> 的技巧将 \eqref{14.3} 转换为只涉及二值变量的问题。这里我们假设支撑集 $\cal S_j$ 对于每个变量 $X_j$ 都是有限的。具体地，构造新的变量集 $Z_1,\ldots,Z_K$，对于可由每个原始变量 $X_1,X_2,\ldots,X_p$ 取得的每个值 $v_{lj}$ ，创建一个这样的变量。虚拟变量的数目 $K$ 为</p>
 <p>
 <script type="math/tex; mode=display">
 K=\sum\limits_{j=1}^p\vert \cal S_j\vert
@@ -3427,49 +3427,54 @@ K=\sum\limits_{j=1}^p\vert \cal S_j\vert
 <p>如果与其相关联的变量取 $Z_k$ 对应的值，则每个虚拟变量被赋值为 $Z_k=1$，否则$Z_k=0$（<strong>weiya注：</strong>见注中的图片）。 </p>
 <div class="admonition notes">
 <p class="admonition-title">weiya 注</p>
-<p>每个$v_{lj}$（可看成是$p$维列向量）都有一个虚拟变量$Z_{\ell}$。</p>
+<p>每个 $v_{lj}$（可看成是 $p$ 维列向量）都有一个虚拟变量 $Z_{\ell}$。</p>
 <p><img alt="" src="../../img/14/pho14.1.png" /></p>
 </div>
-<p>这将 (14.3) 转换为寻找整数集 ${\cal K}\subset\{1,\ldots,K\}$ 使得下式的值大。</p>
+<p>这将 \eqref{14.3} 转换为寻找整数集 ${\cal K}\subset\{1,\ldots,K\}$ 使得下式的值大。</p>
 <p>
 <script type="math/tex; mode=display">
-\Pr\Big[\bigcap_{k\in\cal K}(Z_k=1)\Big]=\Pr\Big[\prod\limits_{k\in\cal K}Z_k=1\Big]\tag{14.4}
+\Pr\Big[\bigcap_{k\in\cal K}(Z_k=1)\Big]=\Pr\Big[\prod\limits_{k\in\cal K}Z_k=1\Big]\tag{14.4}\label{14.4}
 </script>
 </p>
-<p>这是市场篮子问题的标准形式。集合 $\cal K$ 称为“<strong>项目集 (items set)</strong>”。在项目集中的变量 $Z_k$ 的个数称为“大小（size）”（注意到这个大小不大于 $p$）。(14.4) 的估计值取为在数据集中式 (14.4) 中关联为真的观测的比例：</p>
+<p>这是市场篮子问题的标准形式。集合 $\cal K$ 称为“<strong>项目集 (items set)</strong>”。项目集中的变量 $Z_k$ 的个数称为“大小 (size)”（注意到这个大小不大于 $p$）。\eqref{14.4} 的估计值取为在数据集中式 \eqref{14.4} 中关联为真的观测的比例：</p>
 <p>
 <script type="math/tex; mode=display">
 \widehat{\Pr}\Big[\prod\limits_{k\in\cal K}(Z_k=1)\Big]=\frac{1}{N}\sum\limits_{i=1}^N\prod_{k\in\cal K}z_{ik}\tag{14.5}
 </script>
 </p>
-<p>这里 $z_{ik}$ 为 $Z_k$ 的第 $i$ 种情形的值。这称作项目集 $\cal K$ 的“支撑 (support)”或“流行 (prevalence)” $T(\cal K)$。$\prod_{k\in\cal k}z_{ik}=1$ 的观测 $i$ 称作“包含 (contain)”项目集 $\cal K$ 中。</p>
+<p>其中 $z_{ik}$ 为 $Z_k$ 的第 $i$ 种情形的值。上式称作项目集 $\cal K$ 的“支撑 (support)”或“流行 (prevalence)” $T(\cal K)$。$\prod_{k\in\cal k}z_{ik}=1$ 的观测 $i$ 称作“包含 (contain)”项目集 $\cal K$ 。</p>
 <p>在关联规则挖掘中确定支撑的下界 $t$，并且寻找所有可以由变量 $Z_1,\ldots,Z_k$ 组成的项目集 $\cal K_l$，并且支撑集大于下界 $t$，也就是</p>
 <p>
 <script type="math/tex; mode=display">
-\{{\cal K_l}\mid T({\cal K_l})>t\}\tag{14.6}
+\{{\cal K_l}\mid T({\cal K_l})>t\}\tag{14.6}\label{14.6}
 </script>
 </p>
 <h2 id="apriori">Apriori 算法<a class="headerlink" href="#apriori" title="Permanent link">&para;</a></h2>
-<p>如果调整阈值 $t$ 使得式 (14.6) 仅由所有 $2^K$ 个可能的项集合中的一小部分，则对于非常大的数据集，可以通过可行的计算得到 (14.6) 的解。“Apriori”算法（Argawal et al.，1995<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）探究维数灾难的某些方面，采用小部分的数据传递求解 (14.6)。具体地，对于给定的支撑阈值 $t$：</p>
+<p>如果调整阈值 $t$ 使得式 \eqref{14.6} 仅由所有 $2^K$ 中可能的项集合中的一小部分构成，则对于非常大的数据集，可以通过可行的计算得到 \eqref{14.6} 的解。“Apriori”算法（Argawal et al.，1995<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）探究维数灾难的某些方面，采用小部分的数据传递求解 \eqref{14.6}。具体地，对于给定的支撑阈值 $t$：</p>
 <ul>
-<li>$\{{\cal K}\mid T(\cal K)&gt;t \}$ 的<strong>基数(cardinality)</strong>相对小。</li>
-<li>任意由项目集 $\cal K$ 中子集组成的集合 $\cal L$ 必须有比 $\cal K$ 大或相等的支撑，${\cal L\subseteq K}\Rightarrow T({\cal L})\ge T({\cal K})$</li>
+<li>$\{{\cal K}\mid T(\cal K)&gt;t \}$ 的 <strong>基数(cardinality)</strong> 相对小。</li>
+<li>任意由项目集 $\cal K$ 中子集组成的集合 $\cal L$ 必须有比 $\cal K$ 大或相等的支撑，即 ${\cal L\subseteq K}\Rightarrow T({\cal L})\ge T({\cal K})$</li>
 </ul>
-<p>第一次传递数据计算所有单项目集合的支撑。舍弃那些支撑小于阈值的项目集。第二次传递数据计算所有可以由第一次传递中保留下来的单项目集合组成对的大小为 2 的项目集合的支撑。换句话说，为了产生所有大小为 $\cal K=m$ 的高频率项目集，我们仅仅需要考虑那些候选项目，那些候选项目使得所有大小为 $m-1$ 的上一级项目得到的大小为 $m$ 的项目集是高频率的。舍弃那些支撑小于阈值的大小为 2 的项目集。每个后继的传递数据只考虑了那些可以通过结合上一次传递数据存留的项目集与第一次传递数据保留下的项目集得到的项目集。数据传递过程一直进行下去，直到来自上一次传递的所有候选规则的支撑都小于指定阈值。Apriori 算法仅仅要求在 $\vert\cal K\vert$ 的每个值的一侧进行数据传递，这是很重要的，因为我们假设数据不能放在计算机的主存中。如果数据是充分稀疏（或者如果阈值 $t$ 充分大），则会在合理次数之后终止过程，甚至对非常大的数据集也是如此。</p>
+<p>第一次传递数据计算所有单项目集合的支撑。舍弃那些支撑小于阈值的项目集。第二次传递数据计算所有可以通过第一次传递中保留下来的单项目集合匹配成对的项目集（此时大小为 2）的支撑。换句话说，为了产生所有大小为 $\vert\cal K\vert=m$ 的高频率项目集，我们仅仅需要考虑部分候选项目集，每个候选项目集的 $m$ 个大小为 $m-1$ 的上一级项目集是高频率的。</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>对于给定的大小为 $m$ 的项目集 $\cal K$，它有 $m$ 个大小为 $m-1$ 的父项目集。</p>
+</div>
+<p>舍弃那些支撑小于阈值的大小为 2 的项目集。每个后继的传递数据只考虑了那些可以通过结合上一次传递数据存留的项目集与第一次传递数据保留下的项目集得到的项目集。数据传递过程一直进行下去，直到来自上一次传递的所有候选规则的支撑都小于指定阈值。Apriori 算法仅要求对 $\vert\cal K\vert$ 个值的每一个进行一次数据传递，这是很重要的，因为我们假设数据不能放在计算机的主存中。如果数据是充分稀疏（或者如果阈值 $t$ 充分大），则会在合理次数之后终止过程，甚至对非常大的数据集也是如此。</p>
 <p>许多额外的技巧可以作为这个策略的一部分来提高速度和收敛（Agrawal et al., 1995<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）。Apriori 算法标志数据挖掘技术的主要进步。</p>
-<p>通过 Apriori 算法返回的每个高支撑的数据集 $\cal K$（14.6）被放到“关联规则”的集合中。项目 $Z_k,k\in\cal K$ 被分成两个分离的子集，$A\cup B=\cal K$，并且写成</p>
+<p>通过 Apriori 算法返回的每个高支撑的数据集 $\cal K$ \eqref{14.6} 被放到“关联规则”的集合中。项目 $Z_k,k\in\cal K$ 被分成两个分离的子集，$A\cup B=\cal K$，并且写成</p>
 <p>
 <script type="math/tex; mode=display">
 A\Rightarrow B\tag{14.7}
 </script>
 </p>
-<p>第一项子集 $A$ 被称作“先因 (antecedent)”，第二个子集 $B$ 被称为“后果 (consequent)”。关联规则基于在数据库中 antecedent 和 consequent 项目集的流行程度，来定义具有一些性质。规则 $T(A\Rightarrow B)$ 的“支撑”是在先行项目集和后果项目集的并集中的观测的占比，这恰恰是导出它们的项目集 $\cal K$ 的支撑。可以看成在随机选择的市场篮子中同时观测项目集 $\Pr(A\; and\; B)$ 的概率的估计 (14.5)。该规则的“<strong>置信度 (confidence)</strong>” 或“<strong>可预测性 (predictability)</strong>” $C(A\Rightarrow B)$ 是它的支撑除以 antecedent 的支撑</p>
+<p>第一项子集 $A$ 被称作“先因 (antecedent)”，第二个子集 $B$ 被称为“后果 (consequent)”。关联规则基于在数据库中 antecedent 和 consequent 项目集的流行程度，来定义具有一些性质。规则 $T(A\Rightarrow B)$ 的“支撑”是在先行项目集和后果项目集的并集中的观测的占比，这恰恰是导出它们的项目集 $\cal K$ 的支撑。可以看成在随机选择的市场篮子中同时观测项目集 $\Pr(A\; and\; B)$ 的概率的估计 \eqref{14.5}。该规则的“<strong>置信度 (confidence)</strong>” 或“<strong>可预测性 (predictability)</strong>” $C(A\Rightarrow B)$ 是它的支撑除以 antecedent 的支撑</p>
 <p>
 <script type="math/tex; mode=display">
 C(A\Rightarrow B)=\frac{T(A\Rightarrow B)}{T(A)}\tag{14.8}
 </script>
 </p>
-<p>可以看成是 $\Pr(B\mid A)$ 的估计。记号 $\Pr(A)$ 是在篮子中出现项目集 $A$ 的概率，是 $\Pr(\prod_{k\in A}Z_k=1)$ 的缩写。“<strong>期望置信度</strong>”定义为 consequent 的支撑 $T(B)$，是无条件的概率 $\Pr(B)$ 的估计。最后，规则的“lift”定义为置信度除以期望置信度</p>
+<p>可以看成是 $\Pr(B\mid A)$ 的估计。记号 $\Pr(A)$ 是在篮子中出现项目集 $A$ 的概率，是 $\Pr(\prod_{k\in A}Z_k=1)$ 的缩写。“<strong>期望置信度</strong>”定义为 consequent 的支撑 $T(B)$，是无条件的概率 $\Pr(B)$ 的估计。最后，规则的 “lift” 定义为置信度除以期望置信度</p>
 <p>
 <script type="math/tex; mode=display">
 L(A\mid B)=\frac{C(A\Rightarrow B)}{T(B)}
@@ -3518,7 +3523,7 @@ T(A\Rightarrow B)>t\qquad and\qquad C(A\Rightarrow B)>c
 <p>除了对我们可以应用的数据有限制外，关联规则还有其它的限制。计算可行性的关键是支撑阈值 (14.6)。项目集的解的个数，它们的大小，以及对数据需要传递的次数随着下界的下降指数型增长。因此，不会发现有高置信度或者高 lift，但是低支撑的规则。举个例子，比如将不会找到 <code>vodka</code> $\Rightarrow$ <code>caviar</code> 的高置信度规则，因为后果（consequent）<code>caviar</code> 的低销售量。</p>
 <h2 id="_2">例子：市场篮子分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们将在中等大小的人口统计数据库中说明 Apriori 算法的使用。数据集包含 $N=9409$ 份问卷，由旧金山湾区 (San Francisco Bay Area) 的购物商场里的消费者填写的（Impact Resources, Inc., Columbus OH, 1987）。这里我们采用前 14 个与人口统计有关的问题的回答来说明。数据中包含顺序型和（无序）类别变量，后者中的许多具有多个值。并且有许多缺失数据。</p>
-<p>我们采用 Apriori 算法的免费软件实现，这归功于 Christian Borgelt。（见<a href="http://www.borgelt.net/">http://fuzzy.cs.uni-magdeburg.de/~borgelt</a>）。除去缺失数据的观测，每个顺序型预测变量在中值处分开并且用两个虚拟变量来编码；每个含有 $k$ 个类别的类别型预测变量用 $k$ 个虚拟变量编码。得到 $6876\times 50$ 阶矩阵，$6876$ 为观测个数，$50$ 为虚拟变量个数。</p>
+<p>我们采用 Apriori 算法的免费软件实现，这归功于 Christian Borgelt。（见 <a href="http://www.borgelt.net/">http://fuzzy.cs.uni-magdeburg.de/~borgelt</a>）。除去缺失数据的观测，每个顺序型预测变量在中值处分开并且用两个虚拟变量来编码；每个含有 $k$ 个类别的类别型预测变量用 $k$ 个虚拟变量编码。得到 $6876\times 50$ 阶矩阵，$6876$ 为观测个数，$50$ 为虚拟变量个数。</p>
 <p>这个算法总共找到 $6288$ 条关联规则，涉及 $\le 5$ 个预测变量，支撑至少为 $10%$。理解这个大的规则集合本身是具有挑战的数据分析工作。我们这里将不会试图解决，但仅仅在图 14.2 中说明每个虚拟变量在数据中的相对频率（上）和在关联规则中的相对频率（下）。受欢迎的类别趋向于在规则中频繁出现，例如，排第一的类别是 language (English)。然而，其他的像职业 (occupation) 则表现出<strong>代表人数不足 (under-represented)</strong>，除了第一和第五个水平。</p>
 <p><img alt="" src="../../img/14/fig14.2.png" /></p>
 <blockquote>
@@ -3740,7 +3745,7 @@ T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-04-02 11:58:19
+        Last Build Date UTC : 2019-04-03 11:19:25
       </div>
       
         
