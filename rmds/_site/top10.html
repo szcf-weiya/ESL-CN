@@ -306,9 +306,10 @@ $(document).ready(function () {
 </div>
 
 
+<p>本文参考 <a href="https://hackerbits.com/data/top-10-data-mining-algorithms-in-plain-r/">HackerBits’s Top 10 data mining algorithms in plain R</a>。</p>
 <div id="c5.0--c4.5" class="section level2">
 <h2>C5.0 (前身是 C4.5)</h2>
-<p>任务：识别鸢尾花 (iris)</p>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html">9.2 基于树的方法(CART)</a>。</p>
 <pre class="r"><code>library(C50)
 library(printr)
 # divide into traing data and test data
@@ -321,6 +322,642 @@ model = C5.0(Species ~ ., data = iris.train)
 # predict
 results = predict(object = model, newdata = iris.test, type = &quot;class&quot;)
 # confusion matrix
+table(results, iris.test$Species)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">results/</th>
+<th align="right">setosa</th>
+<th align="right">versicolor</th>
+<th align="right">virginica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">setosa</td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">versicolor</td>
+<td align="right">0</td>
+<td align="right">21</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">virginica</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">14</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="k-means" class="section level2">
+<h2>K-means</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/13-Prototype-Methods-and-Nearest-Neighbors/13.2-Prototype-Methods/index.html">13.2 原型方法</a>。</p>
+<pre class="r"><code># run kmeans
+model = kmeans(x = subset(iris, select = -Species), centers = 3)
+# check results
+table(model$cluster, iris$Species)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">/</th>
+<th align="right">setosa</th>
+<th align="right">versicolor</th>
+<th align="right">virginica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">0</td>
+<td align="right">46</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="right">17</td>
+<td align="right">4</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="right">33</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="support-vector-machine" class="section level2">
+<h2>Support Vector Machine</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">12.2 支持向量分类器</a>。</p>
+<pre class="r"><code>library(e1071)
+model = svm(Species ~ ., data = iris.train)
+results = predict(object = model, newdata = iris.test, type = &quot;class&quot;)
+table(results, iris.test$Species)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">results/</th>
+<th align="right">setosa</th>
+<th align="right">versicolor</th>
+<th align="right">virginica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">setosa</td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">versicolor</td>
+<td align="right">0</td>
+<td align="right">20</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">virginica</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="apriori" class="section level2">
+<h2>Apriori</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.2-Association-Rules/index.html">14.2 关联规则</a>。</p>
+<pre class="r"><code>library(arules)
+data(&quot;Adult&quot;)
+rules = apriori(Adult,
+                parameter = list(support = 0.4, confidence = 0.7),
+                appearance = list(rhs = c(&quot;race=White&quot;, &quot;sex=Male&quot;), default = &quot;lhs&quot;))</code></pre>
+<pre><code>## Apriori
+## 
+## Parameter specification:
+##  confidence minval smax arem  aval originalSupport maxtime support minlen
+##         0.7    0.1    1 none FALSE            TRUE       5     0.4      1
+##  maxlen target   ext
+##      10  rules FALSE
+## 
+## Algorithmic control:
+##  filter tree heap memopt load sort verbose
+##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+## 
+## Absolute minimum support count: 19536 
+## 
+## set item appearances ...[2 item(s)] done [0.00s].
+## set transactions ...[115 item(s), 48842 transaction(s)] done [0.04s].
+## sorting and recoding items ... [11 item(s)] done [0.01s].
+## creating transaction tree ... done [0.02s].
+## checking subsets of size 1 2 3 4 5 done [0.00s].
+## writing ... [32 rule(s)] done [0.00s].
+## creating S4 object  ... done [0.00s].</code></pre>
+<pre class="r"><code># results
+rules.sorted = sort(rules, by = &quot;lift&quot;)
+top5.rules = head(rules.sorted, 5)
+as(top5.rules, &quot;data.frame&quot;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">rules</th>
+<th align="right">support</th>
+<th align="right">confidence</th>
+<th align="right">lift</th>
+<th align="right">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td align="left">{relationship=Husband} =&gt; {sex=Male}</td>
+<td align="right">0.4036485</td>
+<td align="right">0.9999493</td>
+<td align="right">1.495851</td>
+<td align="right">19715</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td align="left">{marital-status=Married-civ-spouse,relationship=Husband} =&gt; {sex=Male}</td>
+<td align="right">0.4034028</td>
+<td align="right">0.9999492</td>
+<td align="right">1.495851</td>
+<td align="right">19703</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">{marital-status=Married-civ-spouse} =&gt; {sex=Male}</td>
+<td align="right">0.4074157</td>
+<td align="right">0.8891818</td>
+<td align="right">1.330151</td>
+<td align="right">19899</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left">{marital-status=Married-civ-spouse} =&gt; {race=White}</td>
+<td align="right">0.4105892</td>
+<td align="right">0.8961080</td>
+<td align="right">1.048027</td>
+<td align="right">20054</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td align="left">{workclass=Private,native-country=United-States} =&gt; {race=White}</td>
+<td align="right">0.5433848</td>
+<td align="right">0.8804113</td>
+<td align="right">1.029669</td>
+<td align="right">26540</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="em" class="section level2">
+<h2>EM</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm/index.html">8.5 EM 算法</a>。</p>
+<pre class="r"><code>library(mclust)
+model = Mclust(subset(iris, select = -Species))</code></pre>
+<pre><code>## fitting ...
+## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=                                                                |   1%
+  |                                                                       
+  |=                                                                |   2%
+  |                                                                       
+  |==                                                               |   2%
+  |                                                                       
+  |==                                                               |   3%
+  |                                                                       
+  |===                                                              |   4%
+  |                                                                       
+  |===                                                              |   5%
+  |                                                                       
+  |====                                                             |   6%
+  |                                                                       
+  |=====                                                            |   7%
+  |                                                                       
+  |=====                                                            |   8%
+  |                                                                       
+  |======                                                           |   9%
+  |                                                                       
+  |=======                                                          |  10%
+  |                                                                       
+  |=======                                                          |  11%
+  |                                                                       
+  |========                                                         |  12%
+  |                                                                       
+  |========                                                         |  13%
+  |                                                                       
+  |=========                                                        |  13%
+  |                                                                       
+  |=========                                                        |  14%
+  |                                                                       
+  |==========                                                       |  15%
+  |                                                                       
+  |==========                                                       |  16%
+  |                                                                       
+  |===========                                                      |  17%
+  |                                                                       
+  |============                                                     |  18%
+  |                                                                       
+  |============                                                     |  19%
+  |                                                                       
+  |=============                                                    |  20%
+  |                                                                       
+  |==============                                                   |  21%
+  |                                                                       
+  |==============                                                   |  22%
+  |                                                                       
+  |===============                                                  |  23%
+  |                                                                       
+  |===============                                                  |  24%
+  |                                                                       
+  |================                                                 |  24%
+  |                                                                       
+  |================                                                 |  25%
+  |                                                                       
+  |=================                                                |  26%
+  |                                                                       
+  |=================                                                |  27%
+  |                                                                       
+  |==================                                               |  28%
+  |                                                                       
+  |===================                                              |  29%
+  |                                                                       
+  |===================                                              |  30%
+  |                                                                       
+  |====================                                             |  31%
+  |                                                                       
+  |=====================                                            |  32%
+  |                                                                       
+  |=====================                                            |  33%
+  |                                                                       
+  |======================                                           |  34%
+  |                                                                       
+  |=======================                                          |  35%
+  |                                                                       
+  |========================                                         |  36%
+  |                                                                       
+  |========================                                         |  37%
+  |                                                                       
+  |=========================                                        |  38%
+  |                                                                       
+  |=========================                                        |  39%
+  |                                                                       
+  |==========================                                       |  39%
+  |                                                                       
+  |==========================                                       |  40%
+  |                                                                       
+  |===========================                                      |  41%
+  |                                                                       
+  |===========================                                      |  42%
+  |                                                                       
+  |============================                                     |  43%
+  |                                                                       
+  |=============================                                    |  44%
+  |                                                                       
+  |=============================                                    |  45%
+  |                                                                       
+  |==============================                                   |  46%
+  |                                                                       
+  |===============================                                  |  47%
+  |                                                                       
+  |===============================                                  |  48%
+  |                                                                       
+  |================================                                 |  49%
+  |                                                                       
+  |================================                                 |  50%
+  |                                                                       
+  |=================================                                |  50%
+  |                                                                       
+  |=================================                                |  51%
+  |                                                                       
+  |==================================                               |  52%
+  |                                                                       
+  |==================================                               |  53%
+  |                                                                       
+  |===================================                              |  54%
+  |                                                                       
+  |====================================                             |  55%
+  |                                                                       
+  |====================================                             |  56%
+  |                                                                       
+  |=====================================                            |  57%
+  |                                                                       
+  |======================================                           |  58%
+  |                                                                       
+  |======================================                           |  59%
+  |                                                                       
+  |=======================================                          |  60%
+  |                                                                       
+  |=======================================                          |  61%
+  |                                                                       
+  |========================================                         |  61%
+  |                                                                       
+  |========================================                         |  62%
+  |                                                                       
+  |=========================================                        |  63%
+  |                                                                       
+  |=========================================                        |  64%
+  |                                                                       
+  |==========================================                       |  65%
+  |                                                                       
+  |===========================================                      |  66%
+  |                                                                       
+  |============================================                     |  67%
+  |                                                                       
+  |============================================                     |  68%
+  |                                                                       
+  |=============================================                    |  69%
+  |                                                                       
+  |==============================================                   |  70%
+  |                                                                       
+  |==============================================                   |  71%
+  |                                                                       
+  |===============================================                  |  72%
+  |                                                                       
+  |================================================                 |  73%
+  |                                                                       
+  |================================================                 |  74%
+  |                                                                       
+  |=================================================                |  75%
+  |                                                                       
+  |=================================================                |  76%
+  |                                                                       
+  |==================================================               |  76%
+  |                                                                       
+  |==================================================               |  77%
+  |                                                                       
+  |===================================================              |  78%
+  |                                                                       
+  |===================================================              |  79%
+  |                                                                       
+  |====================================================             |  80%
+  |                                                                       
+  |=====================================================            |  81%
+  |                                                                       
+  |=====================================================            |  82%
+  |                                                                       
+  |======================================================           |  83%
+  |                                                                       
+  |=======================================================          |  84%
+  |                                                                       
+  |=======================================================          |  85%
+  |                                                                       
+  |========================================================         |  86%
+  |                                                                       
+  |========================================================         |  87%
+  |                                                                       
+  |=========================================================        |  87%
+  |                                                                       
+  |=========================================================        |  88%
+  |                                                                       
+  |==========================================================       |  89%
+  |                                                                       
+  |==========================================================       |  90%
+  |                                                                       
+  |===========================================================      |  91%
+  |                                                                       
+  |============================================================     |  92%
+  |                                                                       
+  |============================================================     |  93%
+  |                                                                       
+  |=============================================================    |  94%
+  |                                                                       
+  |==============================================================   |  95%
+  |                                                                       
+  |==============================================================   |  96%
+  |                                                                       
+  |===============================================================  |  97%
+  |                                                                       
+  |===============================================================  |  98%
+  |                                                                       
+  |================================================================ |  98%
+  |                                                                       
+  |================================================================ |  99%
+  |                                                                       
+  |=================================================================| 100%</code></pre>
+<pre class="r"><code>table(model$classification, iris$Species)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">/</th>
+<th align="right">setosa</th>
+<th align="right">versicolor</th>
+<th align="right">virginica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">50</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="right">0</td>
+<td align="right">50</td>
+<td align="right">50</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="pagerank" class="section level2">
+<h2>Pagerank</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.10-The-Google-PageRank-Algorithm/index.html">14.10 谷歌的 PageRank 算法</a></p>
+<pre class="r"><code>library(igraph)
+library(dplyr)
+# generate a random directed graph
+set.seed(111)
+g = random.graph.game(n = 10, p.or.m = 1/4, directed = TRUE)
+plot(g)</code></pre>
+<p><img src="top10_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code># calculate the pagerank for each object
+pr = page.rank(g)$vector
+# view results
+df = data.frame(Object = 1:10, PageRank = pr)
+arrange(df, desc(PageRank))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Object</th>
+<th align="right">PageRank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.1536549</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">0.1533286</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">0.1508308</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">0.1474552</td>
+</tr>
+<tr class="odd">
+<td align="right">10</td>
+<td align="right">0.1326519</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">0.1050039</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">0.0801646</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.0365532</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">0.0253568</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">0.0150000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="adaboost" class="section level2">
+<h2>AdaBoost</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.1-Boosting-Methods/index.html">10.1 boosting 方法</a>。</p>
+<pre class="r"><code>library(adabag)
+model = boosting(Species ~ ., data = iris.train)
+results = predict(object = model, newdata = iris.test, type = &quot;class&quot;)
+results$confusion</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Predicted Class/Observed Class</th>
+<th align="right">setosa</th>
+<th align="right">versicolor</th>
+<th align="right">virginica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">setosa</td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">versicolor</td>
+<td align="right">0</td>
+<td align="right">20</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">virginica</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="knn" class="section level2">
+<h2>kNN</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/13-Prototype-Methods-and-Nearest-Neighbors/13.3-k-Nearest-Neighbor-Classifiers/index.html">k 最近邻分类器</a>。</p>
+<pre class="r"><code>library(class)
+results = knn(train = subset(iris.train, select = -Species),
+              test = subset(iris.test, select = -Species),
+              cl = iris.train$Species)
+table(results, iris.test$Species)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">results/</th>
+<th align="right">setosa</th>
+<th align="right">versicolor</th>
+<th align="right">virginica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">setosa</td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">versicolor</td>
+<td align="right">0</td>
+<td align="right">20</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">virginica</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="naive-bayes" class="section level2">
+<h2>Naive Bayes</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/06-Kernel-Smoothing-Methods/6.6-Kernel-Density-Estimation-and-Classification/index.html">6.6 核密度估计和分类</a>。</p>
+<pre class="r"><code>model = naiveBayes(x = subset(iris.train, select = -Species), 
+                   y = iris.train$Species)
+results = predict(object = model, newdata = iris.test, type = &quot;class&quot;)
+table(results, iris.test$Species)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">results/</th>
+<th align="right">setosa</th>
+<th align="right">versicolor</th>
+<th align="right">virginica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">setosa</td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">versicolor</td>
+<td align="right">0</td>
+<td align="right">21</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">virginica</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cart" class="section level2">
+<h2>CART</h2>
+<p>算法细节详见 <a href="https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html">9.2 基于树的方法(CART)</a>。</p>
+<pre class="r"><code>library(rpart)
+model = rpart(Species ~ ., data = iris.train)
+results = predict(object = model, newdata = iris.test, type = &quot;class&quot;)
 table(results, iris.test$Species)</code></pre>
 <table>
 <thead>
