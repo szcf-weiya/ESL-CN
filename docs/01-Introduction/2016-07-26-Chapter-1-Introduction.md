@@ -52,7 +52,7 @@
 
 > 图 1.1 是前列腺癌数据的散点图矩阵。第一行显示了响应变量和自变量之间的关系。其中两个自变量，*svi*和*gleason*是类别型变量。
 
-这个例子的数据如图 1.1 所示，来自 1989 年 Stamey 和其他人的检验前列腺癌特定抗原水平和临床措施之间相关性的研究，其中有 97 名男性接受了彻底的前列腺切除术。
+这个例子的数据如图 1.1 所示，来自 Stamey et al. (1989)[^1] 检验 **前列腺癌特定抗原水平 (PSA)** 和临床措施之间相关性的研究，其中有 97 名男性接受了彻底的前列腺切除术。
 
 目标是根据癌体积的对数值（*lcavol*）、前列腺重量的对数值（*lweight*）、良性前列腺增生数量（*lbph*）、精囊浸润（*svi*）、包膜浸透的对数值（*lcp*）、Gleason得分（*gleason*）、Gleason得分为4或5的比例（*pgg45*）来预测PSA的对数值（*lpsa*）。图1.1是这些变量的散点图矩阵。一些和（*lpsa*）的值是显著的，但是一个好的预测模型是很难根据眼睛构造出来的。
 
@@ -117,3 +117,5 @@ DNA是脱氧核糖核酸，而且是组成人类染色体的基本材料。DNA�
 ## 教师注意事项
 
 我们成功地将这本书的第一版用做两个短学期的课程基础，如果加上第二版中的补充材料，可以用做三个短学期。练习题在每一章的最后。对学生而言，使用良好的软件处理书后的问题是很重要的。我们在自己的教学课堂上使用R和S-PLUS 编程。
+
+[^1]: Stamey, T., Kabalin, J., McNeal, J., Johnstone, I., Freiha, F., Redwine, E. and Yang, N. (1989). Prostate specific antigen in the diagnosis and treatment of adenocarcinoma of the prostate II radical prostatectomy treated patients, Journal of Urology 16: 1076–1083.
