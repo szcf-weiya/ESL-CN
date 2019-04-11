@@ -3402,10 +3402,6 @@
 <td>更新</td>
 <td>2019-04-11</td>
 </tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
-</tr>
 </tbody>
 </table>
 <div class="admonition note">
@@ -3569,27 +3565,27 @@ $$
 <li>$\mathbf M$ 是 $N\times p$ 的矩阵，其由 $\bar{\mathbf H}=\frac{1}{L}\sum\limits_{\ell=1}^L\mathbf H_\ell$ 的最大 $p$ 个特征向量所构成</li>
 </ol>
 <h2 id="_3">主曲线和主曲面<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>主曲线推广了主成分直线，它提供了对$\mathbf R^p$中一系列点的一维光滑曲线的近似。主曲线更一般化，它给出了二维或更高维的流形近似。</p>
-<p>我们首先定义随机变量$X\in R^p$的主曲线，并接着讨论有限数据的情形。令$f(\lambda)$为$R^p$中参数化的光滑曲线。因此$f(\lambda)$是有着$p$个坐标的向量函数，每个都是关于单参数$\lambda$的光滑函数。举个例子，可以选择参数$\lambda$为沿着曲线到固定原点的弧长。对于每个数据点$x$，令$\lambda_f(x)$为曲线上离$x$最近的点。如果满足</p>
+<p>主曲线推广了主成分直线，它提供了对 $\mathbf R^p$ 中一系列点的一维光滑曲线的近似。主曲线更一般化，它给出了二维或更高维的流形近似。</p>
+<p>我们首先定义随机变量 $X\in \IR^p$ 的主曲线，并接着讨论有限数据的情形。令 $f(\lambda)$ 为 $\IR^p$ 中参数化的光滑曲线。因此 $f(\lambda)$ 是有着 $p$ 个坐标的向量函数，每个都是关于单参数 $\lambda$ 的光滑函数。举个例子，可以选择参数 $\lambda$ 为沿着曲线到固定原点的弧长。对于每个数据点 $x$，令 $\lambda_f(x)$ 为曲线上离 $x$ 最近的点。如果满足</p>
 <p>
 <script type="math/tex; mode=display">
-f(\lambda) = E(X\mid \lambda_f(X)=\lambda)\tag{14.61}
+f(\lambda) = \E(X\mid \lambda_f(X)=\lambda)\tag{14.61}\label{14.61}
 </script>
 </p>
-<p>则$f(\lambda)$称为随机向量$X$的分布的主曲线。这也就是说$f(\lambda)$是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点。这也称作 self-consistency性质。尽管在实际中，连续多元分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣。图14.27显示了一个主曲线。</p>
+<p>则 $f(\lambda)$ 称为随机向量 $X$ 的分布的主曲线。这也就是说 $f(\lambda)$ 是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点。这也称作 self-consistency 性质。尽管在实际中，连续多元分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣。图 14.27 展示了一个主曲线。</p>
 <p><img alt="" src="../../img/14/fig14.27.png" /></p>
-<p>主点(Principal points)是与之相关的一个有趣的概念。考虑$k$个原型的集合，对于在分布的支撑集中的每个点$x$，选出最近的原型，也就是，为之负责的那个原型。这导出了对特征空间的划分，得到Voronoi区域。这$k$个点最小化了$X$到其原型的期望距离，它们称为该分布的主点。每个主点是self-consistent，因为它等于其Voronoi区域的$X$的均值。举个例子，当$k=1$，一个圆形正态分布的主点是均值向量；当$k=2$时，成对的点对称排列在通过均值向量的射线上。主点类似$K$-means聚类中的重心的分布。主曲线可以看成是$k=\infty$时的主点，但是限制为光滑曲线，用类似的方式，包含K-means聚类中心的SOM落在一个光滑流形上。</p>
-<p>为了寻找某分布的主曲线$f(\lambda)$，我们考虑坐标函数$f(\lambda)=[f_1(\lambda),f_2(\lambda),\ldots, f_p(\lambda)]$，并且令$X^T=(X_1, X_2,\ldots, X_p)$。 考虑下面的轮换过程：</p>
+<p><strong>主点 (Principal points)</strong> 是与之相关的一个有趣的概念。考虑含 $k$ 个原型的集合，对于在分布的支撑集中的每个点 $x$，选出最近的原型，也就是，为之负责的那个原型。这导出了对特征空间的划分，得到 Voronoi 区域。这 $k$ 个点最小化了 $X$ 到其原型的期望距离，它们称为该分布的主点。每个主点是 self-consistent，因为它等于其 Voronoi 区域的 $X$ 的均值。举个例子，当 $k=1$，一个 <strong><a href="https://en.wikipedia.org/wiki/Von_Mises_distribution">圆形正态分布</a></strong> 的主点是均值向量；当 $k=2$ 时，成对的点对称排列在通过均值向量的射线上。主点类似 $K$-means 聚类中的重心的分布。主曲线可以看成是 $k=\infty$ 时的主点，但是限制为光滑曲线，用类似的方式，SOM 限制 K-means 聚类中心的落在一个光滑流形上。</p>
+<p>为了寻找某分布的主曲线 $f(\lambda)$，我们考虑坐标函数 $f(\lambda)=[f_1(\lambda),f_2(\lambda),\ldots, f_p(\lambda)]$，并且令$X^T=(X_1, X_2,\ldots, X_p)$。考虑下面的轮换过程：</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 (a) & \hat f_j(\lambda)\leftarrow E(X_j\mid \lambda(X)=\lambda); \;j=1,2,\ldots, p\\
-(b) & \hat \lambda_f(x)\leftarrow argmin_{\lambda'}\Vert x-\hat f(\lambda')\Vert^2
-\end{align}
-\qquad （14.62）
+(b) & \hat \lambda_f(x)\leftarrow \argmin_{\lambda'}\Vert x-\hat f(\lambda')\Vert^2
+\end{align*}
+\qquad （14.62) \label{14.62}
 </script>
 </p>
-<p>第一个等式固定$\lambda$，并且加上self-consistentcy的要求(14.61)。第二个等式固定曲线，在曲线上寻找距离每个点最近的点。在有限的数据情形下，主曲线算法以线性主成分开始，迭代(14.62)中的两步直至收敛。散点图光滑器用于估计步骤(a)中的条件期望，这通过将每个$X_j$看成关于弧长$\hat \lambda(X)$的函数来光滑，而且(b)中的投影对于每个观测数据点来实现。证明一般情况下的收敛是很困难的，但是可以证明如果散点图光滑中采用线性最小二乘拟合，则该过程将会收敛至第一线性主成分，这等价寻找矩阵最大特征值的幂法。</p>
+<p>第一个等式固定 $\lambda$，并且加上 self-consistentcy 的要求 \eqref{14.61}。第二个等式固定曲线，并在曲线上寻找距离每个点最近的点。在有限的数据情形下，主曲线算法以线性主成分开始，迭代 \eqref{14.62} 中的两步直至收敛。散点图光滑器用于估计步骤 (a) 中的条件期望，这通过将每个 $X_j$ 看成关于弧长 $\hat \lambda(X)$ 的函数来光滑，而且 (b) 中的投影对于每个观测数据点来实现。证明一般情况下的收敛是很困难的，但是可以证明如果散点图光滑中采用线性最小二乘拟合，则该过程将会收敛至第一线性主成分，这等价寻找矩阵最大特征值的幂法。</p>
 <p>主曲面与主曲线有着完全相同的形式，不过是在更高维度下的。使用最普遍的是二维主曲面，其坐标函数为</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3598,39 +3594,39 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 </p>
 <p>上述步骤(a)中的估计通过二维曲面光滑器得到。维数大于2的主曲面很少用到，因为在高维光滑的可视化不是很吸引人。</p>
 <p><img alt="" src="../../img/14/fig14.28.png" /></p>
-<p>图14.28展示了对half-sphere数据进行主曲面光滑的结果。图象是作为估计的非线性坐标$\hat \lambda_1(x_i), \hat \lambda_2(x_i)$函数的数据点。图中的类别划分是很显然的。</p>
-<p>主曲面非常类似自组织图。如果我们采用核曲面光滑器来估计坐标函数$f_j(\lambda_1，\lambda_2)$，这与SOMs的batch版本(14.48)有着相同的形式。SOM的权重$w_k$恰恰是核的权重。然而，有一个区别，主曲面估计对每个数据点$x_i$估计单独的原型$f(\lambda_1(x_i),\lambda_2(x_i))$。结果是，SOM与主曲面仅仅当SOM原型的个数非常大时两者才一致。</p>
-<p>两者之间还有一个区别。主曲面给出了关于坐标函数的整个流形的光滑参量化，而SOMs是离散的并且仅仅产生近似数据的那些估计的原型。主曲面的光滑参量化保持局部的距离：在图14.28中，红色聚类点比绿色或蓝色聚类点更紧凑。在简单的例子中，估计的坐标函数本身是可以知道的：见练习14.13。</p>
+<p>图 14.28 展示了对 half-sphere 数据进行主曲面光滑的结果。图象是作为估计的非线性坐标 $\hat \lambda_1(x_i), \hat \lambda_2(x_i)$ 函数的数据点。图中的类别划分是很显然的。</p>
+<p>主曲面非常类似自组织图。如果我们采用核曲面光滑器来估计坐标函数 $f_j(\lambda_1，\lambda_2)$，这与 SOMs 的 batch 版本 (14.48) 有着相同的形式。SOM 的权重 $w_k$ 恰恰是核的权重。然而，有一个区别，主曲面估计对每个数据点 $x_i$ 估计单独的原型 $f(\lambda_1(x_i),\lambda_2(x_i))$。结果是，SOM 与主曲面仅仅当 SOM 原型的个数非常大时两者才一致。</p>
+<p>两者之间还有一个区别。主曲面给出了关于坐标函数的整个流形的光滑参量化，而 SOMs 是离散的并且仅仅产生近似数据的那些估计的原型。主曲面的光滑参量化保持局部的距离：在图 14.28 中，红色聚类点比绿色或蓝色聚类点更紧凑。在简单的例子中，估计的坐标函数本身是可以知道的：见<a href="https://github.com/szcf-weiya/ESL-CN/issues/49">练习 14.13</a>。</p>
 <h2 id="_4">谱聚类<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>像K-means这样传统的聚类方法采用spherical 或者elliptical度量来对数据点进行划分。因此当簇是非凸的时候，比如图14.29中左上角的同心圆。</p>
+<p>像 K-means 这样传统的聚类方法采用 spherical 或者 elliptical 度量来对数据点进行划分。因此当簇是非凸的时候效果并不好，比如图 14.29 中左上角的同心圆。</p>
 <p><img alt="" src="../../img/14/fig14.29.png" /></p>
-<p>谱聚类是标准聚类方法的推广，而且也是为这些情形所设计的。它与局部多维缩放技巧有着紧密的联系（14.9节）。</p>
-<p>出发点是所有观测点对间的成对相似性为$s_{ii&rsquo;}\ge 0$的$N\times N$矩阵。我们将这些观测用无向相似性图$G=\langle V, E \rangle$来表示。$N$个顶点$v_i$表示观测值，如果成对顶点的相似性为正值（或者超出某个阈值），则它们之间用一条边相连。边的权重为$s_{ii&rsquo;}$。我们希望对这个图进行划分，使得不同类之间的边有较低的权重，而在类间有着较高的权重。在谱聚类中，思想是构造相似性图来表示观测点间的局部邻居关系。</p>
-<p>更精确地，考虑$N$个点$x_i\in R^p$，令$d_{ii&rsquo;}$为$x_i$和$x_{i&rsquo;}$间的欧几里得距离。我们将radical-kernel gram 矩阵作为我们的相似性矩阵；也就是 $s_{ii&rsquo;}=exp(-d_{ii&rsquo;}^2/c)$，其中$c &gt; 0$是缩放参数。</p>
-<p>有许多方式来定义相似性矩阵，并且其与反映局部行为的相似性图有关。最流行的方式是mutual K-nearest-neighbor graph。定义${\cal{N}}_K$为邻居点的对称子集；特别地，如果点$i$在$i&rsquo;$的最近邻中，则点对$(i,i&rsquo;)$在${\cal{N}}_K$中，反之亦然。接着我们连接所有的对称最近邻，然后给出边的权重$w_{ii&rsquo;}=s_{ii&rsquo;}$；否则边的权重为0。等价地，我们对不属于$\cal{N}_K$的点的成对相关性赋为0，然后画出这个修改版本的矩阵的图。</p>
-<p>另外，全连接图包含所有的成对边，权重为$w_{ii&rsquo;}=s_{ii&rsquo;}$，局部行为通过缩放参数$c$来控制。</p>
-<p>从相似图得到的边的矩阵$\mathbf W=\{w_{ii&rsquo;}\}$称为邻接矩阵。结点$i$的度为$g_i=\sum_iw_{ii&rsquo;}$，与该点相连的权重之和。令$\mathbf G$表示对角元为$g_i$的对角矩阵。</p>
-<p>最后，graph laplacian定义为</p>
+<p>谱聚类是标准聚类方法的推广，而且也是为这些情形所设计的。它与局部多维缩放技巧有着紧密的联系（14.9 节）。</p>
+<p>出发点是所有观测点对间的成对相似性为 $s_{ii&rsquo;}\ge 0$ 的 $N\times N$ 矩阵。我们将这些观测用无向相似性图 $G=\langle V, E \rangle$ 来表示。$N$ 个顶点 $v_i$ 表示观测值，如果成对顶点的相似性为正值（或者超出某个阈值），则它们之间用一条边相连。边的权重为 $s_{ii&rsquo;}$。我们希望对这个图进行划分，使得不同类之间的边有较低的权重，而在类间有着较高的权重。在谱聚类中，思想是构造相似性图来表示观测点间的局部邻居关系。</p>
+<p>更精确地，考虑 $N$ 个点 $x_i\in \IR^p$，令 $d_{ii&rsquo;}$ 为 $x_i$ 和 $x_{i&rsquo;}$ 间的欧几里得距离。我们将 radical-kernel gram 矩阵作为我们的相似性矩阵；也就是 $s_{ii&rsquo;}=\exp(-d_{ii&rsquo;}^2/c)$，其中 $c &gt; 0$ 是缩放参数。</p>
+<p>有许多方式来定义相似性矩阵，并且其与反映局部行为的相似性图有关。最流行的方式是 mutual K-nearest-neighbor graph。定义 ${\cal{N}}_K$ 为邻居点的对称子集；特别地，如果点 $i$ 在 $i&rsquo;$ 的最近邻中，则点对 $(i,i&rsquo;)$ 在 ${\cal{N}}_K$ 中，反之亦然。接着我们连接所有的对称最近邻，然后给出边的权重 $w_{ii&rsquo;}=s_{ii&rsquo;}$；否则边的权重为 0。等价地，我们对不属于 $\cal{N}_K$ 的点的成对相关性赋为 0，然后画出这个修改版本的矩阵的图。</p>
+<p>另外，全连接图包含所有的成对边，权重为 $w_{ii&rsquo;}=s_{ii&rsquo;}$，局部行为通过缩放参数 $c$ 来控制。</p>
+<p>从相似图得到的边的矩阵 $\mathbf W=\{w_{ii&rsquo;}\}$ 称为邻接矩阵。结点 $i$ 的度为 $g_i=\sum_iw_{ii&rsquo;}$，与该点相连的权重之和。令 $\mathbf G$ 表示对角元为 $g_i$ 的对角矩阵。</p>
+<p>最后，graph laplacian 定义为</p>
 <p>
 <script type="math/tex; mode=display">
 \mathbf{L=G-W}\tag{14.63}
 </script>
 </p>
-<p>这称为未标准化的graph lapacian，人们提出一系列标准化的版本——对laplacian关于结点的度进行标准化，举个例子，$\tilde{\mathbf L}=\mathbf I-\mathbf G^{-1}\mathbf W$。</p>
-<p>谱聚类寻找对应$\mathbf L$最小的$m$个特征值（忽略平方的常值特征向量）的$m$个特征向量$\mathbf Z_{N\times m}$。采用如K-means的标准方法，我们可以将$\mathbf Z$的行聚类得到原始数据点的聚类。</p>
-<p>图14.49展示了一个例子。左上图显示了在3个圆形类别中的450个模拟数据点。K-means聚类很明显对于簇外的点不容易进行分类。我们采用10最近邻相似图的谱聚类，并且右下图展示了对应graph laplacian的第二和第三最小特征值的特征向量。这两个特征向量找出了是哪个簇，并且特征向量矩阵$\mathbf Y$的行的散点图清晰地将簇分隔开。对变换后的点应用K-means聚类的过程同样能得到三个类。</p>
-<p>为什么谱聚类有效？对于任意向量$\hat{\mathbf f}$，我们有</p>
+<p>这称为未标准化的 graph lapacian，人们提出一系列标准化的版本——对 laplacian 关于结点的度进行标准化，举个例子，$\tilde{\mathbf L}=\mathbf I-\mathbf G^{-1}\mathbf W$。</p>
+<p>谱聚类寻找对应 $\mathbf L$ 最小的 $m$ 个特征值的 $m$ 个特征向量 $\mathbf Z_{N\times m}$（忽略平凡的常值特征向量）。采用如 K-means 的标准方法，我们可以对 $\mathbf Z$ 的行聚类得到原始数据点的聚类。</p>
+<p>图 14.29 展示了一个例子。左上图显示了 3 个圆形类别中的 450 个模拟数据点。K-means 聚类很明显对于簇外的点不容易进行分类。我们采用 10 最近邻相似图的谱聚类，并且右下图展示了对应 graph laplacian 的第二和第三最小特征值的特征向量。这两个特征向量找出了是哪个簇，并且特征向量矩阵 $\mathbf Y$ 的行的散点图清晰地将簇分隔开。对变换后的点应用 K-means 聚类的过程同样能得到三个类。</p>
+<p>为什么谱聚类有效？对于任意向量 $\hat{\mathbf f}$，我们有</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 \mathbf f^T\mathbf L\mathbf f&=\sum\limits_{i=1}^Ng_if_i^2-\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nf_if_{i'}w_{ii'}\\
-& = \frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nw_{ii'}(f_i-f_{i'})^2\tag{14.64}
-\end{align}
+& = \frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^Nw_{ii'}(f_i-f_{i'})^2\tag{14.64}\label{14.64}
+\end{align*}
 </script>
-公式(14.64)表明如果有较大邻接的数据对的坐标$f_i$和$f_{i&rsquo;}$很接近，则$\mathbf f^T\mathbf L\mathbf f$将达到较小的值。</p>
-<p>因为对于任意的图$\boldsymbol 1^T\mathbf L\boldsymbol 1=0$，常值向量是特征值为0的平凡解。如果图是连接的，这是唯一的0特征向量,这个结论并不是很显然（练习14.21）。推广这个结论，可以很简单地证明对于有$m$个连接组分的图，可以重新排列结点使得$\mathbf L$是成块对角的，其中每个块是连接的组分。于是$\mathbf L$有$m$个特征值为0的特征向量，并且特征值为0的特征空间由连接组分的指示向量张成。实际上，连接有强有弱，则零特征值也可以用较小的特征值代替。</p>
-<p>谱聚类是寻找非凸簇的一种很有趣的方法。当采用标准化后的graph laplacian定义，有另外一种方式来看这种方法。定义$\mathbf P=\mathbf G^{-1}\mathbf W$，我们考虑在图上以转移概率矩阵$\mathbf P$进行随机游走。则谱聚类得到随机游走中类与类之间不发生转移的点集。</p>
-<p>在实际中应用谱聚类时必须要处理一系列的问题。我们必须选择相似图的类型——比如，全连接或者最近邻，以及相关的参数比如最近邻的个数$k$或者核的缩放参数$c$。我们也必须选择从$\mathbf L$中提取的特征向量的个数，以及最后和所有聚类方法一样，选择簇的个数。在图14.29这一简单例子中，我们得到$k\in [5, 200]$中良好的结果，值为200的对应全连接图。当$k &lt; 5$，结果变坏。观测图14.29的右上图，我们看到最小的三个特征值与剩余部分没有强烈的分离。因此选择多少个特征向量并不清楚。</p>
+公式 \eqref{14.64} 表明如果有较大邻接的数据对的坐标 $f_i$ 和 $f_{i&rsquo;}$ 很接近，则 $\mathbf f^T\mathbf L\mathbf f$ 将达到较小的值。</p>
+<p>因为对于任意的图 $\boldsymbol 1^T\mathbf L\boldsymbol 1=0$，常值向量是特征值为 0 的平凡解。如果图是连接的，这是唯一的 0 特征向量,这个结论并不是很显然（<a href="https://github.com/szcf-weiya/ESL-CN/issues/183">练习 14.21</a>）。推广这个结论，可以很简单地证明对于有 $m$ 个连接组分的图，能重新排列结点使得 $\mathbf L$ 是成块对角的，其中每个块是连接的组分。于是 $\mathbf L$ 有 $m$ 个特征值为 0 的特征向量，并且特征值为 0 的特征空间由连接组分的指示向量张成。实际上，连接有强有弱，则零特征值也可以用较小的特征值代替。</p>
+<p>谱聚类是寻找非凸簇的一种很有趣的方法。当采用标准化后的 graph laplacian 定义，有另外一种方式来看这种方法。定义 $\mathbf P=\mathbf G^{-1}\mathbf W$，我们考虑在图上以转移概率矩阵 $\mathbf P$ 进行随机游走。则谱聚类得到随机游走中类与类之间不发生转移的点集。</p>
+<p>在实际中应用谱聚类时必须要处理一系列的问题。我们必须选择相似图的类型——比如，全连接或者最近邻，以及相关的参数比如最近邻的个数 $k$ 或者核的缩放参数 $c$。我们也必须选择从 $\mathbf L$ 中提取的特征向量的个数，以及最后和所有聚类方法一样，选择簇的个数。在图 14.29 这一简单例子中，我们得到 $k\in [5, 200]$ 中良好的结果，值为 200 的对应全连接图。当 $k &lt; 5$，结果变坏。观测图 14.29 的右上图，我们看到最小的三个特征值与剩余部分没有强烈的分离。因此选择多少个特征向量并不清楚。</p>
 <h2 id="_5">核主成分<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../../img/14/fig14.30.png" /></p>
 <h2 id="_6">稀疏主成分<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
@@ -3731,7 +3727,7 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-04-11 14:14:54
+        Last Build Date UTC : 2019-04-11 15:50:42
       </div>
       
         
