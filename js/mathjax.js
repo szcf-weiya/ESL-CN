@@ -9,6 +9,7 @@ window.MathJax = {
       B: "{\\mathbf{B}}",
       C: "{\\mathbf{C}}",
       D: "{\\mathbf{D}}",
+      G: "{\\mathbf{G}}",
       H: "{\\mathbf{H}}",
       L: "{\\mathbf{L}}",
       M: "{\\mathbf{M}}",
@@ -25,6 +26,7 @@ window.MathJax = {
       U: "{\\mathbf{U}}",
       V: "{\\mathbf{V}}",
       W: "{\\mathbf{W}}",
+      Z: "{\\mathbf{Z}}",
 
       y: "{\\mathbf{y}}",
       f: "{\\mathbf{y}}",
@@ -36,6 +38,8 @@ window.MathJax = {
       calC: "{{\\cal{C}}}",
       calS: "{{\\cal{S}}}",
       calI: "{{\\cal{I}}}",
+      cH: "{{\\cal{H}}}",
+      cT: "{{\\cal{T}}}",
       
 
       LOG: "{\\mathrm{log}}",
@@ -80,6 +84,7 @@ window.MathJax = {
 
       ssigma: "{\\boldsymbol\\Sigma}",
       bSigma: "{\\boldsymbol\\Sigma}",
+      bTheta: "{\\boldsymbol\\Theta}",
       oomega: "{\\boldsymbol\\Omega}",
       bLambda: "{\\boldsymbol\\Lambda}",
       aalpha: "{\\boldsymbol\\alpha}",

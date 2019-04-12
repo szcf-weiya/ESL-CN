@@ -3400,7 +3400,11 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-04-11</td>
+<td>2019-04-12</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
@@ -3609,7 +3613,7 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 <p>最后，graph laplacian 定义为</p>
 <p>
 <script type="math/tex; mode=display">
-\mathbf{L=G-W}\tag{14.63}
+\mathbf{L=G-W}\tag{14.63}\label{14.63}
 </script>
 </p>
 <p>这称为未标准化的 graph lapacian，人们提出一系列标准化的版本——对 laplacian 关于结点的度进行标准化，举个例子，$\tilde{\mathbf L}=\mathbf I-\mathbf G^{-1}\mathbf W$。</p>
@@ -3628,10 +3632,77 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 <p>谱聚类是寻找非凸簇的一种很有趣的方法。当采用标准化后的 graph laplacian 定义，有另外一种方式来看这种方法。定义 $\mathbf P=\mathbf G^{-1}\mathbf W$，我们考虑在图上以转移概率矩阵 $\mathbf P$ 进行随机游走。则谱聚类得到随机游走中类与类之间不发生转移的点集。</p>
 <p>在实际中应用谱聚类时必须要处理一系列的问题。我们必须选择相似图的类型——比如，全连接或者最近邻，以及相关的参数比如最近邻的个数 $k$ 或者核的缩放参数 $c$。我们也必须选择从 $\mathbf L$ 中提取的特征向量的个数，以及最后和所有聚类方法一样，选择簇的个数。在图 14.29 这一简单例子中，我们得到 $k\in [5, 200]$ 中良好的结果，值为 200 的对应全连接图。当 $k &lt; 5$，结果变坏。观测图 14.29 的右上图，我们看到最小的三个特征值与剩余部分没有强烈的分离。因此选择多少个特征向量并不清楚。</p>
 <h2 id="_5">核主成分<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>谱聚类与 <strong>核主成分 (kernel principal components)</strong> 有关联，这是线性主成分的非线性版本。标准的线性主成分 (PCA) 可以通过协方差矩阵的特征向量得到，并且给出了数据有最大方差的方向。核主成分 (KPCA) 扩充了 PCA 的范围，模仿扩充特征时采用的非线性变换方法，然后在变换后的特征空间中应用 PCA。</p>
+<p>在 18.5.2 节，我们展示了数据矩阵 $\X$ 的主成分变量 $\Z$ 可以通过内积矩阵 (gram 矩阵) $\K=\X\X^T$ 得到。具体地，对双重中心化的 gram 矩阵进行特征分解</p>
+<p>
+<script type="math/tex; mode=display">
+\tilde \K = (\I-\M)\K(\I-\M) = \U\D^2\U^T\,,
+</script>
+</p>
+<p>其中 $\M=\1\1^T/N$, 然后我们有 $\Z=\U\D$。<a href="https://github.com/szcf-weiya/ESL-CN/issues/184">练习 18.15</a> 展示了怎么计算这个空间中新观测的投影。</p>
+<p>核主成分简单地模仿了这个过程，将核矩阵 $\K=\{K(x_i,x_{i&rsquo;})\}$ 看成隐含特征 $\langle \phi(x_i),\rangle(x_i&rsquo;)\angle$ 的内积矩阵，然后寻找其特征向量。第 $m$ 个组分 $\z_m$（$\Z$ 的第 $m$ 列）的元素（在忽略中心化的情况下）可以写成 $z_{im}=\sum_{j=1}^N\alpha_{jm}K(x_i,x_j)$，其中 $\alpha_{jm} = u_{jm}/d_m$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/185">练习 14.16</a>）。 </p>
+<p>将 $\z_m$ 看成主成分函数 $g_m\in\cH_K$ 在样本处的取值，其中 $\cH_K$ 是由 $K$ 生成的再生核希尔伯特空间（5.8.1 节），这可以帮助我们进一步理解核主成分。第一主成分函数 $g_1$ 求解了</p>
+<p>
+<script type="math/tex; mode=display">
+\max_{g_1\in\cH_K}\Var_{\cT}g_1(X) \text{ subject to } \Vert g_1\Vert_{\cH_K}=1\tag{14.66}\label{14.66}.
+</script>
+</p>
+<p>这里 $\Var_\cT$ 表示在训练数据 $\cT$ 上的样本方差。范数约束 $\Vert g_1\Vert_{\cH_K}=1$ 控制了函数 $g_1$ 的大小及光滑度，这由核 $K$ 控制。在回归情形中，可以证明 \eqref{14.66} 的解是有限维的，并且可以表示为 $g_1(x)=\sum_{j=1}^Nc_jK(x,x_j)$. 练习 14.17 证明了这个解为 $\hat c_j=\alpha_{j1},j=1,\ldots,N$. 第二主成分函数也是类似定义的，但多了额外的限制 $\langle g_1,g_2\rangle_{\cH_K}=0$，以此类推。</p>
+<p>Sch¨olkopf et al. (1999)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> 演示了核主成分作为手写数字分类中的特征的应用，并且说明了相对于线性主成分，分类器的表现有改善。</p>
+<p>注意到如果我们采用径向核</p>
+<p>
+<script type="math/tex; mode=display">
+K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
+</script>
+</p>
+<p>则核矩阵 $\K$ 与谱聚类中的相似度矩阵 $\S$ 有着相同的形式。边的权重矩阵 $\W$ 是 $\K$ 的局部化版本，将不是最近邻的成对点的相似度设为 0。</p>
+<p>核主成分寻找 $\tilde \K$ 最大特征值对应的特征向量；这等价于寻找 </p>
+<p>
+<script type="math/tex; mode=display">
+\I - \tilde \K\tag{14.68}
+</script>
+</p>
+<p>的最小特征值对应的特征向量。这几乎与 Laplacian \eqref{14.63} 一样，区别在于 $\tilde \K$ 的中心化和 $\G$ 对角元有结点的度。</p>
 <p><img alt="" src="../../img/14/fig14.30.png" /></p>
+<p>图 14.30 检验了在图 14.29 中小例子中，核主成分的表现效果。左上角我们使用 $c=2$ 的径向核，跟谱聚类中使用的值一样。这并没有将类别分开，但是当 $c=10$（右上图），第一主成分能很好地将类别分开。在左下图采用谱聚类中的最近邻径向核 $\W$ 来应用核 PCA。在右下角我们用核矩阵作为谱聚类中构造 \eqref{14.63} 的相似度矩阵。这两种情形都不能很好地把两个类别分开。调节 $c$ 也没有帮助。</p>
+<p>在这个小例子中，我们看到核主成分对于核的尺度以及本性很敏感。我们也看到核的最近邻截断对于谱聚类能否成功很重要。</p>
 <h2 id="_6">稀疏主成分<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>我们经常通过查看方向向量 $v_j$，或者称载荷，来判断哪个变量在起作用，进而对主成分进行解释。我们在 (14.55) 中对图象载荷采用了这种方法。如果载荷是稀疏的，这种解释通常会很简单。这一节我们简要讨论能导出具有稀疏载荷的主成分方法。它们都是基于 lasso ($L_1$) 惩罚。</p>
+<p>首先以 $N\times p$ 的数据矩阵 $\X$ 开始，其中列进行了中心化。这些方法要么关注主成分的最大方差性质，要不最小重构误差。Joliffe et al. (2003)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 的 SCoTLASS procedure 采用第一种方法，求解</p>
+<p>
+<script type="math/tex; mode=display">
+\max\; v^T(\X^T\X)v\,, \text{ subject to }\sum_{j=1}^p\vert v_j\vert\le t, v^Tv=1\,.\tag{14.69}
+</script>
+</p>
+<p>绝对值约束促使某些载荷为 0，因此 $v$ 是稀疏的。进一步，通过现在第 $k$ 个主成分与前 $k-1$ 个主成分正交来寻找稀疏的主成分。不幸的是，这个问题是非凸的，并且计算很困难。</p>
+<p>Zou et al. (2006)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 而是以主成分的回归/重构性质开始，类似 14.5.1 的方法。令 $x_i$ 为 $\X$ 的第 $i$ 行。对于单个主成分，他们的稀疏主成分技巧解决了 </p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\min_{\theta,v}\sum_{i=1}^N\Vert x_i-\theta v^Tx_i\Vert_2^2&+\lambda \Vert v\Vert_2^2 + \lambda_1\Vert v\Vert_1\tag{14.70}\\
+&\text{subject to }\Vert \theta\Vert_2=1
+\end{align*}
+</script>
+</p>
+<p>下面更具体地观察它的组成。</p>
+<ul>
+<li>如果 $\lambda$ 和 $\lambda_1$ 都是 0，并且 $N&gt;p$，易证 $v=\theta$，并且这是最大主成分方向。</li>
+<li>当 $p&gt;&gt;N$，解不一定是唯一的，除了 $\lambda &gt; 0$。对于任何 $\lambda &gt; 0$ 以及 $\lambda_1=0$，$v$ 的解与最大主成分方向成比例。</li>
+<li>$v$ 的第二个惩罚鼓励载荷的稀疏性。</li>
+</ul>
+<p>对于多重组分，稀疏主成分过程最小化</p>
+<p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^N\Vert x_i-\bTheta\V^Tx_i\Vert^2+\lambda \sum_{k=1}^K\vert v_k\vert^2_2 + \sum_{k=1}^K\lambda_{1k}\Vert v_k\Vert_1\,,\tag{14.71}\label{14.71}
+</script>
+</p>
+<p>约束为 $\bTheta^T\bTheta=\I_K$。这里 $\V$ 是 $p\times K$ 的矩阵，其列向量为 $v_k$，$\bTheta$ 也是 $p\times K$.</p>
+<p>准则 \eqref{14.71} 关于 $\V$ 和 $\bTheta$ 不是联合凸的，但是当固定一个参数，这关于另一参数是凸的。固定 $\bTheta$ 然后对 $\V$ 最小化等价于 $K$ 个 elastic net 问题（18.4 节），并且可以有效地解决。另一方面，固定 $\V$ 然后对 $\Theta$ 最小化是 Procrustes 问题 \eqref{14.56} 的一个版本，并且可以通过简单的 SVD 进行求解（<a href="https://github.com/szcf-weiya/ESL-CN/issues/186">练习 14.12</a>）。这些步骤交替进行直至收敛。</p>
+<p>图 14.31 展示了采用 \eqref{14.71} 进行系数主成分分析的例子，取自 Sj¨ostrand et al. (2007)。在一项涉及 569 名老人的研究中，<strong>胼胝体 (corpus callosum)</strong> 的 <strong>矢状面横截面 (mid-sagittal cross-section)</strong> 的形状与不同的临床参数有关。这个例子中，对形状数据应用 PCA，这在形态学中是很流行的工具。对于这样的应用，沿着形状的外围，识别出一系列的标记 (landmarks)，图 14.32 展示了一个例子。</p>
 <p><img alt="" src="../../img/14/fig14.31.png" /></p>
 <p><img alt="" src="../../img/14/fig14.32.png" /></p>
+<p>它们是通过允许旋转的 Procrustes 分析后继续对齐得到的，这里 Procrustes 还允许放缩。PCA 使用的特征是每个标记 (landmarks) 的坐标对的序列，放到单个向量中。</p>
+<p>在这个分析中，标准主成分和稀疏主成分都进行了计算，并且识别出了显著与不同临床参数有关的组分。这张图像中，对应显著主成分（红色曲线）的形状变体画在了均值 CC 的上面。与 CC 有关的慢速步行在连接行动控制和大脑的感知中心的区域中更细（表现出萎缩症）。与 CC 有关的低语言流利度在连接听觉、视觉、认知中心的区域中更细。稀疏主成分过程对这一重要差异提供了一个更简洁，并且可能更有信息量的描绘。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3646,6 +3717,15 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 </li>
 <li id="fn:4">
 <p>Duchamp, T. and Stuetzle, W. (1996). Extremal properties of principal curves in the plane, Annals of Statistics 24: 1511–1520.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Sch¨olkopf, B., Smola, A. and M¨uller, K.-R. (1999). Kernel principal component analysis, in B. Sch¨olkopf, C. Burges and A. Smola (eds), Advances in Kernel Methods—Support Vector Learning, MIT Press, Cambridge, MA, USA, pp. 327–352.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Joliffe, I. T., Trendafilov, N. T. and Uddin, M. (2003). A modified principal component technique based on the lasso, Journal of Computational and Graphical Statistics 12: 531–547.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Zou, H., Hastie, T. and Tibshirani, R. (2006). Sparse principal component analysis, Journal of Computational and Graphical Statistics 15(2): 265–28.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3727,7 +3807,7 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-04-11 15:50:42
+        Last Build Date UTC : 2019-04-12 13:38:00
       </div>
       
         
