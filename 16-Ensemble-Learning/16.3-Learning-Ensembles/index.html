@@ -3373,7 +3373,7 @@ Q(\lambda)=\underset{c_0,c_1}\sum\limits_{i=1}^NL(y_i, c_0+c_1b(x_i;\gamma))\tag
 </ul>
 <p>Friedman and Popescu (2003) <sup id="fnref4:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出采用 sub-sampling 作为引入随机性的机制，得到了他们的集成生成算法 16.2。</p>
 <p><img alt="" src="../../img/16/alg16.2.png" /></p>
-<p>$S_m(\lambda)$ 指的是大小为 $N\cdot \eta (\eta\in [0, 1])$ 的训练观测值的子样本，一般是无放回采样。 他们的模拟建议取 $\eta\le 1/2$，并且对于大 $N$ 取 $\eta\in 1/\sqrt{N}$。降低 $\eta$ 会提高随机性，也因此提高宽度 $\sigma$。参数 $\nu\in[0, 1]$ 对随机过程引入<em>memory</em>；$\nu$ 越大，越能避免 $b(x;\gamma)$ 与之前找到的一致。很多熟悉的随机化模式都是算法 16.2 的特殊情形：</p>
+<p>$S_m(\lambda)$ 指的是大小为 $N\cdot \eta (\eta\in [0, 1])$ 的训练观测值的子样本，一般是无放回采样。 他们的模拟建议取 $\eta\le 1/2$，并且对于大 $N$ 取 $\eta\sim 1/\sqrt{N}$。降低 $\eta$ 会提高随机性，也因此提高宽度 $\sigma$。参数 $\nu\in[0, 1]$ 对随机过程引入<em>memory</em>；$\nu$ 越大，越能避免 $b(x;\gamma)$ 与之前找到的一致。很多熟悉的随机化模式都是算法 16.2 的特殊情形：</p>
 <ul>
 <li>Bagging：$\eta=1$，但是是有放回地采样，并且有 $\nu=0$。Friedman and Hall (2007)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 认为 $\eta=\frac 12$ 时无放回抽样等价于 $\eta=1$ 时的采样，并且前者更有效。</li>
 <li>Random forest 的采样也类似，只是通过分离变量的选择引入了更多的随机性。在算法 16.2 中降低 $\eta&lt;\frac 12$ 与随机森林中减低 $m$ 有类似的效果，但是不会有 15.4.2 节中讨论的潜在的偏差问题。</li>
@@ -3519,7 +3519,7 @@ R_6(X) &= I(X_1\ge 2.1)\cdot I(X_3\in\{S\})\cdot I(X_7\ge 4.5)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-04-18 08:52:10
+        Last Build Date UTC : 2019-04-18 09:08:31
       </div>
       
         
