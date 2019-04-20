@@ -3260,7 +3260,7 @@
 </tbody>
 </table>
 <p>Bagging 的核心思想是对许多有噪声但近似无偏的模型进行平均，也因此降低了方差。树是用于 bagging 的理想模型，因为它们可以捕捉数据中复杂的交叉项，而且如果树长得足够深的话，会有相对较低的偏差。因为树是充满噪声的，所以通过平均可以很大程度地改善它们。而且，因为 bagging 中产生的每棵树是同分布的，$B$ 棵这样的树的平均的期望与它们中的任一个是相同的。这意味着经过 bagged 的树的偏差与单个(bootstrap)树的偏差是一样的，而且唯一改善的希望是通过降低方差。这与 boosting 是相反的，在 boosting 中树以一种自适应的方式减小偏差，因此不是同分布的。</p>
-<p>$B$ 棵独立同分布、方差为 $\sigma^2$ 的随机变量的平均方差为 $\frac{1}{B}\sigma^2$。如果变量是简单的同分布（不一定独立），有着正的成对相关系数 $\rho$，平均的方差为（<a href="https://github.com/szcf-weiya/ESL-CN/issues/23">练习 15.1</a>）
+<p>$B$ 棵独立同分布、方差为 $\sigma^2$ 的随机变量的平均方差为 $\frac{1}{B}\sigma^2$。如果变量是简单的同分布（不一定独立），有着正的成对相关系数 $\rho$，则平均的方差为（<a href="https://github.com/szcf-weiya/ESL-CN/issues/23">练习 15.1</a>）
 <script type="math/tex; mode=display">
 \rho\sigma^2+\frac{1-\rho}{B}\sigma^2 \tag{15.1}\label{15.1}
 </script>
@@ -3395,7 +3395,7 @@ Y=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-04-19 16:05:44
+        Last Build Date UTC : 2019-04-20 08:59:03
       </div>
       
         
