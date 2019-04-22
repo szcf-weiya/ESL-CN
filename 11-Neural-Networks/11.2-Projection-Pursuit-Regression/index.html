@@ -3263,7 +3263,7 @@ f(X)=\sum\limits_{m=1}^Mg_m(\omega_m^TX)\tag{11.1}
 <p>函数 $g_m(\omega_m^TX)$ 称为 $\IR^p$ 中的<strong>岭函数 (ridge function)</strong>。仅仅在由向量 $\omega_m$ 定义的方向上变化。标量变量 $V_m=\omega_m^TX$ 是 $X$ 在单位向量 $\omega_m$ 上的投影，寻找使得模型拟合好的 $\omega_m$，因此称为“投影寻踪”。图 11.1 显示了岭函数的一些例子。左边的例子 $w=(1/\sqrt{2})(1,1)^T$，使得函数仅仅在 $X_1+X_2$ 方向上变化。在右边的例子中，$\omega=(1,0)$。</p>
 <p><img alt="" src="../../img/11/fig11.1.png" /></p>
 <blockquote>
-<p>图 11.1. 2 个岭回归的透视图。（左图：）$g(V)=1/[1+exp(-5(V-0.5))]$ 其中 $V=(X_1+X_2)/\sqrt{2}$。（右图：）$g(V)=(V+0.1)sin(1/(V/3+0.1))$，其中$V=X_1$。</p>
+<p>图 11.1. 2 个岭函数的透视图。（左图：）$g(V)=1/[1+exp(-5(V-0.5))]$ 其中 $V=(X_1+X_2)/\sqrt{2}$。（右图：）$g(V)=(V+0.1)sin(1/(V/3+0.1))$，其中$V=X_1$。</p>
 </blockquote>
 <p>式子 (11.1) 的 PPR 模型是非常一般的，因为形成线性组合的非线性函数的操作得到相当多的模型类型。举个例子，乘积 $X_1\cdot X_2$ 可以写成 $[(X_1+X_2)^2-(X_1-X_2)^2]/4$，高阶的乘积也可以类似地表示。</p>
 <p>实际上，如果 $M$ 任意大，选择合适的 $g_m$，PPR 模型可以很好地近似 $\IR^p$ 中任意的连续函数。这样的模型类别称为<strong>通用近似 (universal approximator)</strong>。然而这种一般性需要付出代价。拟合模型的解释性通常很困难，因为每个输入变量都以复杂且多位面的方式进入模型中。结果使得 PPR 模型对于预测非常有用，但是对于产生一个可理解的模型不是很有用。$M=1$ 模型是个例外，也是计量经济学中的<strong>单指标模型 (single index model)</strong>。这比线性回归模型更加一般，也提供了一个类似（线性回归模型）的解释。</p>
@@ -3380,7 +3380,7 @@ g(\omega^Tx_i)\approx g(\omega_{old}^Tx_i)+g'(\omega_{old}^Tx_i)(\omega-\omega_{
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-04-22 16:08:01
+        Last Build Date UTC : 2019-04-22 16:09:08
       </div>
       
         
