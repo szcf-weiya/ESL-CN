@@ -3332,7 +3332,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=611">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3362,7 +3362,8 @@
 <p>对于每个观测$z_i=(x_i, y_i)$，通过仅对部分的树平均来构造随机森林预测量，这部分的树是对应那些$z_i$不出现的自助样本。</p>
 </blockquote>
 <p>OOB误差估计几乎等价于通过$N$折交叉验证得到的估计；见练习15.2。因此与许多其它的非线性估计量不同，随机森林可以按序列拟合，同时交叉验证也将沿着这个序列进行。一旦OOB误差稳定，训练可以终止。</p>
-<p>图15.4显示了<code>spam</code>数据的OOB误分类误差，与测试误差进行比较。尽管这里平均了2500棵树，从图中可以看出似乎200棵树就足够了。</p>
+<p>图 15.4 展示了<code>spam</code>数据的 OOB 误分类误差，与测试误差进行比较。尽管这里平均了 2500 棵树，从图中可以看出似乎 200 棵树就足够了。</p>
+<p><img alt="" src="../../img/15/fig15.4.png" /></p>
 <h2 id="_2">变量重要性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>随机森林的变量重要性图象可以用gradient-boosted模型完全一样的方式来作出（10.13节）。在每个树的每个分割点，分割准则的改进是最重要性度量，而重要性度量归功于分离变量，并且对于每个变量，这种改进在森林中的每棵树中都有积累。图15.5的左图展现了用这种方式计算的<code>spam</code>数据的变量重要度；可以与gradient boosting对应的图10.6进行比较。</p>
 <p><img alt="" src="../../img/15/fig15.5.png" /></p>
@@ -3495,7 +3496,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-04-20 16:05:52
+        Last Build Date UTC : 2019-04-22 05:58:15
       </div>
       
         
