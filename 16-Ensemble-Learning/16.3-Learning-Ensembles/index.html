@@ -3304,7 +3304,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf#page=624">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=635">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3357,14 +3357,14 @@ f(x)=\int\beta(\gamma)b(x;\lambda)d\lambda\tag{16.10}
 <p>其中 $\gamma\in \Gamma$ 索引了 (index) $b(x;\lambda)$。举个例子，如果基函数为树，则 $\gamma$ 索引了分离变量，分离点以及终止结点里面的值。数字正交（numerical quadrature）意味着寻找 $M$ 个赋值点 $\gamma_m\in\Gamma$ 的集合，以及对应的权重 $\alpha_m$ 使得 $f_M(x)=\alpha_0+\sum\limits_{m=1}^M\alpha_mb(x;\gamma_m)$ 在 $x$ 的定义域内近似 $f(x)$。重要度采样意味着随机对 $\gamma$ 采样，但是对于空间 $\Gamma$ 的相关区域赋予更大的权重。Friedman and Popescu (2003)<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 建议采用损失函数 \eqref{16.9} 来衡量相关性（的缺失）：</p>
 <p>
 <script type="math/tex; mode=display">
-Q(\lambda)=\underset{c_0,c_1}\sum\limits_{i=1}^NL(y_i, c_0+c_1b(x_i;\gamma))\tag{16.11}
+Q(\gamma)=\underset{c_0,c_1}\sum\limits_{i=1}^NL(y_i, c_0+c_1b(x_i;\gamma))\tag{16.11}
 </script>
 </p>
 <p>上式在训练数据上取值。</p>
-<p>如果选择了单个的基函数（比如，一棵树），则会有全局最小点 $\gamma^*=\text{arg min}_{\gamma\in \Gamma}Q(\lambda)$。在选择$ \gamma$ 的时候引进随机性必然会得到次优值，$Q(\lambda)\ge Q(\lambda^*)$。他们提出采样模式 $\cal S$ 的特征长度 $\sigma$ 的自然度量，</p>
+<p>如果选择了单个的基函数（比如，一棵树），则会有全局最小点 $\gamma^*=\text{arg min}_{\gamma\in \Gamma}Q(\gamma)$。在选择$ \gamma$ 的时候引进随机性必然会得到次优值，$Q(\gamma)\ge Q(\lambda^*)$。他们提出采样模式 $\cal S$ 的特征长度 $\sigma$ 的自然度量，</p>
 <p>
 <script type="math/tex; mode=display">
-\sigma=\E_{\cal S}[Q(\lambda)-Q(\lambda^*)]\tag{16.12}
+\sigma=\E_{\cal S}[Q(\gamma)-Q(\gamma^*)]\tag{16.12}
 </script>
 </p>
 <ul>
@@ -3519,7 +3519,7 @@ R_6(X) &= I(X_1\ge 2.1)\cdot I(X_3\in\{S\})\cdot I(X_7\ge 4.5)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-04-22 16:09:10
+        Last Build Date UTC : 2019-04-23 06:47:28
       </div>
       
         
