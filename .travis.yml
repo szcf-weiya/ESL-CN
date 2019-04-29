@@ -1,0 +1,19 @@
+dist: xenial
+language: python
+install:
+  - pip install mkdocs==0.17.2
+  - pip install mkdocs-material==2.5.2
+  - pip install pymdown-extensions
+  - pip install python-markdown-math
+script:
+  - mkdocs build
+  - mv rmds/_site/ site/rmds
+    
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local_dir: site
+  on:
+    branch: master

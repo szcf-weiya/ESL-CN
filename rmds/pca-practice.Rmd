@@ -1,0 +1,68 @@
+---
+title: "PCA Practice"
+author: "weiya"
+date: "March 3, 2019"
+output: html_document
+---
+
+对 R 内置的数据集 `USArrests` 演示主成分的使用方法。
+
+数据包含 50 个州，
+
+```{r}
+states = row.names(USArrests)
+states
+```
+
+有四个特征
+
+```{r}
+names(USArrests)
+```
+
+先计算下这四个变量的均值和方差，可以发现差异很大
+
+```{r}
+apply(USArrests, 2, mean)
+apply(USArrests, 2, var)
+```
+
+所以对数据进行 scale 是很必要的，不然大部分主成分都会被 `Assault` 主导。采用下面命令进行主成分，
+
+```{r}
+pr.out = prcomp(USArrests, scale = TRUE)
+```
+
+`prcomp()` 默认会对数据中心化，但只有指定 `scale=TRUE` 才能对数据方差进行标准化（标准差为 1）。返回结果中包含以下变量
+
+```{r}
+names(pr.out)
+```
+
+其中 `center` 和 `scale` 对应进行中心化和标准化时变量的均值和标准差。`rotation` 返回主成分载荷。注意到一般会有 $\min(n-1,p)$ 个主成分。
+
+我们不需要另外计算 scores，因为 `pr.out$x` 就是 scores。
+
+利用下面命令可以画出前两个主成分图象，
+
+```{r, fig.width=14, fig.height = 14}
+biplot(pr.out, scale = 0)
+```
+
+下面计算每个主成分解释的方差比例
+
+```{r}
+pr.var = pr.out$sdev^2
+pve = pr.var / sum(pr.var)
+```
+
+然后绘制 **方差解释比例 (PVE)** 及 **累计方差解释比例 (cumulative PVE)**，
+
+```{r}
+plot(pve, xlab = "PC", ylab = "PVE", ylim = c(0, 1), type = 'b')
+plot(cumsum(pve), xlab = "PC", ylab = "CPVE", ylim = c(0,1), type = 'b')
+```
+
+## References
+
+[James, G., Witten, D., Hastie, T., & Tibshirani, R. (Eds.). (2013). An introduction to statistical learning: with applications in R. New York: Springer.](https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf)

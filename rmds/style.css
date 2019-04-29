@@ -1,0 +1,51 @@
+body {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, 'EB Garamond', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #444;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, 'EB Garamond', serif;
+}
+
+h1 {
+  font-size: 2.0em;
+  font-weight: 400;
+  color: #aaa;
+}
+
+h2 {
+  font-size: 1.6em;
+  color: #444;
+  margin-top: 1em;
+  margin-bottom: 0.2em;
+  font-style: Bold;
+}
+
+h3 {
+  font-size: 1.2em;
+  color: #444;
+  margin-top: 1.2em;
+  margin-bottom: 0.2em;
+  font-style: Medium;
+  font-weight: 500;
+}
+
+h4 {
+  font-weight: 300;
+  color: #aaa;
+  margin-top: 0.5em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+h5, h6 {
+  font-size: 0.8em;
+  color: rgb(80, 70, 70);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-style: thin;
+  font-weight: 100;
+}

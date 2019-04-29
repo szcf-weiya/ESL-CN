@@ -7,8 +7,6 @@
   <head>
     {% block site_meta %}
       <meta charset="utf-8">
-      <!--dns prefetch-->
-      <link rel="dns-prefetch" href="//cdn.mathjax.org" />
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       {% if page and page.meta and page.meta.description %}
@@ -24,6 +22,7 @@
       {% elif config.site_author %}
         <meta name="author" content="{{ config.site_author }}">
       {% endif %}
+      <!--
       {% if config.enable_search %}
       {% for key in [
         "clipboard.copy",
@@ -37,15 +36,15 @@
         "search.tokenizer"
       ] %}
         <meta name="lang:{{ key }}" content="{{ lang.t(key) }}">
-	{% endfor %}
-	{% else %}
+	    {% endfor %}
+	{% else %}-->
 	{% for key in [
         "clipboard.copy",
         "clipboard.copied"
 	] %}
         <meta name="lang:{{ key }}" content="{{ lang.t(key) }}">
 	{% endfor %}
-      {% endif %}
+      <!--{% endif %}-->
       <link rel="shortcut icon" href="{{ base_url }}/{{ config.theme.favicon }}">
 
       <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-2.6.0">
@@ -70,7 +69,7 @@
     {% endblock %}
     {% block disqus_js %}
       {% if config.extra.disqus and not page.is_homepage %}
-        <script src="{{ base_url }}/js/iDisqus.min.js"></script>
+        <script src="{{ base_url }}/js/iDisqus0.min.js"></script>
       {% endif %}
     {% endblock %}
     {% block fonts %}
@@ -84,7 +83,7 @@
       <!--
       <style>body,input{font-family:"lucida grande", "lucida sans unicode", lucida, 'Open Sans', helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;}code,kbd,pre{font-family: Consolas, monospace;}blockquote{font-family: 'Palatino Linotype','Book Antiqua',Palatino,STKaiti,KaiTi,'楷体',SimKai,DFKai-SB,NSimSun,serif;}</style>
       -->
-      <style>body,input{font-family:Optima,'Lucida Sans',Calibri,Candara,Arial,source-han-serif-sc,'Source Han Serif SC','Source Han Serif CN','Source Han Serif TC','Source Han Serif TW','Source Han Serif','Songti SC','Microsoft YaHei',sans-serif}code,kbd,pre{font-family: Consolas, monospace;}blockquote{font-family: 'Palatino Linotype','Book Antiqua',Palatino,STKaiti,KaiTi,'楷体',SimKai,DFKai-SB,NSimSun,serif;}</style>
+      <style>body,input{font-family:Optima, Segoe, “Segoe UI”, Candara, Calibri, Arial,source-han-serif-sc,'Source Han Serif SC','Source Han Serif CN','Source Han Serif TC','Source Han Serif TW','Source Han Serif','Songti SC','Microsoft YaHei',sans-serif}code,kbd,pre{font-family: Consolas, monospace;}blockquote{font-family: 'Palatino Linotype','Book Antiqua',Palatino,STKaiti,KaiTi,'楷体',SimKai,DFKai-SB,NSimSun,serif;}</style>
       <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
       <link rel="stylesheet" href="{{ base_url }}/css/icon.css">
       <link rel="stylesheet" href="{{ base_url }}/css/mini-awesome/font-awesome.css">
@@ -93,6 +92,15 @@
       <link rel="stylesheet" href="{{ path }}">
     {% endfor %}
     {% block extrahead %}{% endblock %}
+    <script src="{{ base_url }}/js/mathjax.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3680148472128768",
+    enable_page_level_ads: true
+  });
+</script>
   </head>
   {% if palette.primary or palette.accent %}
     {% set primary = palette.primary | replace(" ", "-") | lower %}
@@ -113,11 +121,15 @@
         {% endif %}
       </defs>
     </svg>
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <!--
     {% if config.enable_search %}
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     {% endif %}
+    -->
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
     {% if page.toc | first is defined %}
       <a href="{{ (page.toc | first).url }}" tabindex="1" class="md-skip">
         {{ lang.t('skip.link.title') }}
@@ -193,8 +205,9 @@
       {% endblock %}
     </div>
     {% block scripts %}
-          {% if config.enable_search %}
-    <script src="{{ base_url }}/assets/javascripts/application.js"></script>
+          <!--{% if config.enable_search %}-->
+    <script src="{{ base_url }}/assets/javascripts/application.43ad2ac2.js"></script>
+    <!--
       {% if lang.t("search.language") != "en" %}
         {% set languages = lang.t("search.language").split(",") %}
         {% if languages | length and languages[0] != "" %}
@@ -214,14 +227,17 @@
             <script src="{{ path }}/lunr.multi.js"></script>
           {% endif %}
         {% endif %}
-	{% endif %}
+      {% endif %}
+    -->
 	    <script>app.initialize({version:"{{ mkdocs_version }}",url:{base:"{{ base_url }}"}})</script>
-	          {% endif %}
+	          <!--{% endif %}-->
 
-	  <script>var base_url = '{{ base_url }}';</script>
-      {% for path in extra_javascript %}
+    <script>var base_url = '{{ base_url }}';</script>
+    <!--
+      {% for path in extra_javascripts %}
         <script src="{{ path }}"></script>
       {% endfor %}
+    -->
     {% endblock %}
     {% block analytics %}
       {% if config.google_analytics %}

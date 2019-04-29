@@ -1,0 +1,13 @@
+---
+title: "Rmd Gallery"
+---
+
+Here are my rmarkdown notes:
+
+- [Top 10 Data Mining Algorithms](top10.html)
+- [PCA Practice](pca-practice.html)
+- [Clustering Practice](cluster-practice.html)
+- [Overview of `glmnet`](glmnet.html)
+- [`Glmnet` for Linear Regression](glmnet_linear.html)
+- [Tree-Based Methods](tree-based-methods.html)
+- [Resampling Methods](resampling-methods.html)

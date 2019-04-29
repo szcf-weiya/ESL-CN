@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="weiya" />
+
+
+<title>Tree-Based Methods</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="mathjax.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rmd Gallery</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="https://esl.hohoweiya.xyz">ESL CN</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Tree-Based Methods</h1>
+<h4 class="author"><em>weiya</em></h4>
+<h4 class="date"><em>April 29, 2017 (update February 27, 2019)</em></h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#the-basis-of-decision-trees">The Basis of Decision Trees</a><ul>
+<li><a href="#regression-trees">Regression Trees</a></li>
+<li><a href="#classification-trees">Classification Trees</a></li>
+</ul></li>
+<li><a href="#trees-versus-linear-models">Trees Versus Linear Models</a></li>
+<li><a href="#bagging-random-forests-boosting">Bagging, Random Forests, Boosting</a><ul>
+<li><a href="#bagging">Bagging</a></li>
+<li><a href="#random-forests">Random Forests</a></li>
+<li><a href="#boosting">Boosting</a></li>
+</ul></li>
+<li><a href="#lab">Lab</a><ul>
+<li><a href="#fitting-classification">Fitting Classification</a></li>
+<li><a href="#fitting-regression-trees">Fitting Regression Trees</a></li>
+<li><a href="#bagging-and-random-forests">Bagging and Random Forests</a></li>
+<li><a href="#boosting-1">Boosting</a></li>
+</ul></li>
+</ul>
+</div>
+
+<p>Tree-based methods involve stratifying or segmenting the predictor space into a number of simple regions.</p>
+<p>Since the set of splitting rules used to segment the predictor space can be summarized in a tree, these types of approaches are known as decision tree methods.</p>
+<ul>
+<li>bagging</li>
+<li>random forests</li>
+<li>boosting</li>
+</ul>
+<p>Each of these approaches involves producing multiple trees which are then combined to yield a single consensus prediction.</p>
+<div id="the-basis-of-decision-trees" class="section level2">
+<h2>The Basis of Decision Trees</h2>
+<div id="regression-trees" class="section level3">
+<h3>Regression Trees</h3>
+<p>recursive binary splitting: top-down, greedy</p>
+<ul>
+<li><strong>top-down</strong>: it begins at the top of the tree (at which point all observations belong to a single region) and then successively splits the predictor space; each split is indicated via two new branches further down on the tree.</li>
+<li><strong>greedy</strong>: at each step of the tree-building process, the best split is made at that particular step, rather than looking ahead and picking a split that will lead to a better tree in some future step.</li>
+</ul>
+<p>tree pruning</p>
+</div>
+<div id="classification-trees" class="section level3">
+<h3>Classification Trees</h3>
+<ul>
+<li>the most common class</li>
+<li>Gini index</li>
+<li>cross-entropy</li>
+</ul>
+</div>
+</div>
+<div id="trees-versus-linear-models" class="section level2">
+<h2>Trees Versus Linear Models</h2>
+<p>If the relationship between the features and the response is well approximated by a linear model, then an approach such as linear regression will likely work well, and will outperform a method such as a regression tree that does not exploit this linear structure.</p>
+<p>If instead there is a highly non-linear and complex relationship between the features and the response as indicated, then decision trees may outperform classical approaches.</p>
+</div>
+<div id="bagging-random-forests-boosting" class="section level2">
+<h2>Bagging, Random Forests, Boosting</h2>
+<div id="bagging" class="section level3">
+<h3>Bagging</h3>
+<p><span class="math display">\[
+\hat f_{bag}(x)=\frac{1}{B}\sum\limits_{b=1}^B\hat f^{*b}(x)
+\]</span></p>
+<p>reduce the variance</p>
+</div>
+<div id="random-forests" class="section level3">
+<h3>Random Forests</h3>
+<p>As in bagging, we build a number of decision trees on bootstrapped training samples. But when building these decision trees, each time a split in a tree is considered, a random sample of <span class="math inline">\(m\)</span> predictors is chosen as split candidates from the full set of <span class="math inline">\(p\)</span> predictors.</p>
+<p>Suppose that there is one very strong predictor in the data set, along with a number of other moderately strong predictors. Then in the collection of bagged trees, most or all of the trees will use this strong predictor in the top split. Consequently, all of the bagged trees will look quite similar to each other. Hence the predictions from the bagged trees will be highly correlated. Unfortunately, averaging many highly correlated quantities does not lead to as large of a reduction in variance as averaging many uncorrelated quantities. In particular, this means that bagging will not lead to a substantial reduction in variance over a single tree in this setting.</p>
+</div>
+<div id="boosting" class="section level3">
+<h3>Boosting</h3>
+<p>Boosting works in a similar way, except that the trees are grown sequentially: each tree is grown using information from previously grown trees. Boosting does not involve bootstrap sampling; instead each tree is fit on a modified version of the original data set.</p>
+<p>learns slowly.</p>
+<p>Given the current model, we fit a decision tree to the residuals from the model. That is, we fit a tree using the current residuals, rather than the outcome <span class="math inline">\(Y\)</span>, as the response.</p>
+<p>Boosting has three tuning parameters</p>
+<ul>
+<li>The number of trees <span class="math inline">\(B\)</span>.</li>
+<li>The shrinkage parameter <span class="math inline">\(\lambda\)</span></li>
+<li>The number <span class="math inline">\(d\)</span> of splits in each tree, which controls the complexity of the boosted ensemble. stump, consisting of a single split.</li>
+</ul>
+<div class="figure">
+<img src="boosting.png" />
+
+</div>
+</div>
+</div>
+<div id="lab" class="section level2">
+<h2>Lab</h2>
+<div id="fitting-classification" class="section level3">
+<h3>Fitting Classification</h3>
+<pre class="r"><code>library(tree)
+library(ISLR)
+attach(Carseats)</code></pre>
+<pre><code>## The following object is masked _by_ .GlobalEnv:
+## 
+##     High</code></pre>
+<pre><code>## The following objects are masked from Carseats (pos = 4):
+## 
+##     Advertising, Age, CompPrice, Education, High, High.1, Income,
+##     Population, Price, Sales, ShelveLoc, Urban, US</code></pre>
+<pre><code>## The following objects are masked from Carseats (pos = 6):
+## 
+##     Advertising, Age, CompPrice, Education, High, Income,
+##     Population, Price, Sales, ShelveLoc, Urban, US</code></pre>
+<pre><code>## The following objects are masked from Carseats (pos = 8):
+## 
+##     Advertising, Age, CompPrice, Education, Income, Population,
+##     Price, Sales, ShelveLoc, Urban, US</code></pre>
+<pre class="r"><code>head(Carseats)</code></pre>
+<pre><code>##   Sales CompPrice Income Advertising Population Price ShelveLoc Age
+## 1  9.50       138     73          11        276   120       Bad  42
+## 2 11.22       111     48          16        260    83      Good  65
+## 3 10.06       113     35          10        269    80    Medium  59
+## 4  7.40       117    100           4        466    97    Medium  55
+## 5  4.15       141     64           3        340   128       Bad  38
+## 6 10.81       124    113          13        501    72       Bad  78
+##   Education Urban  US High High.1 High.2
+## 1        17   Yes Yes  Yes    Yes    Yes
+## 2        10   Yes Yes  Yes    Yes    Yes
+## 3        12   Yes Yes  Yes    Yes    Yes
+## 4        14   Yes Yes   No     No     No
+## 5        13   Yes  No   No     No     No
+## 6        16    No Yes  Yes    Yes    Yes</code></pre>
+<pre class="r"><code>High = ifelse(Sales &lt;= 8, &quot;No&quot;, &quot;Yes&quot;)
+Carseats = data.frame(Carseats, High)
+head(Carseats)</code></pre>
+<pre><code>##   Sales CompPrice Income Advertising Population Price ShelveLoc Age
+## 1  9.50       138     73          11        276   120       Bad  42
+## 2 11.22       111     48          16        260    83      Good  65
+## 3 10.06       113     35          10        269    80    Medium  59
+## 4  7.40       117    100           4        466    97    Medium  55
+## 5  4.15       141     64           3        340   128       Bad  38
+## 6 10.81       124    113          13        501    72       Bad  78
+##   Education Urban  US High High.1 High.2 High.3
+## 1        17   Yes Yes  Yes    Yes    Yes    Yes
+## 2        10   Yes Yes  Yes    Yes    Yes    Yes
+## 3        12   Yes Yes  Yes    Yes    Yes    Yes
+## 4        14   Yes Yes   No     No     No     No
+## 5        13   Yes  No   No     No     No     No
+## 6        16    No Yes  Yes    Yes    Yes    Yes</code></pre>
+<pre class="r"><code>tree.carseats = tree(High~.-Sales, Carseats)
+summary(tree.carseats)</code></pre>
+<pre><code>## 
+## Classification tree:
+## tree(formula = High ~ . - Sales, data = Carseats)
+## Variables actually used in tree construction:
+## [1] &quot;High.1&quot;
+## Number of terminal nodes:  2 
+## Residual mean deviance:  0 = 0 / 398 
+## Misclassification error rate: 0 = 0 / 400</code></pre>
+<pre class="r"><code>plot(tree.carseats)
+text(tree.carseats, pretty = 0)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>In order to properly evaluate the performance of a classification tree on these data, we must estimate the test error rather than simply computing the training error.</p>
+<pre class="r"><code>set.seed(2)
+train = sample(1:nrow(Carseats), 200)
+Carseats.test = Carseats[-train, ]
+High.test = High[-train]
+tree.carseats = tree(High~.-Sales, Carseats, subset = train)
+tree.pred = predict(tree.carseats, Carseats.test, type = &quot;class&quot;)
+table(tree.pred, High.test)</code></pre>
+<pre><code>##          High.test
+## tree.pred  No Yes
+##       No  116   0
+##       Yes   0  84</code></pre>
+<p>use the argument <code>FUN=prune.misclass</code> in order to indicate that we want the classification error rate to guide the cross-validation and pruning process, rather than the default for the <code>cv.tree()</code> function, which is deviance.</p>
+<pre class="r"><code>set.seed(3)
+cv.carseats = cv.tree(tree.carseats, FUN = prune.misclass)
+names(cv.carseats)</code></pre>
+<pre><code>## [1] &quot;size&quot;   &quot;dev&quot;    &quot;k&quot;      &quot;method&quot;</code></pre>
+<pre class="r"><code># size: the number of terminal nodes of each tree considered
+# dev: corresponds to the cross-validation error rate in this instance.
+# k: the value of the cost-complexity parameter used
+cv.carseats</code></pre>
+<pre><code>## $size
+## [1] 2 1
+## 
+## $dev
+## [1]  0 80
+## 
+## $k
+## [1] -Inf   80
+## 
+## $method
+## [1] &quot;misclass&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;prune&quot;         &quot;tree.sequence&quot;</code></pre>
+<pre class="r"><code>par(mfrow = c(1, 2))
+plot(cv.carseats$size, cv.carseats$dev, type = &quot;b&quot;)
+plot(cv.carseats$k, cv.carseats$dev, type = &quot;b&quot;)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>apply the prune.misclass() function in order to prune the tree to obtain the nine-node tree.</p>
+<pre class="r"><code>prune.carseats = prune.misclass(tree.carseats, best = 9)</code></pre>
+<pre><code>## Warning in prune.tree(tree = tree.carseats, best = 9, method = &quot;misclass&quot;):
+## best is bigger than tree size</code></pre>
+<pre class="r"><code>plot(prune.carseats)
+text(prune.carseats, pretty = 0)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>tree.pred = predict(prune.carseats, Carseats.test, type = &quot;class&quot;)
+table(tree.pred, High.test)</code></pre>
+<pre><code>##          High.test
+## tree.pred  No Yes
+##       No  116   0
+##       Yes   0  84</code></pre>
+<p>If we increase the value of best , we obtain a larger pruned tree with lower classification accuracy</p>
+<pre class="r"><code>prune.carseats = prune.misclass(tree.carseats, best = 15)</code></pre>
+<pre><code>## Warning in prune.tree(tree = tree.carseats, best = 15, method =
+## &quot;misclass&quot;): best is bigger than tree size</code></pre>
+<pre class="r"><code>plot(prune.carseats)
+text(prune.carseats, pretty = 0)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>tree.pred = predict(prune.carseats, Carseats.test, type = &quot;class&quot;)
+table(tree.pred, High.test)</code></pre>
+<pre><code>##          High.test
+## tree.pred  No Yes
+##       No  116   0
+##       Yes   0  84</code></pre>
+</div>
+<div id="fitting-regression-trees" class="section level3">
+<h3>Fitting Regression Trees</h3>
+<pre class="r"><code>library(MASS)
+head(Boston)</code></pre>
+<pre><code>##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12
+##   lstat medv
+## 1  4.98 24.0
+## 2  9.14 21.6
+## 3  4.03 34.7
+## 4  2.94 33.4
+## 5  5.33 36.2
+## 6  5.21 28.7</code></pre>
+<pre class="r"><code>set.seed(1)
+train = sample(1:nrow(Boston), nrow(Boston)/2)
+tree.boston = tree(medv~., Boston, subset = train)
+summary(tree.boston)</code></pre>
+<pre><code>## 
+## Regression tree:
+## tree(formula = medv ~ ., data = Boston, subset = train)
+## Variables actually used in tree construction:
+## [1] &quot;lstat&quot; &quot;rm&quot;    &quot;dis&quot;  
+## Number of terminal nodes:  8 
+## Residual mean deviance:  12.65 = 3099 / 245 
+## Distribution of residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -14.10000  -2.04200  -0.05357   0.00000   1.96000  12.60000</code></pre>
+<pre class="r"><code>plot(tree.boston)
+text(tree.boston, pretty = 0)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>cv.boston = cv.tree(tree.boston)
+plot(cv.boston$size, cv.boston$dev, type = &quot;b&quot;)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<pre class="r"><code>prune.boston = prune.tree(tree.boston, best = 5)
+plot(prune.boston)
+text(prune.boston, pretty = 0)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<pre class="r"><code>yhat = predict(tree.boston, newdata = Boston[-train, ])
+boston.test = Boston[-train, &quot;medv&quot;]
+plot(yhat, boston.test)
+abline(0, 1)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-6-4.png" width="672" /></p>
+<pre class="r"><code>mean((yhat-boston.test)^2)</code></pre>
+<pre><code>## [1] 25.04559</code></pre>
+</div>
+<div id="bagging-and-random-forests" class="section level3">
+<h3>Bagging and Random Forests</h3>
+<pre class="r"><code>library(randomForest)
+set.seed(1)
+ncol(Boston)</code></pre>
+<pre><code>## [1] 14</code></pre>
+<pre class="r"><code># p = 14-1 = 13
+bag.boston=randomForest(medv~., data = Boston, subset = train, mtry=13, importance = TRUE)
+# change the number of trees grown by randomForest() using the ntree argument
+bag.boston</code></pre>
+<pre><code>## 
+## Call:
+##  randomForest(formula = medv ~ ., data = Boston, mtry = 13, importance = TRUE,      subset = train) 
+##                Type of random forest: regression
+##                      Number of trees: 500
+## No. of variables tried at each split: 13
+## 
+##           Mean of squared residuals: 11.15723
+##                     % Var explained: 86.49</code></pre>
+<p>How well does this bagged model perform on the test set?</p>
+<pre class="r"><code>yhat.bag = predict(bag.boston, newdata = Boston[-train, ])
+plot(yhat.bag, boston.test)
+abline(0, 1)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>mean((yhat.bag-boston.test)^2)</code></pre>
+<pre><code>## [1] 13.50808</code></pre>
+<pre class="r"><code>set.seed(1)
+rf.boston = randomForest(medv~., data = Boston, subset = train, mtry = 6, importance = TRUE)
+yhat.rf = predict(rf.boston, newdata = Boston[-train, ])
+mean((yhat.rf-boston.test)^2)</code></pre>
+<pre><code>## [1] 11.66454</code></pre>
+<pre class="r"><code>importance(rf.boston)</code></pre>
+<pre><code>##           %IncMSE IncNodePurity
+## crim    12.132320     986.50338
+## zn       1.955579      57.96945
+## indus    9.069302     882.78261
+## chas     2.210835      45.22941
+## nox     11.104823    1044.33776
+## rm      31.784033    6359.31971
+## age     10.962684     516.82969
+## dis     15.015236    1224.11605
+## rad      4.118011      95.94586
+## tax      8.587932     502.96719
+## ptratio 12.503896     830.77523
+## black    6.702609     341.30361
+## lstat   30.695224    7505.73936</code></pre>
+<pre class="r"><code>varImpPlot(rf.boston)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+</div>
+<div id="boosting-1" class="section level3">
+<h3>Boosting</h3>
+<pre class="r"><code>library(gbm)
+set.seed(1)
+boost.boston = gbm(medv~., data = Boston[train, ], distribution = &quot;gaussian&quot;, n.trees = 5000, interaction.depth = 4)
+summary(boost.boston)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code>##             var    rel.inf
+## lstat     lstat 37.0661275
+## rm           rm 25.3533123
+## dis         dis 11.7903016
+## crim       crim  8.0388750
+## black     black  4.2531659
+## nox         nox  3.5058570
+## age         age  3.4868724
+## ptratio ptratio  2.2500385
+## indus     indus  1.7725070
+## tax         tax  1.1836592
+## chas       chas  0.7441319
+## rad         rad  0.4274311
+## zn           zn  0.1277206</code></pre>
+<pre class="r"><code>par(mfrow=c(1,2))
+plot(boost.boston, i=&quot;rm&quot;)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<pre class="r"><code>plot(boost.boston, i=&quot;lstat&quot;)</code></pre>
+<p><img src="tree-based-methods_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
+<p>use the boosted model to predict medv on the test set:</p>
+<pre class="r"><code>yhat.boost = predict(boost.boston, newdata = Boston[-train, ], n.trees = 5000)
+mean((yhat.boost - boston.test)^2)</code></pre>
+<pre><code>## [1] 10.81479</code></pre>
+<p>choose a different <span class="math inline">\(\lambda\)</span></p>
+<pre class="r"><code>boost.boston = gbm(medv~., data = Boston[train, ], distribution = &quot;gaussian&quot;, n.trees = 5000,   interaction.depth = 4, shrinkage = 0.2, verbose = F)
+yhat.boost = predict(boost.boston, newdata = Boston[-train, ], n.trees = 5000)
+mean((yhat.boost - boston.test)^2)</code></pre>
+<pre><code>## [1] 11.51109</code></pre>
+</div>
+</div>
+
+<p>Copyright &copy; 2016-2019 weiya</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

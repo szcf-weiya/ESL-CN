@@ -1,0 +1,139 @@
+---
+title: "Top 10 Data Mining Algorithms"
+author: "weiya"
+date: "April 3, 2019"
+output: html_document
+---
+
+本文参考 [HackerBits's Top 10 data mining algorithms in plain R](https://hackerbits.com/data/top-10-data-mining-algorithms-in-plain-r/)。
+
+## C5.0 (前身是 C4.5)
+
+算法细节详见 [9.2 基于树的方法(CART)](https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html)。
+
+```{r}
+library(C50)
+library(printr)
+# divide into traing data and test data
+set.seed(1234)
+train.idx = sample(1:nrow(iris), 100)
+iris.train = iris[train.idx, ]
+iris.test = iris[-train.idx, ]
+# train C5.0
+model = C5.0(Species ~ ., data = iris.train)
+# predict
+results = predict(object = model, newdata = iris.test, type = "class")
+# confusion matrix
+table(results, iris.test$Species)
+```
+
+## K-means
+
+算法细节详见 [13.2 原型方法](https://esl.hohoweiya.xyz/13-Prototype-Methods-and-Nearest-Neighbors/13.2-Prototype-Methods/index.html)。
+
+```{r}
+# run kmeans
+model = kmeans(x = subset(iris, select = -Species), centers = 3)
+# check results
+table(model$cluster, iris$Species)
+```
+
+## Support Vector Machine
+
+算法细节详见 [12.2 支持向量分类器](https://esl.hohoweiya.xyz/12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html)。
+
+```{r}
+library(e1071)
+model = svm(Species ~ ., data = iris.train)
+results = predict(object = model, newdata = iris.test, type = "class")
+table(results, iris.test$Species)
+```
+
+## Apriori
+
+算法细节详见 [14.2 关联规则](https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.2-Association-Rules/index.html)。
+
+```{r, message=FALSE}
+library(arules)
+data("Adult")
+rules = apriori(Adult,
+                parameter = list(support = 0.4, confidence = 0.7),
+                appearance = list(rhs = c("race=White", "sex=Male"), default = "lhs"))
+# results
+rules.sorted = sort(rules, by = "lift")
+top5.rules = head(rules.sorted, 5)
+as(top5.rules, "data.frame")
+```
+
+## EM
+
+算法细节详见 [8.5 EM 算法](https://esl.hohoweiya.xyz/08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm/index.html)。
+
+```{r}
+library(mclust)
+model = Mclust(subset(iris, select = -Species))
+table(model$classification, iris$Species)
+```
+
+## Pagerank
+
+算法细节详见 [14.10 谷歌的 PageRank 算法](https://esl.hohoweiya.xyz/14-Unsupervised-Learning/14.10-The-Google-PageRank-Algorithm/index.html)
+
+```{r, message = FALSE}
+library(igraph)
+library(dplyr)
+# generate a random directed graph
+set.seed(111)
+g = random.graph.game(n = 10, p.or.m = 1/4, directed = TRUE)
+plot(g)
+# calculate the pagerank for each object
+pr = page.rank(g)$vector
+# view results
+df = data.frame(Object = 1:10, PageRank = pr)
+arrange(df, desc(PageRank))
+```
+
+## AdaBoost
+
+算法细节详见 [10.1 boosting 方法](https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.1-Boosting-Methods/index.html)。
+
+```{r, message=FALSE}
+library(adabag)
+model = boosting(Species ~ ., data = iris.train)
+results = predict(object = model, newdata = iris.test, type = "class")
+results$confusion
+```
+
+## kNN
+
+算法细节详见 [k 最近邻分类器](https://esl.hohoweiya.xyz/13-Prototype-Methods-and-Nearest-Neighbors/13.3-k-Nearest-Neighbor-Classifiers/index.html)。
+
+```{r, message=FALSE}
+library(class)
+results = knn(train = subset(iris.train, select = -Species),
+              test = subset(iris.test, select = -Species),
+              cl = iris.train$Species)
+table(results, iris.test$Species)
+```
+
+## Naive Bayes
+
+算法细节详见 [6.6 核密度估计和分类](https://esl.hohoweiya.xyz/06-Kernel-Smoothing-Methods/6.6-Kernel-Density-Estimation-and-Classification/index.html)。
+
+```{r}
+model = naiveBayes(x = subset(iris.train, select = -Species), 
+                   y = iris.train$Species)
+results = predict(object = model, newdata = iris.test, type = "class")
+table(results, iris.test$Species)
+```
+
+## CART
+
+算法细节详见 [9.2 基于树的方法(CART)](https://esl.hohoweiya.xyz/09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html)。
+
+```{r}
+library(rpart)
+model = rpart(Species ~ ., data = iris.train)
+results = predict(object = model, newdata = iris.test, type = "class")
+table(results, iris.test$Species)
+```

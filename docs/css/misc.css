@@ -1,13 +1,20 @@
+.md-typeset__table {
+  display: block!important;
+}
+
 .md-typeset__table a {
   color: red;
 }
 
+/*
 table {
   display: table !important;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
 }
+*/
+
 
 p img {
 	display: block;
@@ -47,4 +54,19 @@ label.md-nav__link {
 label.md-nav__title {
   font-weight: lighter;
   font-size: 2em;
+}
+
+
+/* link in list */
+
+.md-typeset ul li a {
+  color: blue!important;
+}
+
+
+/* disqus a tag color will inherit the site's link color (https://help.disqus.com/installation/disqus-appearance-tweaks)
+*/
+
+#comment a{
+  color: #288ce4;
 }

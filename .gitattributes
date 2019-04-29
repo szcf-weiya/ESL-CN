@@ -1,3 +1,6 @@
 *.css linguist-vendored
 *.html linguist-vendored
 *.js linguist-vendored
+docs/notes/* linguist-documentation=false
+code/rbm/* linguist-vendored
+toy.ipynb linguist-vendored

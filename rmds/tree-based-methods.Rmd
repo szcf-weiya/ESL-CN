@@ -1,0 +1,215 @@
+---
+title: "Tree-Based Methods"
+author: "weiya"
+date: "April 29, 2017 (update February 27, 2019)"
+output: 
+  html_document: 
+    toc: yes
+---
+
+Tree-based methods involve stratifying or segmenting the predictor space into a number of simple regions.
+
+Since the set of splitting rules used to segment the predictor space can be summarized in a tree, these types of approaches are known as decision tree methods.
+
+- bagging
+- random forests
+- boosting
+
+Each of these approaches involves producing multiple trees which are then combined to yield a single consensus prediction.
+
+## The Basis of Decision Trees
+
+### Regression Trees
+
+recursive binary splitting: top-down, greedy
+
+- **top-down**: it begins at the top of the tree (at which point all observations belong to a single region) and then successively splits the predictor space; each split is indicated via two new branches further down on the tree.
+- **greedy**: at each step of the tree-building process, the best split is made at that particular step, rather than looking ahead and picking a split that will lead to a better tree in some future step.
+
+tree pruning
+
+### Classification Trees
+
+- the most common class
+- Gini index
+- cross-entropy
+
+## Trees Versus Linear Models
+
+If the relationship between the features and the response is well approximated by a linear model, then an approach such as linear regression will likely work well, and will outperform a method such as a regression tree that does not exploit this linear structure.
+
+If instead there is a highly non-linear and complex relationship between the features and the response as indicated, then decision trees may outperform classical approaches.
+
+## Bagging, Random Forests, Boosting
+
+### Bagging
+
+$$
+\hat f_{bag}(x)=\frac{1}{B}\sum\limits_{b=1}^B\hat f^{*b}(x)
+$$
+
+reduce the variance
+
+### Random Forests
+
+As in bagging, we build a number of decision trees on bootstrapped training samples. But when building these decision trees, each time a split in a tree is considered, a random sample of $m$ predictors is chosen as split candidates from the full set of $p$ predictors.
+
+Suppose that there is one very strong predictor in the data set, along with a number of other moderately strong predictors. Then in the collection of bagged trees, most or all of the trees will use this strong predictor in the top split. Consequently, all of the bagged trees will look quite similar to each other. Hence the predictions from the bagged trees will be highly correlated. Unfortunately, averaging many highly correlated quantities does not lead to as large of a reduction in variance as averaging many uncorrelated quantities. In particular, this means that bagging will not lead to a substantial reduction in variance over a single tree in this setting.
+
+### Boosting
+
+Boosting works in a similar way, except that the trees are grown sequentially: each tree is grown using information from previously grown trees. Boosting does not involve bootstrap sampling; instead each tree is fit on a modified version of the original data set.
+
+learns slowly.
+
+Given the current model, we fit a decision tree to the residuals from the model. That is, we fit a tree using the current residuals, rather than the outcome $Y$, as the response.
+
+Boosting has three tuning parameters 
+
+- The number of trees $B$. 
+- The shrinkage parameter $\lambda$ 
+- The number $d$ of splits in each tree, which controls the complexity of the boosted ensemble. stump, consisting of a single split.
+
+![](boosting.png)
+
+## Lab
+
+### Fitting Classification
+
+```{r}
+library(tree)
+library(ISLR)
+attach(Carseats)
+head(Carseats)
+High = ifelse(Sales <= 8, "No", "Yes")
+Carseats = data.frame(Carseats, High)
+head(Carseats)
+tree.carseats = tree(High~.-Sales, Carseats)
+summary(tree.carseats)
+plot(tree.carseats)
+text(tree.carseats, pretty = 0)
+```
+
+In order to properly evaluate the performance of a classification tree on these data, we must estimate the test error rather than simply computing the training error.
+
+```{r}
+set.seed(2)
+train = sample(1:nrow(Carseats), 200)
+Carseats.test = Carseats[-train, ]
+High.test = High[-train]
+tree.carseats = tree(High~.-Sales, Carseats, subset = train)
+tree.pred = predict(tree.carseats, Carseats.test, type = "class")
+table(tree.pred, High.test)
+```
+
+use the argument `FUN=prune.misclass` in order to indicate that we want the classification error rate to guide the cross-validation and pruning process, rather than the default for the `cv.tree()` function, which is deviance.
+
+```{r}
+set.seed(3)
+cv.carseats = cv.tree(tree.carseats, FUN = prune.misclass)
+names(cv.carseats)
+# size: the number of terminal nodes of each tree considered
+# dev: corresponds to the cross-validation error rate in this instance.
+# k: the value of the cost-complexity parameter used
+cv.carseats
+par(mfrow = c(1, 2))
+plot(cv.carseats$size, cv.carseats$dev, type = "b")
+plot(cv.carseats$k, cv.carseats$dev, type = "b")
+```
+
+apply the prune.misclass() function in order to prune the tree to obtain the nine-node tree.
+
+```{r}
+prune.carseats = prune.misclass(tree.carseats, best = 9)
+plot(prune.carseats)
+text(prune.carseats, pretty = 0)
+tree.pred = predict(prune.carseats, Carseats.test, type = "class")
+table(tree.pred, High.test)
+```
+
+If we increase the value of best , we obtain a larger pruned tree with lower classification accuracy
+
+```{r}
+prune.carseats = prune.misclass(tree.carseats, best = 15)
+plot(prune.carseats)
+text(prune.carseats, pretty = 0)
+tree.pred = predict(prune.carseats, Carseats.test, type = "class")
+table(tree.pred, High.test)
+```
+
+### Fitting Regression Trees
+
+```{r}
+library(MASS)
+head(Boston)
+set.seed(1)
+train = sample(1:nrow(Boston), nrow(Boston)/2)
+tree.boston = tree(medv~., Boston, subset = train)
+summary(tree.boston)
+plot(tree.boston)
+text(tree.boston, pretty = 0)
+cv.boston = cv.tree(tree.boston)
+plot(cv.boston$size, cv.boston$dev, type = "b")
+prune.boston = prune.tree(tree.boston, best = 5)
+plot(prune.boston)
+text(prune.boston, pretty = 0)
+yhat = predict(tree.boston, newdata = Boston[-train, ])
+boston.test = Boston[-train, "medv"]
+plot(yhat, boston.test)
+abline(0, 1)
+mean((yhat-boston.test)^2)
+```
+
+### Bagging and Random Forests
+
+```{r}
+library(randomForest)
+set.seed(1)
+ncol(Boston)
+# p = 14-1 = 13
+bag.boston=randomForest(medv~., data = Boston, subset = train, mtry=13, importance = TRUE)
+# change the number of trees grown by randomForest() using the ntree argument
+bag.boston
+```
+
+How well does this bagged model perform on the test set?
+
+```{r}
+yhat.bag = predict(bag.boston, newdata = Boston[-train, ])
+plot(yhat.bag, boston.test)
+abline(0, 1)
+mean((yhat.bag-boston.test)^2)
+set.seed(1)
+rf.boston = randomForest(medv~., data = Boston, subset = train, mtry = 6, importance = TRUE)
+yhat.rf = predict(rf.boston, newdata = Boston[-train, ])
+mean((yhat.rf-boston.test)^2)
+importance(rf.boston)
+varImpPlot(rf.boston)
+```
+
+### Boosting
+
+```{r}
+library(gbm)
+set.seed(1)
+boost.boston = gbm(medv~., data = Boston[train, ], distribution = "gaussian", n.trees = 5000, interaction.depth = 4)
+summary(boost.boston)
+par(mfrow=c(1,2))
+plot(boost.boston, i="rm")
+plot(boost.boston, i="lstat")
+```
+
+use the boosted model to predict medv on the test set:
+
+```{r}
+yhat.boost = predict(boost.boston, newdata = Boston[-train, ], n.trees = 5000)
+mean((yhat.boost - boston.test)^2)
+```
+
+choose a different $\lambda$
+
+```{r}
+boost.boston = gbm(medv~., data = Boston[train, ], distribution = "gaussian", n.trees = 5000,   interaction.depth = 4, shrinkage = 0.2, verbose = F)
+yhat.boost = predict(boost.boston, newdata = Boston[-train, ], n.trees = 5000)
+mean((yhat.boost - boston.test)^2)
+```

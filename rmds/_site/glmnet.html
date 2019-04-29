@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="weiya" />
+
+<meta name="date" content="2019-02-26" />
+
+<title>Overview of glmnet</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="mathjax.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rmd Gallery</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="https://esl.hohoweiya.xyz">ESL CN</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Overview of <code>glmnet</code></h1>
+<h4 class="author"><em>weiya</em></h4>
+<h4 class="date"><em>February 26, 2019</em></h4>
+
+</div>
+
+
+<p>The full signature of the <code>glmnet</code> function is:</p>
+<pre class="r"><code>glmnet(x, y, 
+       family=c(&quot;gaussian&quot;,&quot;binomial&quot;,&quot;poisson&quot;,&quot;multinomial&quot;,&quot;cox&quot;,&quot;mgaussian&quot;),
+       weights, offset=NULL, alpha = 1, nlambda = 100,
+       lambda.min.ratio = ifelse(nobs&lt;nvars,0.01,0.0001), lambda=NULL,
+       standardize = TRUE, intercept=TRUE, thresh = 1e-07,  dfmax = nvars + 1,
+       pmax = min(dfmax * 2+20, nvars), exclude, penalty.factor = rep(1, nvars),
+       lower.limits=-Inf, upper.limits=Inf, maxit=100000,
+       type.gaussian=ifelse(nvars&lt;500,&quot;covariance&quot;,&quot;naive&quot;),
+       type.logistic=c(&quot;Newton&quot;,&quot;modified.Newton&quot;),
+       standardize.response=FALSE, type.multinomial=c(&quot;ungrouped&quot;,&quot;grouped&quot;))</code></pre>
+<div id="family" class="section level2">
+<h2>Family</h2>
+<ul>
+<li><code>gaussian</code></li>
+<li><code>binomial</code></li>
+<li><code>multinomial</code></li>
+<li><code>poisson</code></li>
+<li><code>cox</code></li>
+</ul>
+<div id="deviance-measure" class="section level3">
+<h3>Deviance Measure</h3>
+<ul>
+<li><span class="math inline">\(\hat\bmu_\lambda\)</span>: the <span class="math inline">\(N\)</span>-vector of fitted mean values when the parameter is <span class="math inline">\(\lambda\)</span></li>
+<li><span class="math inline">\(\tilde\bmu\)</span>: the unrestricted or <a href="https://stats.stackexchange.com/questions/283/what-is-a-saturated-model"><strong>saturated</strong> fit</a>(having <span class="math inline">\(\hat y=y_i\)</span>).</li>
+</ul>
+<p>Define</p>
+<p><span class="math display">\[
+\Dev_\lambda \doteq 2[\ell(\y, \tilde \bmu)-\ell(\y,\hat\bmu_\lambda)]\,,
+\]</span> where <span class="math inline">\(\ell(\y,\bmu)\)</span> is the log-likelihood of the model <span class="math inline">\(\bmu\)</span>, a sum of <span class="math inline">\(N\)</span> terms.</p>
+<div id="null-deviance" class="section level4">
+<h4>Null deviance</h4>
+<p><span class="math display">\[
+\Dev_\null = \Dev_\infty\,.
+\]</span> Typically, <span class="math inline">\(\hat\bmu_\infty=\bar y\1\)</span>, or <span class="math inline">\(\hat\bmu_\infty=\0\)</span> in the <code>cox</code> family.</p>
+<p><code>glmnet</code> reports the <strong>fraction of deviance explained</strong></p>
+<p><span class="math display">\[
+D^2_\lambda = \frac{\Dev_\null-\Dev_\lambda}{\Dev_\null}\,.
+\]</span></p>
+<p>The name <span class="math inline">\(D^2\)</span> is by analogy with <span class="math inline">\(R^2\)</span>, the fraction of variance explained in regression.</p>
+</div>
+</div>
+</div>
+<div id="penalties" class="section level2">
+<h2>Penalties</h2>
+<p>For all models, the <code>glmnet</code> algorithm admits a range of elastic-net penalties ranging from <span class="math inline">\(\ell_2\)</span> to <span class="math inline">\(\ell_1\)</span>. The general form of the penalized optimization problem is</p>
+<p><span class="math display">\[
+\min_{\beta_0,\beta}\Big\{-\frac 1N\ell(\y;\beta_0,\beta)+\lambda\sum_{j=1}^p\gamma_j\{(1-\alpha)\beta_j^2+\alpha\vert \beta_j\vert\}\Big\}\,.
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\lambda\)</span> determines the overall complexity of the model</li>
+<li>the elastic-net parameter <span class="math inline">\(\alpha\in[0,1]\)</span> provides a mix between ridge regression and the lasso</li>
+<li><span class="math inline">\(\gamma_j\ge 0\)</span> is a penalty modifier.</li>
+</ul>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>As <a href="http://kjytay.github.io/">kjytay</a> discussed in his post, <a href="https://%20https://statisticaloddsandends.wordpress.com/2018/11/13/a-deep-dive-into-glmnet-penalty-factor/">A deep dive into glmnet: penalty.factor</a>, we can find that the sum of penalty modifiers is exactly 1.</p>
+<p>First generate some data,</p>
+<pre class="r"><code>n = 100; p = 5; p.true = 2
+set.seed(1234)
+X = matrix(rnorm(n * p), nrow = n)
+beta = matrix(c(rep(1, p.true), rep(0, p - p.true)), ncol = 1)
+y = X %*% beta + 3 * rnorm(n)</code></pre>
+<p>We fit two models, one uses the default options, another use <code>penalty.factor=rep(2,5)</code></p>
+<pre class="r"><code>library(glmnet)
+fit = glmnet(X, y)
+fit2 = glmnet(X, y, penalty.factor = rep(2, 5))</code></pre>
+<p>We can find that these two models have the exact same <code>lambda</code> sequence and produce the same <code>beta</code> coefficients.</p>
+<pre class="r"><code>sum(fit$lambda != fit2$lambda)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>sum(fit$beta != fit2$beta)</code></pre>
+<pre><code>## [1] 0</code></pre>
+</div>
+</div>
+<div id="offset" class="section level2">
+<h2>Offset</h2>
+<p>All the models allow for an <strong>offset</strong> term. That is a real valued number <span class="math inline">\(o_i\)</span> for each observation, that gets added to the linear predictor, and is not associated with any parameter:</p>
+<p><span class="math display">\[
+\eta(x_i) = o_i + \beta_0 + \beta^Tx_i\,.
+\]</span></p>
+<p>For Poisson models the offset allows us to model rates rather than mean counts, if the observation period differs for each observation. Suppose we observe a count <span class="math inline">\(Y\)</span> over period <span class="math inline">\(t\)</span>, then <span class="math inline">\(\E[Y\mid T=t,X=x]=t\mu(x)\)</span>, where <span class="math inline">\(\mu(x)\)</span> is the rate per unit time. Using the log link, we would supply <span class="math inline">\(o_i=\log t_i\)</span> for each observation.</p>
+</div>
+<div id="standardize" class="section level2">
+<h2>Standardize</h2>
+<p>The necessity of standardizing our features before model fitting is common practice in statistical learning. This is because that our features are on vastly different scales, the features with larger scales will tend to dominate the action</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>Hastie, T., Tibshirani, R., &amp; Wainwright, M. (n.d.). Statistical Learning with Sparsity, 362.</p>
+</div>
+
+<p>Copyright &copy; 2016-2019 weiya</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

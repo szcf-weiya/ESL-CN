@@ -10,3 +10,7 @@ site
 .ipynb_checkpoints/
 other
 .spyproject/
+unimelb_training.csv
+CreateGrantData.R
+grantData.RData
+.vscode/

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="weiya" />
+
+
+<title>Clustering Practice</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="mathjax.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rmd Gallery</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="https://esl.hohoweiya.xyz">ESL CN</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Clustering Practice</h1>
+<h4 class="author"><em>weiya</em></h4>
+<h4 class="date"><em>March 3, 2019</em></h4>
+
+</div>
+
+
+<div id="k-means" class="section level2">
+<h2><span class="math inline">\(K\)</span>-means</h2>
+<div class="figure">
+<img src="images/alg_kmeans.png" />
+
+</div>
+<p>通过一个简单的例子来说明用 <code>kmeans()</code> 进行 <span class="math inline">\(K\)</span>-means 聚类。</p>
+<pre class="r"><code>set.seed(123)
+x = matrix(rnorm(50*2), ncol=2)
+x[1:25, 1] = x[1:25, 1] + 3
+x[1:25, 2] = x[1:25, 2] - 4</code></pre>
+<p>然后进行 <span class="math inline">\(K\)</span>-means 聚类，</p>
+<pre class="r"><code>km.out = kmeans(x, 2, nstart = 20)
+plot(x, col = (km.out$cluster+1), main = &quot;K-means (K=2)&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;, pch = 20, cex = 2)</code></pre>
+<p><img src="cluster-practice_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>其中 <code>nstart</code> 表示随机初始划分的个数。可以比较下 <span class="math inline">\(K=3\)</span> 时 <code>nstart = 1</code> 和 <code>nstart = 20</code> 的差异</p>
+<pre class="r"><code>set.seed(1234)
+km.out = kmeans(x, 3, nstart = 1)
+km.out$tot.withinss</code></pre>
+<pre><code>## [1] 64.24859</code></pre>
+<pre class="r"><code>km.out = kmeans(x, 3, nstart = 20)
+km.out$tot.withinss</code></pre>
+<pre><code>## [1] 62.43309</code></pre>
+</div>
+<div id="hierarchical-clustering" class="section level2">
+<h2>Hierarchical Clustering</h2>
+<div class="figure">
+<img src="images/alg_hclust.png" />
+
+</div>
+<p>可以采用不同的 linkage 进行 <strong>系统聚类 (Hierarchical Clustering)</strong></p>
+<div class="figure">
+<img src="images/tab_hclust_linkage.png" />
+
+</div>
+<pre class="r"><code>hc.complete = hclust(dist(x), method = &quot;complete&quot;)
+hc.average = hclust(dist(x), method = &quot;average&quot;)
+hc.single = hclust(dist(x), method = &quot;single&quot;)</code></pre>
+<p>并且作出 dendrograms.</p>
+<pre class="r"><code>par(mfrow=c(1,3))
+plot(hc.complete, main = &quot;Complete Linkage&quot;, xlab = &quot;&quot;, sub = &quot;&quot;, cex=.9)
+plot(hc.average, main = &quot;Average Linkage&quot;, xlab = &quot;&quot;, sub = &quot;&quot;, cex=.9)
+plot(hc.single, main = &quot;Single Linkage&quot;, xlab = &quot;&quot;, sub = &quot;&quot;, cex=.9)</code></pre>
+<p><img src="cluster-practice_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>为了确定分类结果，可以用 <code>cutree()</code> 返回类别标签，</p>
+<pre class="r"><code>cutree(hc.complete, 2)</code></pre>
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2
+## [36] 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2</code></pre>
+<p>当使用基于相关系数的距离度量时，可以采用 <code>as.dist()</code> 函数，比如</p>
+<pre class="r"><code>x = matrix(rnorm(30*3), ncol = 3)
+dd = as.dist(1-cor(t(x)))
+plot(hclust(dd, method=&quot;complete&quot;), main = &quot;Complete Linkage with Correlation-Based Distance&quot;, xlab = &quot;&quot;, sub = &quot;&quot;)</code></pre>
+<p><img src="cluster-practice_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><a href="https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf">James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (Eds.). (2013). An introduction to statistical learning: with applications in R. New York: Springer.</a></p>
+</div>
+
+<p>Copyright &copy; 2016-2019 weiya</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

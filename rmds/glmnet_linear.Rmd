@@ -1,0 +1,173 @@
+---
+title: "Glmnet for Linear Regression"
+author: "weiya"
+date: 'April 27, 2017 (update: `r format(Sys.Date(), "%B %d, %Y")`)'
+output: html_document
+---
+
+
+## fit
+
+```{r}
+library(glmnet)
+x = matrix(rnorm(100*20), 100, 20)
+y = rnorm(100)
+
+fit = glmnet(x, y, alpha = 0.2, weights = c(rep(1,50),rep(2,50)), nlambda = 20)
+print(fit)
+```
+
+## plot
+
+- norm
+- lambda
+- dev
+
+```{r}
+plot(fit, xvar = "lambda", label = TRUE)
+plot(fit, xvar = "dev", label = TRUE)
+```
+
+## extract coefficients
+
+- `exact = TRUE`: refit with the `s` which not included in the original fit
+- `exact = FALSE`: uses linear interpolation to make predications for values of `s`
+
+```{r}
+any(fit$lambda == 0.5) # false
+
+#coef.exact = coef(fit, s = 0.5, exact = TRUE)
+#used coef.glmnet() or predict.glmnet() with `exact=TRUE` so must in addition supply original argument(s) x and y and weights in order to safely rerun glmnet
+
+coef.exact = coef(x=x, y=y,  weights = c(rep(1,50),rep(2,50)), fit, s = 0.5, exact = TRUE)
+coef.apprx = coef(fit, s = 0.5, exact = FALSE)
+cbind2(coef.exact, coef.apprx)
+```
+
+## predictions
+
+- response
+- coefficients
+- nonzero
+
+```{r}
+predict(fit, newx = x[1:5, ], type = "response", s = 0.05)
+```
+
+
+## cross-validation
+```{r}
+cvfit = cv.glmnet(x, y, type.measure = "mse", nfolds = 20)
+# plot(cvfit, xvar = "norm", label = TRUE)
+# #####
+# Question: plot is not for cvfit??
+# #####
+```
+
+## parallel
+
+```{r}
+require(doMC)
+registerDoMC(cores = 4)
+X = matrix(rnorm(1e4 * 200), 1e4, 200)
+Y = rnorm(1e4)
+system.time(cv.glmnet(X, Y))
+system.time(cv.glmnet(X, Y, parallel = TRUE))
+```
+
+## coef and predict for cv.glmnet
+
+```{r}
+cvfit$lambda.min
+coef(cvfit, s = "lambda.min")
+predict(cvfit, newx = x[1:5, ], s = "lambda.min")
+```
+
+
+## control the folds
+
+```{r}
+foldid = sample(1:10, size = length(y), replace = TRUE)
+cv1 = cv.glmnet(x, y, foldid = foldid, alpha = 1)
+cv.5 = cv.glmnet(x, y, foldid = foldid, alpha = 0.5)
+cv0 = cv.glmnet(x, y, foldid = foldid, alpha = 0)
+```
+
+```{r}
+par(mfrow = c(2, 2))
+plot(cv1); plot(cv.5); plot(cv0)
+plot(log(cv1$lambda), cv1$cvm, pch = 19, col = "red", xlab = "log(Lambda)", ylab = cv1$name)
+points(log(cv.5$lambda), cv.5$cvm, pch = 19, col = "grey")
+points(log(cv0$lambda), cv0$cvm, pch = 19, col = "blue")
+legend("topleft", legend = c("alpha= 1", "alpha= .5", "alpha 0"), pch = 19, col = c("red", "grey", "blue"))
+```
+
+## coefficients upper and lower bounds
+
+```{r}
+tfit = glmnet(x, y, lower = -.7, upper = .5)
+plot(tfit)
+```
+
+## penalty factors
+
+```{r}
+p.fac = rep(1, 20)
+p.fac[c(5, 10, 15)] = 0
+pfit = glmnet(x, y, penalty.factor = p.fac)
+plot(pfit, label = TRUE)
+```
+
+## customizing plots
+
+```{r}
+set.seed(101)
+x = matrix(rnorm(1000), 100, 10)
+y = rnorm(100)
+vn = paste("var", 1:10)
+fit = glmnet(x, y)
+plot(fit)
+```
+
+```{r}
+par(mar = c(4.5,4.5,1,4))
+plot(fit)
+vnat = coef(fit)
+vnat = vnat[-1, ncol(vnat)]
+axis(4, at=vnat, line = .5, label = vn, las = 1, tick = FALSE, cex.axis = 0.5)
+```
+
+where las = 0, 1, 2, 3; 
+- 0: parallel to the axis; 
+- 1: horizons; 
+- 2: perpendicular to the axis
+- 3: vertical
+
+# multiresponse gaussian family
+
+```{r}
+data(MultiGaussianExample)
+
+mfit = glmnet(x, y, family = "mgaussian")
+plot(mfit, xvar = "lambda", label = TRUE, type.coef = "2norm")
+plot(mfit, xvar = "lambda", label = TRUE, type.coef = "coef")
+```
+
+```{r}
+predict(mfit, newx = x[1:5, ], s = c(0.1, 0.01))
+```
+
+```{r}
+cvmfit = cv.glmnet(x, y, family = "mgaussian")
+plot(cvmfit)
+```
+
+```{r}
+cvmfit$lambda.min
+cvmfit$lambda.1se
+```
+
+## Session Info
+
+```{r, child="_session-info.Rmd"}
+```

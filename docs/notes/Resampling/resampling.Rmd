@@ -1,0 +1,188 @@
+---
+title: "Resampling Methods"
+output:
+  html_document:
+    toc: yes
+  html_notebook:
+    highlight: pygments
+    toc: yes
+---
+
+
+# Introduction
+
+**Resampling methods** involve repeatedly drawing samples from a training set and refitting a model of interest on each sample in order to obtain additional information about the fitted model.
+
+estimate the variability of a linear regression fit: 
+- repeatedly draw different samples from the training data
+- fit a linear regression to each new sample
+- examine the extent to which the resulting fits differ
+
+two of the most commonly used resampling methods
+- cross-validation
+- bootstrap
+
+# Cross-Validation
+
+
+### The Validation Set Approach
+
+It involves randomly dividing the available set of observations into two parts, a training set and a validation set or hold-out set.
+
+
+
+### LOOCV
+
+$$
+MSE_i = (y_i-\hat y_i)^2
+$$
+
+$$
+CV(n) = \frac{1}{n}\sum\limits_{i=1}^nMSE_i
+$$
+
+ ## k-Fold Cross-Validation
+ 
+ $$
+ CV(k) = \frac{1}{k}\sum\limits_{i=1}^kMSE_i
+ $$
+
+**Remark: **
+
+1. When we examine real data, we do not know the true test MSE, and so it is difficult to determine the accuracy of the cross-validation estimate
+2. If we examine simulated data, then we can compute the true test MSE, and can thereby evaluate the accuracy of our cross-validation results.
+
+### our goal
+- determine how well a given statistical learning procedure can be expected to perform on independent data; in this case, the actual estimate of the test MSE is of interest.
+- we are interested only in the location of the minimum point in the estimated test MSE curve.
+
+# Bootstrap
+
+- can be used to estimate the standard errors of the coefficients from a linear regression fit
+
+## Example
+
+two financial assets that yield returns of $X$ and $Y$
+
+$\alpha X+(1-\alpha)Y$
+
+$$
+\alpha = \frac{\sigma_Y^2-\sigma_{XY}}{\sigma_X^2+\sigma_Y^2-2\sigma_{XY}}
+$$
+
+to estimate
+
+$$
+\hat\alpha = \frac{\hat\sigma_Y^2-\hat\sigma_{XY}}{\hat\sigma_X^2+\hat\sigma_Y^2-2\hat\sigma_{XY}}
+$$
+
+![](bootstrap.png)
+
+$$
+SE_B(\hat\alpha)=\sqrt{\frac{1}{B-1}\sum\limits_{r=1}^B(\alpha^{*r}-\frac{1}{B}\sum\limits_{r'=1}^B\hat\alpha^{*r'})^2}
+$$
+
+# Lab
+
+## The Validation Set Approach
+
+```{r}
+library(ISLR)
+set.seed(1)
+train = sample(392, 196)
+lm.fit = lm(mpg ~ horsepower, data = Auto, subset = train)
+attach(Auto)
+mean((mpg - predict(lm.fit, Auto))[-train]^2)
+```
+
+polynomial and cubic regressions
+```{r}
+lm.fit2 = lm(mpg ~ poly(horsepower, 2), data = Auto, subset = train)
+mean((mpg-predict(lm.fit2, Auto))[-train]^2)
+lm.fit3 = lm(mpg ~ poly(horsepower, 3), data = Auto, subset = train)
+mean((mpg-predict(lm.fit3, Auto))[-train]^2)
+```
+
+## LOOCV
+
+```{r}
+library(boot)
+glm.fit = glm(mpg ~ horsepower, data = Auto)
+cv.err = cv.glm(Auto, glm.fit)
+cv.err$delta
+# A vector of length two. The first component is the raw cross-validation estimate of prediction error. The second component is the adjusted cross-validation estimate. The adjustment is designed to compensate for the bias introduced by not using leave-one-out cross-validation.
+```
+
+```{r}
+cv.error = rep(0, 5)
+for (i in 1:5){
+  glm.fit = glm(mpg ~ poly(horsepower, i), data = Auto)
+  cv.error[i] = cv.glm(Auto, glm.fit)$delta[1]
+}
+cv.error
+```
+
+## k-Fold Cross-Validation
+
+```{r}
+set.seed(17)
+cv.error.10 = rep(0, 10)
+for (i in 1:10){
+  glm.fit = glm(mpg~poly(horsepower, i), data = Auto)
+  cv.error.10[i] = cv.glm(Auto, glm.fit, K = 10)$delta[1]
+}
+cv.error.10
+```
+
+## Bootstrap
+
+### Estimating the Accuracy of a Statistic of Interest
+
+two steps
+1. create a function that computes the statistic of interest
+2. use the boot() function, which is part of the boot library, to perform the bootstrap by repeatedly sampling observations from the data set with replacement.
+
+```{r}
+alpha.fn = function(data, index){
+  X = data$X[index]
+  Y = data$Y[index]
+  return((var(Y)-cov(X,Y))/(var(X)+var(Y)-2*cov(X,Y)))
+}
+alpha.fn(Portfolio, 1:100)
+```
+
+```{r}
+set.seed(1)
+alpha.fn(Portfolio, sample(100, 100, replace = T))
+```
+
+```{r}
+boot(Portfolio, alpha.fn, R = 1000)
+```
+
+### Estimating the Accuracy of a Linear Regression Model
+
+The bootstrap approach can be used to assess the variability of the coefficient estimates and predictions from a statistical learning method.
+
+```{r}
+boot.fn = function(data, index)
+  return(coef(lm(mpg~horsepower, data = data, subset = index)))
+
+boot.fn(Auto, 1:392)
+
+set.seed(1)
+boot.fn(Auto, sample(392, 392, replace = T))
+boot(Auto, boot.fn, 1000)
+summary(lm(mpg~horsepower, data = Auto))$coef
+```
+
+1. although the formula for the standard errors do not rely on the linear model being correct, the estimate for $\sigma^2$ does.
+2. the standard formulas assume (somewhat unrealistically) that the $x_i$ are fixed, and all the variability comes from the variation in the errors $\epsilon_i$ . The bootstrap approach does not rely on any of these assumptions
+
+```{r}
+boot.fn = function(data, index)
+  coef(lm(mpg~horsepower+I(horsepower^2), data = data, subset = index))
+set.seed(1)
+boot(Auto, boot.fn, 1000)
+summary(lm(mpg~horsepower+I(horsepower^2), data = Auto))$coef
+```

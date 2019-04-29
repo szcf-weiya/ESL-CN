@@ -1,0 +1,16 @@
+name: "rmd-collections"
+navbar:
+  title: "Rmd Gallery"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "ESL CN"
+      href: https://esl.hohoweiya.xyz
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    include:
+      in_header: header.html
+      after_body: footer.html
+    css: style.css
