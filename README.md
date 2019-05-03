@@ -1,6 +1,7 @@
 # ESL-CN 
 
 [![Build Status](https://travis-ci.org/szcf-weiya/ESL-CN.svg?branch=master)](https://travis-ci.org/szcf-weiya/ESL-CN) 
+[![Gitter](https://badges.gitter.im/ESL-CN/community.svg)](https://gitter.im/ESL-CN/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 The Elements of Statistical Learning (ESL) 的中文翻译、代码实现及其习题解答。
 
