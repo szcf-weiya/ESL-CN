@@ -3368,7 +3368,7 @@ Y=
 <h2 id="julia">Julia实现<a class="headerlink" href="#julia" title="Permanent link">&para;</a></h2>
 <p>Julia的具体细节参见<a href="https://docs.julialang.org/en/stable/manual/">官方manual</a>。</p>
 <p>首先我们定义模型的结构，我们需要两个参数，弱分类器的个数<code>n_clf</code>和存储<code>n_clf</code>个弱分类器的<code>n_clf</code>$\times 4$的矩阵。因为对于每个弱分类器——两个终止结点的stump，我们需要三个参数确定，分割变量的编号<code>idx</code>，该分割变量对应的cutpoint值<code>val</code>，以及分类的方向<code>flag</code>（当<code>flag</code>取1时则所有比cutpoint大的观测值分到树的右结点，而<code>flag</code>取0时分到左结点），另外算法中需要确定的<code>alpha</code>参数，所以一个stump需要四个参数。下面代码默认弱分类器个数为10。</p>
-<div class="codehilite"><pre><span></span><span class="n">struct</span> <span class="n">Adaboost</span>
+<div class="codehilite"><pre><span></span><span class="k">struct</span> <span class="n">Adaboost</span>
     <span class="n">n_clf</span><span class="o">::</span><span class="kt">Int64</span>
     <span class="n">clf</span><span class="o">::</span><span class="kt">Matrix</span>
 <span class="k">end</span>
@@ -3806,7 +3806,7 @@ Y=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-05-07 15:18:50
+        Last Build Date UTC : 2019-05-09 14:27:47
       </div>
       
         

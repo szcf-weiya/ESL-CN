@@ -3290,7 +3290,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=336">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3340,14 +3340,14 @@
 </div>
 <p>计算完自上而下的序列之后，沿着任意边进行展开，如果这样的展开能够增大盒子均值的话，PRIM 则回溯这个过程。这称为 <strong>pasting</strong>。因为自上而下的过程在每一步是贪婪的，所以这样的展开经常是可行的。</p>
 <p>这些步骤的结果是盒子的序列，每个盒子中含有不同数目的观测点。通过交叉验证，并结合数据分析家的判断，来选择最优的盒子大小。</p>
-<p>用 $B_1$ 记在第一步中找到的盒子的观测的指标集。PRIM 过程接着从训练集中移除 $B_1$ 的观测，并且这两步的过程——先自下而上pasting，后自上而下剔除——在剩下的数据集中重复。整个过程重复若干次，得到盒子序列 $B_1,B_2,\ldots,B_k$。每个盒子由关于预测变量的子集的规则集
+<p>用 $B_1$ 记在第一步中找到的盒子的观测的指标集。PRIM 过程接着从训练集中移除 $B_1$ 的观测，并且这两步的过程——先自上而下剔除，后自下而上pasting——在剩下的数据集中重复。整个过程重复若干次，得到盒子序列 $B_1,B_2,\ldots,B_k$。每个盒子由关于预测变量的子集的规则集
 <script type="math/tex; mode=display">
 (a_1\le X_1\le b_1)\text{ and } (b_1\le X_3\le X_2)
 </script>
 来定义。PRIM 过程在算法9.3中进行了总结。</p>
 <p><img alt="" src="../../img/09/alg9.3.png" /></p>
 <p>PRIM 可以通过考虑所有预测变量的划分来处理类别型变量，这正如 CART 中一样。缺失值也通常以一种类似 CART 的方式进行处理。PRIM 是为回归（定量响应变量）而设计的；两个类别的输出可以简单地编码成 0 和 1 来处理。没有简单的方式来同时处理 $k &gt; 2$ 个的类别的情形：一种方式是对每个类别和基准类别单独采用 PRIM。</p>
-<p>PRIM 与 CART 相比的优点是它的<strong>耐心 (patience)</strong>。因为 CART 的二值分割快速地将数据分割开。假设等大小的分割，有 $N$ 个观测情况下，在使用完数据之前，只能进行 $\log_2(N)-1$ 次分割。如果 PRIM 在每一步剔除掉训练点的比例为 $\alpha$，则在用完数据之前大约需要 $-\log(N)/\log(1-\alpha)$ 次剔除步骤。举个例子，如果 $N=128,\alpha=0.10$，则 $\log_2(N)-1=6$，而$-\log(N)/\log(1-\alpha)\approx 46$。考虑每一步需要整数个的观测，PRIM 实际上可以剔除 29 次。在任何情形下，PRIM 的能力更加耐心，这应该帮助自上而下的贪婪算法找到更好的解。</p>
+<p>PRIM 与 CART 相比的优点是它的 <strong>耐心 (patience)</strong>。因为 CART 的二值分割快速地将数据分割开。假设等大小的分割，有 $N$ 个观测情况下，在使用完数据之前，只能进行 $\log_2(N)-1$ 次分割。如果 PRIM 在每一步剔除掉训练点的比例为 $\alpha$，则在用完数据之前大约需要 $-\log(N)/\log(1-\alpha)$ 次剔除步骤。举个例子，如果 $N=128,\alpha=0.10$，则 $\log_2(N)-1=6$，而$-\log(N)/\log(1-\alpha)\approx 46$。考虑每一步需要整数个的观测，PRIM 实际上可以剔除 29 次。在任何情形下，PRIM 的能力更加耐心，这应该帮助自上而下的贪婪算法找到更好的解。</p>
 <h2 id="_1">垃圾邮件的例子（继续）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>我们对 <code>spam</code> 数据应用 PRIM，对 <code>spam</code> 编码为 1，对 <code>email</code> 编码为 0。</p>
 <p>通过 PRIM 最初找到的两个盒子如下：</p>
@@ -3440,7 +3440,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-05-07 15:18:45
+        Last Build Date UTC : 2019-05-09 14:27:42
       </div>
       
         
