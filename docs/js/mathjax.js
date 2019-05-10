@@ -52,6 +52,7 @@ window.MathJax = {
       cov: "{\\mathrm{cov}}",
       Corr: "{\\mathrm{Corr}}",
       CV: "{\\mathrm{CV}}",
+      GCV: "{\\mathrm{GCV}}",
       Var: "{\\mathrm{Var}}",
       Bias: "{\\mathrm{Bias}}",
       det: "{\\mathrm{det}\\;}",
@@ -64,6 +65,8 @@ window.MathJax = {
       PRSS: "{\\mathrm{PRSS}}",
       argmin: "{\\mathrm{argmin}}",
       Ave: "{\\mathrm{Ave}}",
+      ave: "{\\mathrm{ave}}",
+      Test: "{\\mathrm{Test}}",
       median: "{\\mathrm{median}}",
       card: "{\\mathrm{card}}",
       
