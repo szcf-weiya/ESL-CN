@@ -3352,7 +3352,7 @@
 <p class="admonition-title">weiya 注：</p>
 <p>这里书中列出的其实只有 7 个，查阅原数据集，发现漏掉的一个是 <code>housing median age</code>。当然，其实原数据集本来是有 9 个预测变量，另外一个是 <code>population</code>，而且给出了 <code>total rooms</code>, <code>total bedrooms</code>，但没有 <code>AveRooms</code> 和 <code>AveBedrms</code>，所以这里作者大概是直接取平均数省掉了一个变量 <code>population</code>。</p>
 </div>
-<p>我们采用 MART 过程来拟合 Gradient Boosting 模型，其中有 $J=6$ 个终止结点，学习速率 (10.41) 取 $\nv=0.1$，并且采用 Huber 损失来预测数值型响应变量。我们随机将数据集分成训练集 (80%) 和测试集 (20%)。</p>
+<p>我们采用 MART 过程来拟合 Gradient Boosting 模型，其中有 $J=6$ 个终止结点，学习速率 (10.41) 取 $\nu=0.1$，并且采用 Huber 损失来预测数值型响应变量。我们随机将数据集分成训练集 (80%) 和测试集 (20%)。</p>
 <p><img alt="" src="../../img/10/fig10.13.png" /></p>
 <p>图 10.13 展示了作为在训练数据和测试数据上迭代次数 $M$ 的函数的平均绝对误差</p>
 <p>
@@ -3523,7 +3523,7 @@ y\sim \pi I(y=0) + (1-\pi)\mathrm{NB}(y; r, p)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-05-18 15:55:38
+        Last Build Date UTC : 2019-05-21 16:01:23
       </div>
       
         
