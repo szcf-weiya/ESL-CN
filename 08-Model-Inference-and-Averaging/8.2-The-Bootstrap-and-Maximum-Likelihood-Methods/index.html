@@ -3478,16 +3478,16 @@ L(\theta;\mathbf Z)=\prod\limits_{i=1}^Ng_\theta(z_i)\tag{8.11}
 \begin{align*}
 0&=\frac{d}{d\theta}\int_{-\infty}^\infty p(x;\theta)dx\\
 &=\int_{-\infty}^\infty \frac{\partial p(x;\theta)}{\partial \theta}dx\\
-&=\int_{-\infty}^\infty\frac{\partial \mathbb{log}p(x;\theta)}{\partial\theta}p(x;\theta)dx\\
-&=E_\theta\left[\frac{\partial \mathbb{log}p(X;\theta)}{\partial \theta}\right]
+&=\int_{-\infty}^\infty \frac{\partial \log p(x;\theta)}{\partial\theta}p(x;\theta)dx\\
+&=E_\theta\left[\frac{\partial \log p(X;\theta)}{\partial \theta}\right]
 \end{align*}
 </script>
 从而
 <script type="math/tex; mode=display">
 \begin{align*}
-I(\theta):&=\mathrm{Var}_\theta\left\{\frac{\partial \mathrm{log}p(X;\theta)}{\partial \theta}\right\\}\\
-&=E_\theta\left[\frac{\partial\mathrm{log}p(x;\theta)}{\partial\theta}\right]^2\\
-&=\int_{-\infty}^\infty\left(\frac{\partial \mathrm{log}p(x;\theta)}{\partial \theta}\right)^2p(x;\theta)dx
+I(\theta):&=\Var_\theta\left\{\frac{\partial \log p(X;\theta)}{\partial \theta}\right\}\\
+&=E_\theta\left[\frac{\partial\log p(x;\theta)}{\partial\theta}\right]^2\\
+&=\int_{-\infty}^\infty\left(\frac{\partial \log p(x;\theta)}{\partial \theta}\right)^2p(x;\theta)dx
 \end{align*}
 </script>
 $I(\theta)$ 称为 $X$ 或分布族 $\cal F$ 的 Fisher Information。</p>
@@ -3496,12 +3496,12 @@ $I(\theta)$ 称为 $X$ 或分布族 $\cal F$ 的 Fisher Information。</p>
 \begin{align*}
 0&=\frac{d^2}{d\theta^2}\int_{-\infty}^\infty p(x;\theta)dx\\
 &=\int_{-\infty}^{\infty}\frac{\partial}{\partial \theta}\left[\frac{\partial \log p(x;\theta)}{\partial \theta}p(x;\theta)\right]dx\\
-&=\int_{-\infty}^\infty\left[\frac{\partial^2\log p(x;\theta)}{\partial \theta^2}p(x;\theta)\right]dx + \int_{-\infty}^\infty\left[\frac{\partial\log p(x;\theta)}{\partial \theta\right]^2p(x;\theta)dx
+&=\int_{-\infty}^\infty\left[\frac{\partial^2\log p(x;\theta)}{\partial \theta^2}p(x;\theta)\right]dx + \int_{-\infty}^\infty\left[\frac{\partial\log p(x;\theta)}{\partial \theta}\right]^2p(x;\theta)dx
 \end{align*}
 </script>
 从而
 <script type="math/tex; mode=display">
-I(\theta)=-E_\theta[\frac{\partial^2\log p(X;\theta)}{\partial \theta^2}]
+I(\theta)=-E_\theta\left[\frac{\partial^2\log p(X;\theta)}{\partial \theta^2}\right]\,.
 </script>
 </p>
 </div>
@@ -3545,7 +3545,7 @@ $\theta_j$ 的置信点可以通过 \eqref{8.17} 的任意一个近似得到。�
 <script type="math/tex; mode=display">
 \mathbf I(\beta)=\mathbf{(H^TH)}/\sigma^2\tag{8.22}
 </script>
-因此估计的方差 $\mathbf{(H^TH)}/\hat\sigma^2$ 与最小二乘一致。</p>
+因此估计的方差 $\mathbf{(H^TH)}^{-1}\hat\sigma^2$ 与最小二乘一致。</p>
 <h2 id="_3">自助法和最大似然法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>本质上自助法是非参自助法或者参数自助法的计算机实现。与最大似然法相比自助法的好处是允许我们在没有公式的情况下计算标准误差和其他一些量的最大似然估计。</p>
 <p>在我们的例子中，假设我们通过对定义了 B 样条的结点的数目和位置进行交叉验证来自适应地选择，而不是事先固定住。记 $\lambda$ 为结点和它们位置的集合。则标准误差和置信域说明了 $\lambda$ 的自适应选择，但是没有分析的方法可以实现。有了自助法，我们通过对每个自助法样本进行自适应选择来计算B-样条光滑。最终曲线的分位数既捕捉目标里面的噪声变化以及 $\hat\lambda$ 的变化。在这个例子中置信域（没有显示出来）看起来与固定 $\lambda$ 后的置信域没有太大不同。但是在其他问题里面，当使用更多的自适应，可以得到更多重要的结果。</p>
@@ -3627,7 +3627,7 @@ $\theta_j$ 的置信点可以通过 \eqref{8.17} 的任意一个近似得到。�
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-05-24 15:57:45
+        Last Build Date UTC : 2019-05-25 10:43:53
       </div>
       
         
