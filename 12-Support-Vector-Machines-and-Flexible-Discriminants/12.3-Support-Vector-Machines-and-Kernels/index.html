@@ -2118,8 +2118,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#svm_3" title="SVM分类器的路径算法" class="md-nav__link">
-    SVM分类器的路径算法
+  <a href="#svm_3" title="SVM 分类器的路径算法" class="md-nav__link">
+    SVM 分类器的路径算法
   </a>
   
 </li>
@@ -3335,8 +3335,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#svm_3" title="SVM分类器的路径算法" class="md-nav__link">
-    SVM分类器的路径算法
+  <a href="#svm_3" title="SVM 分类器的路径算法" class="md-nav__link">
+    SVM 分类器的路径算法
   </a>
   
 </li>
@@ -3388,7 +3388,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf#page=422">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=442">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3624,8 +3624,8 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}\label{12.28}
 <p>笔记<a href="../../notes/SVM/skin-of-the-orange/index.html">模拟：Tab. 12.2</a>重现了表12.2的结果。</p>
 </div>
 <p>在原始特征空间中，超平面不能分离类别，而且支持向量分类器（第一行）表现很差。多项式支持向量机在测试误差率方面取得显著改善，但同时也被6个噪声特征严重影响。这对核的选择非常敏感：二阶多项式核（第2行）表现最好，因为真实的判别边界就是二阶多项式。然而，高阶多项式（第3和第4行）表现很差。BRUTO表现得很好，因为其边界是可加的。BRUTO和MARS自适应得很好：因为噪声的存在，所以它们的表现不会退化太大。</p>
-<h2 id="svm_3">SVM分类器的路径算法<a class="headerlink" href="#svm_3" title="Permanent link">&para;</a></h2>
-<p>SVM分类器的正则化参数是代价参数$C$，或者(12.25)中$\lambda$的倒数。通常用法是将$C$设得比较高，这通常会过拟合分类器。</p>
+<h2 id="svm_3">SVM 分类器的路径算法<a class="headerlink" href="#svm_3" title="Permanent link">&para;</a></h2>
+<p>SVM 分类器的正则化参数是代价参数 $C$，或者(12.25)中 $\lambda$ 的倒数。通常用法是将 $C$ 设得比较高，这通常会过拟合分类器。</p>
 <p>图12.6展示了混合数据的测试误差作为$C$的函数的变化图像，其中采用不同的radial核参数$\gamma$。</p>
 <p><img alt="" src="../../img/12/fig12.6.png" /></p>
 <p>当$\gamma=5$时(narrow peaked kernels)，需要最重的正则化（即较小$C$）。当$\gamma=1$时（图12.3所用的值），需要中等大小的$C$。显然在这些情形中，我们需要确定合适的$C$，或许可以通过交叉验证实现。这里我们描述一种路径算法（受<a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8节</a>的启发），可以用来有效拟合改变$C$得到的SVM模型序列。</p>
@@ -3640,7 +3640,7 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}\label{12.28}
 <p><img alt="" src="../../img/12/fig12.7.png" /></p>
 <p>可以看到KKT优化条件表明点$(x_i,y_i)$落在三个不同的区域中：</p>
 <ul>
-<li>正确分类且落在各自margins之外。它们满足$y_if(x_i) &gt; 1$，并且Lagrange乘子满足$\alpha_i=0$。比如图中橘黄色的点8，9和11，以及蓝色点1和4。</li>
+<li>正确分类且落在各自margins之外。它们满足$y_if(x_i) &gt; 1$，并且 Lagrange 乘子满足 $\alpha_i=0$。比如图中橘黄色的点8，9和11，以及蓝色点1和4。</li>
 <li>正好落在各自margin上，满足$y_if(x_i)=1$，其中Lagrange乘子$\alpha_i\in [0, 1]$。比如图中橘黄色点7，以及蓝色点2和6。</li>
 <li>在margin之内，满足$y_if(x_i) &lt; 1$，且$\alpha_i=1$。比如蓝色点3和5，以及橘黄色点10和12。</li>
 </ul>
@@ -3728,7 +3728,7 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
 <p>考虑到这些约束的本质，一般仅仅有部分的解$(\hat \alpha_i^*-\hat\alpha_i)$非零， 并且对应的数据称为支持向量。和分类问题中的设定一样，解仅仅通过内积$\langle x_i, x_{i&rsquo;}\rangle$来关联输入的数据。因此我们可以通过定义合适的内积将这个方法推广到高维空间，举个例子，采用(12.22)中定义的任意一个。</p>
 <p>注意到参数$\epsilon$和$\lambda$与准则(12.36)有关。它们似乎扮演不同的角色，$\epsilon$是损失函数$V_{\epsilon}$的参数，这和$c$是$V_H$的参数一样。注意到$V_{\epsilon}$和$V_H$都依赖$y$的尺度，因此依赖于$r$。如果我们对响应变量进行缩放（也因此需要用$V_H(r/\sigma)$和$V_\epsilon(r/\sigma)$），则我们可能考虑采用预先设定的$c$和$\epsilon$（对于高斯情形，取$c=1.345$能达到$95\%$的有效度）。$\lambda$是更传统的正则参数，并且可以通过交叉验证来估计。</p>
 <h2 id="_3">回归和核<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>正如12.3.3节讨论的一样，SVM的核性质不唯一。假设我们考虑用基函数$\{h_m(x)\},m=1,2,\ldots,M$近似的回归函数：</p>
+<p>正如 12.3.3 节讨论的一样，SVM 的核性质不唯一。假设我们考虑用基函数 $\{h_m(x)\},m=1,2,\ldots,M$ 近似的回归函数：</p>
 <p>
 <script type="math/tex; mode=display">
 f(x) = \sum\limits_{m=1}^M\beta_mh_m(x)+\beta_0\tag{12.42}
@@ -3935,7 +3935,7 @@ h\le R^2A^2\tag{12.50}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-06-13 04:04:07
+        Last Build Date UTC : 2019-06-14 13:54:10
       </div>
       
         
