@@ -3419,14 +3419,14 @@
 <p>为了最大化对数似然，令微分为 0，得到</p>
 <p>
 <script type="math/tex; mode=display">
-\dfrac{\partial \ell(\beta)}{\partial \beta}=\sum\limits_{i=1}^Nx_i(y_i-p(x_i;\beta))=0,\tag{4.21}
+\dfrac{\partial \ell(\beta)}{\partial \beta}=\sum\limits_{i=1}^Nx_i(y_i-p(x_i;\beta))=0,\tag{4.21}\label{4.21}
 </script>
 </p>
 <p>这是关于 $\beta$ 的 $p+1$ 个非线性等式。注意到因为 $x_i$ 的第一个组分为 1，第一个组分满足的等式为 $\sum_{i=1}^Ny_i=\sum_{i=1}^Np(x_i;\beta)$；这表明类别一概率的期望值与观测值一致（也因此类别二概率的期望值与观测值一致）。</p>
-<p>为了求解 (4.21) 的得分等式，我们采用 Newton-Raphson 算法，需要 Hessian 矩阵</p>
+<p>为了求解 \eqref{4.21} 的得分等式，我们采用 Newton-Raphson 算法，需要 Hessian 矩阵</p>
 <p>
 <script type="math/tex; mode=display">
-\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T}=\sum\limits_{i=1}^Nx_ix_i^Tp(x_i;\beta)(1-p(x_i;\beta))\tag{4.22}
+\dfrac{\partial^2\ell(\beta)}{\partial\beta\partial\beta^T}=-\sum\limits_{i=1}^Nx_ix_i^Tp(x_i;\beta)(1-p(x_i;\beta))\tag{4.22}
 </script>
 </p>
 <div class="admonition note">
@@ -3701,7 +3701,7 @@ z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\tag{4.29}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-06-21 13:24:26
+        Last Build Date UTC : 2019-06-21 13:28:55
       </div>
       
         
