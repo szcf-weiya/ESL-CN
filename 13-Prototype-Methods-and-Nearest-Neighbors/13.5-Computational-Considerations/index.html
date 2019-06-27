@@ -3259,11 +3259,11 @@
 </tr>
 </tbody>
 </table>
-<p>最近邻分类规则的一个缺点通常是它的计算负荷量，无论是寻找最近邻还是存储整个训练集合。当有 $N$ 个观测和 $p$ 个变量时，对每个点最近邻分类需要 $Np$ 次操作来寻找邻域。有一些快速算法 (Friedman et al., 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; Friedman et al., 1977<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 能在某种程度上降低计算负荷。Hastie and Simard (1998)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 通过在不变度量框架下提出类似 $K$-means 聚类的方法，降低了 <strong>切向距离 (tangent distance)</strong> 的计算量。</p>
-<p>降低存储的要求更加困难，研究者们提出了各种 <strong>编辑 (editing)</strong> 和 <strong>压缩 (condensing)</strong> 的过程。想法是单独拿出能进行最近邻预测的训练集的子集，并且把剩下的训练数据丢掉。直观上看，保留靠近判别边界处和在边界正确一侧的训练点是很重要的，而那些离边界很远的点可以舍弃。</p>
-<p>Devijver and Kittler (1982) <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 的多重编辑算法将数据周期性地划分为训练集和测试集，计算测试集上的最近邻，并且删掉误分类的测试点。想法是保留训练观测值的同种类别。</p>
-<p>Hart (1968)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> 的 <strong>压缩 (condensing)</strong> 过程更进一步，试图仅仅保留这些类别的 <strong>外点 (exterior point)</strong>。以随机选择单个观测作为训练集开始，每次处理一个额外的数据点，仅当它被当前训练集误分类时才加入到训练集中。</p>
-<p>这是过程在 Dasarathy (1991)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 和 Ripley (1996)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 中均有综述。它们也可以应用到除最近邻以外的学习过程。尽管这些方法有时是有用的，但是我们并没有太多的实际经验，也没有在文献中找到关于它们表现的系统性的比较。</p>
+<p>最近邻分类规则的一个缺点通常是它的计算负荷量，无论是寻找最近邻还是存储整个训练集合．当有 $N$ 个观测和 $p$ 个变量时，对每个点最近邻分类需要 $Np$ 次操作来寻找邻域．有一些快速算法 (Friedman et al., 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; Friedman et al., 1977<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 能在某种程度上降低计算负荷．Hastie and Simard (1998)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 通过在不变度量框架下提出类似 $K$-means 聚类的方法，降低了 <strong>切向距离 (tangent distance)</strong> 的计算量．</p>
+<p>降低存储的要求更加困难，研究者们提出了各种 <strong>编辑 (editing)</strong> 和 <strong>压缩 (condensing)</strong> 的过程．想法是单独拿出能进行最近邻预测的训练集的子集，并且把剩下的训练数据丢掉．直观上看，保留靠近判别边界处和在边界正确一侧的训练点是很重要的，而那些离边界很远的点可以舍弃．</p>
+<p>Devijver and Kittler (1982) <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 的多重编辑算法将数据周期性地划分为训练集和测试集，计算测试集上的最近邻，并且删掉误分类的测试点．想法是保留训练观测值的同种类别．</p>
+<p>Hart (1968)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> 的 <strong>压缩 (condensing)</strong> 过程更进一步，试图仅仅保留这些类别的 <strong>外点 (exterior point)</strong>．以随机选择单个观测作为训练集开始，每次处理一个额外的数据点，仅当它被当前训练集误分类时才加入到训练集中．</p>
+<p>这是过程在 Dasarathy (1991)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 和 Ripley (1996)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 中均有综述．它们也可以应用到除最近邻以外的学习过程．尽管这些方法有时是有用的，但是我们并没有太多的实际经验，也没有在文献中找到关于它们表现的系统性的比较．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3368,7 +3368,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-06-26 09:34:25
+        Last Build Date UTC : 2019-06-27 03:08:13
       </div>
       
         

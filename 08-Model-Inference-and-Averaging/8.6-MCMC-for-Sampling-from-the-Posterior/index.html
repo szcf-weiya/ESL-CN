@@ -3261,9 +3261,9 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">更新笔记</p>
-<p>@2017-12-27 若 $r\sim U[0,1]$，则 $\Pr(r &lt; c)=c$，其中 $c$ 为常值。</p>
+<p>@2017-12-27 若 $r\sim U[0,1]$，则 $\Pr(r &lt; c)=c$，其中 $c$ 为常值．</p>
 </div>
-<p>在定义了一个贝叶斯模型后，有人便想要从得到的后验分布中采样来对参数进行推断。除了简单的模型，这通常是一个很困难的计算问题。</p>
+<p>在定义了一个贝叶斯模型后，有人便想要从得到的后验分布中采样来对参数进行推断．除了简单的模型，这通常是一个很困难的计算问题．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注</p>
 <p>在贝叶斯分析中，计算后验分布时经常涉及复杂的积分运算，比如
@@ -3274,40 +3274,40 @@
 <script type="math/tex; mode=display">
 \Pr(x) = \int \Pr(x, \theta)d\theta
 </script>
-有人会想到有 Monte Carlo 来近似上述的积分值（关于应用 Monte Carlo 进行积分近似，可以参见 <a href="https://stats.hohoweiya.xyz//montecarlo/2017/09/07/The-Need-of-Monte-Carlo/">The Applications of Monte Carlo</a>），但这也是不实际的。因为如果要用 Monte Carlo 近似，则首先我们需要在从 $\theta$ 的后验分布中 sample 出 $m$ 个样本来（注意到我们需要求的就是 $\theta$ 的后验分布），进而采用下式进行近似
+有人会想到有 Monte Carlo 来近似上述的积分值（关于应用 Monte Carlo 进行积分近似，可以参见 <a href="https://stats.hohoweiya.xyz//montecarlo/2017/09/07/The-Need-of-Monte-Carlo/">The Applications of Monte Carlo</a>），但这也是不实际的．因为如果要用 Monte Carlo 近似，则首先我们需要在从 $\theta$ 的后验分布中 sample 出 $m$ 个样本来（注意到我们需要求的就是 $\theta$ 的后验分布），进而采用下式进行近似
 <script type="math/tex; mode=display">
 \hat \Pr(x) = \int d\theta\cdot \frac{1}{m}\sum\limits_{i=1}^m\Pr(x, \theta^{(m)})
 </script>
-但幸好可以通过构造一个 Markov chain 来进行 Monte Carlo 近似，称为 MCMC。在 <a href="http://nbviewer.jupyter.org/github/szcf-weiya/MonteCarlo/blob/master/MCMC/MCMC_example.ipynb">MCMC_example.ipynb</a> 里面用一个例子说明了怎么用 MCMC 得到参数的后验分布。
+但幸好可以通过构造一个 Markov chain 来进行 Monte Carlo 近似，称为 MCMC．在 <a href="http://nbviewer.jupyter.org/github/szcf-weiya/MonteCarlo/blob/master/MCMC/MCMC_example.ipynb">MCMC_example.ipynb</a> 里面用一个例子说明了怎么用 MCMC 得到参数的后验分布．
 更多 Monte Carlo 方法的细节可以参见 <a href="https://mc.hohoweiya.xyz/">Notes: Monte-Carlo</a>.</p>
 </div>
-<p>这节我们讨论用于后验采样的 <strong>马尔科夫蒙特卡洛法 (Markov chain Monte Carlo)</strong>。我们将要看到吉布斯采样（一个 MCMC 过程）与 EM 算法非常相关：主要的区别在于前者从条件分布中采样而非对它们最大化。</p>
-<p>首先考虑下面的抽象问题。我们有随机变量 $U_1,U_2,\ldots,U_K$，而且希望从他们的联合分布中采样。假设这很难实现，但是从条件分布 $\Pr(U_j\mid U_1,U_2,\ldots,U_{j-1},U_{j+1},\ldots,U_K),j=1,\ldots,K$ 中模拟是非常简单的。吉布斯采样过程也可以从他们的每个分布来模拟，而且当这个过程稳定下来，吉布斯采样得到了需要的联合分布中的一个样本。这个过程表现在算法 8.3 中。</p>
+<p>这节我们讨论用于后验采样的 <strong>马尔科夫蒙特卡洛法 (Markov chain Monte Carlo)</strong>．我们将要看到吉布斯采样（一个 MCMC 过程）与 EM 算法非常相关：主要的区别在于前者从条件分布中采样而非对它们最大化．</p>
+<p>首先考虑下面的抽象问题．我们有随机变量 $U_1,U_2,\ldots,U_K$，而且希望从他们的联合分布中采样．假设这很难实现，但是从条件分布 $\Pr(U_j\mid U_1,U_2,\ldots,U_{j-1},U_{j+1},\ldots,U_K),j=1,\ldots,K$ 中模拟是非常简单的．吉布斯采样过程也可以从他们的每个分布来模拟，而且当这个过程稳定下来，吉布斯采样得到了需要的联合分布中的一个样本．这个过程表现在算法 8.3 中．</p>
 <p><img alt="" src="../../img/08/alg8.3.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注</p>
-<p>实际操作中，通过均匀分布来实现，因为对于 $r\sim U[0,1]$，我们有 $\Pr(r &lt; c)=c$。所以只需要知道边缘概率，便可以进行采样。</p>
+<p>实际操作中，通过均匀分布来实现，因为对于 $r\sim U[0,1]$，我们有 $\Pr(r &lt; c)=c$．所以只需要知道边缘概率，便可以进行采样．</p>
 </div>
-<p>在正规化条件下可以证明这一过程最终稳定，得到的随机变量实际上是从 $U_1,U_2,\ldots,U_K$ 联合分布中取的一个样本。尽管对于不同的 $t$，样本 $(U_1^{(t)},U_2^{(t)},\ldots,U_K^{(t)})$ 显然不独立。更正式地，吉布斯采样得到一个马尔科夫链，该马尔科夫链的平稳分布是真正的联合分布，因此称之为“马尔科夫链蒙特卡洛法”。在这个过程下真实的联合分布是平稳的并不奇怪，因为连续的步骤使得 $U_k$ 的边缘分布不变。</p>
-<p>注意到我们不需要知道条件密度的显式形式，但是仅仅需要能够从中取样。经过这一过程达到平稳，变量的任意子集的边缘密度可以通过应用到样本值上的密度估计来近似。然而，如果条件密度 $\Pr(U_k\mid U_\ell,\ell\neq k)$ 的显式形式是知道的，则 $U_k$ 的边缘密度的一个良好估计可以从下式得到（<a href="https://github.com/szcf-weiya/ESL-CN/issues/145">练习 8.3</a>）：
+<p>在正规化条件下可以证明这一过程最终稳定，得到的随机变量实际上是从 $U_1,U_2,\ldots,U_K$ 联合分布中取的一个样本．尽管对于不同的 $t$，样本 $(U_1^{(t)},U_2^{(t)},\ldots,U_K^{(t)})$ 显然不独立．更正式地，吉布斯采样得到一个马尔科夫链，该马尔科夫链的平稳分布是真正的联合分布，因此称之为“马尔科夫链蒙特卡洛法”．在这个过程下真实的联合分布是平稳的并不奇怪，因为连续的步骤使得 $U_k$ 的边缘分布不变．</p>
+<p>注意到我们不需要知道条件密度的显式形式，但是仅仅需要能够从中取样．经过这一过程达到平稳，变量的任意子集的边缘密度可以通过应用到样本值上的密度估计来近似．然而，如果条件密度 $\Pr(U_k\mid U_\ell,\ell\neq k)$ 的显式形式是知道的，则 $U_k$ 的边缘密度的一个良好估计可以从下式得到（<a href="https://github.com/szcf-weiya/ESL-CN/issues/145">练习 8.3</a>）：
 <script type="math/tex; mode=display">
 \widehat{\Pr}_{U_k}(u)=\frac{1}{(M-m+1)}\sum\limits_{t=m}^M\Pr(u\mid U_\ell^{(t)},\ell\neq k)\tag{8.50}
 </script>
-这里我们对序列的 $M-m+1$ 个成员平均，使得达到平稳之前允许初始的“<strong>老化 (burn-in)</strong>”期。</p>
+这里我们对序列的 $M-m+1$ 个成员平均，使得达到平稳之前允许初始的“<strong>老化 (burn-in)</strong>”期．</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：</p>
-<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/145">Issue 145: Ex. 8.3</a>。</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/145">Issue 145: Ex. 8.3</a>．</p>
 </div>
-<p>现在回到贝叶斯推断，我们的目标是在给定数据 $\mathbf Z$ 情况下，从参数的联合后验分布中采样。如果从每个参数的条件分布（在给定其他参数和 $\mathbf Z$）中取样很简单，则吉布斯取样会很有帮助。接下来详细讨论一个高斯分布混合问题的例子。</p>
-<p>在指数族模型中，从后验的吉布斯采样与 EM 算法有着紧密的联系。关键在于将 EM 过程的潜在数据 $\mathbf Z^m$ 看成是吉布斯采样的另一个参数。为了让高斯混合问题中这一点更明确，我们取参数为 $(\theta,\mathbf Z^m)$。为了简便，我们固定方差 $\sigma_1^2,\sigma^2_2$ 以及最大似然时的混合比例 $\pi$，使得 $\theta$ 中未知的参数仅仅是均值 $\mu_1$ 和 $\mu_2$。此混合问题的吉布斯采样在算法 8.4 中给出。我们看到第 2(a) 和 2(b) 步与 EM 过程中的 E 和 M 一样，除了这里我们是取样而非最大化。在第 2(a) 步，不是计算最大似然的 <strong>责任 (responsibilities)</strong> $\gamma_i=\E(\Delta_i\mid \theta,\mathbf Z)$，吉布斯采样过程从 $\Pr(\Delta_i\mid \theta,\mathbf Z)$ 的分布中模拟潜在数据 $\Delta_i$。在第 2(b) 步，不是计算后验  $\Pr(\mu_1,\mu_2,\Delta\mid \mathbf Z)$ 的最大值，而是从条件分布 $\Pr(\mu_1,\mu_2\mid \Delta,\mathbf Z)$ 中模拟（采样）。</p>
+<p>现在回到贝叶斯推断，我们的目标是在给定数据 $\mathbf Z$ 情况下，从参数的联合后验分布中采样．如果从每个参数的条件分布（在给定其他参数和 $\mathbf Z$）中取样很简单，则吉布斯取样会很有帮助．接下来详细讨论一个高斯分布混合问题的例子．</p>
+<p>在指数族模型中，从后验的吉布斯采样与 EM 算法有着紧密的联系．关键在于将 EM 过程的潜在数据 $\mathbf Z^m$ 看成是吉布斯采样的另一个参数．为了让高斯混合问题中这一点更明确，我们取参数为 $(\theta,\mathbf Z^m)$．为了简便，我们固定方差 $\sigma_1^2,\sigma^2_2$ 以及最大似然时的混合比例 $\pi$，使得 $\theta$ 中未知的参数仅仅是均值 $\mu_1$ 和 $\mu_2$．此混合问题的吉布斯采样在算法 8.4 中给出．我们看到第 2(a) 和 2(b) 步与 EM 过程中的 E 和 M 一样，除了这里我们是取样而非最大化．在第 2(a) 步，不是计算最大似然的 <strong>责任 (responsibilities)</strong> $\gamma_i=\E(\Delta_i\mid \theta,\mathbf Z)$，吉布斯采样过程从 $\Pr(\Delta_i\mid \theta,\mathbf Z)$ 的分布中模拟潜在数据 $\Delta_i$．在第 2(b) 步，不是计算后验  $\Pr(\mu_1,\mu_2,\Delta\mid \mathbf Z)$ 的最大值，而是从条件分布 $\Pr(\mu_1,\mu_2\mid \Delta,\mathbf Z)$ 中模拟（采样）．</p>
 <p><img alt="" src="../../img/08/alg8.4.png" /></p>
-<p>图 8.8 显示了吉布斯抽样的 200 个迭代，左图显示了均值参数 $\mu_1$（小）和 $\mu_2$（大），右图是类别 2 的观测的占比 $\sum_i\Delta_i/N$。在每个情形下画出了在最大似然估计值 $\hat\mu_1,\hat\mu_2$ 和 $\sum_i\hat\gamma_i/N$ 的虚线。值似乎很快就稳定下来，而且在最大似然值附近均匀地分布。</p>
+<p>图 8.8 显示了吉布斯抽样的 200 个迭代，左图显示了均值参数 $\mu_1$（小）和 $\mu_2$（大），右图是类别 2 的观测的占比 $\sum_i\Delta_i/N$．在每个情形下画出了在最大似然估计值 $\hat\mu_1,\hat\mu_2$ 和 $\sum_i\hat\gamma_i/N$ 的虚线．值似乎很快就稳定下来，而且在最大似然值附近均匀地分布．</p>
 <p><img alt="" src="../../img/08/fig8.8.png" /></p>
 <blockquote>
-<p>图 8.8. 混合的例子。（左图：）从吉布斯采样中得到的两个均值参数的 200 个值；在最大似然估计的 $\hat\mu_1,\hat\mu_2$ 画了水平直线。（右图：）对于 200 次吉布斯采样迭代中的每个迭代，$\Delta_i=1$ 的占比；在 $\sum_i\hat\gamma_i/N$ 画了水平直线。</p>
+<p>图 8.8. 混合的例子．（左图：）从吉布斯采样中得到的两个均值参数的 200 个值；在最大似然估计的 $\hat\mu_1,\hat\mu_2$ 画了水平直线．（右图：）对于 200 次吉布斯采样迭代中的每个迭代，$\Delta_i=1$ 的占比；在 $\sum_i\hat\gamma_i/N$ 画了水平直线．</p>
 </blockquote>
-<p>上面的混合模型被简化了，是为了清楚地看到吉布斯采样和 EM 算法的关联。更实际点，可以在方差 $\sigma^2_1,\sigma^2_2$ 和混合比例上添加先验分布，而且包含从它们在其他参数条件下的后验分布中进行独立的吉布斯采样。也可以对均值参数结合恰当的（无信息）先验。这些先验决不能选得不合适，因为这会导致退化的后验（所有的混合系数都在一个组分上）。</p>
-<p>吉布斯采样是最近发展的一系列从后验分布中采样过程中的一个方法。它运用某个参数在给定其它参数情况下的条件采样，然后当问题的结构使得采样很容易进行时，这个方法是非常有用的。其它的方法不要求这样的结构，举个例子如 Metropolis–Hastings 算法。这些和其它计算的贝叶斯方法已经应用到复杂的学习算法中，比如高斯过程模型和神经网络。细节可以在本章后面的文献笔记中的参考文献中找到。</p>
+<p>上面的混合模型被简化了，是为了清楚地看到吉布斯采样和 EM 算法的关联．更实际点，可以在方差 $\sigma^2_1,\sigma^2_2$ 和混合比例上添加先验分布，而且包含从它们在其他参数条件下的后验分布中进行独立的吉布斯采样．也可以对均值参数结合恰当的（无信息）先验．这些先验决不能选得不合适，因为这会导致退化的后验（所有的混合系数都在一个组分上）．</p>
+<p>吉布斯采样是最近发展的一系列从后验分布中采样过程中的一个方法．它运用某个参数在给定其它参数情况下的条件采样，然后当问题的结构使得采样很容易进行时，这个方法是非常有用的．其它的方法不要求这样的结构，举个例子如 Metropolis–Hastings 算法．这些和其它计算的贝叶斯方法已经应用到复杂的学习算法中，比如高斯过程模型和神经网络．细节可以在本章后面的文献笔记中的参考文献中找到．</p>
                 
                   
                 
@@ -3386,7 +3386,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-06-26 09:34:22
+        Last Build Date UTC : 2019-06-27 03:08:10
       </div>
       
         

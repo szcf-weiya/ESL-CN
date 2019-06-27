@@ -3328,26 +3328,26 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">更新笔记</p>
-<p>@2017.10.15 关于SVM的具体应用，我写了一篇博客展示了使用R来实现SVM分类，以及通过ROC、AUC来评估分类的好坏。博客链接为<a href="https://stats.hohoweiya.xyz//2017/05/18/Support-Vector-Classifier/">Illustrations of Support Vector Machines</a></p>
-<p>@2018.02.12 将博客<a href="https://stats.hohoweiya.xyz//2017/05/18/Support-Vector-Classifier/">Illustrations of Support Vector Machines</a>整理到<a href="https://esl.hohoweiya.xyz/notes/SVM/e1071/index.html">SVM处理线性和非线性类别边界</a>。</p>
+<p>@2017.10.15 关于SVM的具体应用，我写了一篇博客展示了使用R来实现SVM分类，以及通过ROC、AUC来评估分类的好坏．博客链接为<a href="https://stats.hohoweiya.xyz//2017/05/18/Support-Vector-Classifier/">Illustrations of Support Vector Machines</a></p>
+<p>@2018.02.12 将博客<a href="https://stats.hohoweiya.xyz//2017/05/18/Support-Vector-Classifier/">Illustrations of Support Vector Machines</a>整理到<a href="https://esl.hohoweiya.xyz/notes/SVM/e1071/index.html">SVM处理线性和非线性类别边界</a>．</p>
 </div>
-<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面。我们先复习一下，然后推广到不可分的情形下（类别可能不会被线性边界分离）。</p>
-<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in \{-1,1\}$。定义超平面</p>
+<p>在第4章中我们讨论了在两个可分类别之间构造一个最优的分离超平面．我们先复习一下，然后推广到不可分的情形下（类别可能不会被线性边界分离）．</p>
+<p>我们的训练数据包含$N$对数据点$(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)$，其中$x_i\in R^p,y_i\in \{-1,1\}$．定义超平面</p>
 <p>
 <script type="math/tex; mode=display">
 \{x:f(x)=x^T\beta+\beta_0=0\}\tag{12.1}
 </script>
 </p>
-<p>其中$\beta$是单位向量$\Vert \beta\Vert=1$。由$f(x)$导出的分类准则为</p>
+<p>其中$\beta$是单位向量$\Vert \beta\Vert=1$．由$f(x)$导出的分类准则为</p>
 <p>
 <script type="math/tex; mode=display">
 G(x)=\sign[x^T\beta+\beta_0]\tag{12.2}
 </script>
 </p>
-<p>超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离。因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$，满足$y_if(x_i)&gt;0,\forall i$。因此我们可以找到超平面在类别1和-1的训练点之间创造最大的margin（图12.1）。</p>
+<p>超平面的结构在4.5节讨论了，我们证明了(12.1)中的$f(x)$给出了从点$x$到超平面$f(x)=x^T+\beta_0=0$的符号距离．因为类别是可分的，则我们可以找到一个函数$f(x)=x^T\beta+\beta_0$，满足$y_if(x_i)&gt;0,\forall i$．因此我们可以找到超平面在类别1和-1的训练点之间创造最大的margin（图12.1）．</p>
 <p><img alt="" src="../../img/12/fig12.1.png" /></p>
 <blockquote>
-<p>图12.1. 支持向量分类器。左图显示了可分情形。判别边界是实线，而虚线确定了边缘空白（阴影部分）的最大宽度为$2M=2/\Vert\beta\Vert$。右图中显示了不可分（重叠）情形。标记为$\xi_j^*$的点是在边缘空白错误的一边，且$\xi_j^*=M\xi_j$；在正确一侧的点有$\xi_j^*=0.$ 最大化空白边界是要满足总代价$\sum\xi_i\le constant$.因此，$\sum\xi_j^*$是在空白边界中点的距离总和。</p>
+<p>图12.1. 支持向量分类器．左图显示了可分情形．判别边界是实线，而虚线确定了边缘空白（阴影部分）的最大宽度为$2M=2/\Vert\beta\Vert$．右图中显示了不可分（重叠）情形．标记为$\xi_j^*$的点是在边缘空白错误的一边，且$\xi_j^*=M\xi_j$；在正确一侧的点有$\xi_j^*=0.$ 最大化空白边界是要满足总代价$\sum\xi_i\le constant$.因此，$\sum\xi_j^*$是在空白边界中点的距离总和．</p>
 </blockquote>
 <p>优化问题是</p>
 <p>
@@ -3359,7 +3359,7 @@ s.t.\;y_i(x_i^T\beta+\beta_0)\ge M,\;i=1,\ldots,N,
 \tag{12.3}
 </script>
 </p>
-<p>图中的条纹宽度为$M$，它是分离超平面到其中一边的距离，因此总共宽度为$2M$。这称为margin。</p>
+<p>图中的条纹宽度为$M$，它是分离超平面到其中一边的距离，因此总共宽度为$2M$．这称为margin．</p>
 <p>我们已经证明了这个问题可以更方便地写成</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3370,8 +3370,8 @@ s.t.&\; y_i(x_i^T\beta+\beta_0)\ge 1,\; i=1,\ldots,N
 \tag{12.4}
 </script>
 </p>
-<p>我们删掉了对于$\beta$模长的约束。注意到$M=1/\Vert\beta\Vert$。表达式(12.4)是稀疏数据的支持向量准则的通常形式。这是一个凸优化问题（二次准则，线性不等约束），解在<a href="../../04-Linear-Methods-for-Classification/4.5-Separating-Hyperplanes/index.html#452">4.5.2节</a>已经讨论了。</p>
-<p>假设在特征空间中类别有重叠。一种处理重叠的方式仍然是最大化$M$，但是只允许一些点在边缘空白的错误一侧。定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$。有两种自然的方式去修改(12.3)中的约束：</p>
+<p>我们删掉了对于$\beta$模长的约束．注意到$M=1/\Vert\beta\Vert$．表达式(12.4)是稀疏数据的支持向量准则的通常形式．这是一个凸优化问题（二次准则，线性不等约束），解在<a href="../../04-Linear-Methods-for-Classification/4.5-Separating-Hyperplanes/index.html#452">4.5.2节</a>已经讨论了．</p>
+<p>假设在特征空间中类别有重叠．一种处理重叠的方式仍然是最大化$M$，但是只允许一些点在边缘空白的错误一侧．定义松弛变量$\xi=(\xi_1,\xi_2,\ldots,\xi_N)$．有两种自然的方式去修改(12.3)中的约束：</p>
 <p>
 <script type="math/tex; mode=display">
 y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\tag{12.5}
@@ -3383,8 +3383,8 @@ y_i(x_i^T\beta+\beta_0)\ge M-\xi_i\tag{12.5}
 y_i(x_i^T\beta+\beta_0) \ge M(1-\xi_i)\tag{12.6}
 </script>
 </p>
-<p>$\forall i,\xi_i\ge 0,\sum_{i=1}^N\xi_i\le constant$。这两个选择会导出不同的解。第一个选择似乎更加自然，因为它衡量了到margin的实际距离；第二个选择衡量了相对距离，它会随着margin的宽度$M$的改变而改变。然而，第一个选择是一个非凸的优化问题，而第二个是凸的；因此(12.6)导出标准的支持向量分类器，我们从这里开始使用它。</p>
-<p>下面介绍该想法的形成过程。约束条件$y_i(x_i^T\beta+\beta_0)\ge M(1-\xi_i)$中的$\xi_i$与通过$f(x_i)=x_i^T\beta+\beta_0$预测得到的错误分类总数成比例。因此通过约束$\sum\xi_i$，我们约束了错误预测总数的比例。当$\xi_i&gt;1$则为错误分类，所以在$K$的水平下约束$\sum\xi_i$表示为限制训练集中错分类个数小于$K$.</p>
+<p>$\forall i,\xi_i\ge 0,\sum_{i=1}^N\xi_i\le constant$．这两个选择会导出不同的解．第一个选择似乎更加自然，因为它衡量了到margin的实际距离；第二个选择衡量了相对距离，它会随着margin的宽度$M$的改变而改变．然而，第一个选择是一个非凸的优化问题，而第二个是凸的；因此(12.6)导出标准的支持向量分类器，我们从这里开始使用它．</p>
+<p>下面介绍该想法的形成过程．约束条件$y_i(x_i^T\beta+\beta_0)\ge M(1-\xi_i)$中的$\xi_i$与通过$f(x_i)=x_i^T\beta+\beta_0$预测得到的错误分类总数成比例．因此通过约束$\sum\xi_i$，我们约束了错误预测总数的比例．当$\xi_i&gt;1$则为错误分类，所以在$K$的水平下约束$\sum\xi_i$表示为限制训练集中错分类个数小于$K$.</p>
 <p>类似<a href="https://esl.hohoweiya.xyz/04%20Linear%20Methods%20for%20Classification/4.5%20Separating%20Hyperplanes/index.html#452">4.5.2节</a>中的(4.48)，我们可以去掉在$\beta$上的约束，定义$M=1/\Vert\beta\Vert$，然后将（12.4）写成下面的等价形式</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3392,10 +3392,10 @@ min\;\Vert\beta\Vert\qquad s.t.\;\left\{\begin{array}{ll}y_i(x_i^T\beta+\beta_0)
 \xi_i\ge 0,\sum\xi_i\le constant.\end{array}\right.\tag{12.7}
 </script>
 </p>
-<p>这是非分离情形下支持向量分类器定义的通常方式。然而我们会对约束$y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i$中的固定常数1感到误解，更喜欢使用(12.6)式。图12.1的右图说明了重叠的情形。</p>
-<p>从准则(12.7)可以看出，在类别里面的点不会对边界的形成有太大的影响。这似乎是个很吸引人的性质，这与线性判别边界(4.3节)不同。LDA中，判别边界是由类别的分布的协方差和重心来决定。我们将在<a href="https://esl.hohoweiya.xyz/12%20Support%20Vector%20Machines%20and%20Flexible%20Discriminants/12.3%20Support%20Vector%20Machines%20and%20Kernels/index.html#_1">12.3.3节</a>看到逻辑斯蒂回归在这点上很像。</p>
+<p>这是非分离情形下支持向量分类器定义的通常方式．然而我们会对约束$y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i$中的固定常数1感到误解，更喜欢使用(12.6)式．图12.1的右图说明了重叠的情形．</p>
+<p>从准则(12.7)可以看出，在类别里面的点不会对边界的形成有太大的影响．这似乎是个很吸引人的性质，这与线性判别边界(4.3节)不同．LDA中，判别边界是由类别的分布的协方差和重心来决定．我们将在<a href="https://esl.hohoweiya.xyz/12%20Support%20Vector%20Machines%20and%20Flexible%20Discriminants/12.3%20Support%20Vector%20Machines%20and%20Kernels/index.html#_1">12.3.3节</a>看到逻辑斯蒂回归在这点上很像．</p>
 <h2 id="_1">计算支持向量分类器<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>问题(12.7)是带有线性不等值约束的二次问题，因此这是一个凸优化问题。我们描述一种采用Lagrange乘子的二次规划解法。将式(12.7)重新表达成下面的等价形式是很方便的</p>
+<p>问题(12.7)是带有线性不等值约束的二次问题，因此这是一个凸优化问题．我们描述一种采用Lagrange乘子的二次规划解法．将式(12.7)重新表达成下面的等价形式是很方便的</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
@@ -3412,7 +3412,7 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]-\sum\limits_{i=1}^{N}\mu_i\xi_i\tag{12.9}
 </script>
 </p>
-<p>我们需要关于$\beta,\beta_0$和$\xi_i$求最小值。令对应的微分为0，我们有</p>
+<p>我们需要关于$\beta,\beta_0$和$\xi_i$求最小值．令对应的微分为0，我们有</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3422,7 +3422,7 @@ L_P=\frac{1}{2}\Vert\beta\Vert^2+C\sum\limits_{i=1}^N\xi_i-\sum\limits_{i=1}^N\a
 \end{align}
 </script>
 </p>
-<p>同样有正值约束$\alpha_i,\mu_i,\xi_i\ge 0\;\forall i$。把(12.10)-(12.12)代入(12.9)，我们得到Lagrangian(Wolfe)对偶目标函数</p>
+<p>同样有正值约束$\alpha_i,\mu_i,\xi_i\ge 0\;\forall i$．把(12.10)-(12.12)代入(12.9)，我们得到Lagrangian(Wolfe)对偶目标函数</p>
 <p>
 <script type="math/tex; mode=display">
 L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=1}^N\alpha_i\alpha_{i'}y_iy_{i'}x_i^Tx_{i'}\tag{12.13}
@@ -3456,10 +3456,10 @@ q(\lambda)\def\underset{x}{\inf}\cal L(x,\lambda)
 <script type="math/tex; mode=display">
 \cal D\def\{\lambda\mid q(\lambda)>-\infty\}
 </script>
-<strong>若$f$和$-c_i$均为凸函数</strong>，则$\cal L(\cdot, \lambda)$也为凸函数，则可以很容易计算$q(\lambda)$。</p>
+<strong>若$f$和$-c_i$均为凸函数</strong>，则$\cal L(\cdot, \lambda)$也为凸函数，则可以很容易计算$q(\lambda)$．</p>
 <p>参考资料: <a href="../../references/opbook2.pdf">Wright S, Nocedal J. Numerical optimization (Second Edition). Springer Science.</a></p>
 </div>
-<p>它给出了目标函数(12.8)对于任意可行解的一个下界。我们在满足$0\le \alpha_i\le C$和$\sum_{i=1}^N\alpha_iy_i=0$的条件下最大化$L_D$。再加上(12.10)-(12.12)条件，Karush-Kuhn-Tucker条件包含下列约束：对于$i=1,\ldots,N$，
+<p>它给出了目标函数(12.8)对于任意可行解的一个下界．我们在满足$0\le \alpha_i\le C$和$\sum_{i=1}^N\alpha_iy_i=0$的条件下最大化$L_D$．再加上(12.10)-(12.12)条件，Karush-Kuhn-Tucker条件包含下列约束：对于$i=1,\ldots,N$，
 <script type="math/tex; mode=display">
 \begin{align}
 \alpha_i[y_i(x_i^T\beta+\beta_0)-(1-\xi_i)]&=0& (12.14)\\
@@ -3483,7 +3483,7 @@ y_i(x_i^T\beta+\beta_0)-(1-\xi_i)&\ge 0& (12.16)
 \hat\beta=\sum\limits_{i=1}^N\hat\alpha_iy_ix_i\tag{12.17}
 </script>
 </p>
-<p>非负系数$\hat\alpha_i$只针对约束(12.16)等号成立的观测（由于(12.14)）。因为$\hat\beta$用这些观测单独表示，所以把它们称之为<strong>支持向量</strong>。在这些支持点中，有些会在margin的边缘处($\hat\xi_i=0$)，因此根据式(12.15)，式(12.12)可以用$0 &lt; \hat\alpha_i &lt; C$来表示；剩余部分($\hat \xi_i &gt; 0$)有$\hat\alpha_i=C$（由(12.15)式得到）。从(12.14)我们可以看到每个边缘点($0 &lt; \hat\alpha_i,\;\hat \xi_i = 0$)都可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值。</p>
+<p>非负系数$\hat\alpha_i$只针对约束(12.16)等号成立的观测（由于(12.14)）．因为$\hat\beta$用这些观测单独表示，所以把它们称之为<strong>支持向量</strong>．在这些支持点中，有些会在margin的边缘处($\hat\xi_i=0$)，因此根据式(12.15)，式(12.12)可以用$0 &lt; \hat\alpha_i &lt; C$来表示；剩余部分($\hat \xi_i &gt; 0$)有$\hat\alpha_i=C$（由(12.15)式得到）．从(12.14)我们可以看到每个边缘点($0 &lt; \hat\alpha_i,\;\hat \xi_i = 0$)都可以用来求解$\beta_0$，一般地，为了数值稳定性，我们取所有解的均值．</p>
 <p>最大化对偶问题(12.13)是比原问题(12.9)更简单的凸优化问题，而且可以用标准的方法进行求解（举个例子，Murray et al., 1981<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）</p>
 <p>给定解$\hat\beta_0$和$\beta$，判别函数可以写成
 <script type="math/tex; mode=display">
@@ -3492,23 +3492,23 @@ y_i(x_i^T\beta+\beta_0)-(1-\xi_i)&\ge 0& (12.16)
 &=sign[x^T\hat\beta+\hat\beta_0]\tag{12.18}
 \end{array}
 </script>
-这个过程的调整参数是代价参数$C$。</p>
+这个过程的调整参数是代价参数$C$．</p>
 <h2 id="_2">混合例子（继续）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../../img/12/fig12.2.png" /></p>
 <blockquote>
-<p>图12.2 对于两个不同$C$值，有两个重叠类别的混合数据例子的线性支持向量边界。虚线表示margin，其中$f(x)=\pm 1$。支持点（$\alpha_i&gt;0$）是在它们margin的错误一侧的点。黑色实心点是恰巧落在margin边界上（$\xi_i=0,\alpha_i&gt;0$）的点。在上面板中，$62\%$的观测点都是支持点，而下面的图$85\%$的点都是。紫色虚线是贝叶斯判别边界。</p>
+<p>图12.2 对于两个不同$C$值，有两个重叠类别的混合数据例子的线性支持向量边界．虚线表示margin，其中$f(x)=\pm 1$．支持点（$\alpha_i&gt;0$）是在它们margin的错误一侧的点．黑色实心点是恰巧落在margin边界上（$\xi_i=0,\alpha_i&gt;0$）的点．在上面板中，$62\%$的观测点都是支持点，而下面的图$85\%$的点都是．紫色虚线是贝叶斯判别边界．</p>
 </blockquote>
-<p>图12.2显示了21页图2.5混合例子对于两个不同代价参数$C$的支持向量边界，这里有两个重叠的类别。这些分类器的表现很相似。在边界的错误一侧是支持向量。另外，在判别边界附近正确一侧的点也是支持向量。$C=0.01$时的margin比$C=10,000$时的大。因此大的$C$值更加注意（正确分类）靠近判别边界的点，而较小的$C$涉及离判别边界更远的点。</p>
+<p>图12.2显示了21页图2.5混合例子对于两个不同代价参数$C$的支持向量边界，这里有两个重叠的类别．这些分类器的表现很相似．在边界的错误一侧是支持向量．另外，在判别边界附近正确一侧的点也是支持向量．$C=0.01$时的margin比$C=10,000$时的大．因此大的$C$值更加注意（正确分类）靠近判别边界的点，而较小的$C$涉及离判别边界更远的点．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
-<p>$C$越大，margin越窄；$C$越小，margin越宽。这对应R的<code>e1071</code>包<code>svm()</code>函数中的<code>cost</code>参数。</p>
+<p>$C$越大，margin越窄；$C$越小，margin越宽．这对应R的<code>e1071</code>包<code>svm()</code>函数中的<code>cost</code>参数．</p>
 </div>
-<p>任意一种方式，错分类的点都被赋予了权重，不管离多远。由于判别边界的刚性(rigidity)，在这个例子中这个过程对$C$的取值不敏感。</p>
+<p>任意一种方式，错分类的点都被赋予了权重，不管离多远．由于判别边界的刚性(rigidity)，在这个例子中这个过程对$C$的取值不敏感．</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>怎么理解判别边界的刚性(the rigidity of a linear boundary)</p>
 </div>
-<p>最优的$C$可以通过交叉验证来确定，如第7章中讨论的那样。有趣的是，舍一交叉验证误差可以通过数据中支持向量的点的比例来约束。原因是当舍去的不是支持向量的时候不会改变解。因此这些观测点在原始边界中正确分类的点在交叉验证中也能正确分类。然而，这个界趋向于偏高，而且一般不适用于选择$C$(在我们的例子中分别是62%和85%)。</p>
+<p>最优的$C$可以通过交叉验证来确定，如第7章中讨论的那样．有趣的是，舍一交叉验证误差可以通过数据中支持向量的点的比例来约束．原因是当舍去的不是支持向量的时候不会改变解．因此这些观测点在原始边界中正确分类的点在交叉验证中也能正确分类．然而，这个界趋向于偏高，而且一般不适用于选择$C$(在我们的例子中分别是62%和85%)．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3595,7 +3595,7 @@ y_i(x_i^T\beta+\beta_0)-(1-\xi_i)&\ge 0& (12.16)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-06-26 09:34:24
+        Last Build Date UTC : 2019-06-27 03:08:12
       </div>
       
         

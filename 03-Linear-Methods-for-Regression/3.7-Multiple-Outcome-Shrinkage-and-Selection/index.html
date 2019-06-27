@@ -3255,10 +3255,10 @@
 </tr>
 </tbody>
 </table>
-<p>如 <a href="../3.2-Linear-Regression-Models-and-Least-Squares/index.html#_3">3.2.4 节</a>所述，多重输出线性模型的最小二乘估计简单地可以看成是关于每个输出的最小二乘估计。</p>
+<p>如 <a href="../3.2-Linear-Regression-Models-and-Least-Squares/index.html#_3">3.2.4 节</a>所述，多重输出线性模型的最小二乘估计简单地可以看成是关于每个输出的最小二乘估计．</p>
 <p>$\eqref{3.67}$
-为了在多重输出情形中应用选择和收缩的方法，可以对每个输出变量单独地应用单变量的技巧，或对全部的输出变量同时进行。举个例子，对于岭回归，我们可以对输出矩阵 $Y$ 的 $K$ 列中的每一列应用 (3.44)，其中参数 $\lambda$ 可能不同，或者采用相同的 $\lambda$。第一种策略允许对不同的输出应用不同程度的正则化，但是需要估计 $k$ 个独立的正则化参数 $\lambda_1,\ldots,\lambda_k$，而第二种策略可以在估计单独的正则化参数 $\lambda$ 时应用全部的 $k$ 个输出。</p>
-<p>其它更复杂的收缩和选择的策略利用了多重输出情形中不同响应变量间的相关性，这可能会有帮助。举个例子，假设在这些输出变量中，我们有 </p>
+为了在多重输出情形中应用选择和收缩的方法，可以对每个输出变量单独地应用单变量的技巧，或对全部的输出变量同时进行．举个例子，对于岭回归，我们可以对输出矩阵 $Y$ 的 $K$ 列中的每一列应用 (3.44)，其中参数 $\lambda$ 可能不同，或者采用相同的 $\lambda$．第一种策略允许对不同的输出应用不同程度的正则化，但是需要估计 $k$ 个独立的正则化参数 $\lambda_1,\ldots,\lambda_k$，而第二种策略可以在估计单独的正则化参数 $\lambda$ 时应用全部的 $k$ 个输出．</p>
+<p>其它更复杂的收缩和选择的策略利用了多重输出情形中不同响应变量间的相关性，这可能会有帮助．举个例子，假设在这些输出变量中，我们有 </p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align*}
@@ -3267,19 +3267,19 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 \end{align*}
 </script>
 </p>
-<p>也就是说，$\eqref{3.65}$ 和 $\eqref{3.66}$ 在它们的模型中共享相同的结构 $f(X)$。这种情形下很明显我们应该合并 $Y_k$ 和 $Y_\ell$ 来估计共同的 $f$。</p>
-<p>合并响应变量是 <strong>典则相关分析 (canonical correlation analysis, CCA)</strong> 的核心，这是一种为多元输出情形提出的数据降维的技巧。类似 PCA，CCA 寻找 $\x_j$ 的一列不相关的线性组合 $\X v_m, m=1,\ldots,M$，以及对应的响应变量 $\y_k$ 的不相关的线性组合 $\Y u_m$，使得相关系数</p>
+<p>也就是说，$\eqref{3.65}$ 和 $\eqref{3.66}$ 在它们的模型中共享相同的结构 $f(X)$．这种情形下很明显我们应该合并 $Y_k$ 和 $Y_\ell$ 来估计共同的 $f$．</p>
+<p>合并响应变量是 <strong>典则相关分析 (canonical correlation analysis, CCA)</strong> 的核心，这是一种为多元输出情形提出的数据降维的技巧．类似 PCA，CCA 寻找 $\x_j$ 的一列不相关的线性组合 $\X v_m, m=1,\ldots,M$，以及对应的响应变量 $\y_k$ 的不相关的线性组合 $\Y u_m$，使得相关系数</p>
 <p>
 <script type="math/tex; mode=display">
 \Corr^2(\Y u_m,\X v_m)\tag{3.67}\label{3.67}
 </script>
 </p>
-<p>相继最大化。注意到最多可以找到 $M=\min(k,p)$ 个方向。第一典则响应变量是被 $\x_j$ 最优预测的线性组合（导出的响应变量）；相反地，最后的典则响应变量是被 $\x_j$ 估计最差的，并且可以考虑被舍弃。CCA 的解通过对样本交叉协方差矩阵 $\Y^T\X/N$ 进行广义的 SVD 分解得到（假设 $\Y$ 和 $\X$ 均被中心化；<a href="https://github.com/szcf-weiya/ESL-CN/issues/172">练习 3.20</a>）</p>
+<p>相继最大化．注意到最多可以找到 $M=\min(k,p)$ 个方向．第一典则响应变量是被 $\x_j$ 最优预测的线性组合（导出的响应变量）；相反地，最后的典则响应变量是被 $\x_j$ 估计最差的，并且可以考虑被舍弃．CCA 的解通过对样本交叉协方差矩阵 $\Y^T\X/N$ 进行广义的 SVD 分解得到（假设 $\Y$ 和 $\X$ 均被中心化；<a href="https://github.com/szcf-weiya/ESL-CN/issues/172">练习 3.20</a>）</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.20</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/172">Issue 172: Ex. 3.20</a>，欢迎讨论交流！</p>
 </div>
-<p><strong>降秩回归 (reduced-rank regression)</strong> (Izenman, 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; van der Merwe and Zidek, 1980<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 通过明确地合并信息的回归模型来形式化这个方法。给定误差协方差 $\Cov(\varepsilon)=\bSigma$，求解下列带约束的多元回归问题：</p>
+<p><strong>降秩回归 (reduced-rank regression)</strong> (Izenman, 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; van der Merwe and Zidek, 1980<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 通过明确地合并信息的回归模型来形式化这个方法．给定误差协方差 $\Cov(\varepsilon)=\bSigma$，求解下列带约束的多元回归问题：</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\B^{rr}(m) = \underset{\rank(\B)=m}{\argmin}\sum_{i=1}^N(y_i-\B^Tx_i)^T\bSigma^{-1}(y_i-\B^Tx_i)\,.\tag{3.68}\label{3.68}
@@ -3291,7 +3291,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 \hat\B^{rr}(m)=\hat\B\U_m\U_m^-\,,\tag{3.69}\label{3.69}
 </script>
 </p>
-<p>其中 $\U_m$ 是 $\U$ 中由前 $m$ 列构成的 $K\times m$ 的子矩阵，$\U$ 是 $K\times M$ 的左典则向量 $u_1,u_2,\ldots,u_M$ 构成的矩阵。$\U_m^-$ 是其广义逆。</p>
+<p>其中 $\U_m$ 是 $\U$ 中由前 $m$ 列构成的 $K\times m$ 的子矩阵，$\U$ 是 $K\times M$ 的左典则向量 $u_1,u_2,\ldots,u_M$ 构成的矩阵．$\U_m^-$ 是其广义逆．</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.21</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/174">Issue 174: Ex. 3.21</a>，欢迎讨论交流！</p>
@@ -3302,7 +3302,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 \hat\B^{rr}(M) = (\X^T\X)^{-1}\X^T(\Y\U_m)\U_m^-\,, \tag{3.70}
 </script>
 </p>
-<p>我们看到降秩回归在合并的响应矩阵 $\Y\U_m$ 上进行线性回归，然后将系数映射回原来的响应变量空间中（因此能拟合得很好）。降秩拟合由下式给出：</p>
+<p>我们看到降秩回归在合并的响应矩阵 $\Y\U_m$ 上进行线性回归，然后将系数映射回原来的响应变量空间中（因此能拟合得很好）．降秩拟合由下式给出：</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align*}
@@ -3311,37 +3311,37 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 \end{align*}
 </script>
 </p>
-<p>其中 $\H$ 是一般的线性回归映射算子，而 $\P_m$ 是秩为 $m$ 的 CCA 响应变量投影算子。尽管 $\bSigma$ 更好的估计为 $(\Y-\X\hat\B)^T(\Y-\X\hat\B)/(N-pK)$，但是可以证明解是一样的（<a href="https://github.com/szcf-weiya/ESL-CN/issues/175">练习 3.22</a>）。</p>
+<p>其中 $\H$ 是一般的线性回归映射算子，而 $\P_m$ 是秩为 $m$ 的 CCA 响应变量投影算子．尽管 $\bSigma$ 更好的估计为 $(\Y-\X\hat\B)^T(\Y-\X\hat\B)/(N-pK)$，但是可以证明解是一样的（<a href="https://github.com/szcf-weiya/ESL-CN/issues/175">练习 3.22</a>）．</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.22</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/175">Issue 175: Ex. 3.22</a>，欢迎交流讨论！</p>
 </div>
-<p>降秩回归通过截断 CCA 从响应变量中借来了优点。Breiman and Friedman (1997)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 探索了 $\X$ 和 $\Y$ 间典则变量的逐步收缩，这是光滑版本的降秩回归。他们的方法有如下形式（与 $\eqref{3.69}$ 对应）</p>
+<p>降秩回归通过截断 CCA 从响应变量中借来了优点．Breiman and Friedman (1997)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 探索了 $\X$ 和 $\Y$ 间典则变量的逐步收缩，这是光滑版本的降秩回归．他们的方法有如下形式（与 $\eqref{3.69}$ 对应）</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\B^{c+w} = \hat\B\U\bLambda\U^{-1}\,,\tag{3.72}
 </script>
 </p>
-<p>其中 $\bLambda$ 是对角收缩矩阵（“c+w” 表示 “Curds and Whey”，这是作者取的名字）。基于总体设定中的最优预测，他们证明了 $\bLambda$ 的对角元为</p>
+<p>其中 $\bLambda$ 是对角收缩矩阵（“c+w” 表示 “Curds and Whey”，这是作者取的名字）．基于总体设定中的最优预测，他们证明了 $\bLambda$ 的对角元为</p>
 <p>
 <script type="math/tex; mode=display">
 \lambda_m = \frac{c_m^2}{c_m^2+\frac pN(1-c_m^2)}\,,\; m = 1,\ldots,M\,,\tag{3.73}
 </script>
 </p>
-<p>其中 $c_m$ 是第 $m$ 个典则相关系数。注意到随着输入变量个数与样本大小的比率 $p/N$ 变小，收缩因子趋向于 1。Breiman and Friedman (1997)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 基于训练数据和交叉验证提出了修改版本的 $\bLambda$，但是一般形式是相同的。这里拟合响应形式为 </p>
+<p>其中 $c_m$ 是第 $m$ 个典则相关系数．注意到随着输入变量个数与样本大小的比率 $p/N$ 变小，收缩因子趋向于 1．Breiman and Friedman (1997)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 基于训练数据和交叉验证提出了修改版本的 $\bLambda$，但是一般形式是相同的．这里拟合响应形式为 </p>
 <p>
 <script type="math/tex; mode=display">
 \hat\Y^{c+w} = \H\Y\S^{c+w}\,,\tag{3.74}
 </script>
 </p>
-<p>这里 $\S^{c+w} = \U\bLambda\U^{-1}$ 是响应变量收缩算子。</p>
-<p>Breiman and Friedman (1997)<sup id="fnref3:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 还建议同时在 $Y$ 和 $X$ 的空间中进行收缩。这导出混合收缩模型：</p>
+<p>这里 $\S^{c+w} = \U\bLambda\U^{-1}$ 是响应变量收缩算子．</p>
+<p>Breiman and Friedman (1997)<sup id="fnref3:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 还建议同时在 $Y$ 和 $X$ 的空间中进行收缩．这导出混合收缩模型：</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\Y^{\mathrm{ridge},c+w}=\A_\lambda\Y\S^{c+w}\,,\tag{3.75}
 </script>
 </p>
-<p>其中 $\A_\lambda = \X(\X^T\X+\lambda\I)^{-1}\X^T$ 是岭回归收缩算子，和 (3.46) 一样。他们的文章及其讨论有更多细节。</p>
+<p>其中 $\A_\lambda = \X(\X^T\X+\lambda\I)^{-1}\X^T$ 是岭回归收缩算子，和 (3.46) 一样．他们的文章及其讨论有更多细节．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3434,7 +3434,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-06-26 09:34:20
+        Last Build Date UTC : 2019-06-27 03:08:08
       </div>
       
         

@@ -3259,7 +3259,7 @@
 </tr>
 </tbody>
 </table>
-<p>回归和分类树在第 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html">9.2 节</a> 已经详细讨论了。它们将所有联合预测变量的空间划分为不相交的区域 $R_j,j=1,2,\ldots,J$，这些区域用树的终止结点表示。常数值 $\gamma_j$ 赋予到每个区域中，预测规则为</p>
+<p>回归和分类树在第 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html">9.2 节</a> 已经详细讨论了．它们将所有联合预测变量的空间划分为不相交的区域 $R_j,j=1,2,\ldots,J$，这些区域用树的终止结点表示．常数值 $\gamma_j$ 赋予到每个区域中，预测规则为</p>
 <p>
 <script type="math/tex; mode=display">
 x\in R_j\Rightarrow f(x) = \gamma_j
@@ -3271,28 +3271,28 @@ x\in R_j\Rightarrow f(x) = \gamma_j
 T(x;\Theta)=\sum\limits_{j=1}^J\gamma_jI(x\in R_j)\tag{10.25}
 </script>
 </p>
-<p>其中参数为 $\Theta=\{R_j,\gamma_j\}_1^J$。$J$ 通常看成是元参数。通过最小化 <strong>经验风险 (empirical risk)</strong> 来确定
+<p>其中参数为 $\Theta=\{R_j,\gamma_j\}_1^J$．$J$ 通常看成是元参数．通过最小化 <strong>经验风险 (empirical risk)</strong> 来确定
 <script type="math/tex; mode=display">
 \hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{j=1}^J\sum\limits_{x_i\in R_j}L(y_i,\gamma_j)\tag{10.26}
 </script>
 </p>
-<p>这是个艰巨的组合优化问题，我们通常去寻求近似次优解。将该优化问题分成两个部分是很有用的：</p>
+<p>这是个艰巨的组合优化问题，我们通常去寻求近似次优解．将该优化问题分成两个部分是很有用的：</p>
 <ol>
-<li><strong>给定 $R_j$ 求 $\gamma_j$:</strong> 给定 $R_j$，估计 $\gamma_j$ 是小菜一碟，而且通常有 $\hat\gamma_j=\bar y_j$，这是那些落在区域$R_j$ 的 $y_i$ 的均值。对于误分类损失，$\gamma_j$ 是落在区域 $R_j$ 的观测值的 <strong>众数 (modal class)</strong>。</li>
-<li><strong>求 $R_j$:</strong> 对于求近似解，这是很困难的一部分。注意到寻找$R_j$意味着也估计 $\gamma_j$。一个典型的策略是使用贪婪的，自上而下的递归划分算法来寻找$R_j$。另外，为了优化$R_j$，有时也需要通过一个更光滑以及更方便的准则来近似 (10.26):
+<li><strong>给定 $R_j$ 求 $\gamma_j$:</strong> 给定 $R_j$，估计 $\gamma_j$ 是小菜一碟，而且通常有 $\hat\gamma_j=\bar y_j$，这是那些落在区域$R_j$ 的 $y_i$ 的均值．对于误分类损失，$\gamma_j$ 是落在区域 $R_j$ 的观测值的 <strong>众数 (modal class)</strong>．</li>
+<li><strong>求 $R_j$:</strong> 对于求近似解，这是很困难的一部分．注意到寻找$R_j$意味着也估计 $\gamma_j$．一个典型的策略是使用贪婪的，自上而下的递归划分算法来寻找$R_j$．另外，为了优化$R_j$，有时也需要通过一个更光滑以及更方便的准则来近似 (10.26):
 <script type="math/tex; mode=display">
 \hat\Theta = \text{arg }\underset{\Theta}{\text{min}}\sum\limits_{i=1}^N\tilde L(y_i,T(x_i,\Theta))\tag{10.27}
 </script>
-接着给定 $\hat R_j=\tilde R_j$，$\gamma_j$ 可以运用原来的准则精确估计出。</li>
+接着给定 $\hat R_j=\tilde R_j$，$\gamma_j$ 可以运用原来的准则精确估计出．</li>
 </ol>
-<p>在9.2节我们讨论了用于分类树的这样一个策略。在增长树的过程（确定 $R_j$）中用 Gini 指数替换误分类损失。</p>
+<p>在9.2节我们讨论了用于分类树的这样一个策略．在增长树的过程（确定 $R_j$）中用 Gini 指数替换误分类损失．</p>
 <p>Boosted 树模型是这些树的和</p>
 <p>
 <script type="math/tex; mode=display">
 f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\tag{10.28}
 </script>
 </p>
-<p>由 <strong>向前逐步(forward stagewise)</strong> 的方式导出（算法 10.2）。在向前逐步过程中的每一步, 给定当前树模型 $f_{m-1}(x)$，求出下一棵树的区域和常数 $\Theta_m=\{R_{jm},\gamma_{jm}\}^{J_m}_1$ 需要求解
+<p>由 <strong>向前逐步(forward stagewise)</strong> 的方式导出（算法 10.2）．在向前逐步过程中的每一步, 给定当前树模型 $f_{m-1}(x)$，求出下一棵树的区域和常数 $\Theta_m=\{R_{jm},\gamma_{jm}\}^{J_m}_1$ 需要求解
 <script type="math/tex; mode=display">
 \hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^NL(y_i,f_{m-1}(x_i)+T(x_i;\Theta_m))\tag{10.29}
 </script>
@@ -3303,16 +3303,16 @@ f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\tag{10.28}
 \hat \gamma_{jm}=\text{arg }\underset{\gamma_{jm}}{\text{min}}\sum\limits_{x_i\in R_{jm}}L(y_i,f_{m-1}(x_i)+\gamma_{jm})\tag{10.30}
 </script>
 </p>
-<p>寻找这些区域是很困难的，甚至比寻找单棵树的区域还要困难。对于一些特殊情形，这个问题可以进行简化。</p>
-<p>对于平方误差损失，$(10.29)$ 的解不比单棵树复杂。此时解是当前残差 $y_i-f_{m-1}(x)$ 的最好预测的回归树，并且 $\hat\gamma_{jm}$ 是每个对应区域中的残差的均值。</p>
-<p>对于两类别分类和指数损失，这个逐步方法给出了 Boosting 分类树的 AdaBoost 方法（算法 10.1）。特别地，如果树 $T(x;\Theta_m)$ 限制为 <strong>缩放分类树 (scaled classification tree)</strong>，则在 <a href="../10.4-Exponential-Loss-and-AdaBoost/index.html">10.4 节</a>我们已经证明 $(10.29)$ 的解为最小化加权误差率 $\sum_{i=1}^Nw_i^{(m)}I(y_i\neq T(x_i;\Theta_m))$ 的树，其中权重 $w_i^{(m)}=e^{-y_if_{m-1}(x_i)}$。<strong>缩放分类树</strong> 是指满足限制条件 $\gamma_{jm}\in\{-1, 1\}$ 的 $\beta_mT(x;\Theta_m)$。</p>
+<p>寻找这些区域是很困难的，甚至比寻找单棵树的区域还要困难．对于一些特殊情形，这个问题可以进行简化．</p>
+<p>对于平方误差损失，$(10.29)$ 的解不比单棵树复杂．此时解是当前残差 $y_i-f_{m-1}(x)$ 的最好预测的回归树，并且 $\hat\gamma_{jm}$ 是每个对应区域中的残差的均值．</p>
+<p>对于两类别分类和指数损失，这个逐步方法给出了 Boosting 分类树的 AdaBoost 方法（算法 10.1）．特别地，如果树 $T(x;\Theta_m)$ 限制为 <strong>缩放分类树 (scaled classification tree)</strong>，则在 <a href="../10.4-Exponential-Loss-and-AdaBoost/index.html">10.4 节</a>我们已经证明 $(10.29)$ 的解为最小化加权误差率 $\sum_{i=1}^Nw_i^{(m)}I(y_i\neq T(x_i;\Theta_m))$ 的树，其中权重 $w_i^{(m)}=e^{-y_if_{m-1}(x_i)}$．<strong>缩放分类树</strong> 是指满足限制条件 $\gamma_{jm}\in\{-1, 1\}$ 的 $\beta_mT(x;\Theta_m)$．</p>
 <p>没有限制条件的话，(10.29) 仍然将指数损失简化为新树的加权指数损失准则：</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\Theta_m = \text{arg }\underset{\Theta_m}{\text{min}}\sum\limits_{i=1}^Nw_i^{(m)}\exp[-y_iT(x_i;\Theta_m)]\tag{10.31}
 </script>
 </p>
-<p>采用加权指数损失的分割准则，应用 <strong>贪婪递归划分(greedy recursive-partitioning)</strong> 算法是很直接的。给定 $R_{jm}$，可以证明 (10.30) 的解是每个对应区域中的加权对数 log-odds（<a href="https://github.com/szcf-weiya/ESL-CN/issues/75">练习 10.7</a>）</p>
+<p>采用加权指数损失的分割准则，应用 <strong>贪婪递归划分(greedy recursive-partitioning)</strong> 算法是很直接的．给定 $R_{jm}$，可以证明 (10.30) 的解是每个对应区域中的加权对数 log-odds（<a href="https://github.com/szcf-weiya/ESL-CN/issues/75">练习 10.7</a>）</p>
 <p>
 <script type="math/tex; mode=display">
 \hat \gamma_{jm}=\frac 12\log \frac{\sum_{x_i\in R_{jm}}w_i^{(m)}I(y_i=1)}{\sum_{x_i\in R_{jm}}w_i^{(m)}I(y_i=-1)}\tag{10.32}
@@ -3320,11 +3320,11 @@ f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\tag{10.28}
 </p>
 <div class="admonition info">
 <p class="admonition-title">Ex. 10.7</p>
-<p>已证。详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/75">Issue 75: Ex. 10.7</a></p>
+<p>已证．详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/75">Issue 75: Ex. 10.7</a></p>
 </div>
-<p>这需要特定化的生成树算法；实际中，我们更偏好将在下文展示的采用加权最小二乘回归树的近似。</p>
-<p>在回归中，用绝对值误差或者 Huber 损失 (10.23) 来代替平方损失，以及在分类中，用偏差 (10.22) 代替指数损失，都会得到鲁棒的 Boosting 树。不幸的是，不像相对应的欠鲁棒的 (nonrobust) 准则，这些鲁棒准则不会得到简单快速的 boosting 算法。</p>
-<p>给定 $R_{jm}$，对于更一般的损失准则，(10.30) 的解是很直接的，因为只是一个简单的局部估计。对于绝对值损失，这就是每个单独区域的残差的中位数。对于其它的准则，求解 (10.30) 存在快速的迭代算法，而且通常它们快速的单步近似就已经够了。问题在于树的生成。对于这些一般的损失准则，求解 (10.29) 不存在简单的快速算法，此时类似 (10.27) 的近似变得很重要。</p>
+<p>这需要特定化的生成树算法；实际中，我们更偏好将在下文展示的采用加权最小二乘回归树的近似．</p>
+<p>在回归中，用绝对值误差或者 Huber 损失 (10.23) 来代替平方损失，以及在分类中，用偏差 (10.22) 代替指数损失，都会得到鲁棒的 Boosting 树．不幸的是，不像相对应的欠鲁棒的 (nonrobust) 准则，这些鲁棒准则不会得到简单快速的 boosting 算法．</p>
+<p>给定 $R_{jm}$，对于更一般的损失准则，(10.30) 的解是很直接的，因为只是一个简单的局部估计．对于绝对值损失，这就是每个单独区域的残差的中位数．对于其它的准则，求解 (10.30) 存在快速的迭代算法，而且通常它们快速的单步近似就已经够了．问题在于树的生成．对于这些一般的损失准则，求解 (10.29) 不存在简单的快速算法，此时类似 (10.27) 的近似变得很重要．</p>
                 
                   
                 
@@ -3403,7 +3403,7 @@ f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\tag{10.28}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-06-26 09:34:23
+        Last Build Date UTC : 2019-06-27 03:08:11
       </div>
       
         

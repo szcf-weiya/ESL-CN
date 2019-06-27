@@ -3410,8 +3410,8 @@
 </tr>
 </tbody>
 </table>
-<p>至今所描述的支持向量机是在输入特征空间中寻找线性边界。和其他的线性方法一样，我们可以用基展开的方式来增大特征空间，从而让这一过程更灵活，如多项式或者样条（第 5 章）。一般地，在增长的空间的线性边界能够达到更好的训练类别分割的效果，进而转换为原始空间中的非线性边界。一旦选定基函数 $h_m(x),m=1,\ldots,M$，则该过程和之前一样。我们采用输入特征 $h(x_i)=(h_1(x_i),h_2(x_i),\ldots,h_M(x_i)),i=1,\ldots,N$ 拟合 SV 分类器，并且得到（非线性）函数 $\hat f(x)=h(x)^T\hat\beta+\hat\beta_0$。分类器和之前一样，为 $\hat G(x)=\sign(\hat f(x))$。</p>
-<p><strong>支持向量机 (support vector machine)</strong> 分类器是这个想法的拓展，其中增长空间的维数允许非常大，有时甚至可以是无限维的。计算似乎会变得难以承受。而且似乎当有了充分多的基函数，数据会变得可分，同时也会发生过拟合。我们首先介绍 SVM 怎样处理这些问题。接着我们将看到实际中 SVM 分类器是采用特定的准则和正则化形式来解决函数拟合问题，而且这是包含第 5 章的光滑样条的更大类别的问题的一部分。读者可能希望参照 <a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8 节</a>，它提供了背景材料并且与接下来的两节会有一定的重复。</p>
+<p>至今所描述的支持向量机是在输入特征空间中寻找线性边界．和其他的线性方法一样，我们可以用基展开的方式来增大特征空间，从而让这一过程更灵活，如多项式或者样条（第 5 章）．一般地，在增长的空间的线性边界能够达到更好的训练类别分割的效果，进而转换为原始空间中的非线性边界．一旦选定基函数 $h_m(x),m=1,\ldots,M$，则该过程和之前一样．我们采用输入特征 $h(x_i)=(h_1(x_i),h_2(x_i),\ldots,h_M(x_i)),i=1,\ldots,N$ 拟合 SV 分类器，并且得到（非线性）函数 $\hat f(x)=h(x)^T\hat\beta+\hat\beta_0$．分类器和之前一样，为 $\hat G(x)=\sign(\hat f(x))$．</p>
+<p><strong>支持向量机 (support vector machine)</strong> 分类器是这个想法的拓展，其中增长空间的维数允许非常大，有时甚至可以是无限维的．计算似乎会变得难以承受．而且似乎当有了充分多的基函数，数据会变得可分，同时也会发生过拟合．我们首先介绍 SVM 怎样处理这些问题．接着我们将看到实际中 SVM 分类器是采用特定的准则和正则化形式来解决函数拟合问题，而且这是包含第 5 章的光滑样条的更大类别的问题的一部分．读者可能希望参照 <a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8 节</a>，它提供了背景材料并且与接下来的两节会有一定的重复．</p>
 <h2 id="svm">用于分类的 SVM<a class="headerlink" href="#svm" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
@@ -3431,7 +3431,7 @@ L_D = \sum\limits_{i=1}^N\alpha_i-\frac{1}{2}\sum\limits_{i=1}^N\sum\limits_{i'=
 </script>
 </p>
 </div>
-<p>我们可以用一种特殊的方式来表示优化问题 \eqref{12.9} 和它的解，这种方式只通过内积来涉及输入特征。我们对这个变换后的特征向量 $h(x_i)$ 直接进行这样的操作。我们将看到对于特定选择的 $h$，这些内积可以很方便地进行计算。</p>
+<p>我们可以用一种特殊的方式来表示优化问题 \eqref{12.9} 和它的解，这种方式只通过内积来涉及输入特征．我们对这个变换后的特征向量 $h(x_i)$ 直接进行这样的操作．我们将看到对于特定选择的 $h$，这些内积可以很方便地进行计算．</p>
 <p>Lagrange 对偶函数 \eqref{12.13} 有如下形式：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3447,14 +3447,14 @@ f(x)&=h(x)^T\beta+\beta_0\notag\\
 \end{align}
 </script>
 </p>
-<p>和之前一样，给定 $\alpha_i$，当 $0 &lt; \alpha_i &lt; C$ 时，$\beta_0$ 可以通过对任意（或所有）$x_i$ 求解 $y_if(x_i)=1$ 来确定。</p>
-<p>所以 \eqref{12.19} 和 \eqref{12.20} 仅仅通过内积涉及 $h(x)$。实际上，我们根本不需要明确变换关系 $h(x)$，而仅仅要求知道在转换后的空间中计算内积的核函数</p>
+<p>和之前一样，给定 $\alpha_i$，当 $0 &lt; \alpha_i &lt; C$ 时，$\beta_0$ 可以通过对任意（或所有）$x_i$ 求解 $y_if(x_i)=1$ 来确定．</p>
+<p>所以 \eqref{12.19} 和 \eqref{12.20} 仅仅通过内积涉及 $h(x)$．实际上，我们根本不需要明确变换关系 $h(x)$，而仅仅要求知道在转换后的空间中计算内积的核函数</p>
 <p>
 <script type="math/tex; mode=display">
 K(x,x')=\langle h(x), h(x') \rangle\tag{12.21}
 </script>
 </p>
-<p>$K$ 应该是一个对称的(半)正定函数：见<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html#_1">5.8.1节</a>。</p>
+<p>$K$ 应该是一个对称的(半)正定函数：见<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html#_1">5.8.1节</a>．</p>
 <p>在 SVM 中有三种流行的 $K$ 可以选择</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3465,7 +3465,7 @@ d\text{阶多项式：} & K(x,x')=(1+\langle x,x' \rangle)^d\\
 \end{array}
 </script>
 </p>
-<p>考虑含有两个输入变量 $X_1$ 和 $X_2$ 的特征空间，以及 2 阶的多项式核。则</p>
+<p>考虑含有两个输入变量 $X_1$ 和 $X_2$ 的特征空间，以及 2 阶的多项式核．则</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
@@ -3475,20 +3475,20 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 \end{array}
 </script>
 </p>
-<p>则 $M=6$，而且如果我们选择 $h_1(X)=1,h_2(X)=\sqrt{2}X_1,h_3(X)=\sqrt{2}X_2,h_4(X)=X_1^2,h_5(X)=X_2^2$，以及 $h_6(X)=\sqrt{2}X_1X_2$，则$K(X,X&rsquo;)=\langle h(X),h(X&rsquo;)\rangle$。</p>
+<p>则 $M=6$，而且如果我们选择 $h_1(X)=1,h_2(X)=\sqrt{2}X_1,h_3(X)=\sqrt{2}X_2,h_4(X)=X_1^2,h_5(X)=X_2^2$，以及 $h_6(X)=\sqrt{2}X_1X_2$，则$K(X,X&rsquo;)=\langle h(X),h(X&rsquo;)\rangle$．</p>
 <p>从 \eqref{12.20} 我们可以看出该解可以写成</p>
 <p>
 <script type="math/tex; mode=display">
 \hat f(x)=\sum\limits_{i=1}^N\hat \alpha_iy_iK(x,x_i)+\hat\beta_0\tag{12.24}
 </script>
 </p>
-<p>在增广的特征空间中，参数 $C$ 的角色更加清晰，因为在这里经常会存在完美的分割。较大的 $C$ 会抑制任何正的 $\xi_i$，并且得到在原始特征空间中过拟合的弯弯曲曲的边界；较小的 $C$ 值会鼓励较小的 $\Vert\beta\Vert$，反过来会导致 $f(x)$ 以及边界更加地光滑。图 12.3 显示了应用到第 2 章中的混合模型的两个支持向量机。两种情形下的正则化参数都是为了实现更好的测试误差。对该例子而言，径向基得到类似贝叶斯最优边界；与图 2.5 进行比较。</p>
+<p>在增广的特征空间中，参数 $C$ 的角色更加清晰，因为在这里经常会存在完美的分割．较大的 $C$ 会抑制任何正的 $\xi_i$，并且得到在原始特征空间中过拟合的弯弯曲曲的边界；较小的 $C$ 值会鼓励较小的 $\Vert\beta\Vert$，反过来会导致 $f(x)$ 以及边界更加地光滑．图 12.3 显示了应用到第 2 章中的混合模型的两个支持向量机．两种情形下的正则化参数都是为了实现更好的测试误差．对该例子而言，径向基得到类似贝叶斯最优边界；与图 2.5 进行比较．</p>
 <p><img alt="" src="../../img/12/fig12.3.png" /></p>
-<p>在支持向量的早期研究中，有断言称，支持向量机的核性质是唯一的，并且允许对维数灾难进行巧妙地处理。</p>
-<p>这些断言都不是正确的，我们将在下一节详细讨论这些问题。</p>
+<p>在支持向量的早期研究中，有断言称，支持向量机的核性质是唯一的，并且允许对维数灾难进行巧妙地处理．</p>
+<p>这些断言都不是正确的，我们将在下一节详细讨论这些问题．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：SVM with Gaussian kernel</p>
-<p>知乎上看到这样一个问题，<a href="https://www.zhihu.com/question/267999284">支持向量机高斯核方法？ - 知乎</a>，觉得很有意思，具体探索过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/77">Issue 77: SVM with Gaussian kernel</a>。</p>
+<p>知乎上看到这样一个问题，<a href="https://www.zhihu.com/question/267999284">支持向量机高斯核方法？ - 知乎</a>，觉得很有意思，具体探索过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/77">Issue 77: SVM with Gaussian kernel</a>．</p>
 </div>
 <h2 id="svm_1">SVM 作为惩罚的方法<a class="headerlink" href="#svm_1" title="Permanent link">&para;</a></h2>
 <p>对于 $f(x)=h(x)^T\beta+\beta_0$，考虑下列的优化问题</p>
@@ -3497,7 +3497,7 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 \underset{\beta_0,\beta}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{\lambda}{2}\Vert\beta\Vert^2\label{12.25}\tag{12.25}
 </script>
 </p>
-<p>其中下标“$+$”表示正的部分。上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例。可以很简单地证明当$\lambda=1/C$时，\eqref{12.25} 的解与 \eqref{12.8} 的解相同（<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">练习 12.1</a>）。</p>
+<p>其中下标“$+$”表示正的部分．上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例．可以很简单地证明当$\lambda=1/C$时，\eqref{12.25} 的解与 \eqref{12.8} 的解相同（<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">练习 12.1</a>）．</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
@@ -3513,9 +3513,9 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 </div>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 12.1</p>
-<p>已解决。详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">Issue 78: Ex. 12.1</a></p>
+<p>已解决．详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">Issue 78: Ex. 12.1</a></p>
 </div>
-<p>对“hinge”损失函数 $L(y,f)=[1-yf]_+$ 的检验表明，它用于二类别分类是很合理的。图 12.4 将之与逻辑斯蒂回归的 <strong>对数似然损失(log-likelihood loss)</strong> 进行比较，以及平方误差损失及其的变种(variant)。（负）对数似然或者二项偏差和 SVM 损失有着类似的尾分布，对margin中的点赋予零 惩罚，对在错误一侧的点赋予线性惩罚。另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响。<strong>squared hinge</strong>损失$L(y,f)=[1-yf]_+^2$类似平方损失，但它对于各自margin中的点惩罚为0。它在左尾中平方增长，而且对于误分类的观测点，没有hinge或者偏差稳健。最近 Rosset and Zhu (2007)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出 <strong>squared hinge 损失的“Huberized”版本</strong>，在 $yf=-1$ 处将其平滑转换为了线性损失。</p>
+<p>对“hinge”损失函数 $L(y,f)=[1-yf]_+$ 的检验表明，它用于二类别分类是很合理的．图 12.4 将之与逻辑斯蒂回归的 <strong>对数似然损失(log-likelihood loss)</strong> 进行比较，以及平方误差损失及其的变种(variant)．（负）对数似然或者二项偏差和 SVM 损失有着类似的尾分布，对margin中的点赋予零 惩罚，对在错误一侧的点赋予线性惩罚．另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响．<strong>squared hinge</strong>损失$L(y,f)=[1-yf]_+^2$类似平方损失，但它对于各自margin中的点惩罚为0．它在左尾中平方增长，而且对于误分类的观测点，没有hinge或者偏差稳健．最近 Rosset and Zhu (2007)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出 <strong>squared hinge 损失的“Huberized”版本</strong>，在 $yf=-1$ 处将其平滑转换为了线性损失．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Huberized squared hinge loss</p>
 <p>文献Rosset and Zhu (2007)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>中提出的 Huberized squared hinge loss 的表述更一般，可以在任意 $t &lt; 1$ 处进行 Huberized，文献截图如下：
@@ -3523,21 +3523,21 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 <img alt="" src="../../../img/12/ref_eq_15.png" /></p>
 </div>
 <p><img alt="" src="../../img/12/fig12.4.png" /></p>
-<p>我们可以在总体水平上用估计量来区分这些损失函数。我们考虑最小化 $\E L(Y,f(x)$。</p>
+<p>我们可以在总体水平上用估计量来区分这些损失函数．我们考虑最小化 $\E L(Y,f(x)$．</p>
 <p><img alt="" src="../../img/12/tab12.1.png" /></p>
-<p>表 12.1 总结了这些结果。然而 hinge 损失估计了分类器 $G(x)$ 本身，而其他的都估计类别后验概率的某个变换。“Huberized” square hinge损失有着与逻辑斯蒂回归相同的吸引人的性质（光滑的损失函数，估计概率），以及 SVM 的 hinge 损失的良好性质（支撑点）。</p>
-<p>形式(12.25)将SVM看成正则函数估计问题，其中线性展开$f(x)=\beta_0+h(x)^T\beta$的系数向0收缩（除了常值）。如果$h(x)$表示有相同的序结构（比如按粗糙程度排序）的<strong>分层基(hierarchical basis)</strong>，如果在向量$h$中有更粗糙的元素$h_j$有更小的范数，则均一化收缩是有意义的。</p>
+<p>表 12.1 总结了这些结果．然而 hinge 损失估计了分类器 $G(x)$ 本身，而其他的都估计类别后验概率的某个变换．“Huberized” square hinge损失有着与逻辑斯蒂回归相同的吸引人的性质（光滑的损失函数，估计概率），以及 SVM 的 hinge 损失的良好性质（支撑点）．</p>
+<p>形式(12.25)将SVM看成正则函数估计问题，其中线性展开$f(x)=\beta_0+h(x)^T\beta$的系数向0收缩（除了常值）．如果$h(x)$表示有相同的序结构（比如按粗糙程度排序）的<strong>分层基(hierarchical basis)</strong>，如果在向量$h$中有更粗糙的元素$h_j$有更小的范数，则均一化收缩是有意义的．</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>什么是 hierarchical basis？探索过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/79">Issues 79: hierarchical basis</a></p>
 </div>
-<p>除了平方误差，表 12.1 中所有的损失函数，都称之为 “margin maximizing loss-functions”（Rosset et al., 2004b<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）。这意味着如果数据是可分的，则当$\lambda\rightarrow 0$时，$\hat\beta_\lambda$的极限定义为最优分离超平面。</p>
+<p>除了平方误差，表 12.1 中所有的损失函数，都称之为 “margin maximizing loss-functions”（Rosset et al., 2004b<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）．这意味着如果数据是可分的，则当$\lambda\rightarrow 0$时，$\hat\beta_\lambda$的极限定义为最优分离超平面．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：原书脚注</p>
-<p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$ 发散，但是 $\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$ 收敛到最优分离超平面。</p>
+<p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$ 发散，但是 $\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$ 收敛到最优分离超平面．</p>
 </div>
 <h2 id="_1">函数估计和再生核<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>这里我们用 <strong>再生核希尔伯特空间(reproducing kernel Hilbert spaces)</strong> 中的函数估计来描述 SVM，其中有许多的核性质。这里讨论的内容在<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>有详细讨论。这里给出支持向量分类器的另一个视角，并且帮助理清它如何工作。</p>
+<p>这里我们用 <strong>再生核希尔伯特空间(reproducing kernel Hilbert spaces)</strong> 中的函数估计来描述 SVM，其中有许多的核性质．这里讨论的内容在<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>有详细讨论．这里给出支持向量分类器的另一个视角，并且帮助理清它如何工作．</p>
 <p>假设基 $h$ 来自与正定核 $K$ 的（可能是有限的）特征展开，</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3550,7 +3550,7 @@ K(x, x')=\sum\limits_{m=1}^{\infty}\phi_m(x)\phi_m(x')\delta_m\label{12.26}\tag{
 <img alt="" src="../../../img/12/wiki_mercer.PNG" />
 图片来源: <a href="https://en.wikipedia.org/wiki/Mercer%27s_theorem">Wiki: Mercer&rsquo;s theorem</a></p>
 </div>
-<p>并且 $h_m(x)=\sqrt{\delta_m}\phi_m(x)$。则当$\theta_m=\sqrt{\delta_m}\beta_m$，我们可以把(12.25)写成</p>
+<p>并且 $h_m(x)=\sqrt{\delta_m}\phi_m(x)$．则当$\theta_m=\sqrt{\delta_m}\beta_m$，我们可以把(12.25)写成</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{\beta_0, \theta}{\min}\sum\limits_{i=1}^N\Big[
@@ -3584,15 +3584,15 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}\label{12.28}
 \underset{\beta_0, \alpha}{\min}\sum\limits_{i=1}^N(1-y_if(x_i))_++\frac{\lambda}{2}\alpha^T\K\alpha\tag{12.29}
 </script>
 </p>
-<p>其中 $\K$ 是所有成对训练特征的核的赋值（<a href="https://github.com/szcf-weiya/ESL-CN/issues/80">练习12.2</a>）。</p>
-<p>这些模型非常一般，举个例子，包含第 5 和第 9 章中讨论的整个光滑样条族，可加和交叉样条模型，更多细节参见 Wahba (1990)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 和 Hastie and Tibshirani (1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>。它们可以更一般地表示为</p>
+<p>其中 $\K$ 是所有成对训练特征的核的赋值（<a href="https://github.com/szcf-weiya/ESL-CN/issues/80">练习12.2</a>）．</p>
+<p>这些模型非常一般，举个例子，包含第 5 和第 9 章中讨论的整个光滑样条族，可加和交叉样条模型，更多细节参见 Wahba (1990)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 和 Hastie and Tibshirani (1990)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>．它们可以更一般地表示为</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{f\in{\cal H}}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_+ + \lambda J(f)\tag{12.30}\label{12.30}
 </script>
 </p>
-<p>其中 $\cal H$ 是 <strong>函数的结构空间(the structured space of functions)</strong>，并且 $J(f)$ 是在该空间上合适的正则器。举个例子，假设$\cal H$是可加函数 $f(x)=\sum_{j=1}^pf_j(x_j)$，并且$J(f)=\sum_j\int\{f^{\prime\prime}_j(x_j)\}^2dx_j$。则 \eqref{12.30} 的解为可加三次样条，并且有核表示 $K(x,x&rsquo;)=\sum_{j=1}^pK_j(x_j,x_j&rsquo;)$。每个 $K_j$ 是关于 $x_j$ 的合适的单变量光滑样条的核(Wahba, 1990)<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup>。</p>
-<p>反过来，这个讨论也表明，举个例子，任意(12.22)中提到的核都可以和凸损失函数一起使用，并且将会得到形如 \eqref{12.28} 的有限维表示。图 12.5 采用和图 12.3 同样的核函数，除了采用二项对数似然作为损失函数。因此拟合函数是log-odds的估计</p>
+<p>其中 $\cal H$ 是 <strong>函数的结构空间(the structured space of functions)</strong>，并且 $J(f)$ 是在该空间上合适的正则器．举个例子，假设$\cal H$是可加函数 $f(x)=\sum_{j=1}^pf_j(x_j)$，并且$J(f)=\sum_j\int\{f^{\prime\prime}_j(x_j)\}^2dx_j$．则 \eqref{12.30} 的解为可加三次样条，并且有核表示 $K(x,x&rsquo;)=\sum_{j=1}^pK_j(x_j,x_j&rsquo;)$．每个 $K_j$ 是关于 $x_j$ 的合适的单变量光滑样条的核(Wahba, 1990)<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup>．</p>
+<p>反过来，这个讨论也表明，举个例子，任意(12.22)中提到的核都可以和凸损失函数一起使用，并且将会得到形如 \eqref{12.28} 的有限维表示．图 12.5 采用和图 12.3 同样的核函数，除了采用二项对数似然作为损失函数．因此拟合函数是log-odds的估计</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3607,63 +3607,63 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}\label{12.28}
 \hat\pr(Y=+1\mid x)=\frac{1}{1+e^{-\hat\beta_0-\sum_{i=1}^N\hat\alpha_iK(x,x_i)}}\tag{12.32}
 </script>
 </p>
-<p>这些拟合的模型在形状和表现效果上都非常相似。<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>给出了例子以及更多的细节。</p>
-<p>对于SVM也是一样，$N$ 个 $\alpha_i$ 中的一部分可以为0（非支持点）。在图12.3的两个例子中，这些比例分别为$42\%$和$45\%$。这是准则(12.25)的第一部分分段线性的本质。（在训练数据上）类别重叠越少，这个比例越大。降低$\lambda$一般会降低重叠（允许更灵活的$f$）。较少的支持点意味着$\hat f(x)$可以更快地进行赋值，这在查找时很重要。当然，过分降低重叠会导致泛化能力太差。</p>
+<p>这些拟合的模型在形状和表现效果上都非常相似．<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>给出了例子以及更多的细节．</p>
+<p>对于SVM也是一样，$N$ 个 $\alpha_i$ 中的一部分可以为0（非支持点）．在图12.3的两个例子中，这些比例分别为$42\%$和$45\%$．这是准则(12.25)的第一部分分段线性的本质．（在训练数据上）类别重叠越少，这个比例越大．降低$\lambda$一般会降低重叠（允许更灵活的$f$）．较少的支持点意味着$\hat f(x)$可以更快地进行赋值，这在查找时很重要．当然，过分降低重叠会导致泛化能力太差．</p>
 <h2 id="svm_2">SVM 和维数灾难<a class="headerlink" href="#svm_2" title="Permanent link">&para;</a></h2>
-<p>在这一节，我们提出问题：SVMs是否存在维数灾难？注意到在展开式(12.23)中，我们不允许在幂和乘积的空间中有完全一般的内积。举个例子，所有形如$2X_jX_j&rsquo;$赋予相同的权重，<del class="critic">并且核不能自动更新来集中到子空间中</del>。</p>
+<p>在这一节，我们提出问题：SVMs是否存在维数灾难？注意到在展开式(12.23)中，我们不允许在幂和乘积的空间中有完全一般的内积．举个例子，所有形如$2X_jX_j&rsquo;$赋予相同的权重，<del class="critic">并且核不能自动更新来集中到子空间中</del>．</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>原文为&rdquo;the kernel cannot adapt itself to concentrate on subspaces.&rdquo; 怎么理解？</p>
 </div>
-<p>如果特征的数量$p$很大，但是类别分类仅仅发生在 $X_1$ 和 $X_2$ 张成的子空间，这个核不会简单地找到其结构并且需要在很多维度下搜寻。必须将子空间的信息考虑进核中；也就是，忽略 <strong>除了</strong> 前两个的输入。如果有信息能够得到先验，大多数统计学习会变得很简单。自适应方法的主要目标是发现类似的结构。</p>
-<p>我们用一个例子来支持上面的陈述。我们在两个类别中产生 100 个观测值。第一类有4个标准正态独立特征$X_1,X_2,X_3,X_4$。第二类也有四个标准正态独立特征，但是条件为$9\le \sum X_j^2\le 16$。这是个相对简单的问题。同时考虑第二个更难的问题，用6个标准高斯噪声特征作为增广特征。因此在四维子空间中第二类完全包围了第一类，类似橘子皮包围着橘子。该问题的贝叶斯误差率为 0.029（不考虑维数）。我们产生1000个测试观测量来比较不同的过程。在有无噪声特征的情况下，平均测试误差在50个模拟中得到，如表12.2所示。</p>
+<p>如果特征的数量$p$很大，但是类别分类仅仅发生在 $X_1$ 和 $X_2$ 张成的子空间，这个核不会简单地找到其结构并且需要在很多维度下搜寻．必须将子空间的信息考虑进核中；也就是，忽略 <strong>除了</strong> 前两个的输入．如果有信息能够得到先验，大多数统计学习会变得很简单．自适应方法的主要目标是发现类似的结构．</p>
+<p>我们用一个例子来支持上面的陈述．我们在两个类别中产生 100 个观测值．第一类有4个标准正态独立特征$X_1,X_2,X_3,X_4$．第二类也有四个标准正态独立特征，但是条件为$9\le \sum X_j^2\le 16$．这是个相对简单的问题．同时考虑第二个更难的问题，用6个标准高斯噪声特征作为增广特征．因此在四维子空间中第二类完全包围了第一类，类似橘子皮包围着橘子．该问题的贝叶斯误差率为 0.029（不考虑维数）．我们产生1000个测试观测量来比较不同的过程．在有无噪声特征的情况下，平均测试误差在50个模拟中得到，如表12.2所示．</p>
 <p><img alt="" src="../../img/12/tab12.2.png" /></p>
-<p>表中第一行在原特征空间中使用支持向量分类器。第2到第4行表示使用2，5和10维多项式核的支持向量机。对于所有的支持向量过程，我们选择代价参数$C$来最小化测试误差，使得对这个方法尽可能公平。第5行采用可加模型的BRUTO算法（Hastie and Tibshirani (1990)），通过最小二乘对$(-1,+1)$响应变量拟合可加样条模型。第6行采用MARS（多变量自适应回归样条）允许任意阶的交叉影响，在第9章中有介绍；同样地，其与SVM/poly 10进行比较。BRUTO和MARS算法均有能力忽略冗余变量。第 5 和第6行并不采用测试误差来选择光滑参数。</p>
+<p>表中第一行在原特征空间中使用支持向量分类器．第2到第4行表示使用2，5和10维多项式核的支持向量机．对于所有的支持向量过程，我们选择代价参数$C$来最小化测试误差，使得对这个方法尽可能公平．第5行采用可加模型的BRUTO算法（Hastie and Tibshirani (1990)），通过最小二乘对$(-1,+1)$响应变量拟合可加样条模型．第6行采用MARS（多变量自适应回归样条）允许任意阶的交叉影响，在第9章中有介绍；同样地，其与SVM/poly 10进行比较．BRUTO和MARS算法均有能力忽略冗余变量．第 5 和第6行并不采用测试误差来选择光滑参数．</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>笔记<a href="../../notes/SVM/skin-of-the-orange/index.html">模拟：Tab. 12.2</a>重现了表12.2的结果。</p>
+<p>笔记<a href="../../notes/SVM/skin-of-the-orange/index.html">模拟：Tab. 12.2</a>重现了表12.2的结果．</p>
 </div>
-<p>在原始特征空间中，超平面不能分离类别，而且支持向量分类器（第一行）表现很差。多项式支持向量机在测试误差率方面取得显著改善，但同时也被6个噪声特征严重影响。这对核的选择非常敏感：二阶多项式核（第2行）表现最好，因为真实的判别边界就是二阶多项式。然而，高阶多项式（第3和第4行）表现很差。BRUTO表现得很好，因为其边界是可加的。BRUTO和MARS自适应得很好：因为噪声的存在，所以它们的表现不会退化太大。</p>
+<p>在原始特征空间中，超平面不能分离类别，而且支持向量分类器（第一行）表现很差．多项式支持向量机在测试误差率方面取得显著改善，但同时也被6个噪声特征严重影响．这对核的选择非常敏感：二阶多项式核（第2行）表现最好，因为真实的判别边界就是二阶多项式．然而，高阶多项式（第3和第4行）表现很差．BRUTO表现得很好，因为其边界是可加的．BRUTO和MARS自适应得很好：因为噪声的存在，所以它们的表现不会退化太大．</p>
 <h2 id="svm_3">SVM 分类器的路径算法<a class="headerlink" href="#svm_3" title="Permanent link">&para;</a></h2>
-<p>SVM 分类器的正则化参数是代价参数 $C$，或者(12.25)中 $\lambda$ 的倒数。通常用法是将 $C$ 设得比较高，这通常会过拟合分类器。</p>
-<p>图12.6展示了混合数据的测试误差作为$C$的函数的变化图像，其中采用不同的radial核参数$\gamma$。</p>
+<p>SVM 分类器的正则化参数是代价参数 $C$，或者(12.25)中 $\lambda$ 的倒数．通常用法是将 $C$ 设得比较高，这通常会过拟合分类器．</p>
+<p>图12.6展示了混合数据的测试误差作为$C$的函数的变化图像，其中采用不同的radial核参数$\gamma$．</p>
 <p><img alt="" src="../../img/12/fig12.6.png" /></p>
-<p>当$\gamma=5$时(narrow peaked kernels)，需要最重的正则化（即较小$C$）。当$\gamma=1$时（图12.3所用的值），需要中等大小的$C$。显然在这些情形中，我们需要确定合适的$C$，或许可以通过交叉验证实现。这里我们描述一种路径算法（受<a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8节</a>的启发），可以用来有效拟合改变$C$得到的SVM模型序列。</p>
-<p>使用(12.25)的损失+惩罚的形式以及图12.4中的损失函数是很方便的。这可以得到在给定$\lambda$处$\beta$的解：</p>
+<p>当$\gamma=5$时(narrow peaked kernels)，需要最重的正则化（即较小$C$）．当$\gamma=1$时（图12.3所用的值），需要中等大小的$C$．显然在这些情形中，我们需要确定合适的$C$，或许可以通过交叉验证实现．这里我们描述一种路径算法（受<a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8节</a>的启发），可以用来有效拟合改变$C$得到的SVM模型序列．</p>
+<p>使用(12.25)的损失+惩罚的形式以及图12.4中的损失函数是很方便的．这可以得到在给定$\lambda$处$\beta$的解：</p>
 <p>
 <script type="math/tex; mode=display">
 \beta_\lambda = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_ix_i\tag{12.33}
 </script>
 </p>
-<p>其中$\alpha_i$仍然是Lagrange乘子，但是在这种情形下它们都在[0, 1]中取值。</p>
-<p>图12.7说明了这个过程。</p>
+<p>其中$\alpha_i$仍然是Lagrange乘子，但是在这种情形下它们都在[0, 1]中取值．</p>
+<p>图12.7说明了这个过程．</p>
 <p><img alt="" src="../../img/12/fig12.7.png" /></p>
 <p>可以看到KKT优化条件表明点$(x_i,y_i)$落在三个不同的区域中：</p>
 <ul>
-<li>正确分类且落在各自margins之外。它们满足$y_if(x_i) &gt; 1$，并且 Lagrange 乘子满足 $\alpha_i=0$。比如图中橘黄色的点8，9和11，以及蓝色点1和4。</li>
-<li>正好落在各自margin上，满足$y_if(x_i)=1$，其中Lagrange乘子$\alpha_i\in [0, 1]$。比如图中橘黄色点7，以及蓝色点2和6。</li>
-<li>在margin之内，满足$y_if(x_i) &lt; 1$，且$\alpha_i=1$。比如蓝色点3和5，以及橘黄色点10和12。</li>
+<li>正确分类且落在各自margins之外．它们满足$y_if(x_i) &gt; 1$，并且 Lagrange 乘子满足 $\alpha_i=0$．比如图中橘黄色的点8，9和11，以及蓝色点1和4．</li>
+<li>正好落在各自margin上，满足$y_if(x_i)=1$，其中Lagrange乘子$\alpha_i\in [0, 1]$．比如图中橘黄色点7，以及蓝色点2和6．</li>
+<li>在margin之内，满足$y_if(x_i) &lt; 1$，且$\alpha_i=1$．比如蓝色点3和5，以及橘黄色点10和12．</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">weiya注：KKT条件及三种划分</p>
-<p>这在上一节也有讨论，参见<a href="../12.2-The-Support-Vector-Classifier/index.html">12.2 支持向量分类器</a>。唯一区别在于这里$\alpha_i$的分界点为1，而上一节为$C$。但这很好理解，因为用$\frac{1}{\lambda}$作为参数，相对于(12.8)，除以了$C$，更多细节可以参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">Issue 78: Ex. 12.1</a></p>
+<p>这在上一节也有讨论，参见<a href="../12.2-The-Support-Vector-Classifier/index.html">12.2 支持向量分类器</a>．唯一区别在于这里$\alpha_i$的分界点为1，而上一节为$C$．但这很好理解，因为用$\frac{1}{\lambda}$作为参数，相对于(12.8)，除以了$C$，更多细节可以参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">Issue 78: Ex. 12.1</a></p>
 </div>
-<p>路径算法的思想如下。选择较大的$\lambda$来初始化，则margin的宽度$1/\Vert \beta_\lambda\Vert$较宽，所有点都在各自margin中且$\alpha_i=1$。当$\lambda$减小时，$\frac{1}{\Vert\beta_\lambda\Vert}$减小，则margin变窄。有些点会各自margin内移到margin之外，并且它们$\alpha_i$从1变为0。由$\alpha_i(\lambda)$的连续性，这些点在转移的过程中会在margin上停留(linger)。由(12.33)，我们看到$\alpha_i=1$的点对$\beta(\lambda)$的贡献是固定的，而那些$\alpha_i=0$的点没有贡献。所以当$\lambda$减小时，改变量是那些在margin上的点，它们满足$\alpha_i\in[0,1]$。因为这些点都满足$y_if(x_i)=1$，这一小部分的线性等式的解决定了(prescribe)$\alpha_i(\lambda)$以及由其导致的$\beta(\lambda)$在这些转移过程中的变化。对于$\alpha_i(\lambda)$的每个值，这些解是分段线性路径。断点仅发生在穿过margin的时候。图12.7的右面板展示了$\alpha_i(\lambda)$在左面板例子中的图象。</p>
+<p>路径算法的思想如下．选择较大的$\lambda$来初始化，则margin的宽度$1/\Vert \beta_\lambda\Vert$较宽，所有点都在各自margin中且$\alpha_i=1$．当$\lambda$减小时，$\frac{1}{\Vert\beta_\lambda\Vert}$减小，则margin变窄．有些点会各自margin内移到margin之外，并且它们$\alpha_i$从1变为0．由$\alpha_i(\lambda)$的连续性，这些点在转移的过程中会在margin上停留(linger)．由(12.33)，我们看到$\alpha_i=1$的点对$\beta(\lambda)$的贡献是固定的，而那些$\alpha_i=0$的点没有贡献．所以当$\lambda$减小时，改变量是那些在margin上的点，它们满足$\alpha_i\in[0,1]$．因为这些点都满足$y_if(x_i)=1$，这一小部分的线性等式的解决定了(prescribe)$\alpha_i(\lambda)$以及由其导致的$\beta(\lambda)$在这些转移过程中的变化．对于$\alpha_i(\lambda)$的每个值，这些解是分段线性路径．断点仅发生在穿过margin的时候．图12.7的右面板展示了$\alpha_i(\lambda)$在左面板例子中的图象．</p>
 <p>尽管我们只介绍了线性SVMs的方法，但是对于非线性模型，想法完全一样，只需要将(12.33)换成</p>
 <p>
 <script type="math/tex; mode=display">
 f_\lambda(x) = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_iK(x,x_i)\tag{12.34}
 </script>
 </p>
-<p>细节可以在Hastie et al. (2004)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>中找到。CRAN上<code>R</code>包<code>svmpath</code>可以用来拟合这些模型。</p>
+<p>细节可以在Hastie et al. (2004)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>中找到．CRAN上<code>R</code>包<code>svmpath</code>可以用来拟合这些模型．</p>
 <h2 id="_2">用于回归的支持向量机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>在这一节，我们将要展示SVMs如何用于定量响应变量的回归问题，方法继承了SVM分类器的某些性质。我们首先讨论线性回归模型</p>
+<p>在这一节，我们将要展示SVMs如何用于定量响应变量的回归问题，方法继承了SVM分类器的某些性质．我们首先讨论线性回归模型</p>
 <p>
 <script type="math/tex; mode=display">
 f(x)=x^T\beta+\beta_0\tag{12.35}
 </script>
 </p>
-<p>接下来处理非线性的推广情形。为了估计$\beta$，我们考虑下式的最小化</p>
+<p>接下来处理非线性的推广情形．为了估计$\beta$，我们考虑下式的最小化</p>
 <p>
 <script type="math/tex; mode=display">
 H(\beta, \beta_0) = \sum\limits_{i=1}^N V(y_i-f(x_i)) + \frac{\lambda}{2}\Vert \beta\Vert^2\tag{12.36}
@@ -3682,10 +3682,10 @@ V_{\epsilon}(r)=
 \tag{12.37}
 </script>
 </p>
-<p>这是一种“$\epsilon$-insensitive”的误差度量，它忽略了大小小于$\epsilon$的误差（图12.8的左图）。</p>
+<p>这是一种“$\epsilon$-insensitive”的误差度量，它忽略了大小小于$\epsilon$的误差（图12.8的左图）．</p>
 <p><img alt="" src="../../img/12/fig12.8.png" /></p>
-<p>这一点类似支持向量机在分类问题中的设定，处于判别边界正确一侧的点以及远离边界的点在优化过程中都被忽略了。在回归中，这些“low error”的点是残差较小的点。</p>
-<p>将这个误差度量与统计中鲁棒回归中采用的误差度量比较是很有趣的。图12.8的右图展示了鲁棒回归中误差度量的最受欢迎的形式(Huber (1964)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>)：</p>
+<p>这一点类似支持向量机在分类问题中的设定，处于判别边界正确一侧的点以及远离边界的点在优化过程中都被忽略了．在回归中，这些“low error”的点是残差较小的点．</p>
+<p>将这个误差度量与统计中鲁棒回归中采用的误差度量比较是很有趣的．图12.8的右图展示了鲁棒回归中误差度量的最受欢迎的形式(Huber (1964)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>)：</p>
 <p>
 <script type="math/tex; mode=display">
 V_{H}(r)=
@@ -3698,7 +3698,7 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
 \tag{12.38}
 </script>
 </p>
-<p>当绝对残差大于预先给定的某个常值$c$时，函数将观测的贡献从二次降至一次。这使得拟合对离群点更加不敏感。支持向量误差衡量(12.37)也有线性尾(tail)（大于$\epsilon$），但是除此之外，它压缩了小偏差情形下观测点的贡献。</p>
+<p>当绝对残差大于预先给定的某个常值$c$时，函数将观测的贡献从二次降至一次．这使得拟合对离群点更加不敏感．支持向量误差衡量(12.37)也有线性尾(tail)（大于$\epsilon$），但是除此之外，它压缩了小偏差情形下观测点的贡献．</p>
 <p>如果$\hat\beta,\; \hat\beta_0$是$H$的最小值点，则解函数有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3725,10 +3725,10 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
 \tag{12.41}
 </script>
 </p>
-<p>考虑到这些约束的本质，一般仅仅有部分的解$(\hat \alpha_i^*-\hat\alpha_i)$非零， 并且对应的数据称为支持向量。和分类问题中的设定一样，解仅仅通过内积$\langle x_i, x_{i&rsquo;}\rangle$来关联输入的数据。因此我们可以通过定义合适的内积将这个方法推广到高维空间，举个例子，采用(12.22)中定义的任意一个。</p>
-<p>注意到参数$\epsilon$和$\lambda$与准则(12.36)有关。它们似乎扮演不同的角色，$\epsilon$是损失函数$V_{\epsilon}$的参数，这和$c$是$V_H$的参数一样。注意到$V_{\epsilon}$和$V_H$都依赖$y$的尺度，因此依赖于$r$。如果我们对响应变量进行缩放（也因此需要用$V_H(r/\sigma)$和$V_\epsilon(r/\sigma)$），则我们可能考虑采用预先设定的$c$和$\epsilon$（对于高斯情形，取$c=1.345$能达到$95\%$的有效度）。$\lambda$是更传统的正则参数，并且可以通过交叉验证来估计。</p>
+<p>考虑到这些约束的本质，一般仅仅有部分的解$(\hat \alpha_i^*-\hat\alpha_i)$非零， 并且对应的数据称为支持向量．和分类问题中的设定一样，解仅仅通过内积$\langle x_i, x_{i&rsquo;}\rangle$来关联输入的数据．因此我们可以通过定义合适的内积将这个方法推广到高维空间，举个例子，采用(12.22)中定义的任意一个．</p>
+<p>注意到参数$\epsilon$和$\lambda$与准则(12.36)有关．它们似乎扮演不同的角色，$\epsilon$是损失函数$V_{\epsilon}$的参数，这和$c$是$V_H$的参数一样．注意到$V_{\epsilon}$和$V_H$都依赖$y$的尺度，因此依赖于$r$．如果我们对响应变量进行缩放（也因此需要用$V_H(r/\sigma)$和$V_\epsilon(r/\sigma)$），则我们可能考虑采用预先设定的$c$和$\epsilon$（对于高斯情形，取$c=1.345$能达到$95\%$的有效度）．$\lambda$是更传统的正则参数，并且可以通过交叉验证来估计．</p>
 <h2 id="_3">回归和核<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>正如 12.3.3 节讨论的一样，SVM 的核性质不唯一。假设我们考虑用基函数 $\{h_m(x)\},m=1,2,\ldots,M$ 近似的回归函数：</p>
+<p>正如 12.3.3 节讨论的一样，SVM 的核性质不唯一．假设我们考虑用基函数 $\{h_m(x)\},m=1,2,\ldots,M$ 近似的回归函数：</p>
 <p>
 <script type="math/tex; mode=display">
 f(x) = \sum\limits_{m=1}^M\beta_mh_m(x)+\beta_0\tag{12.42}
@@ -3746,8 +3746,8 @@ H(\beta, \beta_0) = \sum\limits_{i=1}^NV(y_i-f(x_i)) + \frac{\lambda}{2}\sum\bet
 \hat f(x) = \sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\tag{12.44}
 </script>
 </p>
-<p>其中$K(x,y)=\sum_{m=1}^Mh_m(x)h_m(y)$。注意到这与径向基函数展开和正则化估计的形式一样，它们在第5章和第6章有讨论。</p>
-<p>具体地(For concreteness)，考虑$V(r)=r^2$的情形。令$\H$为$N\times M$的基矩阵，第$im$个元素为$h_m(x_i)$，并且假设$M &gt; N$较大。为了简单起见，假设$\beta_0 = 0$，或者将常数包含进$h$中；<a href="https://github.com/szcf-weiya/ESL-CN/issues/82">练习12.3</a>给出了另一种方式。</p>
+<p>其中$K(x,y)=\sum_{m=1}^Mh_m(x)h_m(y)$．注意到这与径向基函数展开和正则化估计的形式一样，它们在第5章和第6章有讨论．</p>
+<p>具体地(For concreteness)，考虑$V(r)=r^2$的情形．令$\H$为$N\times M$的基矩阵，第$im$个元素为$h_m(x_i)$，并且假设$M &gt; N$较大．为了简单起见，假设$\beta_0 = 0$，或者将常数包含进$h$中；<a href="https://github.com/szcf-weiya/ESL-CN/issues/82">练习12.3</a>给出了另一种方式．</p>
 <p>通过最小化带惩罚的最小二乘准则来估计$\beta$</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3766,13 +3766,13 @@ H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\tag{12.45}
 -\H^T(\y-\H\hat\beta)+\lambda\hat\beta=0\tag{12.47}
 </script>
 </p>
-<p>从这里看，我们似乎需要在转换后的空间中对内积的$N\times M$的矩阵进行赋值。然而，我们可以乘以$\H$得到</p>
+<p>从这里看，我们似乎需要在转换后的空间中对内积的$N\times M$的矩阵进行赋值．然而，我们可以乘以$\H$得到</p>
 <p>
 <script type="math/tex; mode=display">
 \H\hat\beta = (\H\H^T+\lambda\I)^{-1}\H\H^T\y\tag{12.48}
 </script>
 </p>
-<p>$N\times N$的矩阵$\H\H^T$包含了成对观测$i,i&rsquo;$间的内积；也就是，内积核$\{\H\H^T\}_{i.i&rsquo;}=K(x_i,x_{i&rsquo;}=K(x,x_{i&rsquo;})$的赋值。易证(12.44)正是这种情形，在任意点$x$的预测值满足</p>
+<p>$N\times N$的矩阵$\H\H^T$包含了成对观测$i,i&rsquo;$间的内积；也就是，内积核$\{\H\H^T\}_{i.i&rsquo;}=K(x_i,x_{i&rsquo;}=K(x,x_{i&rsquo;})$的赋值．易证(12.44)正是这种情形，在任意点$x$的预测值满足</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3781,11 +3781,11 @@ H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\tag{12.45}
 \end{align}
 </script>
 </p>
-<p>其中$\hat\alpha=(\H\H^T+\lambda\I)^{-1}\y$。和SVM中一样，我们不需要确定或者计算函数集$h_1(x), h_2(x),\ldots,h_M(x)$。仅仅需要在$N$个训练点中，对每个$i,i&rsquo;$计算内积核$K(x_i,x_{i&rsquo;})$，以及预测时对预测点$x$计算内积核。小心选择$h_m(x)$（比如特殊的、容易计算的核$K$）会使得计算$K$时$\H\H^T$计算量为$N^2/2$，而不是直接计算时的$N^2M$。</p>
-<p>然而，注意到，这个性质取决于惩罚项中平方范数$\Vert\beta\Vert^2$的选择。举个例子，对于可能会得到更好模型的$L_1$范数$\vert\beta\vert$，这个性质并不满足。</p>
+<p>其中$\hat\alpha=(\H\H^T+\lambda\I)^{-1}\y$．和SVM中一样，我们不需要确定或者计算函数集$h_1(x), h_2(x),\ldots,h_M(x)$．仅仅需要在$N$个训练点中，对每个$i,i&rsquo;$计算内积核$K(x_i,x_{i&rsquo;})$，以及预测时对预测点$x$计算内积核．小心选择$h_m(x)$（比如特殊的、容易计算的核$K$）会使得计算$K$时$\H\H^T$计算量为$N^2/2$，而不是直接计算时的$N^2M$．</p>
+<p>然而，注意到，这个性质取决于惩罚项中平方范数$\Vert\beta\Vert^2$的选择．举个例子，对于可能会得到更好模型的$L_1$范数$\vert\beta\vert$，这个性质并不满足．</p>
 <h2 id="_4">讨论<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>SVM可以拓展到对类别问题，本质上是求解多个两个类别的问题。对每个成对类别建立分类器，最终的分类器是起主要作用(dominates)的分类器(Kressel, 1999<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>; Friedman, 1996<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>; Hastie and Tibshirani, 1998<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>)。另外，可以采用合适核的多项损失函数，就像<a href="#_1">12.3.3节</a>一样。SVMs在许多监督学习和非监督学习的问题中都有应用。在本文的写作时间，经验表明它在许多实际学习问题中表现得非常好。</p>
-<p>最后，我们提出SVM和结构风险最小化(7.9)的联系。</p>
+<p>SVM可以拓展到对类别问题，本质上是求解多个两个类别的问题．对每个成对类别建立分类器，最终的分类器是起主要作用(dominates)的分类器(Kressel, 1999<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>; Friedman, 1996<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>; Hastie and Tibshirani, 1998<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>)．另外，可以采用合适核的多项损失函数，就像<a href="#_1">12.3.3节</a>一样．SVMs在许多监督学习和非监督学习的问题中都有应用．在本文的写作时间，经验表明它在许多实际学习问题中表现得非常好．</p>
+<p>最后，我们提出SVM和结构风险最小化(7.9)的联系．</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
@@ -3799,7 +3799,7 @@ Err(x_0)&=E[(Y-\hat f(x_0))^2\mid X=x_0]\\
 </script>
 </p>
 </div>
-<p>假设训练点（或者它们的基函数展开）在半径为$R$的球体中，并且令(12.2)中的$G(x)=\sign[f(x)]=\sign[\beta^Tx+\beta_0]$。</p>
+<p>假设训练点（或者它们的基函数展开）在半径为$R$的球体中，并且令(12.2)中的$G(x)=\sign[f(x)]=\sign[\beta^Tx+\beta_0]$．</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
@@ -3820,8 +3820,8 @@ h\le R^2A^2\tag{12.50}
 \mathrm{Error}_{\mathrm{Test}}\le 4\frac{h[\log(2N/h)+1]-\log(\eta/4)}{N}\tag{12.51}
 </script>
 </p>
-<p>支持向量分类器是第一个可以得到VC维的有效界的实际学习过程，因此SRM程序可以运行。然而，在推导的时候，依赖特征的观测值，称为“balls are put around the data points”。因此在严格意义上，类别的VC复杂度不是在知道特征之前预先固定的。</p>
-<p>正则参数$C$控制了分类器的VC为的上界。遵循SRM的范式，我们可以通过最小化测试误差(12.51)的上界来选择$C$。然而，并不清楚它与通过交叉验证来选$C$有什么优势。</p>
+<p>支持向量分类器是第一个可以得到VC维的有效界的实际学习过程，因此SRM程序可以运行．然而，在推导的时候，依赖特征的观测值，称为“balls are put around the data points”．因此在严格意义上，类别的VC复杂度不是在知道特征之前预先固定的．</p>
+<p>正则参数$C$控制了分类器的VC为的上界．遵循SRM的范式，我们可以通过最小化测试误差(12.51)的上界来选择$C$．然而，并不清楚它与通过交叉验证来选$C$有什么优势．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3935,7 +3935,7 @@ h\le R^2A^2\tag{12.50}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-06-26 09:34:24
+        Last Build Date UTC : 2019-06-27 03:08:12
       </div>
       
         
