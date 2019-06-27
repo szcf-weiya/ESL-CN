@@ -295,7 +295,7 @@ extra_templates:
 theme:
   name: null
   custom_dir: material
-  language: 'en'
+  language: 'zh-CN'
   feature:
     tabs: true
   logo: 'img/logo_white_24x24.svg'
