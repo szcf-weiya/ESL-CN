@@ -5,10 +5,10 @@
 | 翻译   | szcf-weiya                               |
 | 时间   | 2017-09-09                    |
 
-线性回归在很多统计教材中都有讨论，比如，Seber (1984)[^1], Weisberg (1980)[^2] 以及 Mardia et al. (1979)[^3]。岭回归由 Hoerl and Kennard (1970)[^4]提出，而 lasso 由Tibshirani (1996)[^5]提出。几乎在同时，lasso形式的惩罚在信号处理中的 basis pursuit 方法中被提出（Chen et al., 1998）[^6]。最小角回归过程由 Efron et al. (2004)[^7]等人提出；与这有关的是早期 Osborne et al. (2000a)[^8]和 Osborne et al. (2000b)[^9]的homotopy过程。他们的算法也利用了在 LAR/lasso 算法中的分段线性，但是缺少透明度 (transparency)。向前逐步准则在 Hastie et al. (2007)[^10]中进行了讨论。Park and Hastie (2007)[^11] 发展了类似用于广义回归模型的最小角回归的路径算法。偏最小二乘由 Wold (1975)[^12]提出。收缩方法的比较或许可以在 Copas (1983)[^13] 和 Frank and Friedman (1993)[^14]中找到。
+线性回归在很多统计教材中都有讨论，比如，Seber (1984)[^1], Weisberg (1980)[^2] 以及 Mardia et al. (1979)[^3]．岭回归由 Hoerl and Kennard (1970)[^4]提出，而 lasso 由Tibshirani (1996)[^5]提出．几乎在同时，lasso形式的惩罚在信号处理中的 basis pursuit 方法中被提出（Chen et al., 1998）[^6]．最小角回归过程由 Efron et al. (2004)[^7]等人提出；与这有关的是早期 Osborne et al. (2000a)[^8]和 Osborne et al. (2000b)[^9]的homotopy过程．他们的算法也利用了在 LAR/lasso 算法中的分段线性，但是缺少透明度 (transparency)．向前逐步准则在 Hastie et al. (2007)[^10]中进行了讨论．Park and Hastie (2007)[^11] 发展了类似用于广义回归模型的最小角回归的路径算法．偏最小二乘由 Wold (1975)[^12]提出．收缩方法的比较或许可以在 Copas (1983)[^13] 和 Frank and Friedman (1993)[^14]中找到．
 
 !!! note "weiya注"
-    3.8节讲lasso及相关的路径算法一节中还有很多文献。
+    3.8节讲lasso及相关的路径算法一节中还有很多文献．
 
 [^1]: Seber, G. (1984). Multivariate Observations, Wiley, New York.
 [^2]: Weisberg, S. (1980). Applied Linear Regression, Wiley, New York.

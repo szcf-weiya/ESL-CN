@@ -6,7 +6,7 @@
 | 时间   | 2018-02-23                    |
 | 状态 | Done |
 
-关于核方法有大量的文献，我们这里不打算总结。而是理出一些非常好的文献，它们自身有非常多的参考文献。Loader (1999)[^1]对局部回归和概率似然介绍很完整，并且也描述了拟合这些模型的很先进的(state-of-the-art)软件。Fan and Gijbels (1996)[^2]从更理论的层面介绍了这些模型。 Hastie and Tibshirani (1990)[^3]在可加模型中讨论了局部回归。 和Scott (1992)[^5]一样，Silverman (1986)[^4]也很好地总结了密度估计。
+关于核方法有大量的文献，我们这里不打算总结．而是理出一些非常好的文献，它们自身有非常多的参考文献．Loader (1999)[^1]对局部回归和概率似然介绍很完整，并且也描述了拟合这些模型的很先进的(state-of-the-art)软件．Fan and Gijbels (1996)[^2]从更理论的层面介绍了这些模型． Hastie and Tibshirani (1990)[^3]在可加模型中讨论了局部回归． 和Scott (1992)[^5]一样，Silverman (1986)[^4]也很好地总结了密度估计．
 
 [^1]: Loader, C. (1999). Local Regression and Likelihood, Springer, New York.
 [^2]: Fan, J. and Gijbels, I. (1996). Local Polynomial Modelling and Its Applications, Chapman and Hall, London.

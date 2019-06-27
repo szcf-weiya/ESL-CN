@@ -5,9 +5,9 @@
 | 翻译   | szcf-weiya                               |
 | 时间   | 2017-09-06                               |
 
-投影寻踪由Friedman and Tukey (1974)[^1]提出，并且由Friedman and Stuetzle (1981)[^2]具体化为回归。Huber (1985)[^3]给出了一个概述，并且Roosen and Hastie (1994)[^4]采用光滑样条提出了一个关系式。神经网络的动机追溯到McCulloch and Pitts (1943)[^5]，Widrow and Hoff (1960)[^6]（在Anderson and Rosenfeld (1988)[^7]中转载）以及Rosenblatt (1962)[^8]。Hebb (1949)[^9]严重受到学习算法发展的影响。神经网络的再起是在1980s中期，归功于Werbos (1974)[^10]，Parker (1985)[^11]和Rumelhart et al. (1986)[^12]，后者提出了向后传播算法。今天这方面有很多书，Hertz et al. (1991)[^13]，Bishop (1995)[^14]以及Ripley (1996)[^15]或许是信息量最大的。神经网络的贝叶斯学习在Neal (1996)[^16]中有描述。ZIP例子取自Le Cun (1989)[^17]，同时参见Le Cun et al. (1990)[^18]以及Le Cun et al. (1998)[^19]。
+投影寻踪由Friedman and Tukey (1974)[^1]提出，并且由Friedman and Stuetzle (1981)[^2]具体化为回归．Huber (1985)[^3]给出了一个概述，并且Roosen and Hastie (1994)[^4]采用光滑样条提出了一个关系式．神经网络的动机追溯到McCulloch and Pitts (1943)[^5]，Widrow and Hoff (1960)[^6]（在Anderson and Rosenfeld (1988)[^7]中转载）以及Rosenblatt (1962)[^8]．Hebb (1949)[^9]严重受到学习算法发展的影响．神经网络的再起是在1980s中期，归功于Werbos (1974)[^10]，Parker (1985)[^11]和Rumelhart et al. (1986)[^12]，后者提出了向后传播算法．今天这方面有很多书，Hertz et al. (1991)[^13]，Bishop (1995)[^14]以及Ripley (1996)[^15]或许是信息量最大的．神经网络的贝叶斯学习在Neal (1996)[^16]中有描述．ZIP例子取自Le Cun (1989)[^17]，同时参见Le Cun et al. (1990)[^18]以及Le Cun et al. (1998)[^19]．
 
-我们不去讨论神经网络的近似性质等理论问题，这些工作有Barron (1993)[^20], Girosi et al. (1995)[^21] 和 Jones (1992)[^22]。其中一些结果在Ripley (1996)[^15]中进行了总结。
+我们不去讨论神经网络的近似性质等理论问题，这些工作有Barron (1993)[^20], Girosi et al. (1995)[^21] 和 Jones (1992)[^22]．其中一些结果在Ripley (1996)[^15]中进行了总结．
 
 [^1]: Friedman, J. and Tukey, J. (1974). A projection pursuit algorithm for exploratory data analysis, IEEE Transactions on Computers, Series C 23: 881–889.
 [^2]: Friedman, J. and Stuetzle, W. (1981). Projection pursuit regression, Journal of the American Statistical Association 76: 817–823.

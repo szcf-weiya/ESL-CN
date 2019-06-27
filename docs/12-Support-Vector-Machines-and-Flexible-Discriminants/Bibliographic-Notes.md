@@ -5,13 +5,13 @@
 | 翻译   | szcf-weiya                               |
 | 时间   | 2017-09-06                               |
 
-支持向量机背后的理论归功于 Vapnik 并且在 Vapnik (1996)[^1] 中进行了描述。有关 SVM 的新兴文献、由 Alex Smola 和 Bernhard Scholkopf 创造并维护的在线文献，可以在下面的网站中找到
+支持向量机背后的理论归功于 Vapnik 并且在 Vapnik (1996)[^1] 中进行了描述．有关 SVM 的新兴文献、由 Alex Smola 和 Bernhard Scholkopf 创造并维护的在线文献，可以在下面的网站中找到
 
 http://www.kernel-machines.org/
 
-我们的处理是基于 Wahba et al. (2000)[^2] 和 Evgeniou et al. (2000)[^3]，以及Burges (Burges, 1998)[^4] 的教程。
+我们的处理是基于 Wahba et al. (2000)[^2] 和 Evgeniou et al. (2000)[^3]，以及Burges (Burges, 1998)[^4] 的教程．
 
-线性判别分析归功于 Fisher (1936)[^5] 和 Rao (1973)[^6]。其与最优得分的联系至少可以追溯到 Breiman and Ihaka (1984)[^7]，以及 Fisher (1936)[^8] 中的一种简单形式。其与对应分析 (Greenacre, 1984)[^9]有很强的关联。灵活的、带惩罚的以及混合判别分析的描述是取自 Hastie et al. (1994)[^10], Hastie et al. (1995)[^11] 以及 Hastie and Tibshirani (1996b)[^12], Hastie et al. (1998)[^13] 对这三者进行了总结；也可以参见 Ripley (1996)[^14]。
+线性判别分析归功于 Fisher (1936)[^5] 和 Rao (1973)[^6]．其与最优得分的联系至少可以追溯到 Breiman and Ihaka (1984)[^7]，以及 Fisher (1936)[^8] 中的一种简单形式．其与对应分析 (Greenacre, 1984)[^9]有很强的关联．灵活的、带惩罚的以及混合判别分析的描述是取自 Hastie et al. (1994)[^10], Hastie et al. (1995)[^11] 以及 Hastie and Tibshirani (1996b)[^12], Hastie et al. (1998)[^13] 对这三者进行了总结；也可以参见 Ripley (1996)[^14]．
 
 [^1]: Vapnik, V. (1996). The Nature of Statistical Learning Theory, Springer,
 New York.
