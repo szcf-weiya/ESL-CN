@@ -3365,20 +3365,32 @@
 <p>另外，每个结点处的值可以 <strong>被观测到 (visible)</strong> 或者 <strong>观测不到 (hidden)</strong>．结点通常由层来构成，这类似神经网络．玻尔兹曼机对于非监督学习和监督学习都是很有用的，特别对有结构化输入数据，比如图像，但是也受到计算上的限制．图 17.6 显示了一个约束的玻尔兹曼机（后面讨论），其中一些变量是隐藏的，而且只有一些结点对是相连的．我们所有 $p$ 个结点都是可见的简单情形，并且边的对 $(j,k)$ 取自 $E$．</p>
 <p>用 $X_j$ 标记结点 $j$ 处的二值变量，它们联合分布的 Ising 模型由下式给出
 <script type="math/tex; mode=display">
-p(X,\mathbf\Theta)=\exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\Theta})]\text{  for  }X\in{\cal X}\tag{17.28}
+p(X,\mathbf\Theta)=\exp\left[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\Theta})\right]\text{  for  }X\in{\cal X}\tag{17.28}\label{17.28}
 </script>
-其中 ${\cal X}=\{0,1\}^p$．和上一节的高斯模型一样，只有成对交叉项才进行建模．Ising 模型是在统计力学中发展的，而且现在更一般地用来建立成对交叉的联合影响．$\Phi\mathbf{(\Theta)}$ 为分割函数的对数，而且由下式定义
+其中 ${\cal X}=\{0,1\}^p$．和上一节的高斯模型一样，只对成对交叉项进行建模．Ising 模型是在统计力学中发展的，而且现在更一般地用来建立成对交叉的联合影响．$\Phi\mathbf{(\Theta)}$ 为 <strong>分割函数 (partition function)</strong> 的对数，而且由下式定义
 <script type="math/tex; mode=display">
-\Phi(\mathbf \Theta)=\mathrm{log}\sum\limits_{x\in\cal X}[\mathrm {exp}(\sum\limits_{(j,k)\in E}\theta_{jk}x_jx_k)]\tag{17.29}
+\Phi(\mathbf \Theta)=\log\sum\limits_{x\in\cal X}\left[\exp\left(\sum\limits_{(j,k)\in E}\theta_{jk}x_jx_k\right)\right]\tag{17.29}
 </script>
 </p>
-<p>分割函数保证在样本空间中概率相加起来为 1．$\theta_{jk}X_jX_k$ 项表示（对数）势函数（17.5）的特定参量化，而且因为技术上的原因需要包含 <strong>常值 (constant)</strong> 结点（与其他结点都有边相连） $X_0\equiv 1$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/139">练习 17.10</a>）．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Recall</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+f^{(2)}(x,y,z)&=\frac{1}{Z}\psi(x,y)\psi(x,z)\psi(y,z)\\
+f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
+\end{align*}
+\tag{17.5}\label{17.5}
+</script>
+</p>
+</div>
+<p>分割函数保证在样本空间中概率相加起来为 1．$\theta_{jk}X_jX_k$ 项表示（对数）势函数 \eqref{17.5} 的特定参量化，而且因为技术上的原因需要包含 <strong>常值 (constant)</strong> 结点（与其他结点都有边相连） $X_0\equiv 1$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/139">练习 17.10</a>）．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Ex. 17.10</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/139">Issue 139: Ex. 17.10</a>．</p>
 </div>
 <p>在统计领域中，这个模型等价于多路计算表（multiway tables of counts）的一阶交叉泊松对数线性模型（Bishop et al.，1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> ;McCullagh and Nelder,1989<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>; Agresti, 2002<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>）．</p>
-<p>Ising 模型暗示着每个结点在其它结点条件下由逻辑斯蒂形式（<a href="https://github.com/szcf-weiya/ESL-CN/issues/140">练习 17.11</a>）
+<p>Ising 模型暗示着每个结点在其它结点条件下有逻辑斯蒂形式（<a href="https://github.com/szcf-weiya/ESL-CN/issues/140">练习 17.11</a>）
 <script type="math/tex; mode=display">
 \Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+\exp(-\theta_{j0}-\sum_{(j,k)\in E}\theta_{jk}x_k)}\tag{17.30}
 </script>
@@ -3391,7 +3403,7 @@ p(X,\mathbf\Theta)=\exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\
 <p>从模型中给出一些数据，我们可以怎么估计参数？假设我们有观测 $x_i=(x_{i1},x_{i2},\ldots,x_{ip})\in\{0,1\}^p,i=1,\ldots,N$．对数似然为
 <script type="math/tex; mode=display">
 \begin{align}
-\ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\mathrm{log\; \Pr}_{\mathbf\Theta}(X_i=x_i)\notag\\
+\ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\log \Pr\nolimits_{\mathbf\Theta}(X_i=x_i)\notag\\
 &=\sum\limits_{i=1}^N\Big[\sum\limits_{(j,k)\in E}\theta_{jk}x_{ij}x_{ik}-\Phi(\mathbf\Theta) \Big]\tag{17.31}
 \end{align}
 </script>
@@ -3408,13 +3420,13 @@ p(X,\mathbf\Theta)=\exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\
 </script>
 令梯度等于 0 得到
 <script type="math/tex; mode=display">
-\hat \E(X_jX_k)-\E_{\mathbf \Theta}(X_jX_k)=0\tag{17.34}
+\hat \E(X_jX_k)-\E_{\mathbf \Theta}(X_jX_k)=0\tag{17.34}\label{17.34}
 </script>
 其中我们定义
 <script type="math/tex; mode=display">
 \hat \E(X_jX_k)=\frac{1}{N}\sum\limits_{i=1}^Nx_{ij}x_{ik},\tag{17.35}
 </script>
-这是关于数据的经验分布取期望．注意 (17.34) 式，我们看到极大似然估计简单地把结点之间的内积估计和观测的内积匹配上了．这是指数族模型得分（梯度）等式的标准形式，其中令充分统计量等于模型下的期望．</p>
+这是关于数据的经验分布取期望．注意 \eqref{17.34} 式，我们看到极大似然估计简单地把结点之间的内积估计和观测的内积匹配上了．这是指数族模型得分（梯度）等式的标准形式，其中令充分统计量等于模型下的期望．</p>
 <p>为了寻找极大似然估计，我们可以利用梯度搜索或者牛顿法．然而 $\E_{\mathbf \Theta}(X_jX_k)$ 的计算涉及 $p(X,\mathbf\Theta)$ 在 $X$ 的 $\vert{\cal X}\vert=2^p$ 种可能值中的 $2^{p-2}$ 种情形，</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：$2^{p-2}$</p>
@@ -3422,15 +3434,15 @@ p(X,\mathbf\Theta)=\exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\
 </div>
 <p>而且对于大的 $p$ 一般是不可行的（比如，大于 30）．对于小 $p$，有一系列标准的统计方法可以使用：</p>
 <ul>
-<li><strong>泊松对数线性建模 (Poisson log-linear modeling)</strong>， 其中我们将问题看成是大规模回归问题（<a href="https://github.com/szcf-weiya/ESL-CN/issues/141">练习17.12</a>）．响应变量 $\mathbf y$ 是数据的多路表的每个单元中的 $2^p$ 维计数的向量．</li>
+<li><strong>泊松对数线性建模 (Poisson log-linear modeling)</strong>， 其中我们将问题看成是大规模回归问题（<a href="https://github.com/szcf-weiya/ESL-CN/issues/141">练习 17.12</a>）．响应变量 $\mathbf y$ 是数据的多路表的每个单元中的 $2^p$ 维计数的向量．</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">原书脚注：</p>
-<p>每个单元的计数看成是单个的独立泊松变量．在总数 $N$ 的条件下能得到对应 (17.28) 的多项式模型（在这个框架下也是泊松分布）．</p>
+<p>每个单元的计数看成是单个的独立泊松变量．在总数 $N$ 的条件下能得到对应 \eqref{17.28} 的多项式模型（在这个框架下也是泊松分布）．</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：翻译疑问</p>
-<p>“The response vector y is the vector of $2^p$ counts in each of the cells of the multiway tabulation of the data.” 这里我理解为 $2^p$ 维，因为有 $2^p$ 个单元，每个单元是指代观测点的个数，但这样似乎与 <a href="https://github.com/szcf-weiya/ESL-CN/issues/141">练习17.12</a> 矛盾．</p>
+<p>“The response vector y is the vector of $2^p$ counts in each of the cells of the multiway tabulation of the data.” 这里我理解为 $2^p$ 维，因为有 $2^p$ 个单元，每个单元是指代观测点的个数，但这样似乎与 <a href="https://github.com/szcf-weiya/ESL-CN/issues/141">练习 17.12</a> 矛盾．</p>
 </div>
 <p>预测矩阵 $\mathbf Z$ 有 $2^p$ 个行，以及 $1+p+p^2$ 个表征每个单元的列，尽管这个数字取决于图的稀疏程度．计算代价本质是该规模下回归问题的代价，即为 $O(p^42^p)$ 并且对于 $p &lt; 20$ 是可行的．牛顿更新一般通过迭代重赋权最小二乘法类似计算，并且步数通常是在个位数之内．详见 Agresti (2002)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 和 McCullagh and Nelder(1989)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup>．标准软件（比如 <code>R</code> 语言的 <code>glm</code> 包）可以用来拟合这个模型．</p>
 <ul>
@@ -3438,12 +3450,12 @@ p(X,\mathbf\Theta)=\exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\
 <p><strong>梯度下降 (Gradient descent)</strong>至多需要 $O(p^22^{p-2})$ 的计算量来计算梯度，但是可能会比二阶牛顿法需要更多的梯度步数．然而，可以处理 $p\le 30$ 的稍微大点的问题．这些计算可以通过发现稀疏图中特别的团结构，采用 junction-tree 算法进行降低计算量．这里没有给出细节．</p>
 </li>
 <li>
-<p><strong>迭代比例过滤 (Iterative proportional fitting, IPF)</strong> 在梯度式 (17.34) 中采用柱坐标系．每一步更新一个参数使得梯度等式正好为 0．这在柱坐标系中进行直到所有梯度为 0．一个完整的周期与梯度赋值花费同样的计算量，但是可能更有效．Jirouśek and Přeučil (1995)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 采用 junction trees 实现了 IPF 的一个有效版本．</p>
+<p><strong>迭代比例过滤 (Iterative proportional fitting, IPF)</strong> 在梯度式 \eqref{17.34} 中采用柱坐标系．每一步更新一个参数使得梯度等式正好为 0．这在柱坐标系中进行直到所有梯度为 0．一个完整的周期与梯度赋值花费同样的计算量，但是可能更有效．Jirouśek and Přeučil (1995)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 采用 junction trees 实现了 IPF 的一个有效版本．</p>
 </li>
 </ul>
 <p>当 $p$ 大（&gt;30）可以采用其它的方法来近似梯度</p>
 <ul>
-<li>均值域近似（Peterson and Anderson, 1987<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>）用 $\E_{\mathbf\Theta}(X_j)\E_{\mathbf \Theta}(X_k)$ 来估计 $\E_{\Theta}(X_jX_k)$，并且将输入变量用它们的均值替换，得到一系列关于参数$\theta_{jk}$的非线性等式．</li>
+<li>均值域近似（Peterson and Anderson, 1987<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>）用 $\E_{\mathbf\Theta}(X_j)\E_{\mathbf \Theta}(X_k)$ 来估计 $\E_{\Theta}(X_jX_k)$，并且将输入变量用它们的均值替换，得到一系列关于参数 $\theta_{jk}$ 的非线性等式．</li>
 <li>为了得到近似解，使用吉布斯采样（<a href="../../08-Model-Inference-and-Averaging/8.6-MCMC-for-Sampling-from-the-Posterior/index.html">8.6 节</a>）来近似 $\E_{\mathbf\Theta}(X_jX_k)$，通过从估计模型 $\Pr_{\mathbf\Theta}(X_j\mid X_{-j})$来逐步抽样（见 Ripley (1996)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>）</li>
 </ul>
 <p>我们没有讨论 <strong>可分解模型 (decomposable models)</strong>，因为极大似然估计不需要任何迭代就可以在闭形式中找到．举个例子，这些模型来自树：截断树拓扑的特殊图．当要关心计算易处理性，树表示一个有用的模型类，并且它们回避本节中提出的计算上的考虑．详见 Whittaker(1990)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 的第 12 章的例子．</p>
@@ -3451,8 +3463,8 @@ p(X,\mathbf\Theta)=\exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\
 <p>我们可以通过包含潜在或隐藏结点来增加离散马尔科夫网络的复杂性．假设变量的子集 $X_{\cal H}$ 是未观测的或者“隐藏的”，并且剩余的变量 $X_{\cal V}$ 是观测的或者“可见的”．则观测数据的对数似然为
 <script type="math/tex; mode=display">
 \begin{align}
-\ell(\mathbf\Theta)&=\sum\limits_{i=1}^N\mathrm{log}[\Pr_{\mathbf\Theta}(X_{\cal V}=x_{i\cal V})]\notag\\
-&=\sum\limits_{i=1}^N[\mathrm{log}\sum\limits_{x_{\cal H}\in{\cal X_H}}\exp\sum\limits_{(j,k)\in E}(\theta_{jk}x_{ij}x_{jk}-\Phi(\mathbf\Theta))]\tag{17.36}
+\ell(\mathbf\Theta)&=\sum_{i=1}^N\mathrm{log}[\Pr\nolimits_{\mathbf\Theta}(X_{\cal V}=x_{i\cal V})]\notag\\
+&=\sum_{i=1}^N\left[\mathrm{log}\sum\limits_{x_{\cal H}\in{\cal X_H}}\exp\sum\limits_{(j,k)\in E}(\theta_{jk}x_{ij}x_{jk}-\Phi(\mathbf\Theta))\right]\tag{17.36}
 \end{align}
 </script>
 对 $x_{\cal H}$ 求和意味着我们对隐藏单元的所有可能 ${0,1}$ 值进行求和．梯度为
@@ -3466,8 +3478,8 @@ p(X,\mathbf\Theta)=\exp[\sum\limits_{(j,k)\in E}\theta_{jk}X_jX_k-\Phi(\mathbf{\
 \left\{
 \begin{array}{ll}
 x_{ij}x_{ik}& \text{if }j,k\in\cal V\\
-x_{ij}\Pr_{\cal\mathbf\Theta}(X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j\in\cal V,k\in\cal H\\
-\Pr_{\mathbf\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in{\cal H}\end{array}
+x_{ij}\Pr\nolimits_{\cal\mathbf\Theta}(X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j\in\cal V,k\in\cal H\\
+\Pr\nolimits_{\mathbf\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in{\cal H}\end{array}
 \right.
 \tag{17.38}
 </script>
@@ -3485,7 +3497,7 @@ x_{ij}\Pr_{\cal\mathbf\Theta}(X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j\in\c
 \left\{
     \begin{array}{ll}
     x_{ij}x_{ik}&\text{if }j,k\in\cal V\\
-    \Pr_{\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in\cal H
+    \Pr\nolimits_{\Theta}(X_j=1,X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j,k\in\cal H
     \end{array}
     \right.
 </script>
@@ -3640,7 +3652,7 @@ x_{ij}\Pr_{\cal\mathbf\Theta}(X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{if }j\in\c
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-09 02:31:51
+        Last Build Date UTC : 2019-07-09 03:30:56
       </div>
       
         
