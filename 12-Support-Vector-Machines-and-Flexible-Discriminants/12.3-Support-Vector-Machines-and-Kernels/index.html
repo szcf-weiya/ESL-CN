@@ -3657,13 +3657,13 @@ f_\lambda(x) = \frac{1}{\lambda}\sum\limits_{i=1}^N\alpha_iy_iK(x,x_i)\tag{12.34
 </p>
 <p>细节可以在Hastie et al. (2004)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>中找到．CRAN上<code>R</code>包<code>svmpath</code>可以用来拟合这些模型．</p>
 <h2 id="_2">用于回归的支持向量机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>在这一节，我们将要展示SVMs如何用于定量响应变量的回归问题，方法继承了SVM分类器的某些性质．我们首先讨论线性回归模型</p>
+<p>在这一节，我们将要展示 SVMs 如何用于定量响应变量的回归问题，方法继承了 SVM 分类器的某些性质．我们首先讨论线性回归模型</p>
 <p>
 <script type="math/tex; mode=display">
 f(x)=x^T\beta+\beta_0\tag{12.35}
 </script>
 </p>
-<p>接下来处理非线性的推广情形．为了估计$\beta$，我们考虑下式的最小化</p>
+<p>接下来处理非线性的推广情形．为了估计 $\beta$，我们考虑下式的最小化</p>
 <p>
 <script type="math/tex; mode=display">
 H(\beta, \beta_0) = \sum\limits_{i=1}^N V(y_i-f(x_i)) + \frac{\lambda}{2}\Vert \beta\Vert^2\tag{12.36}
@@ -3679,10 +3679,10 @@ V_{\epsilon}(r)=
 \vert r\vert -\epsilon, &\text{otherwise}
 \end{array}
 \right.
-\tag{12.37}
+\tag{12.37}\label{12.37}
 </script>
 </p>
-<p>这是一种“$\epsilon$-insensitive”的误差度量，它忽略了大小小于$\epsilon$的误差（图12.8的左图）．</p>
+<p>这是一种“$\epsilon$-insensitive”的误差度量，它忽略了小于 $\epsilon$ 的误差（图 12.8 的左图）．</p>
 <p><img alt="" src="../../img/12/fig12.8.png" /></p>
 <p>这一点类似支持向量机在分类问题中的设定，处于判别边界正确一侧的点以及远离边界的点在优化过程中都被忽略了．在回归中，这些“low error”的点是残差较小的点．</p>
 <p>将这个误差度量与统计中鲁棒回归中采用的误差度量比较是很有趣的．图12.8的右图展示了鲁棒回归中误差度量的最受欢迎的形式(Huber (1964)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>)：</p>
@@ -3698,30 +3698,30 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
 \tag{12.38}
 </script>
 </p>
-<p>当绝对残差大于预先给定的某个常值$c$时，函数将观测的贡献从二次降至一次．这使得拟合对离群点更加不敏感．支持向量误差衡量(12.37)也有线性尾(tail)（大于$\epsilon$），但是除此之外，它压缩了小偏差情形下观测点的贡献．</p>
-<p>如果$\hat\beta,\; \hat\beta_0$是$H$的最小值点，则解函数有如下形式</p>
+<p>当绝对残差大于预先给定的某个常值 $c$ 时，函数将观测的贡献从二次降至一次．这使得拟合对离群点更加不敏感．支持向量误差衡量 \eqref{12.37} 也有线性尾 (tail)（大于 $\epsilon$），但是除此之外，它压缩了小偏差情形下观测点的贡献．</p>
+<p>如果 $\hat\beta,\; \hat\beta_0$ 是 $H$ 的最小值点，则解函数有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-\hat\beta & = \sum\limits_{i=1}^N(\hat\alpha_i^*-\hat\alpha_i)x_i & (12.39)\\
-\hat f(x) & = \sum\limits_{i=1}^N(\hat\alpha_i^*-\hat\alpha_i)\langle x, x_i\rangle+\beta_0 & (12.40)
+\hat\beta & = \sum\limits_{i=1}^N(\hat\alpha_i^*-\hat\alpha_i)x_i \tag{12.39}\\
+\hat f(x) & = \sum\limits_{i=1}^N(\hat\alpha_i^*-\hat\alpha_i)\langle x, x_i\rangle+\beta_0 \tag{12.40}
 \end{align}
 </script>
 </p>
-<p>其中$\hat\alpha_i,\; \hat\alpha_i^*$是正的，且是下列的二次规划问题的解</p>
+<p>其中 $\hat\alpha_i,\; \hat\alpha_i^*$ 是正的，且是下列的二次规划问题的解</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\alpha_i,\alpha_i^*}{\min}\epsilon \sum\limits_{i=1}^N(\alpha_i^*+\alpha_i)-\sum\limits_{i=1}^Ny_i(\hat\alpha_i^*-\alpha_i)+\frac 12(\alpha_i^*-\alpha_i)(\alpha_{i'}^*-\alpha_{i'})\langle x_i, x_{i'}\rangle
+\underset{\alpha_i,\alpha_i^*}{\min}\;\epsilon \sum\limits_{i=1}^N(\alpha_i^*+\alpha_i)-\sum\limits_{i=1}^Ny_i(\alpha_i^*-\alpha_i)+\frac 12\sum_{i,i'=1}^N(\alpha_i^*-\alpha_i)(\alpha_{i'}^*-\alpha_{i'})\langle x_i, x_{i'}\rangle
 </script>
 </p>
 <p>约束条件如下</p>
 <p>
 <script type="math/tex; mode=display">
-\begin{align}
+\begin{align*}
 0\le \alpha_i,\alpha_i^*\le \frac{1}{\lambda}\\
 \sum\limits_{i=1}^N(\alpha_i^*-\alpha_i)=0\\
 \alpha_i\alpha_i^*=0
-\end{align}
+\end{align*}
 \tag{12.41}
 </script>
 </p>
@@ -3935,7 +3935,7 @@ h\le R^2A^2\tag{12.50}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-09 03:30:54
+        Last Build Date UTC : 2019-07-09 12:28:51
       </div>
       
         
