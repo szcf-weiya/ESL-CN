@@ -3237,7 +3237,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="../../book/The Elements of Statistical Learning.pdf#page=103">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3255,9 +3255,16 @@
 </tr>
 </tbody>
 </table>
-<p>如 <a href="../3.2-Linear-Regression-Models-and-Least-Squares/index.html#_3">3.2.4 节</a>所述，多重输出线性模型的最小二乘估计简单地可以看成是关于每个输出的最小二乘估计．</p>
-<p>$\eqref{3.67}$
-为了在多重输出情形中应用选择和收缩的方法，可以对每个输出变量单独地应用单变量的技巧，或对全部的输出变量同时进行．举个例子，对于岭回归，我们可以对输出矩阵 $Y$ 的 $K$ 列中的每一列应用 (3.44)，其中参数 $\lambda$ 可能不同，或者采用相同的 $\lambda$．第一种策略允许对不同的输出应用不同程度的正则化，但是需要估计 $k$ 个独立的正则化参数 $\lambda_1,\ldots,\lambda_k$，而第二种策略可以在估计单独的正则化参数 $\lambda$ 时应用全部的 $k$ 个输出．</p>
+<p>如 <a href="../3.2-Linear-Regression-Models-and-Least-Squares/index.html#_3">3.2.4 节</a>所述，多重输出线性模型的最小二乘估计可以简单地看成是关于每个输出的最小二乘估计．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>
+<script type="math/tex; mode=display">
+\hat{\beta}^{ridge}=(\mathbf{X^TX}+\lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}\tag{3.44}
+</script>
+</p>
+</div>
+<p>为了在多重输出情形中应用选择和收缩的方法，可以对每个输出变量单独地应用单变量的技巧，或对全部的输出变量同时进行．举个例子，对于岭回归，我们可以对输出矩阵 $Y$ 的 $K$ 列中的每一列应用 \eqref{3.44}，其中参数 $\lambda$ 可能不同，或者采用相同的 $\lambda$．第一种策略允许对不同的输出应用不同程度的正则化，但是需要估计 $k$ 个独立的正则化参数 $\lambda_1,\ldots,\lambda_k$，而第二种策略可以在估计单独的正则化参数 $\lambda$ 时应用全部的 $k$ 个输出．</p>
 <p>其它更复杂的收缩和选择的策略利用了多重输出情形中不同响应变量间的相关性，这可能会有帮助．举个例子，假设在这些输出变量中，我们有 </p>
 <p>
 <script type="math/tex; mode=display">
@@ -3274,12 +3281,12 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 \Corr^2(\Y u_m,\X v_m)\tag{3.67}\label{3.67}
 </script>
 </p>
-<p>相继最大化．注意到最多可以找到 $M=\min(k,p)$ 个方向．第一典则响应变量是被 $\x_j$ 最优预测的线性组合（导出的响应变量）；相反地，最后的典则响应变量是被 $\x_j$ 估计最差的，并且可以考虑被舍弃．CCA 的解通过对样本交叉协方差矩阵 $\Y^T\X/N$ 进行广义的 SVD 分解得到（假设 $\Y$ 和 $\X$ 均被中心化；<a href="https://github.com/szcf-weiya/ESL-CN/issues/172">练习 3.20</a>）</p>
+<p>相继最大化．注意到最多可以找到 $M=\min(k,p)$ 个方向．第一典则响应变量是被 $\x_j$ 最优预测的线性组合（导出的响应变量）；相反地，最后的典则响应变量是被 $\x_j$ 估计最差的，并且可以考虑舍弃．CCA 的解通过对样本交叉协方差矩阵 $\Y^T\X/N$ 进行广义的 SVD 分解得到（假设 $\Y$ 和 $\X$ 均被中心化；<a href="https://github.com/szcf-weiya/ESL-CN/issues/172">练习 3.20</a>）</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.20</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/172">Issue 172: Ex. 3.20</a>，欢迎讨论交流！</p>
 </div>
-<p><strong>降秩回归 (reduced-rank regression)</strong> (Izenman, 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; van der Merwe and Zidek, 1980<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 通过明确地合并信息的回归模型来形式化这个方法．给定误差协方差 $\Cov(\varepsilon)=\bSigma$，求解下列带约束的多元回归问题：</p>
+<p><strong>降秩回归 (reduced-rank regression)</strong> (Izenman, 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; van der Merwe and Zidek, 1980<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 采用显式地合并信息的回归模型来形式化这个方法．给定误差协方差 $\Cov(\varepsilon)=\bSigma$，求解下列带约束的多元回归问题：</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\B^{rr}(m) = \underset{\rank(\B)=m}{\argmin}\sum_{i=1}^N(y_i-\B^Tx_i)^T\bSigma^{-1}(y_i-\B^Tx_i)\,.\tag{3.68}\label{3.68}
@@ -3434,7 +3441,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-08 15:17:33
+        Last Build Date UTC : 2019-07-09 01:53:05
       </div>
       
         
