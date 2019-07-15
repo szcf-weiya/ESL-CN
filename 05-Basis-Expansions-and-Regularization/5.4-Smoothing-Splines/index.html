@@ -3312,10 +3312,10 @@
 </tr>
 </tbody>
 </table>
-<p>这里我们讨论<strong>样条基方法</strong>来完全避免通过使用最大结点集合造成的结点选择的问题．拟合的复杂度由正则化来控制．考虑下面的问题：在所有二阶连续微分的函数 $f(x)$ 中，找到一个使得下面的惩罚残差平方和最小</p>
+<p>这里我们讨论 <strong>样条基方法</strong> 来完全避免通过使用最大结点集合造成的结点选择的问题．拟合的复杂度由正则化来控制．考虑下面的问题：在所有二阶连续微分的函数 $f(x)$ 中，找到一个使得下面的惩罚残差平方和最小的函数</p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm{RSS}(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\tag{5.9}
+\mathrm{RSS}(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\tag{5.9}\label{5.9}
 </script>
 </p>
 <p>其中 $\lambda$ 是固定的<strong>光滑参数 (smoothing parameter)</strong>．第一项衡量与数据的近似程度，第二项对函数的曲率进行惩罚，且$\lambda$ 建立了两者之间的一个平衡．两个特别的例子是：</p>
@@ -3326,13 +3326,13 @@
 <p>这从非常粗糙变到非常光滑，而且希望 $\lambda\in(0,\infty)$ 在非常粗糙与非常光滑之间表示一个对我们感兴趣的函数类．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注</p>
-<p>对于$y=f(x)$曲线的曲率定义为
+<p>对于 $y=f(x)$ 曲线的曲率定义为
   <script type="math/tex; mode=display">
   \kappa = \frac{\vert y''\vert}{(1+y'^2)^{3/2}}
   </script>
   <!--这里为什么只用二阶导？--></p>
 </div>
-<p>准则 (5.9) 定义在无限维函数空间上——实际上，是二阶导有定义的 Sobolev 函数空间．值得注意的是，可以证明 (5.9) 有一个显式的有限维的唯一一个最小值点，是一个结点在不重复的 $x_i,i=1,2,\ldots,N$ 处的自然三次样条．（<a href="https://github.com/szcf-weiya/ESL-CN/issues/34">练习 5.7</a>）．表面上看，这个函数族仍然是过参量化，因为有 $N$ 个结点，这意味着 $N$ 个自由度．然而，惩罚项转换为对样条系数的惩罚，使得以某种方式向着线性拟合收缩．</p>
+<p>准则 \eqref{5.9} 定义在无限维函数空间上——实际上，是二阶导有定义的 Sobolev 函数空间．值得注意的是，可以证明 \eqref{5.9} 存在一个显式的有限维的唯一一个最小值点，是一个结点在不重复的 $x_i,i=1,2,\ldots,N$ 处的自然三次样条．（<a href="https://github.com/szcf-weiya/ESL-CN/issues/34">练习 5.7</a>）．表面上看，这个函数族仍然是过参量化，因为有 $N$ 个结点，这意味着 $N$ 个自由度．然而，惩罚项转换为对样条系数的惩罚，使得以某种方式向着线性拟合收缩．</p>
 <p>因为解为自然样条，所以我们可以写成</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3375,7 +3375,7 @@ f(x)=\sum\limits_{j=1}^NN_j(x)\theta_j\tag{5.10}
 </script>
 </p>
 <p>再一次看到，拟合关于 $\mathbf y$ 是线性的，并且有限线性算子 $\mathbf S_\lambda$ 称作<strong>光滑矩阵 (smoother matrix)</strong>．这种线性的结果表明从 $\mathbf y$ 得到 $\hat {\mathbf f}$ 的方法不依赖 $\mathbf y$ 本身；$\mathbf S_\lambda$仅仅依赖于 $x_i$ 和 $\lambda$．</p>
-<p>线性算子也存在于更传统的最小二乘拟合中．假设 $\mathbf B_\xi$ 是 $M$ 个三次样条基函数在 $N$ 个训练点 $x_i$ 处取值的 $N\times M$ 矩阵，结点序列为 $\xi$，并且 $M &lt; &lt; N$．则拟合样条值向量由下式给出</p>
+<p>线性算子也出现在经典的最小二乘拟合中．假设 $\mathbf B_\xi$ 是 $M$ 个三次样条基函数在 $N$ 个训练点 $x_i$ 处取值的 $N\times M$ 矩阵，结点序列为 $\xi$，并且 $M &lt; &lt; N$．则拟合样条值向量由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3384,7 +3384,7 @@ f(x)=\sum\limits_{j=1}^NN_j(x)\theta_j\tag{5.10}
 \end{align}
 </script>
 </p>
-<p>这里线性算子$\mathbf H_\xi$是投影算子，在统计中也称作帽子矩阵．$\mathbf H_\xi$和 $\mathbf S_\lambda$之间有许多重要的相似性和不同：</p>
+<p>这里线性算子 $\mathbf H_\xi$ 是投影算子，在统计中也称作帽子矩阵．$\mathbf H_\xi$ 和 $\mathbf S_\lambda$ 之间有许多重要的相似性和不同：</p>
 <ul>
 <li>都是对称、半正定矩阵．</li>
 <li>$\mathbf{H_\xi H_\xi=H_\xi}$（幂等矩阵），而 $\mathbf S_\lambda \mathbf S_\lambda\preceq \mathbf S_\lambda $，表示右边项比左边项多一个半正定矩阵．这是$S_\lambda$收缩本质的结果，我们将在下面进一步讨论．</li>
@@ -3413,7 +3413,7 @@ f(x)=\sum\limits_{j=1}^NN_j(x)\theta_j\tag{5.10}
 \underset{\mathbf f}{\mathrm{min}}(\mathbf{y-f})^T(\mathbf{y-f})+\lambda \mathbf{f^TKf}\tag{5.18}
 </script>
 </p>
-<p>$\mathbf K$ 也称作<strong>惩罚矩阵 (penalty matrix)</strong>，而且 $\mathbf K$ 的二次型形式可以表示成二阶差分（二阶差商）的加权和．$\mathbf S_\lambda$的特征值分解为</p>
+<p>$\mathbf K$ 也称作 <strong>惩罚矩阵 (penalty matrix)</strong>，而且 $\mathbf K$ 的二次型形式可以表示成二阶差分（二阶差商）的加权和．$\mathbf S_\lambda$ 的特征值分解为</p>
 <p>
 <script type="math/tex; mode=display">
 \mathbf S_\lambda = \sum\limits_{k=1}^N\rho_k(\lambda)\mathbf u_k\mathbf u_k^T\tag{5.19}
@@ -3444,7 +3444,7 @@ f(x)=\sum\limits_{j=1}^NN_j(x)\theta_j\tag{5.10}
 其中 $\mathbf U$ 列向量为 $\mathbf u_k$，且 $\mathbf D$ 为元素为 $d_k$ 的对角矩阵．</li>
 <li>$\df_\lambda = \trace(\mathbf S_\lambda)=\sum_{k=1}^N\rho_k(\lambda)$．对于投影光滑器，所有的特征值为 1，每个特征值对应投影子空间的一个维度．</li>
 </ul>
-<p>图 5.8 描述了一个光滑样条矩阵，行按 $x$ 排序．这种表示的带表明光滑样条是局部拟合方法，很像第 6 章的局部加权回归过程．右图详细显示了所选的 $\mathbf S$ 的行，我们称为<strong>等价核 (equivalent kernels)</strong>．当 $\lambda\rightarrow 0, \df_\lambda\rightarrow N$，且 $\mathbf S_\lambda\rightarrow \mathbf I$，$\mathbf I$ 为 $N$ 维单位矩阵．当$\lambda\rightarrow \infty,\df_\lambda\rightarrow 2$， 且 $\mathbf S_\lambda\rightarrow \mathbf H$， $\mathbf H$ 为在 $\mathbf x$ 上线性回归的帽子矩阵．</p>
+<p>图 5.8 描述了一个光滑样条矩阵，行按 $x$ 排序．这种表示的带表明光滑样条是局部拟合方法，很像第 6 章的局部加权回归过程．右图详细显示了所选的 $\mathbf S$ 的行，我们称为 <strong>等价核 (equivalent kernels)</strong>．当 $\lambda\rightarrow 0, \df_\lambda\rightarrow N$，且 $\mathbf S_\lambda\rightarrow \mathbf I$，$\mathbf I$ 为 $N$ 维单位矩阵．当$\lambda\rightarrow \infty,\df_\lambda\rightarrow 2$， 且 $\mathbf S_\lambda\rightarrow \mathbf H$， $\mathbf H$ 为在 $\mathbf x$ 上线性回归的帽子矩阵．</p>
 <p><img alt="" src="../../img/05/fig5.8.png" /></p>
 <blockquote>
 <p>图 5.8 光滑样条的光滑矩阵近似带状，表明局部支撑的等价核．左图将$\mathbf S$的元素表示成图象．右图详细显示了所指出的行的等价核或者加权函数．</p>
@@ -3527,7 +3527,7 @@ f(x)=\sum\limits_{j=1}^NN_j(x)\theta_j\tag{5.10}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-15 08:11:36
+        Last Build Date UTC : 2019-07-15 15:17:26
       </div>
       
         
