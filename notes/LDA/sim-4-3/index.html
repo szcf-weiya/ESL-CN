@@ -3390,6 +3390,15 @@
 <span class="c1"># actually, c1 = c2</span>
 <span class="n">err1</span> <span class="o">=</span> <span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">c2</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span><span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="nf">abs</span><span class="p">(</span><span class="n">c1</span> <span class="o">-</span> <span class="n">N</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="m">3</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
 
+<span class="c1">## Alternative method</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">3</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="m">3</span><span class="o">*</span><span class="n">N</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">cl[i]</span> <span class="o">=</span> <span class="nf">which.max</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">pred1[i]</span><span class="p">,</span> <span class="n">pred2[i]</span><span class="p">,</span> <span class="n">pred3[i]</span><span class="p">))</span>
+<span class="p">}</span>
+<span class="n">truth</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+<span class="n">err1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">cl</span> <span class="o">-</span> <span class="n">truth</span> <span class="o">!=</span> <span class="m">0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="m">3</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+
 <span class="c1">## reproduce figure 4.3 left</span>
 <span class="nf">png</span><span class="p">(</span><span class="s">&quot;reproduce-fig-4-3l.png&quot;</span><span class="p">)</span>
 <span class="nf">plot</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> 
@@ -3525,7 +3534,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-16 07:15:40
+        Last Build Date UTC : 2019-07-16 07:46:48
       </div>
       
         
