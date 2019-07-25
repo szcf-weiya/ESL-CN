@@ -3265,7 +3265,7 @@
 <blockquote>
 <p>图 17.2. 无向图模型或者马尔科夫网络的例子．每个结点或顶点表示一个随机变量，两个结点之间缺失边表示条件独立．举个例子，在图 (a) 中，在给定 $Y$ 的情况下，$X$ 和 $Z$ 是独立的．在图 (b) 中，$Z$ 与 $X,Y,W$ 中的每一个都是独立的．</p>
 </blockquote>
-<p>假设我们有图 $\cal G$，它的顶点集合 $V$ 表示联合分布为 $P$ 的随机变量的顶点集 $V$．在马尔科夫图 $\cal G$ 中，某条边的缺失表示在给定其他结点的变量时，对应的随机变量是条件独立的．这用下面的记号来表示：
+<p>假设我们有图 $\cal G$，它的顶点集合 $V$ 表示联合分布为 $P$ 的随机变量集．在马尔科夫图 $\cal G$ 中，某条边的缺失表示在给定其他结点的变量时，对应的随机变量是条件独立的．这可以用下面的记号来表示：
 <script type="math/tex; mode=display">
 \text{No edge joining X and Y}\Leftrightarrow X\bot Y\mid \text{rest}\tag{17.1}
 </script>
@@ -3334,7 +3334,7 @@ f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
 <blockquote>
 <p>图 17.3. 没有唯一地指定变量的联合分布中的高阶依赖性结构的完全图．</p>
 </blockquote>
-<p>本章的剩余部分我们关注 <strong>成对马尔科夫图 (pairwise Markov graphs)</strong> (Koller and Friedman, 2007<sup id="fnref2:8"><a class="footnote-ref" href="#fn:8">8</a></sup>)．对于每条边都有势能函数（如上面 $f^{(2)}$ 的成对变量），且用至多二阶的交叉项来表示．这些在参数上是很简洁的，更容易处理，并且给出由图结构表示的最小复杂性．连续和离散数据的模型都仅仅是（关于边集中变量的）成对边缘分布的函数．</p>
+<p>本章的剩余部分我们关注 <strong>成对马尔科夫图 (pairwise Markov graphs)</strong> (Koller and Friedman, 2007<sup id="fnref2:8"><a class="footnote-ref" href="#fn:8">8</a></sup>)．对于每条边都有势能函数（如上面 $f^{(2)}$ 的成对变量），且用至多二阶的交叉项来表示．这些在参数上是很简洁的，更容易处理，并且给出由图结构表示的最小复杂性．连续和离散数据的模型都仅仅是（关于<strong>边集 (edge set)</strong>中变量的）成对边缘分布的函数．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3445,7 +3445,7 @@ f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-18 13:30:09
+        Last Build Date UTC : 2019-07-25 08:13:19
       </div>
       
         
