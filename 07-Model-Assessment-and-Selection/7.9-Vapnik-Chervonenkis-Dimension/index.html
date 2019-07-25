@@ -3329,6 +3329,10 @@
 <p>图 7.6. 前三张图显示了平面中的直线类可以打散 3 个点．最后一张图显示了这个类不能打散 4 个点，因为没有直线可以使得空心点在一侧而实心点在另一侧．因此平面中直线类的 VC 维是 3．注意到非线性曲线类可以打散 4 个点，也因此有比 3 更高的 VC 维．</p>
 </blockquote>
 <p>图 7.6 显示了在平面中线性指示函数的 VC 维是 3 而非 4，因为没有 4 个点可以被直线集打散．一般地，$p$ 维线性指示函数的 VC 维为 $p+1$，这也是自由参数的个数．另一方面，可以证明 $\sin(\alpha x)$ 函数类有无穷的 VC 维，正如图 7.5 显示的那样．通过合适的 $\alpha$，任何点集都可以被这个函数类打散（<a href="https://github.com/szcf-weiya/ESL-CN/issues/130">练习 7.8</a>）．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Ex. 7.8</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/130">Issue 130: Ex. 7.8</a>.</p>
+</div>
 <p>至今我们仅仅讨论了指示函数的 VC 维，但这个可以推广到实值函数中．实值函数类 $\{g(x,\alpha)\}$ 的 VC 维定义为指示类 ${I(g(x,\alpha)-\beta)}$ 的 VC 维，其中 $\beta$ 在 $g$ 的值域中取值．</p>
 <p>可以使用 VC 维来构造（样本外）预测误差的估计；不同类型的结果都是可以的．当使用函数类时，采用 VC 维的概念，可以证明训练误差的乐观 (optimisim) 的结果．这样的结果的例子如下．如果我们采用 VC 维为 $h$ 的类函数 $\{f(x,\alpha)\}$ 来拟合 $N$ 个训练点，于是在训练集上至少以 $1-\eta$ 的概率成立下式：</p>
 <p>
@@ -3445,7 +3449,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-25 08:27:58
+        Last Build Date UTC : 2019-07-25 13:10:05
       </div>
       
         
