@@ -3487,6 +3487,10 @@ t_j\sim\pi_0\cdot F_0+(1-\pi_0)\cdot F_1\tag{18.52}
 </script>
 </p>
 <p>因此在混合模型 \eqref{18.51} 的假设下，如果测试统计量落在该测试的拒绝域中，也就是，如果我们拒绝原假设时，则 pFDR 是零假设为真的后验概率.（<a href="https://github.com/szcf-weiya/ESL-CN/issues/135">练习 18.20</a>）．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Ex. 18.20</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/135">Issue 135: Ex. 18.20</a>.</p>
+</div>
 <p>误发现率提供了基于整个拒绝域（比如 $\vert t_j\vert \ge 2$）的检验的准确性的度量．但是如果这样一个检验的 FDR 为 $10\%$，则 $t_j=5$ 的基因会比 $t_j=2$ 的基因更显著．因此导出 FDR 的局部版本（比如特定基因）是我们感兴趣的．检验统计量 $t_j$ 的 q-value 定义为在所有拒绝 $t_j$ 的区域中最小的 FDR．也就是，对于对称的拒绝域，$t_j=2$ 的 q-value 定义为拒绝域 $\Gamma=\{-(\infty,-2)\cup(2,\infty)\}$的 FDR．因此 $t_j=5$ 的 FDR 要小于 $t_j=2$ 时的 FDR，这反映了 $t_j=5$ 比 $t_j=2$ 时更显著．$t=t_0$ 时的局部误分类率定义为</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3598,7 +3602,7 @@ t_j\sim\pi_0\cdot F_0+(1-\pi_0)\cdot F_1\tag{18.52}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-26 06:40:30
+        Last Build Date UTC : 2019-07-26 06:58:12
       </div>
       
         
