@@ -3275,14 +3275,16 @@
 <li>定义 $\delta_k(x)=\sum_{\ell=1}^L\vert C_{k\ell}-\hat p_\ell(x)\vert$，是第 $k$ 个类别的判别函数，其中 $C_{k\ell}$ 是表 16.1 第 $k$ 行和第 $\ell$ 列的值．</li>
 </ol>
 <div class="admonition note">
-<p class="admonition-title">weiya 注：<p>关于 $\delta_k(x)$ 的定义，可以这样理解．首先，$\hat p_\ell (x)$ 值越大，表示越倾向于类别 $1$，越小则越倾向于类别 $0$，于是 $\vert C_{k\ell}-\hat p_\ell(x) \vert$ 表示预测正确时的程度，值越小表示得到的预测会越正确．因此，最后类别为使得 $\delta_k(x), k=1,2,\ldots, 10$ 中最小的$k$．</p>
-</p>
+<p class="admonition-title">weiya 注：</p>
+<p>关于 $\delta_k(x)$ 的定义，可以这样理解．首先，$\hat p_\ell (x)$ 值越大，表示越倾向于类别 $1$，越小则越倾向于类别 $0$，于是 $\vert C_{k\ell}-\hat p_\ell(x) \vert$ 表示预测正确时的程度，值越小表示得到的预测会越正确．因此，最后类别为使得 $\delta_k(x), k=1,2,\ldots, 10$ 中最小的$k$．</p>
 </div>
 <p>$\mathbf C$ 的每一行是表示该类的二进制编码．每一行的位数比必要的二进制位数更多，而且冗余的“error-correcting”位数在一些不精确的情形下是允许的，而且可以提高模型的效果．事实上，上面的全编码矩阵 $\mathbf C$ 在任意两列中最小的 Hamming 距离为 7．注意到即使响应指示变量编码（<a href="../../04-Linear-Methods-for-Classification/4.2-Linear-Regression-of-an-Indicator-Matrix/index.html">4.2 节</a>）是多余的，因为 $10$ 个类别仅仅需要 $[\log_210=4]$ 位来实现唯一表示．Dietterich and Bakiri (1995)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 证明了当分类数作为基分类器会使得不同的多类别问题有显著性提高．</p>
-<p>!!! &ldquo;weiya 注：&rdquo;
-    查看 Dietterich and Bakiri (1995)，其中提到无多余编码列的方法被称作 distributed output code，比如图中用了 6 列（虽然不是更少的 4 列），
-    <img alt="" src="../../img/16/note-16-1.png" />
-    而 ECOC 的区别在于采用了 error-correcting codes，这种编码能够 correct error．举个简单的例子，比如需要发送信号 $0$，如果重复 3 次发送，即使出了一次错误，接收时变成了 $001$，或 $010$ 等，但采用多数原则，仍认为原信号为 $0$，这样就达到了 correct error 的效果．原文称，如果 ECOC 矩阵中最小的 Hamming 距离为 $d$，则至少可以 correct $\lfloor \frac{d-1}{2}\rfloor$ 位错误．关于 error-correcting codes，推荐 MARK WILDON 的 Lecture Notes——<a href="http://www.ma.rhul.ac.uk/~uvah099/Maths/Codes11/MT3612011Notes.pdf">ERROR CORRECTING CODES MT361/MT461/MT5461</a>．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>查看 Dietterich and Bakiri (1995)，其中提到无多余编码列的方法被称作 distributed output code，比如图中用了 6 列（虽然不是更少的 4 列），
+<img alt="" src="../../img/16/note-16-1.png" />
+而 ECOC 的区别在于采用了 error-correcting codes，这种编码能够 correct error．举个简单的例子，比如需要发送信号 $0$，如果重复 3 次发送，即使出了一次错误，接收时变成了 $001$，或 $010$ 等，但采用多数原则，仍认为原信号为 $0$，这样就达到了 correct error 的效果．原文称，如果 ECOC 矩阵中最小的 Hamming 距离为 $d$，则至少可以 correct $\lfloor \frac{d-1}{2}\rfloor$ 位错误．关于 error-correcting codes，推荐 MARK WILDON 的 Lecture Notes——<a href="http://www.ma.rhul.ac.uk/~uvah099/Maths/Codes11/MT3612011Notes.pdf">ERROR CORRECTING CODES MT361/MT461/MT5461</a>．</p>
+</div>
 <p>James and Hastie (1998)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">3</a></sup> 分析 ECOC 方法，而且证明了随机编码分配和最优结构化 error-correcting 编码．他们也提出这种编码的好处在于降低方差（和 bagging 和随机森林一样），因为不同的编码问题会引出不同的树，另外上面解码步骤 (3) 跟平均(averaging)有相似的影响．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注<p>Hamming 距离为两个向量不匹配的值的个数．</p>
@@ -3380,7 +3382,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-26 06:32:47
+        Last Build Date UTC : 2019-07-26 06:40:29
       </div>
       
         
