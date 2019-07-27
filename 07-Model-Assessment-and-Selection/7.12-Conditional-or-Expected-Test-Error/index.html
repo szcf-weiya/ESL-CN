@@ -3257,10 +3257,6 @@
 <td>状态</td>
 <td>Done</td>
 </tr>
-<tr>
-<td>备注</td>
-<td>1 question</td>
-</tr>
 </tbody>
 </table>
 <p>图 7.14 和 7.15 检验了交叉验证是否能很好地估计 $\Err_{\cal T}$ 的问题，其中 $\Err_{\cal T}$ 表示<strong>给定训练集 $\cal T$ 上的误差</strong><!--（228页的式（7.15））-->，它与<strong>期望预测误差</strong>相对．</p>
@@ -3285,10 +3281,6 @@
 <p>图 7.15 显示了 100 次模拟中，10 折交叉验证和 $N$ 折交叉验证对误差的估计关于真实条件误差的散点图．尽管散点图没有表明太多的相关性，但右下图表明对于大部分来说是呈负相关的，这正是之前已经观察到的神奇现象．这种负相关解释了为什么任意形式的 CV 都<strong>不能</strong>很好地估计 $\Err_{\cal T}$．每张图的虚线是在 $\Err(p)$ 处画的，$\Err(p)$ 是最优子集大小 $p$ 时的期望误差．我们再一次看到两种形式的 CV 对于期望误差是近似无偏的，但是对于不同训练集的测试误差的方差是相当不同的．</p>
 <p>在 7.3 的四种实验条件下，“reg/linear” 条件表现出实际测试误差与预测测试误差最高的相关性．这个现象也发生在误差的自助法估计中，而且我们猜测，对条件预测误差的其他估计都成立．</p>
 <p>我们得出结论，仅仅给出从与训练集相同的数据时，一般情况下得到特定训练集的测试误差的估计不是很容易的．相反地，交叉验证和相关的方法可能可以对期望误差 $\Err$ 给出合理的估计．</p>
-<div class="admonition question">
-<p class="admonition-title">weiya 注</p>
-<p>真实条件误差如何给出？</p>
-</div>
 <div class="footnote">
 <hr />
 <ol>
@@ -3375,7 +3367,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-27 14:08:46
+        Last Build Date UTC : 2019-07-27 14:17:48
       </div>
       
         
