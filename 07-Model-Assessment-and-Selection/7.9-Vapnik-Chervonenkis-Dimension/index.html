@@ -3375,7 +3375,12 @@
 <script type="math/tex; mode=display">
 100\times \frac{\Err_{\cal T}(\hat \alpha)-\min_\alpha \Err_{\cal T}(\alpha)}{\max_\alpha \Err_{\cal T}(\alpha)-\min_\alpha \Err_{\cal T}(\alpha)}
 </script>
-它表示选定的模型相对于最优模型的误差．对于线性回归，模型复杂度由特征的个数度量；正如在 <a href="../7.5-Estimates-of-In-Sample-Prediction-Error/index.html">7.5 节</a>提到的那样，它低估了 $\df​$，因为它没有考虑该大小下对最优模型的搜索．这对线性分类器的 VC 维也同样适用．对于 $k​$ 最近邻，模型复杂度取 $N/k​$．在加性误差模型回归模型下，这个可以证明为真正的有效自由度个数（<a href="https://github.com/szcf-weiya/ESL-CN/issues/131">练习 7.6</a>）；我们不知道它是否对应 VC 维．我们取 \eqref{7.46} 中常数为 $a_1=a_2=1​$；SRM 的结果随着不同的常数值而变化，而且这个选择给出了最有利的结果．我们运用另一个实用的界 \eqref{7.47} 来重复 SRM 的选择过程，并且得到几乎一样的结果．对于误分类误差，我们在最少限制的模型上（对于 KNN 取 $k=5​$，因为 $k=1​$ 会导致 0 训练误差）采用 $\hat\sigma_\varepsilon^2=[N/(N-d)]\cdot \overline{err}(\alpha)​$．AIC 准则对于四种情形都适用，尽管在 0-1 损失时缺少理论支撑．BIC 表现也近似一样，但 SRM 的表现有好有坏．</p>
+它表示选定的模型相对于最优模型的误差．对于线性回归，模型复杂度由特征的个数度量；正如在 <a href="../7.5-Estimates-of-In-Sample-Prediction-Error/index.html">7.5 节</a>提到的那样，它低估了 $\df​$，因为它没有考虑该大小下对最优模型的搜索．这对线性分类器的 VC 维也同样适用．对于 $k​$ 最近邻，模型复杂度取 $N/k​$．在加性误差模型回归模型下，这个可以证明为真正的有效自由度个数（<a href="https://github.com/szcf-weiya/ESL-CN/issues/131">练习 7.6</a>）；但我们不知道它是否对应 VC 维．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 7.6</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/131">Issue 131: Ex. 7.6</a>.</p>
+</div>
+<p>我们取 \eqref{7.46} 中常数为 $a_1=a_2=1​$；SRM 的结果随着不同的常数值而变化，而且这个选择给出了最有利的结果．我们运用另一个实用的界 \eqref{7.47} 来重复 SRM 的选择过程，并且得到几乎一样的结果．对于误分类误差，我们在最少限制的模型上（对于 KNN 取 $k=5​$，因为 $k=1​$ 会导致 0 训练误差）采用 $\hat\sigma_\varepsilon^2=[N/(N-d)]\cdot \overline{err}(\alpha)​$．AIC 准则对于四种情形都适用，尽管在 0-1 损失时缺少理论支撑．BIC 表现也近似一样，但 SRM 的表现有好有坏．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3462,7 +3467,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-27 11:03:38
+        Last Build Date UTC : 2019-07-27 11:19:35
       </div>
       
         
