@@ -3251,7 +3251,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2017-09-17</td>
+<td>2019-07-27 12:07:49</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3320,7 +3320,7 @@
 <p>总结一下，我们有重要的关系式</p>
 <p>
 <script type="math/tex; mode=display">
-\E_{\mathbf y}(\Err_{in})=\E_{\mathbf y}(\overline{\err})+\frac{2}{N}\sum\limits_{i=1}^NCov(\hat y_i,y_i)\tag{7.22}\label{7.22}
+\E_{\mathbf y}(\Err_{in})=\E_{\mathbf y}(\overline{\err})+\frac{2}{N}\sum\limits_{i=1}^N\Cov(\hat y_i,y_i)\tag{7.22}\label{7.22}
 </script>
 </p>
 <p>如果 $\hat y_i$ 通过含 $d$ 个输入或者基函数的线性拟合得到，上面表达式可以简化．例如，对于可加误差模型 $Y=f(X)+\varepsilon$，</p>
@@ -3339,10 +3339,10 @@
 <p class="admonition-title">weiya 注：\eqref{7.24}</p>
 <p><a href="https://github.com/szcf-weiya/ESL-CN/issues/27">Issue 27: Ex. 7.4</a> 的解答中也给出了 \eqref{7.24} 的推导。</p>
 </div>
-<p>表达式 $\eqref{7.23}$ 是将在 <a href="../7.6-The-Effective-Number-of-Parameters/index.html">7.6 节</a>讨论的 <strong>有效参数个数 (effective number of parameters)</strong> 的定义的基础．optimism 随着我们使用的输入或基函数的个数 $d$ 线性增长，但是当训练样本大小增大时会降低．$\eqref{7.24}$ 的其它版本对其它误差模型也近似成立，比如二值数据和熵损失．</p>
-<p>估计预测误差的一种明显方法是先估计 optimism 然后加到训练误差 $\overline{\err}$ 上．下一节将要描述的方法—— $C_p$，AIC，BIC以及其它方法——对于估计关于参数是线性的特殊估计类，都是通过这种方式实现．</p>
+<p>表达式 $\eqref{7.23}$ 是将在 <a href="../7.6-The-Effective-Number-of-Parameters/index.html">7.6 节</a>讨论的 <strong>有效参数个数 (effective number of parameters)</strong> 定义的基础．optimism 随着我们使用的输入或基函数的个数 $d$ 线性增长，但是当训练样本大小增大时会降低．$\eqref{7.24}$ 的其它版本对其它误差模型也近似成立，比如二值数据和熵损失．</p>
+<p>估计预测误差的一种明显方法是先估计 optimism 然后加到训练误差 $\overline{\err}$ 上．下一节将要描述的方法—— $C_p$，AIC，BIC 以及其它方法——对于估计关于参数是线性的特殊估计类，都是通过这种方式实现．</p>
 <p>相反地，将在本章后面描述的交叉验证以及自助法是对 <strong>样本外 (extra-sample)</strong> 误差 $\Err$ 直接估计的方法．这些一般工具可以用于任意损失函数以及非线性自适应拟合技巧．</p>
-<p>样本内误差通常不是直接感兴趣的，因为特征的未来值不可能与它们训练集值一致．但是为了模型之间的比较，样本内误差是很方便的，并且经常能够有效地模型选择．原因在于误差的相对（而不是绝对）大小是我们所关心的．</p>
+<p>样本内误差通常不是直接感兴趣的，因为特征的未来值不可能与它们训练集值一致．但是为了模型之间的比较，样本内误差是很方便的，并且经常能够有效地进行模型选择．原因在于误差的相对（而不是绝对）大小是我们所关心的．</p>
                 
                   
                 
@@ -3421,7 +3421,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-27 04:05:05
+        Last Build Date UTC : 2019-07-27 04:09:25
       </div>
       
         
