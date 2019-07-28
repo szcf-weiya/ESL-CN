@@ -3373,7 +3373,7 @@
 <script type="math/tex; mode=display">
 \begin{align}
 Y_1&\sim N(\mu_1,\sigma^2_1)\notag\\
-Y_2&\sim N(\mu_2,\sigma_2^2)\qquad \qquad \qquad\tag{8.36}\\
+Y_2&\sim N(\mu_2,\sigma_2^2)\qquad \qquad \qquad\tag{8.36}\label{8.36}\\
 Y&=(1-\Delta)\cdot Y_1 + \Delta\cdot Y_2\notag
 \end{align}
 </script>
@@ -3389,11 +3389,11 @@ g_Y(y)=(1-\pi)\phi_{\theta_1}(y)+\pi\phi_{\theta_2}(y)\tag{8.37}
 <script type="math/tex; mode=display">
 \ell(\theta;\mathbf Z)=\sum\limits_{i=1}^N\log[(1-\pi)\phi_{\theta_1}(y_i)+\pi\phi_{\theta_2}(y_i)]\tag{8.39}
 </script>
-直接对 $\ell(\theta;\mathbf Z)$ 进行最大化在数值上是很困难的，因为求和项在 $\log$ 函数里面．然而，这里有一个更简单的方式．我们考虑一个类似 (8.36) 中取 0 或 1 的潜变量 $\Delta_i$：若 $\Delta_i=1$ 则 $Y_i$ 来自模型 2，否则来自模型 1．假设我们已经知道了 $\Delta_i$ 的值．则对数概率为
+直接对 $\ell(\theta;\mathbf Z)$ 进行最大化在数值上是很困难的，因为求和项在 $\log$ 函数里面．然而，这里有一个更简单的方式．我们考虑一个类似 \eqref{8.36} 中取 0 或 1 的潜变量 $\Delta_i$：若 $\Delta_i=1$ 则 $Y_i$ 来自模型 2，否则来自模型 1．假设我们已经知道了 $\Delta_i$ 的值．则对数概率为
 <script type="math/tex; mode=display">
 \begin{align}
 \ell_0(\theta;\bf Z,\bf{\Delta})&=\sum\limits_{i=1}^N[(1-\Delta_i)\log\phi_{\theta_1}(y_i)+\Delta_i\log\phi_{\theta_2}(y_i)]\notag\\
-&+\sum\limits_{i=1}^N[(1-\Delta_i)\log(1-\pi)+\Delta_i\log\pi]\tag{8.40}
+&+\sum\limits_{i=1}^N[(1-\Delta_i)\log(1-\pi)+\Delta_i\log\pi]\tag{8.40}\label{8.40}
 \end{align}
 </script>
 </p>
@@ -3410,7 +3410,7 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 上式 $i\in \cal I$ 部分，乘以 $(1-\Delta_i)$ 也就相当于乘以 1，同理对于 $i\in \cal J$．这样取对数似然便有 (8.40) 式． --></p>
 </div>
 <p>而且 $\mu_1$ 和 $\sigma_1^2$ 的极大似然估计为 $\Delta_i=0$ 时样本均值和方差，类似地对于 $\mu_2$ 和 $\sigma_2^2$ 的极大似然估计为 $\Delta_i=1$ 时的样本均值和方差．$\pi$ 的估计为 $\Delta_i=1$ 的比例．</p>
-<p>因为 $\Delta_i$ 的值实际上是不知道的，我们用一种迭代方式，替换 (8.40) 中的每个 $\Delta_i$，它的期望值
+<p>因为 $\Delta_i$ 的值实际上是不知道的，我们用一种迭代方式，替换 \eqref{8.40} 中的每个 $\Delta_i$，它的期望值
 <script type="math/tex; mode=display">
 \gamma_i(\theta)=\E(\Delta_i\mid\theta,\mathbf Z)=\Pr(\Delta_i=1\mid \theta,\mathbf Z)\tag{8.41}
 </script>
@@ -3439,9 +3439,9 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 </div>
 <h2 id="em">广义 EM 算法<a class="headerlink" href="#em" title="Permanent link">&para;</a></h2>
 <p>上面的过程是对于特定问题的类别下最大化概率的 EM（或者 Baum-Welch）算法．这些问题的概率最大化是困难的，但是通过运用潜在数据（未观测）增大样本会变得简单．这也称作数据增广．这里潜在数据是模型成员 $\Delta_i$．在其它问题中，潜在数据是理应被观测到的实际数据但是缺失了．</p>
-<p>算法 8.2 给出了 EM 算法的一般形式．我们的观测数据是 $\mathbf Z$，其对数概率 $\ell(\theta;\mathbf Z)$ 取决于参数 $\theta$．潜在数据或者缺失数据为 $\mathbf Z^m$，因此完整数据为 $\mathbf {T=(Z,Z^m)}$，对数似然函数为 $\ell_0(\theta;\mathbf T)$，$\ell_0$ 基于完整的密度函数．在混合问题中，$(\mathbf{Z,Z^m)=(y,}\Delta)$，且 $\ell_0(\theta;\mathbf T)$ 由 (8.40) 式给出．</p>
+<p>算法 8.2 给出了 EM 算法的一般形式．我们的观测数据是 $\mathbf Z$，其对数概率 $\ell(\theta;\mathbf Z)$ 取决于参数 $\theta$．潜在数据或者缺失数据为 $\mathbf Z^m$，因此完整数据为 $\mathbf {T=(Z,Z^m)}$，对数似然函数为 $\ell_0(\theta;\mathbf T)$，$\ell_0$ 基于完整的密度函数．在混合问题中，$(\mathbf{Z,Z^m)=(y,}\Delta)$，且 $\ell_0(\theta;\mathbf T)$ 由 \eqref{8.40} 式给出．</p>
 <p><img alt="" src="../../img/08/alg8.2.png" /></p>
-<p>在我们的混合例子中，$\E(\ell_0(\theta&rsquo;;\mathbf T)\mid \mathbf Z,\hat \theta^{(j)})$ 是式(8.40)，只是后者中的 $\Delta_i$ 替换成了解释度 $\hat\gamma_i(\hat \theta)$．第三步的最大化仅仅是加权均值和方差．</p>
+<p>在我们的混合例子中，$\E(\ell_0(\theta&rsquo;;\mathbf T)\mid \mathbf Z,\hat \theta^{(j)})$ 是将式 \eqref{8.40} 中的 $\Delta_i$ 替换成了解释度 $\hat\gamma_i(\hat \theta)$．第三步的最大化仅仅是加权均值和方差．</p>
 <p>我们现在给出一个为什么一般情况下 EM 算法有用的解释．</p>
 <p>因为
 <script type="math/tex; mode=display">
@@ -3455,10 +3455,10 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 <script type="math/tex; mode=display">
 \begin{align}
 \ell(\theta';\mathbf Z)&=\E[\ell_0(\theta';\mathbf T)\mid \mathbf Z,\theta]-\E[\ell_1(\theta';\mathbf{Z^m\mid Z)\mid Z,\theta}]\notag\\
-&\equiv Q(\theta',\theta)-R(\theta',\theta)\qquad\tag{8.46}
+&\equiv Q(\theta',\theta)-R(\theta',\theta)\qquad\tag{8.46}\label{8.46}
 \end{align}
 </script>
-在最大化那一步，EM 算法最大化关于 $\theta&rsquo;$ 的 $Q(\theta&rsquo;,\theta)$，而不是实际的目标函数 $\ell(\theta&rsquo;;\mathbf Z)$．为什么这样能成功地最大化 $\ell(\theta&rsquo;;\mathbf Z)$？注意到 $R(\theta^*,\theta)$ 是关于 $\theta^*$ 的密度的期望，得到的密度是关于 $\theta$ 的，因此（由琴生不等式）当 $\theta^*=\theta$ 时（见<a href="https://github.com/szcf-weiya/ESL-CN/issues/125">练习 8.1</a>）最大化关于 $\theta^*$ 的函数．</p>
+在最大化那一步，EM 算法最大化关于 $\theta&rsquo;$ 的 $Q(\theta&rsquo;,\theta)$，而不是实际的目标函数 $\ell(\theta&rsquo;;\mathbf Z)$．为什么这样能成功地最大化 $\ell(\theta&rsquo;;\mathbf Z)$？注意到 $R(\theta^*,\theta)$ 是关于 $\theta^*$ 的对数密度的期望，得到的密度是关于 $\theta$ 的，因此（由琴生不等式）当 $\theta^*=\theta$ 时（见<a href="https://github.com/szcf-weiya/ESL-CN/issues/125">练习 8.1</a>）最大化关于 $\theta^*$ 的函数．</p>
 <!-- !!! note "weiya注"
         练习 8.1 如下：
         ![](../img/08/ex8.1.png)
@@ -3501,10 +3501,10 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 <script type="math/tex; mode=display">
 F(\theta',\tilde P) = \E_{\tilde P}[\ell_0(\theta';\mathbf T)] - \E_{\tilde P}[\log\tilde P(\mathbf Z^m)]\tag{8.48}
 </script>
-这里 $\tilde P(\mathbf Z^m)$ 是潜在数据 $\mathbf Z^m$ 的任意分布．在混合例子中，$\tilde P(\mathbf Z^m)$ 构成了概率 $\gamma_i=\Pr(\Delta_i=1\mid \theta,\mathbf Z)$ 的集合．注意到从 $(8.46)$ 式看，$F$ 在 $\tilde P(\mathbf Z^m)=\Pr(\mathbf Z^m\mid \mathbf Z,\theta&rsquo;)$ 上取值，它是观测数据的对数似然函数．函数 $F$ 扩大了对数似然的定义域来，使得能够进行最大化．</p>
+这里 $\tilde P(\mathbf Z^m)$ 是潜在数据 $\mathbf Z^m$ 的任意分布．在混合例子中，$\tilde P(\mathbf Z^m)$ 构成了概率 $\gamma_i=\Pr(\Delta_i=1\mid \theta,\mathbf Z)$ 的集合．注意到从 \eqref{8.46} 式看，$F$ 是观测数据的对数似然函数（在 $\tilde P(\mathbf Z^m)=\Pr(\mathbf Z^m\mid \mathbf Z,\theta&rsquo;)$ 上取值）．函数 $F$ 扩大了对数似然的定义域来，使得能够进行最大化．</p>
 <div class="admonition note">
 <p class="admonition-title">原书脚注：</p>
-<p>$(8.46)$ 式对所有 $\theta$ 都成立，包含 $\theta=\theta&rsquo;$．</p>
+<p>\eqref{8.46} 式对所有 $\theta$ 都成立，包含 $\theta=\theta&rsquo;$．</p>
 </div>
 <p>EM 算法可以看成 $F$ 关于 $\theta&rsquo;$ 和 $\tilde P(\mathbf Z^m)$ 的联合最大化，通过固定一个变量来最大化另外一个变量．固定 $\theta&rsquo;$ 来对 $\tilde P(\mathbf Z^m)$ 最大化可以证明是
 <script type="math/tex; mode=display">
@@ -3599,7 +3599,7 @@ F(\theta',\tilde P) = \E_{\tilde P}[\ell_0(\theta';\mathbf T)] - \E_{\tilde P}[\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-28 02:35:08
+        Last Build Date UTC : 2019-07-28 03:21:21
       </div>
       
         
