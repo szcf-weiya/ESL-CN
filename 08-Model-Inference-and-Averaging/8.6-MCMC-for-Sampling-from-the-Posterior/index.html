@@ -3274,11 +3274,11 @@
 <script type="math/tex; mode=display">
 \Pr(x) = \int \Pr(x, \theta)d\theta
 </script>
-有人会想到有 Monte Carlo 来近似上述的积分值（关于应用 Monte Carlo 进行积分近似，可以参见 <a href="https://stats.hohoweiya.xyz//montecarlo/2017/09/07/The-Need-of-Monte-Carlo/">The Applications of Monte Carlo</a>），但这也是不实际的．因为如果要用 Monte Carlo 近似，则首先我们需要在从 $\theta$ 的后验分布中 sample 出 $m$ 个样本来（注意到我们需要求的就是 $\theta$ 的后验分布），进而采用下式进行近似
+有人会想到用 Monte Carlo 来近似上述的积分值（关于应用 Monte Carlo 进行积分近似，可以参见 <a href="https://stats.hohoweiya.xyz//montecarlo/2017/09/07/The-Need-of-Monte-Carlo/">The Applications of Monte Carlo</a>），进而采用下式进行近似
 <script type="math/tex; mode=display">
 \hat \Pr(x) = \int d\theta\cdot \frac{1}{m}\sum\limits_{i=1}^m\Pr(x, \theta^{(m)})
 </script>
-但幸好可以通过构造一个 Markov chain 来进行 Monte Carlo 近似，称为 MCMC．在 <a href="http://nbviewer.jupyter.org/github/szcf-weiya/MonteCarlo/blob/master/MCMC/MCMC_example.ipynb">MCMC_example.ipynb</a> 里面用一个例子说明了怎么用 MCMC 得到参数的后验分布．
+但一般很难从联合分布中采样出样本来。幸好可以通过构造一个 Markov chain 来进行 Monte Carlo 近似，称为 MCMC．在 <a href="http://nbviewer.jupyter.org/github/szcf-weiya/MonteCarlo/blob/master/MCMC/MCMC_example.ipynb">MCMC_example.ipynb</a> 里面用一个例子说明了怎么用 MCMC 得到参数的后验分布．
 更多 Monte Carlo 方法的细节可以参见 <a href="https://mc.hohoweiya.xyz/">Notes: Monte-Carlo</a>.</p>
 </div>
 <p>这节我们讨论用于后验采样的 <strong>马尔科夫蒙特卡洛法 (Markov chain Monte Carlo)</strong>．我们将要看到吉布斯采样（一个 MCMC 过程）与 EM 算法非常相关：主要的区别在于前者从条件分布中采样而非对它们最大化．</p>
@@ -3302,6 +3302,14 @@
 <p>在指数族模型中，从后验的吉布斯采样与 EM 算法有着紧密的联系．关键在于将 EM 过程的潜在数据 $\mathbf Z^m$ 看成是吉布斯采样的另一个参数．为了让高斯混合问题中这一点更明确，我们取参数为 $(\theta,\mathbf Z^m)$．为了简便，我们固定方差 $\sigma_1^2,\sigma^2_2$ 以及最大似然时的混合比例 $\pi$，使得 $\theta$ 中未知的参数仅仅是均值 $\mu_1$ 和 $\mu_2$．此混合问题的吉布斯采样在算法 8.4 中给出．我们看到第 2(a) 和 2(b) 步与 EM 过程中的 E 和 M 一样，除了这里我们是取样而非最大化．在第 2(a) 步，不是计算最大似然的 <strong>责任 (responsibilities)</strong> $\gamma_i=\E(\Delta_i\mid \theta,\mathbf Z)$，吉布斯采样过程从 $\Pr(\Delta_i\mid \theta,\mathbf Z)$ 的分布中模拟潜在数据 $\Delta_i$．在第 2(b) 步，不是计算后验  $\Pr(\mu_1,\mu_2,\Delta\mid \mathbf Z)$ 的最大值，而是从条件分布 $\Pr(\mu_1,\mu_2\mid \Delta,\mathbf Z)$ 中模拟（采样）．</p>
 <p><img alt="" src="../../img/08/alg8.4.png" /></p>
 <p>图 8.8 显示了吉布斯抽样的 200 个迭代，左图显示了均值参数 $\mu_1$（小）和 $\mu_2$（大），右图是类别 2 的观测的占比 $\sum_i\Delta_i/N$．在每个情形下画出了在最大似然估计值 $\hat\mu_1,\hat\mu_2$ 和 $\sum_i\hat\gamma_i/N$ 的虚线．值似乎很快就稳定下来，而且在最大似然值附近均匀地分布．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>吉布斯采样中的条件分布可以直接根据联合分布
+<script type="math/tex; mode=display">
+L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i=1}^n[(1-\pi)\phi_{\theta_1}(y_i)]^{1-\Delta_i}[\pi\phi_{\theta_2}(y_i)]^{\Delta_i}.
+</script>
+快速写出来。</p>
+</div>
 <p><img alt="" src="../../img/08/fig8.8.png" /></p>
 <blockquote>
 <p>图 8.8. 混合的例子．（左图：）从吉布斯采样中得到的两个均值参数的 200 个值；在最大似然估计的 $\hat\mu_1,\hat\mu_2$ 画了水平直线．（右图：）对于 200 次吉布斯采样迭代中的每个迭代，$\Delta_i=1$ 的占比；在 $\sum_i\hat\gamma_i/N$ 画了水平直线．</p>
@@ -3386,7 +3394,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-28 03:46:59
+        Last Build Date UTC : 2019-07-28 04:36:25
       </div>
       
         
