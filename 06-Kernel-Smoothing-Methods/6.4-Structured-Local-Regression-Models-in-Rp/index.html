@@ -3328,6 +3328,14 @@
 <td>时间</td>
 <td>2017-03-03：2017-03-03</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2019-07-30 09:44:04</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
 <p>当维度与样本大小的比率不是很好，则局部回归对我们没有太大帮助，除非我们想要对模型做出一些结构化的假设．这本书的很多部分是关于结构化回归和分类模型的．这里我们关注一些与核方法直接相关的方法．</p>
@@ -3355,7 +3363,7 @@ f(X_1,X_2,\ldots,X_p)=\alpha+\sum\limits_jg_j(X_j)+\sum\limits_{k<\ell}g_{k\ell}
 </script>
 </p>
 <p>并且接着引入消除一些高阶项的结构．可加性模型假设只有主要影响项 $f(X)=\alpha+\sum\limits_{j=1}^pg_j(X_j)$，二阶模型会有次数至多为 2 的交叉项，以此类推．在第 9 章中，我们描述了对于拟合这样低阶交叉模型的 <strong>迭代向后拟合 (iterative backfitting)</strong> 算法．在加性模型中，举个例子，如果所有但除了第 $k$ 项是已知的，则我们可以用 $Y-\sum_{j\neq k}g_j(X_j)$ 在 $X_k$ 上的局部回归来估计 $g_k$．这个依次对每个函数重复进行，直到收敛．重要的细节是，在每一步，一维局部回归是所有都需要的．同样的思想可以用来拟合低维 ANOVA 分解．</p>
-<p>这些结构模型的一个重要的特殊情形是 <strong>可变系数模型 (varying coefficient models)</strong> 类．举个例子，假设我们将 $X$ 中的 $p$ 个预测变量分成集合 $(X_1,X_2,\ldots,X_q),q &lt; p$，以及我们集中在向量 $Z$ 中的剩余的变量．接着我们假设条件线性模型</p>
+<p>这些结构模型的一个重要的特殊情形是 <strong>可变系数模型 (varying coefficient models)</strong> 类．举个例子，假设我们将 $X$ 中的 $p$ 个预测变量分成集合 $(X_1,X_2,\ldots,X_q),q &lt; p$，剩下的变量放进向量 $Z$ 中．接着我们假设条件线性模型</p>
 <p>
 <script type="math/tex; mode=display">
 f(X)=\alpha(Z)+\beta_1(Z)X_1+\cdots+\beta_q(Z)X_q\tag{6.16}
@@ -3367,14 +3375,14 @@ f(X)=\alpha(Z)+\beta_1(Z)X_1+\cdots+\beta_q(Z)X_q\tag{6.16}
 \underset{\alpha(z_0),\beta(z_0)}{\min}\sum\limits_{i=1}^NK_\lambda(z_0,z_i)(y_i-\alpha(z_0)-x_{1i}\beta(z_0)-\cdots - x_{qi}\beta_q(z_0))^2\tag{6.17}
 </script>
 </p>
-<p>图 6.10 说明了在人类大动脉测量数据上的想法．一个由来已久的说法是大动脉会随着 age 增长而变厚．这里我们将大动脉的diameter建立为age的线性函数，但是允许系数随着gender和depth的变化而变化．我们对男性和女性分别采用局部回归模型．尽管大动脉确实很明显地在大动脉高区域中随着年龄而变粗，这种关系随着到大动脉的距离而减弱．图6.11显示了截距和斜率作为深度的函数．</p>
+<p>图 6.10 说明了在人类大动脉测量数据上的想法．一个由来已久的说法是 <strong>大动脉 (aorta)</strong> 会随着 <code>age</code> 增长而变厚．这里我们将大动脉的 <code>diameter</code> 建立为 <code>age</code> 的线性函数，但是允许系数随着 <code>gender</code> 和 <code>depth</code> 的变化而变化．我们对男性和女性分别采用局部回归模型．尽管大动脉确实很明显地（在大动脉比较厚区域中）随着年龄而变厚，这种关系随着到大动脉的距离而减弱．图 6.11 显示了截距和斜率作为深度的函数．</p>
 <p><img alt="" src="../../img/06/fig6.10.png" /></p>
 <blockquote>
-<p>图6.11. 每张图中aorta diameter建立为age的线性函数模型．这个模型的系数随着gender和到aorta的depth（左边靠近顶端，右边靠近底端）变化．在线性模型中的系数有着明显的趋势．</p>
+<p>图 6.11. 每张图中 <code>aorta diameter</code> 建立为 <code>age</code> 的线性函数模型．这个模型的系数随着 <code>gender</code>和到 <code>aorta</code> 的 <code>depth</code>（左边靠近顶端，右边靠近底端）变化．在线性模型中的系数有着明显的趋势．</p>
 </blockquote>
 <p><img alt="" src="../../img/06/fig6.11.png" /></p>
 <blockquote>
-<p>图6.11. 在男性和女性情形下，age作为到aorta的distance的函数的截距和斜率．黄色带状表示一个标准误差．</p>
+<p>图 6.11. 在男性和女性情形下，<code>age</code> 作为到 aorta 的 <code>distance</code> 的函数的截距和斜率．黄色带状表示一个标准误差．</p>
 </blockquote>
                 
                   
@@ -3454,7 +3462,7 @@ f(X)=\alpha(Z)+\beta_1(Z)X_1+\cdots+\beta_q(Z)X_q\tag{6.16}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-07-30 01:37:11
+        Last Build Date UTC : 2019-07-30 01:49:18
       </div>
       
         
