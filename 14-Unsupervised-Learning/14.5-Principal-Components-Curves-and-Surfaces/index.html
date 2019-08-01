@@ -3535,23 +3535,23 @@ $$
 </script>
 </p>
 <p>并且这个最小距离被称为 Procrustes 距离．从该解的形式来看，我们可以将每个矩阵在其列中心点处进行中心化，接着完全忽略掉位置向量．下文假设是这种情形．</p>
-<p>带尺度的 Procrustes 距离解决了更一般的问题</p>
+<p><strong>带尺度的 Procrustes 距离 (Procrustes distance with scaling)</strong> 解决了更一般的问题</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{\beta,\mathbf R}{\min}\Vert \mathbf X_2-\beta\mathbf X_1\mathbf R\Vert_F\tag{14.58}
 </script>
 </p>
-<p>其中 $\beta&gt;0$ 是正的标量值．$\mathbf R$ 的解和前面一样，$\hat\beta=\trace(D)/\Vert \mathbf X_1\Vert_F^2$</p>
+<p>其中 $\beta&gt;0$ 是正的标量值．$\mathbf R$ 的解和前面一样，$\hat\beta=\trace(D)/\Vert \mathbf X_1\Vert_F^2$.</p>
 <p>与 Procrustes 距离有关的是 $L$ 个形状的 Procrustes 平均，它解决了下面的问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\mathbf R_\ell\}_1^L,M}{min}\sum\limits_{\ell=1}^L\Vert \mathbf X_\ell \mathbf R_\ell -\mathbf M\Vert_F^2\tag{14.59}\label{14.59}
+\underset{\{\mathbf R_\ell\}_1^L,M}{\min}\sum\limits_{\ell=1}^L\Vert \mathbf X_\ell \mathbf R_\ell -\mathbf M\Vert_F^2\tag{14.59}\label{14.59}
 </script>
 </p>
-<p>也就是，在所有的形状中寻找平均的 Procrustes 距离平方最近的形状 $\mathbf X$．这可以通过简单的算法实现：</p>
+<p>也就是，寻找到所有形状的平均 Procrustes 距离平方最近的形状 $\mathbf M$．这可以通过简单的算法实现：</p>
 <ol start="0">
 <li>初始化 $\mathbf M=\mathbf X_1$（举个例子）</li>
-<li>固定 $\mathbf M$，求解 $L$ 个 Procrustes 旋转问题，得到 $\mathbf X_\ell&rsquo;\leftarrow \mathbf X\hat{\mathbf R_\ell}$</li>
+<li>固定 $\mathbf M$，求解 $L$ 个 Procrustes 旋转问题，得到 $\mathbf X_\ell&rsquo;\leftarrow \mathbf X\hat{\mathbf R}_\ell$</li>
 <li>令 $\mathbf M\leftarrow \frac 1L\sum\limits_{\ell=1}^L\mathbf X_\ell&rsquo;$</li>
 </ol>
 <p>重复步骤 2 和 3 准则直至 \eqref{14.59} 收敛．</p>
@@ -3560,7 +3560,7 @@ $$
 <p>更一般地，我们可以通过下式来定义一系列形状的 affine-invariant 平均：</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\mathbf A_\ell\}_1^L,\mathbf M}\sum\limits_{\ell=1}^L\Vert\mathbf X_\ell\mathbf A_\ell-\mathbf M\Vert_F^2\tag{14.60}
+\underset{\{\mathbf A_\ell\}_1^L,\mathbf M}{\min}\sum\limits_{\ell=1}^L\Vert\mathbf X_\ell\mathbf A_\ell-\mathbf M\Vert_F^2\tag{14.60}
 </script>
 </p>
 <p>其中 $\mathbf A_\ell$ 是任意 $p\times p$ 的非奇异矩阵．这里我们要求标准化，使得 $\mathbf M^T\mathbf M=\mathbf I$，来避免平凡解．这个解是吸引人的，并且可以不用迭代便可以计算（<a href="https://github.com/szcf-weiya/ESL-CN/issues/48">练习 14.10</a>）：</p>
@@ -3807,7 +3807,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-01 14:46:36
+        Last Build Date UTC : 2019-08-01 14:58:38
       </div>
       
         
