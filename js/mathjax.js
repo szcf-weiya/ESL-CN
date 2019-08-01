@@ -39,8 +39,10 @@ window.MathJax = {
       calS: "{{\\cal{S}}}",
       calI: "{{\\cal{I}}}",
       cH: "{{\\cal{H}}}",
+      cM: "{{\\cal{M}}}",
+      cP: "{{\\cal{P}}}",
       cT: "{{\\cal{T}}}",
-      
+
 
       LOG: "{\\mathrm{log}}",
       log: "{\\mathrm{log}}",
@@ -69,7 +71,7 @@ window.MathJax = {
       Test: "{\\mathrm{Test}}",
       median: "{\\mathrm{median}}",
       card: "{\\mathrm{card}}",
-      
+
       inf: "{\\mathrm{inf}}",
       sign: "{\\mathrm{sign}}",
       df: "{\\mathrm{df}}",
@@ -94,7 +96,7 @@ window.MathJax = {
 
       def: "{\\;\\overset{\\mathrm{def}}{=}\\;}",
 
-      ind: "{\\perp \\!\\!\\! \\perp}" 
+      ind: "{\\perp \\!\\!\\! \\perp}"
     },
     entensions: ["color.js"],
     equationNumbers: { autoNumber: "AMS" }
