@@ -3581,16 +3581,30 @@ $$
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/48">Issue 48: Ex. 14.10</a>.</p>
 </div>
 <h2 id="_3">主曲线和主曲面<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>主曲线推广了主成分直线，它提供了对 $\mathbf R^p$ 中一系列点的一维光滑曲线的近似．主曲线更一般化，它给出了二维或更高维的流形近似．</p>
-<p>我们首先定义随机变量 $X\in \IR^p$ 的主曲线，并接着讨论有限数据的情形．令 $f(\lambda)$ 为 $\IR^p$ 中参数化的光滑曲线．因此 $f(\lambda)$ 是有着 $p$ 个坐标的向量函数，每个都是关于单参数 $\lambda$ 的光滑函数．举个例子，可以选择参数 $\lambda$ 为沿着曲线到固定原点的弧长．对于每个数据点 $x$，令 $\lambda_f(x)$ 为曲线上离 $x$ 最近的点．如果满足</p>
+<p>主曲线推广了主成分直线，用一维光滑曲线来近似 $\IR^p$ 中的数据点．主曲面更一般化，它给出了二维或更高维的流形近似．</p>
+<p>我们首先定义随机变量 $X\in \IR^p$ 的主曲线，然后讨论有限数据的情形．令 $f(\lambda)$ 为 $\IR^p$ 中参数化的光滑曲线．因此 $f(\lambda)$ 是有着 $p$ 个坐标的向量函数，每个都是关于单参数 $\lambda$ 的光滑函数．举个例子，可以选择参数 $\lambda$ 为沿着曲线到固定原点的弧长．对于每个数据点 $x$，令 $\lambda_f(x)$ 为曲线上离 $x$ 最近的点．如果满足</p>
 <p>
 <script type="math/tex; mode=display">
 f(\lambda) = \E(X\mid \lambda_f(X)=\lambda)\tag{14.61}\label{14.61}
 </script>
 </p>
-<p>则 $f(\lambda)$ 称为随机向量 $X$ 的分布的主曲线．这也就是说 $f(\lambda)$ 是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点．这也称作 self-consistency 性质．尽管在实际中，连续多元分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣．图 14.27 展示了一个主曲线．</p>
+<p>则 $f(\lambda)$ 称为随机向量 $X$ 的分布的主曲线．这也就是说 $f(\lambda)$ 是投影到曲线上的所有数据点的平均，这些点也称为有“责任”的点．这也称作 self-consistency 性质．尽管在实际中，多元连续随机变量的分布有无穷多个主曲线(Duchamp and Stuetzle, 1996<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>)，但是我们主要对光滑的主曲线感兴趣．图 14.27 展示了一个主曲线．</p>
 <p><img alt="" src="../../img/14/fig14.27.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>主成分可以看成是主曲线的特殊情形。
+首先，\eqref{14.49} 可以写成
+<script type="math/tex; mode=display">
+f(\lambda) = [\mu + \V_{q1}\lambda, \mu + \V_{q2}\lambda, \ldots, \mu + \V_{qp}\lambda]\,,
+</script>
+其中 $\V_{qi}$ 是 $\V_q$ 的第 $i$ 个行向量.
+其次，对比图 14.20 和图 14.27，</p>
+</div>
 <p><strong>主点 (Principal points)</strong> 是与之相关的一个有趣的概念．考虑含 $k$ 个原型的集合，对于在分布的支撑集中的每个点 $x$，选出最近的原型，也就是，为之负责的那个原型．这导出了对特征空间的划分，得到 Voronoi 区域．这 $k$ 个点最小化了 $X$ 到其原型的期望距离，它们称为该分布的主点．每个主点是 self-consistent，因为它等于其 Voronoi 区域的 $X$ 的均值．举个例子，当 $k=1$，一个 <strong><a href="https://en.wikipedia.org/wiki/Von_Mises_distribution">圆形正态分布</a></strong> 的主点是均值向量；当 $k=2$ 时，成对的点对称排列在通过均值向量的射线上．主点类似 $K$-means 聚类中的重心的分布．主曲线可以看成是 $k=\infty$ 时的主点，但是限制为光滑曲线，用类似的方式，SOM 限制 K-means 聚类中心的落在一个光滑流形上．</p>
+<div class="admonition question">
+<p class="admonition-title">weiya 注：</p>
+<p><a href="https://github.com/szcf-weiya/ESL-CN/issues/197">Issue 197: Self-consistency of pricipal points? Reasons for k = 1, 2, 3? </a></p>
+</div>
 <p>为了寻找某分布的主曲线 $f(\lambda)$，我们考虑坐标函数 $f(\lambda)=[f_1(\lambda),f_2(\lambda),\ldots, f_p(\lambda)]$，并且令$X^T=(X_1, X_2,\ldots, X_p)$．考虑下面的轮换过程：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3819,7 +3833,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-03 09:27:51
+        Last Build Date UTC : 2019-08-03 13:38:54
       </div>
       
         
