@@ -3576,6 +3576,10 @@ $$
 <li>令 $\mathbf H_\ell=\mathbf X_\ell(\mathbf X_\ell^T\mathbf X_\ell)^{-1}\mathbf X_\ell^T$ 为由 $\mathbf X_\ell$ 定义的秩为 $p$ 的投影矩阵</li>
 <li>$\mathbf M$ 是 $N\times p$ 的矩阵，其由 $\bar{\mathbf H}=\frac{1}{L}\sum\limits_{\ell=1}^L\mathbf H_\ell$ 的最大 $p$ 个特征向量所构成</li>
 </ol>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 14.10</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/48">Issue 48: Ex. 14.10</a>.</p>
+</div>
 <h2 id="_3">主曲线和主曲面<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>主曲线推广了主成分直线，它提供了对 $\mathbf R^p$ 中一系列点的一维光滑曲线的近似．主曲线更一般化，它给出了二维或更高维的流形近似．</p>
 <p>我们首先定义随机变量 $X\in \IR^p$ 的主曲线，并接着讨论有限数据的情形．令 $f(\lambda)$ 为 $\IR^p$ 中参数化的光滑曲线．因此 $f(\lambda)$ 是有着 $p$ 个坐标的向量函数，每个都是关于单参数 $\lambda$ 的光滑函数．举个例子，可以选择参数 $\lambda$ 为沿着曲线到固定原点的弧长．对于每个数据点 $x$，令 $\lambda_f(x)$ 为曲线上离 $x$ 最近的点．如果满足</p>
@@ -3648,7 +3652,7 @@ f(\lambda_1,\lambda_2)=[f_1(\lambda_1,\lambda_2),\ldots, f_p(\lambda_1, \lambda_
 </script>
 </p>
 <p>其中 $\M=\1\1^T/N$, 然后我们有 $\Z=\U\D$．<a href="https://github.com/szcf-weiya/ESL-CN/issues/184">练习 18.15</a> 展示了怎么计算这个空间中新观测的投影．</p>
-<p>核主成分简单地模仿了这个过程，将核矩阵 $\K=\{K(x_i,x_{i&rsquo;})\}$ 看成隐含特征 $\langle \phi(x_i),\rangle(x_i&rsquo;)\angle$ 的内积矩阵，然后寻找其特征向量．第 $m$ 个组分 $\z_m$（$\Z$ 的第 $m$ 列）的元素（在忽略中心化的情况下）可以写成 $z_{im}=\sum_{j=1}^N\alpha_{jm}K(x_i,x_j)$，其中 $\alpha_{jm} = u_{jm}/d_m$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/185">练习 14.16</a>）． </p>
+<p>核主成分简单地模仿了这个过程，将核矩阵 $\K=\{K(x_i,x_{i&rsquo;})\}$ 看成隐含特征 $\langle \phi(x_i),\rangle(x_i&rsquo;)\angle$ 的内积矩阵，然后寻找其特征向量．第 $m$ 个组分 $\z_m$（$\Z$ 的第 $m$ 列）的元素（在忽略中心化的情况下）可以写成 $z_{im}=\sum_{j=1}^N\alpha_{jm}K(x_i,x_j)$，其中 $\alpha_{jm} = u_{jm}/d_m$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/185">练习 14.16</a>）．</p>
 <p>将 $\z_m$ 看成主成分函数 $g_m\in\cH_K$ 在样本处的取值，其中 $\cH_K$ 是由 $K$ 生成的再生核希尔伯特空间（5.8.1 节），这可以帮助我们进一步理解核主成分．第一主成分函数 $g_1$ 求解了</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3664,7 +3668,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
 </script>
 </p>
 <p>则核矩阵 $\K$ 与谱聚类中的相似度矩阵 $\S$ 有着相同的形式．边的权重矩阵 $\W$ 是 $\K$ 的局部化版本，将不是最近邻的成对点的相似度设为 0．</p>
-<p>核主成分寻找 $\tilde \K$ 最大特征值对应的特征向量；这等价于寻找 </p>
+<p>核主成分寻找 $\tilde \K$ 最大特征值对应的特征向量；这等价于寻找</p>
 <p>
 <script type="math/tex; mode=display">
 \I - \tilde \K\tag{14.68}
@@ -3683,7 +3687,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
 </script>
 </p>
 <p>绝对值约束促使某些载荷为 0，因此 $v$ 是稀疏的．进一步，通过现在第 $k$ 个主成分与前 $k-1$ 个主成分正交来寻找稀疏的主成分．不幸的是，这个问题是非凸的，并且计算很困难．</p>
-<p>Zou et al. (2006)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 而是以主成分的回归/重构性质开始，类似 14.5.1 的方法．令 $x_i$ 为 $\X$ 的第 $i$ 行．对于单个主成分，他们的稀疏主成分技巧解决了 </p>
+<p>Zou et al. (2006)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 而是以主成分的回归/重构性质开始，类似 14.5.1 的方法．令 $x_i$ 为 $\X$ 的第 $i$ 行．对于单个主成分，他们的稀疏主成分技巧解决了</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align*}
@@ -3815,7 +3819,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-02 07:58:34
+        Last Build Date UTC : 2019-08-03 09:27:51
       </div>
       
         
