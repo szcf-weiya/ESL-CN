@@ -3,7 +3,8 @@ using Plots
 using LinearAlgebra
 using StatsBase
 
-X, header = readdlm("data/Signatures/signatureData.csv", ',', header=true)
+#X, header = readdlm("data/Signatures/signatureData.csv", ',', header=true)
+X, header = readdlm("Documents\\GitHub\\ESL-CN\\data\\Signatures\\signatureData.csv", ',', header=true)
 p1 = plot(X[:,2], X[:,3], label="sig1", legend=:topleft, title="Original Signatures ($(norm(X[:,2:3]-X[:,4:5])))")
 plot!(p1, X[:,4], X[:, 5], label="sig2")
 plot!(X[:,6], X[:, 7], label="sig3")
@@ -93,3 +94,22 @@ function cmpr_all(X::Array{Float64, 2}, M::Array{Float64, 2})
 end
 
 savefig(cmpr_all(X[:,2:end], M), "code/PCA/M_without_scale.png")
+
+# Ex. 14.10
+function affine_invariant(X::Array{Float64, 2})
+    # number of shapes
+    L = Int(size(X, 2) / 2)
+    H = Array{Array{Float64, 2}, 1}(undef, L)
+    for i = 1:L
+        H[i] = X[:,2i-1:2i] * inv(X[:,2i-1:2i]' * X[:,2i-1:2i]) * X[:,2i-1:2i]'
+    end
+    H_bar = mean(H)
+    eval, evec = eigen(Symmetric(H_bar))
+    idx = sortperm(eval, rev=true)
+    print(eval[idx])
+    return evec[:, idx[1:2]]
+end
+
+M = affine_invariant(X[:,2:end])
+p = plot(M[:,1], M[:,2], legend=false)
+savefig(p, "Documents\\GitHub\\ESL-CN\\code\\PCA\\M_affine-variant.png")
