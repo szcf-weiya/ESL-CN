@@ -94,7 +94,7 @@ dev.off()
 R = 2
 niter = 40
 total.niter = niter * 90
-err = numeric(total.niter)
+err = numeric(niter)
 for (iter in 1:niter)
 {
   err[iter] = 0
