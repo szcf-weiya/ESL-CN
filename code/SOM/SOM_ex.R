@@ -41,10 +41,13 @@ coor = data[idx, ]
 coor.grid = expand.grid(1:5, 1:5)
 
 ## find the closest prototype to x in Euclidean distance in R^p
-classify <- function(x, prototype)
+classify <- function(x, prototype, val = FALSE)
 {
   d = apply(prototype, 1, function(y) sum((x-y)^2))
-  return(as.numeric(which.min(d)))
+  if (val)
+    return(c(as.numeric(which.min(d)), min(d)))
+  else
+    return(as.numeric(which.min(d)))
 }
 ## can be optimized
 fulldist <- function(x)
@@ -90,36 +93,51 @@ dev.off()
 
 R = 2
 niter = 40
+err = numeric(niter)
 for (iter in 1:niter)
 {
   alpha = -1/niter*iter + 1
   r = -1/niter*iter + 2
+  err[iter] = 0
   for (i in 1:90)
   {
     xi = data[i, ]
-    mj.idx = classify(xi, coor)
+    mj.res = classify(xi, coor, val = TRUE)
+    mj.idx = mj.res[1]
+    err[iter] = err[iter] + mj.res[2]
+#    mj.idx = classify(xi, coor)
     mj = coor.grid[mj.idx, ]
+    # distance in Q1xQ2
     mk.idx = which(distance(mj, coor.grid) <= r)
     mk = coor.grid[mk.idx, ]
-    # mj11 = t(sapply(1:R, function(x) c(mj[1]+x, mj[2])))
-    # mj12 = t(sapply(1:R, function(x) c(mj[1]-x, mj[2])))
-    # mj21 = t(sapply(1:R, function(x) c(mj[1], mj[2]+x)))
-    # mj22 = t(sapply(1:R, function(x) c(mj[1], mj[2]-x)))
-    # ## include itself
-    # mj.neighbor = rbind(mj, mj11, mj12, mj21, mj22)
-    # ## remove outside elements
-    # mj.neighbor = mj.neighbor[mj.neighbor[,1] <= 5 & mj.neighbor[,1] >= 1 & mj.neighbor[,2] <= 5 & mj.neighbor[,2] >= 1,]
-    # mj.neighbor = mj.neighbor[distance(mj, mj.neighbor) <= R, ]
-    xi.m = matrix(rep(1, length(mk.idx),nrow = length(mk.idx))) %*% as.matrix(xi)
+    xi.m = matrix(rep(1, length(mk.idx)),nrow = length(mk.idx)) %*% as.matrix(xi)
+    # distance in R^p
     coor[mk.idx, ]= coor[mk.idx, ] + alpha*(xi.m - coor[mk.idx, ])
   } 
   if (iter - 10*floor(iter/10) == 0)
   {
-    png(paste0("iter_", iter, ".png"))
+    #png(paste0("iter_", iter, ".png"))
     plot.som(data, coor, iter)
-    dev.off()
+    #dev.off()
   }
 }
 
+# reconstruction error
+calc_err <- function(data, coor, cl)
+{
+#  cl = apply(data, 1, function(x) classify(x, coor))
+  err = 0
+  for (i in 1:length(cl))
+  {
+    err = err + sum((data[i,] - coor[cl[i], ])^2)
+  }
+  return(err)
+}
 
+# kmeans
+kcl = kmeans(data, 25)
+kerr = calc_err(data, kcl$centers, kcl$cluster)
+# plot reconstruction error
+plot(err, xlab = "Iteration", ylab = "Reconstruction Error", col = "red", type="o", ylim = c(0,max(err)))
+abline(h=kerr, col = "orange")
 
