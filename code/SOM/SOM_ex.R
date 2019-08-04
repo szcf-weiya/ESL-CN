@@ -93,14 +93,17 @@ dev.off()
 
 R = 2
 niter = 40
-err = numeric(niter)
+total.niter = niter * 90
+err = numeric(total.niter)
 for (iter in 1:niter)
 {
-  alpha = -1/niter*iter + 1
-  r = -1/niter*iter + 2
   err[iter] = 0
   for (i in 1:90)
   {
+    iter.i = 90 * (iter - 1) + i
+    alpha = -1/total.niter*iter.i + 1
+    r = -R/total.niter*iter.i + R
+    
     xi = data[i, ]
     mj.res = classify(xi, coor, val = TRUE)
     mj.idx = mj.res[1]
