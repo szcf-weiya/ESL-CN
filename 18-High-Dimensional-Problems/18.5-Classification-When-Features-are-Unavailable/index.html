@@ -3403,6 +3403,10 @@ K_m(x_1,x_2)=\langle \Phi_m(x_1),\Phi_m(x_2) \rangle\tag{18.26}\label{18.26}
 </p>
 </div>
 <p>则 $\Z=\U\D$ 为主成分变量的矩阵（见 <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html">14.5.1 节</a>）．但如果 $\K=\X\X^T$，则有 $\K=\U\D^2\U^T$，因此我们可以从 $\K$ 的特征分解计算出 $\Z$．如果 $\X$ 没有中心化，则可以用 $\tilde \X = (\I-\M)\X$ 来中心化，其中 $\M=\frac 1N\1\1^T$ 是均值算子．因此我们可以根据未中心化的内积矩阵计算 <strong>二次中心化 (double centered)</strong> 核 $(\I-\M)\K(\I-\M)$ 的特征向量来求主成分．<a href="https://github.com/szcf-weiya/ESL-CN/issues/184">练习 18.15</a> 进一步讨论了这一点，并且 <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html">14.5.4 节</a>讨论了一般核时 <strong>kernel PCA</strong> 的细节，比如用于 SVMs 中的 <strong>径向核 (radial kernel)</strong>．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 18.15</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/184">Issue 184: Ex. 18.15</a>.</p>
+</div>
 <p>如果我们只有成对数据的欧式距离（的平方），</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3545,7 +3549,7 @@ d_{kj}=\frac{\bar x_{kj}-\bar x_j}{m_k(s_j+s_0)}\tag{18.4}\label{18.4}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-05 13:37:36
+        Last Build Date UTC : 2019-08-05 14:30:22
       </div>
       
         

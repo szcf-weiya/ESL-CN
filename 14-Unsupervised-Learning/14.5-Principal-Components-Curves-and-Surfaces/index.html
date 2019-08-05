@@ -3687,6 +3687,10 @@ m_j=\frac{\sum w_kx_k}{\sum w_k}\tag{14.48}\label{14.48}
 </script>
 </p>
 <p>其中 $\M=\1\1^T/N$, 然后我们有 $\Z=\U\D$．<a href="https://github.com/szcf-weiya/ESL-CN/issues/184">练习 18.15</a> 展示了怎么计算这个空间中新观测的投影．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 18.15</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/184">Issue 184: Ex. 18.15</a>.</p>
+</div>
 <p>核主成分简单地模仿了这个过程，将核矩阵 $\K=\{K(x_i,x_{i&rsquo;})\}$ 看成隐含特征 $\langle \phi(x_i),\rangle(x_i&rsquo;)\angle$ 的内积矩阵，然后寻找其特征向量．第 $m$ 个组分 $\z_m$（$\Z$ 的第 $m$ 列）的元素（在忽略中心化的情况下）可以写成 $z_{im}=\sum_{j=1}^N\alpha_{jm}K(x_i,x_j)$，其中 $\alpha_{jm} = u_{jm}/d_m$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/185">练习 14.16</a>）．</p>
 <p>将 $\z_m$ 看成主成分函数 $g_m\in\cH_K$ 在样本处的取值，其中 $\cH_K$ 是由 $K$ 生成的再生核希尔伯特空间（5.8.1 节），这可以帮助我们进一步理解核主成分．第一主成分函数 $g_1$ 求解了</p>
 <p>
@@ -3854,7 +3858,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-05 13:37:34
+        Last Build Date UTC : 2019-08-05 14:30:21
       </div>
       
         
