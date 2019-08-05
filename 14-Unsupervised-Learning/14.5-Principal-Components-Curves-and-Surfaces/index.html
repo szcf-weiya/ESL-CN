@@ -3680,7 +3680,7 @@ m_j=\frac{\sum w_kx_k}{\sum w_k}\tag{14.48}\label{14.48}
 <p>在实际中应用谱聚类时必须要处理一系列的问题．我们必须选择相似图的类型——比如，全连接或者最近邻，以及相关的参数比如最近邻的个数 $k$ 或者核的缩放参数 $c$．我们也必须选择从 $\mathbf L$ 中提取的特征向量的个数，以及最后和所有聚类方法一样，选择簇的个数．在图 14.29 这一简单例子中，我们得到 $k\in [5, 200]$ 中良好的结果，值为 200 的对应全连接图．当 $k &lt; 5$，结果变坏．观测图 14.29 的右上图，我们看到最小的三个特征值与剩余部分没有强烈的分离．因此选择多少个特征向量并不清楚．</p>
 <h2 id="_5">核主成分<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>谱聚类与 <strong>核主成分 (kernel principal components)</strong> 有关联，这是线性主成分的非线性版本．标准的线性主成分 (PCA) 可以通过协方差矩阵的特征向量得到，并且给出了数据有最大方差的方向．核主成分 (KPCA) 扩充了 PCA 的范围，模仿扩充特征时采用的非线性变换方法，然后在变换后的特征空间中应用 PCA．</p>
-<p>在 18.5.2 节，我们展示了数据矩阵 $\X$ 的主成分变量 $\Z$ 可以通过内积矩阵 (gram 矩阵) $\K=\X\X^T$ 得到．具体地，对双重中心化的 gram 矩阵进行特征分解</p>
+<p>在 <a href="../18-High-Dimensional-Problems/18.5-Classification-When-Features-are-Unavailable/index.html">18.5.2 节</a>，我们展示了数据矩阵 $\X$ 的主成分变量 $\Z$ 可以通过内积矩阵 (gram 矩阵) $\K=\X\X^T$ 得到．具体地，对双重中心化的 gram 矩阵进行特征分解</p>
 <p>
 <script type="math/tex; mode=display">
 \tilde \K = (\I-\M)\K(\I-\M) = \U\D^2\U^T\,,
@@ -3854,7 +3854,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-05 08:17:09
+        Last Build Date UTC : 2019-08-05 13:18:29
       </div>
       
         

@@ -60,7 +60,7 @@ label.md-nav__title {
 /* link in list */
 
 .md-typeset ul li a {
-  color: blue!important;
+  color: blue;/*!important;*/
 }
 
 
