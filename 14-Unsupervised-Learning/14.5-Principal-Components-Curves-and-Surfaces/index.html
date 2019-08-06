@@ -3696,13 +3696,17 @@ m_j=\frac{\sum w_kx_k}{\sum w_k}\tag{14.48}\label{14.48}
 <p class="admonition-title">weiya 注：Ex. 14.16</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/185">Issue 185: Ex. 14.16</a>．</p>
 </div>
-<p>将 $\z_m$ 看成主成分函数 $g_m\in\cH_K$ 在样本处的取值，其中 $\cH_K$ 是由 $K$ 生成的再生核希尔伯特空间（5.8.1 节），这可以帮助我们进一步理解核主成分．第一主成分函数 $g_1$ 求解了</p>
+<p>将 $\z_m$ 看成主成分函数 $g_m\in\cH_K$ 在样本处的取值，其中 $\cH_K$ 是由 $K$ 生成的再生核希尔伯特空间（<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8.1 节</a>），这可以帮助我们进一步理解核主成分．第一主成分函数 $g_1$ 求解了</p>
 <p>
 <script type="math/tex; mode=display">
 \max_{g_1\in\cH_K}\Var_{\cT}g_1(X) \text{ subject to } \Vert g_1\Vert_{\cH_K}=1\tag{14.66}\label{14.66}.
 </script>
 </p>
-<p>这里 $\Var_\cT$ 表示在训练数据 $\cT$ 上的样本方差．范数约束 $\Vert g_1\Vert_{\cH_K}=1$ 控制了函数 $g_1$ 的大小及光滑度，这由核 $K$ 控制．在回归情形中，可以证明 \eqref{14.66} 的解是有限维的，并且可以表示为 $g_1(x)=\sum_{j=1}^Nc_jK(x,x_j)$. 练习 14.17 证明了这个解为 $\hat c_j=\alpha_{j1},j=1,\ldots,N$. 第二主成分函数也是类似定义的，但多了额外的限制 $\langle g_1,g_2\rangle_{\cH_K}=0$，以此类推．</p>
+<p>这里 $\Var_\cT$ 表示在训练数据 $\cT$ 上的样本方差．范数约束 $\Vert g_1\Vert_{\cH_K}=1$ 控制了函数 $g_1$ 的大小及光滑度，这由核 $K$ 控制．在回归情形中，可以证明 \eqref{14.66} 的解是有限维的，并且可以表示为 $g_1(x)=\sum_{j=1}^Nc_jK(x,x_j)$. <a href="https://github.com/szcf-weiya/ESL-CN/issues/202">练习 14.17</a> 证明了这个解为 $\hat c_j=\alpha_{j1},j=1,\ldots,N$. 第二主成分函数也是类似定义的，但多了额外的限制 $\langle g_1,g_2\rangle_{\cH_K}=0$，以此类推．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Ex. 14.17</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/202">Issue 202: Ex. 14.17</a>．</p>
+</div>
 <p>Sch¨olkopf et al. (1999)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> 演示了核主成分作为手写数字分类中的特征的应用，并且说明了相对于线性主成分，分类器的表现有改善．</p>
 <p>注意到如果我们采用径向核</p>
 <p>
@@ -3862,7 +3866,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-05 14:59:46
+        Last Build Date UTC : 2019-08-06 06:46:37
       </div>
       
         
