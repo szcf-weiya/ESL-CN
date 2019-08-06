@@ -3707,7 +3707,7 @@ m_j=\frac{\sum w_kx_k}{\sum w_k}\tag{14.48}\label{14.48}
 <p class="admonition-title">weiya 注：Ex. 14.17</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/202">Issue 202: Ex. 14.17</a>．</p>
 </div>
-<p>Sch¨olkopf et al. (1999)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> 演示了核主成分作为手写数字分类中的特征的应用，并且说明了相对于线性主成分，分类器的表现有改善．</p>
+<p>Schölkopf et al. (1999)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> 演示了核主成分作为手写数字分类中的特征的应用，并且说明了相对于线性主成分，分类器的表现有改善．</p>
 <p>注意到如果我们采用径向核</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3723,8 +3723,12 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
 </p>
 <p>的最小特征值对应的特征向量．这几乎与 Laplacian \eqref{14.63} 一样，区别在于 $\tilde \K$ 的中心化和 $\G$ 对角元有结点的度．</p>
 <p><img alt="" src="../../img/14/fig14.30.png" /></p>
-<p>图 14.30 检验了在图 14.29 中小例子中，核主成分的表现效果．左上角我们使用 $c=2$ 的径向核，跟谱聚类中使用的值一样．这并没有将类别分开，但是当 $c=10$（右上图），第一主成分能很好地将类别分开．在左下图采用谱聚类中的最近邻径向核 $\W$ 来应用核 PCA．在右下角我们用核矩阵作为谱聚类中构造 \eqref{14.63} 的相似度矩阵．这两种情形都不能很好地把两个类别分开．调节 $c$ 也没有帮助．</p>
+<p>图 14.30 检验了在图 14.29 的小例子中，核主成分的表现效果．左上角我们使用 $c=2$ 的径向核，跟谱聚类中使用的值一样．这并没有将类别分开，但是当 $c=10$（右上图），第一主成分能很好地将类别分开．在左下图采用谱聚类中的最近邻径向核 $\W$ 来应用核 PCA．在右下角我们用核矩阵作为谱聚类中构造 \eqref{14.63} 的相似度矩阵．这两种情形都不能很好地把两个类别分开．调节 $c$ 也没有帮助．</p>
 <p>在这个小例子中，我们看到核主成分对于核的尺度以及本性很敏感．我们也看到核的最近邻截断对于谱聚类能否成功很重要．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>粗略地说，谱聚类要求最近邻截断，而核主成分要求中心化的核矩阵．</p>
+</div>
 <h2 id="_6">稀疏主成分<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>我们经常通过查看方向向量 $v_j$，或者称载荷，来判断哪个变量在起作用，进而对主成分进行解释．我们在 (14.55) 中对图象载荷采用了这种方法．如果载荷是稀疏的，这种解释通常会很简单．这一节我们简要讨论能导出具有稀疏载荷的主成分方法．它们都是基于 lasso ($L_1$) 惩罚．</p>
 <p>首先以 $N\times p$ 的数据矩阵 $\X$ 开始，其中列进行了中心化．这些方法要么关注主成分的最大方差性质，要不最小重构误差．Joliffe et al. (2003)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 的 SCoTLASS procedure 采用第一种方法，求解</p>
@@ -3866,7 +3870,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-06 06:46:37
+        Last Build Date UTC : 2019-08-06 07:06:10
       </div>
       
         
