@@ -30,7 +30,7 @@
 > The learning problems that we consider can be roughly categorized as either supervised or unsupervised. In supervised learning, the goal is to predict the value of an outcome measure based on a number of input measures; in unsupervised learning, there is no outcome measure, and the goal is to describe the associations and patterns among a set of input measures.
 -->
 
-我们考虑的学习的问题可以大致分为两大类：监督和非监督。在监督学习中，目标是根据一系列输入度量来预测输出度量的值。而在非监督学习中，没有输出输出度量，它的目标是描述一系列输入度量之间的联系。
+我们考虑的学习的问题可以大致分为两大类：监督和非监督。在监督学习中，目标是根据一系列输入度量来预测输出度量的值。而在非监督学习中，没有输出度量，它的目标是描述一系列输入度量之间的联系。
 
 <!--
 > This book is our attempt to bring together many of the important new
