@@ -3323,6 +3323,10 @@ d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\tag{18.6}
 </script>
 </p>
 <p>我们用收缩重心 $\bar x_{kj}&rsquo;$ 代替判别得分 \eqref{18.2} 的原始 $x_{kj}$．估计量 \eqref{18.7} 可以认为是类别均值的 lasso 风格的估计量（<a href="https://github.com/szcf-weiya/ESL-CN/issues/83">练习 18.2</a>）．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 18.2</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/83">Issue 83: Ex. 18.2</a>.</p>
+</div>
 <p>注意到只有对于某基因，需要至少有一个类对应的 $d&rsquo;_{kj}$ 非零，该基因才会在分类规则中起作用，因此大量的基因经常被丢弃．这个例子中，除了 43 个基因其他的都被丢弃了，这剩下的小基因集能够表征类别，且具有可解释性．图 8.13 在热图中展示出这些基因．</p>
 <p><img alt="" src="../../img/18/fig18.3.png" /></p>
 <p>图 18.4（上图）演示了收缩的影响．没有收缩时我们在测试数据上有 5/20 的误差，并且在训练和 CV 数据上有一些误差．当 $\Delta$ 在相当宽的区域中，收缩重心达到零测试误差．图 18.4 的下图显示了 SRBCT 数据（灰色）的四个重心，这是相对整体重心来说．蓝色条状是这些重心的收缩版本，这是通过取 $\Delta=4.3$ 对灰色条状进行软阈值得到的．判别分数 \eqref{18.2} 可以用来构造类别概率估计：</p>
@@ -3430,7 +3434,7 @@ d_{kj}'=d_{kj}\cdot I(\vert d_{kj}\vert\ge \Delta)\tag{18.6}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-17 12:57:08
+        Last Build Date UTC : 2019-08-17 16:37:27
       </div>
       
         
