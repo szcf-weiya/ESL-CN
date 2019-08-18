@@ -21,17 +21,17 @@ function DiagLDA(X::Array{Float64, 2}, y::Array{Int})
     K = length(unique(y))
     # discriminant functions
     δ = Function[]
+    # pooled standard deviation
+    s = std(X, dims = 2)
     # for each class
     for k = 1:K
         # obs in class k
         idx = convert(Array{Bool, 2}, ytrain'.==k)[:] # first convert from BitArray to Bool Array, then reduce to a vector
         Xk = X[:, idx]
-        # pooled standard deviation
-        s = std(Xk, dims = 2)
         # mean
         xk_bar = mean(Xk, dims = 2)
         # discriminant function
-        push!(δ, x-> -sum( ( (x-xk_bar)./s ).^2 ) - 2sum(log.(s)) ) # equal π_k
+        push!(δ, x-> -sum( ( (x-xk_bar)./s ).^2 )  ) # equal π_k
     end
     return δ
 end
@@ -52,6 +52,7 @@ function  classify(x::Array{Float64, 2}, δ::Array{Function, 1})
     return res
 end
 
+# run
 δ = DiagLDA(xtrain, ytrain)
 cl = classify(xtrain, δ)
 cltest = classify(xtest, δ)
@@ -59,6 +60,11 @@ cltest = classify(xtest, δ)
 using FreqTables
 # train results
 freqtable(cl, ytrain[1, :])
+
+
+
+
+
+
 # test results
 freqtable(cltest, ytest[1,:])
-classify(xtrain[:,1],δ)
