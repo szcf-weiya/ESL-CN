@@ -3386,7 +3386,7 @@
 <p>因此上述的带弹性网惩罚的多项式问题变成</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\beta_{0k,\beta_k\in R^p}\}_1^K}{\max}\Big[\sum\limits_{i=1}^N\log\Pr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p(\alpha\vert\beta_{kj}\vert)+(1-\alpha)\beta_{kj}^2\Big]\tag{18.21}
+\underset{\{\beta_{0k,\beta_k\in \IR^p}\}_1^K}{\max}\Big[\sum\limits_{i=1}^N\log\Pr(g_i\mid x_i)-\lambda\sum\limits_{k=1}^K\sum\limits_{j=1}^p(\alpha\vert\beta_{kj}\vert)+(1-\alpha)\beta_{kj}^2\Big]\tag{18.21}
 </script>
 </p>
 <p>参数 $\alpha$ 决定了惩罚的混合程度，并且经常在定性基础上预先选取．当 $p &gt; N$ 时，弹性网得到大于 $N$ 个的非零参数，这是相比于 lasso 的潜在优点．表 18.1 的第 8 行采用这个模型，通过交叉验证选择 $\alpha$ 和 $\lambda$．我们采用 $0.05$ 到 $1.0$ 之间的 $20$ 个 $\alpha$ 值，以及包含整个值域的在对数尺度下均匀分布的 $100$ 个 $\lambda$ 值．对于所有的 tied solution，位于 $\alpha\in [0.75,0.80], \lambda &lt; 0.001$ 之间的值给出了最小的 CV 误差．尽管在所有方法中有最低的测试误差，但是边界分布是小的并且不显著．有趣的是，当 CV 对每个 $\alpha$ 单独计算，在 $\alpha=0.10$ 时达到最小的测试误差，但是这不是在 $2$ 维 CV 中选择的值．</p>
@@ -3559,7 +3559,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-17 16:37:27
+        Last Build Date UTC : 2019-08-18 02:45:57
       </div>
       
         
