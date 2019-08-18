@@ -26,7 +26,7 @@ function DiagLDA(X::Array{Float64, 2}, y::Array{Int})
     # for each class
     for k = 1:K
         # obs in class k
-        idx = convert(Array{Bool, 2}, ytrain'.==k)[:] # first convert from BitArray to Bool Array, then reduce to a vector
+        idx = convert(Array{Bool, 2}, y'.==k)[:] # first convert from BitArray to Bool Array, then reduce to a vector
         Xk = X[:, idx]
         # mean
         xk_bar = mean(Xk, dims = 2)
