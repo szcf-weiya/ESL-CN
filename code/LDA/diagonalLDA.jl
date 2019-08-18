@@ -7,12 +7,8 @@
 using DelimitedFiles
 using Statistics
 using StatsBase
-# read data
-path = "data\\SRBCT\\" # windows style
-xtrain = readdlm(path*"khan.xtrain.txt")
-ytrain = readdlm(path*"khan.ytrain.txt", Int)
-xtest = readdlm(path*"khan.xtest.txt")
-ytest = readdlm(path*"khan.ytest.txt")
+using FreqTables
+
 
 function DiagLDA(X::Array{Float64, 2}, y::Array{Int})
     # number of genes & number of observations
@@ -90,21 +86,26 @@ function  classify(x::Array{Float64, 2}, δ::Array{Function, 1})
     return res
 end
 
+
+# read data
+path = "data\\SRBCT\\" # windows style
+xtrain = readdlm(path*"khan.xtrain.txt")
+ytrain = readdlm(path*"khan.ytrain.txt", Int)
+xtest = readdlm(path*"khan.xtest.txt")
+ytest = readdlm(path*"khan.ytest.txt")
+
+# remove NA obs
+idx_nonNA = ytest .!= "NA"
+ytest = ytest[idx_nonNA]
+xtest = xtest[:, vec(idx_nonNA)]
+
 # run
 δ = DiagLDA(xtrain, ytrain)
 cl = classify(xtrain, δ)
 cltest = classify(xtest, δ)
 
-
-using FreqTables
 # train results
 freqtable(cl, ytrain[1, :])
-
-
-
-
-
-
 # test results
 freqtable(cltest, ytest[1,:])
 
@@ -112,11 +113,10 @@ freqtable(cltest, ytest[1,:])
 
 
 
-
+# RegDiagLDA
 δ2 = RegDiagLDA(xtrain, ytrain[:], 2.0)
 cl2 = classify(xtrain, δ2)
 cltest2 = classify(xtest, δ2)
-# RegDiagLDA
 freqtable(cl2, ytrain[:])
 
 
