@@ -3270,7 +3270,7 @@ g(X)=\sum\limits_{j=1}^{M_1}\sum\limits_{k=1}^{M_2}\theta_{jk}g_{jk}(X)\tag{5.36
 <p><img alt="" src="../../img/05/fig5.10.png" /></p>
 <p>图 5.10 展示了采用 B 样条的张量积的基底．系数和之前一样采用最小二乘来拟合．这可以推广到 $d$ 维的情形，但是注意到基底的维数会指数型增长——维数灾难的另一种表现形式．第 9 章讨论的 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.4-MARS/index.html">MARS 过程</a> 是一种通过最小二乘只将真正需要的张量积加入模型的向前贪婪算法．</p>
 <p><img alt="" src="../../img/05/fig5.11.png" /></p>
-<p>图 5.11 展示了将可加样条和张量积（自然）样条应用到<a href="../../02-Overview-of-Supervised-Learning/2.1-Introduction/index.html">第 2 章</a>中的模拟分类例子中的区别．逻辑斯底回归模型$\logit[\Pr(T\mid x)]=h(x)^T\theta$ 是对二值响应变量拟合的模型，并且估计出的判别边界为等高线 $h(x)^T\hat\theta=0$．在判别边界张量积的基底可以实现更多的灵活性，但同时也引入了一些 <strong>假的 (spurious)</strong> 结构．</p>
+<p>图 5.11 展示了将可加样条和张量积（自然）样条应用到<a href="../../02-Overview-of-Supervised-Learning/2.1-Introduction/index.html">第 2 章</a>中的模拟分类例子中的区别．逻辑斯底回归模型 $\logit[\Pr(T\mid x)]=h(x)^T\theta$ 是对二值响应变量拟合的模型，并且估计出的判别边界为等高线 $h(x)^T\hat\theta=0$．在判别边界张量积的基底可以实现更多的灵活性，但同时也引入了一些 <strong>假的 (spurious)</strong> 结构．</p>
 <p>一维光滑样条（通过正则化）也可以推广到高维情形．假设我们有数据对 $y_i,x_i$，其中 $x_i\in \IR^d$，并且寻找 $d$ 维回归函数 $f(x)$．想法是求解下面问题</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3410,7 +3410,7 @@ f(X)=\alpha+\sum_jf_j(X_j)+\sum\limits_{j < k}f_{jk}(X_j,X_k)+\cdots\tag{5.41}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-24 15:53:27
+        Last Build Date UTC : 2019-08-25 15:26:31
       </div>
       
         
