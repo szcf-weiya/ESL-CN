@@ -3348,12 +3348,12 @@ Y=
 -1 & \text{otherwise}
 \end{array}
 \right.
-\tag{10.2}
+\tag{10.2}\label{10.2}
 </script>
 这里 $\chi_{10}^2(0.5)=9.34$ 是自由度为 10 的卡方随机变量的中位数（10 个标准的高斯分布的平方和）．有 2000 个训练样本，每个类别大概有 1000 个样本，以及 10000 个测试观测．这里的弱分类器仅仅是一个“stump”：含两个终止结点的分类树．仅仅对训练数据应用分类器会得到非常差的测试集误差率（45.8%），与 50% 的随机猜测相差不多．然而，当不断进行 boosting 迭代，误差率将稳定下降，直到 400 次迭代之后达到 5.8%．因此，对这一简单的非常弱的分类器进行boosting，其预测误差率可以几乎降低四分之一．它也比单个的大规模分类树（误差率为 24.7%）表现得要好．自从它的提出，有很多理论来解释 AdaBoost 能成功得到正确分类器．很多工作集中在用分类树作为“基学习者(base learner)”$G(x)$，改善经常是非常显著的．事实上，Breiman(NIPS Workshop，1996) 将树的 AdaBoost 称为“世界上最好的现成分类器”(best off-the-shelf classifier in the world)．这对于数据挖掘方面的应用尤其如此，本章的后面将更全面地讨论．</p>
 <p><img alt="" src="../../img/10/fig10.2.png" /></p>
 <blockquote>
-<p>图 10.2. （10.2）的模拟数据：对 stumps 进行 boosting 的测试误差率作为迭代次数的函数．图中也显示了单个stump和244个结点的分类树的测试误差率．</p>
+<p>图 10.2. \eqref{10.2} 的模拟数据：对 stumps 进行 boosting 的测试误差率作为迭代次数的函数．图中也显示了单个 stump 和 244 个结点的分类树的测试误差率．</p>
 </blockquote>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
@@ -3367,7 +3367,7 @@ Y=
 <li>我们讨论用于回归与分类的损失函数比平方误差或者指数损失更加稳定（<a href="../10.6-Loss-Functions-and-Robustness/index.html">10.6 节</a>）</li>
 <li>有人认为决策树是 boosting 是数据挖掘应用中理想的基学习器．（<a href="../10.7-Off-the-Shelf-Procedures-for-Data-Mining/index.html">10.7</a> 和 <a href="../10.9-Boosting-Trees/index.html">10.9 节</a>）</li>
 <li>我们发展一类梯度增强模型(GBMs)，用于提升具有任何损失函数的树．（<a href="../10.10-Numerical-Optimization-via-Gradient-Boosting/index.html">10.10 节</a>）</li>
-<li>强调“慢学习”的重要性，并且通过对每个新加进模型的项进行收缩而实现（<a href="../10.12-Regularization/index.html">10.12 节</a>），以及随机化（10.12.2节）．</li>
+<li>强调“慢学习”的重要性，并且通过对每个新加进模型的项进行收缩而实现（<a href="../10.12-Regularization/index.html">10.12 节</a>），以及随机化（<a href="../10.12-Regularization/index.html">10.12.2 节</a>）．</li>
 <li>描述拟合模型的解释工具（<a href="../10.13-Interpretation/index.html">10.13 节</a>）</li>
 </ul>
 <div class="footnote">
@@ -3459,7 +3459,7 @@ Y=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-26 10:44:47
+        Last Build Date UTC : 2019-08-26 10:46:28
       </div>
       
         
