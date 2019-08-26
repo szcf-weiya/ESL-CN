@@ -3316,15 +3316,15 @@
 <p class="admonition-title">更新笔记</p>
 <p>@2017.08.26 很早以前，略读了杨灿学长的<a href="https://cosx.org/2011/12/stories-about-statistical-learning/">《统计学习那些事》</a>，但其实没什么感受，因为当时也没看到 boosting，对 lasso 了解也不多．而当我早早完成 boosting 的翻译后，又一直搁着没有再次阅读学长的文章．杨灿学长用风趣的笔墨从 lasso 和 boosting 的发展来看统计学习的那些事，个人觉得对于了解统计大佬们开创这些“绝世武功”的历史进程是很有帮助的．杨灿学长的<a href="https://cosx.org/2014/04/lmmandme">《昔日因，今日意》</a>和<a href="https://cosx.org/2012/05/chase-after-eb/">《那些年，我们一起追的 EB》</a>，我也是非常喜欢的，相信看了这么有趣的标题，不去拜读都不行啊hhh<img alt="😀" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f600.svg" title=":grinning:" />在今年北京 R 会议上还听了杨灿学长的汇报，报告的主题也是跟 boosting 有关，当时还激动地跟他互动了一下，提了几个问题 <img alt="✋" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/270b.svg" title=":raised_hand:" />．也是从那时候才知道，杨灿学长原来还是校友．</p>
 </div>
-<p>Boosting 是最近 20 年内提出的最有力的学习方法．最初是为了分类问题而设计的，但是我们将在这章中看到，它也可以很好地扩展到回归问题上．Boosting的动机是集合许多弱学习的结果来得到有用的“committee”．从这点看 boosting 与 bagging 以及其他的基于committee的方式（8.8节）类似．然而，我们应该看到这种联系最多是表面上的，boosting在根本上存在不同．</p>
-<p>我们以最流行的被称为“AdaBoost.M1”的boosting算法开始，这归功于Freund and Schapire (1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>．考虑两个类别的分类问题，输出变量编码为$Y\in\{-1,1\}$．给定预报向量$X$，分类器$G(X)$在二值$\{-1,1\}$中取一个值得到一个预测．在训练样本上的误差率是</p>
+<p>Boosting 是最近 20 年内提出的最有力的学习方法．最初是为了分类问题而设计的，但是我们将在这章中看到，它也可以很好地扩展到回归问题上．Boosting的动机是集合许多弱学习的结果来得到有用的“committee”．从这点看 boosting 与 bagging 以及其他的基于 committee 的方式（<a href="../../08-Model-Inference-and-Averaging/8.8-Model-Averaging-and-Stacking/index.html">8.8 节</a>）类似．然而，我们应该看到这种联系最多是表面上的，boosting 在根本上存在不同．</p>
+<p>我们以最流行的被称为 “AdaBoost.M1” 的 boosting 算法开始，这归功于 Freund and Schapire (1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>．考虑两个类别的分类问题，输出变量编码为 $Y\in\{-1,1\}$．给定预报向量 $X$，分类器 $G(X)$ 在二值 $\{-1,1\}$ 中取一个值得到一个预测．在训练样本上的误差率是</p>
 <p>
 <script type="math/tex; mode=display">
 \overline{err}=\frac{1}{N}\sum\limits_{i=1}^NI(y_i\neq G(x_i))
 </script>
 </p>
-<p>在未来预测值上的期望误差率为$E_{XY}I(Y\neq G(X))$</p>
-<p>弱分类器是误差率仅仅比随机猜测要好一点的分类器．boosting 的目的是依次对反复修改的数据应用弱分类器算法，因此得到弱分类器序列 $G_m(x),m=1,2,\ldots,M$ 根据它们得到的预测再通过一个加权来得到最终的预测</p>
+<p>在未来预测值上的期望误差率为 $E_{XY}I(Y\neq G(X))$</p>
+<p>弱分类器是误差率仅仅比随机猜测要好一点的分类器．Boosting 的目的是依次对反复修改的数据应用弱分类器算法，因此得到弱分类器序列 $G_m(x),m=1,2,\ldots,M$ 根据它们得到的预测再通过一个加权来得到最终的预测</p>
 <p>
 <script type="math/tex; mode=display">
 G(x)=\mathrm {sign}(\sum\limits_{m=1}^M\alpha_mG_m(x))\tag{10.1}
@@ -3459,7 +3459,7 @@ Y=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-26 10:23:10
+        Last Build Date UTC : 2019-08-26 10:44:47
       </div>
       
         

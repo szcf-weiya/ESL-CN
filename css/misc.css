@@ -60,7 +60,7 @@ label.md-nav__title {
 /* link in list */
 
 .md-typeset ul li a {
-  color: blue;/*!important;*/
+  color: blue!important;
 }
 
 
@@ -68,5 +68,5 @@ label.md-nav__title {
 */
 
 #comment a{
-  color: #288ce4;
+  color: #288ce4!important;
 }
