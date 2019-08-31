@@ -3608,7 +3608,7 @@ f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}\label{12.28}
 </script>
 </p>
 <p>这些拟合的模型在形状和表现效果上都非常相似．<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>给出了例子以及更多的细节．</p>
-<p>对于SVM也是一样，$N$ 个 $\alpha_i$ 中的一部分可以为0（非支持点）．在图12.3的两个例子中，这些比例分别为$42\%$和$45\%$．这是准则(12.25)的第一部分分段线性的本质．（在训练数据上）类别重叠越少，这个比例越大．降低$\lambda$一般会降低重叠（允许更灵活的$f$）．较少的支持点意味着$\hat f(x)$可以更快地进行赋值，这在查找时很重要．当然，过分降低重叠会导致泛化能力太差．</p>
+<p>对于SVM也是一样，$N$ 个 $\alpha_i$ 中的一部分可以为0（非支持点）．在图12.3的两个例子中，这些比例分别为$42\%$和$45\%$．这是准则 (12.25) 的第一部分分段线性的本质．（在训练数据上）类别重叠越少，这个比例越大．降低$\lambda$一般会降低重叠（允许更灵活的$f$）．较少的支持点意味着$\hat f(x)$可以更快地进行赋值，这在查找时很重要．当然，过分降低重叠会导致泛化能力太差．</p>
 <h2 id="svm_2">SVM 和维数灾难<a class="headerlink" href="#svm_2" title="Permanent link">&para;</a></h2>
 <p>在这一节，我们提出问题：SVMs是否存在维数灾难？注意到在展开式(12.23)中，我们不允许在幂和乘积的空间中有完全一般的内积．举个例子，所有形如$2X_jX_j&rsquo;$赋予相同的权重，<del class="critic">并且核不能自动更新来集中到子空间中</del>．</p>
 <div class="admonition question">
@@ -3935,7 +3935,7 @@ h\le R^2A^2\tag{12.50}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-08-31 15:59:01
+        Last Build Date UTC : 2019-08-31 16:57:38
       </div>
       
         
