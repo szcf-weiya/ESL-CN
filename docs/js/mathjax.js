@@ -45,7 +45,6 @@ window.MathJax = {
 
 
       LOG: "{\\mathrm{log}}",
-      log: "{\\mathrm{log}}",
       EPE: "{\\mathrm{EPE}}",
       MSE: "{\\mathrm{MSE}}",
       E: "{\\mathrm{E}}",
