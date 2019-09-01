@@ -3338,11 +3338,11 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">更新笔记</p>
-<p>@2017.09.13 这一节在 FRM 课程上，张老师特别介绍了三次样条，当时才意识到样条的order和degree是不同的，当时看这一节时还挺纳闷为啥阶数比自己理解的多1．<a href="https://en.wikipedia.org/wiki/Order_of_a_polynomial">wiki</a>上也提到了“the order of a spline, either the degree+1 of the polynomials defining the spline or the number of knot points used to determine it.” 比如3次样条的order为4，但 degree 才是我们熟悉的阶数，degree等于3．<strong>故在本节的翻译中，原文为order的直接用order，其它情况了类似称“三次多项式”均指degree．</strong> 当然上面仅限于样条，对于微分方程的 order 与 degree，用下面的例子来说明
+<p>@2017.09.13 这一节在 FRM 课程上，张老师特别介绍了三次样条，当时才意识到样条的order和degree是不同的，当时看这一节时还挺纳闷为啥阶数比自己理解的多 1．<a href="https://en.wikipedia.org/wiki/Order_of_a_polynomial">wiki</a>上也提到了“the order of a spline, either the degree+1 of the polynomials defining the spline or the number of knot points used to determine it.” 比如 3 次样条的 order 为 4，但 degree 才是我们熟悉的阶数，degree等于 3．<strong>故在本节的翻译中，原文为 order 的直接用 order，其它情况了类似称“三次多项式”均指 degree．</strong> 当然上面仅限于样条，对于微分方程的 order 与 degree，用下面的例子来说明
 <script type="math/tex; mode=display">
 \frac{d^2y}{d x^2}+3\frac{dy}{dx}+2y=0
 </script>
-微分方程的order指的是方程中最高次的微分，所以上式的 order 为 2；而 degree 指的是最高次微分的幂，所以上式 degree 为 1．值得注意的是，order 的定义是完整的，但 degree 的定义是不完整的，对于非多项式的微分方程，不能定义其 degree，也就是并不知道 $sin(\frac{dy}{dx})$ 的 degree 是多少．
+微分方程的 order 指的是方程中最高次的微分，所以上式的 order 为 2；而 degree 指的是最高次微分的幂，所以上式 degree 为 1．值得注意的是，order 的定义是完整的，但 degree 的定义是不完整的，对于非多项式的微分方程，不能定义其 degree，也就是并不知道 $\sin(\frac{dy}{dx})$ 的 degree 是多少．
 关于这两者的区别，可以参见 Quora 上的一篇回答 <a href="https://www.quora.com/What-is-the-difference-between-the-degree-and-order-of-a-differential-equation">What is the difference between the degree and order of a differential equation?</a></p>
 <p>@2017.10.18 今天跟 yy 同学简要讨论了一下样条方法，ta觉得“样条方法本身其实就是最小二乘，惩罚样条也不过就是跟最小二乘的Lasso 之类一个原理，没什么新意，不过这种非参估计因为假设放宽所以渐近性要比线性模型证明起来复杂的多．” 说得很对，但我觉得并非没有新意，看上去确实是像最小二乘（或者说是广义最小二乘或者加权最小二乘），但想到样条方法的初衷，不就是将线性模型拓展到超线性吗，而这种超线性的体现在于可加的分量是$h(X)$，是原始变量$X$的某个变换，比如样条基．所以我觉得表现形式很像最小二乘（或广义最小二乘）是很自然的，并且其惩罚也应该对应着线性中的惩罚，无论是lasso，还是 $L_2$．另外，我个人一个很大的感受是，看上去很general的东西但看他们的论文或者书并不会觉得没有新意，比如esl中很多方法你似乎看上去都可以归结为最最一般的方法，但还是惊叹于新方法的巧妙．</p>
 </div>
@@ -3613,7 +3613,7 @@ h_1(f_p)&h_2(f_p)&\ldots&h_M(f_p)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-09-01 08:39:34
+        Last Build Date UTC : 2019-09-01 15:43:16
       </div>
       
         
