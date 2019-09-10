@@ -57,7 +57,7 @@ $$
 
 因此当$M=4,B_{i,4},i=1,\cdots,K+4$是结点序列$\xi$的$K+4$个三次B样条基函数．
 
-!!! note "weiya 注：Alternative Definition"
+<!-- !!! note "weiya 注：Alternative Definition"
     在 [GSL: GNU Scientific Library](https://www.gnu.org/software/gsl/doc/html/index.html) 中的帮助文档中，$B$ 样条定义稍微有点区别：给定结点向量
     $$
     t=\{t_0,t_1,\ldots,t_{n+k-1}\}\,,
@@ -72,11 +72,11 @@ $$
     B_{i,k}(x) &= \frac{x-t_i}{t_{i+k-1}-t_i}B_{i+1,k-1}(x)+\frac{t_{i+k}-x}{t_{i+k}-t_{i+1}}B_{i+1,k-1}(x)
     \end{align*}
     $$
-    for $i=0,\ldots,n-1$，在这种定义下，order 为 $m$ 的 $B$ 样条基函数个数为 $n+k$，其中 $n$ 是内结点个数，而 $nbreak=n+2$ 为所有结点个数，则样条基函数个数也可以表示为 $nbreak+k-2$，这也是 `gsl` 中
+    for $i=0,\ldots,n-1$，在这种定义下，order 为 $k$ 的 $B$ 样条基函数个数为 $n = nbreak-k$，其中 $nbreak$ 是内结点个数，而 $nbreak=n+2$ 为所有结点个数，则样条基函数个数也可以表示为 $nbreak+k-2$，这也是 `gsl` 中
     ```c
     gsl_bspline_workspace* gsl_bspline_alloc (const size_t k , const size_t nbreak )
     ```
-    函数中参数的形式。
+    函数中参数的形式。 -->
 
 这个递归可以继续，并且将会产生任意 order 样条的 $B$ 样条基．
 
@@ -87,8 +87,8 @@ $$
 
 图 5.20 显示了 order 至多为 4 的 $B$ 样条序列，其中结点在 $0.0,0.1,\ldots, 1.0$．因为我们构造了一些重复结点，所以需要注意避免分母为 0．如果我们约定当 $\tau_i=\tau_{i+1}$，有 $B_{i,1}=0$，于是可以归纳得到当 $\tau_i=\tau_{i+1}=\ldots=\tau_{i+m}$，有 $B_{i,m}=0$．注意到在上面的构造中，只要求子集 $B_{i,m},i=M-m+1,\ldots, M+K$ 用作结点为 $\xi$的order为 $m < M$ 的 $B$ 样条基．
 
-!!! note "weiya 注："
-    注意到 $B_{i,m},i=M-m+1,\ldots, M+K$ 中基函数个数刚好是 $K+m$，这与上文 Note 中提到的 GSL 中 $n+k$ 一致。
+<!-- !!! note "weiya 注："
+    注意到 $B_{i,m},i=M-m+1,\ldots, M+K$ 中基函数个数刚好是 $K+m$，这与上文 Note 中提到的 GSL 中 $n+k$ 一致。 -->
 
 为了全面理解这些函数的性质，并且为了证明它们确实张成了结点序列的三次样条空间，需要额外的数学知识，包括差商的性质．[练习5.2](https://github.com/szcf-weiya/ESL-CN/issues/66)探索了这些问题．
 
