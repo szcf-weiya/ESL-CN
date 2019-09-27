@@ -1,0 +1,90 @@
+LEUKEMIA ALL/AML PREDICTION RESULTS
+
+
+Samples     	Actual		Predicted	Prediction Strength (PS)	Call 		Correct
+
+
+INITIAL SET (cross-validation, 50 genes)
+
+1 		ALL		ALL			1.00			YES		YES
+2 		ALL		ALL			0.41			YES		YES
+3 		ALL		ALL			0.87			YES		YES
+4 		ALL		ALL			0.91			YES		YES
+5 		ALL		ALL			0.89			YES		YES
+6 		ALL		ALL			0.76			YES		YES
+7 		ALL		ALL			0.78			YES		YES
+8 		ALL		ALL			0.77			YES		YES
+9 		ALL		ALL			0.89			YES		YES
+10 		ALL		ALL			0.56			YES		YES
+11 		ALL		ALL			0.74			YES		YES
+12 		ALL		AML			0.20			NO		-
+13 		ALL		ALL			1.00			YES		YES
+14 		ALL		ALL			0.73			YES		YES
+15 		ALL		ALL			0.98			YES		YES
+16 		ALL		ALL			0.95			YES		YES
+17 		ALL		ALL			0.49			YES		YES
+18 		ALL		ALL			0.59			YES		YES
+19 		ALL		ALL			0.80			YES		YES
+20 		ALL		ALL			0.90			YES		YES
+21 		ALL		ALL			0.76			YES		YES
+22 		ALL		ALL			0.37			YES		YES
+23 		ALL		ALL			0.77			YES		YES
+24 		ALL		ALL			0.92			YES		YES
+25 		ALL		ALL			0.43			YES		YES
+26 		ALL		ALL			0.89			YES		YES
+27 		ALL		ALL			0.82			YES		YES
+28 		AML		AML			0.44			YES		YES
+29 		AML		AML			0.74			YES		YES
+30 		AML		AML			0.80			YES		YES
+31 		AML		AML			0.61			YES		YES
+32 		AML		AML			0.47			YES		YES
+33 		AML		AML			0.89			YES		YES
+34 		AML		AML			0.64			YES		YES
+35 		AML		AML			0.21			NO		-
+36 		AML		AML			0.94			YES		YES
+37 		AML		AML			0.95			YES		YES
+38 		AML		AML			0.73			YES		YES
+
+INDEPENDENT SET (test prediction, 50 genes)
+
+39 		ALL 		ALL			0.78			YES		YES
+40 		ALL 		ALL			0.68			YES		YES
+41 		ALL 		ALL			0.99			YES		YES
+42 		ALL 		ALL			0.42			YES		YES
+43 		ALL 		ALL			0.66			YES		YES
+44 		ALL 		ALL			0.97			YES		YES		
+45 		ALL 		ALL			0.88			YES		YES
+46 		ALL 		ALL			0.84			YES		YES
+47 		ALL 		ALL			0.81			YES		YES
+48 		ALL 		ALL			0.94			YES		YES
+49 		ALL 		ALL			0.84			YES		YES
+50 		AML 		AML			0.97			YES		YES
+51 		AML 		AML			1.00			YES		YES
+52 		AML 		AML			0.61			YES		YES
+53 		AML		AML			0.89			YES		YES
+54 		AML		AML			0.23			NO		-
+55 		ALL		ALL			0.73			YES		YES
+56		ALL		ALL			0.84			YES		YES
+57 		AML		AML			0.22			NO		-
+58 		AML		AML			0.74			YES		YES
+59 		ALL 		ALL			0.68			YES		YES
+60 		AML		AML			0.06			NO		-
+61 		AML		AML			0.40			YES		YES
+62 		AML 		AML			0.58			YES		YES
+63 		AML 		AML			0.69			YES		YES
+64 		AML 		AML			0.52			YES		YES
+65 		AML 		AML			0.60			YES		YES
+66 		AML 		ALL			0.27			NO		-
+67 		ALL		AML			0.15			NO		-
+68 		ALL		ALL			0.80			YES		YES
+69 		ALL		ALL			0.85			YES		YES
+70 		ALL		ALL			0.73			YES		YES
+71 		ALL		ALL			0.30			YES		YES
+72 		ALL		ALL			0.77			YES		YES
+
+
+
+
+
+
+

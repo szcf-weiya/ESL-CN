@@ -1,0 +1,91 @@
+LEUKEMIA SAMPLES INFORMATION
+
+
+Samples     ALL/AML        BM/PB	T/B-cell	FAB		Date/Gender	       % Blasts	Treatment 	PS	Source
+				           (if ALL)       (if AML)						 Response
+
+
+INITIAL SET
+
+1 		ALL		BM	B-cell				09/04/96 - M					1.00	DFCI
+2 		ALL 		BM	T-cell					   - M					0.41	DFCI
+3 		ALL 		BM	T-cell					   - M					0.87	DFCI
+4 		ALL 		BM	B-cell										0.91	DFCI
+5 		ALL 		BM	B-cell										0.89	DFCI
+6 		ALL 		BM	T-cell					   - M					0.76	DFCI
+7 		ALL 		BM	B-cell				03/25/83 - F					0.78	DFCI
+8 		ALL 		BM	B-cell					   - F					0.77	DFCI
+9 		ALL 		BM	T-cell					   - M					0.89	DFCI
+10 		ALL 		BM	T-cell				07/23/87 - M					0.56	DFCI
+11 		ALL 		BM	T-cell				06/25/85 - M					0.74	DFCI
+12 		ALL 		BM	B-cell				09/17/85 - F					0.20	DFCI
+13 		ALL 		BM	B-cell				07/27/88 - F					1.00	DFCI
+14 		ALL 		BM	T-cell				11/27/87 - M					0.73	DFCI
+15 		ALL 		BM	B-cell				03/25/89 - F					0.98	DFCI
+16 		ALL 		BM	B-cell				02/12/90 - M					0.95	DFCI
+17 		ALL 		BM	B-cell				09/26/90 - M					0.49	DFCI
+18 		ALL 		BM	B-cell					   - F					0.59	DFCI
+19 		ALL 		BM	B-cell										0.80	DFCI
+20 		ALL 		BM	B-cell										0.90	DFCI
+21 		ALL 		BM	B-cell				01/24/84 - M					0.76	DFCI
+22 		ALL 		BM	B-cell				05/27/88 - M					0.37	DFCI
+23 		ALL 		BM	T-cell				07/09/91 - M					0.77	DFCI
+24 		ALL 		BM	B-cell				05/19/81 - M					0.92	DFCI
+25 		ALL 		BM	B-cell				02/18/82 - M					0.43	DFCI
+26 		ALL 		BM	B-cell					   - F					0.89	DFCI
+27 		ALL 		BM	B-cell					   - F					0.82	DFCI
+28 		AML		BM			M2					79	Failure		0.44	CALGB
+29 		AML 		BM			M2					34	Failure		0.74	CALGB
+30 		AML 		BM			M5					93	Failure		0.80	CALGB
+31 		AML 		BM			M4					77	Failure		0.61	CALGB
+32 		AML 		BM			M1					86	Failure		0.47	CALGB
+33 		AML 		BM			M2					70	Failure		0.89	CALGB
+34 		AML 		BM			M2					77	Success	0.64	CALGB
+35 		AML 		BM			M1					67	Success	0.21	CALGB
+36 		AML 		BM			M5					76	Success	0.94	CALGB
+37 		AML 		BM			M2					44	Success	0.95	CALGB
+38 		AML 		BM			M1					80	Success	0.73	CALGB
+
+INDEPENDENT SET
+
+39 		ALL 		BM	B-cell					   - F 					0.78	DFCI
+40 		ALL 		BM	B-cell 				05/16/80 - F					0.68	DFCI
+41 		ALL 		BM	B-cell					   - F					0.99	DFCI
+42 		ALL 		BM	B-cell					   - F					0.42	DFCI
+43 		ALL 		BM	B-cell					   - F					0.66	DFCI
+44 		ALL 		BM	B-cell				11/19/98 - F					0.97	DFCI
+45 		ALL 		BM	B-cell				11/19/98 - M					0.88	DFCI
+46 		ALL 		BM	B-cell				01/08/99 - F					0.84	DFCI
+47 		ALL 		BM	B-cell				09/05/86 - M					0.81	DFCI
+48 		ALL 		BM	B-cell				02/28/92 - F					0.94	DFCI
+49 		ALL		BM	B-cell					   - M					0.84	DFCI
+50 		AML 		BM			M4					93	Failure		0.97	CALGB
+51 		AML 		BM			M2					57	Failure		1.00	CALGB
+52 		AML 		PB			M4					86	Success	0.61	CALGB
+53 		AML 		BM			M2					76	Success	0.89	CALGB
+54 		AML		BM			M4			   - F					0.23	St-Jude
+55 		ALL		BM	B-cell					   - F					0.73	St-Jude
+56		ALL		BM	B-cell					   - F					0.84	St-Jude
+57 		AML		BM			M2			   - F					0.22	St-Jude
+58 		AML		BM			M2								0.74	St-Jude
+59 		ALL		BM	B-cell					   - F					0.68	St-Jude
+60 		AML		BM			M2			   - M					0.06	St-Jude
+61 		AML		BM			M1								0.40	St-Jude
+62 		AML		PB						   - M					0.58	CCG
+63 		AML		PB						   - F					0.69	CCG
+64 		AML		PB						   - M					0.52	CCG
+65 		AML 		BM						   - M					0.60	CCG
+66 		AML 		BM						   - M					0.27	CCG
+67 		ALL		PB	T-cell				05/21/97 - M					0.15	DFCI
+68 		ALL		PB	B-cell				04/06/98 - M					0.80	DFCI
+69 		ALL		PB	B-cell				09/15/98 - M					0.85	DFCI
+70 		ALL 		PB	B-cell				12/11/98 - F					0.73	DFCI
+71 		ALL		PB	B-cell				07/18/98					0.30	DFCI
+72 		ALL		PB	B-cell				07/28/98					0.77	DFCI
+
+
+
+
+
+
+
