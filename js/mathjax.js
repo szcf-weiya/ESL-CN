@@ -55,6 +55,7 @@ window.MathJax = {
       CV: "{\\mathrm{CV}}",
       GCV: "{\\mathrm{GCV}}",
       Var: "{\\mathrm{Var}}",
+      var: "{\\mathrm{var}}",
       Bias: "{\\mathrm{Bias}}",
       det: "{\\mathrm{det}\\;}",
       cosh: "{\\mathrm{cosh}\\;}",
