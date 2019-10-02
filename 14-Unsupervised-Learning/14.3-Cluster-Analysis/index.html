@@ -2411,8 +2411,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#soft-k-means" title="高斯混合作为Soft K-means聚类" class="md-nav__link">
-    高斯混合作为Soft K-means聚类
+  <a href="#soft-k-means" title="高斯混合作为 Soft K-means 聚类" class="md-nav__link">
+    高斯混合作为 Soft K-means 聚类
   </a>
   
 </li>
@@ -3431,8 +3431,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#soft-k-means" title="高斯混合作为Soft K-means聚类" class="md-nav__link">
-    高斯混合作为Soft K-means聚类
+  <a href="#soft-k-means" title="高斯混合作为 Soft K-means 聚类" class="md-nav__link">
+    高斯混合作为 Soft K-means 聚类
   </a>
   
 </li>
@@ -3689,41 +3689,41 @@ W(C)&=\frac{1}{2}\sum\limits_{k=1}^K\sum\limits_{C(i)=k}\sum\limits_{C(i')=k}\Ve
 </script>
 </p>
 </div>
-<p>因此，通过以某种方式将$N$个观测分配到$K$个类中来最小化该准则，该方式为最小化每个类中观测点与类别中心（用该类中的点定义）的不相似性的平均值．</p>
+<p>因此，通过以某种方式将 $N$ 个观测分配到 $K$ 个类中来最小化该准则，该方式为最小化每个类中观测点与类别中心（用该类中的点定义）的不相似性的平均值．</p>
 <p>求解下列问题的迭代下降算法
 <script type="math/tex; mode=display">
-C^*=\underset{C}{min}\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
+C^*=\underset{C}{\min}\sum_{k=1}^KN_k\sum_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
 </script>
-可以通过注意到任意观测集$S$有下式而得到．
+可以通过注意到任意观测集 $S$ 有下式而得到．
 <script type="math/tex; mode=display">
 \bar x_S=\underset{m}{\text{argmin}}\;\sum\limits_{i\in S}\Vert x_i-m\Vert^2\tag{14.32}
 </script>
-因此我们可以通过求解扩大的优化问题而得到$C^*$
+因此我们可以通过求解扩大的优化问题而得到 $C^*$
 <script type="math/tex; mode=display">
-\underset{C,\{m_k\}_1^K}{min}\;\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-m_k\Vert^2\tag{14.33}
+\underset{C,\{m_k\}_1^K}{\min}\;\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-m_k\Vert^2\tag{14.33}\label{14.33}
 </script>
-这个可以通过算法14.1给出的交替优化过程得以最小化．</p>
+这个可以通过算法 14.1 给出的交替优化过程得以最小化．</p>
 <p><img alt="" src="../../img/14/alg14.1.png" /></p>
-<p>每个步骤1和步骤2都降低准则（14.33）的值，所以收敛性是保证的．然而，结果可能会表现处次优局部最小值．Hartigan and Wong (1979)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>的算法进一步研究，并且保证了单个的一个观测从一个类转换到另一个类不会降低目标值．另外，应该用许多初始值的许多随机选择来开始算法，然后选择有最小目标函数的解．</p>
-<p>图14.6显示了图14.4的模拟数据的一些K-means迭代过程．重心用O来描述．直线显示了点的划分，每个部分都是离重心最近的点的集合．这个划分也称为Voronoi曲面细分．20次迭代之后收敛．</p>
+<p>每个步骤 1 和步骤 2 都降低准则 \eqref{14.33} 的值，所以收敛性是保证的．然而，结果可能会表现出次优局部最小值．Hartigan and Wong (1979)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>的算法进一步研究，并且保证了单个的一个观测从一个类转换到另一个类不会降低目标值．另外，应该用许多初始值的许多随机选择来开始算法，然后选择有最小目标函数的解．</p>
+<p>图 14.6 显示了图 14.4 的模拟数据的一些 K-means 迭代过，其中圆圈 O 表示重心．直线显示了点的划分，每个部分都是离重心最近的点的集合．这个划分也称为 Voronoi 曲面细分．20 次迭代之后收敛．</p>
 <p><img alt="" src="../../img/14/fig14.6.png" /></p>
 <blockquote>
-<p>图14.6. 对于图14.4的模拟数据的K-means聚类算法的逐次迭代</p>
+<p>图 14.6. 对于图 14.4 的模拟数据的 K-means 聚类算法的逐次迭代</p>
 </blockquote>
-<h2 id="soft-k-means">高斯混合作为Soft K-means聚类<a class="headerlink" href="#soft-k-means" title="Permanent link">&para;</a></h2>
-<p>K-means 聚类算法与估计特定的高斯混合模型的EM算法有关．（6.8节和8.5.1节）EM算法的步骤E对每个数据点基于在每个混合部分中的相对密度来赋予“responsibilities”，而步骤M基于当前的responsibilities重新计算各组分的密度参数．假设明确了我们有$K$个混合组分，每个是有着标量协方差矩阵$\sigma^2\mathbf I$的高斯密度．则在每个混合组分的相对密度是关于数据点到混合中心欧氏距离的单调函数．因此在这一步中EM是K-means聚类的soft，使得点以概率（而不是确定性的）分配到聚类中心．因为方差$\sigma\rightarrow 0$，这些概率变成0和1，两种方法也就一致．细节在练习14.2中给出．</p>
+<h2 id="soft-k-means">高斯混合作为 Soft K-means 聚类<a class="headerlink" href="#soft-k-means" title="Permanent link">&para;</a></h2>
+<p>K-means 聚类算法与估计特定的高斯混合模型的 EM 算法有关（<a href="../../06-Kernel-Smoothing-Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html">6.8 节</a>和 <a href="../../08-Model-Inference-and-Averaging/8.5-The-EM-Algorithm/index.html">8.5.1 节</a>）．EM 算法的步骤 E 对每个数据点基于在每个混合部分中的相对密度来赋予“responsibilities”，而步骤 M 基于当前的 responsibilities 重新计算各组分的密度参数．假设明确了我们有 $K$ 个混合组分，每个是有着标量协方差矩阵 $\sigma^2\mathbf I$ 的高斯密度．则在每个混合组分的相对密度是关于数据点到混合中心欧氏距离的单调函数．因此在这一步中 EM 是 soft 版本的 K-means 聚类，使得点以概率（而不是确定性地）分配到聚类中心．因为方差 $\sigma\rightarrow 0$，这些概率变成 0 和 1，两种方法也就一致．细节在 <a href="https://github.com/szcf-weiya/ESL-CN/issues/43">练习 14.2</a> 中给出．</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注: Ex. 14.2</p>
-<p>Ex. 14.2讨论了$k$个高斯组分的混合模型，而算法8.1针对的是两组分的高斯混合模型，但主要思想是一致的．具体解题过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/43">Issues 43: Ex. 14.2</a></p>
+<p class="admonition-title">weiya 注: Ex. 14.2</p>
+<p>Ex. 14.2 讨论了 $k$ 个高斯组分的混合模型，而算法 8.1 针对的是两组分的高斯混合模型，但主要思想是一致的．具体解题过程参见<a href="https://github.com/szcf-weiya/ESL-CN/issues/43">Issues 43: Ex. 14.2</a></p>
 </div>
-<p>图14.7说明了实线上两个聚类的结果．</p>
+<p>图 14.7 说明了实线上两个聚类的结果．</p>
 <p><img alt="" src="../../img/14/fig14.7.png" /></p>
 <blockquote>
-<p>图14.7. (左：)实线为两个高斯密度$g_0(x)$和$g_1(x)$（蓝色和橘黄色），以及$x=0.5$处的单个数据点（绿色圆点）．带颜色的方块画在$x=-1.0$和$x=1.0$处，每个密度的均值．（右：）对于数据点来说，相对密度$g_0(x)/(g_0(x)+g_1(x))$和$g_1(x)/(g_0(x)+g_1(x))$称作每个聚类的“responsibilities”．上面一排的两张图，高斯标准误差为$\sigma=1.0$在下面的两张图中$\sigma=0.2$．EM算法用这些responsibilities来对每个数据点做“soft”分配到两个簇中．当$\sigma$相对大，responsibilities可以接近0.5，（右上图中为0.36和0.64）．当$\sigma\rightarrow 0$时，responsibilities接近1，表示聚类中心离目标点很近，0代表是其它的聚类．“hard”版本的分配如右下图所示．</p>
+<p>图 14.7. (左：)实线为两个高斯密度 $g_0(x)$ 和 $g_1(x)$（蓝色和橘黄色），以及 $x=0.5$ 处的单个数据点（绿色圆点）．带颜色的方块画在$x=-1.0$ 和 $x=1.0$处，它们是各自密度的均值．（右：）对于每个数据点，相对密度 $g_0(x)/(g_0(x)+g_1(x))$ 和 $g_1(x)/(g_0(x)+g_1(x))$ 称作每个聚类的“responsibilities”．上面一排的两张图，高斯标准误差为 $\sigma=1.0$ 在下面的两张图中 $\sigma=0.2$．EM 算法用这些 responsibilities 来对每个数据点“soft”地分配到两个簇中．当 $\sigma$ 相对大，responsibilities 可以接近 0.5，（右上图中为 0.36 和 0.64）．当 $\sigma\rightarrow 0$ 时，responsibilities 接近 1，表示聚类中心离目标点很近，而剩下类别的 responsibility 接近 0．“hard”版本的分配如右下图所示．</p>
 </blockquote>
 <h2 id="_7">例子：人类肿瘤微阵列数据<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>我们对第１章描述的人类肿瘤微阵列数据应用Ｋ-means聚类．这是一个高维聚类的例子．数据为$6830\times 64$的实值矩阵，每个元素表示基因（行）和样本（列）的表达测量值．这里我们对样本进行聚类，每个都是长度为6830的向量，对应6830个基因的表达值．每个样本有像breast(乳腺癌)，melanoma等标签；聚类时，我们不会用这些标签，但是会验证哪个标签落入到哪个簇中．</p>
-<p>我们对从1到10的$K$应用K-means聚类，而且对每次聚类计算总类间平方和，如图14.8所示．一般地我们在平方和曲线中寻找一个结点来定位最优簇的个数（见14.3.11）．这里没有显然的指示：为了说明我们选择$K=3$给出如表14.2所示的三个类．</p>
+<p>我们对第 １ 章描述的人类肿瘤微阵列数据应用 Ｋ-means 聚类．这是一个高维聚类的例子．数据为 $6830\times 64$ 的实值矩阵，每个元素表示基因（行）和样本（列）的表达测量值．这里我们对样本进行聚类，每个都是长度为 6830 的向量，对应 6830 个基因的表达值．每个样本有像 breast(乳腺癌)， melanoma (黑素瘤) 等标签；聚类时，我们不会用这些标签，但是会验证哪个标签落入到哪个簇中．</p>
+<p>我们对从 1 到 10 的 $K$ 应用 K-means 聚类，而且对每次聚类计算总类间平方和，如图 14.8 所示．一般地我们在平方和曲线中寻找一个结点来定位最优簇的个数（见14.3.11）．这里没有显然的指示：为了说明我们选择$ K=3$ 给出如表 14.2 所示的三个类．</p>
 <p><img alt="" src="../../img/14/fig14.8.png" /></p>
 <blockquote>
 <p>图14.8. 对人类种类微阵列数据应用K-means聚类的总簇间平方和．</p>
@@ -3732,7 +3732,7 @@ C^*=\underset{C}{min}\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_
 <blockquote>
 <p>表14.2. 人类肿瘤数据：每种类型的癌症在由K-means聚类得到的三个类中的个数</p>
 </blockquote>
-<p>我们看到这个过程在聚集同样类型的癌症是很成功的．事实上，在第2类中的两个乳腺癌后来发现是误诊的，而是转移的黑素瘤．然而，K-means聚类在这个应用中有缺点．其中一个是，它没有给出癌症中物体的线性顺序：我们仅仅以字母顺序列出来．第二，当聚类的数目$K$改变，簇中的成员以任意方式变化．也就是，如4个类，这些类不需要嵌套在上面的三个类中．基于这个原因，系统聚类可能在这个应用中更好．</p>
+<p>我们看到这个过程在聚集同样类型的癌症是很成功的．事实上，在第 2 类中的两个乳腺癌后来发现是误诊的，而是转移的<strong>黑素瘤 (melanomas)</strong>．然而，K-means 聚类在这个应用中有缺点．其中一个是，它没有给出簇中物体的线性顺序：我们仅仅以字母顺序列出来．第二，当聚类的数目 $K$ 改变，簇中的成员以任意方式变化．也就是，如 4 个类，这些类不要求嵌套在上面的三个类中．基于这个原因，系统聚类可能在这个应用中更好．</p>
 <h2 id="_8">向量量化<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>K-means聚类算法代表了在图像和信号压缩的明显无关的区域中的关键工具，特别在向量量化(vector quantization)或者VQ（Gersho and Gray，1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）中．图14.9（本例由Maya Gupta准备）的左图像是著名的统计学家Sir Ronald Fisher的电子相片．它包含$1024\times 1024$个像素，每个像素是从0到255的灰度值，因此每个像素需要8位的存储．整张图像占据1M的存储空间．中间图像是左边图像的VQ压缩版本，需要0.239的存储（质量上有一些损失）．右图压缩得更厉害，仅需要0.0625的存储空间（质量上有较大的损失）．</p>
 <p><img alt="" src="../../img/14/fig14.9.png" /></p>
@@ -3842,7 +3842,7 @@ C^*=\underset{C}{min}\sum\limits_{k=1}^KN_k\sum\limits_{C(i)=k}\Vert x_i-\bar x_
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-10-02 06:25:45
+        Last Build Date UTC : 2019-10-02 06:55:44
       </div>
       
         
