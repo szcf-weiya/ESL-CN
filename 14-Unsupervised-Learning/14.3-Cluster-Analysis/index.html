@@ -2436,19 +2436,59 @@
     K-medoids
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="例子：国家不相似性" class="md-nav__link">
+    例子：国家不相似性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" title="实际问题" class="md-nav__link">
+  <a href="#_10" title="实际问题" class="md-nav__link">
     实际问题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" title="系统聚类" class="md-nav__link">
+  <a href="#_11" title="系统聚类" class="md-nav__link">
     系统聚类
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" title="合并聚类" class="md-nav__link">
+    合并聚类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="例子：人类癌症微阵列数据（继续）" class="md-nav__link">
+    例子：人类癌症微阵列数据（继续）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" title="分裂聚类" class="md-nav__link">
+    分裂聚类
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3456,19 +3496,59 @@
     K-medoids
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="例子：国家不相似性" class="md-nav__link">
+    例子：国家不相似性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" title="实际问题" class="md-nav__link">
+  <a href="#_10" title="实际问题" class="md-nav__link">
     实际问题
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" title="系统聚类" class="md-nav__link">
+  <a href="#_11" title="系统聚类" class="md-nav__link">
     系统聚类
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" title="合并聚类" class="md-nav__link">
+    合并聚类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="例子：人类癌症微阵列数据（继续）" class="md-nav__link">
+    例子：人类癌症微阵列数据（继续）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" title="分裂聚类" class="md-nav__link">
+    分裂聚类
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3498,7 +3578,7 @@
 <thead>
 <tr>
 <th>原文</th>
-<th><a href="../../book/The Elements of Statistical Learning.pdf">The Elements of Statistical Learning</a></th>
+<th><a href="https://web.stanford.edu/~hastie/ElemStatLearn/">The Elements of Statistical Learning</a></th>
 </tr>
 </thead>
 <tbody>
@@ -3512,7 +3592,11 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-10-02 14:21:37</td>
+<td>2019-10-03 09:57:02</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
@@ -3645,7 +3729,7 @@ B(C)=\frac{1}{2}\sum\limits_{k=1}\sum\limits_{C(i)=k}\sum\limits_{C(i')\neq k}d_
 W(C)=T-B(C)
 </script>
 并且最小化 $W(C)$ 等价于最大化 $B(C)$. </p>
-<p>通过组合优化的聚类分析原则上是直接的．简单地在 $N$ 个点分到 $K$ 个类中的所有可能分配上最小化 $W$ 或等价地最大化 $B$．不幸的是，这种穷举法的优化仅仅在非常小的数据集中才适用．不同的分配个数为（Jain and Dubes，1988<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）
+<p>通过组合优化的聚类分析原则上是直接的．简单地在 $N$ 个点分到 $K$ 个类中的所有可能分配上最小化 $W$ 或等价地最大化 $B$．不幸的是，这种穷举法的优化仅仅在非常小的数据集中才适用．不同的分配个数为（Jain and Dubes，1988<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">4</a></sup>）
 <script type="math/tex; mode=display">
 S(N,K)=\frac{1}{K!}\sum\limits_{k=1}^K(-1)^{K-k}\binom{K}{k}k^N\tag{14.30}\label{14.30}
 </script>
@@ -3696,7 +3780,7 @@ C^*=\underset{C}{\min}\sum_{k=1}^KN_k\sum_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
 </script>
 可以通过注意到任意观测集 $S$ 有下式而得到．
 <script type="math/tex; mode=display">
-\bar x_S=\underset{m}{\text{argmin}}\;\sum\limits_{i\in S}\Vert x_i-m\Vert^2\tag{14.32}
+\bar x_S=\underset{m}{\text{argmin}}\;\sum\limits_{i\in S}\Vert x_i-m\Vert^2\tag{14.32}\label{14.32}
 </script>
 因此我们可以通过求解扩大的优化问题而得到 $C^*$
 <script type="math/tex; mode=display">
@@ -3704,7 +3788,7 @@ C^*=\underset{C}{\min}\sum_{k=1}^KN_k\sum_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
 </script>
 这个可以通过算法 14.1 给出的交替优化过程得以最小化．</p>
 <p><img alt="" src="../../img/14/alg14.1.png" /></p>
-<p>每个步骤 1 和步骤 2 都降低准则 \eqref{14.33} 的值，所以收敛性是保证的．然而，结果可能会表现出次优局部最小值．Hartigan and Wong (1979)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>的算法进一步研究，并且保证了单个的一个观测从一个类转换到另一个类不会降低目标值．另外，应该用许多初始值的许多随机选择来开始算法，然后选择有最小目标函数的解．</p>
+<p>每个步骤 1 和步骤 2 都降低准则 \eqref{14.33} 的值，所以收敛性是保证的．然而，结果可能会表现出次优局部最小值．Hartigan and Wong (1979)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">6</a></sup>的算法进一步研究，并且保证了单个的一个观测从一个类转换到另一个类不会降低目标值．另外，应该用许多初始值的许多随机选择来开始算法，然后选择有最小目标函数的解．</p>
 <p>图 14.6 显示了图 14.4 的模拟数据的一些 K-means 迭代过，其中圆圈 O 表示重心．直线显示了点的划分，每个部分都是离重心最近的点的集合．这个划分也称为 Voronoi 曲面细分．20 次迭代之后收敛．</p>
 <p><img alt="" src="../../img/14/fig14.6.png" /></p>
 <blockquote>
@@ -3734,7 +3818,7 @@ C^*=\underset{C}{\min}\sum_{k=1}^KN_k\sum_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
 </blockquote>
 <p>我们看到这个过程在聚集同样类型的癌症是很成功的．事实上，在第 2 类中的两个乳腺癌后来发现是误诊的，而是转移的<strong>黑素瘤 (melanomas)</strong>．然而，K-means 聚类在这个应用中有缺点．其中一个是，它没有给出簇中物体的线性顺序：我们仅仅以字母顺序列出来．第二，当聚类的数目 $K$ 改变，簇中的成员以任意方式变化．也就是，如 4 个类，这些类不要求嵌套在上面的三个类中．基于这个原因，系统聚类可能在这个应用中更好．</p>
 <h2 id="_8">向量量化<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>K-means 聚类算法是在图像和信号压缩的明显无关的区域中的关键工具，特别在 <strong>向量量化 (vector quantization)</strong> 或者 VQ（Gersho and Gray，1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）中．图 14.9（本例由 Maya Gupta 准备）的左图像是著名的统计学家 Sir Ronald Fisher 的电子相片．它包含 $1024\times 1024$ 个像素，每个像素是从 0 到 255 的灰度值，因此每个像素需要 8 位存储．整张图像占据 1M 的存储空间．中间图像是左边图像的 VQ 压缩版本，需要 0.239 的存储（质量上有一些损失）．右图压缩得更厉害，仅需要 0.0625 的存储空间（质量上有较大的损失）．</p>
+<p>K-means 聚类算法是在图像和信号压缩的明显无关的区域中的关键工具，特别在 <strong>向量量化 (vector quantization)</strong> 或者 VQ（Gersho and Gray，1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">5</a></sup>）中．图 14.9（本例由 Maya Gupta 准备）的左图像是著名的统计学家 Sir Ronald Fisher 的电子相片．它包含 $1024\times 1024$ 个像素，每个像素是从 0 到 255 的灰度值，因此每个像素需要 8 位存储．整张图像占据 1M 的存储空间．中间图像是左边图像的 VQ 压缩版本，需要 0.239 的存储（质量上有一些损失）．右图压缩得更厉害，仅需要 0.0625 的存储空间（质量上有较大的损失）．</p>
 <p><img alt="" src="../../img/14/fig14.9.png" /></p>
 <blockquote>
 <p>图 14.9. Sir Ronald A.Fisher(1890-1962) 是现代统计学的创始人之一，极大似然法，充分性和许多其他基本概念都是归功于他．左边的图像是1024$\times$1024的灰度图像，每个像素为8位．中间图像是$2\times 2$VQ块的结果，采用200个编码向量，达到1.9bits/pixel的压缩率．右图像仅采用4个编码向量，压缩率为0.50bits/pixel．</p>
@@ -3743,24 +3827,145 @@ C^*=\underset{C}{\min}\sum_{k=1}^KN_k\sum_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
 <p>为了表示近似的图像，我们需要提供对每个块用码本中唯一的量来近似它的空间．每一块需要 $\log_2(K)$ 位空间．我们也需要提供码本本身的存储空间，是一个 $K\times4$ 的实值（一般忽略不计）．总的来说，压缩图像的空间为原图像的 $\log_2(K)/(4\cdot 8)$倍（$K=200$ 时为 0.239，$K=4$ 时为0.063）．通常表示成单位为 bits/pixel 的比率：$\log_2(K)/4$，分别是 1.91 和 0.50．从重心构造出近似的图像的过程称为<strong>解码 (decoding)</strong>．</p>
 <p>为什么我们期望 VQ 会有效果？原因是日常的图像比如照片，许多块看起来一样．这种情形下许多几乎是纯白的块，类似的不同阴影的纯灰度块．这些仅仅需要一个块来表示它们，以及指向这块的多个指针．</p>
 <p>我们描述的是被称作损失压缩，因为我们的图像是原图的退化版本．这种退化或者失真（distortion）通常用均值平方误差来衡量．这种情形下，$K=200$ 时 $D=0.89$，$K=4$ 时 $D=16.95$．更一般地，比率/失真曲线会用来衡量这种权衡．也可以使用块聚类来实现小损失（lossless）的压缩，并且仍然利用重复的模式．如果需要对原图像进行小损失的压缩，最好的选择是 4.48bits/pixel．</p>
-<p>我们在上面断言，码本中确定 $K$ 个码字中的每一个需要 $\log_2(K)$位空间．这采用了固定长度编码，如果一些码字在图像中比其他的出现更频繁，这是无效的．采用 Shannon 编码理论，我们知道一般地可变长度的编码会更好，并且比率会变成 $-\sum_{k=1}^Kp_\ell log_2(p_\ell)/4$．分子中的项是图像中 codeword 的分布 $p_\ell$ 的熵．采用可变长度编码我们的比例会分别降至 1.42 和 0.39．最后，已经发展出很多 VQ 的推广：举个例子，树结构的 VQ 以自上而下、2-均值算法来寻找重心，如第 14.3.12 节所述．这允许压缩的逐步加细．更多细节或许可以在 Gersho and Gray(1992)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 的工作中找到．</p>
+<p>我们在上面断言，码本中确定 $K$ 个码字中的每一个需要 $\log_2(K)$位空间．这采用了固定长度编码，如果一些码字在图像中比其他的出现更频繁，这是无效的．采用 Shannon 编码理论，我们知道一般地可变长度的编码会更好，并且比率会变成 $-\sum_{k=1}^Kp_\ell \log_2(p_\ell)/4$．分子中的项是图像中 codeword 的分布 $p_\ell$ 的熵．采用可变长度编码我们的比例会分别降至 1.42 和 0.39．最后，已经发展出很多 VQ 的推广：举个例子，树结构的 VQ 以自上而下、2-均值算法来寻找重心，如第 14.3.12 节所述．这允许压缩的逐步加细．更多细节或许可以在 Gersho and Gray(1992)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">5</a></sup> 的工作中找到．</p>
 <h2 id="k-medoids">K-medoids<a class="headerlink" href="#k-medoids" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
-<h2 id="_9">实际问题<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
-<h2 id="_10">系统聚类<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
+<p>如上所述，当相似性度量为欧氏距离的平方 $D(x_i,x_{i&rsquo;})$ 时，K-means 是合适的．这要求所有的变量都为定量的．另外，平方的欧式距离会赋予离得更远的点更大的影响．这导致这个过程对于（距离非常大的）离群点缺乏鲁棒性．这些限制可以通过以计算为代价而消除．</p>
+<div class="admonition question">
+<p class="admonition-title">weiya 注：</p>
+<p>怎么以计算为代价消除这些限制？</p>
+</div>
+<p>K-means 中唯一假设平方欧式距离的地方是最小化那一步 \eqref{14.32}；\eqref{14.33} 中的簇取为当前划到该簇的点的均值 $\{m_1,\ldots,m_K\}$．这个算法可以推广为任意定义的不相似性，并且用关于 $\{m_1,\ldots,m_K\}$ 的显式优化来替换最小化．在大多数情形中，每个簇的中心限制为当前该簇中的其中一点，如算法 14.2 所示．这个算法假设带属性的数据，但是也可以应用到仅通过接近矩阵描述的数据．K-medoids 不需要显式地计算簇中心，仅需要跟踪它的指标 $i_k^*$．</p>
+<p><img alt="" src="../../img/14/alg14.2.png" /></p>
+<p>对于每个暂定的簇 $k$ 求解 \eqref{14.32} 需要与划分到该簇的观测的个数成比例的计算量，而求解 $(14.35)$ 计算量增长到 $O(N_k^2)$. 给定簇中心，$\{i_1,\ldots,i_k\}$，得到新的类别划分</p>
+<p>
+<script type="math/tex; mode=display">
+C(i) = \argmin_{1\le k\le K}d_{ii_k^*}\tag{14.37}\label{14.37}
+</script>
+</p>
+<p>和之前一样需要与 $K\cdot N$ 成比例的计算量．因此，K-medoid 计算量比 K-means 更大．</p>
+<p>在 $(14.35)$ 和 \eqref{14.37} 间轮换是试图求解</p>
+<p>
+<script type="math/tex; mode=display">
+\min_{C,\{i_k\}_1^K}\sum_{k=1}^K\sum_{C(i)=k}d_{ii_k}\tag{14.38}\label{14.38}
+</script>
+</p>
+<p>的一种特定的启发式策略．Kaufman and Rousseeuw (1990)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">1</a></sup> 提出另一种直接求解 \eqref{14.38} 的方式，它可以暂时交换每个簇中心 $i_k$ 和当前不是簇中心的观测，所选的交换要使得准则 \eqref{14.38} 有最大的降低．重复这个步骤直至找不到有利的交换．Massart et al. (1983)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">2</a></sup> 导出了寻找 \eqref{14.38} 的全局最小值的 <strong>分枝定界组合算法 (branch-and-bound combinatorial method)</strong>，但实际中只适合非常小型的数据集．</p>
+<h3 id="_9">例子：国家不相似性<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>这个例子取自 Kaufman and Rousseeuw (1990)<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">1</a></sup>，在某项研究中，政治学的学生要求给出 12 个国家的成对不相似性度量：Belgium, Brazil, Chile, Cuba, Egypt,　France, India, Israel, United States, Union of Soviet Socialist Republics,　Yugoslavia and Zaire．平均不相似得分由表 14.3 给出．</p>
+<p><img alt="" src="../../img/14/tab14.3.png" /></p>
+<p>我们对这些不相似性应用 3-medoid 聚类算法．注意到 $K$-means 聚类无法应用，因为我们只有距离数据，而非原始观测值．图 14.10 的左图展示了根据 3-medoid 聚类重排列且方块化的不相似图．右图是 2 维多维缩放图，其中 3-medoid 簇的划分由颜色表示（多维缩放将在 14.8 节讨论）．两幅图都表现出了良好分割的簇，但是 MDS 表明 Egypt 落在两个簇的中间．</p>
+<p><img alt="" src="../../img/14/fig14.10.png" /></p>
+<h2 id="_10">实际问题<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>为了应用 K-means 或者 K-medoids，需要选择簇的个数 $K^*$ 以及初始化．后者可以通过确定初始的簇中心的集合 $\{m_1,\ldots,m_K\}$ 或者 $\{i_1,\ldots,i_K\}$. 通常确定簇重心是很方便的，可以采用随机选择或者基于向前逐步划分的特定策略．在每一步，给定上一步选择好的簇中心 $i_1,\ldots,i_{k-1}$ 选择中心 $i_k$　来最小化 \eqref{14.33} 或者 \eqref{14.38}. 重复 $K$ 步，因此得到 $K$ 个初始化中心，可以用它们开始优化算法．</p>
+<p>簇的个数 $K$ 取决于目标．对于数据分割，$K$ 通常在问题中有定义．举个例子，某公司可能需要招 $K$ 个销售员，且目标是将用户数据库划分 $K$ 份，每个销售员负责一份，划分要使得每一份的销售员尽可能相似．然而，聚类分析通常用来给出某个描述性统计量来确定构成数据库的观测值落到不同簇的程度．这里这样的簇的个数 $K^*$ 是未知的，并且需要像划分本身一样从数据中估计得到．</p>
+<p>用来估计 $K^*$ 的基于数据的方法一般需要研究类内不相似性 $W_K$ 作为簇个数 $K$ 的函数．对于 $K\in \{1,2,\ldots,K_{\max}\}$ 有单独的解．对应的值 $\{W_1,\ldots,W_\max\}$ 通常随着 $K$ 的增长而降低．当在独立的测试集上测试时，结果也是这种情形，因为更多的簇中心会趋向于将特征空间填得很密，因此对于所有的数据点会比较近．因此交叉验证技巧，在非监督学习的模型选择很有用，但是无法用到这里．</p>
+<p>这种方法背后的直觉是，如果实际中有 $K^*$ 个不同的数据簇（通过不相似性度量来定义），则对于 $K &lt; K^*$　簇时，每个簇包含真实簇的部分子集．也就是，这个解不会将聚在一块的观测点划分到不同的估计的簇中．在这种情况下，解的准则值趋向于随着每一次指定的簇的个数的增加而显著降低，$W_{K+1} &lt;&lt; W_K$，因为不同的聚集块逐步划分到不同的簇中．当 $K &gt; K^*$，其中一个簇一定至少将真实的某个簇分成了两个子簇．这趋向于随着 $K$　进一步增大，准则的降低量变得更小．将真实的簇（其中观测值彼此很接近）分成两部分，所带来的准则降低小于将两个分离的簇划分开所带来的准则降低．</p>
+<p>在这种情况下，准则值的差值 $W_K-W_{K+1}$ 会在 $K=K^*$ 处有一个显著的降低．也就是，$\{W_K-W_{K+1}\mid K&lt; K^*\} &gt;&gt; \{W_K-W_{K+1}\mid K \ge K^*\}$．$K^*$ 的一个估计 $\hat K^*$ 可以通过找出 $W_K$ 关于 $K$ 的曲线中的拐弯来得到．和距离过程的其他方面一样，这个方法有点启发式．</p>
+<p>最近提出的 Gap Statistic 比较曲线 $\log W_K$ 和从包含数据的长方形区域中均匀采样得到的曲线 (Tibshirani et al. 2001b<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">3</a></sup>)．它估计最优的簇的个数为两条曲线的差值最大的地方．本质上，这是一种自动化确定上文所说的拐弯点的方法．当数据落在一个簇里面时，这个方法也趋向于估计最优簇的个数为 1．这一点大部分的（跟该方法比较的）方法都失效了．</p>
+<p><img alt="" src="../../img/14/fig14.11.png" /></p>
+<p>图 14.11 展示了 Gap Statistic 应用于图 14.4 的模拟数据时的结果．左图展示了 $K=1,\ldots,8$ 时 $\log W_K$ 以及基于 20 次从均匀分布中模拟的数据得到的 $\log W_K$ 的期望值．右图展示了差值曲线，也就是期望的曲线减去观测的曲线．图中也展示了长度为 $s_k&rsquo;=s_k\sqrt{1+1/20}$ 的一半的误差区间，其中 $s_K$ 是 20 次重复实验 $\log W_K$ 的标准差．差值曲线在 $K=2$ 处达到最大．如果 $G(K)$ 是 $K$ 个簇时的差值，则估计 $K^*$ 的正式规则为</p>
+<p>
+<script type="math/tex; mode=display">
+K^* = \argmin_K\{K\mid G(K)\ge G(K+1)-s_{K+1}'\}\tag{14.39}\label{14.39}\,.
+</script>
+</p>
+<p>这得到 $K^*=2$, 从图 14.4 中看挺合理的．</p>
+<h2 id="_11">系统聚类<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>K-means 或 K-medoids 的应用取决于簇的个数以及初始划分．相反地，系统聚类方法不需要这些指定．但他们需要基于两个簇间成对观测的不相似性，确定不同簇间的不相似性度量．如名字所表示的那样，这个算法得到簇的系统表示，在系统的每一层簇通过合并下一层的簇得到．在最低的那一层，每个簇包含单个观测值．在最高的那一层，只有一个包含所有观测的簇．</p>
+<p>系统聚类的策略可以分成两种基本范式：自下而上的合并法，自上而下的分裂法．合并策略从最底层开始，然后在每一层递归地将两个选定的簇合并成一个簇．这样在更高一层上得到少一个簇的聚类结果．需要合并的两个簇要选为簇间不相似性最小的一对．分裂法从最顶端开始，然后在每一层递归地将某个簇拆成两个新的簇．这个拆分要使得得到的两个新簇之间有最大的组间不相似性．两种范式都会得到 $N-1$ 层．</p>
+<p>系统的每一层表示某个特定的将数据划分成不相交的簇的聚类．整个系统表示一个有序的聚类序列．用户需要在相同簇内的观测比不同簇内的观测足够地更相似的意义下，决定哪个层次实际上代表着真实的聚类．之前描述的 Gap 统计量也可以用到这里．</p>
+<p>递归二分或合并可以用带根的二叉树来表示．树的结点表示簇．根节点表示整个数据集．$N$ 个终止结点每个表示单独的观测（单观测的簇）．每个非终止结点，即父节点，有两个子结点．对于分裂聚类，两个子结点表示对父节点划分得到的两个簇；对于合并聚类，两个子结点表示通过合并形成父节点的两个簇．</p>
+<p>大部分合并方法，以及一些分裂方法（当从下往上看时）都有单调性．也就是，合并的簇间的不相似性随着合并的层次增加而增加．因此二叉树中每个结点的高度可以画成与两个子结点间的组间不相似性成比例．表示单个观测的终止结点画在零高度上．这种类型的图称为 <strong>谱系图 (dendrogram)</strong>.</p>
+<p>谱系图用图的方式给出了系统聚类的高解释度的、完整的描述．这也是系统聚类方法很流行的主要原因之一．</p>
+<p><img alt="" src="../../img/14/fig14.12.png" /></p>
+<p>对于微阵列数据，图 14.12 展示了采用平均链接的合并法得到的谱系图．合并法和这个例子在这章后面还会有详细讨论．在某个特定的高度水平切开谱系图将数据分成不相交的簇，这些簇由与该水平线相交的垂直线来表示．这些簇可以通过当最优的组间不相似性超过该阈值时终止算法得到．相对于树中某簇包含的以相对低的合并值合并的子簇，该簇在更高值处合并，这是自然聚类的候选簇．注意到这个可以发生在不同的层次上，表明聚类的层次性：也就是，簇包含在簇里面．</p>
+<p>这样一个谱系图经常看成是数据本身的图示，而不是算法的结果描述．然而，这样的解释需要小心对待．首先，不同的层次方法，以及数据中的微小变化，都会导致非常不同的谱系图．另外，这样一个图示也只有在成对观测的不相似性满足由算法产生的层次结构才有用．系统聚类在数据上强加了某层次结构，不管这样的结构在数据中存不存在．</p>
+<p>通过谱系图生成的层次结构表示数据的程度可以用 <strong>共表型相关系数 (cophenetic correlation coefficient)</strong> 来刻画．这是 $N(N-1)/2$ 个成对观测的不相似性 $d_{ii&rsquo;}$，即算法的输入值，与对应的从谱系图中导出的共表型不相似性 $C_{ii&rsquo;}$ 间的相关系数．两个观测 $(i,i&rsquo;)$ 间的共表型不相似性 $C_{ii&rsquo;}$ 是这两个观测 $i$ 和 $i&rsquo;$ 第一次在相同的簇中相连的簇间不相似性．</p>
+<p>共表型相似度是个非常局限的不相似性的度量．首先，观测上的 $C_{ii&rsquo;}$ 必须包含许多结，因为 $N(N-1)/2$ 种可能取值只有 $N-1$ 种可以是不同的．同样这些不相似度需要遵循 <strong>超度量不等式 (ultrametric inequality)</strong>:　对于任意三个观测值 $(i,i&rsquo;,k)$，</p>
+<p>
+<script type="math/tex; mode=display">
+C_{ii'} \le \max\{C_{ik},C_{i'k}\}\tag{14.40}\label{14.40}
+</script>
+</p>
+<p>举个例子，假设数据表示为欧几里得坐标系统中的点．为了使数据中点之间的距离满足 \eqref{14.40}，所有三点形成的三角形必须是等腰三角形，且底边长度不能超过腰长 (Jain and　Dubes, 1988<sup id="fnref3:4"><a class="footnote-ref" href="#fn:4">1</a></sup>)．因此，期待对于任意数据一般的不相似性度量能近似地表示根据谱系图计算得到的共表型不相似性是不现实的．因此，特别是如果没有很多重复值．因此谱系图应该主要看成数据在应用特定算法后强加上的聚类结构的描述．</p>
+<h3 id="_12">合并聚类<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>合并聚类算法以每个表示单观测簇的簇开始．在 $N-1$ 步中的每一步，最近（最相似）的两个簇合并成一个簇，使得在更高一层上少了一个簇．因此，必须定义两个簇间的不相似性度量．</p>
+<p>令 $G$ 和 $H$ 代表两个这样的簇．$G$ 与 $H$ 间的不相似性 $d(G,H)$ 根据成对不相似性 $d_{ii&rsquo;}$ 的集合来计算，其中 $i$ 来自 $G$，$i&rsquo;$ 来自 $H$．<strong>单链接 (Single linkage, SL)</strong>合并聚类取组间不相似性为最近的一对</p>
+<p>
+<script type="math/tex; mode=display">
+d_{SL}(G,H)=\min_{i\in G,i'\in H}d_{ii'}\,.\tag{14.41}\label{14.41}
+</script>
+</p>
+<p>这有时也被称作最近邻技巧．<strong>全链接 (Complete linkage, CL)</strong>合并聚类（最远邻技巧）取组内不相似性为最远的一对</p>
+<p>
+<script type="math/tex; mode=display">
+d_{CL}(G,H)=\max_{i\in G,i'\in H}d_{ii'}\,.\tag{14.42}\label{14.42}
+</script>
+</p>
+<p><strong>群平均 (Group Average, GA)</strong>聚类采用组间不相似性的平均</p>
+<p>
+<script type="math/tex; mode=display">
+d_{GA}(G,H)=\frac{1}{N_GN_H}\sum_{i\in G}\sum_{i'\in H}d_{ii'}\tag{14.42}\label{14.43}
+</script>
+</p>
+<p>其中 $N_G$ 和 $N_H$ 分别为每个簇内观测的个数．尽管还有许多方式来定义合并聚类的组间不相似性，但上面的三个是最常见的．图 14.13 展示了这三个例子．</p>
+<p>如果数据不相似性 $\{d_{ii&rsquo;}\}$ 表现出强的聚类趋势，且每个簇都很紧凑，同时相互分离，则这三个方法会得到相似的结果．如果簇内的观测间的距离相较于不同簇中观测间的距离很近，则称簇为紧凑的．如果不是这种情形，则结果会有差异．</p>
+<p>如果 $G$ 和 $H$ 被认为很近，则单链接 \eqref{14.41} 仅要求单个不相似性 $d_{ii&rsquo;}, i\in G, i&rsquo;\in H$ 很小．因此趋向于在较低的阈值处将相近的观测连起来．这个现象，叫做 chaining，通常被认为是这个方法的缺点．基于不相似性 ${d_{ii&rsquo;}}$，通过单链接得到的聚类可以违反簇“紧”的性质----每个簇内的观测趋向于彼此相似．如果我们定义簇内的直径 $D_G$ 为成员间最大的不相似性</p>
+<p>
+<script type="math/tex; mode=display">
+D_G=\max_{i\in G,i'\in G}d_{ii'}\,,\tag{14.44}\label{14.44}
+</script>
+</p>
+<p>则单链接可以得到直径非常大的簇．</p>
+<p>全链接 \eqref{14.42} 表现相反．仅当两个簇间的所有观测对距离都很小时，这两个簇 $G$ 和 $H$ 才认为很近．然而，可以构造出违反相近性的簇．也就是，某个簇的观测可以与其他簇成员间的距离可以比它到自己簇内成员的距离更近．</p>
+<p>群平均聚类 \eqref{14.43} 表示这两个极端间的一个权衡．试图得到相距较远但相对紧凑的簇．然而，它的结果依赖于观测值不相似性 $d_{ii&rsquo;}$ 的数值缩放尺度．对 $d_{ii&rsquo;}$ 应用严格单调递增的函数 $h(\cdot)$，$h_{ii&rsquo;}=h(d_{ii&rsquo;})$，可以改变由 \eqref{14.43} 得到的结果．然而，\eqref{14.41} 和 \eqref{14.42} 仅依赖于 $d_{ii&rsquo;}$ 的顺序，因此对这些单调变化保持不变．这种不变性经常视为单链接或者全链接比群平均方法更好的论据．</p>
+<p>可以论证群平均聚类在统计上有一致性的性质，而单链接和全链接都不满足．假设我们有带属性的数据 $X^T=(X_1,\ldots,X_p)$，并且每个簇 $k$　是从某个总体联合密度 $p_k(x)$ 中的随机采样．全数据集是从 $K$ 个这样的密度构成的混合模型中采样的．群平均不相似性 $d_{GA}(G,H)$ \eqref{14.43} 是下式的一个估计</p>
+<p>
+<script type="math/tex; mode=display">
+\int\int d(x,x')p_G(x)p_H(x')dxdx'\,,\tag{14.45}\label{14.45}
+</script>
+</p>
+<p>其中 $d(x,x&rsquo;)$ 是点 $x$ 和 $x&rsquo;$ 在属性值空间中的不相似性．当样本大小 $N$ 趋于无穷时，$d_{GA}(G,H)$ \eqref{14.43} 趋于 \eqref{14.45}，这也是两个密度 $p_G(x)$ 和 $p_H(x)$ 间的某个特征．对于单链接，当 $N\rightarrow \infty$ 时，$d_{SL}(G,H)$ \eqref{14.41} 趋于 0，且独立于 $p_G(x)$ 和 $p_H(x)$．对于全链接，当 $N\rightarrow \infty$ 时，$d_{CL}(G, H)$ \eqref{14.42} 趋于无穷，同样独立于这两个密度函数．因此，不清楚 $d_{SL}(G,H)$ 和 $d_{CL}(G,H)$ 在估计总体的哪个量．</p>
+<h3 id="_13">例子：人类癌症微阵列数据（继续）<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../../img/14/fig14.13.png" /></p>
+<p>图 14.13 展示了对微阵列数据的样本（列）应用平均链接的合并聚类得到的谱系图．中间和右边的图象分别显示了采用全链接和单链接的结果．平均链接和全链接给出了类似的结果，然而单链接得到不够平衡的簇，其中有很细的簇．我们考虑平均链接聚类．</p>
+<p>和 K-means 聚类一样，系统聚类能够将癌症聚类在一起．但它有更好的特点．通过在不同高度横切谱系图，会得到不同的簇，且簇是一个包含在另一个．另外，它给出了某些关于样本的偏序信息．在图 14.14 中，我们已经对基因表达矩阵按照系统聚类的顺序对基因（行）和样本（列）进行了重排列．</p>
+<p><img alt="" src="../../img/14/fig14.14.png" /></p>
+<p>注意到如果在谱系图的任意合并处，翻转分支，得到的谱系图仍然一致．因此为了确定叶子的顺序，我们必须加上约束．为了得到图 14.14 的行排序，我们使用了 S-PLUS 的默认规则：在每一次合并时，更紧的簇放在左边（对于图中旋转后的谱系图，也就是底部）．个体基因可能是最紧的簇，若涉及两个个体基因的合并，则按照观测的顺序进行排列．同样的规则也用在列上．也有许多其他的规则－－举个例子，按照基因的多维缩放放置，见 14.8 节．</p>
+<p>图 14.14 的两次重排列得到了关于基因和样本的富有信息量的图象．这张图比第一章的图 1.3 中随机排列的行和列更有信息量．而且，谱系图本身很有用，举个例子，生物学家可以将基因簇解释成生物过程．</p>
+<h3 id="_14">分裂聚类<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>分裂聚类算法以将全部数据集看成单个簇为开始，然后在每次迭代时，以自上而下的方式递归地将当前其中一个簇分裂成两个子簇．在聚类领域中，这种方法还没有像合并方法研究得那么透彻．在压缩方面，从工程领域进行了一些探索 (Gersho and Gray, 1992<sup id="fnref3:2"><a class="footnote-ref" href="#fn:2">5</a></sup>)．在聚类设定中，分裂法优于合并法的一个潜在优点是－－当我们关注将数据划分成相对少的簇．</p>
+<p>分裂范式可以通过递归地应用组合方法，比如用 $K=2$ 时的 K-means (14.3.6 节) 或者 K-medoids 在每步迭代进行分割．然而，这样的方法会取决于每一步的初始化．并且，不一定能够得到保持谱系图所需要的单调性的分割序列．</p>
+<p>可以避免这些问题的分裂算法由 Macnaughton Smith et al. (1965)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">7</a></sup> 提出．以将所有观测放入单个簇 $G$ 中为开始．然后选择到其它所有观测的平均不相似性为最大的观测．这个观测构成了第二个簇 $H$ 的第一个成员．接下来，$G$ 中某观测到 $H$ 中观测的平均距离，减去该观测到 $G$ 中其它观测的平均距离，如果差值达到最大，则该观测转移到 $H$ 中去．重复这个步骤，知道差值为负．也就是，不再有 $G$ 中的观测平均意义下离 $H$ 更近．这样使得最初的簇一分为二，一部分转移到 $H$，一部分留在 $G$．这两个簇代表着第二层．接下来的每一层通过对当前层次的其中一个簇应用分裂过程得到．Kaufman and Rousseeuw (1990)<sup id="fnref4:4"><a class="footnote-ref" href="#fn:4">1</a></sup> 建议选择每一层中直径最大的簇进行分裂．另外一种策略可以是选择簇内平均不相似性最大的簇</p>
+<p>
+<script type="math/tex; mode=display">
+\bar d_G=\frac{1}{N_G^2}\sum_{i\in G}\sum_{i'\in G}d_{ii'}\,.
+</script>
+</p>
+<p>迭代分裂过程一直进行到所有的簇要么只有一个观测，要么所有的成员之间不相似性都为 0.</p>
 <div class="footnote">
 <hr />
 <ol>
+<li id="fn:4">
+<p>Kaufman, L. and Rousseeuw, P. (1990). Finding Groups in Data: An Introduction to Cluster Analysis, Wiley, New York.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:4" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:4" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:4" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Massart, D., Plastria, F. and Kaufman, L. (1983). Non-hierarchical clustering with MASLOC, The Journal of the Pattern Recognition Society 16: 507–516.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Tibshirani, R., Walther, G. and Hastie, T. (2001b). Estimating the number of clusters in a dataset via the gap statistic, Journal of the Royal Statistical Society, Series B. 32(2): 411–423.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
 <li id="fn:1">
-<p>Jain, A. and Dubes, R. (1988). Algorithms for Clustering Data, Prentice- Hall, Englewood Cliffs, N.J.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Jain, A. and Dubes, R. (1988). Algorithms for Clustering Data, Prentice- Hall, Englewood Cliffs, N.J.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>Gersho, A. and Gray, R. (1992). Vector Quantization and Signal Compression, Kluwer Academic Publishers, Boston, MA.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Gersho, A. and Gray, R. (1992). Vector Quantization and Signal Compression, Kluwer Academic Publishers, Boston, MA.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 5 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 5 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:2" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Hartigan, J. A. and Wong, M. A. (1979). [(Algorithm AS 136] A k-means clustering algorithm (AS R39: 81v30 p355-356), Applied Statistics 28: 100–108.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Hartigan, J. A. and Wong, M. A. (1979). [(Algorithm AS 136] A k-means clustering algorithm (AS R39: 81v30 p355-356), Applied Statistics 28: 100–108.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Macnaughton Smith, P., Williams, W., Dale, M. and Mockett, L. (1965). Dissimilarity analysis: a new technique of hierarchical subdivision, Nature 202: 1034–1035.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3842,7 +4047,7 @@ C^*=\underset{C}{\min}\sum_{k=1}^KN_k\sum_{C(i)=k}\Vert x_i-\bar x_k\Vert^2
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-10-02 07:12:33
+        Last Build Date UTC : 2019-10-03 02:04:48
       </div>
       
         
