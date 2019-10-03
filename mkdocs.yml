@@ -318,4 +318,6 @@ use_directory_urls: false
 
 enable_search: true
 
+esl_url: 'https://web.stanford.edu/~hastie/ElemStatLearn/'
+
 #plugins: []
