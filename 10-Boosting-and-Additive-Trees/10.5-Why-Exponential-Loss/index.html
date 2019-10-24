@@ -3312,9 +3312,22 @@ l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
 
 <p>或者等价地，偏差为
 <script type="math/tex; mode=display">
--l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\tag{10.18}
+-l(Y,f(x))=\mathrm{log}(1+e^{-2Yf(x)})\tag{10.18}\label{10.18}
 </script>
 </p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：推导 \eqref{10.18}</p>
+<p>直接按照 $Y=-1, 1$ 进行讨论，
+<script type="math/tex; mode=display">
+\begin{align*}
+l(Y=1, p(x)) &=\log p(x) = -\log(1+e^{-2f(x)})\\
+&=-\log(1+e^{-2Yf(x)})\\
+l(Y=-1,p(x)) &=\log (1-p(x)) = \log\frac{e^{-2f(x)}}{1+e^{-2f(x)}}=\log\frac{1}{1+e^{2f(x)}}=-\log(1+e^{2f(x)})\\
+&=-\log(1+e^{-2Yf(x)})\,.
+\end{align*}
+</script>
+</p>
+</div>
 <!--
 !!! note "weiya注"
     $$
@@ -3417,7 +3430,7 @@ l(Y,p(x))=Y'\mathrm{log}p(x)+(1-Y')\mathrm{log}(1-p(x))
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-10-24 07:03:01
+        Last Build Date UTC : 2019-10-24 07:15:21
       </div>
       
         
