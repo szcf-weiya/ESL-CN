@@ -3434,6 +3434,24 @@ d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\tag{5.5}
 (K-1)\cdot 4-3(K-2)-2\times 1 = K
 </script>
 也就是 $K$ 个基函数．</p>
+<p>具体地，假设某内结点 $\xi$ 的左右区域函数分别为
+<script type="math/tex; mode=display">
+f_i(x) = a_ix^3+b_ix^2+c_ix+d_i,\quad i=1,2\,,
+</script>
+则自由参数有 8 个 $(a_i,b_i,c_i,d_i),i=1,2$，结点 $\xi$ 处需要满足“函数值相等”、“一阶导相等”、“二阶导相等”，即
+<script type="math/tex; mode=display">
+\begin{align*}
+f_1(\xi) &=f_2(\xi)\\
+f_1'(\xi) &=f_2'(\xi)\\
+f_1''(\xi) &=f_2''(\xi)
+\end{align*}
+</script>
+相当于减少了 3 个自由参数（换句话说，有三个参数可以被其他 5 个参数表示出来）。</p>
+<p>对于某边界点 $\xi_0$，其所在区域的函数为 $f(x)=ax^3+bx^2+cx+d$，边界点需要满足“一阶导为零”的约束，即
+<script type="math/tex; mode=display">
+f'(\xi_0) = 0\,,
+</script>
+这减少了 1 个自由参数。</p>
 </div>
 <h2 id="_2">例子：南非心脏病（继续）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在 4.4.2 节我们对南非心脏病数据进行了线性逻辑斯蒂回归拟合．这里我们以采用自然样条的函数来探索非线性．模型的函数有如下形式：
@@ -3613,7 +3631,7 @@ h_1(f_p)&h_2(f_p)&\ldots&h_M(f_p)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-10-24 07:15:18
+        Last Build Date UTC : 2019-10-24 07:44:47
       </div>
       
         
