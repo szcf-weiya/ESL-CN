@@ -38,6 +38,7 @@ window.MathJax = {
       calC: "{{\\cal{C}}}",
       calS: "{{\\cal{S}}}",
       calI: "{{\\cal{I}}}",
+      cG: "{{\\cal{G}}}",
       cH: "{{\\cal{H}}}",
       cM: "{{\\cal{M}}}",
       cP: "{{\\cal{P}}}",

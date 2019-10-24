@@ -3356,16 +3356,31 @@ f(X) = \sum\limits_{j=1}^{p}f_j(X_j)\tag{2.17}
 \hat{G}(x) = \argmin_{g\in \cal{G}}\sum\limits_{k=1}^KL({\cal{G}}_k,g)\Pr({\cal G}_k\mid X = x)\tag{2.21}
 </script>
 </p>
-<p>结合 $0-1$ 损失函数上式简化为</p>
+<p>结合 0-1 损失函数上式简化为</p>
 <p>
 <script type="math/tex; mode=display">
-\hat{G}(x) = \argmin_{g\in \cal{G}}[1 − \Pr(g\mid X = x)]\tag{2.22}
+\hat{G}(x) = \argmin_{g\in \cal{G}}[1 − \Pr(g\mid X = x)]\tag{2.22}\label{2.22}\,.
 </script>
 </p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：推导 \eqref{2.22}</p>
+<p>注意到，对于 0-1 损失，
+<script type="math/tex; mode=display">
+L(\cG_k, g) = \begin{cases}
+    0 & \text{if } g=\cG_k\\
+    1 & \text{if } g\neq \cG_k
+\end{cases}\,,
+</script>
+则我们有
+<script type="math/tex; mode=display">
+\sum_{k=1}^KL({\cal{G}}_k,g)\Pr({\cal G}_k\mid X = x) = \sum_{k=1}^K\Pr(\cG_k\neq g\mid X=x)=1-\Pr(\cG_k=g\mid X=x)\,.
+</script>
+</p>
+</div>
 <p>或者简单地</p>
 <p>
 <script type="math/tex; mode=display">
-\hat{G}(X) = {\cal{G}}_k \text{ if } \Pr({\cal{G}}_k\mid X = x) = \underset{g\in{\cal{G}}}{max } \Pr(g\mid X = x)\tag{2.23}
+\hat{G}(X) = {\cal{G}}_k \text{ if } \Pr({\cal{G}}_k\mid X = x) = \underset{g\in{\cal{G}}}{\max } \Pr(g\mid X = x)\tag{2.23}
 </script>
 </p>
 <p>合理的解决方法被称作 <strong>贝叶斯分类 (Bayes classifier)</strong>，利用条件（离散）分布 $\Pr(G\mid X)$ 分到最合适的类别．对于我们模拟的例子图 2.5 显示了最优的贝叶斯判别边界．贝叶斯分类的误差阶被称作 <strong>贝叶斯阶 (Bayes rate)</strong>．</p>
@@ -3453,7 +3468,7 @@ f(X) = \sum\limits_{j=1}^{p}f_j(X_j)\tag{2.17}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-10-21 15:34:09
+        Last Build Date UTC : 2019-10-24 07:02:57
       </div>
       
         
