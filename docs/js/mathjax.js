@@ -15,6 +15,7 @@ window.MathJax = {
       M: "{\\mathbf{M}}",
       N: "{\\mathbf{N}}",
       P: "{\\mathbf{P}}",
+      Q: "{\\mathbf{Q}}",
       R: "{\\mathbf{R}}",
       IR: "{\\mathrm{I\\!R}}",
       S: "{\\mathbf{S}}",
