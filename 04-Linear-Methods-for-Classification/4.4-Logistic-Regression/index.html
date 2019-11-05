@@ -3548,7 +3548,7 @@ z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\tag{4.29}
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{ll}
-\log\dfrac{\Pr(G=k\mid X=x)}{\Pr(G=K\mid X=x)}&=\log\dfrac{\pi_k}{\pi_K}-\frac{1}{2}(\mu_k+\mu_K)^T\Sigma^{-1}(\mu_k-\mu_K)\\
+\log\dfrac{\Pr(G=k\mid X=x)}{\Pr(G=K\mid X=x)}&=\log\dfrac{\pi_k}{\pi_K}-\frac{1}{2}(\mu_k+\mu_K)^T\Sigma^{-1}(\mu_k-\mu_K)+x^T\Sigma^{-1}(\mu_k-\mu_K)\\
 &=\alpha_{k0}+\alpha_k^Tx\qquad\tag{4.33}
 \end{array}
 </script>
@@ -3701,7 +3701,7 @@ z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\tag{4.29}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-11-05 05:09:52
+        Last Build Date UTC : 2019-11-05 08:35:28
       </div>
       
         
