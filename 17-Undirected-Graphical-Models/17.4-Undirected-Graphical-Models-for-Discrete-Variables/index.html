@@ -3356,9 +3356,9 @@
 </table>
 <blockquote>
 <p>写在前面</p>
-<p>这一节中我觉得最有应用价值的是 RBM，这跟深度学习很相关，在 LISA lab, University of Montreal 编的那本 Deep Learning Tutorial (Release 0.1) 中，有一节就是讲如何用 RBM 做手写数字识别．那段程序大概六个月前就已经接触了，但一直没搞清楚它在干嘛<img alt="😞" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f61e.svg" title=":disappointed:" />．其实，本节最后作者提到的用 RBM 做手写数字识别中的某一步其实就是那段程序干的事情．事实上，那段程序并没有真正地完成识别问题，仅仅是其中的一步——“采用对比发散训练包含 784 个可见单元和 500 个隐藏单元的RBM，来建立图像集的模型”，后续步骤还应该有“将这个 RBM 的隐藏状态作为训练第二个 RBM 的数据，第二个 RBM 含 500 个可见单元和 500 个隐藏单元．最后，第二个 RBM 的隐藏状态用作训练含 2000 个隐藏单元的RBM的输入特征，并且用上标签数据．” 或许，这导致当时没有理解程序所要完成的目标的原因吧<img alt="😖" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f616.svg" title=":confounded:" />  </p>
+<p>这一节中我觉得最有应用价值的是 RBM，这跟深度学习很相关，在 LISA lab, University of Montreal 编的那本 Deep Learning Tutorial (Release 0.1) 中，有一节就是讲如何用 RBM 做手写数字识别．那段程序大概六个月前就已经接触了，但一直没搞清楚它在干嘛<img alt="😞" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f61e.svg" title=":disappointed:" />．其实，本节最后作者提到的用 RBM 做手写数字识别中的某一步其实就是那段程序干的事情．事实上，那段程序并没有真正地完成识别问题，仅仅是其中的一步——“采用对比发散训练包含 784 个可见单元和 500 个隐藏单元的RBM，来建立图像集的模型”，后续步骤还应该有“将这个 RBM 的隐藏状态作为训练第二个 RBM 的数据，第二个 RBM 含 500 个可见单元和 500 个隐藏单元．最后，第二个 RBM 的隐藏状态用作训练含 2000 个隐藏单元的RBM的输入特征，并且用上标签数据．” 或许，这导致当时没有理解程序所要完成的目标的原因吧<img alt="😖" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f616.svg" title=":confounded:" />  </p>
 <p>程序可以在<a href="https://github.com/szcf-weiya/ESL-CN/tree/master/code/rbm">这里</a> 中找到，或者参考<a href="http://deeplearning.net/tutorial/deeplearning.pdf">官方教程</a>．</p>
-<p>另外，在我的<a href="https://stats.hohoweiya.xyz//statisticallearning/2017/08/17/Restricted-Boltzmann-Machines/">英文博客</a>中有RBM 的简要总结，欢迎提出宝贵建议<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" />
+<p>另外，在我的<a href="https://stats.hohoweiya.xyz//statisticallearning/2017/08/17/Restricted-Boltzmann-Machines/">英文博客</a>中有RBM 的简要总结，欢迎提出宝贵建议<img alt="😂" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f602.svg" title=":joy:" />
 @2017.08.27</p>
 </blockquote>
 <p>离散变量的无向马尔科夫网络是很流行的，而且特别地，二值变量的成对马尔科夫网络更普遍．在统计力学领域有时称为 Ising 模型，在机器学习领域称为 <strong>玻尔兹曼机 (Boltzmann machines)</strong>，其中顶点称为“<strong>结点 (nodes)</strong>”或“<strong>单元 (units)</strong>”，取值为 0 或 1.</p>
@@ -3664,7 +3664,7 @@ x_{ij}\Pr\nolimits_{\cal\mathbf\Theta}(X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{i
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-11-16 15:54:14
+        Last Build Date UTC : 2019-11-17 15:49:52
       </div>
       
         

@@ -3465,7 +3465,7 @@ w_{12}&=-\mathbf W_{11}\theta_{12}/\theta_{22}\tag{17.16}\label{17.16}\\
 <p>大多数情况下，我们不知道哪些边要从图中去掉，因此想试图从数据本身找出．最近几年很多作者提出用于这个目的的 $L_1$ (lasso) 正则化．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>省略图中的边，有点类似于做变量选择，而 lasso 正是应对变量选择的“绝世武功”!<img alt="😂" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f602.svg" title=":joy:" /></p>
+<p>省略图中的边，有点类似于做变量选择，而 lasso 正是应对变量选择的“绝世武功”!<img alt="😂" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f602.svg" title=":joy:" /></p>
 </div>
 <p>Meinshausen and Bühlmann (2006)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 对这个问题采取简单的方式：不是试图完全估计 $\mathbf \Sigma$ 或者 $\mathbf \Theta=\mathbf \Sigma^{-1}$，他们仅仅估计非零的组分 $\theta_{ij}$．为了实现这点，它们将每个变量看成响应变量而其它的变量作为预测变量进行拟合 lasso 回归．如果变量 $i$ 在变量 $j$ 上的估计系数为非零，或者（并且）$j$ 变量在 $i$ 上的估计系数为非零，则组分 $\theta_{ij}$ 估计为非零．它们证明这个过程渐近地一致估计了 $\mathbf\Theta$ 的非零元的集合．</p>
 <p>我们可以采取更有系统的含有 lasso 惩罚的方法，接着上一节的讨论．考虑最大化带惩罚的对数似然
@@ -3646,7 +3646,7 @@ Press.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to foot
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-11-16 15:54:14
+        Last Build Date UTC : 2019-11-17 15:49:51
       </div>
       
         
