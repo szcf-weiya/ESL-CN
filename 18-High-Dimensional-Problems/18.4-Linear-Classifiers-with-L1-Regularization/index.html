@@ -3348,8 +3348,8 @@
 <p>我们写成了 \eqref{3.52} 的拉格朗日形式．正如这里讨论的，使用充分大的调整参数 $\lambda$，使用 $L_1$ 惩罚使得部分的解参数 $\hat\beta_j$ 恰恰为 $0$．</p>
 <p>在 <a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">3.8.1 节</a>我们已经讨论了 LARS 算法，这是个计算所有 $\lambda$ 的 lasso 解的有效过程．当 $p &gt; N$ 时（和本章一样），随着 $\lambda$ 趋于 $0$，lasso 精确地拟合了训练数据．事实上，通过凸对偶，可以证明当 $p &gt; N$ 时，对于所有 $\lambda$，非零参数的个数至多为 $N$（举个例子，Rosset and Zhu, 2007<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）．因此 lasso 提供了特征选择的形式．</p>
 <p>Lasso 回归可以通过对输出编码为 $\pm 1$ 来应用到两类别分类问题中，并且对预测变量加上一个截距（通常为 $0$）．对于多余两个的类别，有多种可能的方式，包括在 <a href="../../18-High-Dimensional-Problems/18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html">18.3.3 节</a>讨论的 OVA 和 OVO 方法．我们在 <a href="../../18-High-Dimensional-Problems/18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html">18.3 节</a>中对癌症数据应用 OVA 方法．结果显示在表 18.1 的第 4 行中．它的效果是最好的．</p>
-<p>分类问题的更自然的方式是使用 lasso 惩罚来正则化逻辑斯底回归．文献中已经提出一些实现方法，包括类似 LARS（Park and Hastie，2007<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）的路径算法．因为路径是分段光滑但是是非线性的，精确的算法比 LARS 算法更慢，并且当 $p$ 很大时不是很适用．</p>
-<p>Friedman et al. (2010)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 提出了用于拟合 $L_1$ 惩罚的逻辑斯底和多项式回归模型的非常快速的算法．他们应用 <a href="../../18-High-Dimensional-Problems/18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html">18.3.2 节</a>中 \eqref{18.10} 中的对称多项式逻辑斯底回归模型，并且最大化带惩罚的对数似然</p>
+<p>分类问题的更自然的方式是使用 lasso 惩罚来正则化逻辑斯蒂回归．文献中已经提出一些实现方法，包括类似 LARS（Park and Hastie，2007<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）的路径算法．因为路径是分段光滑但是是非线性的，精确的算法比 LARS 算法更慢，并且当 $p$ 很大时不是很适用．</p>
+<p>Friedman et al. (2010)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 提出了用于拟合 $L_1$ 惩罚的逻辑斯蒂和多项式回归模型的非常快速的算法．他们应用 <a href="../../18-High-Dimensional-Problems/18.3-Linear-Classifiers-with-Quadratic-Regularization/index.html">18.3.2 节</a>中 \eqref{18.10} 中的对称多项式逻辑斯蒂回归模型，并且最大化带惩罚的对数似然</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Recall</p>
 <p>
@@ -3374,7 +3374,7 @@
 <p>这与式子 \eqref{18.11} 相对应．这个算法通过 <strong>坐标轮换 (cyclical coordinate descent)</strong>（<a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8.6 节</a>）计算出了在预先选择的 $\lambda$ 序列上的精确解，并且研究了 $p &gt; &gt; N$ 时解是稀疏的事实，以及 $\lambda$ 邻域的解趋向于非常相似的特点．这个方法用在表 18.1 的第 7 行中，通过交叉验证来选取全局调整参数 $\lambda$．它的表现与最优方法很相似，除了这里自动特征选择一起选择了 $269$ 个基因．类似的方法也用在了 Genkin et. al (2007)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>；尽管他们从贝叶斯角度提出模型，但事实上他们计算 <strong>后验的众数 (posterior mode)</strong>，解决了惩罚的最大似然问题．</p>
 <p><img alt="" src="../../img/18/fig18.5.png" /></p>
 <blockquote>
-<p>白血病数据的正则化逻辑斯底回归路径．左图是 lasso 路径，右图是 $\alpha=0.8$ 的弹性网路径．在路径的终端（最左端），lasso 有 19 个非零系数，弹性网有 39 个非零系数．弹性网的平均效应导致比 lasso 更多的非零系数，但是规模更小．</p>
+<p>白血病数据的正则化逻辑斯蒂回归路径．左图是 lasso 路径，右图是 $\alpha=0.8$ 的弹性网路径．在路径的终端（最左端），lasso 有 19 个非零系数，弹性网有 39 个非零系数．弹性网的平均效应导致比 lasso 更多的非零系数，但是规模更小．</p>
 </blockquote>
 <p>在基因应用中，变量间通常有强相关关系；基因趋向于在分子通路上起作用．Lasso 惩罚某种程度上不受强相关的变量集的选择的影响（<a href="https://github.com/szcf-weiya/ESL-CN/issues/123">练习 3.28</a>）．另一方面，岭惩罚趋向于将相关变量的系数相互收缩（<a href="https://github.com/szcf-weiya/ESL-CN/issues/124">练习 3.29</a>）．<strong>弹性网 (elastic net)</strong> 惩罚 (Zou and Hastie, 2005<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>) 是一种妥协的方式，其形式为</p>
 <p>
@@ -3559,7 +3559,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-11-23 15:33:53
+        Last Build Date UTC : 2019-11-24 12:55:13
       </div>
       
         
