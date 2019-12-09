@@ -3345,8 +3345,8 @@
 <p>参数为$\theta = (\pi, \mu_1,\mu_2,\sigma_1,\sigma_2)$。至今，我了解到有三种方式来估计这五个参数。这三种方式分别为梯度下降法、EM算法和Gibbs采样，而且这三种算法并非毫不相关。EM算法其实是简化梯度下降法中对于对数似然的计算，而Gibbs采样跟EM算法区别在于前者采样后者求最大值。</p>
 <h2 id="_2">梯度下降法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>思想其实很简单，就是极大似然法，但是解析形式不好确定，好在我们可以通过梯度下降来实现，而且现在有很方便的深度学习框架（如tensorflow）可以实现梯度下降，从而估计参数。下面用一个实际的例子（取自<a href="https://cosx.org/2017/08/tensorflow-for-statisticians/">为什么统计学家也应该学学 TensorFlow</a>）来展示梯度下降这一过程</p>
-<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="c1"># Parameters</span>
@@ -3371,8 +3371,8 @@
 
 <span class="c1"># #############</span>
 
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
-<span class="kn">import</span> <span class="nn">tensorflow.contrib.distributions</span> <span class="kn">as</span> <span class="nn">ds</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.contrib.distributions</span> <span class="k">as</span> <span class="nn">ds</span>
 
 <span class="c1"># Define data</span>
 <span class="n">t_x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
@@ -3408,8 +3408,8 @@
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="p">{</span><span class="n">t_x</span><span class="p">:</span> <span class="n">x</span><span class="p">})</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Estimated values:&#39;</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">t_p1</span><span class="p">,</span> <span class="n">t_mu1</span><span class="p">,</span> <span class="n">t_mu2</span><span class="p">,</span> <span class="n">t_sigma1</span><span class="p">,</span> <span class="n">t_sigma2</span><span class="p">]))</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;True values:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Estimated values:&#39;</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">t_p1</span><span class="p">,</span> <span class="n">t_mu1</span><span class="p">,</span> <span class="n">t_mu2</span><span class="p">,</span> <span class="n">t_sigma1</span><span class="p">,</span> <span class="n">t_sigma2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True values:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">])</span>
 </pre></div>
 
 
@@ -3625,7 +3625,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-11-24 12:55:15
+        Last Build Date UTC : 2019-12-09 08:00:52
       </div>
       
         

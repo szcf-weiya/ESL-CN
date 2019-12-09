@@ -3263,23 +3263,23 @@ f(X)=\sum\limits_{m=1}^Mg_m(\omega_m^TX)\tag{11.1}
 <p>函数 $g_m(\omega_m^TX)$ 称为 $\IR^p$ 中的<strong>岭函数 (ridge function)</strong>．仅仅在由向量 $\omega_m$ 定义的方向上变化．标量变量 $V_m=\omega_m^TX$ 是 $X$ 在单位向量 $\omega_m$ 上的投影，寻找使得模型拟合好的 $\omega_m$，因此称为“投影寻踪”．图 11.1 显示了岭函数的一些例子．左边的例子 $w=(1/\sqrt{2})(1,1)^T$，使得函数仅仅在 $X_1+X_2$ 方向上变化．在右边的例子中，$\omega=(1,0)$．</p>
 <p><img alt="" src="../../img/11/fig11.1.png" /></p>
 <blockquote>
-<p>图 11.1. 2 个岭函数的透视图．（左图：）$g(V)=1/[1+exp(-5(V-0.5))]$ 其中 $V=(X_1+X_2)/\sqrt{2}$．（右图：）$g(V)=(V+0.1)sin(1/(V/3+0.1))$，其中$V=X_1$．</p>
+<p>图 11.1. 2 个岭函数的透视图．（左图：）$g(V)=1/[1+\exp(-5(V-0.5))]$ 其中 $V=(X_1+X_2)/\sqrt{2}$．（右图：）$g(V)=(V+0.1)\sin(1/(V/3+0.1))$，其中 $V=X_1$．</p>
 </blockquote>
-<p>式子 (11.1) 的 PPR 模型是非常一般的，因为形成线性组合的非线性函数的操作得到相当多的模型类型．举个例子，乘积 $X_1\cdot X_2$ 可以写成 $[(X_1+X_2)^2-(X_1-X_2)^2]/4$，高阶的乘积也可以类似地表示．</p>
-<p>实际上，如果 $M$ 任意大，选择合适的 $g_m$，PPR 模型可以很好地近似 $\IR^p$ 中任意的连续函数．这样的模型类别称为<strong>通用近似 (universal approximator)</strong>．然而这种一般性需要付出代价．拟合模型的解释性通常很困难，因为每个输入变量都以复杂且多位面的方式进入模型中．结果使得 PPR 模型对于预测非常有用，但是对于产生一个可理解的模型不是很有用．$M=1$ 模型是个例外，也是计量经济学中的<strong>单指标模型 (single index model)</strong>．这比线性回归模型更加一般，也提供了一个类似（线性回归模型）的解释．</p>
+<p>式子 \eqref{11.1} 的 PPR 模型是非常一般的，因为形成线性组合的非线性函数的操作得到相当多的模型类型．举个例子，乘积 $X_1\cdot X_2$ 可以写成 $[(X_1+X_2)^2-(X_1-X_2)^2]/4$，高阶的乘积也可以类似地表示．</p>
+<p>实际上，如果 $M$ 任意大，选择合适的 $g_m$，PPR 模型可以很好地近似 $\IR^p$ 中任意的连续函数．这样的模型类别称为 <strong>通用近似 (universal approximator)</strong>．然而这种一般性需要付出代价．拟合模型的解释性通常很困难，因为每个输入变量都以复杂且多位面的方式进入模型中．结果使得 PPR 模型对于预测非常有用，但是对于产生一个可理解的模型不是很有用．$M=1$ 模型是个例外，也是计量经济学中的 <strong>单指标模型 (single index model)</strong>．这比线性回归模型更加一般，也提供了一个类似（线性回归模型）的解释．</p>
 <p>给定训练点 $(x_i,y_i),i=1,2,\ldots,N$ 怎么拟合 PPR 模型？我们在函数 $g_m$ 和方向向量 $\omega_m,m=1,2,\ldots,M$ 上寻找误差函数的近似最小值
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^N[y_i-\sum\limits_{m=1}^Mg_m(\omega_m^Tx_i)]^2\tag{11.2}
+\sum\limits_{i=1}^N\left[y_i-\sum\limits_{m=1}^Mg_m(\omega_m^Tx_i)\right]^2\tag{11.2}
 </script>
 正如在其他光滑问题中一样，我们需要在 $g_m$ 上加上显式或隐式的限制来避免过拟合解．</p>
 <p>仅仅考虑一项（$M=1$，并且去掉下标）．给定方向向量 $\omega$，我们得到导出变量 $v_i=\omega^Tx_i$．接着我们有一个一维光滑问题，而且我们可以应用任意散点图光滑器，比如光滑样条来得到 $g$ 的一个估计．</p>
-<p>另一方面，给定 $g$，我们想要关于 $\omega$ 最小化 (11.2)．高斯-牛顿搜索可以很方便地实现这个任务．这是一个拟牛顿法，丢掉了 Hessian 阵中关于 $g$ 二阶微分的项．可以很简单地按照下面导出．令 $\omega_{old}$ 为 $\omega$ 的当前估计．我们写成
+<p>另一方面，给定 $g$，我们想要关于 $\omega$ 最小化 \eqref{11.2}．高斯-牛顿搜索可以很方便地实现这个任务．这是一个拟牛顿法，丢掉了 Hessian 阵中关于 $g$ 二阶微分的项．可以很简单地按照下面导出．令 $\omega_{old}$ 为 $\omega$ 的当前估计．我们写成
 <script type="math/tex; mode=display">
 g(\omega^Tx_i)\approx g(\omega_{old}^Tx_i)+g'(\omega_{old}^Tx_i)(\omega-\omega_{old})^Tx_i\tag{11.3}
 </script>
 得到
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^N[y_i-g(w^Tx_i)]^2\approx \sum\limits_{i=1}^Ng'(\omega_{old}^Tx_i)^2[(\omega_{old}^   Tx_i+\frac{y_i-g(\omega_{old}^Tx_i)}{g'(w^T_{old}x_i)})-w^Tx_i]^2\quad (11.4)
+\sum\limits_{i=1}^N[y_i-g(w^Tx_i)]^2\approx \sum\limits_{i=1}^Ng'(\omega_{old}^Tx_i)^2\left[\left(\omega_{old}^ Tx_i+\frac{y_i-g(\omega_{old}^Tx_i)}{g'(w^T_{old}x_i)}\right)-w^Tx_i\right]^2\tag(11.4)
 </script>
 为了最小化右边的项，我们在输入 $x_i$ 上对目标 $\omega_{old}^Tx_i+(y_i-g(\omega_{old}^Tx_i))/g&rsquo;(\omega_{old}^Tx_i)$ 进行最小二乘回归，其中系数为 $g&rsquo;(\omega_{old}^Tx_i)^2$ 并且没有截距（偏差）项．这样得到更新后的系数向量 $\omega_{new}$．</p>
 <p>对 $g$ 和 $w$ 的估计的这两步一直迭代直到收敛．在 PPR 模型中不止一项时，以一种向前逐步的方式来建立模型，在每一步加入 $(\omega_m,g_m)$．</p>
@@ -3380,7 +3380,7 @@ g(\omega^Tx_i)\approx g(\omega_{old}^Tx_i)+g'(\omega_{old}^Tx_i)(\omega-\omega_{
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2019-11-24 12:55:11
+        Last Build Date UTC : 2019-12-09 08:00:46
       </div>
       
         
