@@ -240,7 +240,7 @@ edit_uri: ""
 
 #website_cn: 随笔
 
-copyright: 'Copyright &copy; 2016-2019 weiya'
+copyright: 'Copyright &copy; 2016-2020 weiya'
 
 markdown_extensions:
   - admonition
