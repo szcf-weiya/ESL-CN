@@ -319,5 +319,6 @@ use_directory_urls: false
 enable_search: true
 
 esl_url: 'https://web.stanford.edu/~hastie/ElemStatLearn/'
+# https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf
 
 #plugins: []

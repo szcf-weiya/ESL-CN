@@ -1,6 +1,6 @@
 # 1.1 导言
 
-原文     | [The Elements of Statistical Learning](../book/The Elements of Statistical Learning.pdf#page=20)
+原文     | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf#page=20)
       ---|---
 翻译     | szcf-weiya
 时间     | 2016-07-26
