@@ -3282,21 +3282,25 @@
 \hat f_{rf}^B(x) = \frac{1}{B}\sum\limits_{b=1}^BT(x;\Theta_b)\tag{15.2}
 </script>
 </p>
-<p>如 10.9 节一样，$\Theta_b$ 根据分离变量、每个结点的分离值以及终止结点的值来表征第 $b$ 个随机森林树．直观上，降低 $m$ 会降低任意两棵树之间的相关系数，也因此通过 \eqref{15.1} 来降低平均的方差．</p>
+<p>如 <a href="../../10-Boosting-and-Additive-Trees/10.9-Boosting-Trees/index.html">10.9 节</a>一样，$\Theta_b$ 根据分离变量、每个结点的分离值以及终止结点的值来表征第 $b$ 个随机森林树．直观上，降低 $m$ 会降低任意两棵树之间的相关系数，也因此通过 \eqref{15.1} 来降低平均的方差．</p>
 <p>并非所有的估计都可以通过像这样震荡数据来改善．似乎强非线性估计，比如树，改善最大．对于其 bootstrapped 树，$\rho$一般很小（一般是 0.05 或更小；见图 15.9），而 $\sigma^2$ 不比原树的方差要大．另一方面，bagging 不会改变线性估计，比如样本均值（因此也不会改变方差）；其bootstrapped 均值之间的成对相关系数大约为 50%（<a href="https://github.com/szcf-weiya/ESL-CN/issues/191">练习 15.4</a>）．</p>
 <div class="admonition note">
-<p class="admonition-title">weiya 注</p>
-<p>bagging 可以看成是特殊的随机森林，即 $m=p$ 的随机森林．</p>
+<p class="admonition-title">weiya 注：</p>
+<p>Bagging 可以看成是特殊的随机森林，即 $m=p$ 的随机森林．</p>
 </div>
 <p>随机森林很流行．Leo Breiman 的合作者 Adele Cutler 维护一个随机森林的网站 <a href="http://www.math.usu.edu/~adele/forests/">http://www.math.usu.edu/~adele/forests/</a>．R 语言中有一个 <code>randomForest</code> 的包，由 Andy Liaw 维护，可以从 <code>CRAN</code> 网站上下载．</p>
-<p>这些作者们声称随机森林取得了巨大的成功：“更精确”，“更有解释性”，以及类似这样的．在我们的经验中，随机森林确实做得很好，只需要非常少的调参．随机森林在 <code>spam</code> 测试集上取得了 4.88% 的误分类率，与其他方法相比表现得很好，没有显著性地比 gradient boosting (4.5%) 差．Bagging 达到 5.4%，显著性地比其他方法要差，所以这个例子中额外的随机会有帮助．</p>
-<p>图 15.1 显示了这三个方法在 2500 棵树上测试误差的变化．在这种情形下，尽管 10 折交叉验证选择了所有的 2500 棵树，但有证据表明 gradient boosting 开始过拟合．</p>
+<div class="admonition note">
+<p class="admonition-title">原书脚注：</p>
+<p>令人悲伤的是，Leo Breiman 逝世于 2005 年 7 月。</p>
+</div>
+<p>这些作者们声称随机森林取得了巨大的成功：“更精确”，“更有解释性”，以及类似这样的．在我们的经验中，随机森林确实做得很好，只需要非常少的调参．随机森林在 <code>spam</code> 测试集上取得了 4.88% 的误分类率，与其他方法相比表现得很好，没有显著性地比 gradient boosting (4.5%) 差．Bagging 达到 5.4%，显著地比其他方法要差，所以这个例子中额外的随机会有帮助．</p>
+<p>图 15.1 展示了这三个方法在 2500 棵树上测试误差的变化．在这种情形下，尽管 10 折交叉验证选择了所有的 2500 棵树，但有证据表明 gradient boosting 开始过拟合．</p>
 <p><img alt="" src="../../img/15/fig15.1.png" /></p>
-<p>图 15.2 展现了在 nested spheres 问题上随机森林与 gradient boosting 模拟的结果．这里 boosting 很容易地比随机森林表现要好．注意点这里较小的 $m$ 会更好，尽管部分是因为真实的判别边界是可加的．</p>
+<p>图 15.2 展现了在 nested spheres 问题上随机森林与 gradient boosting 模拟的结果．这里 boosting 很容易地比随机森林表现要好．注意到这里较小的 $m$ 会更好，尽管部分原因是因为真实的判别边界是可加的．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya注</p>
-<p>nested spheres问题在<a href="https://esl.hohoweiya.xyz/10%20Boosting%20and%20Additive%20Trees/10.1%20Boosting%20Methods/index.html">10.1 boosting方法</a>中定义，即
-特征$X_1,\ldots,X_{10}$是标准独立高斯分布，目标$Y$定义如下
+<p>nested spheres问题在 <a href="../../10-Boosting-and-Additive-Trees/10.1-Boosting-Methods/index.html">10.1 boosting方法</a>中定义，即
+特征 $X_1,\ldots,X_{10}$ 是标准独立高斯分布，目标 $Y$ 定义如下
 <script type="math/tex; mode=display">
 Y=
 \left\{
@@ -3395,7 +3399,7 @@ Y=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-01-08 03:05:02
+        Last Build Date UTC : 2020-01-09 06:19:18
       </div>
       
         
