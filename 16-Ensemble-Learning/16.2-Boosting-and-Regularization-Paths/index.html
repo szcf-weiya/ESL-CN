@@ -2584,8 +2584,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="正则化路径，过拟合和边缘" class="md-nav__link">
-    正则化路径，过拟合和边缘
+  <a href="#margin" title="正则化路径，过拟合和 Margin" class="md-nav__link">
+    正则化路径，过拟合和 Margin
   </a>
   
 </li>
@@ -3286,8 +3286,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="正则化路径，过拟合和边缘" class="md-nav__link">
-    正则化路径，过拟合和边缘
+  <a href="#margin" title="正则化路径，过拟合和 Margin" class="md-nav__link">
+    正则化路径，过拟合和 Margin
   </a>
   
 </li>
@@ -3313,7 +3313,7 @@
               
                 
                 
-                <h1 id="162-boosting">16.2 boosting 和正则化路径<a class="headerlink" href="#162-boosting" title="Permanent link">&para;</a></h1>
+                <h1 id="162-boosting">16.2 Boosting 和正则化路径<a class="headerlink" href="#162-boosting" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3340,26 +3340,27 @@
 </tr>
 </tbody>
 </table>
-<p>在这本书第一版的第 10.12.2 节中，我们表明了由 <strong>梯度加速 (gradient boosting)</strong> 算法产生的模型序列与在高维特征空间中正则化模型是相似的．这最初是通过观测到 boosted 版本的线性模型和 lasso 之间（<a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">第 3.4.2 节</a>）有着紧密联系得到的．我们和其他人一起研究这些联系，并且在这里放上我们对这个领域当前的思考．我们从最初的动机开始，这更自然地适合于本章的<strong>集成学习 (ensemble learning)</strong>．</p>
+<p>在<a href="https://www.springer.com/gp/book/9780387216065">这本书第一版</a>的第 10.12.2 节中，我们表明了由 <strong>gradient boosting</strong> 算法产生的模型序列与在高维特征空间中正则化模型是相似的．这最初是通过观测到 boosted 版本的线性模型和 lasso 之间（<a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">第 3.4.2 节</a>）有着紧密联系得到的．我们和其他人一起研究这些联系，并且在这里放上我们对这个领域当前的思考．我们从最初的动机开始，这更自然地适合于本章的 <strong>集成学习 (ensemble learning)</strong>．</p>
 <h2 id="_1">带惩罚的回归<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p><strong>梯度加速 (gradient boosting)</strong> 的收缩策略 $(10.41)$ 的成功直觉上可以通过类比含有很多基展开的带惩罚的线性回归得到．</p>
+<p><strong>Gradient boosting</strong> 的收缩策略 \eqref{10.41} 的成功直觉上可以通过类比含有很多基展开的带惩罚的线性回归得到．</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
 <script type="math/tex; mode=display">
-f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\tag{10.41}
+f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\tag{10.41}\label{10.41}
 </script>
 </p>
 </div>
-<p>考虑所有可能的 $J$ 个终止结点的回归树 $\cal T={T_k}$ 的字典作为 $\IR^p$ 的基函数，这在训练数据上可以实现．线性模型为
-<script type="math/tex; mode=display">
-f(x)=\sum\limits_{k=1}^K\alpha_kT_k(x)\tag{16.1}
-</script>
-</p>
-<p>其中 $K=\mathrm{card}(\cal T)$．假设系数通过最小二乘进行估计．因为这些树的个数可能比最大训练集大很多，所以需要一些正则化．令 $\hat\alpha(\lambda)$ 是下式的解</p>
+<p>考虑所有可能的 $J$ 个终止结点的回归树 $\cal T={T_k}$ 的字典作为 $\IR^p$ 的基函数，这在训练数据上可以实现．线性模型为</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\alpha}{\min}\{\sum\limits_{i=1}^N(y_i-\sum\limits_{k=1}^K\alpha_kT_k(x_i))^2+\lambda\cdot J(\alpha)\}\tag{16.2}
+f(x)=\sum\limits_{k=1}^K\alpha_kT_k(x)\tag{16.1}\label{16.1}
+</script>
+</p>
+<p>其中 $K=\mathrm{card}(\cal T)$．假设系数通过最小二乘进行估计．因为这些树的个数可能比最大训练集还要大很多，所以需要一些正则化．令 $\hat\alpha(\lambda)$ 是下式的解</p>
+<p>
+<script type="math/tex; mode=display">
+\underset{\alpha}{\min}\left\{\sum\limits_{i=1}^N(y_i-\sum\limits_{k=1}^K\alpha_kT_k(x_i))^2+\lambda\cdot J(\alpha)\right\}\tag{16.2}\label{16.2}
 </script>
 </p>
 <p>$J(\alpha)$ 是关于系数的函数，并且一般惩罚较大的值．比如</p>
@@ -3367,29 +3368,34 @@ f(x)=\sum\limits_{k=1}^K\alpha_kT_k(x)\tag{16.1}
 <script type="math/tex; mode=display">
 \begin{align}
 J(\alpha) &=\sum\limits_{k=1}^K\vert \alpha_k\vert^2\qquad \text{岭回归}\tag{16.3}\\
-J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\tag{16.4}
+J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\tag{16.4}\label{16.4}
 \end{align}
 </script>
 </p>
-<p>这些都在 <a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">3.4 节</a>介绍了．正如这里讨论的那样，从中等大的 $\lambda$ 到较大的 $\lambda$ 的 lasso 问题的解是趋向于稀疏的；许多 $\hat\alpha_k(\lambda)=0$．也就是，只有所有候选树的一小部分会选进模型 $(16.1)$．这似乎是合理的，因为似乎只有所有候选树的一小部分对任意特定的目标函数的近似是恰当的．然而，对于不同的目标值，相关的子集也会不一样．</p>
+<p>这些都在 <a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">3.4 节</a>介绍了．正如这里讨论的那样，从中等大的 $\lambda$ 到较大的 $\lambda$ 的 lasso 问题的解是趋向于稀疏的；许多 $\hat\alpha_k(\lambda)=0$．也就是，只有所有候选树的一小部分会选进模型 \eqref{16.1}．这似乎是合理的，因为似乎只有所有候选树的一小部分对任意特定的目标函数的近似是恰当的．然而，对于不同的目标值，相关的子集也会不一样．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
 <p>换句话说，对于某个 $y_i$，与该目标相关的候选树的子集为 $C_i$，这会随着目标值的不同而发生变化．</p>
 </div>
 <p>那些没有设为 $0$ 的系数被 lasso 收缩了，因为它们的绝对值比对应最小二乘值要小：$\vert\hat\alpha_k(\lambda)\vert &lt; \vert\hat\alpha_k(0)\vert$．当 $\lambda$ 增大时，系数都进行了收缩，每一个最终都变为 $0$．</p>
-<p>由于非常多的基函数 $T_k$，直接求解含有 lasso 惩罚 $(16.4)$ 的 $(16.2)$ 是不可能的．然而，存在可行的向前逐步策略，对 lasso 的效果有非常好的近似，并且与增强和向前逐步算法 10.2 非常相似．算法 16.1 给出了细节．尽管是用树的基函数 $T_k$ 表示的，算法也可以用来任意基函数的集合中．第 $1$ 行所有系数初始化为 $0$；这对应了 $(16.2)$ 式的 $\lambda=\infty$． 每个接下来的步骤中，第 2(a) 行选择对当前残差拟合得最好的树 $T_{k^*}$．其对应的系数 $\check{\alpha}_{k^*}$ 接着在第 2(b) 步增长或减小一个无穷小量，而所有其他的系数 $\check{\alpha}_{k\neq k^*}$ 都保持不变．原则上，这个过程可以一直迭代到所有的残差为 $0$，或者 $\beta^*=0$．第二种情况会发生在 $K &lt;N$ 的情形下，并且在那时候，参数值表示最小二乘的解．这对应了 $(16.2)$ 式的 $\lambda=0$．</p>
+<p>由于非常多的基函数 $T_k$，直接求解含有 lasso 惩罚 \eqref{16.4} 的 \eqref{16.2} 是不可能的．然而，存在可行的向前逐步策略，对 lasso 的效果有非常好的近似，并且与增强和向前逐步算法 10.2 非常相似．算法 16.1 给出了细节．尽管是用树的基函数 $T_k$ 表示的，算法也可以用来任意基函数的集合中．第 $1$ 行所有系数初始化为 $0$；这对应了 \eqref{16.2} 式的 $\lambda=\infty$． 每个接下来的步骤中，第 2(a) 行选择对当前残差拟合得最好的树 $T_{k^*}$．其对应的系数 $\check{\alpha}_{k^*}$ 接着在第 2(b) 步增长或减小一个无穷小量，而所有其他的系数 $\check{\alpha}_{k\neq k^*}$ 都保持不变．原则上，这个过程可以一直迭代到所有的残差为 $0$，或者 $\beta^*=0$．第二种情况会发生在 $K &lt; N$ 的情形下，并且在那时候，参数值表示最小二乘的解．这对应了 \eqref{16.2} 式的 $\lambda=0$．</p>
 <p><img alt="" src="../../img/16/alg16.1.png" /></p>
 <p>对算法 16.1 迭代 $M &lt; \infty$ 次后，许多系数会变成 $0$，也就是，它们不会再增长．其他的系数的绝对值会趋向于比对应的最小二乘解来得小，$\vert \check{\alpha}_k(M)\vert&lt;\vert \hat{\alpha}_k(0)\vert$．因此，这个 $M$ 次迭代的解定性地来看，表现得像是 lasso，其中 $M$ 与 $\lambda$ 成反比．</p>
 <p><img alt="" src="../../img/16/fig16.1.png" /></p>
 <p>图 16.1 展示了一个例子，采用<a href="../../03-Linear-Methods-for-Regression/3.1-Introduction/index.html">第 3 章</a>研究的前列腺数据．这里，不是采用树 $T_k(X)$ 作为基函数，而是采用原始变量 $X_k$ 本身；也就是，多元线性回归模型．左图展示了在不同的参数上界 $t=\sum_k\vert \alpha_k\vert$ 情形下，lasso 估计的系数的曲线．右图则显示了算法 16.1 逐步的结果，其中 $M=250，\epsilon=0.01$．【图 16.1 的左右图分别与图 3.10 和图 3.19 的右图一样．】两幅图的相似性令人震惊．</p>
-<p>在一些情形下，相似性不仅仅是定性的．举个例子，如果所有的基函数  $T_k$ 互不相关，则当 $\epsilon\downarrow 0, M\uparrow $，使得 $Mt\rightarrow t$ 时，算法 16.1 得到在参数 $t=\sum_k\vert \alpha_k\vert$ 时 lasso 一样的解（对于沿着路径的所有解也是一样的）．当然，基于树的回归因子不是不相关的．然而，当系数 $\hat\alpha_k(\lambda)$ 都是 $\lambda$ 的单调函数时，解的集合也是一样的．当变量间的相关性较低时，经常是这种情形．当 $\hat\alpha_k(\lambda)$ 不是关于 $\lambda$ 的单调函数，则解的集合不是相同的．算法 16.1 解的集合正则参数的值趋向于没有 lasso 改变得快．</p>
-<p>Efron et al. (2004)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>通过在 $\varepsilon$ 极限的情形下特征化解的路径，精确地描述了这种联系．他们证明对于 lasso 和向前逐步法，系数的路径都是分段线性函数．这能够帮助提出高效的算法，使得整个路径计算时仅用到单个最小二乘拟合相同的花费．这个最小角回归算法在 <a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8.1 节</a>有更多的细节描述．</p>
+<p>在一些情形下，相似性不仅仅是定性的．举个例子，如果所有的基函数  $T_k$ 互不相关，则当 $\epsilon\downarrow 0, M\uparrow $，使得 $M\epsilon\rightarrow t$ 时，算法 16.1 得到在参数 $t=\sum_k\vert \alpha_k\vert$ 时跟 lasso 一样的解（对于沿着路径的所有解也是一样的）．当然，基于树的回归因子并不是不相关的．然而，当系数 $\hat\alpha_k(\lambda)$ 都是 $\lambda$ 的单调函数时，解的集合也是一样的．当变量间的相关性较低时，也经常是这种情形．当 $\hat\alpha_k(\lambda)$ 不是关于 $\lambda$ 的单调函数，则解的集合不是相同的．算法 16.1 解的集合正则参数的值趋向于没有 lasso 改变得快．</p>
+<p>Efron et al. (2004)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>通过在 $\varepsilon$ 极限的情形下特征化解的路径，精确地描述了这种联系．他们证明对于 lasso 和向前逐步法，系数的路径都是分段线性函数．这能够帮助提出高效的算法，使得整个路径计算时仅用到单个最小二乘拟合相同的花费．这个 <strong>最小角回归 (least angle regression)</strong> 算法在 <a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8.1 节</a>有更多的细节描述．</p>
 <p>Hastie et al. (2007)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>证明了这个无穷小量向前逐步算法（$FS_0$）拟合了 lasso 的单调版本，在给定系数路径的 <strong>角长度 (arc length)</strong> 的增长下，最优化了每一步的损失函数（参见 <a href="">16.2.3 节</a>和 <a href="../../03-Linear-Methods-for-Regression/3.8-More-on-the-Lasso-and-Related-Path-Algorithms/index.html">3.8.1 节</a>）．对于 $\epsilon &gt; 0$ 的情形角长度为 $M\epsilon$，也因此与步数成比例．</p>
-<p>带收缩 (10.41) 的 boosting 树算法（算法 10.3）非常近似算法 16.1，其中学习速率参数 $\nu$ 对应 $\epsilon$．对于平方误差损失，唯一的区别在于每一次迭代时最优树的选取是通过标准的自上而下的贪婪生成树的算法．对于其他的损失函数，比如 AdaBoost 的指数损失和二项误差，Rosset et al. (2004a)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>展示了类似我们在这里看到的结果．因此，可以将带收缩的 boosting 树看成在所有可能树（$J$ 个终止结点）上的单调 ill-posed 回归的形式，其中将 lasso 的惩罚作为正则化项．我们将在 <a href="">16.2.3 节</a>继续讨论这个话题．</p>
-<p>无收缩的选择（式子 (10.41) 中 $\nu=1$）类似向前逐步回归，并且其更 aggressive 的最优子集选择，其中对于非零系数的个数加上惩罚 $J(\alpha)=\sum_k\vert \alpha_k\vert^0$．对于少量的主要变量，最优子集方法经常取得很好的效果．但是在有较多强变量的情形下，众所周知，最优子集选择非常 greedy（Copas, 1983<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>），与其他不太 aggressive 的算法，如 lasso 或岭回归相比，经常得到很差的结果．当采用 boosting 的收缩得到重大的改善是这种方式的又一个说明．</p>
+<p>带收缩 \eqref{10.41} 的 boosting 树算法（算法 10.3）非常近似算法 16.1，</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Recall</p>
+<p><img alt="" src="../../img/10/alg10.3.png" /></p>
+</div>
+<p>其中学习速率参数 $\nu$ 对应 $\epsilon$．对于平方误差损失，唯一的区别在于每一次迭代时最优树的选取是通过标准的自上而下的贪婪生成树的算法．对于其他的损失函数，比如 AdaBoost 的指数损失和二项误差，Rosset et al. (2004a)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>展示了类似我们在这里看到的结果．因此，可以将带收缩的 boosting 树看成在所有可能树（$J$ 个终止结点）上的单调 ill-posed 回归的形式，其中将 lasso 的惩罚作为正则化项．我们将在 <a href="">16.2.3 节</a>继续讨论这个话题．</p>
+<p>无收缩的选择（式子 \eqref{10.41} 中 $\nu=1$）类似向前逐步回归，并且其更 aggressive 的最优子集选择，其中对于非零系数的个数加上惩罚 $J(\alpha)=\sum_k\vert \alpha_k\vert^0$．对于少量的主要变量，最优子集方法经常取得很好的效果．但是在有较多强变量的情形下，众所周知，最优子集选择非常 greedy（Copas, 1983<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>），与其他不太 aggressive 的算法，如 lasso 或岭回归相比，经常得到很差的结果．当采用 boosting 的收缩得到重大的改善是这种方式的又一个说明．</p>
 <h2 id="bet-on-sparsity">&ldquo;Bet on Sparsity&rdquo; 原则<a class="headerlink" href="#bet-on-sparsity" title="Permanent link">&para;</a></h2>
 <p>如上一节所述，boosting 带收缩的向前逐步策略近似最小化了与 lasso $L_1$ 惩罚相同的损失函数．这个模型建立比较慢，在模型空间中寻找，并且添加从重要预测变量中导出的收缩的基函数．相反地，如 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.7 节</a>所介绍，$L_2$ 惩罚在计算上更容易处理．有了基函数及与特定半正定核一致的 $L_2$ 惩罚，则不用显式搜寻单个基函数就能求解对应的优化问题．</p>
-<p>然而，有时 boosting 的表现高于某些过程（如支持向量机）的程度会很大，很大程度因为支持向量机隐式地应用了 $L_1$ 和 $L_2$ 惩罚．$L_1$ 的收缩能更好地适应稀疏的情形（在所有可能选择中，非零系数的基函数的个数很少）．</p>
+<p>然而，有时 boosting 的表现高于某些过程（如支持向量机）的程度会很大，很大程度上是因为 $L_1$ 和 $L_2$ 惩罚的区别．$L_1$ 的收缩能更好地适应稀疏的情形（在所有可能选择中，非零系数的基函数的个数很少）．</p>
 <p>我们可以通过一个简单的例子来验证这个结论，这个例子取自 Friedman et al. (2004)<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">11</a></sup>．假设我们有 $10000$ 个数据点，且我们的模型是一百万棵树的线性组合．如果这些树的真实总体系数服从高斯分布，则我们知道在贝叶斯情景下，最优的预测器是岭回归（<a href="https://github.com/szcf-weiya/ESL-CN/issues/96">练习 3.6</a>）．</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 3.6</p>
@@ -3407,10 +3413,22 @@ J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\tag{16.4}
 <li>字典集的大小也很重要．增大字典集的大小可能导出我们函数的更稀疏的表示，但是寻找问题会变得更困难，导致更高的方差．</li>
 </ul>
 <p><img alt="" src="../../img/16/fig16.2.png" /></p>
-<p>图 16.2 用模拟实验解释了在线性模型的情形下这些结论．我们在分类和回归问题中比较了岭回归和 lasso．每次实验中有 $300$ 个独立高斯变量以及 $50$ 个观测．在最上面的一行，$300$ 个系数都是非零的，是从高斯分布中生成的．在中间的一行，只有 $10$ 个是非零的并且从高斯分布中生成，最后一行有 $30$ 个非零高斯系数．对于回归，对线性预测变量 $\eta(X) = X^T\beta$ 加上标准高斯噪声来得到连续的响应值．对于分类，线性预测变量通过 logit 的逆变换转换为概率，并生成一个二值响应变量．图中展现了五个不同的噪信比，这通过在生成响应变量前通过缩放 $\eta(X)$ 得到．两种情形下，都定义 $NSR = \Var(Y\mid \eta(X))/\Var(\eta(X))$．岭回归和 lasso 的系数路径都采用对应自由度 $df$ 从 $1$ 到 $50$ 变化的 $\lambda$ 范围中的 $50$ 个值（更多细节见第 3 章）．这些模型在某个大的测试集（高斯变量时取无穷大，二值变量取 $5000$）上取值，并且在每种情形下选择 $\lambda$ 使得测试误差最小．我们报告回归问题中解释的方差的百分比，以及分类问题中解释的误分类率的百分比（相对于基础误差率 $0.5$）．这里每种情形有 $20$ 次模拟实验．</p>
+<p>图 16.2 用模拟实验解释了在线性模型的情形下这些结论．我们在分类和回归问题中比较了岭回归和 lasso．每次实验中有 $300$ 个独立高斯变量以及 $50$ 个观测．在最上面的一行，$300$ 个系数都是非零的，是从高斯分布中生成的．在中间的一行，只有 $10$ 个是非零的并且从高斯分布中生成，最后一行有 $30$ 个非零高斯系数．对于回归，对线性预测变量 $\eta(X) = X^T\beta$ 加上标准高斯噪声来得到连续的响应值．对于分类，线性预测变量通过 logit 的逆变换转换为概率，并生成一个二值响应变量．图中展现了五个不同的噪信比，这通过在生成响应变量前通过缩放 $\eta(X)$ 得到．两种情形下，都定义 $NSR = \Var(Y\mid \eta(X))/\Var(\eta(X))$．岭回归和 lasso 的系数路径都采用对应自由度 $df$ 从 $1$ 到 $50$ 变化的 $\lambda$ 范围中的 $50$ 个值（更多细节见第 3 章）．这些模型在某个大的测试集（高斯变量时取无穷大，二值变量取 $5000$）上取值，并且在每种情形下选择 $\lambda$ 使得测试误差最小．我们报告回归问题中 <strong>解释的方差的百分比 (Percentage Squared Prediction Explained)</strong>，以及分类问题中 <strong>解释的误分类率的百分比 (Percentage Misclassification Error Explained)</strong>（相对于基础误差率 $0.5$）．这里每种情形有 $20$ 次模拟实验．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>此处 Percentage Squared Prediction Explained 应该指的是
+<script type="math/tex; mode=display">
+R^2 = \frac{\mathrm{ESS}}{\mathrm{TSS}} = \frac{\mathrm{TSS} - \mathrm{RSS}}{\mathrm{TSS}} = 1- \frac{\sum (y_i-\hat y_i)^2}{\sum (y_i-\bar y)^2}\,.
+</script>
+类似地对于分类问题的 Percentage Misclassification Error Explained 为
+<script type="math/tex; mode=display">
+1 - \frac{\sum I(\hat y_i\neq y_i)}{\sum I(\bar y \neq y_i)}\,.
+</script>
+</p>
+</div>
 <p>注意到对于分类问题，我们采用均方误差损失来拟合二值响应变量．也要注意到我们不采用训练数据来选择 $\lambda$，而是报告在不同情形下每种方法可能的最优表现．$L_2$ 惩罚无论在哪都表现得很差．Lasso 只在两种情形下表现得很好（稀疏系数）．如期望中的一样，随着 NSR 变大（分类也一样），以及随着模型越来越稠密，模型的表现越来越差．分类的差异不如回归差．</p>
 <p>这些实验结果有很多理论结果的支撑（Donoho and Johnstone, 1994<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>; Donoho and Elad, 2003<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>; Donoho, 2006b<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>; Candes and Tao, 2007<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>），它们支持了在稀疏设定中 $L_1$ 估计的优越性．</p>
-<h2 id="_2">正则化路径，过拟合和边缘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="margin">正则化路径，过拟合和 Margin<a class="headerlink" href="#margin" title="Permanent link">&para;</a></h2>
 <p>经常可以观察到 boosting “不会过拟合”，或者更精确地，“很慢才会过拟合”．这个现象的部分原因在介绍随机森林时已经给出——误分类率对方差比均方误差对方差更不敏感，并且分类问题是 boosting 的主要研究对象．这节我们将说明 boosted 模型的正则路径表现很好，而且对于特定的损失函数，它们有很吸引人的极限形式．</p>
 <p><img alt="" src="../../img/16/fig16.3.png" /></p>
 <p>图 16.3 显示了模拟回归设定中 lasso 和无穷小向前逐步法 ($FS_0$) 的参数路径．数据包含 $1000$ 个高斯变量构成的字典集，划分成大小为 $20$ 的小块中，每个小块中的元素强相关 $\rho=0.95$，但是小块之间不相关．生成的模型中有 $50$ 个变量有非零系数，这是从每个小块中抽取得到的，并且系数值也是从标准正态分布中选取的．最后，加上高斯噪声，使得噪信比为 $0.72$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/152">练习 16.1</a>）．</p>
@@ -3426,7 +3444,7 @@ J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\tag{16.4}
 <p>单调的 lasso 路径可以用微分方程表示：</p>
 <p>
 <script type="math/tex; mode=display">
-\frac{\partial \alpha}{\partial \ell} = \rho^{ml}(\alpha(\ell))\tag{16.6}
+\frac{\partial \alpha}{\partial \ell} = \rho^{ml}(\alpha(\ell))\tag{16.6}\label{16.6}
 </script>
 </p>
 <p>以及初始条件为 $\alpha(0)=0$，其中 $\ell$ 是路径 $\alpha(\ell)$ 的 $L_1$ 弧长（<a href="https://github.com/szcf-weiya/ESL-CN/issues/153">练习 16.2</a>）．</p>
@@ -3435,19 +3453,30 @@ J(\alpha) &=\sum\limits_{k=1}^K\vert\alpha_K\vert\qquad\text{lasso}\tag{16.4}
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/153">Issue 153: Ex. 16.2</a>．</p>
 </div>
 <p>对于单调的 lasso，路径的 $L_1$ 弧长每增加一个单位，移动方向（速度矢量）$\rho^{ml}(\alpha(\ell))$ 便会以最优二次速率降低损失．因为 $\rho^{ml}(\alpha(\ell))\ge 0\;\forall k, \ell$，则解路径为单调的．</p>
-<p>lasso 也可以类似表示成 (16.6) 式的微分方程的解，不同的是当路径的 $L_1$ 范数增加一个单位是，移动方向会最优地降低损失．结果使得它们不一定是正的，因此 lasso 路径不需要是单调的．</p>
+<p>Lasso 也可以类似表示成 \eqref{16.6} 式的微分方程的解，不同的是当路径的 $L_1$ 范数增加一个单位是，移动方向会最优地降低损失．结果使得它们不一定是正的，因此 lasso 路径不需要是单调的．</p>
 <p>在增广的字典中，限制参数为正的是很自然的，因为它避免了明显的矛盾．它也更自然与 tree boosting 联系在一起——我们总是发现树与当前残差正相关．</p>
-<p>有很多迹象表明 boosting 表现很好（对于二分类问题），因为它有 <strong>最大化边缘 (maximal-marginal)</strong> 的特点，很像 <a href="../../04-Linear-Methods-for-Classification/4.5-Separating-Hyperplanes/index.html">4.5.2 节</a>和 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">12 章</a>的支持向量机．Schapire et al. (1998)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 定义拟合模型 $f(x)=\sum_k\alpha_kT_k(x)$ 的标准化 $L_1$ margin 为</p>
+<p>有很多迹象表明 boosting 表现很好（对于二分类问题），因为它有 <strong>最大化 margin</strong> 的特点，很像 <a href="../../04-Linear-Methods-for-Classification/4.5-Separating-Hyperplanes/index.html">4.5.2 节</a>和 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">12 章</a>的支持向量机．Schapire et al. (1998)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 定义拟合模型 $f(x)=\sum_k\alpha_kT_k(x)$ 的标准化 $L_1$ margin 为</p>
 <p>
 <script type="math/tex; mode=display">
 m(f) = \underset{i}{\min}\frac{y_if(x_i)}{\sum_{k=1}^K\vert \alpha_k\vert}\tag{16.7}
 </script>
 </p>
-<p>这里最小值是在训练样本中取，并且 $y_i\in\{-1,+1\}$．与支持向量机的 $L_2$ 边缘不同的是，$L_1$ 边缘 $m(f)$ 用 $L_\infty$ 的单位（最大的坐标距离）衡量了到最近的训练点的距离．</p>
-<p>Schapire et al. (1998)<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 证明了对于可分数据，Adaboost 在每步迭代都增加 $m(f)$，收敛到边缘对称的解．Rätsch and Warmuth (2002)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup> 证明了带收缩的 Adaboost 渐近收敛到最大化 $L_1$ 边缘的解．Rosset et al. (2004a)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 考虑对一般损失函数 (16.2) 形式的正则化模型．他们证明了当 $\lambda\downarrow 0$ 时，对于特定的损失函数，解收敛到最大化边缘的情形．特别地，他们证明 Adaboost 的指数损失属于这种情形，二项偏差也是这种情形．</p>
+<p>这里最小值是在训练样本中取，并且 $y_i\in\{-1,+1\}$．与支持向量机的 $L_2$ margin \eqref{4.40} 不同的是，$L_1$ margin $m(f)$ 用 $L_\infty$ 的单位（最大的坐标距离）衡量了到最近的训练点的距离．</p>
+<div class="admonition note">
+<p class="admonition-title">Recall: $L_2$ margin \eqref{4.40}</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+{\beta^*}^T(x-x_0)&=\frac{1}{\Vert\beta\Vert}(\beta^Tx+\beta_0)\notag\\
+&=\frac{1}{\Vert f'(x)\Vert}f(x)\tag{4.40}\label{4.40}
+\end{align}
+</script>
+</p>
+</div>
+<p>Schapire et al. (1998)<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9">9</a></sup> 证明了对于可分数据，Adaboost 在每步迭代都增加 $m(f)$，收敛到 margin-symmetric 的解．Rätsch and Warmuth (2002)<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup> 证明了带收缩的 Adaboost 渐近收敛到 $L_1$-margin-maximizing 的解．Rosset et al. (2004a)<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 考虑对一般损失函数 \eqref{16.2} 形式的正则化模型．他们证明了当 $\lambda\downarrow 0$ 时，对于特定的损失函数，解收敛到 margin-maximizing 的情形．特别地，他们证明 Adaboost 的指数损失属于这种情形，二项偏差也是这种情形．</p>
 <p>综合本节的结果，我们得到下面关于 boosted 分类器的总结：</p>
-<p><strong>boosted 分类器的序列构成 $L_1$ 正则的单调路径，它是某个最大化边缘的解．</strong></p>
-<p>当然，最大化边缘终止路径可以变成非常差的、过拟合的解，如图 16.5 的例子一样．早停意味着选择路径上的某个点，而且应该跟验证集一起实现．</p>
+<p><strong>Boosted 分类器的序列构成 $L_1$ 正则的单调路径，它是某个 margin-maximizing 的解．</strong></p>
+<p>当然，margin-maximizing 的终止路径可以变成非常差的、过拟合的解，如图 16.5 的例子一样．早停意味着选择路径上的某个点，而且应该跟验证集一起实现．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3564,7 +3593,7 @@ m(f) = \underset{i}{\min}\frac{y_if(x_i)}{\sum_{k=1}^K\vert \alpha_k\vert}\tag{1
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-01-10 03:32:07
+        Last Build Date UTC : 2020-01-13 11:20:58
       </div>
       
         
