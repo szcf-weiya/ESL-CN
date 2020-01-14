@@ -101,15 +101,15 @@ pages:
       - 文献笔记: '09-Additive-Models-Trees-and-Related-Methods/Bibliographic-Notes.md'
 
     - 10 增强和可加树:
-      - 10.1 boosting 方法: '10-Boosting-and-Additive-Trees/10.1-Boosting-Methods.md'
-      - 10.2 boosting 拟合可加模型:  '10-Boosting-and-Additive-Trees/10.2-Boosting-Fits-an-Additive-Model.md'
+      - 10.1 Boosting 方法: '10-Boosting-and-Additive-Trees/10.1-Boosting-Methods.md'
+      - 10.2 Boosting 拟合可加模型:  '10-Boosting-and-Additive-Trees/10.2-Boosting-Fits-an-Additive-Model.md'
       - 10.3 向前逐步加性建模: '10-Boosting-and-Additive-Trees/10.3-Forward-Stagewise-Additive-Modeling.md'
       - 10.4 指数损失和 AdaBoost: '10-Boosting-and-Additive-Trees/10.4-Exponential-Loss-and-AdaBoost.md'
       - 10.5 为什么是指数损失: '10-Boosting-and-Additive-Trees/10.5-Why-Exponential-Loss.md'
       - 10.6 损失函数和鲁棒性: '10-Boosting-and-Additive-Trees/10.6-Loss-Functions-and-Robustness.md'
       - 10.7 数据挖掘的现货方法: '10-Boosting-and-Additive-Trees/10.7-Off-the-Shelf-Procedures-for-Data-Mining.md'
       - 10.8 垃圾邮件的例子: '10-Boosting-and-Additive-Trees/10.8-Spam-Data.md'
-      - 10.9 boosting 树: '10-Boosting-and-Additive-Trees/10.9-Boosting-Trees.md'
+      - 10.9 Boosting 树: '10-Boosting-and-Additive-Trees/10.9-Boosting-Trees.md'
       - 10.10 Gradient Boosting 的数值优化: '10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting.md'
       - 10.11 大小合适的 boosting 树: '10-Boosting-and-Additive-Trees/10.11-Right-Sized-Trees-for-Boosting.md'
       - 10.12 正则化: '10-Boosting-and-Additive-Trees/10.12-Regularization.md'
