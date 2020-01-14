@@ -3247,11 +3247,40 @@
 </tr>
 <tr>
 <td>时间</td>
-<td>2017-08-27</td>
+<td>2020-01-14</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>2020-01-14 14:53:37</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
 </tr>
 </tbody>
 </table>
-<p>TODO</p>
+<p>在我们讨论 gradient boosting 的细节之前，首先用一个二分类的问题来说明它的能力．垃圾邮件数据在第一章以及有过介绍，并且<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.0-Introduction/index.html">第 9 章</a>的很多方法都将其作为例子（第 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.1-Generalized-Additive-Models/index.html#_3">9.1.2</a>，<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html#_14">9.2.5</a>，<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.3-PRIM/index.html#_1">9.3.1</a>，以及 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.4-MARS/index.html#_1">9.4.1</a>）．</p>
+<p>对和 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.1-Generalized-Additive-Models/index.html#_3">9.1.2 节</a>一样的测试集应用 gradient boosting 会得到 4.5% 的测试误差．比较来看，可加逻辑斯蒂回归达到 5.5%，全生长并通过交叉验证剪枝 (fully grown and pruned by cross-validation) 的 CRAT 达到 8.7%，而 MARS 5.5%. 这些估计的标准差大概在 0.6%，通过 McNemar 检验，gradient boosting 显著地要比其它的好（<a href="https://github.com/szcf-weiya/ESL-CN/issues/214">练习 10.6</a>）．</p>
+<p>在后面的 <a href="../../10-Boosting-and-Additive-Trees/10.13-Interpretation/index.html">10.13 节</a>，我们对每个预测变量构造出相对重要性度量，以及描述变量对拟合模型的贡献的 <strong>偏相依图 (partial dependence plot)</strong>．我们现在对垃圾邮件数据说明这一点．</p>
+<p><img alt="" src="../../img/10/fig10.6.png" /></p>
+<p>图 10.6 展示了对所有 57 个预测变量的相关重要性谱图．很明显，有些变量在将 <code>spam</code> 从 <code>email</code> 分离方面会更重要．字符串 <code>!</code>, <code>$</code>, <code>hp</code> 以及 <code>remove</code> 是四个最相关的预测变量．而在频谱的末端，字符串 <code>857</code>, <code>415</code>, <code>table</code> 和 <code>3d</code> 差不多没什么关系．</p>
+<p>这里建模的是 <code>spam</code> 相对于 <code>email</code> 的对数比率，</p>
+<p>
+<script type="math/tex; mode=display">
+f(x) = \log \frac{\Pr(\text{spam}\mid x)}{\Pr(\text{email}\mid x)}\tag{10.24}\label{10.24}
+</script>
+</p>
+<p>（见后面的 <a href="../../10-Boosting-and-Additive-Trees/10.13-Interpretation/index.html">10.13 节</a>）．</p>
+<p><img alt="" src="../../img/10/fig10.7.png" /></p>
+<p>图 10.7 展示了对数比率在已选的重要预测变量上的偏相依性，<code>!</code> 和 <code>remove</code> 这两个跟 <code>spam</code> 正相关，以及两个负相关，<code>edu</code> 和 <code>hp</code>．这些特定的依赖性似乎本质上是单调的．这与通过可加逻辑斯蒂回归模型找到的对应的函数大体一致．见图 9.1.</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：图 9.1</p>
+<p>图 9.1 展示了关于 16 个预测变量的拟合函数，有三个共同预测变量，<code>remove</code>, <code>edu</code> 和 <code>hp</code>．从趋势上看，图 9.1 中这三个变量的拟合函数确实跟图 10.7 中对应的曲线趋势相同．
+<img alt="" src="../../img/09/fig9.1.png" /></p>
+</div>
+<p>在这些数据上运行 $J=2$ 个终止结点的 gradient boosted 模型得到一个关于对数比率的完全可加模型（<strong>主要影响 (main effects)</strong>），对应的误差率为 4.7%，跟全 gradient boosted 模型（终止结点个数为 $J=5$）的 4.5% 相比．尽管不是显著差异，但是这略高的误差率表明在某些重要的预测变量间存在 <strong>交叉影响 (interactions)</strong>．这可以通过双变量偏相依性图来诊断．图 10.8 展示了其中一张表现出强交叉影响的图．</p>
+<p><img alt="" src="../../img/10/fig10.8.png" /></p>
+<p>可以看到，对于频率非常低的 <code>hp</code>，<code>spam</code> 的对数比率大幅提高．对于高频率时的 <code>hp</code>，<code>spam</code> 的对数比率趋向于非常低，而且近似是 <code>!</code> 的常数函数．当 <code>hp</code> 的频率降低时，其跟 <code>!</code> 的函数关系在增强． </p>
                 
                   
                 
@@ -3330,7 +3359,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-01-13 13:55:10
+        Last Build Date UTC : 2020-01-14 07:16:59
       </div>
       
         
