@@ -3261,6 +3261,10 @@
 </table>
 <p>在我们讨论 gradient boosting 的细节之前，首先用一个二分类的问题来说明它的能力．垃圾邮件数据在第一章以及有过介绍，并且<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.0-Introduction/index.html">第 9 章</a>的很多方法都将其作为例子（第 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.1-Generalized-Additive-Models/index.html#_3">9.1.2</a>，<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html#_14">9.2.5</a>，<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.3-PRIM/index.html#_1">9.3.1</a>，以及 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.4-MARS/index.html#_1">9.4.1</a>）．</p>
 <p>对和 <a href="../../09-Additive-Models-Trees-and-Related-Methods/9.1-Generalized-Additive-Models/index.html#_3">9.1.2 节</a>一样的测试集应用 gradient boosting 会得到 4.5% 的测试误差．比较来看，可加逻辑斯蒂回归达到 5.5%，全生长并通过交叉验证剪枝 (fully grown and pruned by cross-validation) 的 CRAT 达到 8.7%，而 MARS 5.5%. 这些估计的标准差大概在 0.6%，通过 McNemar 检验，gradient boosting 显著地要比其它的好（<a href="https://github.com/szcf-weiya/ESL-CN/issues/214">练习 10.6</a>）．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 10.6</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/214">Issue 214: Ex. 10.6</a>.</p>
+</div>
 <p>在后面的 <a href="../../10-Boosting-and-Additive-Trees/10.13-Interpretation/index.html">10.13 节</a>，我们对每个预测变量构造出相对重要性度量，以及描述变量对拟合模型的贡献的 <strong>偏相依图 (partial dependence plot)</strong>．我们现在对垃圾邮件数据说明这一点．</p>
 <p><img alt="" src="../../img/10/fig10.6.png" /></p>
 <p>图 10.6 展示了对所有 57 个预测变量的相关重要性谱图．很明显，有些变量在将 <code>spam</code> 从 <code>email</code> 分离方面会更重要．字符串 <code>!</code>, <code>$</code>, <code>hp</code> 以及 <code>remove</code> 是四个最相关的预测变量．而在频谱的末端，字符串 <code>857</code>, <code>415</code>, <code>table</code> 和 <code>3d</code> 差不多没什么关系．</p>
@@ -3359,7 +3363,7 @@ f(x) = \log \frac{\Pr(\text{spam}\mid x)}{\Pr(\text{email}\mid x)}\tag{10.24}\la
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-01-14 07:25:12
+        Last Build Date UTC : 2020-01-14 08:48:09
       </div>
       
         
