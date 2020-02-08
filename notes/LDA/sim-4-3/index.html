@@ -3331,7 +3331,7 @@
 </table>
 <h2 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>根据 Fig. 4.2 知，我们需要生成三个类别的数据，于是采用下面代码生成了均值不同，协方差相同的多元正态随机变量，</p>
-<div class="codehilite"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.75</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">mu</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.75</span><span class="p">)</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="m">0.005</span><span class="o">*</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
                  <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>
@@ -3341,7 +3341,7 @@
 <span class="n">X2</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">N</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="n">mu[2]</span><span class="p">,</span> <span class="n">mu[2]</span><span class="p">),</span> <span class="n">Sigma</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)</span>
 <span class="n">X3</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">N</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="n">mu[3]</span><span class="p">,</span> <span class="n">mu[3]</span><span class="p">),</span> <span class="n">Sigma</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">X3</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>分布图为</p>
@@ -3349,7 +3349,7 @@
 <h2 id="_2">拟合<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>首先将生成的数据投射到三类数据点形心连线上，并且构造响应变量 $y$，然后分别拟合左右图，并以此进行分类，计算误差率，具体结果如下：</p>
 <h2 id="_3">左图<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="c1">## project X onto the line joining the three centroids</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## project X onto the line joining the three centroids</span>
 <span class="n">X.proj</span> <span class="o">=</span> <span class="nf">rowMeans</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># if necessary, multiply sqrt 2</span>
 <span class="c1">## fit as in figure 4.3</span>
 <span class="c1">## consider orange</span>
@@ -3399,12 +3399,12 @@
 <span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">1.0</span><span class="p">),</span> <span class="n">lty</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">)</span>
 <span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="n">X.proj</span><span class="p">)</span><span class="n">[N]</span><span class="p">,</span> <span class="nf">sort</span><span class="p">(</span><span class="n">X.proj</span><span class="p">)</span><span class="n">[N</span><span class="o">*</span><span class="m">2</span><span class="n">]</span><span class="p">),</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">)</span>
 <span class="nf">dev.off</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../reproduce-fig-4-3l.png" /></p>
 <h2 id="_4">右图<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="c1">## polynomial regression</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## polynomial regression</span>
 <span class="n">pm1</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y1</span><span class="o">~</span><span class="n">X.proj</span><span class="o">+</span><span class="nf">I</span><span class="p">(</span><span class="n">X.proj^2</span><span class="p">))</span>
 <span class="n">pm2</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y2</span><span class="o">~</span><span class="n">X.proj</span><span class="o">+</span><span class="nf">I</span><span class="p">(</span><span class="n">X.proj^2</span><span class="p">))</span>
 <span class="n">pm3</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y3</span><span class="o">~</span><span class="n">X.proj</span><span class="o">+</span><span class="nf">I</span><span class="p">(</span><span class="n">X.proj^2</span><span class="p">))</span>
@@ -3434,7 +3434,7 @@
 <span class="nf">rug</span><span class="p">(</span><span class="n">X.proj</span><span class="nf">[</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">N</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="m">3</span><span class="o">*</span><span class="n">N</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
 <span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="n">X.proj</span><span class="p">)</span><span class="n">[N]</span><span class="p">,</span> <span class="nf">sort</span><span class="p">(</span><span class="n">X.proj</span><span class="p">)</span><span class="n">[N</span><span class="o">*</span><span class="m">2</span><span class="n">]</span><span class="p">),</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">)</span>
 <span class="nf">dev.off</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../reproduce-fig-4-3r.png" /></p>
@@ -3517,7 +3517,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:04
+        Last Build Date UTC : 2020-02-08 09:07:08
       </div>
       
         
@@ -3557,6 +3557,7 @@
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       

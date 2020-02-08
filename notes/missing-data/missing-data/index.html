@@ -3400,67 +3400,67 @@
 <p><img alt="" src="../methods-for-missing-data-in-r.png" /></p>
 <h2 id="_2">识别缺失数据<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>常用识别缺失数据的命令，以<code>VIM</code>包中的<code>sleep</code>数据集为例</p>
-<div class="codehilite"><pre><span></span><span class="c1"># load the dataset</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># load the dataset</span>
 <span class="nf">data</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s">&quot;VIM&quot;</span><span class="p">)</span>
 <span class="c1"># list the rows that do not have missing values</span>
 <span class="n">sleep</span><span class="nf">[complete.cases</span><span class="p">(</span><span class="n">sleep</span><span class="p">),</span><span class="n">]</span>
 <span class="c1"># list the rows that have one or more missing values</span>
 <span class="n">sleep[</span><span class="o">!</span><span class="nf">complete.cases</span><span class="p">(</span><span class="n">sleep</span><span class="p">),</span><span class="n">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="_3">探索缺失数据的模式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="_4">表格化缺失数据<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>用 1 和 0 来表征数据缺失与否，举个例子</p>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">mice</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">mice</span><span class="p">)</span>
 <span class="nf">data</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s">&quot;VIM&quot;</span><span class="p">)</span>
 <span class="nf">md.pattern</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../md-pattern.png" /></p>
 <h3 id="_5">可视化缺失数据<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>采用上述的表格不够直观，可以通过<code>VIM</code> 包来对缺失数据进行可视化处理，如</p>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;VIM&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="s">&quot;VIM&quot;</span><span class="p">)</span>
 <span class="nf">aggr</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">numbers</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../aggr.png" /></p>
 <p>或者</p>
-<div class="codehilite"><pre><span></span><span class="nf">matrixplot</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="nf">matrixplot</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p><img alt="" src="../matrixplot.png" /></p>
 <p>图中灰色图象颜色越深表示值越大，越浅表示值越小，而红色表示缺失值。除此之外，还可以对变量的缺失情况能够两两比较</p>
-<div class="codehilite"><pre><span></span><span class="nf">marginplot</span><span class="p">(</span><span class="n">sleep</span><span class="nf">[c</span><span class="p">(</span><span class="s">&quot;Gest&quot;</span><span class="p">,</span><span class="s">&quot;Dream&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">20</span><span class="p">),</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">marginplot</span><span class="p">(</span><span class="n">sleep</span><span class="nf">[c</span><span class="p">(</span><span class="s">&quot;Gest&quot;</span><span class="p">,</span><span class="s">&quot;Dream&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">20</span><span class="p">),</span>
            <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;darkgray&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../marginplot.png" /></p>
 <h3 id="_6">相关性<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>首先将原始矩阵用 0 和 1 来编码，1 表示缺失，然后计算与原始变量的相关性，帮助找出与缺失值相关的变量，比如</p>
-<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">sleep</span><span class="p">)))</span>
+<div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">sleep</span><span class="p">)))</span>
 <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">x</span><span class="nf">[which</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span><span class="n">]</span>
 <span class="nf">cor</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="c1">## or</span>
 <span class="nf">cor</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="_7">多重插补<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>通过 <code>mice</code> 包实现的多重插补的示意图如下</p>
 <p><img alt="" src="../mice.png" /></p>
 <p>举个例子，</p>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">mice</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">mice</span><span class="p">)</span>
 <span class="nf">data</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s">&quot;VIM&quot;</span><span class="p">)</span>
 <span class="n">imp</span> <span class="o">&lt;-</span> <span class="nf">mice</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="m">1234</span><span class="p">)</span>
 <span class="n">fit</span> <span class="o">&lt;-</span> <span class="nf">with</span><span class="p">(</span><span class="n">imp</span><span class="p">,</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Dream</span> <span class="o">~</span> <span class="n">Span</span> <span class="o">+</span> <span class="n">Gest</span><span class="p">))</span>
 <span class="n">pooled</span> <span class="o">&lt;-</span> <span class="nf">pool</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">pooled</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
                 
                   
                 
@@ -3525,7 +3525,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:05
+        Last Build Date UTC : 2020-02-08 09:07:10
       </div>
       
         
@@ -3565,6 +3565,7 @@
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       

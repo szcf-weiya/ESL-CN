@@ -3373,7 +3373,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1) > \frac 12(\hat\mu_1+\hat\m
 </p>
 <h2 id="lda">利用 <code>lda()</code> 的结果计算<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
 <p>关键点在于怎么根据 <code>R</code> 中 <code>lda()</code> 的返回结果写出判别边界，不然就得自己编写代码计算（下一节介绍）。所以我选择去阅读源代码，不过源代码中最后做预测时都是计算后验概率，似乎不能从中得到我们想要的有关判别边界的信息，但返回结果确实已经包含了判别边界的信息。摘录部分源代码</p>
-<div class="codehilite"><pre><span></span><span class="n">predict.lda</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">newdata</span><span class="p">,</span> <span class="n">prior</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">prior</span><span class="p">,</span> <span class="n">dimen</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><code><span class="n">predict.lda</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">newdata</span><span class="p">,</span> <span class="n">prior</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">prior</span><span class="p">,</span> <span class="n">dimen</span><span class="p">,</span>
             <span class="n">method</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;plug-in&quot;</span><span class="p">,</span> <span class="s">&quot;predictive&quot;</span><span class="p">,</span> <span class="s">&quot;debiased&quot;</span><span class="p">),</span> <span class="kc">...</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kc">...</span>
@@ -3385,7 +3385,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1) > \frac 12(\hat\mu_1+\hat\m
 
     <span class="kc">...</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>我们主要关注预测部分的代码，注意到在预测时，其首先计算了混合密度，然后对 <code>x</code> 进行中心化，不难发现如下的对应关系</p>
@@ -3408,7 +3408,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 </p>
 <p>其中 $\mu_x=\frac 12(\mu_{1x}+\mu_{2x})$，$\mu_y=\frac 12(\mu_{1y}+\mu_{2y})$</p>
 <p>所以可以用下面代码计算判别边界的截距和斜率</p>
-<div class="codehilite"><pre><span></span><span class="n">calcLD</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">calcLD</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">mu</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">means</span>
   <span class="n">mu.pool</span> <span class="o">=</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="m">2</span> <span class="c1">## (mu1+mu2)/2</span>
   <span class="n">scaling</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">scaling</span>
@@ -3416,7 +3416,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
   <span class="n">slope</span> <span class="o">=</span> <span class="m">-1</span><span class="o">*</span> <span class="n">scaling[1]</span><span class="o">/</span><span class="n">scaling[2]</span>
   <span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">))</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="_2">直接计算判别边界<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -3425,7 +3425,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <p class="admonition-title">weiya 注：</p>
 <p>这部分参考了多元分析的<a href="../../../references/module7.pdf">课件</a>。</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="c1">## sample mean</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## sample mean</span>
 <span class="n">zmu1</span> <span class="o">=</span> <span class="nf">colMeans</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
 
 <span class="c1">## sample variance</span>
@@ -3446,7 +3446,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 
 <span class="n">calcLD2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">za</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span><span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="n">za[2]</span><span class="p">,</span> <span class="o">-</span><span class="n">za[1]</span><span class="o">/</span><span class="n">za[2]</span><span class="p">))}</span>
 <span class="nf">calcLD2</span><span class="p">(</span><span class="n">za12</span><span class="p">,</span> <span class="n">c12</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>将直接计算的结果与上述通过 <code>lda()</code> 的返回结果计算得到的判别边界完全一致！！</p>
@@ -3458,7 +3458,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <p>直接用 <code>abline()</code> 绘图时，会充满整个区域，这与原书图 4.5 不符，可以在 <code>abline()</code> 前加上 <code>clip()</code> 来预先选定绘图区域。这个技巧参考<a href="https://stackoverflow.com/questions/26472563/how-to-define-graphical-bounds-of-abline-linear-regression-in-r">how-to-define-graphical-bounds-of-abline-linear-regression-in-r</a></p>
 </div>
 <p>图 4.5 的右图重现代码为</p>
-<div class="codehilite"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">dm1[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm1[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">,</span> 
+<div class="codehilite"><pre><span></span><code><span class="nf">plot</span><span class="p">(</span><span class="n">dm1[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm1[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">,</span> 
      <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> 
      <span class="n">xaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">yaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
 <span class="nf">points</span><span class="p">(</span><span class="n">dm2[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm2[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">)</span>
@@ -3470,7 +3470,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m13</span><span class="p">))</span>
 <span class="nf">clip</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
 <span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m23</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>即</p>
@@ -3559,7 +3559,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:04
+        Last Build Date UTC : 2020-02-08 09:07:08
       </div>
       
         
@@ -3599,6 +3599,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       

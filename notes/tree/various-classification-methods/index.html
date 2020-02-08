@@ -3467,30 +3467,30 @@
 <h2 id="_2">可视化<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>对树的可视化有多种包可以实现，以<code>rpart</code>拟合的模型为例，介绍三种可视化的方法。</p>
 <h3 id="partykit"><code>partykit</code> 包<a class="headerlink" href="#partykit" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">partykit</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">partykit</span><span class="p">)</span>
 <span class="nf">plot</span><span class="p">(</span><span class="nf">as.party</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../rpart_party.svg" /></p>
 <h3 id="maptree"><code>maptree</code> 包<a class="headerlink" href="#maptree" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">maptree</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">maptree</span><span class="p">)</span>
 <span class="nf">draw.tree</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../rpart_maptree.svg" /></p>
 <h3 id="rpartplot"><code>rpart.plot</code> 包<a class="headerlink" href="#rpartplot" title="Permanent link">&para;</a></h3>
 <p>这里介绍两个函数，一个是<code>rpart.plot()</code></p>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span>
 <span class="nf">rpart.plot</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">,</span> <span class="n">fallen.leaves</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> 
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../rpart_plot.svg" /></p>
 <p>另一个是更一般的<code>prp()</code>，需要自定义的参数更多，更灵活</p>
-<div class="codehilite"><pre><span></span><span class="nf">prp</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">)</span> 
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="nf">prp</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">)</span> 
+</code></pre></div>
 
 
 <p><img alt="" src="../rpart_prp.svg" /></p>
@@ -3498,7 +3498,7 @@
 <p><strong>混淆矩阵 (confusion matrix)</strong> 通过表格形式展示算法预测的效果。下图（来自<a href="https://en.wikipedia.org/wiki/Confusion_matrix">维基百科</a>）展示了具体的各个量的细节</p>
 <p><img alt="" src="../confusion-matrix-wiki.png" /></p>
 <p>在<code>R</code> 语言中，调用 <code>caret</code> 包中的 <code>confusionMatrix()</code> 函数可以直接计算上图中的各个统计量。举个两类别例子（取自<code>confusionMatrix()</code>的帮助文档），</p>
-<div class="codehilite"><pre><span></span><span class="n">lvs</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;normal&quot;</span><span class="p">,</span> <span class="s">&quot;abnormal&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">lvs</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;normal&quot;</span><span class="p">,</span> <span class="s">&quot;abnormal&quot;</span><span class="p">)</span>
 <span class="n">truth</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="n">lvs</span><span class="p">,</span> <span class="n">times</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">86</span><span class="p">,</span> <span class="m">258</span><span class="p">)),</span>
                 <span class="n">levels</span> <span class="o">=</span> <span class="nf">rev</span><span class="p">(</span><span class="n">lvs</span><span class="p">))</span>
 <span class="n">pred</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span>
@@ -3507,7 +3507,7 @@
                  <span class="nf">rep</span><span class="p">(</span><span class="n">lvs</span><span class="p">,</span> <span class="n">times</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">27</span><span class="p">,</span> <span class="m">231</span><span class="p">))),</span>
                <span class="n">levels</span> <span class="o">=</span> <span class="nf">rev</span><span class="p">(</span><span class="n">lvs</span><span class="p">))</span>
 <span class="n">xtab</span> <span class="o">&lt;-</span> <span class="nf">table</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">truth</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>采用上述代码生成的混淆矩阵</p>
@@ -3522,7 +3522,7 @@
 <h3 id="proc"><code>pROC</code><a class="headerlink" href="#proc" title="Permanent link">&para;</a></h3>
 <p><code>AppliedPredictiveModeling</code>源码包给出的做法是调用 <code>pROC</code>，先计算得到 <code>roc</code> 对象，然后利用其 <code>plot</code> 函数便可以绘制 <code>ROC</code>曲线</p>
 <p>对应代码如下</p>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">pROC</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">pROC</span><span class="p">)</span>
 <span class="n">rpartRoc</span> <span class="o">&lt;-</span> <span class="nf">roc</span><span class="p">(</span><span class="n">response</span> <span class="o">=</span> <span class="n">rpartFit</span><span class="o">$</span><span class="n">pred</span><span class="o">$</span><span class="n">obs</span><span class="p">,</span>
                 <span class="n">predictor</span> <span class="o">=</span> <span class="n">rpartFit</span><span class="o">$</span><span class="n">pred</span><span class="o">$</span><span class="n">successful</span><span class="p">,</span>
                 <span class="n">levels</span> <span class="o">=</span> <span class="nf">rev</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">pred</span><span class="o">$</span><span class="n">obs</span><span class="p">)))</span>
@@ -3532,14 +3532,14 @@
      <span class="n">print.thres.cex</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">,</span>
      <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">legacy.axes</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
      <span class="n">print.thres.col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>比如，以 <code>rpart</code> 拟合的两个模型为例</p>
 <p><img alt="" src="../ROC-plot-of-rpartFit-and-rpartFactorFit.png" /></p>
 <h3 id="rocr"><code>ROCR</code><a class="headerlink" href="#rocr" title="Permanent link">&para;</a></h3>
 <p>另外，我们也可以用 <code>ROCR</code> 实现。具体地，将 <code>prediction</code> 和 <code>performance</code> 函数包装起来构成自己的绘图函数，代码如下</p>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ROCR</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">ROCR</span><span class="p">)</span>
 <span class="n">rocplot</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">predob</span> <span class="o">=</span> <span class="nf">prediction</span><span class="p">(</span><span class="n">obj</span><span class="o">$</span><span class="n">pred</span><span class="o">$</span><span class="n">successful</span><span class="p">,</span>
                       <span class="n">obj</span><span class="o">$</span><span class="n">pred</span><span class="o">$</span><span class="n">obs</span><span class="p">,</span>
@@ -3548,7 +3548,7 @@
   <span class="nf">plot</span><span class="p">(</span><span class="n">perf</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span> 
 <span class="p">}</span>
 <span class="nf">rocplot</span><span class="p">(</span><span class="n">rpartFit</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>比如，对于 <code>rpart</code> 拟合的两个模型</p>
@@ -3639,7 +3639,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:05
+        Last Build Date UTC : 2020-02-08 09:07:09
       </div>
       
         
@@ -3679,6 +3679,7 @@
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       

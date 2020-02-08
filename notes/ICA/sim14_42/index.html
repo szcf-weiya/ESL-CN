@@ -3402,14 +3402,14 @@ S=XA_0^{-1}
 </script>
 </p>
 <p>用鸡尾酒酒会的例子来说就是，来自不同个体的说话声经过麦克风混合之后得到我们实际接收到的信号。假设有两组独立同分布的数据，分布都为<code>n</code>（对应图14.42中的编号），每组数据个数均为$N=1024$，混合矩阵为<code>A0</code>，用R代码描述这一过程如下</p>
-<div class="codehilite"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ProDenICA</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">ProDenICA</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="m">2</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span>
 <span class="n">N</span> <span class="o">=</span> <span class="m">1024</span>
 <span class="n">A0</span> <span class="o">=</span> <span class="nf">mixmat</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="n">s</span> <span class="o">=</span> <span class="nf">scale</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="nf">rjordan</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="nf">rjordan</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="n">N</span><span class="p">)))</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">s</span> <span class="o">%*%</span> <span class="n">A0</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>最终我们得到观测值<code>x</code>。</p>
@@ -3438,31 +3438,31 @@ X^*=SA^T
 </script>
 </p>
 <p>用R语言表示如下</p>
-<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="c1"># central</span>
+<div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="c1"># central</span>
 <span class="n">sx</span> <span class="o">&lt;-</span> <span class="nf">svd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">sx</span><span class="o">$</span><span class="n">u</span> <span class="c1"># satisfy cov(x) = I</span>
 <span class="n">target</span> <span class="o">&lt;-</span> <span class="nf">solve</span><span class="p">(</span><span class="n">A0</span><span class="p">)</span>
 <span class="n">target</span> <span class="o">&lt;-</span> <span class="nf">diag</span><span class="p">(</span><span class="n">sx</span><span class="o">$</span><span class="n">d</span><span class="p">)</span> <span class="o">%*%</span> <span class="nf">t</span><span class="p">(</span><span class="n">sx</span><span class="o">$</span><span class="n">v</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">target</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="c1"># new mixing maxtrix</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3 id="prodenica"><code>ProDenICA</code>法<a class="headerlink" href="#prodenica" title="Permanent link">&para;</a></h3>
 <p>细节不再展开，直接利用<code>ProDenICA</code>中的包进行计算</p>
-<div class="codehilite"><pre><span></span><span class="n">W0</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">W0</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
 <span class="n">W0</span> <span class="o">&lt;-</span> <span class="nf">ICAorthW</span><span class="p">(</span><span class="n">W0</span><span class="p">)</span>
 <span class="n">W1</span> <span class="o">&lt;-</span> <span class="nf">ProDenICA</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W0</span><span class="o">=</span><span class="n">W0</span><span class="p">,</span><span class="n">trace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">Gfunc</span><span class="o">=</span><span class="n">GPois</span><span class="p">)</span><span class="o">$</span><span class="n">W</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>得到$A$的估计值<code>W1</code></p>
 <h3 id="amari">计算Amari距离<a class="headerlink" href="#amari" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="nf">amari</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="nf">amari</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+</code></pre></div>
 
 
 <h2 id="_3">比较两种算法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>这一部分试图重现Fig. 14.42。</p>
-<div class="codehilite"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="m">1024</span>
+<div class="codehilite"><pre><span></span><code><span class="n">N</span> <span class="o">=</span> <span class="m">1024</span>
 
 <span class="n">genData</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="m">1024</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">2</span><span class="p">){</span>
   <span class="c1"># original sources</span>
@@ -3521,7 +3521,7 @@ X^*=SA^T
 <span class="c1">#    lines(c(i-0.2, i+0.2), c(res.max[j, i], res.max[j, i]), col = color[j], pch = 3)</span>
 <span class="c1">#  }</span>
 <span class="c1">#}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>得到下图</p>
@@ -3609,7 +3609,7 @@ X^*=SA^T
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:04
+        Last Build Date UTC : 2020-02-08 09:07:09
       </div>
       
         
@@ -3649,6 +3649,7 @@ X^*=SA^T
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       

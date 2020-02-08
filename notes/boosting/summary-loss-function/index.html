@@ -3238,12 +3238,12 @@
 <p><img alt="" src="../../../img/10/tab10.2.png" /></p>
 <p>将上述几种损失函数及其梯度用如下的Julia程序表达出来。</p>
 <p>首先声明<code>LossFunction</code>抽象类</p>
-<div class="codehilite"><pre><span></span><span class="k">abstract</span> <span class="k">type</span> <span class="n">LossFunction</span> <span class="k">end</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="k">abstract</span> <span class="k">type</span> <span class="n">LossFunction</span> <span class="k">end</span>
+</code></pre></div>
 
 
 <p>然后依次声明平方误差损失类<code>SquareLoss</code>、绝对值损失类<code>AbsLoss</code>、Huber损失类<code>HuberLoss</code>。以及用于logistic回归的<code>LogisticLoss</code>。</p>
-<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">exp</span><span class="o">.</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
 <span class="k">end</span>
 
@@ -3341,11 +3341,11 @@
         <span class="k">return</span> <span class="n">loss</span>
     <span class="k">end</span>
 <span class="k">end</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>测试代码如下</p>
-<div class="codehilite"><pre><span></span><span class="c">## test</span>
+<div class="codehilite"><pre><span></span><code><span class="c">## test</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;## square loss&quot;</span><span class="p">)</span>
@@ -3364,7 +3364,7 @@
 <span class="n">l</span> <span class="o">=</span> <span class="n">LogisticLoss</span><span class="p">()</span>
 <span class="n">lg</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="nd">@printf</span><span class="p">(</span><span class="s">&quot;val = </span><span class="si">%.6f</span><span class="s">; gradient = [</span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">, </span><span class="si">%.6f</span><span class="s">]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">l</span><span class="o">.</span><span class="n">obj</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">lg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">lg</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">lg</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>结果如下</p>
@@ -3447,7 +3447,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:05
+        Last Build Date UTC : 2020-02-08 09:07:09
       </div>
       
         
@@ -3487,6 +3487,7 @@
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       

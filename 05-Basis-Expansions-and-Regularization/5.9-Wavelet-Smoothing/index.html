@@ -3346,7 +3346,7 @@
 <li>$W_0$ 由 $\psi(x) =\sum_{k\in\cal Z}g(k)\phi_{1,k}(x)$ 张成，其中过滤参数为 $g(k)=(-1)^{1-k}h(1-k)$．</li>
 </ul>
 <h2 id="_2">自适应小波滤波<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>当数据在均匀格子上取值时，小波非常有用，比如数字化信号、图象，或者时间序列．我们将要关注一维的情形，假设总共有 $N=2^J$ 个格子点是很方便的．假设 $\mathbf y$ 是响应向量，$\W$ 是在 $N$ 个等距间隔观测上取值的 $N\times N$ 正交小波基矩阵．然后 $\y^* = \W^T\y$ 被称作 $\y$ 的 <strong>小波变换 (wavelet transform)</strong> （这也是全最小二乘系数）．自适应小波拟合的流行方法被称作 SURE 收缩 (Stein Unbiased Risk Estimation, Donoho and Johnstone (1994)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)．我们以下面的准则开始</p>
+<p>当数据在均匀格子上取值时，小波非常有用，比如数字化信号、图象，或者时间序列．我们将要关注一维的情形，假设总共有 $N=2^J$ 个格子点是很方便的．假设 $\mathbf y$ 是响应向量，$\W$ 是在 $N$ 个等距间隔观测上取值的 $N\times N$ 正交小波基矩阵．然后 $\y^<em> = \W^T\y$ 被称作 $\y$ 的 </em><em>小波变换 (wavelet transform)</em>* （这也是全最小二乘系数）．自适应小波拟合的流行方法被称作 SURE 收缩 (Stein Unbiased Risk Estimation, Donoho and Johnstone (1994)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)．我们以下面的准则开始</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{\boldsymbol\theta}{\min}\Vert \y-\W\boldsymbol\theta\Vert^2_2+2\lambda\Vert \boldsymbol\theta\Vert_1\tag{5.68}
@@ -3385,7 +3385,7 @@
 <p>更一般地，光滑样条通过加上光滑度来实现原始信号的压缩，而小波是加上稀疏度．</p>
 <p><img alt="" src="../../img/05/fig5.19.png" /></p>
 <p>图 5.19 在两个本质不同的数据集上比较了小波拟合 （采用 SURE 收缩） 和光滑样条拟合（采用交叉验证）．对于上图中的 NMR 数据，光滑样条到处引入 detail 来捕捉 isolated spike 的细节；小波拟合很好地局部化了 spike．在下图中，真实函数是光滑的，噪声相对较大、小波拟合引入了额外的不必要的 wiggle——这是为了额外的自适应性付出的代价．</p>
-<p>小波变换不是通过 $\y^*=\W\y$ 中的矩阵相乘来进行．事实上，采用更智能的 <strong>金字塔算法 (pyramidal schemes)</strong>, $\y^*$ 会用 $O(N)$ 的计算量完成，这甚至比 <strong>快速傅里叶变换 (FFT)</strong> 的 $N\log N$ 还要快．尽管一般情形下的构造超出了本书的范围，但可以简单证明 Haar 基时的情形（<a href="https://github.com/szcf-weiya/ESL-CN/issues/116">练习 5.19</a>）．同样地，逆小波变换 $\W\hat{\theta}$ 也是 $O(N)$ 的．</p>
+<p>小波变换不是通过 $\y^*=\W\y$ 中的矩阵相乘来进行．事实上，采用更智能的 <strong>金字塔算法 (pyramidal schemes)</strong>, $\y^<em>$ 会用 $O(N)$ 的计算量完成，这甚至比 </em><em>快速傅里叶变换 (FFT)</em>* 的 $N\log N$ 还要快．尽管一般情形下的构造超出了本书的范围，但可以简单证明 Haar 基时的情形（<a href="https://github.com/szcf-weiya/ESL-CN/issues/116">练习 5.19</a>）．同样地，逆小波变换 $\W\hat{\theta}$ 也是 $O(N)$ 的．</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 5.19</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/116">Issue 116: Ex. 5.19</a>．</p>
@@ -3477,7 +3477,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:46:59
+        Last Build Date UTC : 2020-02-08 09:07:03
       </div>
       
         
@@ -3517,6 +3517,7 @@
     <!--
       
     -->
+    <script src="../../js/baiduzhanzhang.js"></script>
     
     
       

@@ -3382,7 +3382,7 @@
 <h2 id="_1">背景重述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在两个类别中产生 $100$ 个观测值。第一类有 $4$ 个标准正态独立特征 $X_1,X_2,X_3,X_4$。第二类也有四个标准正态独立特征，但是条件为 $9\le \sum X_j^2\le 16$。这是个相对简单的问题。同时考虑第二个更难的问题，用 $6$ 个标准高斯噪声特征作为增广特征。</p>
 <h2 id="_2">生成数据<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="c1">## #####################################</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## #####################################</span>
 <span class="c1">## generate dataset</span>
 <span class="c1">## </span>
 <span class="c1">## `No Noise Features`: num_noise = 0</span>
@@ -3406,7 +3406,7 @@
   <span class="n">Y</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> <span class="n">each</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
   <span class="nf">return</span><span class="p">(</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Y</span><span class="p">)))</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="_3">模型训练<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -3422,19 +3422,19 @@
 <li>细分：在上一步选取的最优值附近进行细分</li>
 </ol>
 <p>注意避免最优值取在边界值。以 SVM/poly5 为例进行说明，其他类似</p>
-<div class="codehilite"><pre><span></span><span class="c1">## SVM/poly5</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## SVM/poly5</span>
 <span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
 <span class="n">poly5</span> <span class="o">=</span> <span class="nf">tune.svm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="m">2</span><span class="nf">^</span><span class="p">(</span><span class="m">-4</span><span class="o">:</span><span class="m">8</span><span class="p">))</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">poly5</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../poly5_cv_1.PNG" /></p>
 <p>此时选取的最优 $C$ 为 $32$，进一步细化</p>
-<div class="codehilite"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
 <span class="n">poly5</span> <span class="o">=</span> <span class="nf">tune.svm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">16</span><span class="p">,</span> <span class="m">64</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="m">2</span><span class="p">))</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">poly5</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../poly5_cv_2.PNG" /></p>
@@ -3471,7 +3471,7 @@
 <p>当然，实际中我们并不需要重新设置参数来训练模型，因为<code>tune.svm()</code>的返回结果就包含了最优模型，直接调用，比如<code>poly5$best.model</code></p>
 </div>
 <h2 id="_4">计算测试误差<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="n">predict.mars2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">predict.mars2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">pred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">newdata</span><span class="p">)</span>
   <span class="nf">ifelse</span><span class="p">(</span><span class="n">pred</span> <span class="o">&lt;</span> <span class="m">1.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
@@ -3494,7 +3494,7 @@
   <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">TestErr</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">err</span><span class="p">),</span>
               <span class="n">SE</span> <span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">err</span><span class="p">)))</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>值得说明的是，对于 BRUTO 和 MARS，因为程序是将其视为回归模型处理的，需要进一步转换为类别标签。因为程序中类别用 $1$ 和 $2$ 编号，所以判断拟合值是否大于 $1.5$，大于则划为第二类，否则第一类。</p>
@@ -3652,7 +3652,7 @@ r(X) = \min\{q_1(X), q_2(X)\}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:05
+        Last Build Date UTC : 2020-02-08 09:07:09
       </div>
       
         
@@ -3692,6 +3692,7 @@ r(X) = \min\{q_1(X), q_2(X)\}
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       

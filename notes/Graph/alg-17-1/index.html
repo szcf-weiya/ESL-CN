@@ -3318,7 +3318,7 @@
 <p>对于书中给出的例子</p>
 <p><img alt="" src="../../../img/17/fig17.4.png" /></p>
 <p>根据具体缺失边的情况，分别给出 $\mathbf W^*_{11}$ 和 $s_{12}^*$：</p>
-<div class="codehilite"><pre><span></span><span class="c1">## W11.star, s12.star based on the known graph structure</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## W11.star, s12.star based on the known graph structure</span>
 <span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">1</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">W.11.star</span> <span class="o">=</span> <span class="n">W[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span><span class="n">]</span>
@@ -3339,11 +3339,11 @@
     <span class="n">W.11.star</span> <span class="o">=</span> <span class="n">W[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">)</span><span class="n">]</span>
     <span class="n">s.12.star</span> <span class="o">=</span> <span class="n">S[4</span><span class="p">,</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">)</span><span class="n">]</span> <span class="c1"># edge 2-4</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>为了让程序更有适用性，我们采用邻接矩阵来表示边的缺失，则上面代码可以简化为</p>
-<div class="codehilite"><pre><span></span><span class="n">adj</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><code><span class="n">adj</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
                <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
                <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
                <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
@@ -3351,11 +3351,11 @@
 <span class="n">edge.idx</span> <span class="o">=</span> <span class="nf">which</span><span class="p">(</span><span class="n">adj[j</span><span class="p">,</span><span class="n">]</span> <span class="o">!=</span> <span class="m">0</span><span class="p">)</span>
 <span class="n">W.11.star</span> <span class="o">=</span> <span class="n">W[edge.idx</span><span class="p">,</span> <span class="n">edge.idx]</span>
 <span class="n">s.12.star</span> <span class="o">=</span> <span class="n">S[j</span><span class="p">,</span> <span class="n">edge.idx]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>更新 $w_{12}$，</p>
-<div class="codehilite"><pre><span></span><span class="c1">## solve reduced system of equations</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## solve reduced system of equations</span>
 <span class="n">beta.star</span> <span class="o">=</span> <span class="nf">solve</span><span class="p">(</span><span class="n">W.11.star</span><span class="p">,</span> <span class="n">s.12.star</span><span class="p">)</span>
 <span class="c1">## update</span>
 <span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">1</span> <span class="o">||</span> <span class="n">j</span> <span class="o">==</span> <span class="m">4</span><span class="p">)</span>
@@ -3374,18 +3374,18 @@
 <span class="n">W.reorder[</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p]</span> <span class="o">=</span> <span class="n">W.11</span> <span class="o">%*%</span> <span class="n">beta.hat</span>
 <span class="n">W.backup</span> <span class="o">=</span> <span class="n">W</span>
 <span class="n">W</span> <span class="o">=</span> <span class="n">W.reorder</span><span class="nf">[order</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span> <span class="nf">order</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span><span class="n">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>采用邻接矩阵，计算 <code>beta.hat</code> 的代码可以简化为</p>
-<div class="codehilite"><pre><span></span><span class="n">beta.hat.add.j</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">p</span><span class="p">),</span><span class="n">ncol</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">beta.hat.add.j</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">p</span><span class="p">),</span><span class="n">ncol</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
 <span class="n">beta.hat.add.j[edge.idx]</span> <span class="o">=</span> <span class="n">beta.star</span>
 <span class="n">beta.hat</span> <span class="o">=</span> <span class="n">beta.hat.add.j[</span><span class="o">-</span><span class="n">j]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>当 $\mathbf W$ 收敛后，计算 $\hat{\mathbf\Sigma} ^{-1}$：</p>
-<div class="codehilite"><pre><span></span><span class="c1">## final cycle</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## final cycle</span>
 <span class="nf">if </span><span class="p">(</span><span class="n">finalcycle</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">theta22</span> <span class="o">=</span> <span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="n">S[j</span><span class="p">,</span> <span class="n">j]</span> <span class="o">-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">W.reorder[p</span><span class="p">,</span><span class="o">-</span><span class="n">p]</span><span class="o">*</span><span class="n">beta.hat</span><span class="p">))</span>
@@ -3394,7 +3394,7 @@
     <span class="n">Omega[j</span><span class="p">,</span> <span class="o">-</span><span class="n">j]</span> <span class="o">=</span> <span class="n">theta12</span>
     <span class="n">Omega[</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j]</span> <span class="o">=</span> <span class="n">theta12</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>个人感觉整个实现过程需要特别注意算法中 ２(b) 步的 “reduced system of equations”，我们是要删去还有缺失边的信息，因为根据式 (17.12) 缺失边会有额外的拉格朗日常数惩罚</p>
@@ -3487,7 +3487,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:05
+        Last Build Date UTC : 2020-02-08 09:07:09
       </div>
       
         
@@ -3527,6 +3527,7 @@
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       

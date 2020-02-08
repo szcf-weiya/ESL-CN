@@ -3331,19 +3331,19 @@
 </table>
 <h2 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>首先生成在单位方格中均匀分布的点，</p>
-<div class="codehilite"><pre><span></span><span class="c1">## generate data</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## generate data</span>
 <span class="n">N</span> <span class="o">=</span> <span class="m">200</span>
 <span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
 <span class="n">x1</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
 <span class="n">cl</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x1</span><span class="o">&lt;</span><span class="m">0.8</span> <span class="o">&amp;</span> <span class="n">x1</span><span class="o">&gt;</span><span class="m">0.5</span> <span class="o">&amp;</span> <span class="n">x2</span><span class="o">&gt;</span><span class="m">0.4</span> <span class="o">&amp;</span> <span class="n">x2</span> <span class="o">&lt;</span> <span class="m">0.6</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">cl</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="_2">作图函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>为了作出类似图 9.3 的图，自定义如下绘图函数</p>
-<div class="codehilite"><pre><span></span><span class="c1">## plot box</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## plot box</span>
 <span class="n">plot.box</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">fcut</span><span class="p">){</span>
   <span class="nf">plot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="o">:</span><span class="m">1</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> 
        <span class="n">xaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">yaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> 
@@ -3360,12 +3360,12 @@
   <span class="nf">clip</span><span class="p">(</span><span class="n">fcut[3]</span><span class="p">,</span> <span class="n">fcut[1]</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
   <span class="nf">abline</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">fcut[2]</span><span class="p">,</span> <span class="n">fcut[4]</span><span class="p">),</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="prim">主函数 PRIM<a class="headerlink" href="#prim" title="Permanent link">&para;</a></h2>
 <p>这里例子中没有体现出 PRIM 的 “pasting” 特点，只需要不断进行 “peeled”。</p>
-<div class="codehilite"><pre><span></span><span class="n">simplePRIM</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">n1</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">n2</span><span class="o">=</span><span class="m">5</span><span class="p">){</span>
+<div class="codehilite"><pre><span></span><code><span class="n">simplePRIM</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">n1</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">n2</span><span class="o">=</span><span class="m">5</span><span class="p">){</span>
   <span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">),</span> <span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
   <span class="n">nstep</span> <span class="o">=</span> <span class="m">0</span>
   <span class="n">box</span> <span class="o">=</span> <span class="n">df</span>
@@ -3403,19 +3403,19 @@
   <span class="p">}</span>
   <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">means</span><span class="o">=</span><span class="n">fmu</span><span class="p">,</span> <span class="n">cutpoint</span> <span class="o">=</span> <span class="n">fcut</span><span class="p">,</span> <span class="n">final.box</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">fn</span><span class="p">))</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="_3">结果<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>运行下面代码，完美重现了图 9.7 和 图 9.8 的结果</p>
-<div class="codehilite"><pre><span></span><span class="c1">## run code</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">## run code</span>
 <span class="n">res</span> <span class="o">=</span> <span class="nf">simplePRIM</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
 <span class="c1">## plot the mean profile</span>
 <span class="nf">plot</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">res</span><span class="o">$</span><span class="n">means</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span> <span class="n">cex</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
      <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Number of Observations in Box&quot;</span><span class="p">,</span>
      <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Box Mean&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="" src="../res-of-sim-9-7.png" /></p>
@@ -3498,7 +3498,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-03 06:47:05
+        Last Build Date UTC : 2020-02-08 09:07:09
       </div>
       
         
@@ -3538,6 +3538,7 @@
     <!--
       
     -->
+    <script src="../../../js/baiduzhanzhang.js"></script>
     
     
       
