@@ -69,7 +69,8 @@
     {% endblock %}
     {% block disqus_js %}
       {% if config.extra.disqus and not page.is_homepage %}
-        <script src="{{ base_url }}/js/iDisqus190507.min.js"></script>
+        <script src="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.js"></script>
+        <link rel="stylesheet" href="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.css">
       {% endif %}
     {% endblock %}
     {% block fonts %}
