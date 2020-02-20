@@ -3,7 +3,7 @@ import re
 import glob
 # ([\u4e00-\u9fa5]+): chinese translation
 # (\b[a-zA-Z ]+\b): original
-pat = re.compile(r"\*\*([\u4e00-\u9fa5]+)\s?\((\b[a-zA-Z ]+\b)\)\*\*")
+pat = re.compile(r"\*\*([\u4e00-\u9fa5]+)\s?\((\b[a-zA-Z ,]+\b)\)\*\*")
 
 tags = [[] for i in range(26)]
 docsdir = os.listdir("docs/")
