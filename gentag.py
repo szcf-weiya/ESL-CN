@@ -2,7 +2,7 @@ import os
 import re
 import glob
 # ([\u4e00-\u9fa5]+): chinese translation
-# (\b[a-zA-Z ]+: original
+# (\b[a-zA-Z ]+\b): original
 pat = re.compile(r"\*\*([\u4e00-\u9fa5]+)\s?\((\b[a-zA-Z ]+\b)\)\*\*")
 
 tags = [[] for i in range(26)]
@@ -20,6 +20,8 @@ for i in range(1, 27):
         contents = fl.read()
         fl.close()
         mat = pat.findall(contents)
+        # get unique elements
+        mat = list(set(mat))
         print(mat)
         if mat:
             secid = file.split(f'docs/{chdir}/')[1].split('-')[0]
@@ -52,10 +54,8 @@ for i in range(26):
     if tags[i]:
         # section
         tagpage.write(f"\n## {letters[i]}\n")
-        # unique tag
-        tagi = list(set(tags[i]))
         # !!strange behavior of `writelines`: https://stackoverflow.com/questions/13730107/writelines-writes-lines-without-newline-just-fills-the-file
-        tagpage.writelines(tag + '\n' for tag in tagi)
+        tagpage.writelines(tag + '\n' for tag in tags[i])
 
     
 tagpage.close()
