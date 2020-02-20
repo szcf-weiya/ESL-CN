@@ -308,6 +308,19 @@
   
 
       
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../tag/index.html" title="索引" class="md-tabs__link">
+          索引
+        </a>
+      
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -3186,6 +3199,42 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      索引
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        索引
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tag/index.html" title="关键词" class="md-nav__link">
+      关键词
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -3241,9 +3290,9 @@
 </tr>
 </tbody>
 </table>
-<p>最近有人提出了一些用于非线性降维的方法，类似主曲面的思想．想法是数据接近一个嵌在高维空间中的固有低维非线性流形(intrinsically low-dimensional nonlinear manifold)．这些方法可以看成是“压扁(flattening)”流形，因此将数据降低至表示流形中相对位置的低维坐标系统中．在信噪比非常高的问题中非常有用（比如，物理系统），而且对于有低信噪比的观测数据不是很有用．</p>
+<p>最近有人提出了一些用于非线性降维的方法，类似主曲面的思想．想法是将数据看成位于一个嵌在高维空间中的 <strong>固有低维非线性流形 (intrinsically low-dimensional nonlinear manifold)</strong> 的附近．这些方法可以看成是“压扁(flattening)”流形，因此将数据降低至低维坐标系统中，用于表示点在流形中的相对位置．在信噪比非常高的问题中非常有用（比如，物理系统），而且对于有低信噪比的观测数据不是很有用．</p>
 <p><img alt="" src="../../img/14/fig14.44.png" /></p>
-<p>基本的目标在图 14.44 的左图中进行了说明．数据落在有较大曲率的抛物线附近．经典的 MDS 不能保持沿着这条曲线的点的顺序，因为它会将处于曲线两端的点看成离得非常近．右图显示了局部多维缩放(local multi-dimensional scaling)的结果，我们将在下面讨论非线性多维缩放的三个方法中的其中一个．这些方法仅仅使用$p$维中点的坐标，不需要流形的其它信息．局部MDS能够很好地保持沿着曲线的点的顺序．</p>
+<p>基本的目标在图 14.44 的左图中进行了说明．数据落在有较大曲率的抛物线附近．经典的 MDS 不能保持沿着这条曲线的点的顺序，因为它会将处于曲线两端的点看成离得非常近．右图显示了 <strong>局部多维缩放 (local multi-dimensional scaling, Local MDS)</strong> 的结果，我们将在下面讨论非线性多维缩放的三个方法中的其中一个．这些方法仅仅使用 $p$ 维中点的坐标，不需要流形的其它信息．<strong>局部多维缩放</strong> 能够很好地保持沿着曲线的点的顺序．</p>
 <p>我们将简短地介绍用作非线性降维和流形映射的三个新方法．</p>
 <p><strong>等距特征映射算法(ISOMAP)</strong>（Tenenbaum et al. 2000<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）构造了一个图来近似沿着流形的点之间的测地线距离．具体地，对每个数据点，我们找到其邻居——距该点的某个欧式距离范围内的点．我们构造任意两个邻居点间用边相连的图．任意两点的测地线距离则用图中点的最短路径来近似．最终，对图的距离应用经典缩放，来得到低纬映射．</p>
 <p><strong>局部线性内嵌(LLE)</strong>(Roweis and Saul, 2000<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)采用完全不同的方式，它试图保持高维数据的局部仿射结构．每个数据点用邻居点的线性组合来近似．于是通过寻找保持局部近似的最优方式构造低维表示．细节非常有趣，所以在这里给出：</p>
@@ -3381,7 +3430,7 @@ S_L(z_1,z_2,\ldots, z_N)=\sum\limits_{(i, i')\in\cal N}(d_{ii'}-\Vert z_i-z_{i'}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-19 16:02:03
+        Last Build Date UTC : 2020-02-20 04:18:56
       </div>
       
         
