@@ -218,6 +218,10 @@ pages:
       - 损失函数的梯度总结及 Julia 实现: 'notes/boosting/summary-loss-function.md'
       - R 语言中的多种决策树算法实现: 'notes/tree/various-classification-methods.md'
       - R 语言处理缺失数据: 'notes/missing-data/missing-data.md'
+  
+  - 索引: 
+    - 关键词: tag.md
+
 
 
 

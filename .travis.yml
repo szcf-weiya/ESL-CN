@@ -6,6 +6,7 @@ install:
   - pip install pymdown-extensions
   - pip install python-markdown-math
 script:
+  - python gentag.py
   - mkdocs build
   - mv rmds/_site/ site/rmds
     
