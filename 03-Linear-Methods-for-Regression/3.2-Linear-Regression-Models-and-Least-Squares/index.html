@@ -3454,12 +3454,16 @@ f(X)=\beta_0+\sum\limits_{j=1}^pX_j\beta_j \tag{3.1}
 </blockquote>
 <p>图 3.2 展示了在 $\IR^N$ 中最小二乘估计的另一种几何表示．我们记 $\mathbf{X}$ 的列向量为 $\x_0,\x_1,\ldots,\x_p$，其中 $\x_0 \equiv \1$．下文中第一列都是这样假设．这些向量张成了 $\IR^N$ 的子空间，也被称作 $\mathbf{X}$ 的列空间．我们通过选择 $\hat{\beta}$ 来最小化 $\RSS(\beta)=\lVert(\mathbf{y}-\mathbf{X}\beta)\rVert^2$，则残差向量 $\mathbf{y-\hat{y}}$ 正交于子空间．\eqref{3.5} 式描述了这种正交，然后估计值 $\hat{\y}$ 因此可以看成是 $\mathbf{y}$ 在子空间中的正交投影．帽子矩阵 $\mathbf{H}$ 计算了正交投影，因此也被称作投影矩阵．</p>
 <p>可能会出现 $\mathbf{X}$ 的列不是线性独立的，则 $\mathbf{X}$ 不是满秩的．举个例子，如果两个输入是完全相关的，（比如，$x_2=3x_1$）．则矩阵 $\mathbf{X^TX}$ 是奇异的，并且最小二乘的系数 $\hat{\beta}$ 不是唯一的．然而，拟合值 $\mathbf{\hat{y}}=\mathbf{X}\hat{\beta}$ 仍然是 $\mathbf{y}$ 在列空间 $\mathbf{X}$ 的投影；用 $\mathbf{X}$ 的列向量来表示这种投射的方式不止一种．当一个或多个定性输入用一种冗余的方式编码时经常出现非满秩的情形．通过重编码或去除 $\mathbf{X}$ 中冗余的列等方式可以解决非唯一表示的问题．大多数回归软件包会监测这些冗余并且自动采用一些策略去除冗余项．信号和图像分析中经常发生秩缺失，其中输入的个数 $p$ 可以大于训练的情形个数 $N$．在这种情形下，特征经常通过滤波来降维或者对拟合进行正则化．（<a href="https://esl.hohoweiya.xyz/05-Basis-Expansions-and-Regularization/5.2-Piecewise-Polynomials-and-Splines/index.html#_4">5.2.3节</a>和第 18 章）</p>
-<p>截至目前我们已经对数据的真实分布做的假设非常少．为了约束 $\hat{\beta}$ 的取样特点，我们现在假设观测值 $y_i$ 不相关，且有固定的方差 $\sigma^2$，并且 $x_i$ 是固定的（非随机）．最小二乘法的参数估计的方差-协方差阵可以很容易从式 \eqref{3.6} 导出：</p>
+<p>截至目前我们已经对数据的真实分布做的假设非常少．为了约束 $\hat{\beta}$ 的取样特点，我们现在假设观测值 $y_i$ 不相关，且有固定的方差 $\sigma^2$，并且 $x_i$ 是固定的（非随机）．最小二乘法的参数估计的 <strong>协方差矩阵 (variance-covariance matrix)</strong> 可以很容易从式 \eqref{3.6} 导出：</p>
 <p>
 <script type="math/tex; mode=display">
 \Var(\hat{\beta})=(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\tag{3.8}\label{3.8}
 </script>
 </p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>根据<a href="https://en.wikipedia.org/wiki/Covariance_matrix">维基百科</a>，协方差矩阵的英文表达有，covariance matrix, variance-covariance matrix, dispersion matrix 等等. 经 <a href="http://disq.us/p/27ffai6">@fengxiang guo</a> 提醒，为避免误解，统一翻译成协方差矩阵. </p>
+</div>
 <p>一般通过下式来估计方差 $\sigma^2$</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3867,7 +3871,7 @@ Y_k&=\beta_{0k}+\sum\limits_{j=1}^pX_j\beta_{jk}+\varepsilon_k \tag{3.34}\label{
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-20 07:47:55
+        Last Build Date UTC : 2020-02-20 08:30:07
       </div>
       
         
