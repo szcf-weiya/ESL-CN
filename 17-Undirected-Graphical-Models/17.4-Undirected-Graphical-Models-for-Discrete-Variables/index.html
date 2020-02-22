@@ -3415,12 +3415,16 @@ f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
 </script>
 </p>
 </div>
-<p>分割函数保证在样本空间中概率相加起来为 1．$\theta_{jk}X_jX_k$ 项表示（对数）势函数 \eqref{17.5} 的特定参量化，而且因为技术上的原因需要包含 <strong>常值 (constant)</strong> 结点（与其他结点都有边相连） $X_0\equiv 1$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/139">练习 17.10</a>）．</p>
+<p>分割函数保证在样本空间中概率相加起来为 1．$\theta_{jk}X_jX_k$ 项表示（对数）势函数 \eqref{17.5} 的特定参量化，而且因为技术上的原因需要包含 <strong>常值结点 (constant node)</strong> $X_0\equiv 1$，即与其他结点都有边相连.（<a href="https://github.com/szcf-weiya/ESL-CN/issues/139">练习 17.10</a>）．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Ex. 17.10</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/139">Issue 139: Ex. 17.10</a>．</p>
 </div>
-<p>在统计领域中，这个模型等价于多路计算表（multiway tables of counts）的一阶交叉泊松对数线性模型（Bishop et al.，1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> ;McCullagh and Nelder,1989<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>; Agresti, 2002<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>）．</p>
+<p>在统计领域中，这个模型等价于 <strong>多路计数表 (multiway tables of counts)</strong> 的 <strong>一阶交叉泊松对数线性模型 (first-order-interaction Poisson log-linear model)</strong>（Bishop et al.，1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> ;McCullagh and Nelder,1989<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>; Agresti, 2002<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>）．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：multiway tables of counts</p>
+<p>Agresti (2002) 在 p17 介绍到，如果一个 <strong>列联表 (contigency table)</strong> 对两个（类别型）变量进行交叉分类，则称为 two-way table；如果对三个变量交叉分类，则称为 three-way table，以此类推. </p>
+</div>
 <p>Ising 模型暗示着每个结点在其它结点条件下有逻辑斯蒂形式（<a href="https://github.com/szcf-weiya/ESL-CN/issues/140">练习 17.11</a>）
 <script type="math/tex; mode=display">
 \Pr(X_j=1\mid X_{-j}=x_{-j})=\frac{1}{1+\exp(-\theta_{j0}-\sum_{(j,k)\in E}\theta_{jk}x_k)}\tag{17.30}\label{17.30}
@@ -3695,7 +3699,7 @@ x_{ij}\Pr\nolimits_{\cal\mathbf\Theta}(X_k=1\mid X_{\cal V}=x_{i\cal V})&\text{i
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-22 15:11:54
+        Last Build Date UTC : 2020-02-22 16:00:01
       </div>
       
         
