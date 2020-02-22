@@ -3476,7 +3476,12 @@ $\beta$ 估计为
 </script>
 有<strong>加权最小二乘估计 (WLSE)</strong></p>
 </div>
-<p>等式 \eqref{6.8} 给出了局部线性回归估计的显式表达，式 \eqref{6.9} 强调了估计关于 $y_i$ 为线性的（$l_i(x_0)$ 不涉及 $\mathbf y$）．这些权重 $l_i(x_0)$ 结合了核 $K_\lambda(x_0,\cdot)$ 和最小二乘估计，并且有时称作 <strong>等价核 (equivalent kernel)</strong>．图 6.4 说明了局部线性回归在等价核上的影响．从历史上看，Nadaraya–Watson 和其他局部平均核方法中的偏差是通过修改这个核得到的．这些修改基于理论渐近的均方误差的考虑．局部线性回归自动地修改核将偏差矫正到恰好为一阶，这是被称为 <strong>自动核作品 (automatic kernel carpentry)</strong> 的现象．考虑下面 $\E\hat f(x_0)$ 的展开，利用局部回归的线性和真实函数 $f$ 在 $x_0$ 处的展开，
+<p>等式 \eqref{6.8} 给出了局部线性回归估计的显式表达，式 \eqref{6.9} 强调了估计关于 $y_i$ 为线性的（$l_i(x_0)$ 不涉及 $\mathbf y$）．这些权重 $l_i(x_0)$ 结合了核 $K_\lambda(x_0,\cdot)$ 和最小二乘估计，并且有时称作 <strong>等价核 (equivalent kernel)</strong>．图 6.4 说明了局部线性回归在等价核上的影响．从历史上看，Nadaraya–Watson 和其他局部平均核方法中的偏差是通过修改核本身进行纠正．这些修改基于理论渐近的均方误差，不仅很复杂，而且只对有限样本进行近似．局部线性回归自动地修改核将偏差矫正到恰好为一阶，这是被称为 <strong>自动核作品 (automatic kernel carpentry)</strong> 的现象．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：automatic kernel carpentry</p>
+<p>更多细节可以参考 <a href="https://projecteuclid.org/download/pdf_1/euclid.ss/1177011002">T. Hastie and C. Loader (1993). Local Regression: Automatic Kernel Carpentry</a></p>
+</div>
+<p>考虑下面 $\E\hat f(x_0)$ 的展开，利用局部回归的线性和真实函数 $f$ 在 $x_0$ 处的展开，
 <script type="math/tex; mode=display">
 \begin{align}
 \E\hat f(x_0)&=\sum\limits_{i=1}^Nl_i(x_0)f(x_i)\notag\\
@@ -3592,7 +3597,7 @@ $\beta$ 估计为
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-22 13:23:28
+        Last Build Date UTC : 2020-02-22 13:36:19
       </div>
       
         
