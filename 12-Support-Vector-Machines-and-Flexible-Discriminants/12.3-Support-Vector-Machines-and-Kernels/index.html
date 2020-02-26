@@ -3490,7 +3490,7 @@ K(x,x')=\langle h(x), h(x') \rangle\tag{12.21}
 <p>
 <script type="math/tex; mode=display">
 \begin{array}{rl}
-d\text{阶多项式：} & K(x,x')=(1+\langle x,x' \rangle)^d\\
+d\text{ 阶多项式：} & K(x,x')=(1+\langle x,x' \rangle)^d\\
 \text{径向基：} & K(x, x')=\exp(-\gamma \Vert x-x'\Vert^2)\tag{12.22}\\
 \text{神经网络：} & K(x,x')=\tanh(\kappa_1\langle x,x' \rangle+\kappa_2)\\
 \end{array}
@@ -3502,7 +3502,7 @@ d\text{阶多项式：} & K(x,x')=(1+\langle x,x' \rangle)^d\\
 \begin{array}{ll}
 K(x,x')&=(1+\langle X,X' \rangle)^2\\
 &=(1+X_1X_1'+X_2X_2')^2\\
-&=1+2X_1X_1'+2X_2X_2'+(X_1X_1')^2+(X_2X_2')^2+2X_1X_1'X_2X_2'\quad (12.23)
+&=1+2X_1X_1'+2X_2X_2'+(X_1X_1')^2+(X_2X_2')^2+2X_1X_1'X_2X_2'\tag(12.23)
 \end{array}
 </script>
 </p>
@@ -3525,10 +3525,10 @@ K(x,x')&=(1+\langle X,X' \rangle)^2\\
 <p>对于 $f(x)=h(x)^T\beta+\beta_0$，考虑下列的优化问题</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\beta_0,\beta}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{\lambda}{2}\Vert\beta\Vert^2\label{12.25}\tag{12.25}
+\underset{\beta_0,\beta}{\min}\sum\limits_{i=1}^N[1-y_if(x_i)]_++\frac{\lambda}{2}\Vert\beta\Vert^2\label{12.25}\tag{12.25}\label{12.25}
 </script>
 </p>
-<p>其中下标“$+$”表示正的部分．上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例．可以很简单地证明当$\lambda=1/C$时，\eqref{12.25} 的解与 \eqref{12.8} 的解相同（<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">练习 12.1</a>）．</p>
+<p>其中下标“$+$”表示正的部分．上式是“损失+惩罚”的形式，这在函数估计中是个很熟悉的范例．可以很简单地证明当 $\lambda=1/C$ 时，\eqref{12.25} 的解与 \eqref{12.8} 的解相同（<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">练习 12.1</a>）．</p>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
@@ -3546,7 +3546,7 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 <p class="admonition-title">weiya 注：Ex. 12.1</p>
 <p>已解决．详细证明过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/78">Issue 78: Ex. 12.1</a></p>
 </div>
-<p>对“hinge”损失函数 $L(y,f)=[1-yf]_+$ 的检验表明，它用于二类别分类是很合理的．图 12.4 将之与逻辑斯蒂回归的 <strong>对数似然损失(log-likelihood loss)</strong> 进行比较，以及平方误差损失及其的变种(variant)．（负）对数似然或者二项偏差和 SVM 损失有着类似的尾分布，对margin中的点赋予零 惩罚，对在错误一侧的点赋予线性惩罚．另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响．<strong>squared hinge</strong>损失$L(y,f)=[1-yf]_+^2$类似平方损失，但它对于各自margin中的点惩罚为0．它在左尾中平方增长，而且对于误分类的观测点，没有hinge或者偏差稳健．最近 Rosset and Zhu (2007)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出 <strong>squared hinge 损失的“Huberized”版本</strong>，在 $yf=-1$ 处将其平滑转换为了线性损失．</p>
+<p>对“hinge”损失函数 $L(y,f)=[1-yf]_+$ 的检验表明，它用于二类别分类是很合理的．图 12.4 将之与逻辑斯蒂回归的 <strong>对数似然损失(log-likelihood loss)</strong> 进行比较，以及平方误差损失及其的变种．负对数似然或者二项偏差和 SVM 损失有着类似的尾分布，对 margin 中的点赋予零惩罚，对在错误一侧的点赋予线性惩罚．另一方面，平方误差给出了平方惩罚，在各自margin中的点对模型也有很强的影响．<strong>squared hinge</strong>损失$L(y,f)=[1-yf]_+^2$类似平方损失，但它对于各自margin中的点惩罚为0．它在左尾中平方增长，而且对于误分类的观测点，没有hinge或者偏差稳健．最近 Rosset and Zhu (2007)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出 <strong>squared hinge 损失的“Huberized”版本</strong>，在 $yf=-1$ 处将其平滑转换为了线性损失．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Huberized squared hinge loss</p>
 <p>文献Rosset and Zhu (2007)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>中提出的 Huberized squared hinge loss 的表述更一般，可以在任意 $t &lt; 1$ 处进行 Huberized，文献截图如下：
@@ -3557,18 +3557,18 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 <p>我们可以在总体水平上用估计量来区分这些损失函数．我们考虑最小化 $\E L(Y,f(x)$．</p>
 <p><img alt="" src="../../img/12/tab12.1.png" /></p>
 <p>表 12.1 总结了这些结果．然而 hinge 损失估计了分类器 $G(x)$ 本身，而其他的都估计类别后验概率的某个变换．“Huberized” square hinge损失有着与逻辑斯蒂回归相同的吸引人的性质（光滑的损失函数，估计概率），以及 SVM 的 hinge 损失的良好性质（支撑点）．</p>
-<p>形式(12.25)将SVM看成正则函数估计问题，其中线性展开$f(x)=\beta_0+h(x)^T\beta$的系数向0收缩（除了常值）．如果$h(x)$表示有相同的序结构（比如按粗糙程度排序）的<strong>分层基(hierarchical basis)</strong>，如果在向量$h$中有更粗糙的元素$h_j$有更小的范数，则均一化收缩是有意义的．</p>
+<p>式 \eqref{12.25} 将 SVM 看成正则化的函数估计问题，其中线性展开 $f(x)=\beta_0+h(x)^T\beta$ 的系数向 0 收缩（除了常值）．如果 $h(x)$ 表示有相同的序结构（比如按粗糙程度排序）的 <strong>分层基 (hierarchical basis)</strong>，如果在向量 $h$ 中更粗糙的元素 $h_j$ 有更小的范数，则均一化收缩是更有意义的．</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>什么是 hierarchical basis？探索过程见<a href="https://github.com/szcf-weiya/ESL-CN/issues/79">Issues 79: hierarchical basis</a></p>
 </div>
-<p>除了平方误差，表 12.1 中所有的损失函数，都称之为 “margin maximizing loss-functions”（Rosset et al., 2004b<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）．这意味着如果数据是可分的，则当$\lambda\rightarrow 0$时，$\hat\beta_\lambda$的极限定义为最优分离超平面．</p>
+<p>除了平方误差，表 12.1 中所有的损失函数，都称之为 “margin maximizing loss-functions”（Rosset et al., 2004b<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>）．这意味着如果数据是可分的，则当 $\lambda\rightarrow 0$ 时，$\hat\beta_\lambda$ 的极限定义为最优分离超平面．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：原书脚注</p>
-<p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$ 发散，但是 $\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$ 收敛到最优分离超平面．</p>
+<p>对于可分数据的逻辑斯蒂回归，$\hat\beta_\lambda$ 发散，但是 $\hat\beta_\lambda/\Vert\hat\beta_\lambda\Vert$ 收敛到最优分离超平面．(Why?)</p>
 </div>
 <h2 id="_1">函数估计和再生核<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>这里我们用 <strong>再生核希尔伯特空间(reproducing kernel Hilbert spaces)</strong> 中的函数估计来描述 SVM，其中有许多的核性质．这里讨论的内容在<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8节</a>有详细讨论．这里给出支持向量分类器的另一个视角，并且帮助理清它如何工作．</p>
+<p>这里我们用 <strong>再生核希尔伯特空间 (reproducing kernel Hilbert spaces)</strong> 中的函数估计来描述 SVM，其中有许多的核性质．这里的内容在<a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html"> 5.8 节</a>有详细讨论．这里给出支持向量分类器的另一个视角，并且帮助理清它如何工作．</p>
 <p>假设基 $h$ 来自与正定核 $K$ 的（可能是有限的）特征展开，</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3603,7 +3603,7 @@ K(x, x')=\sum\limits_{m=1}^{\infty}\phi_m(x)\phi_m(x')\delta_m\label{12.26}\tag{
 </script>
 </p>
 </div>
-<p>现在 \eqref{12.27} 与5.8节中的 \eqref{5.49} 形式相同，并且再生希尔伯特空间的理论保证了形如下式的有限维的解</p>
+<p>现在 \eqref{12.27} 与 <a href="../../05-Basis-Expansions-and-Regularization/5.8-Regularization-and-Reproducing-Kernel-Hibert-Spaces/index.html">5.8 节</a>中的 \eqref{5.49} 形式相同，并且再生希尔伯特空间的理论保证了形如下式的有限维的解</p>
 <p>
 <script type="math/tex; mode=display">
 f(x)=\beta_0+\sum\limits_{i=1}^N\alpha_iK(x, x_i)\tag{12.28}\label{12.28}
@@ -3967,7 +3967,7 @@ h\le R^2A^2\tag{12.50}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-26 04:40:24
+        Last Build Date UTC : 2020-02-26 14:54:18
       </div>
       
         

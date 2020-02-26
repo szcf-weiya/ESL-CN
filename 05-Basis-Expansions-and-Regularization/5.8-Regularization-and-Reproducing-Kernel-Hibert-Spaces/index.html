@@ -3403,7 +3403,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-10-19 23:45:50</td>
+<td>2020-02-26 22:52:43</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3469,6 +3469,29 @@ f(x)=\sum\limits_{i=1}^\infty c_i\phi_i(x)\tag{5.46}
 \Vert f\Vert_{{\cal H}} := \sqrt{\langle f,f\rangle_{{\cal H}}}\,.
 </script>
 </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：两种构造 RKHS 的方法</p>
+<p>一般地，有两种构造 RKHS 的方法：</p>
+<p>第一种，给定一个半正定核 $K$，定义映射 $\Phi:\calX\mapsto \IR^\calX$ 为 $\Phi(x) = K(\cdot, x)$，然后考虑向量空间 
+<script type="math/tex; mode=display">
+\span(\{\Phi(x):x\in\calX\}) = \left\{f(\cdot) = \sum_{i=1}^N\alpha_iK(\cdot, x_i)\right\}\,,
+</script>
+并对 $f = \sum_{i=1}^N\alpha_iK(\cdot, u_i), g = \sum_{i=1}^N\beta_iK(\cdot, v_i)$ 定义内积 
+<script type="math/tex; mode=display">
+\langle f, g\rangle = \sum_{i=1}^N\sum_{j=1}^N\alpha_i\beta_jK(u_i,v_j)\,,
+</script>
+则 $K$ 满足核再生性质，并且 $\overline{\span({\Phi(x)})}$ 定义了 RKHS.</p>
+<p>另外一种，则是用 Mercer 定理，定义内积
+<script type="math/tex; mode=display">
+\langle f, g\rangle_{\calH} = \sum_{j=1}^{\infty}\frac{\langle f,\phi_j\rangle\langle g,\phi_j\rangle}{\mu_j}
+</script>
+则
+<script type="math/tex; mode=display">
+\left\{f=\sum_{j=1}^\infty c_j\phi_j\mid \sum_{j=1}^\infty c_j^2/\mu_j < \infty\right\}
+</script>
+为 RKHS. </p>
+<p>参考 <a href="https://doi.org/10.1017/9781108627771">Wainwright (2019)</a> 和 <a href="https://people.eecs.berkeley.edu/~bartlett/courses/281b-sp08/7.pdf">Peter Bartlett&rsquo;s notes</a>.</p>
 </div>
 <p>\eqref{5.42} 中空间 ${\cal H}_K$ 的惩罚函数定义为二次范数 $J(f)=\Vert f\Vert_{{\cal H}_K}^2$．$J(f)$ 的值可以解释为广义岭惩罚，其中在展开式 \eqref{5.45} 中，大的特征值惩罚较小，反之亦然．</p>
 <p>重写 \eqref{5.42}，我们有</p>
@@ -3749,7 +3772,7 @@ K(x, y)=\Vert x-y\Vert^2\LOG(\Vert x-y\Vert)\tag{5.66}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-26 04:40:22
+        Last Build Date UTC : 2020-02-26 14:54:16
       </div>
       
         
