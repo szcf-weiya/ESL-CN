@@ -3759,26 +3759,26 @@ c\vert r\vert -c^2/2, &\vert r\vert > c
 <p>考虑到这些约束的本质，一般仅仅有部分的解$(\hat \alpha_i^*-\hat\alpha_i)$非零， 并且对应的数据称为支持向量．和分类问题中的设定一样，解仅仅通过内积$\langle x_i, x_{i&rsquo;}\rangle$来关联输入的数据．因此我们可以通过定义合适的内积将这个方法推广到高维空间，举个例子，采用(12.22)中定义的任意一个．</p>
 <p>注意到参数$\epsilon$和$\lambda$与准则(12.36)有关．它们似乎扮演不同的角色，$\epsilon$是损失函数$V_{\epsilon}$的参数，这和$c$是$V_H$的参数一样．注意到$V_{\epsilon}$和$V_H$都依赖$y$的尺度，因此依赖于$r$．如果我们对响应变量进行缩放（也因此需要用$V_H(r/\sigma)$和$V_\epsilon(r/\sigma)$），则我们可能考虑采用预先设定的$c$和$\epsilon$（对于高斯情形，取$c=1.345$能达到$95\%$的有效度）．$\lambda$是更传统的正则参数，并且可以通过交叉验证来估计．</p>
 <h2 id="_3">回归和核<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>正如 12.3.3 节讨论的一样，SVM 的核性质不唯一．假设我们考虑用基函数 $\{h_m(x)\},m=1,2,\ldots,M$ 近似的回归函数：</p>
+<p>正如 <a href="">12.3.3 节</a>讨论的一样，SVM 的核性质不唯一．假设我们考虑用基函数 $\{h_m(x)\},m=1,2,\ldots,M$ 近似的回归函数：</p>
 <p>
 <script type="math/tex; mode=display">
 f(x) = \sum\limits_{m=1}^M\beta_mh_m(x)+\beta_0\tag{12.42}
 </script>
 </p>
-<p>为了估计$\beta$和$\beta_0$，对于一般的误差度量$V(r$，我们需要最小化</p>
+<p>为了估计 $\beta$ 和 $\beta_0$，对于一般的误差度量$V(r)$，我们需要最小化</p>
 <p>
 <script type="math/tex; mode=display">
 H(\beta, \beta_0) = \sum\limits_{i=1}^NV(y_i-f(x_i)) + \frac{\lambda}{2}\sum\beta_m^2\tag{12.43}
 </script>
 </p>
-<p>对于任意选择的$V(r)$，解$\hat f(x)=\sum\hat\beta_mh_m(x)+\hat\beta_0$有如下形式</p>
+<p>对于任意选择的 $V(r)$，解 $\hat f(x)=\sum\hat\beta_mh_m(x)+\hat\beta_0$ 有如下形式</p>
 <p>
 <script type="math/tex; mode=display">
-\hat f(x) = \sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\tag{12.44}
+\hat f(x) = \sum\limits_{i=1}^N\hat\alpha_iK(x,x_i)\tag{12.44}\label{12.44}
 </script>
 </p>
-<p>其中$K(x,y)=\sum_{m=1}^Mh_m(x)h_m(y)$．注意到这与径向基函数展开和正则化估计的形式一样，它们在第5章和第6章有讨论．</p>
-<p>具体地(For concreteness)，考虑$V(r)=r^2$的情形．令$\H$为$N\times M$的基矩阵，第$im$个元素为$h_m(x_i)$，并且假设$M &gt; N$较大．为了简单起见，假设$\beta_0 = 0$，或者将常数包含进$h$中；<a href="https://github.com/szcf-weiya/ESL-CN/issues/82">练习12.3</a>给出了另一种方式．</p>
+<p>其中 $K(x,y)=\sum_{m=1}^Mh_m(x)h_m(y)$．注意到这与径向基函数展开和正则化估计的形式一样，它们在<a href="../../05-Basis-Expansions-and-Regularization/5.1-Introduction/index.html">第 5 章</a>和<a href="../../06-Kernel-Smoothing-Methods/6.0-Introduction/index.html">第 6 章</a>有讨论．</p>
+<p>具体地(For concreteness)，考虑$V(r)=r^2$的情形．令 $\H$ 为 $N\times M$ 的基矩阵，第 $im$ 个元素为 $h_m(x_i)$，并且假设 $M &gt; N$ 较大．为了简单起见，假设 $\beta_0 = 0$，或者将常数包含进 $h$ 中；<a href="https://github.com/szcf-weiya/ESL-CN/issues/82">练习12.3</a>给出了另一种方式．</p>
 <p>通过最小化带惩罚的最小二乘准则来估计$\beta$</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3797,13 +3797,13 @@ H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\tag{12.45}
 -\H^T(\y-\H\hat\beta)+\lambda\hat\beta=0\tag{12.47}
 </script>
 </p>
-<p>从这里看，我们似乎需要在转换后的空间中对内积的$N\times M$的矩阵进行赋值．然而，我们可以乘以$\H$得到</p>
+<p>从这里看，我们似乎需要在转换后的空间中对内积的 $M\times M$ 的矩阵进行赋值．然而，我们可以乘以 $\H$ 得到</p>
 <p>
 <script type="math/tex; mode=display">
 \H\hat\beta = (\H\H^T+\lambda\I)^{-1}\H\H^T\y\tag{12.48}
 </script>
 </p>
-<p>$N\times N$的矩阵$\H\H^T$包含了成对观测$i,i&rsquo;$间的内积；也就是，内积核$\{\H\H^T\}_{i.i&rsquo;}=K(x_i,x_{i&rsquo;}=K(x,x_{i&rsquo;})$的赋值．易证(12.44)正是这种情形，在任意点$x$的预测值满足</p>
+<p>$N\times N$ 的矩阵 $\H\H^T$ 包含了成对观测 $i,i&rsquo;$ 间的内积；也就是，内积核$\{\H\H^T\}_{i.i&rsquo;}=K(x,x_{i&rsquo;})$的赋值．易证 \eqref{12.44} 正是这种情形，在任意点 $x$ 的预测值满足</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3812,8 +3812,8 @@ H(\beta) = (\y -\H\beta)^T(\y-\H\beta)+\lambda\Vert \beta\Vert^2\tag{12.45}
 \end{align}
 </script>
 </p>
-<p>其中$\hat\alpha=(\H\H^T+\lambda\I)^{-1}\y$．和SVM中一样，我们不需要确定或者计算函数集$h_1(x), h_2(x),\ldots,h_M(x)$．仅仅需要在$N$个训练点中，对每个$i,i&rsquo;$计算内积核$K(x_i,x_{i&rsquo;})$，以及预测时对预测点$x$计算内积核．小心选择$h_m(x)$（比如特殊的、容易计算的核$K$）会使得计算$K$时$\H\H^T$计算量为$N^2/2$，而不是直接计算时的$N^2M$．</p>
-<p>然而，注意到，这个性质取决于惩罚项中平方范数$\Vert\beta\Vert^2$的选择．举个例子，对于可能会得到更好模型的$L_1$范数$\vert\beta\vert$，这个性质并不满足．</p>
+<p>其中 $\hat\alpha=(\H\H^T+\lambda\I)^{-1}\y$．和 SVM 中一样，我们不需要确定或者计算函数集 $h_1(x), h_2(x),\ldots,h_M(x)$．仅仅需要在 $N$ 个训练点中，对每个 $i,i&rsquo;$ 计算内积核 $K(x_i,x_{i&rsquo;})$，以及预测时对预测点 $x$ 计算内积核．小心选择 $h_m(x)$（比如特殊的、容易计算的核$K$ $K$ 时$\H\H^T$ 计算量为 $N^2/2$，而不是直接计算时的 $N^2M$．</p>
+<p>然而，注意到，这个性质取决于惩罚项中平方范数 $\Vert\beta\Vert^2$ 的选择．举个例子，对于可能会得到更好模型的 $L_1$ 范数 $\vert\beta\vert$，这个性质并不满足．</p>
 <h2 id="_4">讨论<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>SVM可以拓展到对类别问题，本质上是求解多个两个类别的问题．对每个成对类别建立分类器，最终的分类器是起主要作用(dominates)的分类器(Kressel, 1999<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>; Friedman, 1996<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>; Hastie and Tibshirani, 1998<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>)．另外，可以采用合适核的多项损失函数，就像<a href="#_1">12.3.3节</a>一样．SVMs在许多监督学习和非监督学习的问题中都有应用．在本文的写作时间，经验表明它在许多实际学习问题中表现得非常好．</p>
 <p>最后，我们提出SVM和结构风险最小化(7.9)的联系．</p>
@@ -3967,7 +3967,7 @@ h\le R^2A^2\tag{12.50}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-24 16:24:10
+        Last Build Date UTC : 2020-02-26 04:40:24
       </div>
       
         
