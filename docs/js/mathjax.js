@@ -38,7 +38,9 @@ window.MathJax = {
 
       calC: "{{\\cal{C}}}",
       calS: "{{\\cal{S}}}",
+      calH: "{{\\cal{H}}}",
       calI: "{{\\cal{I}}}",
+      calX: "{{\\cal{X}}}",
       cG: "{{\\cal{G}}}",
       cH: "{{\\cal{H}}}",
       cM: "{{\\cal{M}}}",
@@ -88,6 +90,7 @@ window.MathJax = {
       st: "{\\mathrm{subject\\; to}\\;}",
       pr: "{\\mathrm{Pr}}",
       rank: "{\\mathrm{rank}}",
+      span: "{\\mathrm{span}}",
 
       ssigma: "{\\boldsymbol\\Sigma}",
       bSigma: "{\\boldsymbol\\Sigma}",
