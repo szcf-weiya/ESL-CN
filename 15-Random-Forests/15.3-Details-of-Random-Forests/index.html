@@ -3442,6 +3442,10 @@
 </div>
 <h2 id="_4">随机森林和过拟合<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>当变量个数很大时，而相关变量很少，$m$ 较小时的随机森林可能表现很差．在每个分割处，相关变量被选择的概率很小．图 15.7 展示了支持这个断言的模拟的结果．细节在图题和 <a href="https://github.com/szcf-weiya/ESL-CN/issues/221">练习 15.3</a> 中给出．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 15.3</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/221">Issue 221: Ex. 15.3</a>. </p>
+</div>
 <p><img alt="" src="../../img/15/fig15.7.png" /></p>
 <p>在图中的顶部我们可以看到相关变量在随机森林任意分割时被选到的超几何概率（这个模拟中，相关变量个数相同）．当概率变小，boosting和随机森林的差别变大．当相关变量个数变多，随机森林的表现在噪声变量增加时出奇地鲁棒．举个例子，当有 6 个相关变量，100 个噪声变量，假设 $m=\sqrt{6+100}\approx 10$ 相关变量在任意分割点被选择到的概率为 0.46．</p>
 <div class="admonition note">
@@ -3564,7 +3568,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-27 13:49:38
+        Last Build Date UTC : 2020-02-27 15:19:54
       </div>
       
         
