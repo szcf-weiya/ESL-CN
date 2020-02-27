@@ -3501,7 +3501,7 @@ $\beta$ 估计为
 <h2 id="_2">局部多项式回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>为什么止步于局部线性拟合处？其实我们可以拟合任意阶 $d$ 的局部多项式拟合，
 <script type="math/tex; mode=display">
-\underset{\alpha(x_0),\beta_j(x_0),j=1,\ldots,d}{\min}\sum\limits_{i=1}^NK_\lambda(x_0,x_i)\Big[y_i-\alpha(x_0)-\sum\limits_{j=1}^d\beta_j(x_0)x_i^j\Big]\tag{6.11}
+\underset{\alpha(x_0),\beta_j(x_0),j=1,\ldots,d}{\min}\sum\limits_{i=1}^NK_\lambda(x_0,x_i)\Big[y_i-\alpha(x_0)-\sum\limits_{j=1}^d\beta_j(x_0)x_i^j\Big]^2\tag{6.11}
 </script>
 解为 $\hat f(x_0)=\hat \alpha(x_0)+\sum_{j=1}^d\hat\beta_j(x_0)x_0^j$．实际上，类似 \eqref{6.10} 的表达式将告诉我们偏差仅仅有 $d+1$ 阶和更高阶的组分（<a href="https://github.com/szcf-weiya/ESL-CN/issues/148">练习 6.2</a>）．图 6.5 说明了局部二次回归．局部线性拟合趋向于在真实函数的区域中有偏差，这个现象被称作 <strong>截断山坡 (trimming the hills)</strong> 和 <strong>填充山谷 (filling the valleys)</strong>．局部二次回归一般可以纠正这个偏差．</p>
 <p><img alt="" src="../../img/06/fig6.5.png" /></p>
@@ -3599,7 +3599,7 @@ $\beta$ 估计为
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-02-27 02:53:46
+        Last Build Date UTC : 2020-02-27 06:25:17
       </div>
       
         
