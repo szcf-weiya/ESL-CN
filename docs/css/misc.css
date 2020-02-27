@@ -70,3 +70,9 @@ label.md-nav__title {
 #comment a{
   color: #288ce4!important;
 }
+
+/* issue */
+.comment ul {
+  list-style-type: none;
+  margin-left: unset;
+}
