@@ -7,6 +7,7 @@
     mode: 1,
     timeout: 3000,
     init: true,
-    relatedType: "popular"
+    relatedType: "popular",
+    url: "{{ page.canonical_url | replace(config.site_url, "") }}"
 });
 </script>
