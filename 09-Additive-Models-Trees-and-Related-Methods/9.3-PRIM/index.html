@@ -3377,7 +3377,7 @@
 </script>
 来定义．PRIM 过程在算法9.3中进行了总结．</p>
 <p><img alt="" src="../../img/09/alg9.3.png" /></p>
-<p>PRIM 可以通过考虑所有预测变量的划分来处理类别型变量，这正如 CART 中一样．缺失值也通常以一种类似 CART 的方式进行处理．PRIM 是为回归（定量响应变量）而设计的；两个类别的输出可以简单地编码成 0 和 1 来处理．没有简单的方式来同时处理 $k &gt; 2$ 个的类别的情形：一种方式是对每个类别和基准类别单独采用 PRIM．</p>
+<p>PRIM 可以通过考虑所有预测变量的划分来处理类别型变量，这正如 CART 中一样．缺失值也通常以一种类似 CART 的方式进行处理．PRIM 是为回归（定量响应变量）而设计的；两个类别的输出可以简单地编码成 0 和 1 来处理．没有简单的方式来同时处理 $k &gt; 2$ 个的类别的情形：一种方式是分别对每个类别相对基准类别采用 PRIM．</p>
 <p>PRIM 与 CART 相比的优点是它的 <strong>耐心 (patience)</strong>．因为 CART 的二值分割快速地将数据分割开．假设等大小的分割，有 $N$ 个观测情况下，在使用完数据之前，只能进行 $\log_2(N)-1$ 次分割．如果 PRIM 在每一步剔除掉训练点的比例为 $\alpha$，则在用完数据之前大约需要 $-\log(N)/\log(1-\alpha)$ 次剔除步骤．举个例子，如果 $N=128,\alpha=0.10$，则 $\log_2(N)-1=6$，而$-\log(N)/\log(1-\alpha)\approx 46$．考虑每一步需要整数个的观测，PRIM 实际上可以剔除 29 次．在任何情形下，PRIM 的能力更加耐心，这应该帮助自上而下的贪婪算法找到更好的解．</p>
 <h2 id="_1">垃圾邮件的例子（继续）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>我们对 <code>spam</code> 数据应用 PRIM，对 <code>spam</code> 编码为 1，对 <code>email</code> 编码为 0．</p>
@@ -3473,7 +3473,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-03 07:27:35
+        Last Build Date UTC : 2020-03-03 07:39:07
       </div>
       
         
