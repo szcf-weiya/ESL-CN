@@ -3660,7 +3660,7 @@ R^2=\frac{\MSE_0-\MSE}{\MSE_0}\tag{9.24}
 <h2 id="_3">其他的问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="mars">MARS 用于分类<a class="headerlink" href="#mars" title="Permanent link">&para;</a></h3>
 <p>MARS 方法和算法可以拓展到处理分类问题．已经提出了几种策略．</p>
-<p>对于两个类别，可以将输出编码为0/1，并且将其看成是回归问题；我们在 spam 例子中已经这样做了．对于多余两个类别的情形，可以采用 <a href="../../04-Linear-Methods-for-Classification/4.2-Linear-Regression-of-an-Indicator-Matrix/index.html">4.2 节</a>描述的指示响应变量的方法．用 0/1 来编码 $K$ 个响应类别，接着采用多重响应的 MARS 回归．对于后者我们对所有的响应变量采用共同的基函数集合．分类使得类别有最大的预测向量的值．然而，正如 4.2 中描述的那样，这种方法存在潜在的掩盖问题．一般更好的方式是在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.5-Flexible-Disciminant-Analysis/index.html">12.5 节</a>讨论的 optimal scoring.</p>
+<p>对于两个类别，可以将输出编码为0/1，并且将其看成是回归问题；我们在 spam 例子中已经这样做了．对于多类别情形，可以采用 <a href="../../04-Linear-Methods-for-Classification/4.2-Linear-Regression-of-an-Indicator-Matrix/index.html">4.2 节</a>描述的指示响应变量的方法．用 0/1 来编码 $K$ 个响应类别，接着采用多重响应的 MARS 回归．对于后者我们对所有的响应变量采用共同的基函数集合．分类使得类别有最大的预测向量的值．然而，正如 4.2 中描述的那样，这种方法存在潜在的掩盖问题．一般更好的方式是在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.5-Flexible-Disciminant-Analysis/index.html">12.5 节</a>讨论的 optimal scoring.</p>
 <p>Stone et al. (1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 发展了 MARS 的混合版本 PolyMARS，是为了处理分类问题特别设计的．它采用在 <a href="../../04-Linear-Methods-for-Classification/4.4-Logistic-Regression/index.html">4.4 节</a>描述的多重逻辑斯蒂回归框架．以类似 MARS 的向前逐步方式来建立模型，但是在每一步多多变量对数似然作二次近似来寻找下一个基函数对．一旦找到，则通过极大似然扩大模型，并且这个过程重复进行．</p>
 <h3 id="mars-cart">MARS 和 CART 的关系<a class="headerlink" href="#mars-cart" title="Permanent link">&para;</a></h3>
 <p>尽管它们看起来相当不同，但是 MARS 和 CART 策略实际上有很强的相似性．假设我们进行了 MARS 过程，并且作出下面改变：</p>
@@ -3759,7 +3759,7 @@ R^2=\frac{\MSE_0-\MSE}{\MSE_0}\tag{9.24}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-03 07:39:07
+        Last Build Date UTC : 2020-03-03 07:42:13
       </div>
       
         
