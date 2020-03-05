@@ -3486,7 +3486,7 @@
 <p>第三次是在处理 soda 项目的时候，用到 MARS，以及与其它方法的对比，跟 Professor Liu 的 soda 还真是有异曲同工之妙．</p>
 <p>今天更新 MARS 这一章节算是第四次与 MARS 的正式重逢吧．@2017.08.25</p>
 </blockquote>
-<p>MARS 是回归的自适应过程，非常适合高维问题（比如，存在大量的输入）．可以从两个角度来理解它，首先，它可以看成是逐步线性回归的推广，其次，也可以看成是为了提高 CART 在回归中的效果而进行的改进．我们从第一种观点引入 MARS，接着与 CART 联系起来．</p>
+<p><strong>多变量自适应回归样条 (Multivariate Adaptive Regression Splines, MARS)</strong> 是回归的自适应过程，非常适合高维问题（即，存在大量的输入）．可以从两个角度来理解它，首先，它可以看成是逐步线性回归的推广，其次，也可以看成是为了提高 CART 在回归中的效果而进行的改进．我们从第一种观点引入 MARS，接着与 CART 联系起来．</p>
 <p>MARS 采用形式为 $(x-t)_+, (t-x)_+$ 的分段线性基函数的展开．“+”表示正的部分，所以</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3510,7 +3510,7 @@ t-x& \text{if }x<t\\
 <blockquote>
 <p>图 9.9. MARS 采用的基函数 $(x-t)_+$（实心橘黄色）和 $(t-x)_+$（蓝色虚线）</p>
 </blockquote>
-<p>每个函数是分段线性的，在值 $t$ 处有一个结点．用第五章的术语说它们是线性样条．在下面的讨论中我们将这两个函数称为 <strong>反射对 (reflected pair)</strong>．想法是，对于每个输入变量 $X_j$，将该输入变量的所有观测值作为结点．因此，基函数集合为</p>
+<p>每个函数是分段线性的，在值 $t$ 处有一个 <strong>结点 (knot)</strong>．用<a href="../../05-Basis-Expansions-and-Regularization/5.1-Introduction/index.html">第五章</a>的术语说它们是线性样条．在下面的讨论中我们将这两个函数称为 <strong>反射对 (reflected pair)</strong>．想法是，对于每个输入变量 $X_j$，将该输入变量的所有观测值作为结点．因此，基函数集合为</p>
 <p>
 <script type="math/tex; mode=display">
 {\cal C}=\{(X_j-t)_+,(t-X_j)_+\}_{t\in\{x_{1j},x_{2j},\ldots,x_{Nj}\},j=1,2,\ldots,p}\tag{9.18}
@@ -3562,22 +3562,25 @@ h_2(X)&=(x_{72}-X_2)_+
 \GCV(\lambda)=\frac{\sum_{i=1}^N(y_i-\hat f_\lambda(x_i))^2}{(1-M(\lambda)/N)^2}\tag{9.20}
 </script>
 $M(\lambda)$ 是模型中有效参数的个数：它等于模型中项的个数，加上在选择最优结点位置的参数个数．</p>
+<p>一些理论的证明和实际的拟合结果表明在分段线性回归中每选择一个结点，应当增加三个有效参数．所以，如果模型中含有 $r$ 个线性独立基函数，并且在向前过程中选择 $K$ 个结点，则有 $M(\lambda)=r+cK$，其中 $c=3$．（当模型限定为加性时，$c=2$）．在向后删除变量的过程中，计算 $\GCV(\lambda)$，选择使得 $\GCV(\lambda)$ 最小的模型．</p>
 <div class="admonition note">
-<p class="admonition-title">weiya 注</p>
-<p>7.10 节中也有广义交叉验证的讨论．在那里，是针对平方误差损失下的线性拟合而言的．线性拟合方法可以写成
-<script type="math/tex; mode=display">
-\mathbf{\hat y=Sy}\tag{7.50}
-</script>
-</p>
-</div>
-<p>GCV 近似为</p>
+<p class="admonition-title">weiya 注：$M(\lambda)=r+cK$?</p>
+<p><a href="http://disq.us/p/1ne2w82">@Xiaolin So</a> 和 <a href="http://disq.us/p/27pn018">@yvlian</a> 在评论中讨论这个复杂度公式，由于理解不够透彻，有些回复可能有偏差，特此查阅<a href="https://projecteuclid.org/euclid.aos/1176347963">MARS 原文</a>试图在这里解释清楚. </p>
+<blockquote>
+<p>Only the coefficients $(a_0, \ldots, a_M)$ (对应这里的 $(\beta_0,\ldots,\beta_M)$), the complexity cost function is</p>
 <p>
 <script type="math/tex; mode=display">
-\GCV(\hat f)=\frac{1}{N}\sum\limits_{i=1}^N[\frac{y_i-\hat f(x_i)}{1-trace(\mathbf S)/N}]^2\tag{7.52}
+C(M) = \trace(\B(\B^T\B)^{-1}\B^T) + 1\,,
 </script>
-</p>
-<p>$\trace(\mathbf S)$ 的值是有效参数个数．</p>
-<p>一些理论的证明和实际的拟合结果表明在分段线性回归中每选择一个结点，应当增加三个有效参数．所以，如果模型中含有 $r$ 个线性独立基函数，并且在向前过程中选择 $K$ 个结点，则有 $M(\lambda)=r+cK$，其中 $c=3$．（当模型限定为加性时，$c=2$）．在向后删除变量的过程中，计算 $\GCV(\lambda)$，选择使得 $\GCV(\lambda)$ 最小的模型．</p>
+where $\B$ is the $M\times N$ data matrix of the $M$ (nonconstant) basis functions, $B_{ij} = B_i(\x_j)$. <strong>This is equal to the number of linearly independent basis functions.</strong>（这对应 <a href="../../07-Model-Assessment-and-Selection/7.10-Cross-Validation/index.html">7.10 节</a> 中对 GCV 的近似 $\trace(\mathbf S)$, 其中 $\S$ 是线性算子）But with an increased cost complexity function $\tilde C(M)$ to reflect the additional (basis function) parameters that, </p>
+<p>
+<script type="math/tex; mode=display">
+\tilde C(M) = C(M) + d\cdot M
+</script>
+where $M$ is the number of nonconstant basis functions and $d$ represents a cost for each basis function optimization.</p>
+</blockquote>
+<p>对比一下，不难发现，这里的 $c$ 其实就是 $d$，$r$ 为 $C(M)$，且 $\lambda$ 即为原文的 $M$. 但还是有一点区别, 原文是说每个<strong>基函数</strong>需要 $d$ 个单位的 cost，但是这里是说每个<strong>结点</strong>需要 $c$ 个单位的 cost，当只考虑一阶的情况，结点数和基函数个数是相等的，但是如果考虑高阶，这两个似乎并不等价？还是我漏掉了什么？</p>
+</div>
 <p>为什么是这些分段线性函数，为什么是这个特定的模型策略？图 9.9 中函数的关键性质是它可以局部计算；在它们的定义域中有一部分为 0．当它们乘起来，如图 9.11，非零的结果仅仅占特征空间的一小部分，当函数的公共部分为非零．这样便可以非常简约地建立起回归曲面（如图 9.11），只需要采用局部非零的部分．这是很重要的，因为在高维问题中应该小心地使用参数，因为它们很快就会用光．其它比如多项式的基函数会在任意地方产生非零乘积，而很多非零乘积也不会起作用（相当于浪费了参数）．</p>
 <p>这种分段线性基函数的第二个重要优点是计算上的．考虑 $\cal M$ 中的函数和输入变量 $X_j$ 的 $N$ 个反射对的乘积．似乎需要拟合 $N$ 个单输入的线性回归模型，每个需要 $O(N)$ 的操作，总共需要 $O(N^2)$ 的操作．然而，我们利用分段线性函数的简单形式的特点，首先用最右端结点的反射对．当这个结点每次依次向左移动一个位置，基函数在结点左边的值为 0，在右边部分值为常数．每次移动后会以 $O(1)$ 的操作更新拟合值．所以我们仅仅需要 $O(N)$ 的操作来遍历每个结点．</p>
 <div class="admonition note">
@@ -3759,7 +3762,7 @@ R^2=\frac{\MSE_0-\MSE}{\MSE_0}\tag{9.24}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-03 08:54:30
+        Last Build Date UTC : 2020-03-05 04:23:50
       </div>
       
         
