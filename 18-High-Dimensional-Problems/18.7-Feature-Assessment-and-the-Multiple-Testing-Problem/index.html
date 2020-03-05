@@ -3403,7 +3403,7 @@ se_j=\hat \sigma_j\sqrt{\frac{1}{N_1}+\frac{1}{N_2}};\;\hat\sigma_j^2=\frac{1}{N
 <p>那我们怎么能够评估所有 12625 个基因的结果呢？这称为 <strong>多重检验(multiple testing)</strong> 问题．我们可以像上面一样开始，计算每个基因的 $p$ 值．当假设特征服从正态分布，这个可以使用理论上的 $t$ 分布概率实现．一个吸引人的替代方案是使用 <strong>置换分布(permutation distribution)</strong>，因为它避免了数据分布的假设．（理论上）我们计算样本的所有 $K = \binom{58}{14}$ 种排列，并且对于每个排列 $k$ 计算 $t$ 统计量 $t_j^k$．于是基因 $j$ 的 $p$ 值为</p>
 <p>
 <script type="math/tex; mode=display">
-p_j=\frac{1}{K}\sum\limits_{k=1}^KI(\vert t_j^k\vert > \vert t_j\vert)\tag{18.40}
+p_j=\frac{1}{K}\sum\limits_{k=1}^KI(\vert t_j^k\vert > \vert t_j\vert)\tag{18.40}\label{18.40}
 </script>
 </p>
 <p>当然，$\binom{58}{14}$ 是很大的数（大约 $10^{13}$），因此我们不能列举出所有可能的排列．相反地，我们取可能的排列的一个随机样本，这里我们取一个 $K=1000$ 种排列的随机样本．为了利用基因都是相似的这一事实（比如，在同一尺度下测量），我们可以将所有基因混合一起计算 $p$ 值</p>
@@ -3412,7 +3412,7 @@ p_j=\frac{1}{K}\sum\limits_{k=1}^KI(\vert t_j^k\vert > \vert t_j\vert)\tag{18.40
 p_j=\frac{1}{MK}\sum\limits_{j'=1}^M\sum\limits_{k=1}^KI(\vert t_{j'}^k\vert>\vert t_j\vert)\tag{18.41}
 </script>
 </p>
-<p>这也给出了比 (18.40) 式更细致的 $p$ 值，因为在混合零分布中比单一的零分布使用了更多的值．</p>
+<p>这也给出了比 \eqref{18.40} 式更细致的 $p$ 值，因为在混合零分布中比单一的零分布使用了更多的值．</p>
 <p>采用这个 $p$ 值的集合，我们要检验下面的假设</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3635,7 +3635,7 @@ t_j\sim\pi_0\cdot F_0+(1-\pi_0)\cdot F_1\tag{18.52}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-05 04:23:53
+        Last Build Date UTC : 2020-03-05 14:08:51
       </div>
       
         
