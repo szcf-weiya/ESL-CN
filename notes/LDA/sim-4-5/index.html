@@ -3460,8 +3460,8 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
   <span class="n">mu</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">means</span>
   <span class="n">mu.pool</span> <span class="o">=</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="m">2</span> <span class="c1">## (mu1+mu2)/2</span>
   <span class="n">scaling</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">scaling</span>
-  <span class="n">intercept</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">scaling</span> <span class="o">*</span> <span class="n">mu.pool</span><span class="p">)</span><span class="o">/</span><span class="n">scaling[2]</span>
-  <span class="n">slope</span> <span class="o">=</span> <span class="m">-1</span><span class="o">*</span> <span class="n">scaling[1]</span><span class="o">/</span><span class="n">scaling[2]</span>
+  <span class="n">intercept</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">scaling</span> <span class="o">*</span> <span class="n">mu.pool</span><span class="p">)</span><span class="o">/</span><span class="n">scaling</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+  <span class="n">slope</span> <span class="o">=</span> <span class="m">-1</span><span class="o">*</span> <span class="n">scaling</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="n">scaling</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
   <span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">))</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -3492,7 +3492,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <span class="c1">## ############################</span>
 <span class="n">c12</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">za12</span> <span class="o">*</span> <span class="p">(</span><span class="n">zmu1</span><span class="o">+</span><span class="n">zmu2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
 
-<span class="n">calcLD2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">za</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span><span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="n">za[2]</span><span class="p">,</span> <span class="o">-</span><span class="n">za[1]</span><span class="o">/</span><span class="n">za[2]</span><span class="p">))}</span>
+<span class="n">calcLD2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">za</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span><span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="n">za</span><span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="o">-</span><span class="n">za</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="n">za</span><span class="p">[</span><span class="m">2</span><span class="p">]))}</span>
 <span class="nf">calcLD2</span><span class="p">(</span><span class="n">za12</span><span class="p">,</span> <span class="n">c12</span><span class="p">)</span>
 </code></pre></div>
 
@@ -3506,11 +3506,11 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <p>直接用 <code>abline()</code> 绘图时，会充满整个区域，这与原书图 4.5 不符，可以在 <code>abline()</code> 前加上 <code>clip()</code> 来预先选定绘图区域。这个技巧参考<a href="https://stackoverflow.com/questions/26472563/how-to-define-graphical-bounds-of-abline-linear-regression-in-r">how-to-define-graphical-bounds-of-abline-linear-regression-in-r</a></p>
 </div>
 <p>图 4.5 的右图重现代码为</p>
-<div class="codehilite"><pre><span></span><code><span class="nf">plot</span><span class="p">(</span><span class="n">dm1[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm1[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">,</span> 
+<div class="codehilite"><pre><span></span><code><span class="nf">plot</span><span class="p">(</span><span class="n">dm1</span><span class="p">[,</span> <span class="m">1</span><span class="p">],</span> <span class="n">dm1</span><span class="p">[,</span> <span class="m">2</span><span class="p">],</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">,</span> 
      <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> 
      <span class="n">xaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">yaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-<span class="nf">points</span><span class="p">(</span><span class="n">dm2[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm2[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">)</span>
-<span class="nf">points</span><span class="p">(</span><span class="n">dm3[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm3[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">dm2</span><span class="p">[,</span> <span class="m">1</span><span class="p">],</span> <span class="n">dm2</span><span class="p">[,</span> <span class="m">2</span><span class="p">],</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">dm3</span><span class="p">[,</span> <span class="m">1</span><span class="p">],</span> <span class="n">dm3</span><span class="p">[,</span> <span class="m">2</span><span class="p">],</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">)</span>
 <span class="nf">points</span><span class="p">(</span><span class="nf">rbind</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">mu3</span><span class="p">),</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;+&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
 <span class="nf">clip</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">0</span><span class="p">)</span> 
 <span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m12</span><span class="p">))</span>
@@ -3531,6 +3531,16 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 </ol>
                 
                   
+                
+              
+              
+                
+                <script type="text/javascript">
+                  var sogou_ad_id=1100501;
+                  var sogou_ad_height=60;
+                  var sogou_ad_width=640;
+                  </script>
+                  <script type='text/javascript' src='https://images.sohu.com/cs/jsfile/js/c.js'></script>
                 
               
               
@@ -3609,7 +3619,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-05 14:08:51
+        Last Build Date UTC : 2020-03-09 08:38:42
       </div>
       
         

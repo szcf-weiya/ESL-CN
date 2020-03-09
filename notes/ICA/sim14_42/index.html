@@ -3532,7 +3532,7 @@ X^*=SA^T
 <span class="n">res</span> <span class="o">=</span> <span class="nf">array</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">18</span><span class="p">,</span> <span class="m">30</span><span class="p">))</span>
 <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">)){</span>
   <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">)){</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="kc">letters</span><span class="n">[i]</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="kc">letters</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="o">$</span><span class="n">x</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">data</span><span class="o">$</span><span class="n">A</span>
     <span class="n">W0</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
@@ -3541,8 +3541,8 @@ X^*=SA^T
     <span class="n">W1</span> <span class="o">&lt;-</span> <span class="nf">ProDenICA</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W0</span><span class="o">=</span><span class="n">W0</span><span class="p">,</span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">Gfunc</span><span class="o">=</span><span class="n">GPois</span><span class="p">,</span> <span class="n">restarts</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span><span class="o">$</span><span class="n">W</span>
     <span class="c1"># FastICA</span>
     <span class="n">W2</span> <span class="o">&lt;-</span> <span class="nf">ProDenICA</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W0</span><span class="o">=</span><span class="n">W0</span><span class="p">,</span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">Gfunc</span><span class="o">=</span><span class="n">G1</span><span class="p">,</span> <span class="n">restarts</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span><span class="o">$</span><span class="n">W</span>
-    <span class="n">res[1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j]</span> <span class="o">=</span> <span class="nf">amari</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
-    <span class="n">res[2</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j]</span> <span class="o">=</span> <span class="nf">amari</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nf">amari</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nf">amari</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -3555,9 +3555,9 @@ X^*=SA^T
 <span class="n">res.min</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">min</span><span class="p">)</span>
 
 <span class="c1"># plot</span>
-<span class="nf">plot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">res.mean[1</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Distribution&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Amari Distance from True A&quot;</span><span class="p">,</span> <span class="n">xaxt</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span>
-<span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">at</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="kc">letters</span><span class="n">[1</span><span class="o">:</span><span class="m">18</span><span class="n">]</span><span class="p">)</span>
-<span class="nf">lines</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">res.mean[2</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">res.mean</span><span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="p">],</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Distribution&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Amari Distance from True A&quot;</span><span class="p">,</span> <span class="n">xaxt</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span>
+<span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">at</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="kc">letters</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">])</span>
+<span class="nf">lines</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="n">res.mean</span><span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="p">],</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
 <span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;ProDenICA&quot;</span><span class="p">,</span> <span class="s">&quot;FastICA&quot;</span><span class="p">),</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">))</span>
 <span class="c1">#for(i in 1:18)</span>
 <span class="c1">#{</span>
@@ -3581,6 +3581,16 @@ X^*=SA^T
 <p>加入kernelICA</p>
                 
                   
+                
+              
+              
+                
+                <script type="text/javascript">
+                  var sogou_ad_id=1100501;
+                  var sogou_ad_height=60;
+                  var sogou_ad_width=640;
+                  </script>
+                  <script type='text/javascript' src='https://images.sohu.com/cs/jsfile/js/c.js'></script>
                 
               
               
@@ -3659,7 +3669,7 @@ X^*=SA^T
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-05 14:08:51
+        Last Build Date UTC : 2020-03-09 08:38:42
       </div>
       
         

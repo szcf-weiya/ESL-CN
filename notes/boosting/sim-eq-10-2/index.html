@@ -3552,7 +3552,7 @@ Y=
 <span class="p">{</span>
   <span class="n">p</span> <span class="o">=</span> <span class="m">10</span>
   <span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">p</span><span class="p">),</span><span class="n">nrow</span> <span class="o">=</span> <span class="n">N</span><span class="p">)</span>
-  <span class="n">x2</span> <span class="o">=</span> <span class="n">x^2</span>
+  <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="m">2</span>
   <span class="n">y</span> <span class="o">=</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
   <span class="n">y</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="nf">qchisq</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="m">-1</span><span class="p">))</span>
   <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">))</span>
@@ -3588,7 +3588,7 @@ Y=
       <span class="p">{</span>
         <span class="c1">#err = 0</span>
         <span class="n">flag.tmp</span> <span class="o">=</span> <span class="m">1</span>
-        <span class="n">cutpoint.val.tmp</span> <span class="o">=</span> <span class="n">x[k</span><span class="p">,</span> <span class="n">j]</span>
+        <span class="n">cutpoint.val.tmp</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
         <span class="c1"># for (kk in 1:N)</span>
         <span class="c1"># {</span>
         <span class="c1">#   pred = 1</span>
@@ -3597,7 +3597,7 @@ Y=
         <span class="c1">#     pred = -1</span>
         <span class="c1">#   err = err + w[kk] * as.numeric(y[kk] != pred) </span>
         <span class="c1"># }</span>
-        <span class="n">xj</span> <span class="o">=</span> <span class="n">x[</span><span class="p">,</span> <span class="n">j]</span>
+        <span class="n">xj</span> <span class="o">=</span> <span class="n">x</span><span class="p">[,</span> <span class="n">j</span><span class="p">]</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">cutpoint.val.tmp</span><span class="p">,</span> <span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
         <span class="n">err</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">pred</span><span class="p">))</span>
       <span class="p">}</span>
@@ -3621,12 +3621,12 @@ Y=
     <span class="nf">for </span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
     <span class="p">{</span>
       <span class="n">pred</span> <span class="o">=</span> <span class="m">1</span>
-      <span class="n">xx</span> <span class="o">=</span> <span class="n">x[k</span><span class="p">,</span> <span class="n">cutpoint.idx]</span>
+      <span class="n">xx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">cutpoint.idx</span><span class="p">]</span>
       <span class="nf">if </span><span class="p">(</span><span class="n">flag</span> <span class="o">*</span> <span class="n">xx</span> <span class="o">&lt;</span> <span class="n">flag</span> <span class="o">*</span> <span class="n">cutpoint.val</span><span class="p">)</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="m">-1</span>
-      <span class="n">w[k]</span> <span class="o">=</span> <span class="n">w[k]</span> <span class="o">*</span> <span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">y[k]</span><span class="o">*</span><span class="n">pred</span><span class="p">)</span>
+      <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">pred</span><span class="p">)</span>
     <span class="p">}</span>
-    <span class="n">res[i</span><span class="p">,</span> <span class="n">]</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">cutpoint.idx</span><span class="p">,</span> <span class="n">cutpoint.val</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">]</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">cutpoint.idx</span><span class="p">,</span> <span class="n">cutpoint.val</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
   <span class="p">}</span>
   <span class="nf">colnames</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;idx&quot;</span><span class="p">,</span> <span class="s">&quot;val&quot;</span><span class="p">,</span> <span class="s">&quot;flag&quot;</span><span class="p">,</span> <span class="s">&quot;alpha&quot;</span><span class="p">)</span>
   <span class="n">model</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">M</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">G</span> <span class="o">=</span> <span class="n">res</span><span class="p">)</span>
@@ -3637,10 +3637,10 @@ Y=
 <span class="n">print.AdaBoost</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="nf">cat</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">M</span><span class="p">,</span> <span class="s">&quot; weak classifers are as follows: \n\n&quot;</span><span class="p">)</span>
-  <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%4s%12s%8s%12s\n&quot;</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)</span><span class="n">[2]</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)</span><span class="n">[3]</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)</span><span class="n">[4]</span><span class="p">))</span>
+  <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%4s%12s%8s%12s\n&quot;</span><span class="p">,</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)[</span><span class="m">1</span><span class="p">],</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)[</span><span class="m">2</span><span class="p">],</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)[</span><span class="m">3</span><span class="p">],</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">)[</span><span class="m">4</span><span class="p">]))</span>
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">model</span><span class="o">$</span><span class="n">M</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%4d%12f%8d%12f\n&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G[i</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G[i</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G[i</span><span class="p">,</span> <span class="m">3</span><span class="n">]</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G[i</span><span class="p">,</span> <span class="m">4</span><span class="n">]</span><span class="p">))</span>
+    <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%4d%12f%8d%12f\n&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="m">1</span><span class="p">],</span> <span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="m">2</span><span class="p">],</span> <span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="m">3</span><span class="p">],</span> <span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="m">4</span><span class="p">]))</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -3651,20 +3651,20 @@ Y=
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span>
   <span class="p">{</span>
     <span class="n">s</span> <span class="o">=</span> <span class="m">0</span>
-    <span class="n">xx</span> <span class="o">=</span> <span class="n">x[i</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">]</span>
     <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">model</span><span class="o">$</span><span class="n">M</span><span class="p">)</span>
     <span class="p">{</span>
       <span class="n">pred</span> <span class="o">=</span> <span class="m">1</span>
-      <span class="n">idx</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G[j</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span>
-      <span class="n">val</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G[j</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span>
-      <span class="n">flag</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G[j</span><span class="p">,</span> <span class="m">3</span><span class="n">]</span>
-      <span class="n">alpha</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G[j</span><span class="p">,</span> <span class="m">4</span><span class="n">]</span>
-      <span class="n">cutpoint</span> <span class="o">=</span> <span class="n">xx[idx]</span>
+      <span class="n">idx</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+      <span class="n">val</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
+      <span class="n">flag</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+      <span class="n">alpha</span> <span class="o">=</span> <span class="n">model</span><span class="o">$</span><span class="n">G</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+      <span class="n">cutpoint</span> <span class="o">=</span> <span class="n">xx</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
       <span class="nf">if </span><span class="p">(</span><span class="n">flag</span> <span class="o">*</span> <span class="n">cutpoint</span> <span class="o">&lt;</span> <span class="n">flag</span><span class="o">*</span><span class="n">val</span><span class="p">)</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="m">-1</span>
       <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">pred</span>
     <span class="p">}</span>
-    <span class="n">res[i]</span> <span class="o">=</span> <span class="nf">sign</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">sign</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
   <span class="p">}</span>
   <span class="nf">return</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 <span class="p">}</span>
@@ -3684,10 +3684,10 @@ Y=
   <span class="n">err</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
   <span class="p">{</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="nf">AdaBoost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">m[i]</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="nf">AdaBoost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">res</span> <span class="o">=</span> <span class="nf">table</span><span class="p">(</span><span class="n">test.y</span><span class="p">,</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test.x</span><span class="p">))</span>
-    <span class="n">err[i]</span> <span class="o">=</span> <span class="p">(</span><span class="n">res[1</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span> <span class="o">+</span> <span class="n">res[2</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">test.y</span><span class="p">)</span>
-    <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;epoch = %d, err = %f&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">err[i]</span><span class="p">))</span>
+    <span class="n">err</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">res</span><span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">])</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">test.y</span><span class="p">)</span>
+    <span class="nf">cat</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;epoch = %d, err = %f&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">err</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
   <span class="p">}</span>
   <span class="nf">return</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 <span class="p">}</span>
@@ -3702,7 +3702,7 @@ Y=
 <span class="n">genData</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">p</span> <span class="o">=</span> <span class="m">10</span>
   <span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">p</span><span class="p">),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">N</span><span class="p">)</span>
-  <span class="n">x2</span> <span class="o">=</span> <span class="n">x^2</span>
+  <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="m">2</span>
   <span class="n">y</span> <span class="o">=</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
   <span class="n">y</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="nf">qchisq</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> 
                                               <span class="m">10</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="m">-1</span><span class="p">))</span>
@@ -3718,38 +3718,38 @@ Y=
 
 <span class="c1">## train datasets</span>
 <span class="n">train.data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
-<span class="n">train.data[train.data</span><span class="o">$</span><span class="n">y</span> <span class="o">==</span> <span class="m">-1</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="n">train.data</span><span class="p">[</span><span class="n">train.data</span><span class="o">$</span><span class="n">y</span> <span class="o">==</span> <span class="m">-1</span><span class="p">,</span> <span class="m">11</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
 <span class="c1">## test datasets</span>
 <span class="n">test.data</span> <span class="o">=</span> <span class="nf">genData</span><span class="p">(</span><span class="m">10000</span><span class="p">)</span>
-<span class="n">test.data[test.data</span><span class="o">$</span><span class="n">y</span> <span class="o">==</span> <span class="m">-1</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
+<span class="n">test.data</span><span class="p">[</span><span class="n">test.data</span><span class="o">$</span><span class="n">y</span> <span class="o">==</span> <span class="m">-1</span><span class="p">,</span> <span class="m">11</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
 
 <span class="c1"># Do training with the maximum number of trees:</span>
 <span class="n">Adaboost</span> <span class="o">=</span> <span class="kc">TRUE</span>
 <span class="n">n_trees</span> <span class="o">=</span> <span class="m">400</span>
 <span class="nf">if </span><span class="p">(</span><span class="n">Adaboost</span><span class="p">)</span> <span class="p">{</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">&quot;Running Adaboost ...&quot;</span><span class="p">)</span>
-  <span class="n">m</span> <span class="o">=</span> <span class="nf">gbm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">train.data</span><span class="p">,</span> <span class="n">distribution</span> <span class="o">=</span> <span class="s">&quot;adaboost&quot;</span><span class="p">,</span> 
+  <span class="n">m</span> <span class="o">=</span> <span class="nf">gbm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">train.data</span><span class="p">,</span> <span class="n">distribution</span> <span class="o">=</span> <span class="s">&quot;adaboost&quot;</span><span class="p">,</span> 
           <span class="n">n.trees</span> <span class="o">=</span> <span class="n">n_trees</span><span class="p">,</span> <span class="n">shrinkage</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 <span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">&quot;Running Bernoulli Boosting ...&quot;</span><span class="p">)</span>
-  <span class="n">m</span> <span class="o">=</span> <span class="nf">gbm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">.,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">train.data</span><span class="p">,</span> <span class="n">distribution</span> <span class="o">=</span> <span class="s">&quot;bernoulli&quot;</span><span class="p">,</span> 
+  <span class="n">m</span> <span class="o">=</span> <span class="nf">gbm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">train.data</span><span class="p">,</span> <span class="n">distribution</span> <span class="o">=</span> <span class="s">&quot;bernoulli&quot;</span><span class="p">,</span> 
           <span class="n">n.trees</span> <span class="o">=</span> <span class="n">n_trees</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="n">training_error</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n_trees</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
 <span class="nf">for </span><span class="p">(</span><span class="n">nti</span> <span class="n">in</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">n_trees</span><span class="p">))</span> <span class="p">{</span>
-  <span class="n">Fhat</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">train.data[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span><span class="p">,</span> <span class="n">n.trees</span> <span class="o">=</span> <span class="n">nti</span><span class="p">)</span>
-  <span class="n">pcc</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(((</span><span class="n">Fhat</span> <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">train.data[</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">==</span> 
-                               <span class="m">0</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span><span class="n">Fhat</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">train.data[</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)))</span>
-  <span class="n">training_error[nti]</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="n">pcc</span>
+  <span class="n">Fhat</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">train.data</span><span class="p">[,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">],</span> <span class="n">n.trees</span> <span class="o">=</span> <span class="n">nti</span><span class="p">)</span>
+  <span class="n">pcc</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(((</span><span class="n">Fhat</span> <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">train.data</span><span class="p">[,</span> <span class="m">11</span><span class="p">]</span> <span class="o">==</span> 
+                               <span class="m">0</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span><span class="n">Fhat</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">train.data</span><span class="p">[,</span> <span class="m">11</span><span class="p">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)))</span>
+  <span class="n">training_error</span><span class="p">[</span><span class="n">nti</span><span class="p">]</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="n">pcc</span>
 <span class="p">}</span>
 
 <span class="n">test_error</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n_trees</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
 <span class="nf">for </span><span class="p">(</span><span class="n">nti</span> <span class="n">in</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">n_trees</span><span class="p">))</span> <span class="p">{</span>
-  <span class="n">Fhat</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">test.data[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span><span class="p">,</span> <span class="n">n.trees</span> <span class="o">=</span> <span class="n">nti</span><span class="p">)</span>
-  <span class="n">pcc</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(((</span><span class="n">Fhat</span> <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">test.data[</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">==</span> <span class="m">0</span><span class="p">))</span> <span class="o">|</span> 
-               <span class="p">((</span><span class="n">Fhat</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">test.data[</span><span class="p">,</span> <span class="m">11</span><span class="n">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)))</span>
-  <span class="n">test_error[nti]</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="n">pcc</span>
+  <span class="n">Fhat</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">test.data</span><span class="p">[,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">],</span> <span class="n">n.trees</span> <span class="o">=</span> <span class="n">nti</span><span class="p">)</span>
+  <span class="n">pcc</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(((</span><span class="n">Fhat</span> <span class="o">&lt;=</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">test.data</span><span class="p">[,</span> <span class="m">11</span><span class="p">]</span> <span class="o">==</span> <span class="m">0</span><span class="p">))</span> <span class="o">|</span> 
+               <span class="p">((</span><span class="n">Fhat</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">test.data</span><span class="p">[,</span> <span class="m">11</span><span class="p">]</span> <span class="o">==</span> <span class="m">1</span><span class="p">)))</span>
+  <span class="n">test_error</span><span class="p">[</span><span class="n">nti</span><span class="p">]</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="n">pcc</span>
 <span class="p">}</span>
 
 <span class="nf">plot</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">n_trees</span><span class="p">),</span> <span class="n">training_error</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Boosting Probability of Error&quot;</span><span class="p">,</span> 
@@ -3761,6 +3761,16 @@ Y=
 </code></pre></div>
                 
                   
+                
+              
+              
+                
+                <script type="text/javascript">
+                  var sogou_ad_id=1100501;
+                  var sogou_ad_height=60;
+                  var sogou_ad_width=640;
+                  </script>
+                  <script type='text/javascript' src='https://images.sohu.com/cs/jsfile/js/c.js'></script>
                 
               
               
@@ -3839,7 +3849,7 @@ Y=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-05 14:08:51
+        Last Build Date UTC : 2020-03-09 08:38:43
       </div>
       
         

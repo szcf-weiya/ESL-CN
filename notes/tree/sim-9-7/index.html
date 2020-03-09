@@ -3397,16 +3397,16 @@
        <span class="n">xaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">yaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> 
        <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
        <span class="n">main</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Step &quot;</span><span class="p">,</span> <span class="n">id</span><span class="p">))</span>
-  <span class="n">df1</span> <span class="o">=</span> <span class="n">df[df</span><span class="o">$</span><span class="n">cl</span><span class="o">==</span><span class="m">1</span><span class="p">,</span> <span class="n">]</span>
-  <span class="n">df0</span> <span class="o">=</span> <span class="n">df[df</span><span class="o">$</span><span class="n">cl</span><span class="o">==</span><span class="m">0</span><span class="p">,</span> <span class="n">]</span>
+  <span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">$</span><span class="n">cl</span><span class="o">==</span><span class="m">1</span><span class="p">,</span> <span class="p">]</span>
+  <span class="n">df0</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">$</span><span class="n">cl</span><span class="o">==</span><span class="m">0</span><span class="p">,</span> <span class="p">]</span>
   <span class="nf">points</span><span class="p">(</span><span class="n">df0</span><span class="o">$</span><span class="n">x1</span><span class="p">,</span> <span class="n">df0</span><span class="o">$</span><span class="n">x2</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
   <span class="nf">points</span><span class="p">(</span><span class="n">df1</span><span class="o">$</span><span class="n">x1</span><span class="p">,</span> <span class="n">df1</span><span class="o">$</span><span class="n">x2</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
   <span class="c1">## face 1 &amp; 3</span>
-  <span class="nf">clip</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">fcut[4]</span><span class="p">,</span> <span class="n">fcut[2]</span><span class="p">)</span>
-  <span class="nf">abline</span><span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">fcut[1]</span><span class="p">,</span> <span class="n">fcut[3]</span><span class="p">),</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+  <span class="nf">clip</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">fcut</span><span class="p">[</span><span class="m">4</span><span class="p">],</span> <span class="n">fcut</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
+  <span class="nf">abline</span><span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">fcut</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">fcut</span><span class="p">[</span><span class="m">3</span><span class="p">]),</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
   <span class="c1">## face 2 &amp; 4</span>
-  <span class="nf">clip</span><span class="p">(</span><span class="n">fcut[3]</span><span class="p">,</span> <span class="n">fcut[1]</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
-  <span class="nf">abline</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">fcut[2]</span><span class="p">,</span> <span class="n">fcut[4]</span><span class="p">),</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+  <span class="nf">clip</span><span class="p">(</span><span class="n">fcut</span><span class="p">[</span><span class="m">3</span><span class="p">],</span> <span class="n">fcut</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+  <span class="nf">abline</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">fcut</span><span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="n">fcut</span><span class="p">[</span><span class="m">4</span><span class="p">]),</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -3421,33 +3421,33 @@
   <span class="n">fmu</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">n1</span><span class="o">*</span><span class="n">n2</span><span class="p">)</span>
   <span class="n">fn</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">n1</span><span class="o">*</span><span class="n">n2</span><span class="p">)</span>
   <span class="nf">for </span><span class="p">(</span><span class="n">nstep</span> <span class="n">in</span> <span class="m">0</span><span class="o">:</span><span class="p">(</span><span class="n">n1</span><span class="o">*</span><span class="n">n2</span><span class="m">-1</span><span class="p">)){</span>
-    <span class="n">fn[nstep</span><span class="m">+1</span><span class="n">]</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
-    <span class="n">fmu[nstep</span><span class="m">+1</span><span class="n">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
-    <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;step&quot;</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="s">&quot; current mean = &quot;</span><span class="p">,</span> <span class="n">fmu[nstep]</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+    <span class="n">fn</span><span class="p">[</span><span class="n">nstep</span><span class="m">+1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+    <span class="n">fmu</span><span class="p">[</span><span class="n">nstep</span><span class="m">+1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
+    <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;step&quot;</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="s">&quot; current mean = &quot;</span><span class="p">,</span> <span class="n">fmu</span><span class="p">[</span><span class="n">nstep</span><span class="p">],</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
     <span class="nf">plot.box</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="n">fcut</span><span class="p">)</span>
     <span class="c1">## face 1</span>
     <span class="n">f1.cut</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">x1</span><span class="p">,</span> <span class="m">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
-    <span class="n">f1.box</span> <span class="o">=</span> <span class="n">box[box</span><span class="o">$</span><span class="n">x1</span> <span class="o">&lt;</span> <span class="n">f1.cut</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">f1.box</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="n">box</span><span class="o">$</span><span class="n">x1</span> <span class="o">&lt;</span> <span class="n">f1.cut</span><span class="p">,</span> <span class="p">]</span>
     <span class="n">f1.mu</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">f1.box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
     <span class="c1">## face 2</span>
     <span class="n">f2.cut</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">x2</span><span class="p">,</span> <span class="m">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
-    <span class="n">f2.box</span> <span class="o">=</span> <span class="n">box[box</span><span class="o">$</span><span class="n">x2</span> <span class="o">&lt;</span> <span class="n">f2.cut</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">f2.box</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="n">box</span><span class="o">$</span><span class="n">x2</span> <span class="o">&lt;</span> <span class="n">f2.cut</span><span class="p">,</span> <span class="p">]</span>
     <span class="n">f2.mu</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">f2.box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
     <span class="c1">## face 3</span>
     <span class="n">f3.cut</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">x1</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
-    <span class="n">f3.box</span> <span class="o">=</span> <span class="n">box[box</span><span class="o">$</span><span class="n">x1</span> <span class="o">&gt;</span> <span class="n">f3.cut</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">f3.box</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="n">box</span><span class="o">$</span><span class="n">x1</span> <span class="o">&gt;</span> <span class="n">f3.cut</span><span class="p">,</span> <span class="p">]</span>
     <span class="n">f3.mu</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">f3.box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
     <span class="c1">## face 4</span>
     <span class="n">f4.cut</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">x2</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
-    <span class="n">f4.box</span> <span class="o">=</span> <span class="n">box[box</span><span class="o">$</span><span class="n">x2</span> <span class="o">&gt;</span> <span class="n">f4.cut</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">f4.box</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="n">box</span><span class="o">$</span><span class="n">x2</span> <span class="o">&gt;</span> <span class="n">f4.cut</span><span class="p">,</span> <span class="p">]</span>
     <span class="n">f4.mu</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">f4.box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
 
     <span class="c1">## choose the max one</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="nf">which.max</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">f1.mu</span><span class="p">,</span> <span class="n">f2.mu</span><span class="p">,</span> <span class="n">f3.mu</span><span class="p">,</span> <span class="n">f4.mu</span><span class="p">))</span>
     <span class="n">box.list</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">f1.box</span><span class="p">,</span> <span class="n">f2.box</span><span class="p">,</span> <span class="n">f3.box</span><span class="p">,</span> <span class="n">f4.box</span><span class="p">)</span>
     <span class="n">cut.vec</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">f1.cut</span><span class="p">,</span> <span class="n">f2.cut</span><span class="p">,</span> <span class="n">f3.cut</span><span class="p">,</span> <span class="n">f4.cut</span><span class="p">)</span>
-    <span class="n">box</span> <span class="o">=</span> <span class="n">box.list[[ind]]</span>
-    <span class="n">fcut[ind]</span> <span class="o">=</span> <span class="n">cut.vec[ind]</span>
+    <span class="n">box</span> <span class="o">=</span> <span class="n">box.list</span><span class="p">[[</span><span class="n">ind</span><span class="p">]]</span>
+    <span class="n">fcut</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">cut.vec</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
   <span class="p">}</span>
   <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">means</span><span class="o">=</span><span class="n">fmu</span><span class="p">,</span> <span class="n">cutpoint</span> <span class="o">=</span> <span class="n">fcut</span><span class="p">,</span> <span class="n">final.box</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">fn</span><span class="p">))</span>
 <span class="p">}</span>
@@ -3470,6 +3470,16 @@
 <p><img alt="" src="../box-mean-profile.png" /></p>
                 
                   
+                
+              
+              
+                
+                <script type="text/javascript">
+                  var sogou_ad_id=1100501;
+                  var sogou_ad_height=60;
+                  var sogou_ad_width=640;
+                  </script>
+                  <script type='text/javascript' src='https://images.sohu.com/cs/jsfile/js/c.js'></script>
                 
               
               
@@ -3548,7 +3558,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-05 14:08:52
+        Last Build Date UTC : 2020-03-09 08:38:43
       </div>
       
         

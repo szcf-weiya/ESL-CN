@@ -3451,9 +3451,9 @@
 <div class="codehilite"><pre><span></span><code><span class="c1"># load the dataset</span>
 <span class="nf">data</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s">&quot;VIM&quot;</span><span class="p">)</span>
 <span class="c1"># list the rows that do not have missing values</span>
-<span class="n">sleep</span><span class="nf">[complete.cases</span><span class="p">(</span><span class="n">sleep</span><span class="p">),</span><span class="n">]</span>
+<span class="n">sleep</span><span class="p">[</span><span class="nf">complete.cases</span><span class="p">(</span><span class="n">sleep</span><span class="p">),]</span>
 <span class="c1"># list the rows that have one or more missing values</span>
-<span class="n">sleep[</span><span class="o">!</span><span class="nf">complete.cases</span><span class="p">(</span><span class="n">sleep</span><span class="p">),</span><span class="n">]</span>
+<span class="n">sleep</span><span class="p">[</span><span class="o">!</span><span class="nf">complete.cases</span><span class="p">(</span><span class="n">sleep</span><span class="p">),]</span>
 </code></pre></div>
 
 
@@ -3482,7 +3482,7 @@
 
 <p><img alt="" src="../matrixplot.png" /></p>
 <p>图中灰色图象颜色越深表示值越大，越浅表示值越小，而红色表示缺失值。除此之外，还可以对变量的缺失情况能够两两比较</p>
-<div class="codehilite"><pre><span></span><code><span class="nf">marginplot</span><span class="p">(</span><span class="n">sleep</span><span class="nf">[c</span><span class="p">(</span><span class="s">&quot;Gest&quot;</span><span class="p">,</span><span class="s">&quot;Dream&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">20</span><span class="p">),</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">marginplot</span><span class="p">(</span><span class="n">sleep</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Gest&quot;</span><span class="p">,</span><span class="s">&quot;Dream&quot;</span><span class="p">)],</span> <span class="n">pch</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">20</span><span class="p">),</span>
            <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;darkgray&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">))</span>
 </code></pre></div>
 
@@ -3491,7 +3491,7 @@
 <h3 id="_6">相关性<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>首先将原始矩阵用 0 和 1 来编码，1 表示缺失，然后计算与原始变量的相关性，帮助找出与缺失值相关的变量，比如</p>
 <div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">sleep</span><span class="p">)))</span>
-<span class="n">y</span> <span class="o">&lt;-</span> <span class="n">x</span><span class="nf">[which</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span><span class="n">]</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="n">x</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)]</span>
 <span class="nf">cor</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="c1">## or</span>
 <span class="nf">cor</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span>
@@ -3511,6 +3511,16 @@
 </code></pre></div>
                 
                   
+                
+              
+              
+                
+                <script type="text/javascript">
+                  var sogou_ad_id=1100501;
+                  var sogou_ad_height=60;
+                  var sogou_ad_width=640;
+                  </script>
+                  <script type='text/javascript' src='https://images.sohu.com/cs/jsfile/js/c.js'></script>
                 
               
               
@@ -3589,7 +3599,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-05 14:08:52
+        Last Build Date UTC : 2020-03-09 08:38:43
       </div>
       
         

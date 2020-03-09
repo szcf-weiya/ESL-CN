@@ -3484,7 +3484,7 @@
                    <span class="n">rho</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
   <span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>
   <span class="n">X</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">Sigma</span><span class="p">)</span>
-  <span class="n">Y</span> <span class="o">=</span> <span class="n">X[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span> <span class="o">*</span> <span class="n">beta[1]</span> <span class="o">+</span> <span class="n">X[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span> <span class="o">*</span> <span class="n">beta[2]</span>
+  <span class="n">Y</span> <span class="o">=</span> <span class="n">X</span><span class="p">[,</span> <span class="m">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">beta</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">X</span><span class="p">[,</span> <span class="m">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">beta</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
   <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">))</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -3502,7 +3502,7 @@
 <h3 id="lasso">lasso<a class="headerlink" href="#lasso" title="Permanent link">&para;</a></h3>
 <p>调整不同 $\lambda$，得到不同的　$\beta_1$　和 $\beta_2$，调用 <code>glmnet</code> 包进行求解</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## create grid to fit lasso/ridge path</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="m">10</span><span class="nf">^seq</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">-2</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="m">100</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="m">10</span><span class="o">^</span><span class="nf">seq</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">-2</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="m">100</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">glmnet</span><span class="p">)</span>
 <span class="n">lasso.fit</span> <span class="o">=</span> <span class="nf">glmnet</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">grid</span><span class="p">)</span>
 <span class="c1">## extract beta</span>
@@ -3529,7 +3529,7 @@
 <div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">pls</span><span class="p">)</span>
 <span class="n">pcr.fit</span> <span class="o">=</span> <span class="nf">pcr</span><span class="p">(</span><span class="n">Y</span> <span class="o">~</span> <span class="n">X</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 <span class="n">pcr.beta</span> <span class="o">=</span> <span class="n">pcr.fit</span><span class="o">$</span><span class="n">coefficients</span>
-<span class="n">pcr.beta</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">pcr.beta[</span><span class="p">,,</span><span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">pcr.beta[</span><span class="p">,,</span><span class="m">2</span><span class="n">]</span><span class="p">)</span> <span class="c1"># c(0, 0) for zero PC</span>
+<span class="n">pcr.beta</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">pcr.beta</span><span class="p">[,,</span><span class="m">1</span><span class="p">],</span> <span class="n">pcr.beta</span><span class="p">[,,</span><span class="m">2</span><span class="p">])</span> <span class="c1"># c(0, 0) for zero PC</span>
 </code></pre></div>
 
 
@@ -3540,11 +3540,11 @@
 <span class="c1">## scores</span>
 <span class="n">pc.z</span> <span class="o">=</span> <span class="n">pc</span><span class="o">$</span><span class="n">x</span>
 <span class="c1">## use one pc</span>
-<span class="n">mypcr.fit.1</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y</span> <span class="o">~</span> <span class="m">0</span><span class="o">+</span><span class="n">pc.z[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">)</span>
+<span class="n">mypcr.fit.1</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y</span> <span class="o">~</span> <span class="m">0</span><span class="o">+</span><span class="n">pc.z</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span>
 <span class="c1">## use two pc</span>
 <span class="n">mypcr.fit.2</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y</span> <span class="o">~</span> <span class="m">0</span><span class="o">+</span><span class="n">pc.z</span><span class="p">)</span>
 <span class="c1">## original beta</span>
-<span class="n">mypcr.beta.1</span> <span class="o">=</span> <span class="nf">coef</span><span class="p">(</span><span class="n">mypcr.fit.1</span><span class="p">)</span> <span class="o">*</span> <span class="n">pc.m[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span>
+<span class="n">mypcr.beta.1</span> <span class="o">=</span> <span class="nf">coef</span><span class="p">(</span><span class="n">mypcr.fit.1</span><span class="p">)</span> <span class="o">*</span> <span class="n">pc.m</span><span class="p">[,</span> <span class="m">1</span><span class="p">]</span>
 <span class="n">mypcr.beta.2</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="n">pc.m</span> <span class="o">%*%</span> <span class="nf">coef</span><span class="p">(</span><span class="n">mypcr.fit.2</span><span class="p">))</span>
 <span class="n">mypcr.beta</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">mypcr.beta.1</span><span class="p">,</span> <span class="n">mypcr.beta.2</span><span class="p">)</span>
 <span class="nf">attr</span><span class="p">(</span><span class="n">mypcr.beta</span><span class="p">,</span> <span class="s">&quot;dimnames&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="kc">NULL</span><span class="p">,</span>
@@ -3557,7 +3557,7 @@
 <p>这个直接利用 <code>pls</code> 包中的 <code>plsr</code> 函数便可以得到</p>
 <div class="codehilite"><pre><span></span><code><span class="n">pls.fit</span> <span class="o">=</span> <span class="nf">plsr</span><span class="p">(</span><span class="n">Y</span> <span class="o">~</span> <span class="n">X</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 <span class="n">pls.beta</span> <span class="o">=</span> <span class="n">pls.fit</span><span class="o">$</span><span class="n">coefficients</span>
-<span class="n">pls.beta</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">pls.beta[</span><span class="p">,,</span><span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">pls.beta[</span><span class="p">,,</span><span class="m">2</span><span class="n">]</span><span class="p">)</span>
+<span class="n">pls.beta</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">pls.beta</span><span class="p">[,,</span><span class="m">1</span><span class="p">],</span> <span class="n">pls.beta</span><span class="p">[,,</span><span class="m">2</span><span class="p">])</span>
 </code></pre></div>
 
 
@@ -3565,7 +3565,7 @@
 <p>通过调用 <code>leaps</code> 中的 <code>regsubsets</code> 函数可以计算得到</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">leaps</span><span class="p">)</span>
 <span class="n">bs.fit</span> <span class="o">=</span> <span class="nf">regsubsets</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
-<span class="nf">if </span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">bs.fit</span><span class="p">)</span><span class="o">$</span><span class="n">which[1</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span>
+<span class="nf">if </span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">bs.fit</span><span class="p">)</span><span class="o">$</span><span class="n">which</span><span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">])</span>
 <span class="p">{</span>
 <span class="n">bs.beta</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">bs.fit</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
@@ -3584,8 +3584,8 @@
 <span class="p">{</span>
   <span class="nf">plot</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
        <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span>
-       <span class="n">xlab</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="n">beta[1]</span><span class="p">),</span>
-       <span class="n">ylab</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="n">beta[2]</span><span class="p">),</span>
+       <span class="n">xlab</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="m">1</span><span class="p">]),</span>
+       <span class="n">ylab</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span>
        <span class="n">main</span> <span class="o">=</span> <span class="nf">substitute</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="s">&quot;=&quot;</span><span class="p">,</span><span class="n">r</span><span class="p">),</span> <span class="nf">list</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">rho</span><span class="p">)),</span>
        <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">6</span><span class="p">),</span>
        <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span>
@@ -3639,6 +3639,16 @@
 <p>可以看出完美重现了原书 Fig. 3.18。</p>
                 
                   
+                
+              
+              
+                
+                <script type="text/javascript">
+                  var sogou_ad_id=1100501;
+                  var sogou_ad_height=60;
+                  var sogou_ad_width=640;
+                  </script>
+                  <script type='text/javascript' src='https://images.sohu.com/cs/jsfile/js/c.js'></script>
                 
               
               
@@ -3717,7 +3727,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-05 14:08:51
+        Last Build Date UTC : 2020-03-09 08:38:42
       </div>
       
         

@@ -3434,11 +3434,11 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
   <span class="c1"># count the number of significant terms</span>
   <span class="n">coef.mat</span> <span class="o">=</span> <span class="nf">coef</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
   <span class="n">sig.level</span> <span class="o">=</span> <span class="m">0.05</span>
-  <span class="n">coef.p</span> <span class="o">=</span> <span class="n">coef.mat[</span><span class="p">,</span> <span class="m">4</span><span class="n">]</span>
+  <span class="n">coef.p</span> <span class="o">=</span> <span class="n">coef.mat</span><span class="p">[,</span> <span class="m">4</span><span class="p">]</span>
   <span class="c1"># remove the intercept</span>
-  <span class="nf">if </span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">coef.p</span><span class="p">)</span><span class="n">[1]</span> <span class="o">==</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
-    <span class="n">coef.p</span> <span class="o">=</span> <span class="n">coef.p[</span><span class="m">-1</span><span class="n">]</span>
-  <span class="n">coef.p</span><span class="nf">[which</span><span class="p">(</span><span class="nf">is.nan</span><span class="p">(</span><span class="n">coef.p</span><span class="p">))</span><span class="n">]</span> <span class="o">=</span> <span class="m">1</span> <span class="c1"># replace NaN with 1</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">coef.p</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
+    <span class="n">coef.p</span> <span class="o">=</span> <span class="n">coef.p</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span>
+  <span class="n">coef.p</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="nf">is.nan</span><span class="p">(</span><span class="n">coef.p</span><span class="p">))]</span> <span class="o">=</span> <span class="m">1</span> <span class="c1"># replace NaN with 1</span>
   <span class="n">sig.num</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">coef.p</span> <span class="o">&lt;</span> <span class="n">sig.level</span><span class="p">)</span>
   <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;p = &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s">&quot; sig.num = &quot;</span><span class="p">,</span> <span class="n">sig.num</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="p">}</span>
@@ -3453,10 +3453,10 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
     <span class="n">X</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="n">Y</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">$</span><span class="n">Y</span>
     <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">p</span><span class="p">){</span>
-      <span class="n">model</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="m">1</span><span class="o">+</span><span class="n">X[</span><span class="p">,</span><span class="n">i]</span><span class="p">)</span>
+      <span class="n">model</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="m">1</span><span class="o">+</span><span class="n">X</span><span class="p">[,</span><span class="n">i</span><span class="p">])</span>
       <span class="n">coef.mat</span> <span class="o">=</span> <span class="nf">coef</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
       <span class="c1">#score = abs(coef.mat[2, 1]/coef.mat[2, 2])</span>
-      <span class="nf">if</span><span class="p">(</span><span class="n">coef.mat[2</span><span class="p">,</span> <span class="m">4</span><span class="n">]</span> <span class="o">&lt;</span> <span class="m">0.05</span><span class="p">)</span>
+      <span class="nf">if</span><span class="p">(</span><span class="n">coef.mat</span><span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span> <span class="o">&lt;</span> <span class="m">0.05</span><span class="p">)</span>
         <span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">+</span> <span class="m">1</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -3492,20 +3492,20 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
     <span class="n">x.test</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
     <span class="n">y.test</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x.test</span> <span class="o">*</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">+</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">epsi.var</span><span class="p">))</span>
     <span class="n">pred</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">x.test</span><span class="p">))</span> <span class="o">%*%</span> <span class="nf">t</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
-    <span class="n">test.err</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred</span> <span class="o">-</span> <span class="n">y.test</span><span class="p">)</span><span class="n">^2</span>
+    <span class="n">test.err</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred</span> <span class="o">-</span> <span class="n">y.test</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
     <span class="n">test.err.full</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">test.err.full</span><span class="p">,</span> <span class="n">test.err</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">test.err.full[1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="n">]</span>
-<span class="n">t2</span> <span class="o">=</span> <span class="n">test.err.full[101</span><span class="o">:</span><span class="m">200</span><span class="p">,</span> <span class="n">]</span>
-<span class="n">t3</span> <span class="o">=</span> <span class="n">test.err.full[201</span><span class="o">:</span><span class="m">300</span><span class="p">,</span> <span class="n">]</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">test.err.full</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">test.err.full</span><span class="p">[</span><span class="m">101</span><span class="o">:</span><span class="m">200</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">t3</span> <span class="o">=</span> <span class="n">test.err.full</span><span class="p">[</span><span class="m">201</span><span class="o">:</span><span class="m">300</span><span class="p">,</span> <span class="p">]</span>
 </code></pre></div>
 
 
 <p>作图</p>
-<div class="codehilite"><pre><span></span><code><span class="nf">boxplot</span><span class="p">(</span><span class="n">t1</span><span class="o">/</span><span class="n">epsi.var.full[1]</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;20 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
-<span class="nf">boxplot</span><span class="p">(</span><span class="n">t2</span><span class="o">/</span><span class="n">epsi.var.full[2]</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;100 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
-<span class="nf">boxplot</span><span class="p">(</span><span class="n">t3</span><span class="o">/</span><span class="n">epsi.var.full[3]</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;1000 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nf">boxplot</span><span class="p">(</span><span class="n">t1</span><span class="o">/</span><span class="n">epsi.var.full</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;20 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">t2</span><span class="o">/</span><span class="n">epsi.var.full</span><span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;100 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">t3</span><span class="o">/</span><span class="n">epsi.var.full</span><span class="p">[</span><span class="m">3</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;1000 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -3515,6 +3515,16 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
 <p>结果与原文图18.1有较大差异，需要进一步查找该差异。</p>
                 
                   
+                
+              
+              
+                
+                <script type="text/javascript">
+                  var sogou_ad_id=1100501;
+                  var sogou_ad_height=60;
+                  var sogou_ad_width=640;
+                  </script>
+                  <script type='text/javascript' src='https://images.sohu.com/cs/jsfile/js/c.js'></script>
                 
               
               
@@ -3593,7 +3603,7 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-05 14:08:51
+        Last Build Date UTC : 2020-03-09 08:38:42
       </div>
       
         
