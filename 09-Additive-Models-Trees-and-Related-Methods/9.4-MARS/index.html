@@ -3669,7 +3669,7 @@ R^2=\frac{\MSE_0-\MSE}{\MSE_0}\tag{9.24}
 <p>尽管它们看起来相当不同，但是 MARS 和 CART 策略实际上有很强的相似性．假设我们进行了 MARS 过程，并且作出下面改变：</p>
 <ul>
 <li>用阶跃函数 $I(x-t&gt;0)$ 和 $I(x-t\le 0)$ 来替换分段线性基函数．</li>
-<li>当模型中的项与候选项相乘，用交叉性来代替，因此对于后续的交叉项不是可行的．</li>
+<li>当模型中的项与候选项相乘，替换成交叉项，因此不允许该项与其它候选项进行交叉．</li>
 </ul>
 <p>有了这些改变，MARS 向前过程与 CART 构造树的算法是一样的．乘上一对反射阶跃函数等价于在阶跃点分割开．第二条限制表明一个结点可能不会被分割成多次，因此使得 CART 模型能用（吸引人的）二叉树表示．另一方面，也是这条限制使得 CART 很难对加性结构进行建模．MARS 放弃树结构并且得到捕捉加性影响的能力．</p>
 <h3 id="_4">混合输入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
@@ -3762,7 +3762,7 @@ R^2=\frac{\MSE_0-\MSE}{\MSE_0}\tag{9.24}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-17 02:29:57
+        Last Build Date UTC : 2020-03-18 06:10:06
       </div>
       
         
