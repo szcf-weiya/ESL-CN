@@ -111,7 +111,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#_1" tabindex="1" class="md-skip">
+      <a href="#69" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -3263,7 +3263,7 @@
               
                 
                 
-                <h1 id="_1">计算上的考虑<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+                <h1 id="69">6.9 计算上的考虑<a class="headerlink" href="#69" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3280,12 +3280,20 @@
 <td>时间</td>
 <td>2017-12-29</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2020-03-19 12:10:40</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>Done</td>
+</tr>
 </tbody>
 </table>
-<p>核和局部回归以及密度估计都是memory-based方法：模型是整个训练数据集，并且在赋值或者预测的时候完成拟合．对于许多实时的应用，这使得这类方法不可行．</p>
-<p>在单个观测点$x_0$处拟合的计算代价为 $O(N)$ 次flop，除了过于简单的情形（比如平方核）．通过比较，包含$M$个基函数的展开式一次赋值代价为$O(M)$，一般有$M\sim O(log N)$．基函数方法至少有$O(NM^2+M^3)$的初始代价．</p>
-<p>核方法的光滑参数$\lambda$一般线下(off-line)确定，举个例子，采用交叉验证，其代价为$O(N^2)$次flop．</p>
-<p>局部回归的流行实现采用三角测量方案(triangulation schemes)来降低代价，如S-PLUS和R中的<code>loess</code>函数，以及<code>locfit</code>过程(Loader, 1999<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)．他们在认真选出的$M$个点处精确拟合，代价为$O(N(M))$，然后采用blending技巧来插值拟合其它点（每次赋值代价为$O(M)$）．</p>
+<p>核和局部回归以及密度估计都是 <strong>基于内存的 (memory-based)</strong> 方法：模型是整个训练数据集，并且在赋值或者预测的时候完成拟合．对于许多实时的应用，这使得这类方法不可行．</p>
+<p>在单个观测点 $x_0$ 处拟合的计算代价为 $O(N)$ 次 flop，除了过于简单的情形（比如平方核）．通过比较，包含 $M$ 个基函数的展开式一次赋值代价为 $O(M)$，一般有 $M\sim O(\log N)$．基函数方法至少有 $O(NM^2+M^3)$的初始代价．</p>
+<p>核方法的光滑参数 $\lambda$ 一般 <strong>线下 (off-line)</strong> 确定，举个例子，采用交叉验证，其代价为 $O(N^2)$ 次 flop．</p>
+<p>局部回归的主流实现采用 <strong>三角化方案 (triangulation schemes)</strong> 来降低代价，如 S-PLUS 和 R 中的 <code>loess</code> 函数，以及 <code>locfit</code> 过程(Loader,  1999<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)．他们在认真选出的 $M$ 个点处精确拟合，代价为 $O(N(M))$，然后采用 blending 技巧来插值拟合其它点（每次赋值代价为 $O(M)$）．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3374,7 +3382,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-18 06:10:05
+        Last Build Date UTC : 2020-03-19 04:12:16
       </div>
       
         
