@@ -3294,6 +3294,10 @@
 <p>在单个观测点 $x_0$ 处拟合的计算代价为 $O(N)$ 次 flop，除了过于简单的情形（比如平方核）．通过比较，包含 $M$ 个基函数的展开式一次赋值代价为 $O(M)$，一般有 $M\sim O(\log N)$．基函数方法至少有 $O(NM^2+M^3)$的初始代价．</p>
 <p>核方法的光滑参数 $\lambda$ 一般 <strong>线下 (off-line)</strong> 确定，举个例子，采用交叉验证，其代价为 $O(N^2)$ 次 flop．</p>
 <p>局部回归的主流实现采用 <strong>三角化方案 (triangulation schemes)</strong> 来降低代价，如 S-PLUS 和 R 中的 <code>loess</code> 函数，以及 <code>locfit</code> 过程(Loader,  1999<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)．他们在认真选出的 $M$ 个点处精确拟合，代价为 $O(N(M))$，然后采用 blending 技巧来插值拟合其它点（每次赋值代价为 $O(M)$）．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：triangulation schemes</p>
+<p><a href="https://link.springer.com/book/10.1007/b98858">Loader (1999)</a>介绍道，在 <code>locfit</code> 中，参数 evaluation structure <code>ev = "phull"</code> 表示采取三角化方案，而在<a href="https://cran.r-project.org/web/packages/locfit/locfit.pdf">最新的 R package</a> 中，其 <code>ev</code> 可选参数不再包括 <code>phull</code>. 或许现在三角化方案不算主流实现？</p>
+</div>
 <div class="footnote">
 <hr />
 <ol>
@@ -3382,7 +3386,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-19 04:12:16
+        Last Build Date UTC : 2020-03-19 04:18:26
       </div>
       
         
