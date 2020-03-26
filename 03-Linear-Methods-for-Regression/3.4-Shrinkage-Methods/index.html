@@ -3788,9 +3788,9 @@ R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Ver
 <p>现在对于有 $k$ 个固定预测变量的线性回归模型，可以简单地证明 $\df(\hat{\mathbf y})=k$．同样地，对于岭回归，这一定义导出表达式（3.50）的<strong>闭型解 (closed-form)</strong>：$\df(\hat{\mathbf{y}})=\tr(\mathbf S_\lambda)$．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：closed form expression</p>
-<p>根据 <a href="https://en.wikipedia.org/wiki/Closed-form_expression">wiki: Closed-form expression</a>，closed-form 是指可以进行有限次赋值的表达式，依此理解，有显示解的为 closed form．</p>
+<p>根据 <a href="https://en.wikipedia.org/wiki/Closed-form_expression">wiki: Closed-form expression</a>，closed-form 是指可以进行有限次赋值的表达式，依此理解，有显式解的为 closed form．</p>
 </div>
-<p>在这些情况下，(3.60) 可以很简单地进行赋值因为 $\hat{\mathbf{y}}=\mathbf{H}_\lambda\mathbf y$ 关于 $\mathbf y$ 是线性的．如果我们考虑在大小为 $k$ 的最优子集选择中的定义 (3.60)，似乎显然有 $\df(\hat{\mathbf y})$ 会大于 $k$，并且可以通过运用模拟的方法直接地估计 $\Cov(\hat y_i,y_i)/\sigma^2$ 来验证．然而估计最优子集选择的 $\df(\hat{\mathbf y})$ 没有<strong>闭形式 (closed form)</strong>．</p>
+<p>在这些情况下，(3.60) 可以很简单地进行赋值因为 $\hat{\mathbf{y}}=\mathbf{H}_\lambda\mathbf y$ 关于 $\mathbf y$ 是线性的．如果我们考虑在大小为 $k$ 的最优子集选择中的定义 (3.60)，似乎显然有 $\df(\hat{\mathbf y})$ 会大于 $k$，并且可以通过运用模拟的方法直接地估计 $\Cov(\hat y_i,y_i)/\sigma^2$ 来验证．然而估计最优子集选择的 $\df(\hat{\mathbf y})$ 没有闭型解．</p>
 <p>对于 LAR 和 lasso，会发生很奇怪的事情．这些技巧的自适应方式比最优集选择更加光滑，因此估计自由度会更加地难以驾驭．特别地，可以证明经过 $k$ 步 LAR 过程，拟合向量的有效自由度恰巧是 $k$．对于 lasso，（改进的）LAR 过程经常需要多余 $k$ 的步骤，因为可以删去预测变量．因此，定义有点不一样；对于 lasso，在任一小步 $\df(\hat{\mathbf y})$ 近似等于模型中预测变量的个数．然而这种近似在 lasso 路径中的任何地方都表现得很好，但是对于每个 $k$，它在包含 $k$ 个预测变量的序列中最后一个模型表现得最好．关于 lasso 自由度详细的研究或许可以在 Zou et al. (2007)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 中找到．</p>
 <div class="footnote">
 <hr />
@@ -3895,7 +3895,7 @@ R(\beta)=\frac{1}{2}\Vert\mathbf y-\mathbf X\beta\Vert_2^2+\lambda\Vert\beta\Ver
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-03-26 06:24:49
+        Last Build Date UTC : 2020-03-26 06:37:25
       </div>
       
         
