@@ -117,6 +117,10 @@ $B$ 样条局部支撑有重要的计算应用，特别当结点数 $K$ 很大�
 
     对于$N\times p$的设计矩阵$X$及$N\times 1$的响应变量向量$Y$，其最小二乘估计为$(X'X)^{-1}X'Y$，采用一般的Gauss-Jordan elimination的矩阵逆运算，则总复杂度为$O(Np^2+p^3)$，故$K+M$个变量的$N$个观测的最小二乘复杂度为$O(N(K+M)^2+(K+M)^3)$．
 
+!!! note "weiya 注：B 样条在 R, C++, Python 中的实现"
+    [这篇笔记](../notes/BS/bs.md)比较了 B 样条在 R，C++ 以及 Python 中的实现。
+    
+
 ## 光滑样条的计算
 
 尽管自然样条（[5.2.1节](5.2-Piecewise-Polynomials-and-Splines/index.html)）给出了光滑样条的基，但无约束的 $B$ 样条在较大空间中操作计算上更方便．
