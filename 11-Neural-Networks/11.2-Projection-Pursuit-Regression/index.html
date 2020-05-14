@@ -3305,7 +3305,7 @@ g(\omega^Tx_i)\approx g(\omega_{old}^Tx_i)+g'(\omega_{old}^Tx_i)(\omega-\omega_{
 <script type="math/tex; mode=display">
 \sum\limits_{i=1}^N[y_i-g(w^Tx_i)]^2\approx \sum\limits_{i=1}^Ng'(\omega_{old}^Tx_i)^2\left[\left(\omega_{old}^ Tx_i+\frac{y_i-g(\omega_{old}^Tx_i)}{g'(w^T_{old}x_i)}\right)-w^Tx_i\right]^2\tag(11.4)
 </script>
-为了最小化右边的项，我们在输入 $x_i$ 上对目标 $\omega_{old}^Tx_i+(y_i-g(\omega_{old}^Tx_i))/g&rsquo;(\omega_{old}^Tx_i)$ 进行最小二乘回归，其中系数为 $g&rsquo;(\omega_{old}^Tx_i)^2$ 并且没有截距（偏差）项．这样得到更新后的系数向量 $\omega_{new}$．</p>
+为了最小化右边的项，我们在输入 $x_i$ 上对目标 $\omega_{old}^Tx_i+(y_i-g(\omega_{old}^Tx_i))/g&rsquo;(\omega_{old}^Tx_i)$ 进行最小二乘回归，其中权重为 $g&rsquo;(\omega_{old}^Tx_i)^2$ 并且没有截距（偏差）项．这样得到更新后的系数向量 $\omega_{new}$．</p>
 <p>对 $g$ 和 $w$ 的估计的这两步一直迭代直到收敛．在 PPR 模型中不止一项时，以一种向前逐步的方式来建立模型，在每一步加入 $(\omega_m,g_m)$．</p>
 <p>下面是一系列实现的细节．</p>
 <ul>
@@ -3416,7 +3416,7 @@ g(\omega^Tx_i)\approx g(\omega_{old}^Tx_i)+g'(\omega_{old}^Tx_i)(\omega-\omega_{
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-04-15 14:29:51
+        Last Build Date UTC : 2020-05-14 08:18:09
       </div>
       
         
