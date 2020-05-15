@@ -3436,7 +3436,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-08-06 18:56:08</td>
+<td>2020-05-15 15:46:43</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3482,7 +3482,7 @@ f(\lambda)=\mu+\mathbf V_q\lambda\tag{14.49}\label{14.49}
 </p>
 <div class="admonition note">
 <p class="admonition-title">weiya注: Ex. 14.7</p>
-<p>\eqref{14.51} 和 \eqref{14.52} 的解并不是唯一的，$\mu -\bar x$ 属于 $I-\V_q\V_q^T$ 的 Null Space，而注意到 $\mathrm{rank}(I-\V_q\V_q^T) = p-q &gt;0$（除非 $q=p$），所以解不唯一。
+<p>\eqref{14.51} 和 \eqref{14.52} 的解并不是唯一的，$\mu -\bar x$ 属于 $\mathbf I-\V_q\V_q^T$ 的 Null Space，而注意到 $\mathrm{rank}(\mathbf I-\V_q\V_q^T) = p-q &gt;0$（除非 $q=p$），所以解不唯一。
 具体解题过程参见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/45">Issue: Ex. 14.7</a></p>
 </div>
 <p>接下来需要去寻找正交矩阵 $\mathbf V_q$:</p>
@@ -3495,35 +3495,35 @@ f(\lambda)=\mu+\mathbf V_q\lambda\tag{14.49}\label{14.49}
 <div class="admonition note">
 <p class="admonition-title">weiya 注：投影矩阵</p>
 <p>投影是从一个向量空间到其自身的线性变换，并且投影矩阵满足$\mathbf P^2=\mathbf P$．
-首先，根据$\mathbf H_qx_i=\mathbf V_q\mathbf V^T_qx_i$可以得出投影点是在$\mathbf V_q$的列所张成的子空间中；其次，对于该子空间中任一点$y_i$，其在原空间的坐标为$\mathbf V_qy_i$，计算
+首先，根据$\mathbf H_qx_i=\mathbf V_q\mathbf V^T_qx_i$可以得出投影点是在$\mathbf V_q$的列所张成的子空间中；其次，对于该子空间中任一点 $\mathbf V_qy$，因为
 <script type="math/tex; mode=display">
 \begin{align}
-(x_i-\mathbf Px_i)\cdot \mathbf V_qy_i&=(\mathbf I-\mathbf P)x_i\cdot \mathbf V_qy_i\\
-&=x_i^T(\mathbf I-\mathbf P)^T\mathbf V_qy_i\\
+(x_i-\mathbf H_qx_i)\cdot \mathbf V_qy_i&=(\mathbf I-\mathbf H_q)x_i\cdot \mathbf V_qy_i\\
+&=x_i^T(\mathbf I-\mathbf H_q)^T\mathbf V_qy_i\\
 &=x_i^T\mathbf O_{p\times q}y_i\\
 &=0
 \end{align}
 </script>
 故为正交投影．</p>
 </div>
-<p>\eqref{14.53} 的解可以按如下形式表示．将（中心化的）观测值放进 $N\times p$ 的矩阵 $\mathbf X$ 的行中．构造 $X$ 的奇异值分解：</p>
+<p>\eqref{14.53} 的解可以按如下形式表示．将（中心化的）观测值放进 $N\times p$ 的矩阵 $\mathbf X$ 的行中．构造 $\mathbf X$ 的奇异值分解：</p>
 <p>
 <script type="math/tex; mode=display">
 \mathbf{X=UDV^T}\tag{14.54}\label{14.54}
 </script>
 </p>
-<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）．这里 $\mathbf U$ 是$N\times p$ 的正交矩阵 ($\mathbf{U^TU}=\mathbf I_p$)，它的列向量 $\mathbf u_j$ 称为 <strong>左奇异向量 (left singular vectors)</strong>，$\mathbf V$ 是$p\times p$ 的正交矩阵 ($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量 $\mathbf v_j$ 称之为 <strong>右奇异向量 (right singular vectors)</strong>．对每个秩 $q$，\eqref{14.53} 的解 $\mathbf V_q$ 包含 $\mathbf V$ 的前 $q$ 列．$\mathbf{UD}$ 的列称为 $X$ 的主成分（见 <a href="../../03-Linear-Methods-for-Regression/3.5-Methods-Using-Derived-Input-Directions/index.html#_1">3.5.1 节</a>）．\eqref{14.52} 中 $N$ 个最优的 $\hat\lambda_i$ 由前 $q$ 个主成分给出（$N\times q$ 的矩阵 $\mathbf U_q\mathbf D_q$ 的 $N$ 个行向量）．</p>
+<p>这是数值分析中标准的分解，并且对该分解有很多的算法（比如，Golub and Van Loan, 1983<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>）．这里 $\mathbf U$ 是$N\times p$ 的正交矩阵 ($\mathbf{U^TU}=\mathbf I_p$)，它的列向量 $\mathbf u_j$ 称为 <strong>左奇异向量 (left singular vectors)</strong>，$\mathbf V$ 是$p\times p$ 的正交矩阵 ($\mathbf V^T\mathbf V=\mathbf I_p$)，其中的列向量 $\mathbf v_j$ 称之为 <strong>右奇异向量 (right singular vectors)</strong>．对每个秩 $q$，\eqref{14.53} 的解 $\mathbf V_q$ 包含 $\mathbf V$ 的前 $q$ 列．$\mathbf{UD}$ 的列称为 $\mathbf X$ 的主成分（见 <a href="../../03-Linear-Methods-for-Regression/3.5-Methods-Using-Derived-Input-Directions/index.html#_1">3.5.1 节</a>）．\eqref{14.52} 中 $N$ 个最优的 $\hat\lambda_i$ 由前 $q$ 个主成分给出（$N\times q$ 的矩阵 $\mathbf U_q\mathbf D_q$ 的 $N$ 个行向量）．</p>
 <p>图 14.20 展示了 $\IR^2$ 中的一维主成分分析．</p>
 <p><img alt="" src="../../img/14/fig14.20.png" /></p>
 <p>对于每个数据点 $x_i$，在直线上有个离它最近的点，由 $u_{i1}d_1v_1$ 给出．这里 $v_1$ 是该直线的方向，并且 $\hat \lambda_i=u_{i1}d_1$ 衡量了沿着直线离原点的距离．类似地，图 14.21 展示了拟合 half-sphere 数据的二维主成分曲面（左图）．右图显示了数据在前两个主成分上的投影．这个投影是之前介绍的 SOM 方法的初始化的基础．这个过程在分离簇方面表现得非常成功．因为 half-sphere 是非线性的，非线性的投影会做得更好，这将是下一节的主题．</p>
 <p><img alt="" src="../../img/14/fig14.21.png" /></p>
 <p>主成分还有许多其它的性质，举个例子，线性组合 $\mathbf Xv_1$ 在特征的所有线性组合中有最大的方差；$\mathbf Xv_2$ 在满足$v_2$ 正交 $v_1$ 的所有线性组合中有最大的方差，以此类推．</p>
 <h3 id="_2">例子：手写数字<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>主成分是降低和压缩维度的有效工具．我们用第一章中描述的手写数字的例子来说明这个特点．图 14.22 显示了从 658 个 ‘3’ 中抽取的 130 个 ‘3’ 的样本，每一个都是数字化的 $16\times 16$ 的灰度图象．我们看到书写风格、字体粗细以及字体方向上有显著差异．我们将这些图象看成是 $\IR^{256}$ 中的点 $x_i$，并且通过 SVD \eqref{14.54} 来计算它们的主成分．</p>
+<p>主成分是降低和压缩维度的有效工具．我们用第一章中描述的手写数字的例子来说明这个特点．图 14.22 显示了从 658 个 ‘3’ 中抽取的 130 个 ‘3’ 的样本，每一个都是 <strong>数字化的 (digitized)</strong> $16\times 16$ 的灰度图象．我们看到书写风格、字体粗细以及字体方向上有显著差异．我们将这些图象看成是 $\IR^{256}$ 中的点 $x_i$，并且通过 SVD \eqref{14.54} 来计算它们的主成分．</p>
 <p><img alt="" src="../../img/14/fig14.22.png" /></p>
 <p>图 14.23 显示了这些数据的前两个主成分．</p>
 <p><img alt="" src="../../img/14/fig14.23.png" /></p>
-<p>对于前两个主成分 $u_{i1}d_1$ 和 $u_{i2}d_2$，我们计算 5%, 25%, 50%, 75%, 95% 分位数，并且用它们去定义叠加在图中的长方形网格．圆点表明靠近网格顶点的图象，而距离主要用这些投影点的坐标来衡量，但也给正交子空间中的组分一些权重．右图显示了对应这些圆点的图象．这帮助我们观察前两个主成分的本质．我们看到 $v_1$（水平方向）主要与手写‘3’的下尾有关，而 $v_2$（垂直方向）与字体粗细有关．用 \eqref{14.49} 的参数化模型表示，这两个组分的模型有如下形式</p>
+<p>对于前两个主成分 $u_{i1}d_1$ 和 $u_{i2}d_2$，我们计算 5%, 25%, 50%, 75%, 95% 分位数，并且用它们去定义叠加在图中的长方形网格．圆点表明靠近该网格顶点的图象，而距离主要用这些投影点的坐标来衡量，但也给正交子空间中的组分一些权重．右图显示了对应这些圆点的图象．这帮助我们观察前两个主成分的本质．我们看到 $v_1$（水平方向）主要与手写‘3’的下尾有关，而 $v_2$（垂直方向）与字体粗细有关．用 \eqref{14.49} 的参数化模型表示，这两个组分的模型有如下形式</p>
 <!--
 $$
 \begin{align}
@@ -3546,11 +3546,23 @@ $$
 <p>数字图象中的像素点本质上是相关的，而且因为所有这些图象都是同一个数字，因此相关性甚至更强．相对小的主成分子集可以看成表示高维数据的极佳低维特征．</p>
 <h3 id="procrustes">例子：Procrustes 转换和形状平均<a class="headerlink" href="#procrustes" title="Permanent link">&para;</a></h3>
 <p><img alt="" src="../../img/14/fig14.25.png" /></p>
-<p>图 14.25 在同一张图中展示了两个集合的点，橘黄色和绿色．这个例子中，这些点表示手写&rsquo;S&rsquo;的两个数字化版本，这是从&rdquo;Suresh&rdquo;签名中提取的．图 14.26 展示了整个签名（第三和第四幅图）．这些签名是采用 touch-screen 设备（超市中很常见的设备）动态采集的．每个 $S$ 用 $N=96$ 个点来表示，记为 $N\times 2$ 的矩阵 $\mathbf X_1$ 和 $\mathbf X_2$．这些点之间存在对应关系，$\mathbf X_1$ 和 $\mathbf X_2$ 的第 $i$ 行表示沿着两个&rsquo;S&rsquo;的同一位置．用形态测量 (morphometrics) 的术语说就是这些点表示两个物体的 landmarks．怎样寻找这样一个 landmark 一般是很困难的，而且因情况而异．在这里，我们采用沿着每个签名的速度信号的 dynamic time warping (Hastie et al., 1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)，但是在这里不展开讨论．</p>
+<p>图 14.25 在同一张图中展示了两个集合的点，橘黄色和绿色．这个例子中，这些点表示手写&rsquo;S&rsquo;的两个数字化版本，这是从&rdquo;Suresh&rdquo;签名中提取的．图 14.26 展示了整个签名（第三和第四幅图）．这些签名是采用 touch-screen 设备（超市中很常见的设备）动态采集的．每个 $S$ 用 $N=96$ 个点来表示，记为 $N\times 2$ 的矩阵 $\mathbf X_1$ 和 $\mathbf X_2$．这些点之间存在对应关系，$\mathbf X_1$ 和 $\mathbf X_2$ 的第 $i$ 行表示沿着两个&rsquo;S&rsquo;的同一位置．用 <strong>形态测量 (morphometrics)</strong> 的术语说就是这些点表示两个物体的 landmarks．怎样寻找这样一个 landmark 一般是很困难的，而且因情况而异．在这里，我们采用沿着每个签名的速度信号的 dynamic time warping (Hastie et al., 1992<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)，但是在这里不展开讨论．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：warping function</p>
+<p>听过的一个报告 <a href="https://stats.hohoweiya.xyz/2020/01/21/registration/">Registration Problem in Functional Data Analysis</a>，其中介绍到为了将曲线 $w_i$ 匹配到参考曲线 $w_j$，我们需要一个 <strong>翘曲函数 (warping function)</strong> $h_i(t)$ 使得
+<script type="math/tex; mode=display">
+w_i^\star(t) = w_i[h_i(t)]
+</script>
+以及
+<script type="math/tex; mode=display">
+w_i^\star(t_{j,\text{landmark}}) \approx w_j(t_{j,\text{landmark}})\,.
+</script>
+</p>
+</div>
 <p>右图中，我们已经对绿色点已经采用了 <strong>平移 (translation)</strong> 和 <strong>旋转 (rotation)</strong> 的方式来尽可能与橘黄色点匹配——这称之为 Procrustes 变换（如，Mardia et al., 1979<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>）．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Procrustes 变换</p>
-<p>普罗库鲁斯提斯(Procrustes)是希腊神话中非洲的一个土匪，他经常用一个铁床来折磨别人，把抓来的人绑在铁床上，然后根据铁床的长度来裁剪他们的身体长度：那些身材短的人被拉长，那些身材长的人被砍掉多余的部分．</p>
+<p><strong>普罗库鲁斯提斯 (Procrustes)</strong> 是希腊神话中非洲的一个土匪，他经常用一个铁床来折磨别人，把抓来的人绑在铁床上，然后根据铁床的长度来裁剪他们的身体长度：那些身材短的人被拉长，那些身材长的人被砍掉多余的部分．</p>
 </div>
 <p>考虑下面的问题：</p>
 <p>
@@ -3771,7 +3783,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
 </div>
 <h2 id="_6">稀疏主成分<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>我们经常通过查看方向向量 $v_j$，或者称 <strong>载荷 (loadings)</strong>，来判断哪个变量在起作用，进而对主成分进行解释．我们在 $(14.55)$ 中对图象载荷采用了这种方法．如果载荷是稀疏的，这种解释通常会很简单．这一节我们简要讨论能导出具有稀疏载荷的主成分方法．它们都是基于 lasso ($L_1$) 惩罚．</p>
-<p>首先以 $N\times p$ 的数据矩阵 $\X$ 开始，其中列进行了中心化．这些方法要么关注主成分的最大方差性质，要不最小重构误差．Joliffe et al. (2003)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 的 SCoTLASS procedure 采用第一种方法，求解</p>
+<p>首先以 $N\times p$ 的数据矩阵 $\X$ 开始，其中列进行了中心化．这些方法要么关注主成分的最大方差性质，要么最小重构误差．Joliffe et al. (2003)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 的 SCoTLASS procedure 采用第一种方法，求解</p>
 <p>
 <script type="math/tex; mode=display">
 \max\; v^T(\X^T\X)v\,, \text{ subject to }\sum_{j=1}^p\vert v_j\vert\le t, v^Tv=1\,.\tag{14.69}
@@ -3805,11 +3817,11 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
 <p class="admonition-title">weiya 注：Ex. 14.12</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/186">Issue 186: Ex. 14.12</a>．</p>
 </div>
-<p>图 14.31 展示了采用 \eqref{14.71} 进行系数主成分分析的例子，取自 Sjöstrand et al. (2007)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>．在一项涉及 569 名老人的研究中，<strong>胼胝体 (corpus callosum)</strong> 的 <strong>矢状面横截面 (mid-sagittal cross-section)</strong> 的形状与不同的临床参数有关．这个例子中，对形状数据应用 PCA，这在形态学中是很流行的工具．对于这样的应用，沿着形状的外围，识别出一系列的标记 (landmarks)，图 14.32 展示了一个例子．</p>
+<p>图 14.31 展示了采用 \eqref{14.71} 进行系数主成分分析的例子，取自 Sjöstrand et al. (2007)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>．在一项涉及 569 名老人的研究中，<strong>胼胝体 (corpus callosum， CC)</strong> 的 <strong>矢状面横截面 (mid-sagittal cross-section)</strong> 的形状与不同的临床参数有关．这个例子中，对形状数据应用 PCA，这在形态学中是很流行的工具．对于这样的应用，沿着形状的外围，识别出一系列的标记 (landmarks)，图 14.32 展示了一个例子．</p>
 <p><img alt="" src="../../img/14/fig14.31.png" /></p>
 <p><img alt="" src="../../img/14/fig14.32.png" /></p>
 <p>它们是通过允许旋转的 Procrustes 分析后继续对齐得到的，这里 Procrustes 还允许放缩．PCA 使用的特征是每个标记 (landmarks) 的坐标对的序列，放到单个向量中．</p>
-<p>在这个分析中，标准主成分和稀疏主成分都进行了计算，并且识别出了显著与不同临床参数有关的组分．这张图像中，对应显著主成分（红色曲线）的形状变体画在了均值 CC (corpus callosum) 的上面．与 CC 有关的慢速步行在连接行动控制和大脑的感知中心的区域中更细（表现出萎缩症）．与 CC 有关的低语言流利度在连接听觉、视觉、认知中心的区域中更细．稀疏主成分过程对这一重要差异提供了一个更简洁，并且可能更有信息量的描绘．</p>
+<p>在这个分析中，标准主成分和稀疏主成分都进行了计算，并且识别出了显著与不同临床参数有关的组分．这张图像中，对应显著主成分（红色曲线）的形状变体画在了均值 CC 的上面．与 CC 有关的慢速步行在连接行动控制和大脑的感知中心的区域中更细（表现出萎缩症）．与 CC 有关的低语言流利度在连接听觉、视觉、认知中心的区域中更细．稀疏主成分过程对这一重要差异提供了一个更简洁，并且可能更有信息量的描绘．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3929,7 +3941,7 @@ K(x,x')=\exp(-\Vert x-x'\Vert^2/c)\,\tag{14.67}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-15 06:16:50
+        Last Build Date UTC : 2020-05-15 07:48:13
       </div>
       
         
