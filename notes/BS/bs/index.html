@@ -3390,7 +3390,7 @@
 <p>用 ESL 中的符号即为</p>
 <p>
 <script type="math/tex; mode=display">
-K + 2 + M - 2 = K+M\,,
+\mathrm{nbasis} = K + 2 + M - 2 = K+M\,,
 </script>
 </p>
 <p>因为 knots 编号为 $\xi_0,\xi_1,\ldots,\xi_K,\xi_{K+1}$，其中 $\xi_0$ 和 $\xi_{K+1}$ 是边界结点。</p>
@@ -3444,7 +3444,7 @@ K + 2 + M - 2 = K+M\,,
 <p>其中，</p>
 <ul>
 <li><code>k</code>: degree，则 $M$ = <code>k</code> + 1</li>
-<li><code>t</code>: 长度为 <code>n+k+1</code> 的结点序列，即 <code>n</code> + M, 其中定义域为 <code>t[k] .. t[n]</code>，这两个也刚好是边界结点，而 <code>t[0], t[1], ..., t[k-1]</code> 即对应增广的结点序列 $\tau_1,\ldots, \tau_{M-1}$，以及 <code>t[n+1], t[n+2], ..., t[n+k]</code> 对应 $\tau_{K+M+2},\ldots, \tau_{K+2M}$. 而且需注意到边界结点不再出现在增广结点序列中，但一般 $\tau_{M} = \xi_0; \tau_{K+M+1} = \xi_{K+1}$, 即 <code>t[k], t[k+1], ..., t[n]</code> 为基础结点（包含两个边界结点），$\xi_0,\xi_1,\ldots,\xi_K, \xi_{K+1}$，个数为 <code>n - k + 1</code> = K + M - <code>k</code> + 1 = K + 2</li>
+<li><code>t</code>: 长度为 <code>n+k+1</code> 的结点序列，即 <code>n</code> + M, 其中定义域为 <code>t[k] .. t[n]</code>，这两个也刚好是边界结点. <code>t[0], t[1], ..., t[k-1]</code> 对应增广的结点序列 $\tau_1,\ldots, \tau_{M-1}$，而 <code>t[n+1], t[n+2], ..., t[n+k]</code> 对应 $\tau_{K+M+2},\ldots, \tau_{K+2M}$. 而且需注意到边界结点不再出现在增广结点序列中，即 $\xi_0, \xi_{K+1}$ 不会出现在 <code>t</code> 中，但一般 $\tau_{M} = \xi_0; \tau_{K+M+1} = \xi_{K+1}$, 所以 <code>t[k], t[k+1], ..., t[n]</code> 为基础结点序列（包含两个边界结点），$\xi_0,\xi_1,\ldots,\xi_K, \xi_{K+1}$，个数为 <code>n - k + 1</code> = K + M - <code>k</code> + 1 = K + 2</li>
 <li><code>c</code>: 参数序列，长度为 <code>n</code>，实际中似乎可以大于 <code>n</code>，大概是只取前 <code>n</code> 个吧。</li>
 </ul>
 <p>
@@ -3681,7 +3681,7 @@ t = \{t_0, t_1,\ldots, t_{n+k-1}\}\,,
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-14 08:58:58
+        Last Build Date UTC : 2020-05-15 06:16:53
       </div>
       
         
