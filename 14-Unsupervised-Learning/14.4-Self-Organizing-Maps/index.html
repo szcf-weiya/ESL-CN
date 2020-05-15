@@ -3348,7 +3348,7 @@
 </tr>
 </tbody>
 </table>
-<p>这个方法可以看成是 $K$ 均值聚类的带约束的版本，其中原型落在特征空间的一维或二维流形中．因为原始的高维观测可以映射到二维的坐标系统中, 所以得到的流形也被称作 <strong>约束拓扑图 (constrained topological map)</strong>．原始的 SOM 算法是 online 进行的——每次处理一个观测——后来提出了批量处理的版本．这个技巧也与 <strong>主曲线和主曲面 (principal curves and surfaces)</strong> 有着密切的联系，这将在下一节中进行讨论．</p>
+<p>这个方法可以看成是 $K$ 均值聚类的带约束的版本，其中原型落在特征空间的一维或二维流形中．因为原始的高维观测可以映射到二维的坐标系统中, 所以得到的流形也被称作 <strong>约束拓扑图 (constrained topological map)</strong>．原始的 <strong>自组织图 (self-organizing maps, SOM)</strong> 算法是 online 进行的——每次处理一个观测——后来提出了批量处理的版本．这个技巧也与 <strong>主曲线和主曲面 (principal curves and surfaces)</strong> 有着密切的联系，这将在下一节中进行讨论．</p>
 <p>我们考虑 $K$ 个原型 $m_j\in \IR^p$ 的二维长方形网格的 SOM（也有其它的选择，如六边形网格）．这 $K$ 个原型用整数坐标对 $\ell_j\in\cal Q_1\times \cal Q_2$ 进行参量化．这里 $\cal Q_1=\{1,2,\ldots,q_1\}$，$\cal Q_2$ 也类似，并且 $K=q_1\cdot q_2$．举个例子， $m_j$ 初始化后落在数据的二维主平面上（下一节进行讨论）．我们可以将这些原型看成是“纽扣 (button)”，以正常的方式“缝 (sewn)”在主成分平面上．SOM 过程试图弯曲平面使得这些纽扣尽可能近似数据点．一旦模型拟合好，这些观测可以映射到二维网格中．</p>
 <p>每次处理一个观测 $x_i$．我们在 $\IR^p$ 中寻找离 $x_i$ 的欧式距离最近的原型 $m_j$，接着对于 $m_j$ 所有的邻居 $m_k$，通过下式将 $m_k$ 向 $x_i$ 移动</p>
 <p>
@@ -3358,6 +3358,11 @@ m_k\leftarrow m_k+\alpha (x_i-m_k)\tag{14.46}\label{14.46}
 </p>
 <p>$m_j$ 的邻居定义为使得 $\ell_j$ 和 $\ell_k$ 间的距离小的所有 $m_k$．最简单的方式是采用欧式距离，通过阈值 $r$ 来决定“小”．邻域经常包含最近的原型 $m_j$ 本身．</p>
 <p>注意到这里的距离是定义在原型的整数拓扑坐标 $\cal Q_1\times \cal Q_2$ 的空间中．式 \eqref{14.46} 的更新是将原型往数据点移动，但也是用来维持原型间的光滑的二维空间的关系．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>比如在“瑞士卷”流形上，三维中距离近的点并不意味着流形上距离近。因为最终是要得到低维表示，所以最近邻是定义在低维空间，而不是原始的高维空间，但是对点进行移动操作还是会回到高维空间本身。
+<img alt="" src="../../img/14/swiss_roll.png" /></p>
+</div>
 <p>SOM 算法的效果取决于学习速率 $\alpha$ 和距离阈值 $r$．一般地，$\alpha$ 随着迭代的进行 $\alpha$ 从 1.0 下降至 0.0．类似地，随着迭代的进行，$r$ 从初始值 $R$ 线性降至 1．我们将在下面的例子中阐释一种用来选择 $R$ 的方法．</p>
 <p>我们已经描述了 SOM 的最简单的版本．更加复杂的版本会根据距离来更新：</p>
 <p>
@@ -3508,7 +3513,7 @@ m_j=\frac{\sum w_kx_k}{\sum w_k}\tag{14.48}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-15 07:48:13
+        Last Build Date UTC : 2020-05-15 09:48:24
       </div>
       
         
