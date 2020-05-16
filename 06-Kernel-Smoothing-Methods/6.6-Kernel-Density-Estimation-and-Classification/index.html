@@ -3421,9 +3421,9 @@ P(X+Y\le z) = \int F(z-y)dG(y) = F*G(z)\,.
 <p>分享一篇介绍 Python 实现核密度估计的<a href="https://jakevdp.github.io/blog/2013/12/01/kernel-density-estimation/">博客</a>．</p>
 </div>
 <h2 id="_2">核密度分类<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>利用贝叶斯定理可以直接地对分类做非参数密度估计．假设对于 $J$ 分类问题，我们对每个类别单独拟合非参密度估计 $\hat f_j(X),j=1,\ldots,J$，并且我们有类别先验概率 $\hat \pi_j$ 的估计（通常是样本比例）．则
+<p>利用贝叶斯定理可以直接地对分类做非参数密度估计．假设对于 $J$ 分类问题，我们对每个类别单独拟合非参密度估计 $\hat{f_j}(X),j=1,\ldots,J$，并且我们有类别先验概率 $\hat \pi_j$ 的估计（通常是样本比例）．则
 <script type="math/tex; mode=display">
-\widehat{\Pr}(G=j\mid X=x_0)=\frac{\hat \pi_j\hat f_j(x_0)}{\sum_{k=1}^J\hat\pi_k\hat f_k(x_0)}\tag{6.25}
+\widehat{\Pr}(G=j\mid X=x_0)=\frac{\hat \pi_j\hat{f_j}(x_0)}{\sum_{k=1}^J\hat\pi_k\hat f_k(x_0)}\tag{6.25}
 </script>
 </p>
 <p>图 6.14 将这个方法应用在心脏风险因子研究中估计 CHD 的患病率中，并且应该与图 6.12 的左图进行比较．主要的差异出现在图 6.14 中右图的高 SBP 区域．这个区域中对于两个类别的数据都是稀疏的，并且因为高斯核密度估计采用度量核，所以密度估计在其他区域中效果很差（高方差）．局部逻辑斯蒂回归方法（6.20）采用 $k$-NN 带宽的三次立方核；这有效地拓宽了这个区域中的核，并且利用局部线性假设来对估计进行光滑（在逻辑斯蒂尺度上）．</p>
@@ -3569,7 +3569,7 @@ f_j(X)=\prod\limits_{k=1}^pf_{jk}(X_k)\tag{6.26}\label{6.26}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-15 15:27:34
+        Last Build Date UTC : 2020-05-16 01:02:57
       </div>
       
         

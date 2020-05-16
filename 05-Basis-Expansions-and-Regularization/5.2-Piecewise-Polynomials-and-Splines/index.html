@@ -3537,7 +3537,7 @@ f''(\xi_0) = 0\,,
 <p>因为 <code>famhist</code> 是含两个水平的因子，所以用一个二值变量或者虚拟变量来编码，而且它与拟合的模型中的单个系数有关．</p>
 <p>更简洁地，我们将 $p$ 维基函数（以及常数项）向量结合成一个向量 $h(X)$，则模型简化为 $h(X)^T\theta$，总参数个数为 $df=1+\sum_{j=1}^pdf_j$，是每个组分中参数个数的和．每个基函数在 $N$ 个样本中分别取值，得到一个 $N\times df$ 的基矩阵 $\mathbf H$．在这点上看，模型类似于其他的线性逻辑斯蒂回归模型，应用的算法在 4.4.1 节描述．</p>
 <p><img alt="" src="../../img/05/fig5.4.png" /></p>
-<p>我们采用向后逐步删除过程，从模型中删除项并且保持每个项的整体结构，而不是每次删除一个系数．AIC 统计量（7.5 节）用来删除项，并且在最后模型中保留下来的所有项如果被删掉都会导致 AIC 增大（见表 5.1）．图 5.4 显示了通过逐步回归选择出的最终模型的图象．对于每个变量 $X_j$，画出的函数是$\hat f_j(X_j)=h_j(X_j)^T\hat\theta_j$．协方差矩阵 $\Cov(\hat\theta)=\mathbf\Sigma$ 通过 $\mathbf{\hat\Sigma=(H^TWH)^{-1}}$ 来估计，其中 $\mathbf W$ 为逻辑斯蒂回归的对角元素构成的权重矩阵．因此 $v_j(X_j)=\Var[\hat f_j(X_j)]=h_j(X_j)^T\mathbf{\hat \Sigma}_{jj}h_j(X_j)$ 是 $\hat f_j$ 的逐点方差函数，其中 $\Cov(\hat\theta_j)=\hat{\mathbf\Sigma}_{jj}$ 是 $\hat{\mathbf\Sigma}$ 对应的子矩阵．图 5.4 中每张图的阴影区域由 $\hat f_j(X_j)\pm2\sqrt{v_j(X_j)}$ 定义．</p>
+<p>我们采用向后逐步删除过程，从模型中删除项并且保持每个项的整体结构，而不是每次删除一个系数．AIC 统计量（7.5 节）用来删除项，并且在最后模型中保留下来的所有项如果被删掉都会导致 AIC 增大（见表 5.1）．图 5.4 显示了通过逐步回归选择出的最终模型的图象．对于每个变量 $X_j$，画出的函数是$\hat{f_j}(X_j)=h_j(X_j)^T\hat\theta_j$．协方差矩阵 $\Cov(\hat\theta)=\mathbf\Sigma$ 通过 $\mathbf{\hat\Sigma=(H^TWH)^{-1}}$ 来估计，其中 $\mathbf W$ 为逻辑斯蒂回归的对角元素构成的权重矩阵．因此 $v_j(X_j)=\Var[\hat{f_j}(X_j)]=h_j(X_j)^T\mathbf{\hat \Sigma}_{jj}h_j(X_j)$ 是 $\hat{f_j}$ 的逐点方差函数，其中 $\Cov(\hat\theta_j)=\hat{\mathbf\Sigma}_{jj}$ 是 $\hat{\mathbf\Sigma}$ 对应的子矩阵．图 5.4 中每张图的阴影区域由 $\hat{f_j}(X_j)\pm2\sqrt{v_j(X_j)}$ 定义．</p>
 <p>AIC统计量比似然比检验（偏差检验）更“宽容”（generous）．<code>sbp</code>和<code>obesity</code>都被包含进模型中，而这两个量都不在线性模型中．图象解释了为什么它们的贡献本质上是非线性．这些影响乍看或许很奇怪，但这因为是回顾性数据的本质．这些指标有时是当病人患上心脏病后测出来的，而且在很多情形下他们已经受益于健康饮食和生活状态，因此在<code>obesity</code>和<code>sbp</code>值较低时会有明显的增长．表5.1总结了部分模型的效果．</p>
 <p><img alt="" src="../../img/05/tab5.1.png" /></p>
 <h2 id="_3">例子：音素识别<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -3679,7 +3679,7 @@ h_1(f_p)&h_2(f_p)&\ldots&h_M(f_p)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-15 15:27:33
+        Last Build Date UTC : 2020-05-16 01:02:57
       </div>
       
         
