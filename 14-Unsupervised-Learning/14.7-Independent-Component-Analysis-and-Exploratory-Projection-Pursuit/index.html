@@ -3718,7 +3718,7 @@ f_j(s_j)=\phi(s_j)e^{g_j(s_j)}\tag{14.89}\label{14.89}
 <p>
 <script type="math/tex; mode=display">
 \sum\limits_{j=1}^p\Big[
-\frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
+\frac 1N \sum_{i=1}^N[\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)] - 
 \int \phi(t)e^{g_j(t)}dt - 
 \lambda_j\int\{g_j^{(3)}\}^2(t)dt
 \Big]\tag{14.91}\label{14.91}
@@ -3763,7 +3763,7 @@ RSS(f,\lambda)=\sum\limits_{i=1}^N\{y_i-f(x_i)\}^2+\lambda\int \{f''(t)\}^2dt\ta
 <p>第 2(a) 步等价于半参密度估计，可以采用广义可加模型来求解．为了方便，我们取 $p$ 个独立问题中的一个</p>
 <p>
 <script type="math/tex; mode=display">
-\frac 1N \sum\limits{\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)} - 
+\frac 1N \sum_{i=1}^N[\LOG \phi(a_j^Tx_i) + g_j(a_j^Tx_i)] - 
 \int \phi(t)e^{g_j(t)}dt - 
 \lambda_j\int\{g_j^{(3)}\}^2(t)dt\tag{14.92}\label{14.92}
 </script>
@@ -3975,7 +3975,7 @@ d(\A_0, \A)=\frac{1}{2p}\sum_{i=1}^p\Big(\frac{\sum_{j=1}^p\vert r_{ij}\vert}{\m
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-17 07:23:36
+        Last Build Date UTC : 2020-05-17 07:28:33
       </div>
       
         
