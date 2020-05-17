@@ -3815,6 +3815,10 @@ a_j\leftarrow \E\{X\hat g_j'(a_j^TX)-\E[\hat g_j^{(2)}(a_j^TX)]a_j\}\tag{14.96}
 其中 $\E$ 表示关于 $x_i$ 的期望．因为 $\hat g_j$ 是拟合的四次（或者三次）样条，则式中第一项和第二项已经计算好了．</li>
 <li>采用对称平方根变换将 $\A$ 化为正交矩阵：$(\A\A^T)^{-\frac 12}\A$．如果 $\A=\U\D\V^T$ 是 $\A$ 的 SVD 分解，则易证 $\A\leftarrow \U\V^T$．</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Ex. 14.20</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/56">Issue 56: Ex. 14.20</a>. </p>
+</div>
 <p>我们的 <code>ProDenICA</code> 算法和 <code>FastICA</code> 算法在图 14.37 中的模拟时间序列数据、图 14.38 的均匀分布数据的混合以及图 14.39 中的数字数据都表现得一样好．</p>
 <h3 id="_7">例子：模拟<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p><img alt="" src="../../img/14/fig14.42.png" /></p>
@@ -3980,7 +3984,7 @@ d(\A_0, \A)=\frac{1}{2p}\sum_{i=1}^p\Big(\frac{\sum_{j=1}^p\vert r_{ij}\vert}{\m
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-17 07:40:39
+        Last Build Date UTC : 2020-05-17 08:53:12
       </div>
       
         
