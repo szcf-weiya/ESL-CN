@@ -3786,7 +3786,12 @@ y_\ell^*[\log(\phi(s_\ell^*)) + g(s_\ell^*)]-\Delta\phi(s_\ell^*)e^{g(s_\ell^*)}
 <p class="admonition-title">weiya 注：翻译相关</p>
 <p>原文 $y$ 的脚标是 $i$，但应该是个 typo，应为 $\ell$.</p>
 </div>
-<p>这个表达是可以看成是与惩罚的 possion 对数似然成比例，其中响应变量为 $y_\ell^*/\Delta$，惩罚参数为 $\lambda/\Delta$，均值为 $\mu(s)=\phi(s)e^{g(s)}$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/54">Issue 54</a>）．这是一个 <strong>广义可加样条模型 (generalized additive spline model)</strong>(Hastie and Tibshirani, 1990<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>; Efron and Tibshirani, 1996<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>)，其中的 offset 项为 $\log \phi(s)$， 并且可以以 $O(L)$ 的复杂度用牛顿算法进行拟合．尽管要求四次样条，但是实际中我们发现三次样条就足够了．我们有 $p$ 个调整参数 $\lambda_j$ 需要设定，在实际中我们使得它们相等，然后通过有效自由度 $\df(\lambda)$ 来确定光滑的程度．我们的软件采用 $5\df$ 作为默认值．</p>
+<p>这个表达是可以看成是与惩罚的 Poisson 对数似然成比例，其中响应变量为 $y_\ell^*/\Delta$，惩罚参数为 $\lambda/\Delta$，均值为 $\mu(s)=\phi(s)e^{g(s)}$．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Poisson 对数似然</p>
+<p>有关讨论详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/54">Issue 54</a></p>
+</div>
+<p>这是一个 <strong>广义可加样条模型 (generalized additive spline model)</strong>(Hastie and Tibshirani, 1990<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>; Efron and Tibshirani, 1996<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>)，其中的 offset 项为 $\log \phi(s)$， 并且可以以 $O(L)$ 的复杂度用牛顿算法进行拟合．尽管要求四次样条，但是实际中我们发现三次样条就足够了．我们有 $p$ 个调整参数 $\lambda_j$ 需要设定，在实际中我们使得它们相等，然后通过有效自由度 $\df(\lambda)$ 来确定光滑的程度．我们的软件采用 $5\df$ 作为默认值．</p>
 <p>算法 14.3 的 2(b) 要求在给定 $\hat g_j$，对 $\A$ 进行优化．和式中仅仅第一项有涉及 $\A$，并且因为 $\A$ 是正交的，则涉及 $\phi$ 的所有项的集合不依赖 $\A$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/55">练习 14.19</a>）．因此我们需要最大化</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3970,7 +3975,7 @@ d(\A_0, \A)=\frac{1}{2p}\sum_{i=1}^p\Big(\frac{\sum_{j=1}^p\vert r_{ij}\vert}{\m
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-17 06:19:11
+        Last Build Date UTC : 2020-05-17 07:23:36
       </div>
       
         
