@@ -3369,7 +3369,7 @@
 作为回归函数 $\E(Y\mid X=x)$ 的估计．这里 $N_k(x)$ 为在平方距离下，离 $x$ 最近的 $k$ 个点的集合，并且 $\mathrm{Ave}$ 记为平均（均值）．这个想法是松弛条件期望的定义，正如图 6.1 的左图所示一样，并且计算目标点邻域的平均．这种情形下我们采用 30-最近邻—— $x_0$ 处的拟合值为离 $x_0$ 最近的 30 个点的平均．在不同的 $x_0$ 处应用这个定义则得到绿色曲线．绿色曲线是颠簸不平的，因为 $\hat f(x)$ 在 $x$ 处不连续．当我们将 $x_0$ 从左移到右，$k$ 最近邻保持一致，直到 $x_0$ 右侧的点 $x_i$ 变得比 $x_0$ 左侧的邻域的最远点 $x_i&rsquo;$ 更近，这时 $x_i$ 换成 $x_i&rsquo;$．\eqref{6.1} 的平均以离散的方式变换，得到离散的 $\hat f(x)$．</p>
 <p><img alt="" src="../../img/06/fig6.1.png" /></p>
 <blockquote>
-<p>图6.1. 每张图中从蓝色曲线加上高斯误差中随机产生100个数据对$x_i,y_i$：$Y=sin(4X)+\varepsilon,X\sim U[0,1],\varepsilon\sim N(0,1/3)$．左图的绿色曲线是30-最近邻滑动均值光滑器的结果．红色点是拟合的常数值$\hat f(x_0)$，红色圆圈表明对$x_0$处拟合有贡献的观测．实心黄色区域为赋予给观测的权重．右图中，绿色曲线是核权重平均，采用（半）窗宽度$\lambda=0.2$的Epanechnikov核．</p>
+<p>图6.1. 每张图中从蓝色曲线加上高斯误差中随机产生100个数据对 $x_i,y_i$：$Y=\sin(4X)+\varepsilon,X\sim U[0,1],\varepsilon\sim N(0,1/3)$．左图的绿色曲线是 30-最近邻滑动均值光滑器的结果．红色点是拟合的常数值 $\hat f(x_0)$，红色圆圈表明对 $x_0$ 处拟合有贡献的观测．实心黄色区域为赋予给观测的权重．右图中，绿色曲线是核权重平均，采用（半）窗宽度 $\lambda=0.2$ 的 Epanechnikov 核．</p>
 </blockquote>
 <p>不连续是不好看并且不必要的．与其对邻域中的点赋予相等的权重，我们可以分配权重，使其随着与目标点的距离平滑降低．右图显示了这样的一个例子，使用被称作 Nadaraya–Watson 的核权重平均
 <script type="math/tex; mode=display">
@@ -3436,7 +3436,7 @@ K_\lambda(x_0,x)=D\left(\frac{\vert x-x_0\vert}{h_\lambda(x_0)}\right)\tag{6.5}
 </ul>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p><strong>紧核 (compact kernel)</strong> 应该是指支撑集为紧集的核．</p>
+<p><strong>紧核 (compact kernel)</strong> 应该是指支撑集为紧集的核．紧集或者紧致性的直观解释可以参见 <a href="https://www.zhihu.com/question/31734712/answer/72390708">如何直观地解释「紧致性」？ - 包遵信的回答 - 知乎</a>.</p>
 </div>
 <p><img alt="" src="../../img/06/fig6.2.png" /></p>
 <blockquote>
@@ -3448,6 +3448,10 @@ K_\lambda(x_0,x)=D\left(\frac{\vert x-x_0\vert}{h_\lambda(x_0)}\right)\tag{6.5}
 <blockquote>
 <p>图 6.3. 局部加权平均在定义域边界处或附近有着偏差问题．真实的函数在这里近似线性，但是邻域中大部分观测比目标点有更高的均值，所以尽管进行了加权，但是它们的均值将会向上偏．通过拟合局部的加权线性回归（右），这个偏差会降到一阶．</p>
 </blockquote>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：不对称性</p>
+<p>注意图中黄色阴影区域只有图 6.1 中右图的一半，对应的高度表示赋予给观测的权重。</p>
+</div>
 <p>局部加权回归解决了在每个目标点处独立的加权最小二乘问题：</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3469,7 +3473,7 @@ K_\lambda(x_0,x)=D\left(\frac{\vert x-x_0\vert}{h_\lambda(x_0)}\right)\tag{6.5}
 <p><strong>广义最小二乘估计 (GLSE)</strong>
 线性模型为
 <script type="math/tex; mode=display">
-\mathbf{Y=X}\beta+e,\; E(e)=0,\; Cov(e)=\sigma^2\mathbf\Sigma
+\mathbf{Y=X}\beta+e,\; \E(e)=0,\; \Cov(e)=\sigma^2\mathbf\Sigma
 </script>
 $\beta$ 估计为
 <script type="math/tex; mode=display">
@@ -3501,7 +3505,7 @@ $\beta$ 估计为
 </div>
 <p><img alt="" src="../../img/06/fig6.4.png" /></p>
 <blockquote>
-<p>图 6.4. 绿色点显示了局部回归的等价核．这是 $\hat f(x_0)=\sum_{i=1}^Nl_i(x_0)y_i$ 中的系数，是关于对应 $x_i$ 的图像．为了展示的目的，这些已经进行了缩放，因为实际上它们相加等于 1．因为黄色阴影区域是Nadaraya–Watson 局部平均的（缩放的）等价核，所以我们看到局部回归是怎样自动修改权重核来纠正由于光滑窗口的不对称窗口的偏差．</p>
+<p>图 6.4. 绿色点显示了局部回归的等价核．这是 $\hat f(x_0)=\sum_{i=1}^Nl_i(x_0)y_i$ 中的系数，是关于对应 $x_i$ 的图像．为了展示的目的，这些已经进行了缩放，因为实际上它们相加等于 1．因为黄色阴影区域是 Nadaraya–Watson 局部平均的（缩放的）等价核，所以我们看到局部回归是怎样自动修改权重核来纠正由于光滑窗口的不对称窗口的偏差．</p>
 </blockquote>
 <h2 id="_2">局部多项式回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>为什么止步于局部线性拟合处？其实我们可以拟合任意阶 $d$ 的局部多项式拟合，
@@ -3521,7 +3525,7 @@ $\beta$ 估计为
 </ul>
 <p><img alt="" src="../../img/06/fig6.6.png" /></p>
 <blockquote>
-<p>图 6.6. 对于度量窗口宽度（$\lambda=0.2$）的三次立方核方差函数 $\Vert l(x)\Vert^2$，局部常值，线性和方差回归的方差函数 $\Vert l(x)\Vert^2$．</p>
+<p>图 6.6. 对于度量窗口宽度（$\lambda=0.2$）的三次立方核方差函数 $\Vert l(x)\Vert^2$，局部常值，线性和二次回归的方差函数 $\Vert l(x)\Vert^2$．</p>
 </blockquote>
 <p>尽管这对修补可能会有帮助，在边界处采用局部线性拟合然后在内部采用局部二次拟合，但是我们不推荐这种策略．通常具体的应用规定了拟合的阶数．举个例子，如果我们关心 <strong>向外推断 (extrapolation)</strong>，则我们对边界更感兴趣，此时局部线性拟合或许更可靠．</p>
                 
@@ -3614,7 +3618,7 @@ $\beta$ 估计为
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-17 08:53:08
+        Last Build Date UTC : 2020-05-22 14:59:02
       </div>
       
         
