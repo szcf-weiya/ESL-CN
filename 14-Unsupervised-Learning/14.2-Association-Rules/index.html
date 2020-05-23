@@ -3608,7 +3608,7 @@ T(A\Rightarrow B)>t\qquad and\qquad C(A\Rightarrow B)>c
 <p>可以通过将下面的混合样本作为训练数据，然后采用监督学习的方法来估计</p>
 <p>
 <script type="math/tex; mode=display">
-(y_1,x_1),(y_2,x_2),\ldots,(y_{N+N_0},x_{N+N_0})\tag{14.11}
+(y_1,x_1),(y_2,x_2),\ldots,(y_{N+N_0},x_{N+N_0})\tag{14.11}\label{14.11}
 </script>
 </p>
 <p>估计的结果 $\hat \mu(x)$ 可以反解得 $g(x)$ 的估计</p>
@@ -3647,27 +3647,32 @@ g_0(x)=\prod\limits_{j=1}^pg_j(x_j)\tag{14.15}\label{14.15}
 </div>
 <p>正如上面讨论的那样，非监督学习关心揭示数据密度 $g(x)$ 的性质．每个技巧关注于特定的性质或者某些性质．尽管这种将问题转换为监督学习的方式 \eqref{14.10}-\eqref{14.14} 看起来在一段时间内成为<strong>统计民俗学 (statistics folklore)</strong> 的一部分，但它似乎没有太大的影响，尽管它有将已经研究透彻的监督学习方法应用到非监督学习的潜力．其中一个原因可能是这个问题必须要用蒙特卡洛技巧产生的模拟数据来扩大．因为数据集的大小至少和数据样本一样大 $N_0\ge N$，这个估计过程的计算和内存上的要求至少双倍．另外，产生蒙特卡洛样本本身可能需要大量的计算．尽管在过去这是一个限制，但是这增加的计算需求不再成为一个负担，因为增加的资源也变成了可能．我们将在下一节说明在非监督学习中监督学习方法的使用．</p>
 <h2 id="_4">广义关联规则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>在数据空间中寻找高密度区域的更一般问题 (14.2) 可以通过使用上面描述的监督学习的方法来解决．尽管不能应用对市场篮子分析可行的大数据库，但可以从适当大小的数据集中得到有用的信息．问题 (14.2) 可以用公式叙述为，寻找整数子集 $\cal J\subset{1,2,\ldots,p}$ 和与对应的变量 $X_j$ 对应的子集 $s_j,j\in \cal J$ 使得下式的值大．</p>
+<p>在数据空间中寻找高密度区域的更一般问题 \eqref{14.2} 可以通过使用上面描述的监督学习的方法来解决．尽管不能应用对市场篮子分析可行的大数据库，但可以从适当大小的数据集中得到有用的信息．问题 \eqref{14.2} 可以用公式叙述为，寻找整数子集 $\cal J\subset\{1,2,\ldots,p\}$ 和与对应的变量 $X_j$ 对应的子集 $s_j,j\in \cal J$ 使得下式的值大．</p>
 <p>
 <script type="math/tex; mode=display">
-\widehat{\Pr}\Big(\bigcap_{j\in\cal J}(X_j\in s_j)\Big) = \frac{1}{N}\sum\limits_{i=1}^NI\Big(\bigcap_{j\in\cal J}(x_{ij}\in s_j)\Big)\tag{14.16}
+\widehat{\Pr}\Big(\bigcap_{j\in\cal J}(X_j\in s_j)\Big) = \frac{1}{N}\sum\limits_{i=1}^NI\Big(\bigcap_{j\in\cal J}(x_{ij}\in s_j)\Big)\tag{14.16}\label{14.16}
 </script>
 </p>
-<p>根据关联规则的数据，$\{(X_j\in s_j)\}_{i\in \cal J}$ 将被称为“广义”项目集．对应定量变量的子集 $s_j$ 取为在它们值域中的邻接区间，对于类别型变量的子集可以涉及不止一个单值．这种方法的这条“野心的 (ambitious)” 性质阻碍了对所有广义项目集的全面搜索，来寻找式 (14.16) 大于特定最小值的支撑．必须用到启发式搜索算法，而且最希望有个寻找这样广义项目集的集合．</p>
-<p>市场篮子分析 (14.5) 和广义公式 (14.16) 都隐式地引用均匀概率分布．如果所有的联合数据值 $(x_1,x_2,\ldots,x_N)$ 都是均匀分布的，则寻找比期望更频繁的项目集．这有助于寻找单个边缘组分 $(X_j\in s_j)$ 是频繁的项目集，也就是，下式的值大．
+<p>根据关联规则的数据，$\{(X_j\in s_j)\}_{i\in \cal J}$ 将被称为“广义”项目集．对于定量变量的子集 $s_j$ 取为在它们值域中的邻接区间，对于类别型变量的子集可以涉及不止一个单值．这种方法的这条“野心的 (ambitious)” 性质阻碍了对所有广义项目集的全面搜索，来寻找式 \eqref{14.16} 大于特定最小值的支撑．必须用到启发式搜索算法，而且最希望有个寻找这样广义项目集的集合．</p>
+<p>市场篮子分析 \eqref{14.5} 和广义公式 \eqref{14.16} 都隐式地引用均匀概率分布．如果所有的联合数据值 $(x_1,x_2,\ldots,x_N)$ 都是均匀分布的，则寻找比期望更频繁的项目集．这有助于寻找单个边缘组分 $(X_j\in s_j)$ 是频繁的项目集，也就是，下式的值大．
 <script type="math/tex; mode=display">
-\frac{1}{N}I(x_{ij}\in s_j)\tag{14.17}
+\frac{1}{N}\sum_{i=1}^NI(x_{ij}\in s_j)\tag{14.17}\label{14.17}
 </script>
 </p>
-<p>频繁子集 (14.17) 的联合在高支撑的项目集（14.16）中趋向于比不频繁子集的联合更经常出现．这也就是为什么尽管高关联（lift）的规则 <code>vodka</code>$\Rightarrow$<code>caviar</code> 不可能被发现；因为没有一项含有高的边缘支撑，所以它们的联合支撑特别地小．引用均匀分布可以得出高频率项目集，其组成部分之间具有低关联性，以支配最高支撑项目集合的集合．</p>
-<p>高频率子集 $s_j$ 形成为最频繁的 $X_j$ 值的分离．采用变量边缘数据密度的积（14.15）作为参考分布，移除了在已发现项目集中单个变量的高频值的偏好．这是因为不管单个变量值的频率分布，如果变量中没有关联（完全独立），密度比率 $g(x)/g_0(x)$ 是均匀的．像 <code>vodka</code>$\Rightarrow$<code>caviar</code> 的规则会有机会进行合并．然而，怎样将参考分布而不是均匀分布纳入进 Apriori 算法中是不清晰的．正如在14.2.4节中解释的那样，给定原始数据集，从积密度（14.15）中产生样本是直接的．</p>
-<p>选择完参考分布后，并且根据它抽取样本，如 (14.11)，则得到一个关于二值输出变量 $Y\in\{0,1\}$ 的监督学习问题．目标是利用这些数据去寻找区域</p>
+<p>频繁子集 \eqref{14.17} 的联合在高支撑的项目集 \eqref{14.16} 中趋向于比不频繁子集的联合更经常出现．这也就是为什么尽管高关联（lift）的规则 <code>vodka</code>$\Rightarrow$<code>caviar</code> 不可能被发现；因为没有一项含有高的边缘支撑，所以它们的联合支撑特别地小．引用均匀分布可以得出高频率项目集，其组成部分之间具有低关联性，在最高支撑项目集的集合中占主导优势．</p>
+<p>高频率子集 $s_j$ 由最频繁的 $X_j$ 值的 <strong>分裂点 (disjunction)</strong> 构成．</p>
+<div class="admonition question">
+<p class="admonition-title">weiya 注：disjunction</p>
+<p>怎么理解？</p>
+</div>
+<p>采用变量边缘数据密度的积 \eqref{14.15} 作为参考分布，移除了对在已发现项目集中单个变量的高频值的偏好．这是因为不管单个变量值的频率分布，如果变量中没有关联（完全独立），密度比率 $g(x)/g_0(x)$ 是均匀的．像 <code>vodka</code>$\Rightarrow$<code>caviar</code> 的规则会有机会进行合并．然而，怎样将参考分布而不是均匀分布纳入进 Apriori 算法中是不清晰的．正如在 <a href="">14.2.4 节</a>中解释的那样，给定原始数据集，从积密度 \eqref{14.15} 中产生样本是直接的．</p>
+<p>选择完参考分布后，并且根据它抽取样本，如 \eqref{14.11}，则得到一个关于二值输出变量 $Y\in\{0,1\}$ 的监督学习问题．目标是利用这些数据去寻找区域</p>
 <p>
 <script type="math/tex; mode=display">
-R=\bigcup_{j\in \cal J}(X_j\in s_j)\tag{14.18}
+R=\bigcup_{j\in \cal J}(X_j\in s_j)\tag{14.18}\label{14.18}
 </script>
 </p>
-<p>使得目标函数 $\mu(x)=E(Y\mid x)$ 相对地大．另外，可能希望要求这些区域的数据支撑</p>
+<p>使得目标函数 $\mu(x)=\E(Y\mid x)$ 相对地大．另外，可能希望要求这些区域的数据支撑</p>
 <p>
 <script type="math/tex; mode=display">
 T(R)=\int_{x\in R}g(x)dx\tag{14.19}
@@ -3675,16 +3680,16 @@ T(R)=\int_{x\in R}g(x)dx\tag{14.19}
 </p>
 <p>不要太小．</p>
 <h2 id="_5">监督学习方法的选择<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>区域 (14.18) 由联合规则定义．因此在这种情形下学习这些规则的监督学习方法会是最合适的．CART 决策树的终止结点由形式为(14.18) 的规则精确定义．对混合数据 (14.11) 应用 CART 会得到决策树，决策树试图在整个数据空间用不相交的区域集合对目标 (14.10) 建模．每个区域由形式为（14.18）中的一条规则而定义．这些有较高 $y$ 平均值
+<p>区域 \eqref{14.18} 由联合规则定义．因此在这种情形下学习这些规则的监督学习方法会是最合适的．CART 决策树的终止结点由形式为 \eqref{14.18} 的规则精确定义．对混合数据 \eqref{14.11} 应用 CART 会得到决策树，决策树试图在整个数据空间用不相交的区域集合对目标 \eqref{14.10} 建模．每个区域由形式为\eqref{14.18} 中的一条规则而定义．这些有较高 $y$ 平均值
 <script type="math/tex; mode=display">
 \bar y_t=\text{ave}(y_i\mid x_i\in t)
 </script>
-是高支撑广义项目集（14.16）的候选者．实际的（数据）支撑由下式给出
+是高支撑广义项目集 \eqref{14.16} 的候选者．实际的（数据）支撑由下式给出
 <script type="math/tex; mode=display">
 T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
 </script>
 其中 $N_t$ 是由终止结点表示的区域中（混合）观测的个数．通过检查得到的决策树，可能会发现相对高支撑的感兴趣的项目集．这些可以分化出在搜寻高置信度和/或 lift 的广义关联规则中的 antecedent 和 consequent．</p>
-<p>用于这个目的的另外一种自然学习的方法是在<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html">第 9.3 节</a>描述的<strong>耐心规则诱导法 (PRIM)</strong>，它也产生了形为 (14.18) 的精确规则，但是它是特别为寻找高支撑区域来在其中最大化目标 (14.10) 的平均值而设计的，而不是试图用在整个数据空间中建立目标函数的模型．它也控制了在支撑/平均目标值之间权衡．</p>
+<p>用于这个目的的另外一种自然学习的方法是在<a href="../../09-Additive-Models-Trees-and-Related-Methods/9.2-Tree-Based-Methods/index.html">第 9.3 节</a>描述的<strong>耐心规则诱导法 (PRIM)</strong>，它也产生了形为 \eqref{14.18} 的精确规则，但是它是特别为寻找高支撑区域来在其中最大化目标 \eqref{14.10} 的平均值而设计的，而不是试图用在整个数据空间中建立目标函数的模型．它也控制了在支撑/平均目标值之间权衡．</p>
 <p><a href="https://github.com/szcf-weiya/ESL-CN/issues/94">练习 14.3</a> 提出一个问题，问题产生于任何一种方法从边缘分布的积中生成随机数据的时候．</p>
 <h2 id="_6">例子：市场篮子分析（继续）<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>我们在表 14.1 的人口统计数据的基础上说明 PRIM 的用法．</p>
@@ -3696,7 +3701,7 @@ T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
 <p><img alt="" src="../../img/14/is2.png" /></p>
 <p>项目集 3：支撑 = 15%</p>
 <p><img alt="" src="../../img/14/is3.png" /></p>
-<p>从这些项目集中以大于 95% 的置信度 (14.8) 导出广义关联规则如下：</p>
+<p>从这些项目集中以大于 95% 的置信度 \eqref{14.8} 导出广义关联规则如下：</p>
 <p>关联规则1：支撑 25%，置信度 99.7%，以及 lift 1.35
 <img alt="" src="../../img/14/p500ar1.png" />
 关联规则2：支撑 25%，置信度 98.7%，以及 lift 1.97
@@ -3811,7 +3816,7 @@ T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-23 10:49:58
+        Last Build Date UTC : 2020-05-23 11:47:00
       </div>
       
         
