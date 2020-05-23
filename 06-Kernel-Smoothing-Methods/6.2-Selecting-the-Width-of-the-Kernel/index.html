@@ -3307,7 +3307,18 @@
 <li>如果窗口较宽，$\hat f(x_0)$ 的方差相对于任意 $y_i$ 的方差较小，这是因为平均的效应．偏差会较高，因为我们现在采用的是与 $x_0$ 离得较远的观测 $x_i$，而且不保证 $f(x_i)$ 离 $f(x_0)$ 较近．</li>
 </ul>
 <p>相似的结论可以应用到局部回归估计，比如局部线性：当宽度趋于 $0$，估计量则近似为对训练数据插值得到的分段线性函数；当宽度趋于无穷大，则拟合值近似为对数据的整体最小二乘拟合．</p>
-<p>这里应用<a href="../../05-Basis-Expansions-and-Regularization/5.1-Introduction/index.html">第五章</a>中选择光滑样条的正规化参数的讨论．局部回归光滑器是线性估计器；$\mathbf{\hat f=S_\lambda y}$ 中的光滑矩阵由等价核 (6.8) 构成，并且第 $ij$ 个元素值为 ${\mathbf S_\lambda}_{ij}=l_{i}(x_{j})$．舍一法交叉验证特别地简单（<a href="https://github.com/szcf-weiya/ESL-CN/issues/150">练习 6.7</a>），广义交叉验证，$C_p$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/151">练习 6.10</a>），以及 $k$ 折交叉验证也很简单．有效自由度再一次定义为 $\trace(\mathbf S_\lambda)$，并且可以用来校准光滑的程度．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Recall</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat f(x_0)&= b(x_0)^T(\mathbf {B^TW}(x_0)\mathbf B)^{-1}\mathbf B^T\mathbf W(x_0)\mathbf y\tag{6.8}\label{6.8}\\
+&=\sum\limits_{i=1}^Nl_i(x_0)y_i\tag{6.9}\label{6.9}
+\end{align}
+</script>
+</p>
+</div>
+<p>这里应用<a href="../../05-Basis-Expansions-and-Regularization/5.1-Introduction/index.html">第五章</a>中选择光滑样条的正规化参数的讨论．局部回归光滑器是线性估计器；$\mathbf{\hat f=S_\lambda y}$ 中的光滑矩阵由等价核 \eqref{6.8} 构成，并且第 $ij$ 个元素值为 ${\mathbf S_\lambda}_{ij}=l_{i}(x_{j})$．舍一法交叉验证特别地简单（<a href="https://github.com/szcf-weiya/ESL-CN/issues/150">练习 6.7</a>），广义交叉验证，$C_p$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/151">练习 6.10</a>），以及 $k$ 折交叉验证也很简单．有效自由度再一次定义为 $\trace(\mathbf S_\lambda)$，并且可以用来校准光滑的程度．</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 6.7</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/150">Issue 150: Ex. 6.7</a>.</p>
@@ -3407,7 +3418,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-23 06:41:59
+        Last Build Date UTC : 2020-05-23 07:24:43
       </div>
       
         
