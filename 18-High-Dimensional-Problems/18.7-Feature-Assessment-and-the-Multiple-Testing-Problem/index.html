@@ -3435,6 +3435,15 @@ H_{1j} = \text{治疗对基因 }j\text{ 有作用}\\
 </div>
 <p>在我们的例子中，如果在 $\alpha=0.05$ 水平下检验，则我们需要采用的阈值为 $0.05/12625=3.9\times 10^{-6}$．在 12625 个基因的 $p$ 值中没有比这还小．</p>
 <p>有许多对该方法的变形，通过调整单个 $p$ 值使得 FWER 至多为 $\alpha$，一些方法避免了对独立性的假设，比如，Dudoit et al. (2002b)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Holm&rsquo;s procedure</p>
+<p>Efron, B., &amp; Hastie, T. (2016). Computer Age Statistical Inference. Cambridge University Press, 493. 介绍了一种可以改善 Bonferroni 方法的策略，</p>
+<ol>
+<li>将 $p$ 值从小到大排序， $p_{(1)} &lt; p_{(2)} &lt; \cdots &lt; p_{(N)}$</li>
+<li>找出最小的指标 $i_0$ 满足 $p_{(i)} &gt; \alpha / (N-i+1)$</li>
+<li>则拒绝所有小于 $i &lt; i_0$ 对应的零假设，而接受所有 $i \ge i_0$ 的零假设。 </li>
+</ol>
+</div>
 <h2 id="fdr">FDR<a class="headerlink" href="#fdr" title="Permanent link">&para;</a></h2>
 <p>多重检验的另一种不同的方式不是试图控制 FWER，而是关注假阳性基因的比例．正如我们将要看到的，这个方法在实际中有很强的吸引力．</p>
 <p>表 18.5 总结了 $M$ 个假设检验的理论结果．注意到 FWER 为 $\Pr(V\ge 1)$．</p>
@@ -3654,7 +3663,7 @@ t_j\sim\pi_0\cdot F_0+(1-\pi_0)\cdot F_1\tag{18.52}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-24 04:10:37
+        Last Build Date UTC : 2020-05-24 04:19:57
       </div>
       
         
