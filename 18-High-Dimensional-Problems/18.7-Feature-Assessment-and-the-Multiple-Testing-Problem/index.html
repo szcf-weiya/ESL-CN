@@ -3427,8 +3427,12 @@ H_{1j} = \text{治疗对基因 }j\text{ 有作用}\\
 </script>
 </p>
 <p>如果 $p_j&lt;\alpha$，我们在 $\alpha$ 的水平下拒绝 $H_{0j}$．这个检验的第一类错误等于 $\alpha$，也就是，错误拒绝 $H_{0j}$ 的概率为 $\alpha$.</p>
-<p>现在考虑更多的检验，我们应该采用什么作为误差的整体衡量不是很清楚．令 $A_j$ 为 $H_{0j}$ 被错误拒绝的事件，由定义知 $\Pr(A_j)=\alpha$．FWER(family-wise error rate) 是至少存在一个被错误拒绝的概率，并且经常用它作为整体错误的衡量．具体地，如果 $A=\cup_{j=1}^MA_j$ 是至少有一个被错误拒绝的事件，于是 FWER 为 $\Pr(A)$．一般地，对于较大的 $M$，$\Pr(A)&gt;&gt;\alpha$，并且取决于检验之间的相关性．如果检验之间互相独立，且第一类错误概率为 $\alpha$，则 FWER 为 $(1-(1-\alpha)^M)$．另一方面，如果检验之间有正依赖，即 $\Pr(A_j\mid A_k)&gt;\Pr(A_j)$，则 FWER 会小于 $(1-(1-\alpha)^M)$．测试之间的正依赖在实际中经常发生，特别是基因研究中．</p>
-<p>做多重检验的一个很简单的方式是 Bonferroni 方法．它让每个个体的检验更加严格，使得 FWER 至多等于 $\alpha$: 如果 $p_j&lt;\alpha/M$， 我们拒绝 $H_{0j}$．可以很简单地证明这会使得 FWER $\le\alpha$．Bonferroni 方法在 $M$ 相对较小的情形下有用，但是对于大的 $M$ 则太过保守，也就是，得到的显著基因数目过少．</p>
+<p>现在考虑更多的检验，我们应该采用什么作为误差的整体衡量不是很清楚．令 $A_j$ 为 $H_{0j}$ 被错误拒绝的事件，由定义知 $\Pr(A_j)=\alpha$．<strong>FWER(family-wise error rate)</strong> 是至少存在一个被错误拒绝的概率，并且经常用它作为整体错误的衡量．具体地，如果 $A=\cup_{j=1}^MA_j$ 是至少有一个被错误拒绝的事件，于是 FWER 为 $\Pr(A)$．一般地，对于较大的 $M$，$\Pr(A) &gt; &gt; \alpha$，并且取决于检验之间的相关性．如果检验之间互相独立，且第一类错误概率为 $\alpha$，则 FWER 为 $(1-(1-\alpha)^M)$．另一方面，如果检验之间有正依赖，即 $\Pr(A_j\mid A_k)&gt;\Pr(A_j)$，则 FWER 会小于 $(1-(1-\alpha)^M)$．测试之间的正依赖在实际中经常发生，特别是基因研究中．</p>
+<p>做多重检验的一个很简单的方式是 Bonferroni 方法．它让每个个体的检验更加严格，使得 FWER 至多等于 $\alpha$: 如果 $p_j&lt;\alpha/M$， 我们拒绝 $H_{0j}$．可以很简单地证明这会使得 FWER $\le\alpha$（练习 <a href="https://github.com/szcf-weiya/ESL-CN/issues/228">18.16</a>）．Bonferroni 方法在 $M$ 相对较小的情形下有用，但是对于大的 $M$ 则太过保守，也就是，得到的显著基因数目过少．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 18.16</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/228">Issue 228: Ex. 18.16</a></p>
+</div>
 <p>在我们的例子中，如果在 $\alpha=0.05$ 水平下检验，则我们需要采用的阈值为 $0.05/12625=3.9\times 10^{-6}$．在 12625 个基因的 $p$ 值中没有比这还小．</p>
 <p>有许多对该方法的变形，通过调整单个 $p$ 值使得 FWER 至多为 $\alpha$，一些方法避免了对独立性的假设，比如，Dudoit et al. (2002b)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>．</p>
 <h2 id="fdr">FDR<a class="headerlink" href="#fdr" title="Permanent link">&para;</a></h2>
@@ -3650,7 +3654,7 @@ t_j\sim\pi_0\cdot F_0+(1-\pi_0)\cdot F_1\tag{18.52}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-24 03:06:14
+        Last Build Date UTC : 2020-05-24 04:10:37
       </div>
       
         
