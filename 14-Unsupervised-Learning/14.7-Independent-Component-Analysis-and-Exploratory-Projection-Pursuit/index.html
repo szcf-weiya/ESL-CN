@@ -3475,15 +3475,19 @@
 <p>奇异值分解 \eqref{14.54} $\mathbf X=\mathbf{UDV}^T$ 可以表示成潜变量的形式．记 $\mathbf S=\sqrt{N}\mathbf U$，以及 $\mathbf A^T=\mathbf{DV}^T/\sqrt{N}$，我们有 $\mathbf{X=SA}^T$，因此 $\mathbf X$ 的每一列是 $\mathbf S$ 的列的线性组合．现在因为 $\mathbf U$ 是正交的，并且和之前一样假设 $\mathbf X$ 的列均值为 0（因此 $\mathbf U$ 也是），这意味着 $\mathbf S$ 列均值为 0，而且不相关，有单位方差．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>对于未进行列中心化的 $\mathbf X$，我们有
+<p>对 $\mathbf X$ 进行列中心化相当于左乘 $\mathbf{I - M}$，其中 $\mathbf M = \1\1^T/N$，进行 SVD 分解
 <script type="math/tex; mode=display">
-\mathbf{X=UDV}^T
+\mathbf{(I-M)X=UDV}^T\,,
 </script>
-而列中心化相当于左乘 $\mathbf{I - M}$，其中 $\mathbf M = \1\1^T/N$，则
+再左乘 $\mathbf{I-M}$，
 <script type="math/tex; mode=display">
-\mathbf{(I-M)X=(I-M)UDV}^T
+\mathbf{(I-M)^2X=(I-M)UDV}^T\,,
 </script>
-这也可以看成是对 $\mathbf{(I-M)X}$ 的奇异值分解，则 $\mathbf{(I-M)U}$ 列均值为 0.</p>
+注意到 $\mathbf{I-M}$ 为幂等矩阵，即 $\mathbf{(I-M)^2 = (I-M)}$，则
+<script type="math/tex; mode=display">
+\mathbf{(I-M)X=UDV}^T = \mathbf{(I-M)UDV}^T
+</script>
+右乘 $\mathbf{VD}^{-1}$ 可以得到 $\mathbf{U = (I-M)U}$，即 $\mathbf U$ 列均值为 0.</p>
 </div>
 <p>用随机变量表示，我们可以把 SVD 或者对应的主成分分析看成是下列潜变量模型的一个估计</p>
 <p>
@@ -3984,7 +3988,7 @@ d(\A_0, \A)=\frac{1}{2p}\sum_{i=1}^p\Big(\frac{\sum_{j=1}^p\vert r_{ij}\vert}{\m
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-05-27 11:59:33
+        Last Build Date UTC : 2020-05-28 02:12:14
       </div>
       
         
