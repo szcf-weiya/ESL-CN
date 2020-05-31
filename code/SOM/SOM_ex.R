@@ -1,43 +1,42 @@
-rm(list = lm(all=TRUE))
-## 
+rm(list = ls(all=TRUE))
+##
 ## solution to Ex. 14.5
 ##
 
 ## ###############
 ## generate data
 ## ###############
+gen.data <- function(sigma = 0.6) {
+  ## center at (0, 0, 1)
+  theta1 = runif(30, -pi/8, pi/8)
+  phi1 = runif(30, 0, 2*pi)
+  x1 = sin(theta1)*cos(phi1) + rnorm(30, 0, sigma)
+  y1 = sin(theta1)*sin(phi1) + rnorm(30, 0, sigma)
+  z1 = cos(theta1) + rnorm(30, 0, sigma)
 
-## center at (0, 0, 1)
-theta1 = runif(30, -pi/8, pi/8)
-phi1 = runif(30, 0, 2*pi)
-x1 = sin(theta1)*cos(phi1) + rnorm(30, 0, 0.6)
-y1 = sin(theta1)*sin(phi1) + rnorm(30, 0, 0.6)
-z1 = cos(theta1) + rnorm(30, 0, 0.6)
+  ## center at (1, 0, 0)
+  theta2 = runif(30, pi/2-pi/4, pi/2+pi/4)
+  phi2 = runif(30, -pi/4, pi/4)
+  x2 = sin(theta2)*cos(phi2) + rnorm(30, 0, sigma)
+  y2 = sin(theta2)*sin(phi2) + rnorm(30, 0, sigma)
+  z2 = cos(theta2) + rnorm(30, 0, sigma)
 
-## center at (1, 0, 0)
-theta2 = runif(30, pi/2-pi/4, pi/2+pi/4)
-phi2 = runif(30, -pi/4, pi/4)
-x2 = sin(theta2)*cos(phi2) + rnorm(30, 0, 0.6)
-y2 = sin(theta2)*sin(phi2) + rnorm(30, 0, 0.6)
-z2 = cos(theta2) + rnorm(30, 0, 0.6)
-
-## center at (0, 1, 0)
-theta3 = runif(30, pi/2-pi/4, pi/2 + pi/4)
-phi3 = runif(30, pi/2-pi/4, pi/2+pi/4)
-x3 = sin(theta3)*cos(phi3) + rnorm(30, 0, 0.6)
-y3 = sin(theta3)*sin(phi3) + rnorm(30, 0, 0.6)
-z3 = cos(theta3) + rnorm(30, 0, 0.6)
-
-## ###############
-## initialize
-## ###############
-q1 = q2 = 5 # K = 25
-x = c(x1, x2, x3)
-y = c(y1, y2, y3)
-z = c(z1, z2, z3)
-data = data.frame(x, y, z)
-idx = sample(90, 25)
-coor = data[idx, ]
+  ## center at (0, 1, 0)
+  theta3 = runif(30, pi/2-pi/4, pi/2 + pi/4)
+  phi3 = runif(30, pi/2-pi/4, pi/2+pi/4)
+  x3 = sin(theta3)*cos(phi3) + rnorm(30, 0, sigma)
+  y3 = sin(theta3)*sin(phi3) + rnorm(30, 0, sigma)
+  z3 = cos(theta3) + rnorm(30, 0, sigma)
+  ## ###############
+  ## initialize
+  ## ###############
+  q1 = q2 = 5 # K = 25
+  x = c(x1, x2, x3)
+  y = c(y1, y2, y3)
+  z = c(z1, z2, z3)
+  data = data.frame(x, y, z)
+  return(data)
+}
 coor.grid = expand.grid(1:5, 1:5)
 
 ## find the closest prototype to x in Euclidean distance in R^p
@@ -69,14 +68,14 @@ distance <- function(x, m)
   res = apply(m, 1, function(y) sqrt(sum((x-y)^2)))
   return(as.numeric(res))
 }
-plot.som <- function(data, coor, iter)
-{
+
+plot.som <- function(data, coor, iter) {
   #plot(expand.grid(1:5, 1:5), cex = 10, xlim=c(0.5, 5.5), ylim=c(0.5, 5.5), pty="s")
   res = apply(data, 1, function(x) classify(x, coor))
   res = res - 0.001 ## avoid divisible
   res.x = floor(res/5)
   res.y = res - res.x*5
-  #res.y[res.y == 0] == 5 
+  #res.y[res.y == 0] == 5
   res.x = res.x + 1 + runif(90, -0.3, 0.3) # avoid overlap
   res.y = res.y + runif(90, -0.3, 0.3)
   #points(res.x[1:30],  res.y[1:30], col = "red", pch = 16, cex = 0.8)
@@ -86,42 +85,19 @@ plot.som <- function(data, coor, iter)
   xy = expand.grid(1:5, 1:5)
   symbols(xy[,1], xy[,2], circles = rep(0.45, nrow(xy)), add = T, inches = F)
 }
-## initial configuration
-png("iter_0.png")
-plot.som(data, coor, 0)
-dev.off()
 
-R = 2
-niter = 40
-total.niter = niter * 90
-err = numeric(niter)
-for (iter in 1:niter)
-{
-  err[iter] = 0
-  for (i in 1:90)
+run.som <- function(data, coor, R = 2, niter = 40, total.niter = niter * 90, fig = F) {
+  if (fig) {
+    ## initial configuration
+    png("iter_0.png")
+    plot.som(data, coor, 0)
+    dev.off()
+  }
+  err = numeric(niter)
+  for (iter in 1:niter)
   {
-    iter.i = 90 * (iter - 1) + i
-    alpha = -1/total.niter*iter.i + 1
-    r = -R/total.niter*iter.i + R
-    
-    xi = data[i, ]
-    mj.res = classify(xi, coor, val = TRUE)
-    mj.idx = mj.res[1]
-    err[iter] = err[iter] + mj.res[2]
-#    mj.idx = classify(xi, coor)
-    mj = coor.grid[mj.idx, ]
-    # distance in Q1xQ2
-    mk.idx = which(distance(mj, coor.grid) <= r)
-    mk = coor.grid[mk.idx, ]
-    xi.m = matrix(rep(1, length(mk.idx)),nrow = length(mk.idx)) %*% as.matrix(xi)
-    # distance in R^p
-    coor[mk.idx, ]= coor[mk.idx, ] + alpha*(xi.m - coor[mk.idx, ])
-  } 
-  if (iter - 10*floor(iter/10) == 0)
-  {
-    #png(paste0("iter_", iter, ".png"))
-    plot.som(data, coor, iter)
-    #dev.off()
+    cat("iter = ", iter, '\n')
+    err[iter] = 0
     # alpha = 1 / (1 - niter) * iter + 1 - 1 / (1 - niter)
     # r = (R - 1) / (1 - niter) * iter + R - (R - 1) / (1 - niter)
     for (i in 1:90)
@@ -131,12 +107,31 @@ for (iter in 1:niter)
       r = -R/total.niter*iter.i + R
       # alpha = 1 / (1 - total.niter) * iter.i + 1 - 1 / (1 - total.niter)
       # r = (R - 1) / (1 - total.niter) * iter.i + R - (R - 1) / (1 - total.niter)
+      xi = data[i, ]
+      mj.res = classify(xi, coor, val = TRUE)
+      mj.idx = mj.res[1]
+      err[iter] = err[iter] + mj.res[2]
+  #    mj.idx = classify(xi, coor)
+      mj = coor.grid[mj.idx, ]
+      # distance in Q1xQ2
+      mk.idx = which(distance(mj, coor.grid) <= r)
+      mk = coor.grid[mk.idx, ]
+      xi.m = matrix(rep(1, length(mk.idx)),nrow = length(mk.idx)) %*% as.matrix(xi)
+      # distance in R^p
+      coor[mk.idx, ]= coor[mk.idx, ] + alpha*(xi.m - coor[mk.idx, ])
+    }
+    if (fig && (iter - 10*floor(iter/10) == 0))
+    {
+      png(paste0("iter_", iter, ".png"))
+      plot.som(data, coor, iter)
+      dev.off()
+    }
   }
+  return(list(coor=coor, err=err))
 }
 
 # reconstruction error
-calc_err <- function(data, coor, cl)
-{
+calc_err <- function(data, coor, cl) {
 #  cl = apply(data, 1, function(x) classify(x, coor))
   err = 0
   for (i in 1:length(cl))
@@ -146,10 +141,20 @@ calc_err <- function(data, coor, cl)
   return(err)
 }
 
-# kmeans
-kcl = kmeans(data, 25)
-kerr = calc_err(data, kcl$centers, kcl$cluster)
-# plot reconstruction error
-plot(err, xlab = "Iteration", ylab = "Reconstruction Error", col = "red", type="o", ylim = c(0,max(err)))
-abline(h=kerr, col = "orange")
+cpr.kmeans <- function() {
+  # kmeans
+  kcl = kmeans(data, 25)
+  kerr = calc_err(data, kcl$centers, kcl$cluster)
+  # plot reconstruction error
+  plot(err, xlab = "Iteration", ylab = "Reconstruction Error", col = "red", type="o", ylim = c(0,max(err)))
+  abline(h=kerr, col = "orange")
+}
 
+# run
+# data = gen.data(0.06)
+data = gen.data(0.6)
+idx = sample(90, 25)
+coor0 = data[idx, ]
+res = run.som(data, coor0, niter = 40)
+coor = res$coor
+err = res$err
