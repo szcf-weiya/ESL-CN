@@ -122,6 +122,15 @@ for (iter in 1:niter)
     #png(paste0("iter_", iter, ".png"))
     plot.som(data, coor, iter)
     #dev.off()
+    # alpha = 1 / (1 - niter) * iter + 1 - 1 / (1 - niter)
+    # r = (R - 1) / (1 - niter) * iter + R - (R - 1) / (1 - niter)
+    for (i in 1:90)
+    {
+      iter.i = 90 * (iter - 1) + i
+      alpha = -1/total.niter*iter.i + 1
+      r = -R/total.niter*iter.i + R
+      # alpha = 1 / (1 - total.niter) * iter.i + 1 - 1 / (1 - total.niter)
+      # r = (R - 1) / (1 - total.niter) * iter.i + R - (R - 1) / (1 - total.niter)
   }
 }
 
