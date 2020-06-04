@@ -3463,7 +3463,12 @@ ASR(\{\theta_\ell,\beta_\ell\}^L_{\ell=1})=\frac 1N\sum\limits_{\ell=1}^L\Big[\s
 \underset{\{\beta_{0k},\beta_k\}_1^K}{\max}\left[\sum\limits_{i=1}^N\log\;\Pr(g_i\mid x_i)-\frac{\lambda}{2}\sum\limits_{k=1}^K\Vert\beta_k\Vert_2^2\right]\tag{18.11}
 </script>
 </p>
-<p>正则化自动解决了参数化中的冗余，并且使得 $\sum_{k=1}^K\hat\beta_{kj}=0,j=1,\ldots,p$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/119">练习 18.3</a>）．注意到常数项 $\beta_{k0}$ 没有正则化（并且应该被设成 0）．最后得到的优化问题是凸的，而且可以通过牛顿算法或者其他数值技巧求解．详细细节在 Zhu and Hastie(2004)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>的工作中给出．Friedman et al.(2010)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 提供了计算两个和多个类别逻辑斯蒂回归模型的正则化路径的软件．表 18.1，第 6 行报告了多重类别逻辑斯蒂回归模型的结果，称之为“multinomial”．可以证明 (Rosset et al., 2004a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>)，对于可分数据，当 $\lambda\rightarrow 0$，正则化的（两个类别的）逻辑斯蒂回归估计（重标准化）收敛到 <strong>最大边界分类器(maximal margin classifier)</strong>（<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">12.2 节</a>）．这给出了支持向量机的一种受欢迎的替代方式，特别是在多重类别的情形中，这将在下面讨论．</p>
+<p>正则化自动解决了参数化中的冗余，并且使得 $\sum_{k=1}^K\hat\beta_{kj}=0,j=1,\ldots,p$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/119">练习 18.3</a>）．注意到常数项 $\beta_{k0}$ 没有正则化（并且应该被设成 0）．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 18.3</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/119">Issue 119: Ex. 18.3</a>. </p>
+</div>
+<p>最后得到的优化问题是凸的，而且可以通过牛顿算法或者其他数值技巧求解．详细细节在 Zhu and Hastie(2004)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>的工作中给出．Friedman et al.(2010)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 提供了计算两个和多个类别逻辑斯蒂回归模型的正则化路径的软件．表 18.1，第 6 行报告了多重类别逻辑斯蒂回归模型的结果，称之为“multinomial”．可以证明 (Rosset et al., 2004a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>)，对于可分数据，当 $\lambda\rightarrow 0$，正则化的（两个类别的）逻辑斯蒂回归估计（重标准化）收敛到 <strong>最大边界分类器(maximal margin classifier)</strong>（<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">12.2 节</a>）．这给出了支持向量机的一种受欢迎的替代方式，特别是在多重类别的情形中，这将在下面讨论．</p>
 <h2 id="_3">支持向量分类器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>两个类别情形的支持向量机在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">12.2 节</a>中讨论．当 $p &gt; N$ 时，特别受欢迎，因为一般情形下类别是可以被超平面完全可分的，除非在不同类别中有相同的特征向量．没有任何正则化，支持向量分类器寻找具有最大空白的分离超平面；也就是，超平面得到训练数据之间最大的间距．有点吃惊的是，当 $p &gt; &gt; N$ 时未正则化的支持向量机通常和最优正则版本表现得一样好．过拟合经常似乎不是一个问题，部分是因为误分类损失的不敏感性．</p>
 <p>有许多不同的方式将两个类别的支持向量分类器推广为 $K &gt; 2$ 个类别的情形．在 <strong>一对一方法 (ovo)</strong> 中，我们计算所有的 $\binom{K}{2}$ 成对分类器．对每个测试点，预测类别是在大多数成对比较中获胜的那个．在 <strong>一对多方法 (ova)</strong> 中，每个类别与所有的其他类别在 $K$ 次两类别比较中进行比较．为了对某个测试点分类，我们计算 $K$ 个分类器中的置信度（到超平面的符号距离）．胜利者是有最高置信度的类别．最后，Vapnik(1998)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>，Weston and Watins(1999)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 提出推广两类别准则 \eqref{12.7} 的（有点复杂）多重类别准则．</p>
@@ -3667,7 +3672,7 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-06-04 09:20:04
+        Last Build Date UTC : 2020-06-04 09:57:33
       </div>
       
         
