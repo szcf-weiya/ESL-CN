@@ -3460,7 +3460,7 @@ ASR(\{\theta_\ell,\beta_\ell\}^L_{\ell=1})=\frac 1N\sum\limits_{\ell=1}^L\Big[\s
 <p>这有 $K$ 个对数几率参数 $\beta_1,\beta_2,\ldots,\beta_K$ 的系数向量．我们通过最大化惩罚的对数似然来正则化拟合</p>
 <p>
 <script type="math/tex; mode=display">
-\underset{\{\beta_{0k},\beta_k\}_1^K}{\max}\left[\sum\limits_{i=1}^N\log\;\Pr(g_i\mid x_i)-\frac{\lambda}{2}\sum\limits_{k=1}^K\Vert\beta_k\Vert\right]_2^2\tag{18.11}
+\underset{\{\beta_{0k},\beta_k\}_1^K}{\max}\left[\sum\limits_{i=1}^N\log\;\Pr(g_i\mid x_i)-\frac{\lambda}{2}\sum\limits_{k=1}^K\Vert\beta_k\Vert_2^2\right]\tag{18.11}
 </script>
 </p>
 <p>正则化自动解决了参数化中的冗余，并且使得 $\sum_{k=1}^K\hat\beta_{kj}=0,j=1,\ldots,p$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/119">练习 18.3</a>）．注意到常数项 $\beta_{k0}$ 没有正则化（并且应该被设成 0）．最后得到的优化问题是凸的，而且可以通过牛顿算法或者其他数值技巧求解．详细细节在 Zhu and Hastie(2004)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>的工作中给出．Friedman et al.(2010)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 提供了计算两个和多个类别逻辑斯蒂回归模型的正则化路径的软件．表 18.1，第 6 行报告了多重类别逻辑斯蒂回归模型的结果，称之为“multinomial”．可以证明 (Rosset et al., 2004a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>)，对于可分数据，当 $\lambda\rightarrow 0$，正则化的（两个类别的）逻辑斯蒂回归估计（重标准化）收敛到 <strong>最大边界分类器(maximal margin classifier)</strong>（<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.2-The-Support-Vector-Classifier/index.html">12.2 节</a>）．这给出了支持向量机的一种受欢迎的替代方式，特别是在多重类别的情形中，这将在下面讨论．</p>
@@ -3529,8 +3529,8 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
-(\hat\beta_0,\hat\beta) &= \arg\underset{\beta_0,\beta\in R^p}{\min}\sum\limits_{i=1}^NL(y_i,\beta_0+x_i^T\beta)+\lambda\beta^T\beta\tag{18.16}\\
-(\hat\theta_0,\hat\theta) &= \arg\underset{\theta_0,\theta\in R^N}{\min}\sum\limits_{i=1}^NL(y_i,\theta_0+r_i^T\theta)+\lambda\theta^T\theta\tag{18.17}
+(\hat\beta_0,\hat\beta) &= \arg\underset{\beta_0,\beta\in \IR^p}{\min}\sum\limits_{i=1}^NL(y_i,\beta_0+x_i^T\beta)+\lambda\beta^T\beta\tag{18.16}\\
+(\hat\theta_0,\hat\theta) &= \arg\underset{\theta_0,\theta\in \IR^N}{\min}\sum\limits_{i=1}^NL(y_i,\theta_0+r_i^T\theta)+\lambda\theta^T\theta\tag{18.17}
 \end{align}
 </script>
 于是有 $\hat\beta_0=\hat\theta_0, \hat\beta=\mathbf V\hat\theta$．</p>
@@ -3542,7 +3542,7 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 <p class="admonition-title">Ex. 18.6</p>
 <p>已证．详细解答过程见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/118">Issue 118: Ex.18.6</a>．</p>
 </div>
-<p>这也应用到有二次正则化的神经网络（<a href="../../11-Neural-Networks/11.5-Some-Issues-in-Training-Neural-Networks/index.html">11.5.2 节</a>）．然而，注意到，这并不应用到类似 lasso 的方法中，这些方法对系数加的是非平方惩罚（$L_1$）．</p>
+<p>这也应用到有二次正则化的神经网络（<a href="../../11-Neural-Networks/11.5-Some-Issues-in-Training-Neural-Networks/index.html">11.5.2 节</a>）．然而，注意到，这并不能应用到类似 lasso 的方法中，这些方法对系数加的是非平方惩罚（$L_1$）．</p>
 <p>一般地，我们采用交叉验证去选择参数 $\lambda$．可以看到（<a href="https://github.com/szcf-weiya/ESL-CN/issues/121">练习 18.12</a>）我们仅需要对原始数据构造一次 $\mathbf R$，并且用这个作为每个 CV 折的数据．</p>
 <p><a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.7 节</a>中的支持向量机的“核技巧”在不同的情形下利用了这节中的降维．假设我们有 $N\times N$ 的（内积）矩阵 $\mathbf{K=XX^T}$．由 \eqref{18.12} 我们有 $\mathbf{K=UD^2U^T}$，所以 $\mathbf K$ 捕捉了与 $\mathbf R$ 一样的信息．<a href="https://github.com/szcf-weiya/ESL-CN/issues/122">练习 18.13</a> 显示了我们怎样利用这节的想法从 $\mathbf K$ 和它的 SVD 分解来拟合岭逻辑斯蒂回归．</p>
 <div class="footnote">
@@ -3667,7 +3667,7 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-06-04 07:02:32
+        Last Build Date UTC : 2020-06-04 09:20:04
       </div>
       
         
