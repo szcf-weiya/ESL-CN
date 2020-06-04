@@ -3549,6 +3549,10 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
 </div>
 <p>这也应用到有二次正则化的神经网络（<a href="../../11-Neural-Networks/11.5-Some-Issues-in-Training-Neural-Networks/index.html">11.5.2 节</a>）．然而，注意到，这并不能应用到类似 lasso 的方法中，这些方法对系数加的是非平方惩罚（$L_1$）．</p>
 <p>一般地，我们采用交叉验证去选择参数 $\lambda$．可以看到（<a href="https://github.com/szcf-weiya/ESL-CN/issues/121">练习 18.12</a>）我们仅需要对原始数据构造一次 $\mathbf R$，并且用这个作为每个 CV 折的数据．</p>
+<div class="admonition info">
+<p class="admonition-title">Ex. 18.12</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/121">Issue 121: Ex. 18.12</a>. </p>
+</div>
 <p><a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.7 节</a>中的支持向量机的“核技巧”在不同的情形下利用了这节中的降维．假设我们有 $N\times N$ 的（内积）矩阵 $\mathbf{K=XX^T}$．由 \eqref{18.12} 我们有 $\mathbf{K=UD^2U^T}$，所以 $\mathbf K$ 捕捉了与 $\mathbf R$ 一样的信息．<a href="https://github.com/szcf-weiya/ESL-CN/issues/122">练习 18.13</a> 显示了我们怎样利用这节的想法从 $\mathbf K$ 和它的 SVD 分解来拟合岭逻辑斯蒂回归．</p>
 <div class="footnote">
 <hr />
@@ -3672,7 +3676,7 @@ s.t.& \xi_i\ge 0,y_i(x_i^T\beta+\beta_0)\ge 1-\xi_i,\forall i
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-06-04 09:57:33
+        Last Build Date UTC : 2020-06-04 10:45:36
       </div>
       
         
