@@ -3320,7 +3320,21 @@ R(\theta)=-\sum\limits_{i=1}^N\sum\limits_{k=1}^Ky_{ik}\mathrm{log}\;f_k(x_i)\ta
 <p>以及对应的分类器 $G(x)=\mathrm{arg\; max}_kf_k(x)$．有了 softmax 激活函数和交叉熵误差函数，神经网络模型实际上是关于隐藏层的线性逻辑斯蒂回归模型，而且所有的参数通过极大似然来估计．</p>
 <p>一般地，我们不想要 $R(\theta)$ 的全局最小值，因为这可能会是一个过拟合解．而是需要一些正则化：这个可以通过惩罚项来直接实现，或者提前终止来间接实现．下一节中将给出详细的细节．</p>
 <p>最小化 $R(\theta)$ 的一般方法是通过梯度下降，在这种情形下称作 <strong>向后传播 (back-propagation)</strong>．因为模型的组成成分，运用微分的链式法则可以很简单地得到梯度．这个可以通过对网络向前或向后遍历计算得到，仅跟踪每个单元的局部量．</p>
-<p>下面是对于平方误差损失的向后传播的细节．由 (11.5) 式令 $z_{mi}=\sigma(\alpha_{0m}+\alpha_m^Tx_i)$，并令 $z_i=(z_{1i},z_{2i},\ldots,z_{Mi})$，则我们有</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：Recall \eqref{11.5}</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+Z_m&=\sigma(\alpha_{0m}+\alpha_m^TX),m=1,2,\ldots,M\\
+T_k&=\beta_{0k}+\beta_k^TZ,k=1,\ldots,K,\\
+f_k(X)&=g_k(T),k=1,\ldots,K
+\end{align*}
+\tag{11.5}
+\label{11.5}
+</script>
+</p>
+</div>
+<p>下面是对于平方误差损失的向后传播的细节．由 \eqref{11.5} 式令 $z_{mi}=\sigma(\alpha_{0m}+\alpha_m^Tx_i)$，并令 $z_i=(z_{1i},z_{2i},\ldots,z_{Mi})$，则我们有</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align*}
@@ -3485,7 +3499,7 @@ a^{(k)} &= g^{(k)}(z^{(k)})\,,
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-06-04 14:39:05
+        Last Build Date UTC : 2020-06-24 16:00:14
       </div>
       
         
