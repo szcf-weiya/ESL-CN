@@ -3435,6 +3435,14 @@
 
 
 <p>实现，可以看到 <code>breaks</code> 是通过分位数来确定，所以满足刚刚提到的这种需求。当然，如果知道 <code>breaks</code>，完全可以直接用 <code>create.bspline.basis</code>，因为 <code>create.bspline.irregular</code> 最终也是要调用它的。</p>
+<p>另外，<code>splines</code> 包的 <code>bs()</code> 也会返回 B 样条基函数赋值矩阵，类似于 <code>eval.basis()</code>，但不同的是，<code>bs()</code> 中的结点为内结点，而边界结点默认为赋值区域的两端，而且其有 <code>intercept</code> 参数，默认为 FALSE，表示将每个基函数的常数部分提出来然后合并在一起，如果是 TRUE，则每个基函数保留各自的常数部分，则得到的矩阵会多出一列。如果将其结果用于线性回归，则</p>
+<div class="codehilite"><pre><span></span><code><span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="m">0</span> <span class="o">+</span> <span class="nf">bs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="c1"># or</span>
+<span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="nf">bs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">))</span>
+</code></pre></div>
+
+
+<p>默认为 FALSE 时，常数项被放到 <code>y ~ x</code> 中的截距项中去了，而 TRUE 时已经保留了常数项，则没必要再要求截距项，否则后面估计可能出现问题，比如出现 <code>NA</code>。</p>
 <h2 id="implement-in-python">Implement in Python<a class="headerlink" href="#implement-in-python" title="Permanent link">&para;</a></h2>
 <p>Python 中的 <code>scipy</code> 库也可以实现 B spline，具体函数为</p>
 <div class="codehilite"><pre><span></span><code><span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">BSpline</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">extrapolate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -3681,7 +3689,7 @@ t = \{t_0, t_1,\ldots, t_{n+k-1}\}\,,
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-06-24 16:00:19
+        Last Build Date UTC : 2020-06-25 15:24:24
       </div>
       
         
