@@ -79,7 +79,7 @@ create.bspline.irregular(argvals,
 
 实现，可以看到 `breaks` 是通过分位数来确定，所以满足刚刚提到的这种需求。当然，如果知道 `breaks`，完全可以直接用 `create.bspline.basis`，因为 `create.bspline.irregular` 最终也是要调用它的。
 
-另外，`splines` 包的 `bs()` 也会返回 B 样条基函数赋值矩阵，类似于 `eval.basis()`，但不同的是，`bs()` 中的结点为内结点，而边界结点默认为赋值区域的两端，而且其有 `intercept` 参数，默认为 FALSE，表示将每个基函数的常数部分提出来然后合并在一起，如果是 TRUE，则每个基函数保留各自的常数部分，则得到的矩阵会多出一列。如果将其结果用于线性回归，则
+另外，`splines` 包的 `bs()` 也会返回 B 样条基函数赋值矩阵，类似于 `eval.basis()`，但不同的是，`bs()` 中的结点为内结点，而边界结点默认为赋值区域的两端，而且其有 `intercept` 参数，默认为 FALSE，表示将每个基函数的常数部分提出来然后合并在一起，如果是 TRUE，则每个基函数保留各自的常数部分，列数即等于 $K+M$，但是当把常数都提出后，自由度少一，即 FALSE 情况下列数少一列。如果将其结果用于线性回归，则
 
 ```R
 lm(y ~ 0 + bs(x, intercept=TRUE))
