@@ -3316,12 +3316,13 @@
 f(x) = \argmin_c\E_{Y\mid X}([Y-c]^2\mid X=x)\tag{2.12}
 </script>
 </p>
-<p>解为</p>
+<p>解为条件期望</p>
 <p>
 <script type="math/tex; mode=display">
-f(x) = \E(Y\mid X=x)\tag{2.13}
+f(x) = \E(Y\mid X=x)\tag{2.13}\,,
 </script>
 </p>
+<p>也被称作 <strong>回归 (regression)</strong> 函数。因此 $Y$ 在任意点 $X=x$ 处的最优预测为条件均值，“最优”是在均方误差意义下的。</p>
 <div class="admonition note">
 <p class="admonition-title">原书注：</p>
 <p>此处条件是指对联合概率密度分解 $\Pr(X, Y ) = \Pr(Y \mid X)\Pr(X)$，其中 $\Pr(Y \mid X) = \Pr(Y, X)/\Pr(X)$，因此分解成了双变量的积分．</p>
@@ -3337,11 +3338,6 @@ f(x) = \E(Y\mid X=x)\tag{2.13}
 <li>用样本数据的平均近似期望；</li>
 <li>在每一点的条件（期望）松弛为在离该目标点近的某个区域上的条件（期望）．</li>
 </ul>
-<p>
-<script type="math/tex; mode=display">
-\hat{f}(x)=\Ave(y_i\mid x_i\in N_k(x))\tag{2.14}
-</script>
-</p>
 <p>对于规模为 $N$ 的大规模训练数据，邻域中的点更可能接近 $x$，而且当 $k$ 越大，平均值会更加稳定．事实上，在联合概率分布 $\Pr(X,Y)$ 温和正则条件下，可以证明当 $N,k \longrightarrow \infty$ 使得 $k/N \longrightarrow 0$ 时，$\hat{f}(x) \longrightarrow \E(Y \mid X = x)$．根据这个，为什么看得更远，因为似乎我们有个一般的近似量吗？我们经常没有非常大的样本．如果线性或者其它更多结构化的模型是合适的，那么我们经常可以得到比 $k$-最近邻更稳定的估计，尽管这些知识必须也要从数据中学习．然而还有其它的问题，有时是致命的．在下一个部分我们看到当维数 $p$ 变大，$k$-最近邻的度量大小也随之变大．所以最近邻代替条件会让我们非常失望．收敛仍然保持，但是当维数增长后收敛 <strong>速率 (rate)</strong> 变小．</p>
 <p>线性回归怎样适应这个框架？最简单的解释是假设回归函数 $f(x)$ 近似线性</p>
 <p>
@@ -3516,7 +3512,7 @@ L(\cG_k, g) = \begin{cases}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-06-27 16:22:05
+        Last Build Date UTC : 2020-07-01 04:45:25
       </div>
       
         
