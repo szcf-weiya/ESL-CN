@@ -3660,10 +3660,10 @@ g_0(x)=\prod\limits_{j=1}^pg_j(x_j)\tag{14.15}\label{14.15}
 </script>
 </p>
 <p>频繁子集 \eqref{14.17} 的联合在高支撑的项目集 \eqref{14.16} 中趋向于比不频繁子集的联合更经常出现．这也就是为什么尽管高关联（lift）的规则 <code>vodka</code>$\Rightarrow$<code>caviar</code> 不可能被发现；因为没有一项含有高的边缘支撑，所以它们的联合支撑特别地小．引用均匀分布可以得出高频率项目集，其组成部分之间具有低关联性，在最高支撑项目集的集合中占主导优势．</p>
-<p>高频率子集 $s_j$ 由最频繁的 $X_j$ 值的 <strong>分裂点 (disjunction)</strong> 构成．</p>
-<div class="admonition question">
+<p>高频率子集 $s_j$ 由最频繁的 $X_j$ 值的 <strong>并集 (disjunction)</strong> 构成．</p>
+<div class="admonition note">
 <p class="admonition-title">weiya 注：disjunction</p>
-<p>怎么理解？</p>
+<p>参考维基词条，<a href="https://en.wikipedia.org/wiki/Logical_disjunction">Logical disjunction</a> 为逻辑关系词“或”，此处直接翻译为并集。</p>
 </div>
 <p>采用变量边缘数据密度的积 \eqref{14.15} 作为参考分布，移除了对在已发现项目集中单个变量的高频值的偏好．这是因为不管单个变量值的频率分布，如果变量中没有关联（完全独立），密度比率 $g(x)/g_0(x)$ 是均匀的．像 <code>vodka</code>$\Rightarrow$<code>caviar</code> 的规则会有机会进行合并．然而，怎样将参考分布而不是均匀分布纳入进 Apriori 算法中是不清晰的．正如在 <a href="">14.2.4 节</a>中解释的那样，给定原始数据集，从积密度 \eqref{14.15} 中产生样本是直接的．</p>
 <p>选择完参考分布后，并且根据它抽取样本，如 \eqref{14.11}，则得到一个关于二值输出变量 $Y\in\{0,1\}$ 的监督学习问题．目标是利用这些数据去寻找区域</p>
@@ -3816,7 +3816,7 @@ T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-08-09 10:11:17
+        Last Build Date UTC : 2020-08-09 10:24:32
       </div>
       
         
