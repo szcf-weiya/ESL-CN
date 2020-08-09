@@ -3434,7 +3434,7 @@
 </table>
 <p><strong>关联规则分析 (Association rule analysis)</strong> 已经成为挖掘贸易数据的流行工具．目标是寻找变量 $X=(X_1,X_2,\ldots,X_p)$ 在数据中出现最频繁的联合值．在二值数据 $X_j\in\{0,1\}$ 中应用最多，也称作“市场篮子”分析．这种情形下观测值为销售交易，比如出现在商店收银台的商品．变量表示所有在商店中出售的商品．对于观测 $i$，每个变量 $X_j$ 取值为 0 或 1；如果第 $j$ 个商品作为该次交易购买的一部分则 $x_{ij}=1$，而如果没有购买则 $x_{ij}=0$．这些经常有联合值的变量表示物品经常被一起购买．这个信息对于货架、跨营销的促销活动、商品目录的设计，以及基于购买模式的消费者划分都是很有用的．</p>
 <p>更一般地，关联分析的基本目标是寻找 <strong>特征向量 (feature vector)</strong> $X$ 的 <strong>原型 $X$ 值 (prototype $X$-values)</strong> $v_1,\ldots,v_L$ 的集合，使得概率密度 $\Pr(v_l)$ 在这些值上的取值相对大．在一般框架下，这个问题可以看成是“<strong>模式寻找 (mode finding)</strong>”或者“<strong>碰撞狩猎 (bump hunting)</strong>”．如所阐释的，这个问题是非常困难．每个 $\Pr(v_l)$ 一个很自然的估计是 $X=v_l$ 时观测的比例．对于涉及不止一个变量的问题，每个变量都可以假定不止一个值，要得到可靠估计，$X=v_l$ 的观测值的个数几乎总是太少．</p>
-<p>进行第一次简化来修改目标．与其寻找 $\Pr(x)$ 很大时的 $x$ <strong>值 (values)</strong>，不如在 $X$ 空间中寻找相对它们大小和支撑集而言的大概率部分的 <strong>区域 (regions)</strong>．令 $\cal S_j$ 表示第 $j$ 个变量的所有可能值的集合（<strong>支撑集 (support)</strong>），并且令  $s_j\subseteq\cal S_j$ 为这些值的子集．修改后的目标可以叙述成试图寻找变量值的子集 $s_1,\ldots,s_p$ 来使得每个变量的概率同时相对地大，假设每个子集中都有一个值，则也就是使得</p>
+<p>进行第一次简化来修改目标．与其寻找 $\Pr(x)$ 很大时的 $x$ <strong>值 (values)</strong>，不如在 $X$ 空间中寻找相对它们大小和支撑集而言的大概率部分的 <strong>区域 (regions)</strong>．令 $\cal S_j$ 表示第 $j$ 个变量的所有可能值的集合（<strong>支撑集 (support)</strong>），并且令  $s_j\subseteq\cal S_j$ 为这些值的子集．修改后的目标可以叙述成试图寻找变量值的子集 $s_1,\ldots,s_p$ 来使得每个变量同时取对应子集的某个值的概率相对地大，则也就是使得</p>
 <p>
 <script type="math/tex; mode=display">
 \Pr\Big[\bigcap_{j=1}^p(X_j\in s_j)\Big]\tag{14.2}\label{14.2}
@@ -3816,7 +3816,7 @@ T(R)=\bar y_t\cdot \frac{N_t}{N_t+N_0}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-07-22 01:49:28
+        Last Build Date UTC : 2020-08-09 10:11:17
       </div>
       
         
