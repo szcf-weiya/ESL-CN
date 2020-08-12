@@ -97,7 +97,7 @@ function principal_curve(X0::Array{Float64,2}; tol=1e-4, kw...)
     # note that v_1 is normalized, so λ is exactly the arc-length
     β = v[:, 1] # slope
     λf = u[:,1] * d[1]
-    spls = scatterplot_smoother(λ, X)
+    spls = scatterplot_smoother(λf, X)
     #while true
     y1, y2, y3 = gen_data(noise=false)
     anim = @animate for iter = 1:1000
@@ -115,7 +115,7 @@ function principal_curve(X0::Array{Float64,2}; tol=1e-4, kw...)
         scatter!(X0[:, 1], X0[:, 2], X0[:, 3], markersize=1)
         plot!(y1, y2, y3, xlim = (-1, 1), ylim = (-1, 1), legend = false, color = "red")
     end
-    return spls, λ, anim
+    return spls, λf, anim
 end
 
 X1, X2, X3 = gen_data()
