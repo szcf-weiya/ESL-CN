@@ -3368,7 +3368,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-02-04, 2018-03-07, 2018-03-08, 2018-04-18, 2018-04-25,2018-05-03</td>
+<td>2020-08-25 15:46:55</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3480,11 +3480,7 @@ P\{\vert X_n/a_n\vert > M(\varepsilon)\}<\varepsilon
 <p>然而，并不总是得到只涉及一小部分特征（基因）的稀疏模型．即使算法中的步骤 (1) 的阈值得到相对较少的特征，但可能部分被忽略的特征与监督主成分直接有不可忽略的内积（并且可以看成是较好的代表 (surrogate)）．另外，高相关的特征会趋向于一起选，则在已经选择的特征中会造成较大程度的冗余．</p>
 <p>另一方面，lasso（18.4 节和 3.4.2 节）从数据中得到稀疏的模型．应用到上一节中的模拟例子，这两个方法的测试误差会如何呢？图18.17 显示了对于模型 (18.37)，lasso、监督主成分和预处理 lasso（下面描述）的测试误差．</p>
 <p><img alt="" src="../../img/18/fig18.17.png" /></p>
-<p>我们看到监督主成分（橘黄色曲线）当大概 50 个特征包含进模型中会达到最低误差，这个数字也是模拟例子中真实的个数．尽管关于前 50 个特征的线性模型是最优的，但是 lasso（绿色）被大量噪声特征所严重影响，而且 starts overfitting when far fewer are in the model．</p>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>如何理解“starts overfitting when far fewer are in the model.”</p>
-</div>
+<p>我们看到监督主成分（橘黄色曲线）当大概 50 个特征包含进模型中会达到最低误差，这个数字也是模拟例子中真实的个数．尽管关于前 50 个特征的线性模型是最优的，但是 lasso（绿色）被大量噪声特征所严重影响，而且当模型中有较少的特征时（如图中的 20 个左右）就开始过拟合了．</p>
 <p>我们能否得到监督主成分的低测试误差以及 lasso 的稀疏性？这是预处理 (pre-conditioning) 的目标 (Paul et al., 2008<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>)．在这种方法中，首先计算训练集中的每个观测的监督主成分的预测量 $\hat y_i$（其中阈值通过交叉验证来选择）．接着我们将lasso 应用到 $\hat y_i$，其中 $\hat y_i$ 被看成输出变量，它替换了通常情形下的 $y_i$．这个想法是首先对输出变量进行去噪(denoising)，则 lasso 不会被大量噪声特征所影响．图 18.17 显示了预处理（紫色曲线）在这里取得了重要成功，比通常的 lasso的测试误差要低很多，在这种情形下与监督主成分一样第．而且采用更少的特征便达到了最小测试误差．应用到原始输出变量的一般 lasso 比预处理 lasso 更快地过拟合．预处理 lasso 的过拟合不是问题，因为输出变量已经去噪了．对于预处理的 lasso，我们经常用更主管的理由来选择调整参数，比如简约性(parsimony)．</p>
 <p>预处理可以应用到不同的设定中，采用除监督主成分外的初始估计和除 lasso 以外的后续估计．更多细节可以在 Paul et al. (2008)<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 中找到．</p>
 <div class="footnote">
@@ -3597,7 +3593,7 @@ P\{\vert X_n/a_n\vert > M(\varepsilon)\}<\varepsilon
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-08-12 04:13:27
+        Last Build Date UTC : 2020-08-25 07:50:20
       </div>
       
         
