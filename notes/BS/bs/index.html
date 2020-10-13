@@ -3375,7 +3375,6 @@
       <span class="n">basisvalues</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s">&quot;bspl&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>其中</p>
 <ul>
 <li><code>rangeval</code> 为定义域，比如 <code>0:1</code> 即表示 <code>[0, 1]</code></li>
@@ -3408,7 +3407,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p><img alt="" src="../bsplines-default.png" /></p>
 <p>为了进一步理解样条函数，我们还可以自己对样条函数进行赋值，</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># reduce space gap between multiple graphs in R</span>
@@ -3422,7 +3420,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p><img alt="" src="../bsplines.png" /></p>
 <p>如果不指定 <code>breaks</code>，只给出 <code>nbasis</code>，则结点是在定义域内均匀取点，但是有时候实际问题中可能想要在观测值多的地方多取点，而观测值少的地方少取点，这可以通过</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">create.bspline.irregular</span><span class="p">(</span><span class="n">argvals</span><span class="p">,</span>
@@ -3433,7 +3430,6 @@
       <span class="n">basisvalues</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s">&quot;bspl&quot;</span><span class="p">,</span> <span class="n">plot.</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>实现，可以看到 <code>breaks</code> 是通过分位数来确定，所以满足刚刚提到的这种需求。当然，如果知道 <code>breaks</code>，完全可以直接用 <code>create.bspline.basis</code>，因为 <code>create.bspline.irregular</code> 最终也是要调用它的。</p>
 <p>另外，<code>splines</code> 包的 <code>bs()</code> 也会返回 B 样条基函数赋值矩阵，类似于 <code>eval.basis()</code>，但不同的是，<code>bs()</code> 中的结点为内结点，而边界结点默认为赋值区域的两端，而且其有 <code>intercept</code> 参数，默认为 FALSE，表示将每个基函数的常数部分提出来然后合并在一起，如果是 TRUE，则每个基函数保留各自的常数部分，列数即等于 $K+M$，但是当把常数都提出后，自由度少一，即 FALSE 情况下列数少一列。如果将其结果用于线性回归，则</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="m">0</span> <span class="o">+</span> <span class="nf">bs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
@@ -3441,13 +3437,11 @@
 <span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="nf">bs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">))</span>
 </code></pre></div>
 
-
 <p>默认为 FALSE 时，常数项被放到 <code>y ~ x</code> 中的截距项中去了，而 TRUE 时已经保留了常数项，则没必要再要求截距项，否则后面估计可能出现问题，比如出现 <code>NA</code>。</p>
 <h2 id="implement-in-python">Implement in Python<a class="headerlink" href="#implement-in-python" title="Permanent link">&para;</a></h2>
 <p>Python 中的 <code>scipy</code> 库也可以实现 B spline，具体函数为</p>
 <div class="codehilite"><pre><span></span><code><span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">BSpline</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">extrapolate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>其中，</p>
 <ul>
@@ -3464,7 +3458,6 @@ S(x) = \sum_{j=0}^{n-1}c_jB_{j,k;t}(x)\,.
 <p>不过，还是有函数可以自己返回单个基函数</p>
 <div class="codehilite"><pre><span></span><code><span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">BSpline</span><span class="o">.</span><span class="n">basis_element</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">extrapolate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>其中 <code>t</code> 是结点序列，长度为 <code>k+2</code>, 注意这里的结点序列只包含 support 的结点，回忆结论，</p>
 <p>
@@ -3499,7 +3492,6 @@ x\not\in [\tau_i, \tau_{i+M}], B_{i,M} = 0\,,
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 
-
 <p><img alt="" src="../bsplines-py.png" /></p>
 <h2 id="implement-in-c">Implement in C++<a class="headerlink" href="#implement-in-c" title="Permanent link">&para;</a></h2>
 <p>C++ 中的<a href="https://www.gnu.org/software/gsl/doc/html/bspline.html">科学计算库 GSL</a> 也提供了 B 样条的实现方法。定义结点序列为</p>
@@ -3527,7 +3519,6 @@ t = \{t_0, t_1,\ldots, t_{n+k-1}\}\,,
 <span class="cp"># free</span>
 <span class="n">gsl_bspline_free</span><span class="p">(</span><span class="n">gsl_bspline_workspace</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>实现代码为，</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -3575,11 +3566,9 @@ t = \{t_0, t_1,\ldots, t_{n+k-1}\}\,,
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>画图一开始试了下 <code>gnuplot</code>，但是不是很熟悉，只是简单地得到了下图，</p>
 <div class="codehilite"><pre><span></span><code>gnuplot -e <span class="s2">&quot;set term png; set output &#39;bsplines4.png&#39;; set title &#39;B-splines of Order 4&#39;; plot for [col=1:13] &#39;res.txt&#39; using 0:col with lines notitle&quot;</span>
 </code></pre></div>
-
 
 <p><img alt="" src="../bsplines4.png" /></p>
 <p>后来还是<a href="https://darrenjw.wordpress.com/2010/12/30/calling-c-code-from-r/">采用 R 来调用 C++ 程序</a>，进而画图，</p>
@@ -3596,7 +3585,6 @@ t = \{t_0, t_1,\ldots, t_{n+k-1}\}\,,
     <span class="nf">title</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;B-splies of Order&quot;</span><span class="p">,</span> <span class="n">order</span><span class="p">))</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p><img alt="" src="../bspline-cpp.png" /></p>
                 
@@ -3689,7 +3677,7 @@ t = \{t_0, t_1,\ldots, t_{n+k-1}\}\,,
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:05
+        Last Build Date UTC : 2020-10-13 10:24:04
       </div>
       
         

@@ -3411,7 +3411,6 @@
 <span class="n">B</span> <span class="o">=</span> <span class="m">100</span> <span class="c1"># the number of repetition</span>
 </code></pre></div>
 
-
 <h2 id="knn">左图情形： kNN回归和分类<a class="headerlink" href="#knn" title="Permanent link">&para;</a></h2>
 <p>首先考虑左图的情形: 若$X_1\le 1/2$，$Y=0$，且若$X_1&gt;1/2$，$Y=1$，而且应用$k$-最近邻模型。</p>
 <p>设置随机种子，方便后面进行随机化。</p>
@@ -3423,7 +3422,6 @@
 <span class="n">X.test</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">1000</span><span class="p">)</span>
 <span class="n">Y.test</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X.test</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>下面编写主程序，变化$k$最近邻中的邻居数$k$，并重复建立$B$次模型用来估计测试集中的每个点，用来估计其偏差、方差及预测误差的期望。</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## kNN</span>
@@ -3476,7 +3474,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>下面类似书中的图7.3，作出如下图象</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## plot</span>
 <span class="n">yrange</span> <span class="o">=</span> <span class="m">0.4</span>
@@ -3505,7 +3502,6 @@
 <span class="c1">#lines(50-kseq, cl.variance.full, type = &quot;o&quot;, lwd = 2, pch = 19, col = &quot;blue&quot;)</span>
 </code></pre></div>
 
-
 <p>对比原图，发现除了kNN分类的预测误差的估计随$k$的变化略有不同外（也仅仅在$k$比较大的情形），其余曲线都很好地重现了原图的特征。</p>
 <h2 id="_2">右图情形：最优子集回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>若$\sum_{j=1}^{10}X_j&gt;5$，$Y=1$，否则$Y=0$，且采用大小为$p$的最优子集回归。</p>
@@ -3518,7 +3514,6 @@
 <span class="n">X.test</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">ntest</span><span class="p">)</span>
 <span class="n">Y.test</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X.test</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>采用<code>leaps</code>包中的<code>regsubsets</code>函数进行最优子集回归，因为该类没有对应<code>predict</code>函数，于是编写自己的预测函数。需要说明的是，下面程序前半段有考虑是否存在截距项，但后来发现其实截距项是默认存在的，所以后半段没有继续考虑，简化了程序。</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## use leaps package to do best subset selection</span>
@@ -3552,7 +3547,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>接着在不同大小的子集模型下，重复建立模型对测试集进行预测，并存储预测值。</p>
 <div class="codehilite"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="c1">## store all prediction</span>
@@ -3571,7 +3565,6 @@
    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>下面计算平方偏差、方差和预测误差，注意回归跟分类的差别仅在于预测误差。</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## calculate bias2, variance, epe</span>
@@ -3600,7 +3593,6 @@
   <span class="n">cl.epe.full</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>作出图象</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## plot</span>
@@ -3632,7 +3624,6 @@
 <span class="nf">lines</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">,</span> <span class="n">reg.variance.full</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">)</span>
 <span class="c1">#dev.off()</span>
 </code></pre></div>
-
 
 <h2 id="_3">总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>最后我们得到的图象如下图</p>
@@ -3727,7 +3718,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:04
+        Last Build Date UTC : 2020-10-13 10:24:03
       </div>
       
         

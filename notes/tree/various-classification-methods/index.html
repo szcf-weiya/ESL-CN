@@ -3524,13 +3524,11 @@
 <span class="nf">plot</span><span class="p">(</span><span class="nf">as.party</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">))</span>
 </code></pre></div>
 
-
 <p><img alt="" src="../rpart_party.svg" /></p>
 <h3 id="maptree"><code>maptree</code> 包<a class="headerlink" href="#maptree" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">maptree</span><span class="p">)</span>
 <span class="nf">draw.tree</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><img alt="" src="../rpart_maptree.svg" /></p>
 <h3 id="rpartplot"><code>rpart.plot</code> 包<a class="headerlink" href="#rpartplot" title="Permanent link">&para;</a></h3>
@@ -3539,12 +3537,10 @@
 <span class="nf">rpart.plot</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">,</span> <span class="n">fallen.leaves</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> 
 </code></pre></div>
 
-
 <p><img alt="" src="../rpart_plot.svg" /></p>
 <p>另一个是更一般的<code>prp()</code>，需要自定义的参数更多，更灵活</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">prp</span><span class="p">(</span><span class="n">rpartFit</span><span class="o">$</span><span class="n">finalModel</span><span class="p">)</span> 
 </code></pre></div>
-
 
 <p><img alt="" src="../rpart_prp.svg" /></p>
 <h2 id="_3">混淆矩阵<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -3561,7 +3557,6 @@
                <span class="n">levels</span> <span class="o">=</span> <span class="nf">rev</span><span class="p">(</span><span class="n">lvs</span><span class="p">))</span>
 <span class="n">xtab</span> <span class="o">&lt;-</span> <span class="nf">table</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">truth</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>采用上述代码生成的混淆矩阵</p>
 <p><img alt="" src="../ex-cm.png" /></p>
@@ -3587,7 +3582,6 @@
      <span class="n">print.thres.col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>比如，以 <code>rpart</code> 拟合的两个模型为例</p>
 <p><img alt="" src="../ROC-plot-of-rpartFit-and-rpartFactorFit.png" /></p>
 <h3 id="rocr"><code>ROCR</code><a class="headerlink" href="#rocr" title="Permanent link">&para;</a></h3>
@@ -3602,7 +3596,6 @@
 <span class="p">}</span>
 <span class="nf">rocplot</span><span class="p">(</span><span class="n">rpartFit</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>比如，对于 <code>rpart</code> 拟合的两个模型</p>
 <p><img alt="" src="../ROC-plot-of-rpartFit-and-rpartFactorFit-via-ROCR.png" /></p>
@@ -3704,7 +3697,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:05
+        Last Build Date UTC : 2020-10-13 10:24:04
       </div>
       
         

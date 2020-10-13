@@ -3531,7 +3531,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="cv">计算 CV<a class="headerlink" href="#cv" title="Permanent link">&para;</a></h2>
 <h3 id="_2">错误的做法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>在 <code>R</code> 中，可以用<code>smooth.spline()</code> 来拟合三次光滑样条。一开始，注意到该函数返回值有 <code>LOOCV</code> （或 <code>GCV</code>），于是觉得只用一个循环就可以得到交叉验证随自由度变化的曲线（原图中的交叉验证便是舍一法），即</p>
@@ -3544,7 +3543,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
     <span class="n">cvs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">models</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span><span class="o">$</span><span class="n">cv.crit</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>但这样得到的图象为</p>
 <p><img alt="" src="../wrong-res.png" /></p>
@@ -3575,7 +3573,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="cv_1">计算 CV<a class="headerlink" href="#cv_1" title="Permanent link">&para;</a></h2>
 <p>定义式为</p>
 <p>
@@ -3597,7 +3594,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <div class="codehilite"><pre><span></span><code><span class="n">crits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">models</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span><span class="o">$</span><span class="n">crit</span>
 </code></pre></div>
 
-
 <p>来估计 EPE，但发现这样还是与原图有很多差异，非常重要的一点是这个准则是随着 $\lambda$ 变大而单调降低的。</p>
 <h3 id="_5">第二次尝试<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>观察 (5.25) 的最后一行，认为 $\sigma^2=\sigma_\varepsilon^2=1$，然后估计 <code>MSE</code> ，最后效果也不好</p>
@@ -3605,7 +3601,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <span class="n">Y.true</span> <span class="o">=</span> <span class="nf">func</span><span class="p">(</span><span class="n">model.full</span><span class="o">$</span><span class="n">yin</span><span class="p">)</span> <span class="c1"># DO NOT use Y directly, because they have reordered.</span>
 <span class="n">epe</span> <span class="o">=</span> <span class="m">1</span> <span class="o">+</span> <span class="nf">mean</span><span class="p">((</span> <span class="n">Y.true</span> <span class="o">-</span> <span class="n">Y.pred</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>效果也和原书有差异，遂放弃。</p>
 <h3 id="_6">第三次尝试<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
@@ -3616,7 +3611,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <span class="n">y.pred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model.full</span><span class="p">,</span> <span class="n">x.test</span><span class="p">)</span><span class="o">$</span><span class="n">y</span>
 <span class="n">epe</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">((</span><span class="n">y.test</span> <span class="o">-</span> <span class="n">y.pred</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>此时的效果已经非常接近图 5.9 了，但突然意识到一个问题，我们应该是不知道真实数据的生成过程，不然还需要拟合么？所以测试集还是只来自仅有的 $N=100$ 个观测值。</p>
 <h3 id="_7">第四次尝试<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
@@ -3631,7 +3625,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <span class="p">}</span>
 <span class="n">epe</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">epe.i</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>此时的效果已经非常接近原图了，如下图</p>
 <p><img alt="" src="../res-fig-19a.png" /></p>
@@ -3650,7 +3643,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <span class="n">yhat.sd</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">sd</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>然后在编写下面的绘图函数</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## plot function for (b)-(d)</span>
 <span class="n">plot.lambda</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">)</span>
@@ -3667,7 +3659,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>则依次取 $\lambda=5,9,15$，可以得到</p>
 <p><img alt="" src="../res-5-19b.png" /></p>
 <p><img alt="" src="../res-5-19c.png" /></p>
@@ -3678,7 +3669,6 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
 <div class="codehilite"><pre><span></span><code><span class="n">yhat75</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.75</span><span class="p">))</span>
 <span class="n">yhat25</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0.25</span><span class="p">))</span>
 </code></pre></div>
-
 
 <p>得到</p>
 <p><img alt="" src="../res-ex-5-10-5.png" />
@@ -3774,7 +3764,7 @@ f(X)&=\frac{\sin(12(X+0.2))}{X+0.2}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:03
+        Last Build Date UTC : 2020-10-13 10:24:03
       </div>
       
         

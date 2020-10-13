@@ -3407,7 +3407,6 @@
 <span class="n">Y</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h2 id="_2">最优子集回归的预测<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>采用<code>leaps</code>包中的<code>regsubsets</code>函数进行最优子集回归，因为该类没有对应<code>predict</code>函数，于是编写自己的预测函数，这部分代码也与 <a href="../sim7_3/index.html">模拟：Fig. 7.3</a> 相同。</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## use leaps package to do best subset selection</span>
@@ -3441,7 +3440,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="_3">交叉验证<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>根据单个训练集进行估计，</p>
 <div class="codehilite"><pre><span></span><code><span class="n">reg.pred</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X.test</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
@@ -3473,7 +3471,6 @@
 <span class="n">se.err</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span> <span class="n">sd2.err</span> <span class="o">/</span> <span class="m">10</span> <span class="p">)</span>
 </code></pre></div>
 
-
 <h2 id="_4">画图<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>采用下面代码绘制不同 subset size 情形下交叉验证误差以及一个标准误差的变化范围，</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">plot</span><span class="p">(</span><span class="n">cverr</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.6</span><span class="p">),</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Misclassification Error&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Subset Size p&quot;</span><span class="p">)</span>
@@ -3484,7 +3481,6 @@
     <span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">i</span><span class="m">-0.2</span><span class="p">,</span> <span class="n">i</span><span class="m">+0.2</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="n">cverr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">se.err</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cverr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">se.err</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>另外加上 <a href="../sim7_3/index.html">模拟：Fig. 7.3</a> 中图四的预测误差的变化曲线（橙黄色），得到下面的图像，</p>
 <p><img alt="" src="../res7-9.png" /></p>
@@ -3579,7 +3575,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:04
+        Last Build Date UTC : 2020-10-13 10:24:03
       </div>
       
         

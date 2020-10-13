@@ -3461,7 +3461,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="_3">模型训练<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ol>
 <li>SVM直接调用<code>e1071</code>包中的<code>svm</code>函数</li>
@@ -3481,14 +3480,12 @@
 <span class="nf">summary</span><span class="p">(</span><span class="n">poly5</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p><img alt="" src="../poly5_cv_1.PNG" /></p>
 <p>此时选取的最优 $C$ 为 $32$，进一步细化</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
 <span class="n">poly5</span> <span class="o">=</span> <span class="nf">tune.svm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="s">&quot;polynomial&quot;</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">16</span><span class="p">,</span> <span class="m">64</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="m">2</span><span class="p">))</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">poly5</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><img alt="" src="../poly5_cv_2.PNG" /></p>
 <p>所以 $C$ 取 $28$。</p>
@@ -3548,7 +3545,6 @@
               <span class="n">SE</span> <span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">err</span><span class="p">)))</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>值得说明的是，对于 BRUTO 和 MARS，因为程序是将其视为回归模型处理的，需要进一步转换为类别标签。因为程序中类别用 $1$ 和 $2$ 编号，所以判断拟合值是否大于 $1.5$，大于则划为第二类，否则第一类。</p>
 <h2 id="_5">结果<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
@@ -3717,7 +3713,7 @@ r(X) = \min\{q_1(X), q_2(X)\}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:04
+        Last Build Date UTC : 2020-10-13 10:24:04
       </div>
       
         

@@ -3440,7 +3440,6 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1) > \frac 12(\hat\mu_1+\hat\m
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>我们主要关注预测部分的代码，注意到在预测时，其首先计算了混合密度，然后对 <code>x</code> 进行中心化，不难发现如下的对应关系</p>
 <ol>
 <li><code>object$scaling</code> 对应 $\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)$；</li>
@@ -3471,7 +3470,6 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="_2">直接计算判别边界<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>以第 1 类和第 2 类为例，按照上面推导的公式一步步计算，最后返回判别边界的截距和斜率</p>
 <div class="admonition note">
@@ -3501,7 +3499,6 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <span class="nf">calcLD2</span><span class="p">(</span><span class="n">za12</span><span class="p">,</span> <span class="n">c12</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>将直接计算的结果与上述通过 <code>lda()</code> 的返回结果计算得到的判别边界完全一致！！</p>
 <p><img alt="" src="../compare-lda-and-directly.png" /></p>
 <h2 id="_3">绘图<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -3524,7 +3521,6 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 <span class="nf">clip</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
 <span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m23</span><span class="p">))</span>
 </code></pre></div>
-
 
 <p>即</p>
 <p><img alt="" src="../sim-fig-4-5-r-2.png" /></p>
@@ -3624,7 +3620,7 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:03
+        Last Build Date UTC : 2020-10-13 10:24:03
       </div>
       
         

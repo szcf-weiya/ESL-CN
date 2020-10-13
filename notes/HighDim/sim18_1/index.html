@@ -3404,7 +3404,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>为了生成$Y$，根据下式</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3430,7 +3429,6 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="_2">简单线性回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="nf">for </span><span class="p">(</span><span class="n">p</span> <span class="n">in</span> <span class="nf">c</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">1000</span><span class="p">))</span> <span class="p">{</span>
   <span class="n">X</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
@@ -3448,7 +3446,6 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
   <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;p = &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s">&quot; sig.num = &quot;</span><span class="p">,</span> <span class="n">sig.num</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>其实当$p=100,1000$时，进行简单线性回归通常会得到0残差，所以标准差的估计都是<code>NA</code>，这样看来统计其显著变量个数意义是不大的，故推测原文中其实是对单变量回归模型而言的。</p>
 <h2 id="_3">单变量线性回归<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -3469,7 +3466,6 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
   <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;p = &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s">&quot; num of significant term: &quot;</span><span class="p">,</span> <span class="n">num</span> <span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>模拟100次，统计单变量回归系数显著的个数，分别为9.55, 29.82和290.9，与原文中的结果9, 33, 331非常接近。</p>
 <h2 id="_4">岭回归<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -3506,13 +3502,11 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
 <span class="n">t3</span> <span class="o">=</span> <span class="n">test.err.full</span><span class="p">[</span><span class="m">201</span><span class="o">:</span><span class="m">300</span><span class="p">,</span> <span class="p">]</span>
 </code></pre></div>
 
-
 <p>作图</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">boxplot</span><span class="p">(</span><span class="n">t1</span><span class="o">/</span><span class="n">epsi.var.full</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;20 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
 <span class="nf">boxplot</span><span class="p">(</span><span class="n">t2</span><span class="o">/</span><span class="n">epsi.var.full</span><span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;100 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
 <span class="nf">boxplot</span><span class="p">(</span><span class="n">t3</span><span class="o">/</span><span class="n">epsi.var.full</span><span class="p">[</span><span class="m">3</span><span class="p">],</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;1000 features&quot;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><img alt="" src="../p20.png" /></p>
 <p><img alt="" src="../p100.png" /></p>
@@ -3608,7 +3602,7 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:04
+        Last Build Date UTC : 2020-10-13 10:24:03
       </div>
       
         

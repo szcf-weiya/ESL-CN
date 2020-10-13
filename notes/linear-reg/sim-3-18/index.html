@@ -3494,7 +3494,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="_2">六种方法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="_3">最小二乘<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>这个最简单</p>
@@ -3502,7 +3501,6 @@
 <span class="n">ols.beta</span> <span class="o">=</span> <span class="nf">coef</span><span class="p">(</span><span class="n">ols.fit</span><span class="p">)</span>
 <span class="n">ols.beta</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">ols.beta</span><span class="p">))</span>
 </code></pre></div>
-
 
 <h3 id="lasso">lasso<a class="headerlink" href="#lasso" title="Permanent link">&para;</a></h3>
 <p>调整不同 $\lambda$，得到不同的　$\beta_1$　和 $\beta_2$，调用 <code>glmnet</code> 包进行求解</p>
@@ -3517,7 +3515,6 @@
                                     <span class="nf">c</span><span class="p">(</span><span class="s">&quot;X1&quot;</span><span class="p">,</span><span class="s">&quot;X2&quot;</span><span class="p">))</span>
 </code></pre></div>
 
-
 <p>值得说明的是，返回的　<code>beta</code>　是　<code>dsCMatrix</code>　格式的，注意转换。</p>
 <h3 id="_4">岭回归<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>这跟 lasso 一样，可以用同一个函数进行求解</p>
@@ -3528,7 +3525,6 @@
                                     <span class="nf">c</span><span class="p">(</span><span class="s">&quot;X1&quot;</span><span class="p">,</span> <span class="s">&quot;X2&quot;</span><span class="p">))</span>
 </code></pre></div>
 
-
 <h3 id="_5">主成分回归<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>这个可以通过 <code>pls</code> 包中的 <code>pcr</code> 函数直接求解，</p>
 <div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">pls</span><span class="p">)</span>
@@ -3536,7 +3532,6 @@
 <span class="n">pcr.beta</span> <span class="o">=</span> <span class="n">pcr.fit</span><span class="o">$</span><span class="n">coefficients</span>
 <span class="n">pcr.beta</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">pcr.beta</span><span class="p">[,,</span><span class="m">1</span><span class="p">],</span> <span class="n">pcr.beta</span><span class="p">[,,</span><span class="m">2</span><span class="p">])</span> <span class="c1"># c(0, 0) for zero PC</span>
 </code></pre></div>
-
 
 <p>当然，我也自己写了主成分回归的 <code>mypcr</code> 函数</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## get PCs</span>
@@ -3556,7 +3551,6 @@
                                     <span class="nf">c</span><span class="p">(</span><span class="s">&quot;X1&quot;</span><span class="p">,</span> <span class="s">&quot;X2&quot;</span><span class="p">))</span>
 </code></pre></div>
 
-
 <p>最终，表明两个函数结果完全一致。</p>
 <h3 id="_6">偏最小二乘<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>这个直接利用 <code>pls</code> 包中的 <code>plsr</code> 函数便可以得到</p>
@@ -3564,7 +3558,6 @@
 <span class="n">pls.beta</span> <span class="o">=</span> <span class="n">pls.fit</span><span class="o">$</span><span class="n">coefficients</span>
 <span class="n">pls.beta</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">pls.beta</span><span class="p">[,,</span><span class="m">1</span><span class="p">],</span> <span class="n">pls.beta</span><span class="p">[,,</span><span class="m">2</span><span class="p">])</span>
 </code></pre></div>
-
 
 <h3 id="_7">最优子集<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>通过调用 <code>leaps</code> 中的 <code>regsubsets</code> 函数可以计算得到</p>
@@ -3580,7 +3573,6 @@
 <span class="nf">attr</span><span class="p">(</span><span class="n">bs.beta</span><span class="p">,</span> <span class="s">&quot;dimnames&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="kc">NULL</span><span class="p">,</span>
                                 <span class="nf">c</span><span class="p">(</span><span class="s">&quot;X1&quot;</span><span class="p">,</span><span class="s">&quot;X2&quot;</span><span class="p">))</span>  
 </code></pre></div>
-
 
 <h2 id="_8">画图<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>为了方便比较，我将上述各种方法包装成 <code>select.vs.shrink()</code> 函数，返回值便是各种方法的 <code>beta</code>。另外，定义其 <code>class</code> 为
@@ -3614,7 +3606,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="_9">结果<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>在 $\rho=\pm 0.5$ 两种情形下分别生成模拟数据，绘制图象</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">## case 1</span>
@@ -3636,7 +3627,6 @@
 <span class="nf">plot</span><span class="p">(</span><span class="n">res2</span><span class="p">,</span> <span class="n">rho</span> <span class="o">=</span> <span class="m">-0.5</span><span class="p">)</span>
 <span class="nf">dev.off</span><span class="p">()</span>
 </code></pre></div>
-
 
 <p>结果得到</p>
 <p><img alt="" src="../res_rho_05.png" /></p>
@@ -3732,7 +3722,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-09-03 12:57:03
+        Last Build Date UTC : 2020-10-13 10:24:03
       </div>
       
         
