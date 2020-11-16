@@ -3425,7 +3425,11 @@ K_m(x_1,x_2)=\langle \Phi_m(x_1),\Phi_m(x_2) \rangle\tag{18.26}\label{18.26}
 </script>
 </p>
 <p>因此我们可以计算测试点到每个重心的距离，然后采用最近重心分类器．这意味着像 $K$-means 的聚类方法也可以实现，仅需要采用数据点的内积．</p>
-<p>带平方正则项的逻辑斯蒂回归和多项式回归也可以用内积核来实现；见 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.3 节</a>和<a href="https://github.com/szcf-weiya/ESL-CN/issues/200">练习 18.13</a>．<a href="https://github.com/szcf-weiya/ESL-CN/issues/201">练习 12.10</a>　推导了使用内积核的线性判别分析．</p>
+<p>带平方正则项的逻辑斯蒂回归和多项式回归也可以用内积核来实现；见 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.3-Support-Vector-Machines-and-Kernels/index.html">12.3.3 节</a>和<a href="https://github.com/szcf-weiya/ESL-CN/issues/122">练习 18.13</a>．<a href="https://github.com/szcf-weiya/ESL-CN/issues/201">练习 12.10</a>　推导了使用内积核的线性判别分析．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 18.13</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/122">Issue 122: Ex. 18.13</a>.</p>
+</div>
 <p>主成分也可以用内积核来计算；因为这通常很有用，所以这里给出细节．首先假设我们有中心化的数据矩阵 $\X$，并令 $\X=\U\D\V^T$ 为其 SVD 分解 \eqref{18.12}．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Recall</p>
@@ -3597,7 +3601,7 @@ d_{kj}=\frac{\bar x_{kj}-\bar x_j}{m_k(s_j+s_0)}\tag{18.4}\label{18.4}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-10-31 16:25:58
+        Last Build Date UTC : 2020-11-16 13:33:31
       </div>
       
         
