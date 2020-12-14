@@ -3559,7 +3559,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <script type="math/tex; mode=display">
 \underset{a}{\max}\;a^T\mathbf Ba \; \st \; a^T\mathbf Wa=1\tag{4.16}
 </script>
-这是一个一般化的特征值问题，$a$ 是由 $\mathbf W^{-1}\mathbf B$ 的最大特征值给出．不难证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/142">练习 4.1</a>）最优 $a_1$ 等于上面定义的 $v_1$．类似地，可以找到下一个方向 $a_2$，在 $W$ 中与 $a_1$ 正交，使得 $a_2^TBa_2/a_2^TWa_2$ 最大化；解为 $a_2=v_2$，其余类似．$a_\ell$ 被称作 <strong>判别坐标 (discriminant coordinates)</strong>，不会与判别函数相混淆．他们也被称作 <strong>典则变量 (canonical variables)</strong>，因为这些结果的一个变形是通过在预测变量矩阵 $X$ 上对指示响应矩阵 $Y$ 进行典则相关分析得到的．这一点将在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.5-Flexible-Disciminant-Analysis/index.html">12.5 节</a>继续讨论．</p>
+这是一个一般化的特征值问题，$a$ 是由 $\mathbf W^{-1}\mathbf B$ 的最大特征值给出．不难证明（<a href="https://github.com/szcf-weiya/ESL-CN/issues/142">练习 4.1</a>）最优 $a_1$ 等于上面定义的 $v_1$．类似地，可以找到下一个方向 $a_2$，在 $\mathbf W$ 中与 $a_1$ 正交，使得 $a_2^T{\mathbf B}a_2/a_2^T{\mathbf W}a_2$ 最大化；解为 $a_2=v_2$，其余类似．$a_\ell$ 被称作 <strong>判别坐标 (discriminant coordinates)</strong>，不要与判别函数相混淆．他们也被称作 <strong>典则变量 (canonical variables)</strong>，因为这些结果的一个变形是通过在预测变量矩阵 $\mathbf X$ 上对指示响应矩阵 $\mathbf Y$ 进行典则相关分析得到的．这一点将在 <a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.5-Flexible-Disciminant-Analysis/index.html">12.5 节</a>继续讨论．</p>
 <div class="admonition info">
 <p class="admonition-title">weiya 注：Ex. 4.1</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/142">Issue 142: Ex. 4.1</a>．</p>
@@ -3577,7 +3577,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <blockquote>
 <p>图 4.10. 对于元音数据，训练和测试误差作为判别边界的维数的函数的图象．这种情况下最优的误差率是维数等于 2 的情况．图 4.11 显示了这个空间的判别边界．</p>
 </blockquote>
-<p>Fisher <strong>降秩判别分析 (RDA)</strong> 和指示响应矩阵回归之间存在着紧密的联系．事实表明 LDA 意味着 $\hat{\mathbf  Y}^T\mathbf Y$ 的特征值分解后进行回归．在两个类的情形下，存在一个单判别变量，乘上一个标量后能与 $\hat{\mathbf Y}$ 的某一列相等．这些联系将在<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>中讨论．一个相关的事实是先将原始的预测变量 $\mathbf X$ 转换为 $\hat{\mathbf Y}$，然后用 $\hat{\mathbf Y}$ 做 LDA 与在原空间中做 LDA 是相同的（<a href="https://github.com/szcf-weiya/ESL-CN/issues/144">练习 4.3</a>）．</p>
+<p>Fisher <strong>降秩判别分析 (RDA)</strong> 和指示响应矩阵回归之间存在着紧密的联系．事实表明 LDA 意味着先回归然后对 $\hat{\mathbf  Y}^T\mathbf Y$ 做特征值分解．在两个类的情形下，对于 $\hat{\mathbf Y}$ 的任一列，都存在一个单判别变量，乘上一个标量后能与该列相等．这些联系将在<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>中讨论．一个相关的事实是先将原始的预测变量 $\mathbf X$ 转换为 $\hat{\mathbf Y}$，然后用 $\hat{\mathbf Y}$ 做 LDA 与在原空间中做 LDA 是相同的（<a href="https://github.com/szcf-weiya/ESL-CN/issues/144">练习 4.3</a>）．</p>
 <p><img alt="" src="../../img/04/fig4.11.png" /></p>
 <blockquote>
 <p>图 4.11. 对于元音训练数据，由前两个典则变量张成的二维子空间中的判别边界．注意到在任何高维子空间下，判别边界是高维仿射平面，而且不可以表示成直线．</p>
@@ -3686,7 +3686,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-12-14 11:15:01
+        Last Build Date UTC : 2020-12-14 16:19:14
       </div>
       
         
