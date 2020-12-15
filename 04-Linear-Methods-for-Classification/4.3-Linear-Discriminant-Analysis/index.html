@@ -3496,12 +3496,12 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <h2 id="lda">LDA 的计算<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
 <p>作为下一主题的铺垫，我们简单地岔开去讨论 LDA，特别是 QDA 的计算．这些计算可以通过对角化 $\hat\ssigma$ 或 $\hat\ssigma_k$ 来简化．对于后者，假设我们对每一个计算特征值分解 $\hat\ssigma_k=\mathbf U_k\mathbf D_k\mathbf U_k^T$，其中 $\mathbf U_k$ 是 $p\times p$ 的正交矩阵，$\mathbf D_k$ 是正的特征值 $d_{k\ell}$ 组成的对角矩阵．则 $\delta_k(x)$ \eqref{4.12} 的组成成分是</p>
 <ul>
-<li>$(x-\hat\mu_k)^T\hat\ssigma_k^{-1}(x-\hat\mu_k)=[U_k^T(x-\hat\mu_k)]^TD_k^{-1}[U_k^T(x-\hat\mu_k)]$</li>
+<li>$(x-\hat\mu_k)^T\hat\ssigma_k^{-1}(x-\hat\mu_k)=[\U_k^T(x-\hat\mu_k)]^T\mathbf D_k^{-1}[\mathbf U_k^T(x-\hat\mu_k)]$</li>
 <li>$\log\vert \hat\ssigma_k\vert=\sum_{\ell}\log d_{k\ell}$</li>
 </ul>
 <p>按照上面列出的计算步骤，LDA 分类器可以通过下面的步骤来实现</p>
 <ul>
-<li>对数据关于协方差矩阵 $\hat{\boldsymbol\Sigma}$ 球面化：$X^*\leftarrow \mathbf D^{-\frac{1}{2}}\mathbf U^T\mathbf X$，其中 $\hat{\boldsymbol\Sigma}=\mathbf U\mathbf D\mathbf U^T$．$X^*$ 的共同协方差矩阵变为单位阵．</li>
+<li>对数据关于协方差矩阵 $\hat{\boldsymbol\Sigma}$ 球面化：$X^*\leftarrow \mathbf D^{-\frac{1}{2}}\mathbf U^T X$，其中 $\hat{\boldsymbol\Sigma}=\mathbf U\mathbf D\mathbf U^T$．$X^*$ 的共同协方差矩阵变为单位阵．</li>
 <li>考虑类别先验概率 $\pi_k$ 的影响，在变换后的空间里面分到最近的类别形心．</li>
 </ul>
 <h2 id="_2">降维线性判别分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -3524,10 +3524,14 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <li>使用 $\mathbf W$ 特征值分解计算 $\mathbf M^*=\mathbf M\mathbf W^{-\frac{1}{2}}$</li>
 <li>计算 $\mathbf M^*$ 的协方差矩阵 $\mathbf B^*$，（$\mathbf B$ 是 <strong>组间 (between-class)</strong> 协方差），以及特征值分解 $\mathbf B^*=\mathbf V^*\mathbf D_B{\mathbf V^*}^T$．$\mathbf V^*$ 的列 $v_\ell^*$ 从第一个到最后一个依次定义了最优子空间的坐标．</li>
 </ul>
-<p>结合上述的操作，第 $\ell$ 个 <strong>判别变量 (discriminant variable)</strong> 由 $Z_\ell=v_\ell^TX$ 给出，其中 $v_\ell=W^{-\frac{1}{2}}v_\ell^*$．</p>
+<p>结合上述的操作，第 $\ell$ 个 <strong>判别变量 (discriminant variable)</strong> 由 $Z_\ell=v_\ell^TX$ 给出，其中 $v_\ell=\W^{-\frac{1}{2}}v_\ell^*$．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>结合 <a href="https://github.com/szcf-weiya/ESL-CN/issues/142">Ex. 4.1</a> 的证明过程来理解上述算法．主要思想是先求 $\mathbf W^{-\frac 12}\mathbf B\mathbf W^{-\frac 12}$ 的特征向量 $v_\ell^*$，则 $\mathbf W^{-1}\mathbf B$ 的特征向量为 $\mathbf W^{-\frac 12}v_\ell^*$．</p>
+<p>结合 <a href="https://github.com/szcf-weiya/ESL-CN/issues/142">Ex. 4.1</a> 的证明过程来理解上述算法．主要思想是先求 $\mathbf W^{-\frac 12}\mathbf B\mathbf W^{-\frac 12}$ 的特征向量 $v_\ell^*$，则 $\mathbf W^{-1}\mathbf B$ 的特征向量为 $\mathbf W^{-\frac 12}v_\ell^*$．同时注意到我们有 $\Var(v_\ell^TX)=1$ 及 $\Cov(v_\ell^TX,v_k^TX)=0, \ell\neq k$，则判别函数 $\delta_k(z)$ 中的平方和项为
+<script type="math/tex; mode=display">
+(Z - \mu_k[Z])'(Z - \mu_k[Z]) = \sum_{\ell=1}^s(Z_\ell - \mu_{k}[Z_\ell])^2\,,
+</script>
+其中 $s$ 为判别变量的个数，$\mu_k[Z_\ell] = v_\ell^T\mu_k$.</p>
 </div>
 <p>Fisher 通过不同的方式得到这个分解，完全没有引用高斯分布．他提出下面的问题：</p>
 <blockquote>
@@ -3686,7 +3690,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-12-14 16:19:14
+        Last Build Date UTC : 2020-12-15 10:21:39
       </div>
       
         
