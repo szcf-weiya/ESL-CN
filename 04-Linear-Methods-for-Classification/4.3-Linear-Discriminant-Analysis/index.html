@@ -3582,6 +3582,10 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
 <p>图 4.10. 对于元音数据，训练和测试误差作为判别边界的维数的函数的图象．这种情况下最优的误差率是维数等于 2 的情况．图 4.11 显示了这个空间的判别边界．</p>
 </blockquote>
 <p>Fisher <strong>降秩判别分析 (RDA)</strong> 和指示响应矩阵回归之间存在着紧密的联系．事实表明 LDA 意味着先回归然后对 $\hat{\mathbf  Y}^T\mathbf Y$ 做特征值分解．在两个类的情形下，对于 $\hat{\mathbf Y}$ 的任一列，都存在一个单判别变量，乘上一个标量后能与该列相等．这些联系将在<a href="../../12-Support-Vector-Machines-and-Flexible-Discriminants/12.1-Introduction/index.html">第 12 章</a>中讨论．一个相关的事实是先将原始的预测变量 $\mathbf X$ 转换为 $\hat{\mathbf Y}$，然后用 $\hat{\mathbf Y}$ 做 LDA 与在原空间中做 LDA 是相同的（<a href="https://github.com/szcf-weiya/ESL-CN/issues/144">练习 4.3</a>）．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 4.3</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/144">Issue 144: Ex. 4.3</a>，欢迎讨论交流～</p>
+</div>
 <p><img alt="" src="../../img/04/fig4.11.png" /></p>
 <blockquote>
 <p>图 4.11. 对于元音训练数据，由前两个典则变量张成的二维子空间中的判别边界．注意到在任何高维子空间下，判别边界是高维仿射平面，而且不可以表示成直线．</p>
@@ -3690,7 +3694,7 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)>\frac{1}{2}(\hat\mu_2+\hat\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2020-12-15 10:21:39
+        Last Build Date UTC : 2020-12-16 04:02:24
       </div>
       
         
