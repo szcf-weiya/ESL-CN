@@ -76,3 +76,7 @@ label.md-nav__title {
   list-style-type: none;
   margin-left: unset;
 }
+
+.mjx-mtd:target {
+  scroll-margin-top: 5rem!important;
+}
