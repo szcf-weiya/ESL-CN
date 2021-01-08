@@ -26,14 +26,21 @@
     **差商 (divided differences)**: from [wiki](https://en.wikipedia.org/wiki/Divided_differences)
     给定 $k+1$ 个数据点 $(x_i,y_i),i=1,2,\ldots,k$
     向前差商定义为
+
     $$
-    [y_\nu]:=y_\nu,\;\nu\in\{0,\ldots, k\}\\
-    [y_\nu,\ldots,y_{\nu+j}]:=\frac{[y_{\nu+1},\ldots,y_{\nu+j}]-[y_{\nu},\ldots,y_{\nu+j-1}]}{x_{\nu+j}-x_{\nu}},\;\nu\in\{0,\ldots,k-j\},j\in\{1,\ldots,k\}
+    \begin{align*}
+    [y_\nu]&:=y_\nu,\;\nu\in\{0,\ldots, k\}\\
+    [y_\nu,\ldots,y_{\nu+j}]&:=\frac{[y_{\nu+1},\ldots,y_{\nu+j}]-[y_{\nu},\ldots,y_{\nu+j-1}]}{x_{\nu+j}-x_{\nu}},\;\nu\in\{0,\ldots,k-j\},j\in\{1,\ldots,k\}
+    \end{align*}
     $$
+
     向后差商定义为
+
     $$
-    [y_\nu]:=y_\nu,\;\nu\in\{0,\ldots, k\}\\
-    [y_\nu,\ldots,y_{\nu-j}]:=\frac{[y_{\nu},\ldots,y_{\nu-j+1}]-[y_{\nu-1},\ldots,y_{\nu-j}]}{x_{\nu}-x_{\nu-j}},\;\nu\in\{0,\ldots,k-j\},j\in\{1,\ldots,k\}
+    \begin{align*}
+    [y_\nu]&:=y_\nu,\;\nu\in\{0,\ldots, k\}\\
+    [y_\nu,\ldots,y_{\nu-j}]&:=\frac{[y_{\nu},\ldots,y_{\nu-j+1}]-[y_{\nu-1},\ldots,y_{\nu-j}]}{x_{\nu}-x_{\nu-j}},\;\nu\in\{0,\ldots,k-j\},j\in\{1,\ldots,k\}
+    \end{align*}
     $$
 
 记 $B_{i,m}(x)$ 为结点序列 $\tau$ 的 order 为 $m$ 的第 $i$ 个 $B$ 样条基函数，$m\le M$．通过差商递归定义有:
@@ -112,14 +119,14 @@ $B$ 样条局部支撑有重要的计算应用，特别当结点数 $K$ 很大�
 
 !!! note "weiya注：复杂度"
     首先贴出[wiki: Computational complexity of mathematical operations](https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations)中给出的各种矩阵运算的复杂度：
-    
+
     ![](../img/05/matrix_operations_complexity.png)
 
     对于$N\times p$的设计矩阵$X$及$N\times 1$的响应变量向量$Y$，其最小二乘估计为$(X'X)^{-1}X'Y$，采用一般的Gauss-Jordan elimination的矩阵逆运算，则总复杂度为$O(Np^2+p^3)$，故$K+M$个变量的$N$个观测的最小二乘复杂度为$O(N(K+M)^2+(K+M)^3)$．
 
 !!! note "weiya 注：B 样条在 R, C++, Python 中的实现"
     [这篇笔记](../notes/BS/bs.md)比较了 B 样条在 R，C++ 以及 Python 中的实现。
-    
+
 
 ## 光滑样条的计算
 
@@ -153,7 +160,7 @@ $$
 
 !!! note "weiya 注：band matrix"
     对于矩阵$A=(a_{i,j})$，若
-    
+
     $$
     a_{i,j}=0\;if\;j < i-k_1\; or\; j > i + k_2;\; k_1,k_2\ge 0
     $$
