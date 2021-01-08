@@ -3379,15 +3379,24 @@
 <p class="admonition-title">weiya 注</p>
 <p><strong>差商 (divided differences)</strong>: from <a href="https://en.wikipedia.org/wiki/Divided_differences">wiki</a>
 给定 $k+1$ 个数据点 $(x_i,y_i),i=1,2,\ldots,k$
-向前差商定义为
-$$
-[y_\nu]:=y_\nu,\;\nu\in{0,\ldots, k}\</p>
+向前差商定义为</p>
 <p>
 <script type="math/tex; mode=display">
-向后差商定义为
+\begin{align*}
+[y_\nu]&:=y_\nu,\;\nu\in\{0,\ldots, k\}\\
+[y_\nu,\ldots,y_{\nu+j}]&:=\frac{[y_{\nu+1},\ldots,y_{\nu+j}]-[y_{\nu},\ldots,y_{\nu+j-1}]}{x_{\nu+j}-x_{\nu}},\;\nu\in\{0,\ldots,k-j\},j\in\{1,\ldots,k\}
+\end{align*}
 </script>
-[y_\nu]:=y_\nu,\;\nu\in{0,\ldots, k}\</p>
-<p>$$</p>
+</p>
+<p>向后差商定义为</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+[y_\nu]&:=y_\nu,\;\nu\in\{0,\ldots, k\}\\
+[y_\nu,\ldots,y_{\nu-j}]&:=\frac{[y_{\nu},\ldots,y_{\nu-j+1}]-[y_{\nu-1},\ldots,y_{\nu-j}]}{x_{\nu}-x_{\nu-j}},\;\nu\in\{0,\ldots,k-j\},j\in\{1,\ldots,k\}
+\end{align*}
+</script>
+</p>
 </div>
 <p>记 $B_{i,m}(x)$ 为结点序列 $\tau$ 的 order 为 $m$ 的第 $i$ 个 $B$ 样条基函数，$m\le M$．通过差商递归定义有:</p>
 <p>
@@ -3600,7 +3609,7 @@ a_{i,j}=0\;if\;j < i-k_1\; or\; j > i + k_2;\; k_1,k_2\ge 0
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-01-07 04:16:54
+        Last Build Date UTC : 2021-01-08 02:51:53
       </div>
       
         
