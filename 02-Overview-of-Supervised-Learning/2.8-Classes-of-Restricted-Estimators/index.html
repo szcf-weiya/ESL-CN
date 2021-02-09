@@ -3388,7 +3388,7 @@
 \tag{2.39}
 </script>
 这里的粗糙惩罚控制了 $f$ 的二阶微分较大的值，而且惩罚的程度由 $\lambda \ge 0$ 来决定．$\lambda=0$ 表示没有惩罚，则可以使用任意插值函数，而 $\lambda=\infty$ 仅仅允许关于 $x$ 的线性函数．</p>
-<p>可以在任意维数下构造惩罚函数 $J$ ，而且一些特殊的版本可以用来插入特殊的结构．举个例子，可加性惩罚 $J(f)=\sum_{j=1}^pJ(f_j)$ 与可加性函数 $f(X)=\sum_{j=1}^pf_j(X_j)$ 联合使用去构造可加的光滑坐标函数的模型．类似地，<strong>投射寻踪回归 (regression pursuit regression)</strong> 模型有 $f(X)=\sum_{m=1}^Mg_m(\alpha_m^TX)$，其中 $\alpha_m$ 为自适应选择的方向，每个函数 $g_m$ 有对应的粗糙惩罚．</p>
+<p>可以在任意维数下构造惩罚函数 $J$ ，而且一些特殊的版本可以用来插入特殊的结构．举个例子，可加性惩罚 $J(f)=\sum_{j=1}^pJ(f_j)$ 与可加性函数 $f(X)=\sum_{j=1}^pf_j(X_j)$ 联合使用去构造可加的光滑坐标函数的模型．类似地，<strong>投影寻踪回归 (projection pursuit regression)</strong> 模型有 $f(X)=\sum_{m=1}^Mg_m(\alpha_m^TX)$，其中 $\alpha_m$ 为自适应选择的方向，每个函数 $g_m$ 有对应的粗糙惩罚．</p>
 <p>惩罚函数，或者说 <strong>正则 (regularization)</strong> 方法，表达了我们的 <strong>先验信仰 (prior belief)</strong>——寻找具有一个特定类型的光滑行为函数类型，而且确实可以套进贝叶斯的模型中．惩罚 $J$ 对应先验概率，$\PRSS(f;\lambda)$ 为后验分布，最小化 $\PRSS(f;\lambda)$ 意味着寻找后验模式．我们将在<a href="../../05-Basis-Expansions-and-Regularization/5.1-Introduction/index.html">第 5 章</a>中讨论粗糙惩罚方法并在<a href="../../08-Model-Inference-and-Averaging/8.1-Introduction/index.html">第 8 章</a>中讨论贝叶斯范式．</p>
 <h2 id="_2">核方法和局部回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>这些方法可以认为是通过确定局部邻域的本质来显式给出回归函数的估计或条件期望，并且属于局部拟合得很好的规则函数类．局部邻域由 <strong>核函数(kernel function)</strong> $K_{\lambda}(x_0,x)$ 确定，它对 $x_0$ 附近的区域内的 $x$ 赋予系数（见<a href="../../06-Kernel-Smoothing-Methods/6.1-One-Dimensional-Kernel-Smoothers/index.html">图 6.1</a>），举个例子，高斯核有一个基于高斯密度函数的权重函数
@@ -3529,7 +3529,7 @@ f_{\theta}(x)=\sum\limits_{m=1}^M\beta_m\sigma(\alpha_m^Tx+b_m)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-01-18 16:13:00
+        Last Build Date UTC : 2021-02-09 16:08:00
       </div>
       
         
