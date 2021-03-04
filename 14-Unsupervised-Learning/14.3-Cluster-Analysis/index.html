@@ -3707,7 +3707,7 @@ d(x_i,x_{i'})=l(\vert x_i-x_{i'}\vert)
 <h3 id="_4">类别变量<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>对于无序的类别（也称作名义(nomial)）变量，成对数据的差异程度必须明确地表示出来．如果假设变量有 $M$ 个不同的值，可以排列成对称的 $M\times M$ 矩阵，元素 $L_{rr&rsquo;}=L_{r&rsquo;r},L_{rr}=0,L_{rr&rsquo;}\ge 0$．最普遍的选择对于所有 $r\neq r&rsquo;$ 取 $L_{rr&rsquo;}=1$，而不相等的损失可以用来突出某些错误．</p>
 <h2 id="object-dissimilarity">样品的不相似性 (object dissimilarity)<a class="headerlink" href="#object-dissimilarity" title="Permanent link">&para;</a></h2>
-<p>接着我们定义将 $p$ 个单属性不相似性 $d_j(x_{ij},d_{i&rsquo;j}),j=1,2,\ldots,p$ 结合成一个单独的衡量整个不相似性的 $D(x_i,x_{i&rsquo;})$，$D(x_i,x_{i&rsquo;})$ 是两个有着各自属性值的点或观测 $(x_i,x_{i&rsquo;})$ 之间的不相似性．这几乎总是通过加权平均（凸组合）的方式实现
+<p>接着我们定义将 $p$ 个单属性不相似性 $d_j(x_{ij},x_{i&rsquo;j}),j=1,2,\ldots,p$ 结合成一个单独的衡量整个不相似性的 $D(x_i,x_{i&rsquo;})$，$D(x_i,x_{i&rsquo;})$ 是两个有着各自属性值的点或观测 $(x_i,x_{i&rsquo;})$ 之间的不相似性．这几乎总是通过加权平均（凸组合）的方式实现
 <script type="math/tex; mode=display">
 D(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot d_j(x_{ij},x_{i'j});\; \sum\limits_{j=1}^pw_j=1\tag{14.24}\label{14.24}
 </script>
@@ -3735,7 +3735,7 @@ D_I(x_i,x_{i'})=\sum\limits_{j=1}^pw_j\cdot (x_{ij}-x_{i'j})^2\tag{14.26}
 <blockquote>
 <p>图14.5. 模拟数据：左图对原始数据应用 K-means（K=2）分类．两种颜色表示类别的成员．右图，聚类之前对特征进行第一次标准化．这等价于使用特征权重 $1/[2\cdot var(X_j)]$．标准化模糊了两个能完美分离的类．注意到每张图的横纵坐标使用相同的单位长度．</p>
 </blockquote>
-<p>尽管选择单个属性不相似性 $d_j(x_{ij},d_{x_{i&rsquo;j}})$ 和它们的权重 $w_j$的 简单的通用方法会令人愉快，但是在每个单个问题中，没有替代仔细思考的方式．确定一个合适的不相似性的度量远比选择聚类算法来得重要．该问题的这个方面在聚类领域比算法本身强调得少，因为它取决于特定的领域知识，并且不适合一般性的研究．</p>
+<p>尽管选择单个属性不相似性 $d_j(x_{ij},x_{i&rsquo;j})$ 和它们的权重 $w_j$的 简单的通用方法会令人愉快，但是在每个单个问题中，没有替代仔细思考的方式．确定一个合适的不相似性的度量远比选择聚类算法来得重要．该问题的这个方面在聚类领域比算法本身强调得少，因为它取决于特定的领域知识，并且不适合一般性的研究．</p>
 <p>最后，观测值经常在一个或多个属性中有 <strong>缺失值 (missing values)</strong>．将缺失值合并到不相似性的计算 \eqref{14.24} 中的最普遍方法是在计算观测 $x_i$ 和 $x_{i&rsquo;}$ 之间的不相似性时，省略掉至少有一个缺失值的观测对 $x_{ij},x_{i&rsquo;j}$．这个方法在两个观测都没有共同测量值的情况中是不适用的．这种情况下，两个观测都会从分析中删掉．或者，可以使用每个属性未缺失值的平均值或中位数来插补缺失值．对于类别型变量，如果两个物体在相同变量上具有缺失值的情况下将两个对象视为相似是合理的，则可以将缺失值仅仅考虑成另一个类别值．</p>
 <h2 id="_5">聚类算法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>聚类分析的目标是将观测进行分类使得分到同一类中的成对非相似性趋向于比在不同类中小．聚类算法可以分成三种不同的类别：<strong>组合算法 (combinatorial algorithms)</strong>，<strong>混合模型 (mixture modeling)</strong>，以及 <strong>模式寻找 (mode seeking)</strong>．</p>
@@ -3763,7 +3763,7 @@ B(C)=\frac{1}{2}\sum\limits_{k=1}\sum\limits_{C(i)=k}\sum\limits_{C(i')\neq k}d_
 <script type="math/tex; mode=display">
 W(C)=T-B(C)
 </script>
-并且最小化 $W(C)$ 等价于最大化 $B(C)$. </p>
+并且最小化 $W(C)$ 等价于最大化 $B(C)$.</p>
 <p>通过组合优化的聚类分析原则上是直接的．简单地在 $N$ 个点分到 $K$ 个类中的所有可能分配上最小化 $W$ 或等价地最大化 $B$．不幸的是，这种穷举法的优化仅仅在非常小的数据集中才适用．不同的分配个数为（Jain and Dubes，1988<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">4</a></sup>）
 <script type="math/tex; mode=display">
 S(N,K)=\frac{1}{K!}\sum\limits_{k=1}^K(-1)^{K-k}\binom{K}{k}k^N\tag{14.30}\label{14.30}
@@ -4090,7 +4090,7 @@ D_G=\max_{i\in G,i'\in G}d_{ii'}\,,\tag{14.44}\label{14.44}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-02-09 16:08:06
+        Last Build Date UTC : 2021-03-04 03:55:14
       </div>
       
         
