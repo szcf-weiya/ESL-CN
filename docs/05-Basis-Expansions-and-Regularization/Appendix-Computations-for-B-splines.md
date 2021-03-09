@@ -154,7 +154,10 @@ $$
     \hat\theta = (\mathbf N^T\mathbf N+\lambda\Omega_N)^{-1}\mathbf N^T\mathbf y\tag{5.12}
     $$
 
-只不过现在 $N\times N$ 的矩阵 $\N$ 用 $N\times(N+4)$ 的矩阵 $\B$ 来替换，类似地，$(N+4)\times (N+4)$ 的惩罚矩阵 $\oomega_B$ 替换 $N\times N$ 的矩阵 $\oomega_N$．看上去似乎没有边界微分的约束，事实上通过对边界外的点的任意非零的微分加上了充分大的权重自动进行惩罚．实际中，$\hat\gamma$ 约束为惩罚总是有限的线性子空间．
+只不过现在 $N\times N$ 的矩阵 $\N$ 用 $N\times(N+4)$ 的矩阵 $\B$ 来替换，类似地，$(N+4)\times (N+4)$ 的惩罚矩阵 $\oomega_B$ 替换 $N\times N$ 的矩阵 $\oomega_N$．看上去似乎没有边界微分的约束，事实上惩罚项通过对边界外的点的任意非零微分加上了充分大的权重自动加上了这些约束．实际中，$\hat\gamma$ 限制在惩罚总是有限的线性子空间中．
+
+!!! note "weiya 注："
+    实际中，自然样条基函数矩阵 $\N$ 可以由 $B$ 样条基函数矩阵 $\B$ 导出，详见 [Issue 235](https://github.com/szcf-weiya/ESL-CN/issues/235)
 
 因为 $\B$ 的列是从左到右在已经排序的 $X$ 的值上进行赋值的 $B$ 样条，并且三次 $B$ 样条有局部支撑，$\B$ 是 lower 4-banded．
 
