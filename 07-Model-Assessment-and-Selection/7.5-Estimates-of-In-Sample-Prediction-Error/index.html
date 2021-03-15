@@ -3328,6 +3328,14 @@ C_p=\overline{\err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon\tag{7.26}
 \mathrm{AIC}=-\frac{2}{N}\cdot \mathrm{loglik}+2\cdot \frac{d}N\tag{7.29}
 </script>
 对于高斯模型（假设方差 $\sigma_\varepsilon^2=\hat\sigma_\varepsilon^2$ 已知），AIC 统计量等于 $C_p$，因此我们称它们一起称为 AIC．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注：</p>
+<p>注意此处假设 $\sigma_\varepsilon^2$ 已知，如果也将其看成是未知的，并通过 MLE 求解，则 AIC 准则（忽略常数）为
+<script type="math/tex; mode=display">
+\mathrm{AIC} = n\log\mathrm{RSS} + 2d\,,
+</script>
+详见 <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion#Comparison_with_least_squares">Wiki: AIC</a></p>
+</div>
 <p>采用 AIC 来进行模型选择时，我们在考虑的模型中选择具有最小的 AIC 的模型．对于非线性或者其他复杂模型，我们需要将 $d$ 换成其它衡量模型复杂度的量．我们将在 <a href="../7.6-The-Effective-Number-of-Parameters/index.html">7.6 节</a>讨论这点．</p>
 <p>给定由调整参数 $\alpha$ 编号的一系列模型，用 $\overline{\err}(\alpha)$ 和 $d(\alpha)$ 记为每个模型的训练误差和参数的个数．接着对于模型序列我们定义
 <script type="math/tex; mode=display">
@@ -3442,7 +3450,7 @@ C_p=\overline{\err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon\tag{7.26}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-03-09 10:40:52
+        Last Build Date UTC : 2021-03-15 05:04:14
       </div>
       
         
