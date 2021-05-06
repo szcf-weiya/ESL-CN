@@ -4,7 +4,7 @@
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
 | 时间   | 2018-03-02                               |
-| 更新| 2018-08-22|
+| 更新| 2021-05-06 22:48:00|
 |状态|Done| 
 
 ## 背景重述
@@ -127,6 +127,8 @@ calcErr <- function(model, n = 1000, nrep = 50, num_noise = 0, method = "SVM")
 
 ## 贝叶斯误差率
 
+### 二分类
+
 首先介绍 **贝叶斯检验 (Bayes Test)**，令 $X$ 是观测向量，我们要确定其分类，$w_1$ 或 $w_2$，设 $q_i(X)$ 是给定 $X$ 时 $w_i$ 的后验概率，则判别规则可写成
 
 $$
@@ -189,9 +191,70 @@ $$
 \frac{1}{2}\int_{9}^{16}f(t)dt\approx 0.029
 $$
 
-!!! note "weiya 注：参考文献"
-    1. [probability - Calculating the error of Bayes classifier analytically - Cross Validated](https://stats.stackexchange.com/questions/4949/calculating-the-error-of-bayes-classifier-analytically)
-    2. [Fukunaga, K. (2013). Introduction to statistical pattern recognition. Elsevier.](../references/ISPR.pdf)
+### K分类
+
+一般地，对于 $K$ 分类问题，令 $\pi_1,\ldots,\pi_K$ 为 $K$ 个类别的先验概率，它们满足 $\pi_i\ge 0,\sum\pi_i=1$。当观测到 $x$，则其属于类别 $i$ 的后验概率为
+
+$$
+\pi_i(x) = \frac{\pi_i f_i(x)}{\sum \pi_jf_j(x)}\,.
+$$
+
+如果将属于类别 $i$ 的观测划分到 $j$，产生的误差为
+
+$$
+r_j(x) = \sum_{i=1}^Kp_i(x)L(i, j)\,.
+$$
+
+最小化的解即为贝叶斯判别规则，
+
+$$
+\delta^\star: i\rightarrow \argmin_j r_j(x)\,,
+$$
+
+这个解也最小化了 $\E r_j(x)$，如下述定理 (p228 of TPE) 所述，
+
+![](https://user-images.githubusercontent.com/13688320/57924640-39d46280-78d8-11e9-8f72-f836529b2edf.png)
+
+该最小值即为贝叶斯误差率，或者通常称为 Bayes risk,
+
+$$
+R = \E r^\star(x)\,.
+$$
+
+如果损失函数为误分类损失，即
+
+$$
+L(i, j) = 
+\begin{cases}
+1 &\text{if } i=j\\
+0 &\text{otherwise}
+\end{cases}\,,
+$$
+
+则
+
+$$
+\delta^\star: i\rightarrow \argmin_j p_j(x)\,.
+$$
+
+而对于平方误差，
+
+$$
+L(i, j) = (i - j)^2\,,
+$$
+
+其解为 
+
+$$
+j^\star = \sum_{i=1}^Kip_i(x)\triangleq \E i\,.
+$$
+
+
+## 参考文献
+
+- [probability - Calculating the error of Bayes classifier analytically - Cross Validated](https://stats.stackexchange.com/questions/4949/calculating-the-error-of-bayes-classifier-analytically)
+- Fukunaga, K. (2013). Introduction to statistical pattern recognition. Elsevier.
+- [Cover, T., & Hart, P. (1967). Nearest neighbor pattern classification. IEEE Transactions on Information Theory, 13(1), 21–27.](https://doi.org/10.1109/TIT.1967.1053964)
 
 !!! tip
     完整代码可以参见[skin-of-the-orange.R](https://github.com/szcf-weiya/ESL-CN/blob/master/docs/notes/SVM/skin-of-the-orange.R)
