@@ -3294,7 +3294,7 @@
 <p><img alt="" src="../../../img/10/tab10.2.png" /></p>
 <p>将上述几种损失函数及其梯度用如下的Julia程序表达出来。</p>
 <p>首先声明<code>LossFunction</code>抽象类</p>
-<div class="codehilite"><pre><span></span><code><span class="k">abstract</span> <span class="k">type</span> <span class="n">LossFunction</span> <span class="k">end</span>
+<div class="codehilite"><pre><span></span><code><span class="k">abstract type</span> <span class="kt">LossFunction</span> <span class="k">end</span>
 </code></pre></div>
 
 <p>然后依次声明平方误差损失类<code>SquareLoss</code>、绝对值损失类<code>AbsLoss</code>、Huber损失类<code>HuberLoss</code>。以及用于logistic回归的<code>LogisticLoss</code>。</p>
@@ -3302,7 +3302,7 @@
     <span class="k">return</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">exp</span><span class="o">.</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
 <span class="k">end</span>
 
-<span class="k">type</span> <span class="n">SquareLoss</span> <span class="o">&lt;:</span> <span class="n">LossFunction</span>
+<span class="n">type</span> <span class="kt">SquareLoss</span> <span class="o">&lt;:</span> <span class="kt">LossFunction</span>
     <span class="n">obj</span><span class="o">::</span><span class="kt">Function</span>
     <span class="n">gradient</span><span class="o">::</span><span class="kt">Function</span>
 
@@ -3320,7 +3320,7 @@
     <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="k">type</span> <span class="n">AbsLoss</span> <span class="o">&lt;:</span> <span class="n">LossFunction</span>
+<span class="n">type</span> <span class="kt">AbsLoss</span> <span class="o">&lt;:</span> <span class="kt">LossFunction</span>
     <span class="n">obj</span><span class="o">::</span><span class="kt">Function</span>
     <span class="n">gradient</span><span class="o">::</span><span class="kt">Function</span>
 
@@ -3338,7 +3338,7 @@
     <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="k">type</span> <span class="n">HuberLoss</span> <span class="o">&lt;:</span> <span class="n">LossFunction</span>
+<span class="n">type</span> <span class="kt">HuberLoss</span> <span class="o">&lt;:</span> <span class="kt">LossFunction</span>
     <span class="n">obj</span><span class="o">::</span><span class="kt">Function</span>
     <span class="n">gradient</span><span class="o">::</span><span class="kt">Function</span>
 
@@ -3374,7 +3374,7 @@
     <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="k">type</span> <span class="n">LogisticLoss</span> <span class="o">&lt;:</span> <span class="n">LossFunction</span>
+<span class="n">type</span> <span class="kt">LogisticLoss</span> <span class="o">&lt;:</span> <span class="kt">LossFunction</span>
     <span class="n">obj</span><span class="o">::</span><span class="kt">Function</span>
     <span class="n">gradient</span><span class="o">::</span><span class="kt">Function</span>
 
@@ -3512,7 +3512,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-05-03 12:08:41
+        Last Build Date UTC : 2021-05-06 14:04:52
       </div>
       
         

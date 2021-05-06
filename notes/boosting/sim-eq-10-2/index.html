@@ -3407,7 +3407,7 @@ Y=
 <h2 id="julia">Julia实现<a class="headerlink" href="#julia" title="Permanent link">&para;</a></h2>
 <p>Julia的具体细节参见<a href="https://docs.julialang.org/en/stable/manual/">官方manual</a>。</p>
 <p>首先我们定义模型的结构，我们需要两个参数，弱分类器的个数<code>n_clf</code>和存储<code>n_clf</code>个弱分类器的<code>n_clf</code>$\times 4$的矩阵。因为对于每个弱分类器——两个终止结点的stump，我们需要三个参数确定，分割变量的编号<code>idx</code>，该分割变量对应的cutpoint值<code>val</code>，以及分类的方向<code>flag</code>（当<code>flag</code>取1时则所有比cutpoint大的观测值分到树的右结点，而<code>flag</code>取0时分到左结点），另外算法中需要确定的<code>alpha</code>参数，所以一个stump需要四个参数。下面代码默认弱分类器个数为10。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="n">Adaboost</span>
+<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="kt">Adaboost</span>
     <span class="n">n_clf</span><span class="o">::</span><span class="kt">Int64</span>
     <span class="n">clf</span><span class="o">::</span><span class="kt">Matrix</span>
 <span class="k">end</span>
@@ -3419,7 +3419,7 @@ Y=
 </code></pre></div>
 
 <p>训练模型</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="n">train!</span><span class="p">(</span><span class="n">model</span><span class="o">::</span><span class="n">Adaboost</span><span class="p">,</span> <span class="n">X</span><span class="o">::</span><span class="kt">Matrix</span><span class="p">,</span> <span class="n">y</span><span class="o">::</span><span class="kt">Vector</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="n">train!</span><span class="p">(</span><span class="n">model</span><span class="o">::</span><span class="kt">Adaboost</span><span class="p">,</span> <span class="n">X</span><span class="o">::</span><span class="kt">Matrix</span><span class="p">,</span> <span class="n">y</span><span class="o">::</span><span class="kt">Vector</span><span class="p">)</span>
     <span class="n">n_sample</span><span class="p">,</span> <span class="n">n_feature</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="c">## initialize weight</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">n_sample</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_sample</span>
@@ -3480,7 +3480,7 @@ Y=
 </code></pre></div>
 
 <p>预测模型</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="n">predict</span><span class="p">(</span><span class="n">model</span><span class="o">::</span><span class="n">Adaboost</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="n">predict</span><span class="p">(</span><span class="n">model</span><span class="o">::</span><span class="kt">Adaboost</span><span class="p">,</span>
                  <span class="n">x</span><span class="o">::</span><span class="kt">Matrix</span><span class="p">)</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -3490,7 +3490,7 @@ Y=
     <span class="k">return</span> <span class="n">res</span>
 <span class="k">end</span>
 
-<span class="k">function</span> <span class="n">predict</span><span class="p">(</span><span class="n">model</span><span class="o">::</span><span class="n">Adaboost</span><span class="p">,</span>
+<span class="k">function</span> <span class="n">predict</span><span class="p">(</span><span class="n">model</span><span class="o">::</span><span class="kt">Adaboost</span><span class="p">,</span>
                  <span class="n">x</span><span class="o">::</span><span class="kt">Vector</span><span class="p">)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">model</span><span class="o">.</span><span class="n">n_clf</span>
@@ -3852,7 +3852,7 @@ Y=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-05-03 12:08:40
+        Last Build Date UTC : 2021-05-06 14:04:51
       </div>
       
         

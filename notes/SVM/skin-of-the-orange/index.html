@@ -3557,8 +3557,8 @@
 <p>首先介绍 <strong>贝叶斯检验 (Bayes Test)</strong>，令 $X$ 是观测向量，我们要确定其分类，$w_1$ 或 $w_2$，设 $q_i(X)$ 是给定 $X$ 时 $w_i$ 的后验概率，则判别规则可写成</p>
 <p>
 <script type="math/tex; mode=display">
-\DeclareMathOperator*{olessgtr}{\lessgtr}
-q_1(X) \olessgtr\limits_{w_2}^{w_1} q_2(X).
+\DeclareMathOperator*{ogtrless}{\gtrless}
+q_1(X) \ogtrless\limits_{w_2}^{w_1} q_2(X).
 </script>
 </p>
 <p>设 $w_i$ 的先验为 $P_i$，条件密度函数为 $p_i(X)$，则根据贝叶斯定理</p>
@@ -3570,7 +3570,7 @@ q_i(X)=\frac{P_ip_i(X)}{p(X)},
 <p>其中 $p(X)$ 为混合密度函数，有</p>
 <p>
 <script type="math/tex; mode=display">
-P_1p_1(X) \olessgtr\limits_{w_2}^{w_1} P_2p_2(X).
+P_1p_1(X) \ogtrless\limits_{w_2}^{w_1} P_2p_2(X).
 </script>
 </p>
 <p>根据上述判别规则进行分类，我们有给定 $X$ 时的条件误差 </p>
@@ -3716,7 +3716,7 @@ r(X) = \min\{q_1(X), q_2(X)\}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-05-03 12:08:40
+        Last Build Date UTC : 2021-05-06 14:04:51
       </div>
       
         
