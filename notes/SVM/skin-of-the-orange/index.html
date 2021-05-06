@@ -3111,6 +3111,33 @@
     贝叶斯误差率
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="二分类" class="md-nav__link">
+    二分类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k" title="K分类" class="md-nav__link">
+    K分类
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="参考文献" class="md-nav__link">
+    参考文献
+  </a>
+  
 </li>
       
       
@@ -3385,6 +3412,33 @@
     贝叶斯误差率
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="二分类" class="md-nav__link">
+    二分类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k" title="K分类" class="md-nav__link">
+    K分类
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="参考文献" class="md-nav__link">
+    参考文献
+  </a>
+  
 </li>
       
       
@@ -3427,7 +3481,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-08-22</td>
+<td>2021-05-06 22:48:00</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3554,6 +3608,7 @@
 <p><img alt="" src="../res_all_noise.PNG" /></p>
 <p>将之与表 12.2 进行比较，可以看出各个方法的误差率及标准差的相对大小都比较一致。</p>
 <h2 id="_6">贝叶斯误差率<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">二分类<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>首先介绍 <strong>贝叶斯检验 (Bayes Test)</strong>，令 $X$ 是观测向量，我们要确定其分类，$w_1$ 或 $w_2$，设 $q_i(X)$ 是给定 $X$ 时 $w_i$ 的后验概率，则判别规则可写成</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3615,13 +3670,67 @@ r(X) = \min\{q_1(X), q_2(X)\}
 \frac{1}{2}\int_{9}^{16}f(t)dt\approx 0.029
 </script>
 </p>
-<div class="admonition note">
-<p class="admonition-title">weiya 注：参考文献</p>
-<ol>
+<h3 id="k">K分类<a class="headerlink" href="#k" title="Permanent link">&para;</a></h3>
+<p>一般地，对于 $K$ 分类问题，令 $\pi_1,\ldots,\pi_K$ 为 $K$ 个类别的先验概率，它们满足 $\pi_i\ge 0,\sum\pi_i=1$。当观测到 $x$，则其属于类别 $i$ 的后验概率为</p>
+<p>
+<script type="math/tex; mode=display">
+\pi_i(x) = \frac{\pi_i f_i(x)}{\sum \pi_jf_j(x)}\,.
+</script>
+</p>
+<p>如果将属于类别 $i$ 的观测划分到 $j$，产生的误差为</p>
+<p>
+<script type="math/tex; mode=display">
+r_j(x) = \sum_{i=1}^Kp_i(x)L(i, j)\,.
+</script>
+</p>
+<p>最小化的解即为贝叶斯判别规则，</p>
+<p>
+<script type="math/tex; mode=display">
+\delta^\star: i\rightarrow \argmin_j r_j(x)\,,
+</script>
+</p>
+<p>这个解也最小化了 $\E r_j(x)$，如下述定理 (p228 of TPE) 所述，</p>
+<p><img alt="" src="https://user-images.githubusercontent.com/13688320/57924640-39d46280-78d8-11e9-8f72-f836529b2edf.png" /></p>
+<p>该最小值即为贝叶斯误差率，或者通常称为 Bayes risk,</p>
+<p>
+<script type="math/tex; mode=display">
+R = \E r^\star(x)\,.
+</script>
+</p>
+<p>如果损失函数为误分类损失，即</p>
+<p>
+<script type="math/tex; mode=display">
+L(i, j) = 
+\begin{cases}
+1 &\text{if } i=j\\
+0 &\text{otherwise}
+\end{cases}\,,
+</script>
+</p>
+<p>则</p>
+<p>
+<script type="math/tex; mode=display">
+\delta^\star: i\rightarrow \argmin_j p_j(x)\,.
+</script>
+</p>
+<p>而对于平方误差，</p>
+<p>
+<script type="math/tex; mode=display">
+L(i, j) = (i - j)^2\,,
+</script>
+</p>
+<p>其解为 </p>
+<p>
+<script type="math/tex; mode=display">
+j^\star = \sum_{i=1}^Kip_i(x)\triangleq \E i\,.
+</script>
+</p>
+<h2 id="_8">参考文献<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ul>
 <li><a href="https://stats.stackexchange.com/questions/4949/calculating-the-error-of-bayes-classifier-analytically">probability - Calculating the error of Bayes classifier analytically - Cross Validated</a></li>
-<li><a href="../../references/ISPR.pdf">Fukunaga, K. (2013). Introduction to statistical pattern recognition. Elsevier.</a></li>
-</ol>
-</div>
+<li>Fukunaga, K. (2013). Introduction to statistical pattern recognition. Elsevier.</li>
+<li><a href="https://doi.org/10.1109/TIT.1967.1053964">Cover, T., &amp; Hart, P. (1967). Nearest neighbor pattern classification. IEEE Transactions on Information Theory, 13(1), 21–27.</a></li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>完整代码可以参见<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/docs/notes/SVM/skin-of-the-orange.R">skin-of-the-orange.R</a></p>
@@ -3716,7 +3825,7 @@ r(X) = \min\{q_1(X), q_2(X)\}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-05-06 14:04:51
+        Last Build Date UTC : 2021-05-06 14:50:31
       </div>
       
         
