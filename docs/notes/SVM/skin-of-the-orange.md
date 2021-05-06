@@ -130,8 +130,8 @@ calcErr <- function(model, n = 1000, nrep = 50, num_noise = 0, method = "SVM")
 首先介绍 **贝叶斯检验 (Bayes Test)**，令 $X$ 是观测向量，我们要确定其分类，$w_1$ 或 $w_2$，设 $q_i(X)$ 是给定 $X$ 时 $w_i$ 的后验概率，则判别规则可写成
 
 $$
-\DeclareMathOperator*{olessgtr}{\lessgtr}
-q_1(X) \olessgtr\limits_{w_2}^{w_1} q_2(X).
+\DeclareMathOperator*{ogtrless}{\gtrless}
+q_1(X) \ogtrless\limits_{w_2}^{w_1} q_2(X).
 $$
 
 设 $w_i$ 的先验为 $P_i$，条件密度函数为 $p_i(X)$，则根据贝叶斯定理
@@ -143,7 +143,7 @@ $$
 其中 $p(X)$ 为混合密度函数，有
 
 $$
-P_1p_1(X) \olessgtr\limits_{w_2}^{w_1} P_2p_2(X).
+P_1p_1(X) \ogtrless\limits_{w_2}^{w_1} P_2p_2(X).
 $$
 
 根据上述判别规则进行分类，我们有给定 $X$ 时的条件误差 
