@@ -5,6 +5,7 @@ install:
   - pip install mkdocs-material==2.5.2
   - pip install pymdown-extensions
   - pip install python-markdown-math
+  - pip install git+https://github.com/szcf-weiya/mkdocs-git-revision-date-plugin.git
 script:
   - python gentag.py
   - mkdocs build
