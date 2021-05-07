@@ -3263,7 +3263,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2020-02-01 12:05:47</td>
+<td>2021-05-07</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3284,7 +3284,7 @@
 <p class="admonition-title">weiya 注：posterior mode</p>
 <p>根据 <a href="https://stats.stackexchange.com/questions/137190/why-is-it-called-mode-in-map-estimation">Why is it called “mode” in MAP estimation?</a>，posterior mode 其实就是 posterior distribution 的最大值。mode 通常是对于 <a href="https://www.statisticshowto.datasciencecentral.com/unimodal-distribution-2/">unimodal distribution</a> 而言，它不是传统意义上的众数，而是该 unimodal distribution 的最大值（或者说峰值）。</p>
 </div>
-<p>这里我们更一般地讨论贝叶斯模型平均．对于我们的训练集 $\mathbf Z$，我们有一系列备选模型 $\cal M_m,m=1,\ldots,M$．这些模型可以是不同参数的同类模型（比如线性回归的子集），或者对于同样任务的不同模型（比如，神经网络和回归树）．</p>
+<p>这里我们更一般地讨论贝叶斯模型平均．对于我们的训练集 $\mathbf Z$，我们有一系列备选模型 $\cM_m,m=1,\ldots,M$．这些模型可以是不同参数的同类模型（比如线性回归的子集），或者对于同样任务的不同模型（比如，神经网络和回归树）．</p>
 <p>假设 $\zeta$ 是我们关心的某个值，举个例子，在某个固定的特征值 $x$ 处的预测值 $f(x)$．$\zeta$ 的后验分布为</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3298,7 +3298,7 @@
 </script>
 </p>
 <p>这个贝叶斯预测是每个预测的加权，其中权重与每个模型的后验概率成比例．</p>
-<p>这种形式导出了一系列模型平均的策略．Committee 方法从每个模型的预测中取简单的无加权平均，本质上就是对每个模型赋予相等的概率．更雄心勃勃地 (More ambitiously)，<a href="../../07-Model-Assessment-and-Selection/7.7-The-Bayesian-Approach-and-BIC/index.html">第 7.7 节</a>展现了 BIC 准则可以用来估计模型的后验概率．</p>
+<p>这种形式导出了一系列模型平均的策略．<strong>委员会方法 (Committee methods)</strong> 从每个模型的预测中取简单的无加权平均，本质上就是对每个模型赋予相等的概率．更雄心勃勃地 (More ambitiously)，<a href="../../07-Model-Assessment-and-Selection/7.7-The-Bayesian-Approach-and-BIC/index.html">第 7.7 节</a>展现了 BIC 准则可以用来估计模型的后验概率．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Recall</p>
 <p>
@@ -3307,7 +3307,7 @@
 </script>
 </p>
 </div>
-<p>这也可以应用到从同一个参数模型不同参数值产生的不同模型的情形中．BIC 根据模型拟合的程度以及参数的个数来对每个模型赋予权重．也可以采用全贝叶斯方法．如果每个模型 $\cal M_m$ 有参数 $\theta_m$，我们可以写</p>
+<p>这可以应用到从同一个参数模型由不同参数值产生的不同模型的情形中．BIC 根据模型拟合的程度以及参数的个数来对每个模型赋予权重．也可以采用全贝叶斯方法．如果每个模型 $\cal M_m$ 有参数 $\theta_m$，我们可以写成</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3320,7 +3320,7 @@
 <p>我们怎么从频率的角度来实现模型平均？给定平方损失下的预测值 $\hat f_1(x),\hat f_2(x),\ldots, \hat f_M(x)$，我们可以寻找权重 $w=(w_1,w_2,\ldots,w_M)$ 使得</p>
 <p>
 <script type="math/tex; mode=display">
-\hat w=\underset{w}{\argmin} \E_{\cP}[Y-\sum\limits_{m=1}^Mw_m\hat f_m(x)]^2\tag{8.56}
+\hat w=\underset{w}{\argmin} \E_{\cP}\left[Y-\sum\limits_{m=1}^Mw_m\hat f_m(x)\right]^2\tag{8.56}
 </script>
 </p>
 <p>这里输入值 $x$ 是固定的，数据集 $\mathbf Z$（以及目标 $Y$）中的 $N$ 个观测服从 $\cal P$ 分布．解是 $Y$ 在 $\hat F(x)^T\equiv [\hat f_1(x), \hat f_2(x), \ldots, \hat f_M(x)]$ 上的 <strong>总体线性回归 (population linear regression)</strong>.</p>
@@ -3329,28 +3329,28 @@
 \hat w=\E_{\cal P}[\hat F(x)\hat F(x)^T]^{-1}\E_{\cal P}[\hat F(x)Y]\tag{8.57}\label{8.57}
 </script>
 </p>
-<p>现在全回归模型比任意单模型有更小的误差</p>
+<p>则全回归模型比任意单模型有更小的误差</p>
 <p>
 <script type="math/tex; mode=display">
-\E_{\cal P}[Y-\sum\limits_{m=1}^M\hat w_m\hat f_m(x)]^2\le \E_{\cal P}[Y-\hat f_m(x)]^2\forall m\tag{8.58}
+\E_{\cal P}\left[Y-\sum\limits_{m=1}^M\hat w_m\hat f_m(x)\right]^2\le \E_{\cal P}[Y-\hat f_m(x)]^2\quad\forall m\tag{8.58}
 </script>
 </p>
-<p>所以在总体水平下，结合模型不会变得更糟．</p>
-<p>当然总体线性回归 \eqref{8.57} 不可行，很自然地用在训练集上的线性回归来替换．但是有简单的例子表明这效果并不好．举个例子，如果 $\hat f_m(x),m=1,2,&hellip;,M$ 表示从 $M$ 个输入中取 $m$ 个输入的最优子集的预测，则线性回归将会把所有的权重放在最大的模型上面，也就是，$\hat w_M=1,\hat w_m=0,m&lt;M$．问题是没有考虑模型的复杂性（例子中输入的个数 $m$）将每个模型放在同一水平．</p>
-<p><strong>堆栈泛化 (Stacked generalization)</strong>，或者称为堆栈，是一种做这件事的方式．令 $\hat f^{-i}_m(x)$ 采用模型 $m$，应用到除去第 $i$ 个训练观测的数据集上得到的 $x$ 处的预测．权重的堆栈估计是通过 $y_i$ 在 $\hat f_m^{-i}(x_i),m=1,2, \ldots,M$ 上的最小二乘线性回归得到．具体地，堆栈参数由下式给出</p>
+<p>所以在总体水平下，结合后的模型不会变得更糟．</p>
+<p>当然总体线性回归 \eqref{8.57} 不可行，很自然地用在训练集上的线性回归来替换．但是有简单的例子表明这效果并不好．举个例子，如果 $\hat f_m(x),m=1,2,&hellip;,M$ 表示从 $M$ 个输入中取 $m$ 个输入的最优子集的预测，则线性回归将会把所有的权重放在最大的模型上面，也就是，$\hat w_M=1,\hat w_m=0,m &lt; M$．问题是没有考虑模型的复杂性（例子中输入的个数 $m$）将每个模型放在同一水平．</p>
+<p><strong>堆栈泛化 (Stacked generalization)</strong>，或者称为 <strong>堆栈 (stacking)</strong>，是一种做这件事的方式．令 $\hat f^{-i}_m(x)$ 采用模型 $m$，应用到除去第 $i$ 个训练观测的数据集上得到的 $x$ 处的预测．权重的堆栈估计是通过 $y_i$ 在 $\hat f_m^{-i}(x_i),m=1,2, \ldots,M$ 上的最小二乘线性回归得到．具体地，堆栈参数由下式给出</p>
 <p>
 <script type="math/tex; mode=display">
-\hat w^{st}=\underset{w}{\argmin}\sum\limits_{i=1}^N[y_i-\sum\limits_{m=1}^Mw_m\hat f_m^{-i}(x_i)]^2\tag{8.59}\label{8.59}
+\hat w^{st}=\underset{w}{\argmin}\sum\limits_{i=1}^N\left[y_i-\sum\limits_{m=1}^Mw_m\hat f_m^{-i}(x_i)\right]^2\tag{8.59}\label{8.59}
 </script>
 </p>
-<p>最终的预测为 $\sum_m\hat w_m^{st}\hat f_m(x)$．通过采用交叉验证的预测值 $\hat f_m^{-i}(x)$，堆栈避免了对高复杂度的模型赋予不公平的过高权重．更好的结果可以通过约束权重为非负值并且和为 1 得到．这似乎是个合理的约束如果我们将权重理解为式 \eqref{8.54} 中的后验模型概率，这导出了易处理的二次规划问题．</p>
-<p>堆栈法和模型选择通过舍一法交叉验证紧密联系起来（<a href="../../7.10-Cross-Validation/index.html">7.10 节</a>）．如果我们将 \eqref{8.59} 的最小化限制到只有一个单元有权重而其它为 0 的权重向量 $w$ 上，这导出了模型选择有最小舍一法交叉验证误差的 $\hat m$．与其选择单模型，堆栈法将之与估计的最优权重结合起来．这通常会有更好的预测，但是比从 $M$ 个模型中选择一个的解释性更差．</p>
-<p>堆栈的思想实际上比上面所描述的更一般．不仅仅是线性回归，可以采用任意学习的方法来结合 \eqref{8.59} 中的模型；这些权重也可以依赖输出位置 $x$．用这种方式，学习方法被堆栈到其它方法的上面来改善预测的效果．</p>
+<p>最终的预测为 $\sum_m\hat w_m^{st}\hat f_m(x)$．通过采用交叉验证的预测值 $\hat f_m^{-i}(x)$，堆栈避免了对高复杂度的模型赋予不公平的过高权重．更好的结果可以通过约束权重为非负值并且和为 1 得到．如果我们将权重理解为式 \eqref{8.54} 中的后验模型概率，这似乎是个合理的约束，这导出了易处理的二次规划问题．</p>
+<p>堆栈法和模型选择通过舍一法交叉验证紧密联系起来（<a href="../../7.10-Cross-Validation/index.html">7.10 节</a>）．如果我们将 \eqref{8.59} 的最小化限制到只有一个单元有权重而其它为 0 的权重向量 $w$ 上，这导出了有最小舍一法交叉验证误差的模型 $\hat m$．与其选择单模型，堆栈法将之与估计的最优权重结合起来．这通常会有更好的预测，但是解释性会比从 $M$ 个模型中选择一个的更差．</p>
+<p>堆栈的思想实际上比上面所描述的更一般．不仅仅是线性回归，可以采用任意学习的方法来结合 \eqref{8.59} 中的模型；这些权重也可以依赖输入变量的位置 $x$．用这种方式，学习方法被堆栈到其它方法的上面来改善预测的效果．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Stacked Generalization</p>
 <p>Abstract from the seminal paper <a href="https://doi.org/10.1016/S0893-6080(05)80023-1">Wolpert, D. H. (1992). Stacked generalization. Neural Networks, 5(2), 241–259.</a>:</p>
 <blockquote>
-<p>This paper introduces <strong>stacked generalization</strong>, a scheme for minimizing the generalization error rate of one or more generalizers. Stacked generalization works by deducing the biases of the generalizer(s) with respect to a provided learning set. This deduction proceeds by generalizing in a second space whose inputs are (for example) <strong>the guesses of the original generalizers when taught with part of the learning set</strong>（这里的 $\hat f_m^{-i}(x_i)$） and <strong>trying to guess the rest of it</strong>（这里的 $y_i$）, and whose output is (for example) the correct guess. When used with multiple generalizers, stacked generalization can be seen as <strong>a more sophisticated version of cross-validation</strong>, exploiting a strategy more sophisticated than <strong>cross-validation&rsquo;s crude winner-takes-all for combining the individual generalizers</strong> (交叉验证中选择最低误差的模型，而这里对模型进行加权，但是损失了解释性？). When used with a single generalizer, stacked generalization is a scheme for estimating (and then correcting for) the error of a generalizer which has been trained on a particular learning set and then asked a particular question. After introducing stacked generalization and justifying its use, this paper presents two numerical experiments. The first demonstrates how stacked generalization improves upon a set of separate generalizers for the NETtalk task of translating text to phonemes. The second demonstrates how stacked generalization improves the performance of a single surface-fitter. With the other experimental evidence in the literature, the usual arguments supporting cross-validation, and the abstract justifications presented in this paper, the conclusion is that for almost any real-world generalization problem one should use some version of stacked generalization to minimize the generalization error rate. This paper ends by discussing some of the variations of stacked generalization, and how it touches on other fields like chaos theory.</p>
+<p>This paper introduces <strong>stacked generalization</strong>, a scheme for minimizing the generalization error rate of one or more generalizers. Stacked generalization works by deducing the biases of the generalizer(s) with respect to a provided learning set. This deduction proceeds by generalizing in a second space whose inputs are (for example) <strong>the guesses of the original generalizers when taught with part of the learning set</strong>（这里的 $\hat f_m^{-i}(x_i)$） and <strong>trying to guess the rest of it</strong>（这里的 $y_i$）, and whose output is (for example) the correct guess. When used with multiple generalizers, stacked generalization can be seen as <strong>a more sophisticated version of cross-validation</strong>, exploiting a strategy more sophisticated than <strong>cross-validation&rsquo;s crude winner-takes-all for combining the individual generalizers</strong> (交叉验证中选择最低误差的模型，而这里对模型进行加权，但是损失了解释性). When used with a single generalizer, stacked generalization is a scheme for estimating (and then correcting for) the error of a generalizer which has been trained on a particular learning set and then asked a particular question. After introducing stacked generalization and justifying its use, this paper presents two numerical experiments. The first demonstrates how stacked generalization improves upon a set of separate generalizers for the NETtalk task of translating text to phonemes. The second demonstrates how stacked generalization improves the performance of a single surface-fitter. With the other experimental evidence in the literature, the usual arguments supporting cross-validation, and the abstract justifications presented in this paper, the conclusion is that for almost any real-world generalization problem one should use some version of stacked generalization to minimize the generalization error rate. This paper ends by discussing some of the variations of stacked generalization, and how it touches on other fields like chaos theory.</p>
 </blockquote>
 </div>
                 
@@ -3443,7 +3443,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-05-07 11:00:32
+        Last Build Date UTC : 2021-05-07 15:05:46
       </div>
       
         
