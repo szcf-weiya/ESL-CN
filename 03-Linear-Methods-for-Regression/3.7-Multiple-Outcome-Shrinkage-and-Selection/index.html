@@ -140,33 +140,6 @@
         <!--
         
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
-            
-
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
-            Type to start searching
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-          
         
         -->
         <div style="padding-top:0.4rem;padding-bottom:0.4rem;width:15rem;height:4rem;">
@@ -3285,8 +3258,8 @@
 <td>szcf-weiya</td>
 </tr>
 <tr>
-<td>时间</td>
-<td>2019-01-14</td>
+<td>更新</td>
+<td>2021-05-07</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3325,7 +3298,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 <p class="admonition-title">weiya 注：Ex. 3.20</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/172">Issue 172: Ex. 3.20</a>，欢迎讨论交流！</p>
 </div>
-<p><strong>降秩回归 (reduced-rank regression)</strong> (Izenman, 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; van der Merwe and Zidek, 1980<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 采用显式地合并信息的回归模型来形式化这个方法．给定误差协方差 $\Cov(\varepsilon)=\bSigma$，求解下列带约束的多元回归问题：</p>
+<p><strong>降秩回归 (reduced-rank regression)</strong> (Izenman, 1975<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>; van der Merwe and Zidek, 1980<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) 采用显式地合并信息的回归模型来 <em>正式化 (formalize)</em> 这个方法．给定误差协方差 $\Cov(\varepsilon)=\bSigma$，求解下列带约束的多元回归问题：</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\B^{rr}(m) = \underset{\rank(\B)=m}{\argmin}\sum_{i=1}^N(y_i-\B^Tx_i)^T\bSigma^{-1}(y_i-\B^Tx_i)\,.\tag{3.68}\label{3.68}
@@ -3362,7 +3335,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 <p class="admonition-title">weiya 注：Ex. 3.22</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/175">Issue 175: Ex. 3.22</a>，欢迎交流讨论！</p>
 </div>
-<p>降秩回归通过截断 CCA 从响应变量中借来了优点．Breiman and Friedman (1997)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 探索了 $\X$ 和 $\Y$ 间典则变量的逐步收缩，这是光滑版本的降秩回归．他们的方法有如下形式（与 $\eqref{3.69}$ 对应）</p>
+<p>降秩回归通过截断 CCA 从响应变量中借来了优势变量．Breiman and Friedman (1997)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 探索了 $\X$ 和 $\Y$ 间典则变量的逐步收缩，这是光滑版本的降秩回归．他们的方法有如下形式（与 \eqref{3.69} 对应）</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\B^{c+w} = \hat\B\U\bLambda\U^{-1}\,,\tag{3.72}
@@ -3387,7 +3360,18 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
 \hat\Y^{\mathrm{ridge},c+w}=\A_\lambda\Y\S^{c+w}\,,\tag{3.75}
 </script>
 </p>
-<p>其中 $\A_\lambda = \X(\X^T\X+\lambda\I)^{-1}\X^T$ 是岭回归收缩算子，和 (3.46) 一样．他们的文章及其讨论有更多细节．</p>
+<p>其中 $\A_\lambda = \X(\X^T\X+\lambda\I)^{-1}\X^T$ 是岭回归收缩算子，和 \eqref{3.46} 一样．他们的文章及其讨论有更多细节．</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbf{X}\hat{\beta}^{ls}&=\mathbf{X(X^TX)^{-1}X^Ty}\notag\\
+&=\mathbf{UU^Ty}\tag{3.46}\label{3.46}
+\end{align}
+</script>
+</p>
+</div>
 <div class="footnote">
 <hr />
 <ol>
@@ -3492,7 +3476,7 @@ Y_\ell &= f(X) + \varepsilon_\ell\,;\tag{3.66}\label{3.66}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-05-06 14:50:23
+        Last Build Date UTC : 2021-05-07 10:39:48
       </div>
       
         
