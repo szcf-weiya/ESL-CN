@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-09-05                               |
+| 发布 | 2017-09-05 |
 
 Schapire (1990)[^1]在PAC学习框架（Valiant, 1984[^2]; Kearns and Vazirani, 1994[^3]）发展了第一个简单的boosting过程．Schapire证明了弱学习器(weak learner)总是可以通过在输入数据流的过滤版本训练两个额外的分类器来提高效果．弱学习器是是产生两类别分类器的算法，该分类器保证了效果回避抛硬币猜测要显著地好．当在前$N$个训练点上学习出初始的分类器$G_1$，
 

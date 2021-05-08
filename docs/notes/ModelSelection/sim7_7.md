@@ -3,7 +3,7 @@
 | R Notebook   | [模拟：Fig. 7.7](http://rmd.hohoweiya.xyz/sim7_7.html) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2018-01-05                               |
+| 发布 | 2018-01-06 |
 | 更新 | 2018-02-04; 2018-02-21 |
 
 本笔记是[ESL7.9节](https://esl.hohoweiya.xyz/07%20Model%20Assessment%20and%20Selection/7.9%20Vapnik-Chervonenkis%20Dimension/index.html)图7.9的模拟。

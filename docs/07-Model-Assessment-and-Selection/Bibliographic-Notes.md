@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-02-20:2017-02-20                    |
+| 发布 | 2017-02-20 |
 
 交叉验证的主要参考文献为Stone(1974)[^1]，Stone(1977)[^2]和Allen(1974)[^3]．AIC由Akaike(1973)[^4]提出，而BIC由Schwarz（1978）[^5]提出．Madigan and Raftery（1994）[^6]概述了贝叶斯模型选择．MDL准则归功于Rissanen(1983)[^7]．Cover and Thomas（1991）[^8]包含编码理论和复杂性的很好的描述．VC维在Vapnik（1996）[^8]中有描述．Stone（1977）[^2]证明了AIC和舍一交叉验证渐进相等．一般的交叉验证由Golub et. al（1979）[^10]和Wahba（1980）[^11]描述．也可以参见Hastie and Tibshirani（1990）[^12]的第三章．自助法归功于Efron（1979）[^13]；它的概述可以参见Efron and Tibshirani（1993）[^14]．Efron（1983）[^15]提出一系列预测误差的自助法估计，包括乐观估计和.632估计．Efron（1986）[^16]比较CV和GCV以及误差率的自助法估计．Breiman and Spector（1992)[^17]，Breiman（1992）[^18]，Shao（1996）[^19]，Zhang（1993）[^20]和Kohavi（1995）[^21]等人研究了模型选择的交叉验证和自助法．.632+估计由Efron and Tibshirani（1997）[^22]提出．
 

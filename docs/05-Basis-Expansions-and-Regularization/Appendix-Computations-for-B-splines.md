@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-10-22                    |
+| 发布 | 2017-10-22 |
 | 更新 |2019-09-09 22:07:46|
 | 状态 | Done |
 

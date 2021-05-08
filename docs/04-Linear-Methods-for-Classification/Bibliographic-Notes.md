@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-09-09                    |
+| 发布 | 2017-06-09 |
 
 关于分类的一般性概述包括Duda et al. (2000)[^1]，Hand (1981)[^2]， McLachlan (1992)[^3]和Ripley (1996)[^4]．Mardia et al. (1979)[^5]对线性判别分析进行了简要的讨论．Michie et al. (1994)[^6]在benchmark数据集上比较了许多著名的分类器．线性分离超平面在Vapnik (1996)[^7]中有讨论．我们关于感知器的学习算法参照Ripley (1996)[^4]．
 

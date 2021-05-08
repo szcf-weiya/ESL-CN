@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-09-10                    |
+| 发布 | 2017-06-09 |
 
 样条和B样条在de Boor (1978)[^1]中有详细讨论．Green and Silverman (1994)[^2]和Wahba (1990)给出了光滑样条以及thin-plate样条的；后者也产生核Hilbert空间．关于采用RKHS方法的非参回归技巧的联系可以参见Girosi et al. (1995)[^3] 和Evgeniou et al. (2000)[^4]．如5.2.3节所示，对函数数据建模，在Ramsay and Silverman (1997)[^5]中有详细介绍．
 

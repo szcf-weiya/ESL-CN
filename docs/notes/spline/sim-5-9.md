@@ -3,7 +3,7 @@
 | 原文   | [5.5 光滑参数的自动选择](../../05-Basis-Expansions-and-Regularization/5.5-Automatic-Selection-of-the-Smoothing-Parameters/index.html) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2018-03-30                               |
+| 发布 | 2018-03-30 |
 
 ## 生成数据
 

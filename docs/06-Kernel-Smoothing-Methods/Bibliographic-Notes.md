@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2018-02-23                    |
+| 发布 | 2018-02-24 |
 | 状态 | Done |
 
 关于核方法有大量的文献，我们这里不打算总结．而是理出一些非常好的文献，它们自身有非常多的参考文献．Loader (1999)[^1]对局部回归和概率似然介绍很完整，并且也描述了拟合这些模型的 **最先进的(state-of-the-art)** 软件．Fan and Gijbels (1996)[^2]从更理论的层面介绍了这些模型． Hastie and Tibshirani (1990)[^3]在可加模型中讨论了局部回归． 和 Scott (1992)[^5]一样，Silverman (1986)[^4]也很好地总结了密度估计．

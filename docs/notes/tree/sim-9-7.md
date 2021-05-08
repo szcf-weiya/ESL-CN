@@ -3,7 +3,7 @@
 | 原文   | [9.3 PRIM](../../09-Additive-Models-Trees-and-Related-Methods/9.3-PRIM/index.html) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2018-03-17                               |
+| 发布 | 2018-03-17 |
 
 
 ## 生成数据

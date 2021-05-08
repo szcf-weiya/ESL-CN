@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-03-13                               |
+| 发布 | 2017-03-14 |
 
 广义可加模型的最系统的资料是Hastie and Tibshirani(1990)[^1]．这个工作在医学问题上的不同应用在Hastie et al. (1989)[^2]和Hastie and Herman (1990)[^3]中有讨论，而且在Chambers and Hastie (1991)[^3]中描述了Splus软件的实现．Green and Silverman (1994)[^4]讨论了在不同设定下惩罚和样条模型．Efron and Tibshirani(1991)[^5]对非数学读者，介绍了统计的现代发展（包括广义加性模型）．分类和回归树至少追溯到Morgan and Sonquist(1963)[^6]．我们已经采用Breiman et al. (1984)[^7]和Quinlan (1993)[^8]等人的现代方法．PRIM方法归功于Friedman and Fisher(1989)[^9]．专家的系统混合由Jordan and Jacobs (1994)[^10]提出；也参见Jacobs et al. (1991)[^11]．
 

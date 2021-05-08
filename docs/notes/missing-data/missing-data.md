@@ -3,7 +3,7 @@
 | 原文   | [9.6 缺失数据](../../09-Additive-Models-Trees-and-Related-Methods/9.6-Missing-Data/index.html) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2018-03-17                               |
+| 发布 | 2018-03-17 |
 
 
 本文主要参考 [R in Action](../../references/r-in-action-en.pdf) 一书中的第 15 章，限于篇幅，这里仅列出主要代码，以及作必要简短的说明，更多细节详见原书。

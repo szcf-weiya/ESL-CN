@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-09-07&2018-01-26                               |
+| 发布 | 2017-06-09 |
 |状态|Done|
 
 最近邻方法至少追溯到Fix and Hodges (1951)[^1]．Dasarathy (1991)[^2]综述了关于该话题的大量文献；Ripley (1996)[^3]的第六章有个很好的总结．$K$均值聚类归功于Lloyd (1957)[^4]和MacQueen (1967)[^5]．Kohonen (1989)[^6]提出学习向量量化．切距离方法归功于Simard et al. (1993)[^7]．Hastie and Tibshirani (1996a)[^8]提出了判别式自适应最近邻技巧．

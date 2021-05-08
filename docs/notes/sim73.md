@@ -8,7 +8,7 @@
 | R Notebook   | [模拟图7.3](http://rmd.hohoweiya.xyz/sim7_3.html) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2017-01-05                               |
+| 发布 | 2018-01-23 |
 | 更新 | 2018-02-04 |
 
 本笔记是[ESL7.3节](https://esl.hohoweiya.xyz/07%20Model%20Assessment%20and%20Selection/7.3%20The%20Bias-Variance%20Decomposition/index.html)图7.3的模拟。

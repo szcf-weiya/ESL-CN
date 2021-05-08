@@ -3,7 +3,7 @@
 | 正文 | [4.3 线性判别分析](../../04-Linear-Methods-for-Classification/4.2-Linear-Regression-of-an-Indicator-Matrix/index.html) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2018-07-11                               |
+| 发布 | 2018-07-11 |
 
 ## 生成数据
 

@@ -3,7 +3,7 @@
 原文     | [The Elements of Statistical Learning](../book/The Elements of Statistical Learning.pdf)
       ---|---
 翻译     | szcf-weiya
-时间     | 2016-07-20
+ 发布 | 2016-09-30 
 更新 | 2018-02-14
 状态| Done
 

@@ -3,7 +3,7 @@
 | 原文   | [7.10 交叉验证](../../07-Model-Assessment-and-Selection/7.10-Cross-Validation/index.html) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2018-12-14                              |
+| 发布 | 2018-12-14 |
 
 本笔记是 [ESL 7.10 交叉验证](../../07-Model-Assessment-and-Selection/7.10-Cross-Validation/index.html) 中图 7.9 的模拟，这也是 [模拟：Fig. 7.3](sim7_3/index.html) 的继续。
 

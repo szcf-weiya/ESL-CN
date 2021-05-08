@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-09-06                               |
+| 发布 | 2017-06-09 |
 
 支持向量机背后的理论归功于 Vapnik 并且在 Vapnik (1996)[^1] 中进行了描述．有关 SVM 的新兴文献、由 Alex Smola 和 Bernhard Scholkopf 创造并维护的在线文献，可以在下面的网站中找到
 

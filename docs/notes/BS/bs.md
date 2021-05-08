@@ -3,7 +3,7 @@
 | 原文   | [第五章附录：B 样条的计算](../../05-Basis-Expansions-and-Regularization/Appendix-Computations-for-B-splines.md) |
 | ---- | ---------------------------------------- |
 | 作者   | szcf-weiya                               |
-| 时间   | 2020-05-14 16:25:33                               |
+| 发布 | 2020-05-14 |
 
 在 Functional Data Analysis (FDA) 中，很重要的一步便是对原始数据进行光滑化，其中经常用到 B spline，而 FDA 有个很强大的 R package `fda`，里面就包含 B 样条的实现方法。
 

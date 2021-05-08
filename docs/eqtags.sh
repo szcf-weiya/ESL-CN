@@ -14,3 +14,9 @@ find . -regextype sed -regex "./[0-9]\{2\}-.*.md" | xargs sed -i "s/。/．/g"
 # https://unix.stackexchange.com/questions/67192/find-command-with-regex-quantifier-e-g-1-2
 find . -regextype egrep -regex "./[0-9]{2}-.*.md"
 find . -regextype egrep -regex "./[0-9]{2}-.*.md" | xargs sed -i "s\../book/The Elements of Statistical Learning.pdf\https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf\g"
+
+for file in $(find . -regex "./.*\.md"); do
+    first=$(git log --date=short --format=%ad --follow $file | tail -1)
+    echo $file $first
+    sed -i "s/^\(|*\)[ ]*时间[ ]*|[^|]*\(|*\)[ ]*$/\1 发布 | $first \2/g" $file
+done

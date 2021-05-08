@@ -3,7 +3,7 @@
 | 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
-| 时间   | 2017-09-04                   |
+| 发布 | 2017-09-04 |
 |状态|Done|
 
 1. 关于聚类的有很多书，包括Hartigan (1975)[^1]， Gordon (1999)[^2] 和 Kaufman and Rousseeuw (1990)[^3]．
