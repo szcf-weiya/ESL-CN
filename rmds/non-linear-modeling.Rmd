@@ -1,0 +1,362 @@
+---
+title: "Non-linear Modeling"
+author: "weiya"
+date: "5/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+本文基于 ISLR 的 7.8 节。
+
+首先加载必要的包，
+
+```{r}
+library(ISLR)
+```
+
+其中包括本文需要处理的数据 `Wage`，这是中大西洋地区（Mid-Atlantic） 3000 个男性工作者的工资及其它数据。
+
+```{r}
+str(Wage)
+```
+为了方便引用，暴露数据框的列名，
+
+```{r}
+attach(Wage)
+```
+
+## 多项式样条
+
+首先我们用多项式样条进行拟合工资 `wage` 和年龄 `age` 之间的关系，
+
+```{r}
+fit = lm(wage ~ poly(age, 4), data = Wage)
+coef(summary(fit))
+```
+
+其中 `poly(age, 4)` 返回的是正交化的多项式，即每一列是 `age^i, i=1,2,3,4` 的线性组合。如果我们想直接用 `age^i`，
+
+```{r}
+fit2 = lm(wage ~ poly(age, 4, raw = T), data = Wage)
+coef(summary(fit2))
+```
+
+这等价于
+
+```{r}
+fit2a = lm(wage ~ age + I(age^2) + I(age^3) + I(age^4), data = Wage)
+summary(fit2a)
+```
+
+而不加 `-I()`，
+
+```{r}
+fit2a.wrong = lm(wage ~ age + age^2 + age^3 + age^4, data = Wage)
+summary(fit2a.wrong)
+```
+
+其结果等价于直接去掉高阶项，
+
+```{r}
+fit2a.wrong2 = lm(wage ~ age, data = Wage)
+summary(fit2a.wrong2)
+```
+
+更多解释详见 `?formula`.
+
+除此之外，我们也可以用
+
+```{r}
+fit2b = lm(wage ~ cbind(age, age^2, age^3, age^4), data = Wage)
+summary(fit2b)
+```
+
+拟合好模型后，我们可以进行预测，
+
+```{r}
+agelims = range(age)
+age.grid = seq(from = agelims[1], to = agelims[2])
+preds = predict(fit, newdata = list(age = age.grid), se = TRUE)
+se.bands = cbind(preds$fit + 2*preds$se.fit, preds$fit - 2*preds$se.fit)
+```
+
+并且画出图象，
+
+```{r}
+# mar = (bottom, left, top, right) specifies the margin
+# oma specifies the outer margin
+# par(mfrow = c(1, 2), mar = c(4.5, 4.5, 1, 1), oma = c(0, 0, 4, 0))
+# cex specifies the amount by which plotting text and symbols should be magnified relative to the default
+# it has four sub-arguments: cex.axis, cex.lab, cex.main, cex.sub
+plot(age, wage, xlim = agelims, cex=.5, col = "darkgrey")
+# title("Degree 4 Polynomial", outer = T)
+lines(age.grid, preds$fit, lwd = 2, col = "blue")
+matlines(age.grid, se.bands, lwd = 1, col = "blue", lty=3)
+```
+
+基函数进行正交化与否对预测结果无影响，
+
+```{r}
+preds2 = predict(fit2, newdata = list(age = age.grid), se = TRUE)
+max(abs(preds$fit - preds2$fit))
+```
+
+多项式回归的阶数通常通过假设检验 
+
+- $H_0$: $\cM_1$ 能充分地解释数据
+- $H_1$: 需要更复杂的模型 $\cM_2$
+
+进行确定。为了应用 ANOVA，其中 $\cM_1 \subset \cM_2$ 要求是 nested。 基本思想是，同时拟合 $\cM_i,i=1,2$，然后检验更复杂的模型是否显著地比简单的模型更好。这其实也可以看成是线性回归中同时检验多个参数的显著性，如 [ESL 中 (3.13) 式](/03-Linear-Methods-for-Regression/3.2-Linear-Regression-Models-and-Least-Squares/index.html)所示
+
+```{r}
+fit.1 = lm(wage ~ age, data = Wage)
+fit.2 = lm(wage ~ poly(age, 2), data = Wage)
+fit.3 = lm(wage ~ poly(age, 3), data = Wage)
+fit.4 = lm(wage ~ poly(age, 4), data = Wage)
+fit.5 = lm(wage ~ poly(age, 5), data = Wage)
+anova(fit.1, fit.2, fit.3, fit.4, fit.5)
+```
+
+结果表明，$\cM_1,\cM_2$ 不够（$p$值远小于 0.5），而 $\cM_3,\cM_4$ 差不多（$p$值约等于0.5），而 $\cM_5$ 则不必要（$p$值远大于 0.5）。
+
+另外，因为 $\cM_4$ 与 $\cM_5$ 只差一项，换句话说，可以看成是检验 $\cM_5$ 中那一项的系数是否为零，所以上述的 $p$ 值与下面对 `age^5` 这一项的系数进行 $t$ 检验的 $p$ 值相等，
+
+```{r}
+coef(summary(fit.5))
+```
+
+另外，根据 $F$ 分布与 $t$ 分布直接的关系，
+
+> 如果 $X\sim t_n$，则 $X^2 \sim F(1, n)$，且 $X^{-2}\sim F(n,1)$。
+
+可以发现两者统计量存在平方关系。
+
+注意到，除了 `age^5` 这一项的 $p$ 值相等，其它项的 $p$ 值也能大致与上述对应上去，这里应该（TODO）是跟正交化有关。一般而言，ANOVA 适用场景更广，比如
+
+```{r}
+fit.1 = lm(wage ~ education + age, data = Wage)
+fit.2 = lm(wage ~ education + poly(age, 2), data = Wage)
+fit.3 = lm(wage ~ education + poly(age, 3), data = Wage)
+anova(fit.1, fit.2, fit.3)
+```
+
+下一步我们想预测某个工人其是否每年赚够 $250,000，此时变成了二值变量，
+
+```{r}
+fit = glm(I(wage > 250) ~ poly(age, 4), data = Wage, family = binomial)
+preds = predict(fit, newdata = list(age = age.grid), se = T)
+pfit = exp(preds$fit) / (1 + exp(preds$fit))
+se.bands.logit = cbind(preds$fit + 2*preds$se.fit, preds$fit - 2*preds$se.fit)
+se.bands = exp(se.bands.logit) / (1 + exp(se.bands.logit))
+```
+
+
+一种不太恰当的计算方法为
+
+```{r}
+preds = predict(fit, newdata = list(age = age.grid), type = "response", se = T)
+```
+
+其结果可能为负，而概率不可能小于 0。
+
+作出如下图象，其中 rug plot 将少于 250k 收入的人放在了 $y=0$ 上，而大于 250k 收入的人放在了 $y=0.2$ 上。
+```{r}
+plot(age, I(wage>250), xlim = agelims, type = "n", ylim = c(0, 0.2))
+points(jitter(age), I((wage>250)/5), cex = 0.5, pch = "|", col = "darkgrey")
+lines(age.grid, pfit, lwd = 2, col = "blue")
+matlines(age.grid, se.bands, lwd = 1, col = "blue", lty=3)
+```
+
+
+## 阶梯函数
+
+在 $X$ 的定义域内选择 $K$ 个分隔点，$c_i,i=1,\ldots,K$，定义
+
+\begin{align*}
+C_0(X) & = I(X < c_1)\\
+C_1(X) &= I(c_1 \le X < c_2)\\
+&\vdots\\
+C_{K-1}(X) &=I(c_{K-1}\le X < c_K)\\
+C_K(X) &= I(c_K \le X)
+\end{align*}
+
+然后通过最小二乘拟合
+
+$$
+y_i = \beta_0 + \beta_1C_1(x_i) +\cdots \beta_KC_K(x_i) + \epsilon_i\,,
+$$
+
+其中 $\beta_0$ 可以解释成 $X<c_1$ 时响应变量的均值，而 $\beta_j$ 为相较于 $X < c_1$，在 $c_j\le X < c_{j+1}$ 范围的响应变量的均值的增加。首先我们取定分隔点，
+
+```{r}
+table(cut(age, 4))
+```
+
+然后应用线性回归，
+
+```{r}
+fit = lm(wage ~ cut(age, 4), data = Wage)
+coef(summary(fit))
+```
+
+## 样条
+
+采用回归样条，
+
+```{r}
+library(splines)
+fit = lm(wage ~ bs(age, knots = c(25, 40, 60)), data = Wage)
+pred = predict(fit, newdata = list(age = age.grid), se = T)
+plot(age, wage, col = "gray")
+lines(age.grid, pred$fit, lwd = 2)
+lines(age.grid, pred$fit+2*pred$se, lty = "dashed")
+lines(age.grid, pred$fit-2*pred$se, lty = "dashed")
+```
+
+
+```{r}
+fit = lm(wage ~ I(bs(age, knots = c(25, 40, 60))), data = Wage)
+pred = predict(fit, newdata = list(age = age.grid), se = T)
+```
+
+注意此处 `formula` 中加不加 `I()` 都能正确地处理。默认 `bs()` 是不包含截距的，而将其置于回归函数中，若强制 `bs(intercept=TRUE)`，则回归时应用
+
+```{r}
+fit = lm(wage ~ 0 + bs(age, knots = c(25, 40, 60), intercept = TRUE), data = Wage)
+```
+
+另见 [笔记：B spline in R, C++ and Python](/notes/BS/bs/index.html)
+
+我们也可以用自然样条，
+
+```{r}
+pred = predict(fit, newdata = list(age = age.grid), se = T)
+plot(age, wage, col = "gray")
+lines(age.grid, pred$fit, lwd = 2)
+lines(age.grid, pred$fit+2*pred$se, lty = "dashed")
+lines(age.grid, pred$fit-2*pred$se, lty = "dashed")
+fit2 = lm(wage ~ ns(age, df=4), data = Wage)
+pred2 = predict(fit2, newdata = list(age = age.grid), se = T)
+lines(age.grid, pred2$fit, col = "red", lwd = 2)
+```
+
+事实上，`ns()` 也是由 B-splines 计算得到的，详见 [Issue 235: Ex. derive natural spline bases from B-spline bases](https://github.com/szcf-weiya/ESL-CN/issues/235)
+
+为了拟合光滑样条，我们可以用
+
+```{r}
+plot(age, wage, xlim = agelims, cex = .5, col = "darkgrey")
+title("Smoothing Spline")
+fit = smooth.spline(age, wage, df = 16)
+fit2 = smooth.spline(age, wage, cv=TRUE)
+lines(fit, col="red", lwd=2)
+lines(fit2, col="blue", lwd=2)
+legend("topright", legend = c("16 DF", paste0(fit2$df, " DF")),
+       col = c("red", "blue"), lty = 1, lwd = 2, cex = 0.8)
+```
+
+
+局部回归可以通过下列代码实现，
+
+```{r}
+plot(age, wage, xlim = agelims, cex = .5, col = "darkgrey")
+title("Local Regression")
+# each neighborhood consists of 20% of the observations
+fit = loess(wage ~ age, span = 0.2, data = Wage)
+fit2 = loess(wage ~ age, span = 0.5, data = Wage)
+lines(age.grid, predict(fit, data.frame(age = age.grid)), col = "red", lwd = 2)
+lines(age.grid, predict(fit2, data.frame(age = age.grid)), col = "blue", lwd = 2)
+legend("topright", legend = c("Span=0.2", "Span=0.5"),
+       col = c("red", "blue"), lty = 1, lwd = 2, cex = 0.8)
+```
+
+## 广义可加模型
+
+首先可以用普通线性回归来构建，
+
+```{r}
+gam1 = lm(wage ~ ns(year, 4) + ns(year, 5) + education, data = Wage)
+```
+
+为了使用光滑样条，采用 `gam` 包，
+
+```{r fig.height=8, fig.width=24}
+library(gam)
+gam.m3 = gam(wage ~ s(year, 4) + s(age, 5) + education, data = Wage)
+par(mfrow = c(1, 3))
+plot(gam.m3, se = TRUE, col = "blue", cex = 4)
+```
+
+因为 `gam.m3` 是 `gam` 类的一个实例，则 `plot()` 实际调用了 `plot.gam()`，我们也可以对 `gam1` 画图，
+
+```{r fig.height=8, fig.width=24}
+par(mfrow = c(1, 3))
+plot.Gam(gam1, se = TRUE, col = "blue")
+```
+
+这些图中关于 `year` 的函数看起来都像是线性，为此考虑以下几种模型
+
+- $\cM_1$: 不包含 `year` 的 GAM
+- $\cM_2$: 采用关于 `year` 为线性函数的 GAM
+- $\cM_3$: 采用关于 `year` 为样条函数的 GAM
+
+```{r}
+gam.m1 = gam(wage ~ s(age, 5) + education, data = Wage)
+gam.m2 = gam(wage ~ year + s(age, 5) + education, data = Wage)
+anova(gam.m1, gam.m2, gam.m3, test = "F")
+```
+
+由结果可以看出，$\cM_2$ 优于 $\cM_1$，但是没有充足采用 $\cM_3$，于是我们采用 $\cM_2$，
+
+```{r}
+summary(gam.m2)
+preds = predict(gam.m2, newdata = Wage)
+```
+
+除了使用光滑样条，我们还可以用局部回归，
+
+```{r fig.height=8, fig.width=24}
+gam.lo = gam(wage ~ s(year, df = 4) + lo(age, span = 0.7) + education, data = Wage)
+par(mfrow = c(1, 3))
+plot(gam.lo, se = T, col = "green")
+```
+
+而且可以使用交叉项，
+
+```{r}
+gam.lo.i = gam(wage ~ lo(year, age, span = 0.5) + education, data = Wage)
+```
+
+以下代码可以画出交叉项的二维平面
+
+```{r}
+library(akima)
+par(mfrow = c(1, 2))
+plot(gam.lo.i)
+```
+
+类似地，通过 `I()` 可以对二值变量应用 logistic GAM，
+
+```{r fig.height=8, fig.width=24}
+gam.lr = gam(I(wage > 250) ~ year + s(age, df = 5) + education, family = binomial, data = Wage)
+par(mfrow = c(1, 3))
+plot(gam.lr, se = T, col = "green")
+```
+
+容易观察到在 `<HS` 类别中没有高收入者，
+
+```{r}
+table(education, I(wage > 250))
+```
+
+因为我们可以排除这个类别并重现拟合得到更细节的结果，
+
+```{r fig.height=8, fig.width=24}
+gam.lr.s = gam(I(wage>250) ~ year + s(age, df = 5) + education, family = binomial,
+               data = Wage, subset = (education != "1. < HS Grad"))
+par(mfrow = c(1, 3))
+plot(gam.lr.s, se = T, col = "green")
+```
