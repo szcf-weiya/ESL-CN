@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="weiya" />
+
+
+<title>Non-linear Modeling</title>
+
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="mathjax.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rmd Gallery</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="https://esl.hohoweiya.xyz">ESL CN</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Non-linear Modeling</h1>
+<h4 class="author">weiya</h4>
+<h4 class="date">5/8/2021</h4>
+
+</div>
+
+
+<p>本文基于 ISLR 的 7.8 节。</p>
+<p>首先加载必要的包，</p>
+<pre class="r"><code>library(ISLR)</code></pre>
+<p>其中包括本文需要处理的数据 <code>Wage</code>，这是中大西洋地区（Mid-Atlantic） 3000 个男性工作者的工资及其它数据。</p>
+<pre class="r"><code>str(Wage)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    3000 obs. of  11 variables:
+##  $ year      : int  2006 2004 2003 2003 2005 2008 2009 2008 2006 2004 ...
+##  $ age       : int  18 24 45 43 50 54 44 30 41 52 ...
+##  $ maritl    : Factor w/ 5 levels &quot;1. Never Married&quot;,..: 1 1 2 2 4 2 2 1 1 2 ...
+##  $ race      : Factor w/ 4 levels &quot;1. White&quot;,&quot;2. Black&quot;,..: 1 1 1 3 1 1 4 3 2 1 ...
+##  $ education : Factor w/ 5 levels &quot;1. &lt; HS Grad&quot;,..: 1 4 3 4 2 4 3 3 3 2 ...
+##  $ region    : Factor w/ 9 levels &quot;1. New England&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ jobclass  : Factor w/ 2 levels &quot;1. Industrial&quot;,..: 1 2 1 2 2 2 1 2 2 2 ...
+##  $ health    : Factor w/ 2 levels &quot;1. &lt;=Good&quot;,&quot;2. &gt;=Very Good&quot;: 1 2 1 2 1 2 2 1 2 2 ...
+##  $ health_ins: Factor w/ 2 levels &quot;1. Yes&quot;,&quot;2. No&quot;: 2 2 1 1 1 1 1 1 1 1 ...
+##  $ logwage   : num  4.32 4.26 4.88 5.04 4.32 ...
+##  $ wage      : num  75 70.5 131 154.7 75 ...</code></pre>
+<p>为了方便引用，暴露数据框的列名，</p>
+<pre class="r"><code>attach(Wage)</code></pre>
+<pre><code>## The following object is masked from Auto:
+## 
+##     year</code></pre>
+<pre><code>## The following objects are masked from Wage (pos = 6):
+## 
+##     age, education, health, health_ins, jobclass, logwage, maritl,
+##     race, region, wage, year</code></pre>
+<div id="多项式样条" class="section level2">
+<h2>多项式样条</h2>
+<p>首先我们用多项式样条进行拟合工资 <code>wage</code> 和年龄 <code>age</code> 之间的关系，</p>
+<pre class="r"><code>fit = lm(wage ~ poly(age, 4), data = Wage)
+coef(summary(fit))</code></pre>
+<pre><code>##                 Estimate Std. Error    t value     Pr(&gt;|t|)
+## (Intercept)    111.70361  0.7287409 153.283015 0.000000e+00
+## poly(age, 4)1  447.06785 39.9147851  11.200558 1.484604e-28
+## poly(age, 4)2 -478.31581 39.9147851 -11.983424 2.355831e-32
+## poly(age, 4)3  125.52169 39.9147851   3.144742 1.678622e-03
+## poly(age, 4)4  -77.91118 39.9147851  -1.951938 5.103865e-02</code></pre>
+<p>其中 <code>poly(age, 4)</code> 返回的是正交化的多项式，即每一列是 <code>age^i, i=1,2,3,4</code> 的线性组合。如果我们想直接用 <code>age^i</code>，</p>
+<pre class="r"><code>fit2 = lm(wage ~ poly(age, 4, raw = T), data = Wage)
+coef(summary(fit2))</code></pre>
+<pre><code>##                             Estimate   Std. Error   t value     Pr(&gt;|t|)
+## (Intercept)            -1.841542e+02 6.004038e+01 -3.067172 0.0021802539
+## poly(age, 4, raw = T)1  2.124552e+01 5.886748e+00  3.609042 0.0003123618
+## poly(age, 4, raw = T)2 -5.638593e-01 2.061083e-01 -2.735743 0.0062606446
+## poly(age, 4, raw = T)3  6.810688e-03 3.065931e-03  2.221409 0.0263977518
+## poly(age, 4, raw = T)4 -3.203830e-05 1.641359e-05 -1.951938 0.0510386498</code></pre>
+<p>这等价于</p>
+<pre class="r"><code>fit2a = lm(wage ~ age + I(age^2) + I(age^3) + I(age^4), data = Wage)
+summary(fit2a)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = wage ~ age + I(age^2) + I(age^3) + I(age^4), data = Wage)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -98.707 -24.626  -4.993  15.217 203.693 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.842e+02  6.004e+01  -3.067 0.002180 ** 
+## age          2.125e+01  5.887e+00   3.609 0.000312 ***
+## I(age^2)    -5.639e-01  2.061e-01  -2.736 0.006261 ** 
+## I(age^3)     6.811e-03  3.066e-03   2.221 0.026398 *  
+## I(age^4)    -3.204e-05  1.641e-05  -1.952 0.051039 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 39.91 on 2995 degrees of freedom
+## Multiple R-squared:  0.08626,    Adjusted R-squared:  0.08504 
+## F-statistic: 70.69 on 4 and 2995 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>而不加 <code>-I()</code>，</p>
+<pre class="r"><code>fit2a.wrong = lm(wage ~ age + age^2 + age^3 + age^4, data = Wage)
+summary(fit2a.wrong)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = wage ~ age + age^2 + age^3 + age^4, data = Wage)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -100.265  -25.115   -6.063   16.601  205.748 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 81.70474    2.84624   28.71   &lt;2e-16 ***
+## age          0.70728    0.06475   10.92   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 40.93 on 2998 degrees of freedom
+## Multiple R-squared:  0.03827,    Adjusted R-squared:  0.03795 
+## F-statistic: 119.3 on 1 and 2998 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>其结果等价于直接去掉高阶项，</p>
+<pre class="r"><code>fit2a.wrong2 = lm(wage ~ age, data = Wage)
+summary(fit2a.wrong2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = wage ~ age, data = Wage)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -100.265  -25.115   -6.063   16.601  205.748 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 81.70474    2.84624   28.71   &lt;2e-16 ***
+## age          0.70728    0.06475   10.92   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 40.93 on 2998 degrees of freedom
+## Multiple R-squared:  0.03827,    Adjusted R-squared:  0.03795 
+## F-statistic: 119.3 on 1 and 2998 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>更多解释详见 <code>?formula</code>.</p>
+<p>除此之外，我们也可以用</p>
+<pre class="r"><code>fit2b = lm(wage ~ cbind(age, age^2, age^3, age^4), data = Wage)
+summary(fit2b)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = wage ~ cbind(age, age^2, age^3, age^4), data = Wage)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -98.707 -24.626  -4.993  15.217 203.693 
+## 
+## Coefficients:
+##                                      Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)                        -1.842e+02  6.004e+01  -3.067 0.002180
+## cbind(age, age^2, age^3, age^4)age  2.125e+01  5.887e+00   3.609 0.000312
+## cbind(age, age^2, age^3, age^4)    -5.639e-01  2.061e-01  -2.736 0.006261
+## cbind(age, age^2, age^3, age^4)     6.811e-03  3.066e-03   2.221 0.026398
+## cbind(age, age^2, age^3, age^4)    -3.204e-05  1.641e-05  -1.952 0.051039
+##                                       
+## (Intercept)                        ** 
+## cbind(age, age^2, age^3, age^4)age ***
+## cbind(age, age^2, age^3, age^4)    ** 
+## cbind(age, age^2, age^3, age^4)    *  
+## cbind(age, age^2, age^3, age^4)    .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 39.91 on 2995 degrees of freedom
+## Multiple R-squared:  0.08626,    Adjusted R-squared:  0.08504 
+## F-statistic: 70.69 on 4 and 2995 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>拟合好模型后，我们可以进行预测，</p>
+<pre class="r"><code>agelims = range(age)
+age.grid = seq(from = agelims[1], to = agelims[2])
+preds = predict(fit, newdata = list(age = age.grid), se = TRUE)
+se.bands = cbind(preds$fit + 2*preds$se.fit, preds$fit - 2*preds$se.fit)</code></pre>
+<p>并且画出图象，</p>
+<pre class="r"><code># mar = (bottom, left, top, right) specifies the margin
+# oma specifies the outer margin
+# par(mfrow = c(1, 2), mar = c(4.5, 4.5, 1, 1), oma = c(0, 0, 4, 0))
+# cex specifies the amount by which plotting text and symbols should be magnified relative to the default
+# it has four sub-arguments: cex.axis, cex.lab, cex.main, cex.sub
+plot(age, wage, xlim = agelims, cex=.5, col = &quot;darkgrey&quot;)
+# title(&quot;Degree 4 Polynomial&quot;, outer = T)
+lines(age.grid, preds$fit, lwd = 2, col = &quot;blue&quot;)
+matlines(age.grid, se.bands, lwd = 1, col = &quot;blue&quot;, lty=3)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>基函数进行正交化与否对预测结果无影响，</p>
+<pre class="r"><code>preds2 = predict(fit2, newdata = list(age = age.grid), se = TRUE)
+max(abs(preds$fit - preds2$fit))</code></pre>
+<pre><code>## [1] 1.641354e-12</code></pre>
+<p>多项式回归的阶数通常通过假设检验</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\cM_1\)</span> 能充分地解释数据</li>
+<li><span class="math inline">\(H_1\)</span>: 需要更复杂的模型 <span class="math inline">\(\cM_2\)</span></li>
+</ul>
+<p>进行确定。为了应用 ANOVA，其中 <span class="math inline">\(\cM_1 \subset \cM_2\)</span> 要求是 nested。 基本思想是，同时拟合 <span class="math inline">\(\cM_i,i=1,2\)</span>，然后检验更复杂的模型是否显著地比简单的模型更好。这其实也可以看成是线性回归中同时检验多个参数的显著性，如 <a href="/03-Linear-Methods-for-Regression/3.2-Linear-Regression-Models-and-Least-Squares/index.html">ESL 中 (3.13) 式</a>所示</p>
+<pre class="r"><code>fit.1 = lm(wage ~ age, data = Wage)
+fit.2 = lm(wage ~ poly(age, 2), data = Wage)
+fit.3 = lm(wage ~ poly(age, 3), data = Wage)
+fit.4 = lm(wage ~ poly(age, 4), data = Wage)
+fit.5 = lm(wage ~ poly(age, 5), data = Wage)
+anova(fit.1, fit.2, fit.3, fit.4, fit.5)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: wage ~ age
+## Model 2: wage ~ poly(age, 2)
+## Model 3: wage ~ poly(age, 3)
+## Model 4: wage ~ poly(age, 4)
+## Model 5: wage ~ poly(age, 5)
+##   Res.Df     RSS Df Sum of Sq        F    Pr(&gt;F)    
+## 1   2998 5022216                                    
+## 2   2997 4793430  1    228786 143.5931 &lt; 2.2e-16 ***
+## 3   2996 4777674  1     15756   9.8888  0.001679 ** 
+## 4   2995 4771604  1      6070   3.8098  0.051046 .  
+## 5   2994 4770322  1      1283   0.8050  0.369682    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>结果表明，<span class="math inline">\(\cM_1,\cM_2\)</span> 不够（<span class="math inline">\(p\)</span>值远小于 0.5），而 <span class="math inline">\(\cM_3,\cM_4\)</span> 差不多（<span class="math inline">\(p\)</span>值约等于0.5），而 <span class="math inline">\(\cM_5\)</span> 则不必要（<span class="math inline">\(p\)</span>值远大于 0.5）。</p>
+<p>另外，因为 <span class="math inline">\(\cM_4\)</span> 与 <span class="math inline">\(\cM_5\)</span> 只差一项，换句话说，可以看成是检验 <span class="math inline">\(\cM_5\)</span> 中那一项的系数是否为零，所以上述的 <span class="math inline">\(p\)</span> 值与下面对 <code>age^5</code> 这一项的系数进行 <span class="math inline">\(t\)</span> 检验的 <span class="math inline">\(p\)</span> 值相等，</p>
+<pre class="r"><code>coef(summary(fit.5))</code></pre>
+<pre><code>##                 Estimate Std. Error     t value     Pr(&gt;|t|)
+## (Intercept)    111.70361  0.7287647 153.2780243 0.000000e+00
+## poly(age, 5)1  447.06785 39.9160847  11.2001930 1.491111e-28
+## poly(age, 5)2 -478.31581 39.9160847 -11.9830341 2.367734e-32
+## poly(age, 5)3  125.52169 39.9160847   3.1446392 1.679213e-03
+## poly(age, 5)4  -77.91118 39.9160847  -1.9518743 5.104623e-02
+## poly(age, 5)5  -35.81289 39.9160847  -0.8972045 3.696820e-01</code></pre>
+<p>另外，根据 <span class="math inline">\(F\)</span> 分布与 <span class="math inline">\(t\)</span> 分布直接的关系，</p>
+<blockquote>
+<p>如果 <span class="math inline">\(X\sim t_n\)</span>，则 <span class="math inline">\(X^2 \sim F(1, n)\)</span>，且 <span class="math inline">\(X^{-2}\sim F(n,1)\)</span>。</p>
+</blockquote>
+<p>可以发现两者统计量存在平方关系。</p>
+<p>注意到，除了 <code>age^5</code> 这一项的 <span class="math inline">\(p\)</span> 值相等，其它项的 <span class="math inline">\(p\)</span> 值也能大致与上述对应上去，这里应该（TODO）是跟正交化有关。一般而言，ANOVA 适用场景更广，比如</p>
+<pre class="r"><code>fit.1 = lm(wage ~ education + age, data = Wage)
+fit.2 = lm(wage ~ education + poly(age, 2), data = Wage)
+fit.3 = lm(wage ~ education + poly(age, 3), data = Wage)
+anova(fit.1, fit.2, fit.3)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: wage ~ education + age
+## Model 2: wage ~ education + poly(age, 2)
+## Model 3: wage ~ education + poly(age, 3)
+##   Res.Df     RSS Df Sum of Sq        F Pr(&gt;F)    
+## 1   2994 3867992                                 
+## 2   2993 3725395  1    142597 114.6969 &lt;2e-16 ***
+## 3   2992 3719809  1      5587   4.4936 0.0341 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>下一步我们想预测某个工人其是否每年赚够 $250,000，此时变成了二值变量，</p>
+<pre class="r"><code>fit = glm(I(wage &gt; 250) ~ poly(age, 4), data = Wage, family = binomial)
+preds = predict(fit, newdata = list(age = age.grid), se = T)
+pfit = exp(preds$fit) / (1 + exp(preds$fit))
+se.bands.logit = cbind(preds$fit + 2*preds$se.fit, preds$fit - 2*preds$se.fit)
+se.bands = exp(se.bands.logit) / (1 + exp(se.bands.logit))</code></pre>
+<p>一种不太恰当的计算方法为</p>
+<pre class="r"><code>preds = predict(fit, newdata = list(age = age.grid), type = &quot;response&quot;, se = T)</code></pre>
+<p>其结果可能为负，而概率不可能小于 0。</p>
+<p>作出如下图象，其中 rug plot 将少于 250k 收入的人放在了 <span class="math inline">\(y=0\)</span> 上，而大于 250k 收入的人放在了 <span class="math inline">\(y=0.2\)</span> 上。</p>
+<pre class="r"><code>plot(age, I(wage&gt;250), xlim = agelims, type = &quot;n&quot;, ylim = c(0, 0.2))
+points(jitter(age), I((wage&gt;250)/5), cex = 0.5, pch = &quot;|&quot;, col = &quot;darkgrey&quot;)
+lines(age.grid, pfit, lwd = 2, col = &quot;blue&quot;)
+matlines(age.grid, se.bands, lwd = 1, col = &quot;blue&quot;, lty=3)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="阶梯函数" class="section level2">
+<h2>阶梯函数</h2>
+<p>在 <span class="math inline">\(X\)</span> 的定义域内选择 <span class="math inline">\(K\)</span> 个分隔点，<span class="math inline">\(c_i,i=1,\ldots,K\)</span>，定义</p>
+<p><span class="math display">\[\begin{align*}
+C_0(X) &amp; = I(X &lt; c_1)\\
+C_1(X) &amp;= I(c_1 \le X &lt; c_2)\\
+&amp;\vdots\\
+C_{K-1}(X) &amp;=I(c_{K-1}\le X &lt; c_K)\\
+C_K(X) &amp;= I(c_K \le X)
+\end{align*}\]</span></p>
+<p>然后通过最小二乘拟合</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1C_1(x_i) +\cdots \beta_KC_K(x_i) + \epsilon_i\,,
+\]</span></p>
+<p>其中 <span class="math inline">\(\beta_0\)</span> 可以解释成 <span class="math inline">\(X&lt;c_1\)</span> 时响应变量的均值，而 <span class="math inline">\(\beta_j\)</span> 为相较于 <span class="math inline">\(X &lt; c_1\)</span>，在 <span class="math inline">\(c_j\le X &lt; c_{j+1}\)</span> 范围的响应变量的均值的增加。首先我们取定分隔点，</p>
+<pre class="r"><code>table(cut(age, 4))</code></pre>
+<pre><code>## 
+## (17.9,33.5]   (33.5,49]   (49,64.5] (64.5,80.1] 
+##         750        1399         779          72</code></pre>
+<p>然后应用线性回归，</p>
+<pre class="r"><code>fit = lm(wage ~ cut(age, 4), data = Wage)
+coef(summary(fit))</code></pre>
+<pre><code>##                         Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept)            94.158392   1.476069 63.789970 0.000000e+00
+## cut(age, 4)(33.5,49]   24.053491   1.829431 13.148074 1.982315e-38
+## cut(age, 4)(49,64.5]   23.664559   2.067958 11.443444 1.040750e-29
+## cut(age, 4)(64.5,80.1]  7.640592   4.987424  1.531972 1.256350e-01</code></pre>
+</div>
+<div id="样条" class="section level2">
+<h2>样条</h2>
+<p>采用回归样条，</p>
+<pre class="r"><code>library(splines)
+fit = lm(wage ~ bs(age, knots = c(25, 40, 60)), data = Wage)
+pred = predict(fit, newdata = list(age = age.grid), se = T)
+plot(age, wage, col = &quot;gray&quot;)
+lines(age.grid, pred$fit, lwd = 2)
+lines(age.grid, pred$fit+2*pred$se, lty = &quot;dashed&quot;)
+lines(age.grid, pred$fit-2*pred$se, lty = &quot;dashed&quot;)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre class="r"><code>fit = lm(wage ~ I(bs(age, knots = c(25, 40, 60))), data = Wage)
+pred = predict(fit, newdata = list(age = age.grid), se = T)</code></pre>
+<p>注意此处 <code>formula</code> 中加不加 <code>I()</code> 都能正确地处理。默认 <code>bs()</code> 是不包含截距的，而将其置于回归函数中，若强制 <code>bs(intercept=TRUE)</code>，则回归时应用</p>
+<pre class="r"><code>fit = lm(wage ~ 0 + bs(age, knots = c(25, 40, 60), intercept = TRUE), data = Wage)</code></pre>
+<p>另见 <a href="/notes/BS/bs/index.html">笔记：B spline in R, C++ and Python</a></p>
+<p>我们也可以用自然样条，</p>
+<pre class="r"><code>pred = predict(fit, newdata = list(age = age.grid), se = T)
+plot(age, wage, col = &quot;gray&quot;)
+lines(age.grid, pred$fit, lwd = 2)
+lines(age.grid, pred$fit+2*pred$se, lty = &quot;dashed&quot;)
+lines(age.grid, pred$fit-2*pred$se, lty = &quot;dashed&quot;)
+fit2 = lm(wage ~ ns(age, df=4), data = Wage)
+pred2 = predict(fit2, newdata = list(age = age.grid), se = T)
+lines(age.grid, pred2$fit, col = &quot;red&quot;, lwd = 2)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>事实上，<code>ns()</code> 也是由 B-splines 计算得到的，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/235">Issue 235: Ex. derive natural spline bases from B-spline bases</a></p>
+<p>为了拟合光滑样条，我们可以用</p>
+<pre class="r"><code>plot(age, wage, xlim = agelims, cex = .5, col = &quot;darkgrey&quot;)
+title(&quot;Smoothing Spline&quot;)
+fit = smooth.spline(age, wage, df = 16)
+fit2 = smooth.spline(age, wage, cv=TRUE)</code></pre>
+<pre><code>## Warning in smooth.spline(age, wage, cv = TRUE): cross-validation with non-
+## unique &#39;x&#39; values seems doubtful</code></pre>
+<pre class="r"><code>lines(fit, col=&quot;red&quot;, lwd=2)
+lines(fit2, col=&quot;blue&quot;, lwd=2)
+legend(&quot;topright&quot;, legend = c(&quot;16 DF&quot;, paste0(fit2$df, &quot; DF&quot;)),
+       col = c(&quot;red&quot;, &quot;blue&quot;), lty = 1, lwd = 2, cex = 0.8)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>局部回归可以通过下列代码实现，</p>
+<pre class="r"><code>plot(age, wage, xlim = agelims, cex = .5, col = &quot;darkgrey&quot;)
+title(&quot;Local Regression&quot;)
+# each neighborhood consists of 20% of the observations
+fit = loess(wage ~ age, span = 0.2, data = Wage)
+fit2 = loess(wage ~ age, span = 0.5, data = Wage)
+lines(age.grid, predict(fit, data.frame(age = age.grid)), col = &quot;red&quot;, lwd = 2)
+lines(age.grid, predict(fit2, data.frame(age = age.grid)), col = &quot;blue&quot;, lwd = 2)
+legend(&quot;topright&quot;, legend = c(&quot;Span=0.2&quot;, &quot;Span=0.5&quot;),
+       col = c(&quot;red&quot;, &quot;blue&quot;), lty = 1, lwd = 2, cex = 0.8)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+<div id="广义可加模型" class="section level2">
+<h2>广义可加模型</h2>
+<p>首先可以用普通线性回归来构建，</p>
+<pre class="r"><code>gam1 = lm(wage ~ ns(year, 4) + ns(year, 5) + education, data = Wage)</code></pre>
+<p>为了使用光滑样条，采用 <code>gam</code> 包，</p>
+<pre class="r"><code>library(gam)
+gam.m3 = gam(wage ~ s(year, 4) + s(age, 5) + education, data = Wage)
+par(mfrow = c(1, 3))
+plot(gam.m3, se = TRUE, col = &quot;blue&quot;, cex = 4)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-28-1.png" width="2304" /></p>
+<p>因为 <code>gam.m3</code> 是 <code>gam</code> 类的一个实例，则 <code>plot()</code> 实际调用了 <code>plot.gam()</code>，我们也可以对 <code>gam1</code> 画图，</p>
+<pre class="r"><code>par(mfrow = c(1, 3))
+plot.Gam(gam1, se = TRUE, col = &quot;blue&quot;)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-29-1.png" width="2304" /></p>
+<p>这些图中关于 <code>year</code> 的函数看起来都像是线性，为此考虑以下几种模型</p>
+<ul>
+<li><span class="math inline">\(\cM_1\)</span>: 不包含 <code>year</code> 的 GAM</li>
+<li><span class="math inline">\(\cM_2\)</span>: 采用关于 <code>year</code> 为线性函数的 GAM</li>
+<li><span class="math inline">\(\cM_3\)</span>: 采用关于 <code>year</code> 为样条函数的 GAM</li>
+</ul>
+<pre class="r"><code>gam.m1 = gam(wage ~ s(age, 5) + education, data = Wage)
+gam.m2 = gam(wage ~ year + s(age, 5) + education, data = Wage)
+anova(gam.m1, gam.m2, gam.m3, test = &quot;F&quot;)</code></pre>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: wage ~ s(age, 5) + education
+## Model 2: wage ~ year + s(age, 5) + education
+## Model 3: wage ~ s(year, 4) + s(age, 5) + education
+##   Resid. Df Resid. Dev Df Deviance       F    Pr(&gt;F)    
+## 1      2990    3711731                                  
+## 2      2989    3693842  1  17889.2 14.4771 0.0001447 ***
+## 3      2986    3689770  3   4071.1  1.0982 0.3485661    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>由结果可以看出，<span class="math inline">\(\cM_2\)</span> 优于 <span class="math inline">\(\cM_1\)</span>，但是没有充足采用 <span class="math inline">\(\cM_3\)</span>，于是我们采用 <span class="math inline">\(\cM_2\)</span>，</p>
+<pre class="r"><code>summary(gam.m2)</code></pre>
+<pre><code>## 
+## Call: gam(formula = wage ~ year + s(age, 5) + education, data = Wage)
+## Deviance Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -119.959  -19.647   -3.199   13.969  213.562 
+## 
+## (Dispersion Parameter for gaussian family taken to be 1235.812)
+## 
+##     Null Deviance: 5222086 on 2999 degrees of freedom
+## Residual Deviance: 3693842 on 2989 degrees of freedom
+## AIC: 29885.06 
+## 
+## Number of Local Scoring Iterations: NA 
+## 
+## Anova for Parametric Effects
+##             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## year         1   27154   27154  21.973  2.89e-06 ***
+## s(age, 5)    1  194535  194535 157.415 &lt; 2.2e-16 ***
+## education    4 1069081  267270 216.271 &lt; 2.2e-16 ***
+## Residuals 2989 3693842    1236                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Anova for Nonparametric Effects
+##             Npar Df Npar F     Pr(F)    
+## (Intercept)                             
+## year                                    
+## s(age, 5)         4  32.46 &lt; 2.2e-16 ***
+## education                               
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>preds = predict(gam.m2, newdata = Wage)</code></pre>
+<p>除了使用光滑样条，我们还可以用局部回归，</p>
+<pre class="r"><code>gam.lo = gam(wage ~ s(year, df = 4) + lo(age, span = 0.7) + education, data = Wage)
+par(mfrow = c(1, 3))
+plot(gam.lo, se = T, col = &quot;green&quot;)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-32-1.png" width="2304" /></p>
+<p>而且可以使用交叉项，</p>
+<pre class="r"><code>gam.lo.i = gam(wage ~ lo(year, age, span = 0.5) + education, data = Wage)</code></pre>
+<pre><code>## Warning in lo.wam(x, z, wz, fit$smooth, which, fit$smooth.frame,
+## bf.maxit, : liv too small. (Discovered by lowesd)</code></pre>
+<pre><code>## Warning in lo.wam(x, z, wz, fit$smooth, which, fit$smooth.frame,
+## bf.maxit, : lv too small. (Discovered by lowesd)</code></pre>
+<pre><code>## Warning in lo.wam(x, z, wz, fit$smooth, which, fit$smooth.frame,
+## bf.maxit, : liv too small. (Discovered by lowesd)</code></pre>
+<pre><code>## Warning in lo.wam(x, z, wz, fit$smooth, which, fit$smooth.frame,
+## bf.maxit, : lv too small. (Discovered by lowesd)</code></pre>
+<p>以下代码可以画出交叉项的二维平面</p>
+<pre class="r"><code>library(akima)
+par(mfrow = c(1, 2))
+plot(gam.lo.i)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>类似地，通过 <code>I()</code> 可以对二值变量应用 logistic GAM，</p>
+<pre class="r"><code>gam.lr = gam(I(wage &gt; 250) ~ year + s(age, df = 5) + education, family = binomial, data = Wage)
+par(mfrow = c(1, 3))
+plot(gam.lr, se = T, col = &quot;green&quot;)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-35-1.png" width="2304" /></p>
+<p>容易观察到在 <code>&lt;HS</code> 类别中没有高收入者，</p>
+<pre class="r"><code>table(education, I(wage &gt; 250))</code></pre>
+<pre><code>##                     
+## education            FALSE TRUE
+##   1. &lt; HS Grad         268    0
+##   2. HS Grad           966    5
+##   3. Some College      643    7
+##   4. College Grad      663   22
+##   5. Advanced Degree   381   45</code></pre>
+<p>因为我们可以排除这个类别并重现拟合得到更细节的结果，</p>
+<pre class="r"><code>gam.lr.s = gam(I(wage&gt;250) ~ year + s(age, df = 5) + education, family = binomial,
+               data = Wage, subset = (education != &quot;1. &lt; HS Grad&quot;))
+par(mfrow = c(1, 3))
+plot(gam.lr.s, se = T, col = &quot;green&quot;)</code></pre>
+<p><img src="non-linear-modeling_files/figure-html/unnamed-chunk-37-1.png" width="2304" /></p>
+</div>
+
+<p>Copyright &copy; 2016-2021 weiya</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
