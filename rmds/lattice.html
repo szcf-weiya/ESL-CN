@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="weiya" />
+
+
+<title>Reproduce Figures with Lattice</title>
+
+<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="mathjax.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rmd Gallery</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="https://esl.hohoweiya.xyz">ESL CN</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Reproduce Figures with Lattice</h1>
+<h4 class="author">weiya</h4>
+<h4 class="date">5/9/2021</h4>
+
+</div>
+
+
+<p><code>lattice</code> 包可以很方便地作出 <a href="https://esl.hohoweiya.xyz/10-Boosting-and-Additive-Trees/10.13-Interpretation/index.html">trellis 图</a>。</p>
+<pre class="r"><code>library(lattice)</code></pre>
+<p>首先看一个简单的例子，考虑这个包自带的纽约合唱团歌手身高数据，</p>
+<pre class="r"><code>str(singer)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    235 obs. of  2 variables:
+##  $ height    : num  64 62 66 65 60 61 65 66 65 63 ...
+##  $ voice.part: Factor w/ 8 levels &quot;Bass 2&quot;,&quot;Bass 1&quot;,..: 8 8 8 8 8 8 8 8 8 8 ...</code></pre>
+<p>可以用下列代码展示不同声部的歌手的身高分布，</p>
+<pre class="r"><code>histogram(~height | voice.part, data = singer, 
+          main = &quot;Distribution of Heights by Voice Pitch&quot;, 
+          xlab = &quot;Height (inches)&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>其中 <code>voice.part</code> 被称为 conditioning variable，而 <code>height</code> 为 dependent variable。</p>
+<p>在 trellis 图中，conditioning variable 的每个 level 都会创建一个独立的 panel。如果有多个 conditioning variable，则 (factor) level 的每个组合都会有一个 panel。每个 panel 会有一个标签，被称之为 strip。用户可以控制</p>
+<ul>
+<li>每个 panel 中的图象</li>
+<li>strip 的格式和位置</li>
+<li>panel 的排列方式</li>
+<li>图例 legend 的位置及内容</li>
+<li>其它图象特点</li>
+</ul>
+<p><code>lattice</code> 可以作出</p>
+<ul>
+<li>单变量图 <code>~x | A</code>：dot plots, kernel density plots, histograms, bar charts, box plots</li>
+<li>双变量图 <code>y~x | A</code>：scatter plots, strip plots, parallel box plots</li>
+<li>多变量图 <code>z~x*y | A</code>：3D plots, scatter plot matrices</li>
+</ul>
+<p>下面用 <code>mtcars</code> 数据集进行详细说明，</p>
+<pre class="r"><code>str(mtcars)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    32 obs. of  11 variables:
+##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+##  $ disp: num  160 160 108 258 360 ...
+##  $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec: num  16.5 17 18.6 19.4 17 ...
+##  $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
+<pre class="r"><code>attach(mtcars)</code></pre>
+<pre class="r"><code>gear = factor(gear, levels = c(3, 4, 5), 
+              labels = c(&quot;3 gears&quot;, &quot;4 gears&quot;, &quot;5 gears&quot;))
+cyl = factor(cyl, levels = c(4, 6, 8),
+             labels = c(&quot;4 cylinders&quot;, &quot;6 cylinders&quot;, &quot;8 cylinders&quot;))
+densityplot(~mpg, main = &quot;Density Plot&quot;, xlab = &quot;Miles Per Gallon&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>densityplot(~mpg | cyl, main = &quot;Density Plot by Numbers of Cylinders&quot;, xlab = &quot;Miles Per Gallon&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>bwplot(cyl ~ mpg | gear, main = &quot;Box Plots by Cylinders and Gears&quot;,
+       xlab = &quot;Miles Per Gallon&quot;, ylab = &quot;Cylinders&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<pre class="r"><code>xyplot(mpg ~ wt | cyl * gear, main = &quot;Scatter Plots by Cylinders and Gears&quot;,
+       xlab = &quot;Car Weight&quot;, ylab = &quot;Miles Per Gallon&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
+<pre class="r"><code>cloud(mpg ~ wt * qsec | cyl, main = &quot;3D Scatter Plots by Cylinders&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-5-5.png" width="672" /></p>
+<pre class="r"><code>dotplot(cyl ~ mpg | gear, 
+        main = &quot;Dot Plots by Number of Gears and Cylinders&quot;, # gear x cyl!!
+        xlab = &quot;Miles Per Gallon&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-5-6.png" width="672" /></p>
+<pre class="r"><code>splom(mtcars[c(1, 3, 4, 5, 6)], main = &quot;Scatter Plot Matrix for mtcars Data&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-5-7.png" width="672" /></p>
+<pre class="r"><code>detach(mtcars)</code></pre>
+<p>与基本作图系统不同的是，<code>lattice</code> 可以将图保存为一个变量，而且可以后续更改，</p>
+<pre class="r"><code>mygraph = densityplot(~height | voice.part, data = singer)
+update(mygraph, col = &quot;red&quot;, pch = 16, cex = 0.8, jitter = 0.05, lwd = 2)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div id="conditioning-variables" class="section level2">
+<h2>Conditioning Variables</h2>
+<p>一般地，conditioning variables 是 factors。对于连续变量，可以通过 <code>cut()</code> 函数将其转换为离散变量。不过 <code>lattice</code> 将连续变量转换成所谓的 <code>shingle</code> 结构。具体地，连续变量被划分成若干个（可能）重叠的区域。比如，</p>
+<pre class="r"><code>displacement = equal.count(mtcars$disp, number = 3, overlap = 0)</code></pre>
+<p>会将连续变量 <code>mtcars$disp</code> 划分成 <code>3</code> 个区间，有 <code>proportion=0</code> 的重叠部分，每个区间观测值的个数相等，然后可以将其作为 conditioning variable 进行作图，</p>
+<pre class="r"><code>xyplot(mpg ~ wt | displacement, data = mtcars, 
+       main = &quot;Miles Per Gallon vs. Weight by Engine Displacement&quot;,
+       xlab = &quot;Weight&quot;, ylab = &quot;Miles Per Gallon&quot;,
+       layout = c(3, 1), # 3 columns
+       aspect = 1.5 # height / width
+       )</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>其中 strip 的深色部分则表示连续变量作为 conditioning variable 的取值范围。</p>
+<p>注意 proportion 是相对于每个区间的比例，而非整个长度的比例，所以确定每个区间观测值个数的公式为</p>
+<p><span class="math display">\[
+\frac{N}{n(1-\text{overlap}) + \text{overlap}}
+\]</span></p>
+<p>具体代码为</p>
+<pre class="r"><code>co.intervals</code></pre>
+<pre><code>## function (x, number = 6, overlap = 0.5) 
+## {
+##     x &lt;- sort(x[!is.na(x)])
+##     n &lt;- length(x)
+##     r &lt;- n/(number * (1 - overlap) + overlap)
+##     ii &lt;- 0:(number - 1) * (1 - overlap) * r
+##     x1 &lt;- x[round(1 + ii)]
+##     xr &lt;- x[round(r + ii)]
+##     keep &lt;- c(TRUE, diff(x1) &gt; 0 | diff(xr) &gt; 0)
+##     j.gt.0 &lt;- 0 &lt; (jump &lt;- diff(x))
+##     eps &lt;- 0.5 * if (any(j.gt.0)) 
+##         min(jump[j.gt.0])
+##     else 0
+##     cbind(x1[keep] - eps, xr[keep] + eps)
+## }
+## &lt;bytecode: 0x564f95b5a490&gt;
+## &lt;environment: namespace:graphics&gt;</code></pre>
+</div>
+<div id="panel-functions" class="section level2">
+<h2>panel functions</h2>
+<p>对于每个 high-level 画图函数，<code>graph_function</code>，其默认的 panel 函数即为 <code>panel.graph_function</code>。比如 <code>xyplot</code> 的 panel 函数为 <code>panel.xyplot</code>。</p>
+<p>我们可以定义自己的 panel 函数使得每个 panel 可以加入更多的东西，比如回归直线。</p>
+<pre class="r"><code># custom panel function
+mypanel = function(x, y) {
+  panel.xyplot(x, y, pch = 19)
+  panel.rug(x, y)
+  panel.grid(h = -1, v = -1) # use negative numbers forces the grid to line up with the axis labels
+  panel.lmline(x, y, col = &quot;red&quot;, lwd = 1, lty = 2)
+}
+xyplot(mpg ~ wt | displacement, data = mtcars, 
+       main = &quot;Miles Per Gallon vs. Weight by Engine Displacement&quot;,
+       xlab = &quot;Weight&quot;, ylab = &quot;Miles Per Gallon&quot;,
+       layout = c(3, 1), # 3 columns
+       aspect = 1.5, # height / width
+       panel = mypanel
+       )</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>考虑另一个例子，</p>
+<pre class="r"><code>mtcars$transmission = factor(mtcars$am, levels = c(0, 1), labels = c(&quot;Automatic&quot;, &quot;Manual&quot;))
+panel.smoother = function(x, y) {
+  panel.grid(h=-1, v=-1)
+  panel.xyplot(x, y)
+  panel.loess(x, y)
+  panel.abline(h = mean(y), lwd = 2, lty = 2, col = &quot;green&quot;)
+}
+xyplot(mpg ~ disp | transmission, data = mtcars,
+       scales = list(cex = .8, col = &quot;red&quot;), # scale annotations, or separately list(x=list(), y=list())
+       panel = panel.smoother,
+       xlab = &quot;Displacement&quot;,
+       ylab = &quot;Miles per Gallon&quot;,
+       main = &quot;MGP vs Displacement by Transmission Type&quot;,
+       sub = &quot;Dotted lines are Group Means&quot;, aspect = 1)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="grouping-variables" class="section level2">
+<h2>Grouping variables</h2>
+<p>如果不想分开展示数据，而是叠在一起，则可以用 group variable。</p>
+<pre class="r"><code>densityplot(~mpg, data = mtcars, 
+            group = transmission,
+            main = &quot;MPG Distribution by Transimission Type&quot;,
+            xlab = &quot;Miles per Gallon&quot;,
+            auto.key = T,
+            #auto.key = list(space = &quot;right&quot;, columns = 1, title = &quot;Transmission&quot;)
+            )</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>图例可以进一步自定义，</p>
+<pre class="r"><code>colors = c(&quot;red&quot;, &quot;blue&quot;)
+lines = c(1, 2)
+points = c(16, 17)
+key.trans = list(title = &quot;Transmission&quot;,
+                 space = &quot;bottom&quot;, columns = 2,
+                 text = list(levels(mtcars$transmission)),
+                 points = list(pch = points, col = colors),
+                 lines = list(col = colors, lty = lines),
+                 cex.title = 1, cex = .9)
+densityplot(~mpg, data = mtcars, 
+            group = transmission,
+            main = &quot;MPG Distribution by Transimission Type&quot;,
+            xlab = &quot;Miles per Gallon&quot;,
+            pch = points, lty = lines, col = colors,
+            lwd = 2, jitter = 0.005,
+            key = key.trans
+            )</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>下面考虑同时使用 conditioning variable 和 grouping variable。数据集 <code>CO2</code> 描述了 12 种植物在 7 种二氧化碳含量的环境 <code>conc</code> 中对二氧化碳的吸收率 <code>uptake</code>，其中 6 种植物来自 Quebec，6 种来自 Mississippi，即 <code>Type</code> 变量，而每个地区各有三种在不同的 <code>Treatment</code> (chilled/nonchilled) 进行研究，</p>
+<pre class="r"><code>str(CO2)</code></pre>
+<pre><code>## Classes &#39;nfnGroupedData&#39;, &#39;nfGroupedData&#39;, &#39;groupedData&#39; and &#39;data.frame&#39;:   84 obs. of  5 variables:
+##  $ Plant    : Ord.factor w/ 12 levels &quot;Qn1&quot;&lt;&quot;Qn2&quot;&lt;&quot;Qn3&quot;&lt;..: 1 1 1 1 1 1 1 2 2 2 ...
+##  $ Type     : Factor w/ 2 levels &quot;Quebec&quot;,&quot;Mississippi&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Treatment: Factor w/ 2 levels &quot;nonchilled&quot;,&quot;chilled&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ conc     : num  95 175 250 350 500 675 1000 95 175 250 ...
+##  $ uptake   : num  16 30.4 34.8 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
+##  - attr(*, &quot;formula&quot;)=Class &#39;formula&#39;  language uptake ~ conc | Plant
+##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_EmptyEnv&gt; 
+##  - attr(*, &quot;outer&quot;)=Class &#39;formula&#39;  language ~Treatment * Type
+##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_EmptyEnv&gt; 
+##  - attr(*, &quot;labels&quot;)=List of 2
+##   ..$ x: chr &quot;Ambient carbon dioxide concentration&quot;
+##   ..$ y: chr &quot;CO2 uptake rate&quot;
+##  - attr(*, &quot;units&quot;)=List of 2
+##   ..$ x: chr &quot;(uL/L)&quot;
+##   ..$ y: chr &quot;(umol/m^2 s)&quot;</code></pre>
+<pre class="r"><code>colors = &quot;darkgreen&quot;
+symbols = c(1:12)
+linetype = c(1:3)
+key.species = list(title = &quot;Plant&quot;,
+                   space = &quot;right&quot;,
+                   text = list(levels(CO2$Plant)),
+                   points = list(pch = symbols, col = colors))
+xyplot(uptake ~ conc | Type * Treatment, data = CO2,
+       group = Plant,
+       type = &quot;o&quot;,
+       pch = symbols, col = colors, lty = linetype,
+       main = &quot;Carbon Dioxide Uptake \nin Grass Plants&quot;,
+       ylab = expression(paste(&quot;Uptake &quot;,
+                               bgroup(&quot;(&quot;, italic(frac(&quot;umol&quot;, &quot;m&quot;^2)), &quot;)&quot;))), # bgroup?
+       xlab = expression(paste(&quot;Concentration &quot;,
+                               bgroup(&quot;(&quot;, italic(frac(mL, L)), &quot;)&quot;))),
+       sub = &quot;Grass Species: Echinochloa crus-galli&quot;,
+       key = key.species)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="graphic-parameters" class="section level2">
+<h2>Graphic parameters</h2>
+<p>类似基本作图的 <code>par()</code>，<code>lattice</code> 也有类似的设置 graphic parameters 的命令，</p>
+<pre class="r"><code>show.settings()</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code>mysettings = trellis.par.get()
+mysettings$superpose.symbol</code></pre>
+<pre><code>## $alpha
+## [1] 1 1 1 1 1 1 1
+## 
+## $cex
+## [1] 0.8 0.8 0.8 0.8 0.8 0.8 0.8
+## 
+## $col
+## [1] &quot;#0080ff&quot;   &quot;#ff00ff&quot;   &quot;darkgreen&quot; &quot;#ff0000&quot;   &quot;orange&quot;    &quot;#00ff00&quot;  
+## [7] &quot;brown&quot;    
+## 
+## $fill
+## [1] &quot;#CCFFFF&quot; &quot;#FFCCFF&quot; &quot;#CCFFCC&quot; &quot;#FFE5CC&quot; &quot;#CCE6FF&quot; &quot;#FFFFCC&quot; &quot;#FFCCCC&quot;
+## 
+## $font
+## [1] 1 1 1 1 1 1 1
+## 
+## $pch
+## [1] 1 1 1 1 1 1 1</code></pre>
+<p>默认时 <code>pch</code> 均为 1，将其改成对应的序号，</p>
+<pre class="r"><code>mysettings$superpose.symbol$pch = c(1:10)
+trellis.par.set(mysettings)
+show.settings()</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="page-arrangement" class="section level2">
+<h2>Page arrangement</h2>
+<p>同上，<code>par</code> 在 <code>lattice</code> 不起作用，也就无法设置 <code>mfrow</code> 或者 <code>mfcol</code>，但这可以通过 <code>split</code> 进行实现，</p>
+<pre class="r"><code>split = c(placement row, placement column, total number of rows, total number of columns)</code></pre>
+<p>比如</p>
+<pre class="r"><code>graph1 = histogram(~height|voice.part, data = singer, 
+                   main = &quot;Heights of Choral Singers by Voice Part&quot;)
+graph2 = densityplot(~height, data = singer, group = voice.part,
+                     plot.points = F, auto.key = list(columns = 4))
+plot(graph1, split=c(1, 1, 1, 2))
+plot(graph2, split=c(1, 2, 1, 2), newpage=FALSE)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>另外也可以通过指定 <code>position = c(xmin, ymin, xmax, ymax)</code>，取值为 0 到 1 直接的比例数，原点在左下角，如</p>
+<pre class="r"><code>plot(graph1, position = c(0, 0.3, 1, 1))
+plot(graph2, position = c(0, 0, 1, 0.3), newpage = FALSE)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>一幅 lattice 图中 panel 的顺序可以通过 <code>index.cond =</code> 进行指定，比如将“1”声部放在一行，而“2”声部放在另一行，</p>
+<pre class="r"><code>levels(singer$voice.part)</code></pre>
+<pre><code>## [1] &quot;Bass 2&quot;    &quot;Bass 1&quot;    &quot;Tenor 2&quot;   &quot;Tenor 1&quot;   &quot;Alto 2&quot;    &quot;Alto 1&quot;   
+## [7] &quot;Soprano 2&quot; &quot;Soprano 1&quot;</code></pre>
+<pre class="r"><code>update(graph1, index.cond = list(c(2, 4, 6, 8, 1, 3, 5, 7)))</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="reproduce-fig.-6.9" class="section level2">
+<h2>Reproduce Fig. 6.9</h2>
+<p>Tricks on including external R scripts: <a href="https://stackoverflow.com/questions/52397430/include-code-from-an-external-r-script-run-in-display-both-code-and-output" class="uri">https://stackoverflow.com/questions/52397430/include-code-from-an-external-r-script-run-in-display-both-code-and-output</a>, and also note that <code>imgs</code> and <code>rmds</code> are on the same folder level, so the <code>read.csv()</code> with relative path works well.</p>
+<pre class="r"><code>data = read.csv(&quot;../data/Ozone/ozone.csv&quot;, sep = &quot;\t&quot;)
+# calculate the overlap 4*0.4-3x=1 =&gt; x = 0.2
+# the overlap in w.r.t. each interval instead of the whole interval
+# prop = 0.2 / 0.4 = 0.5
+Wind = equal.count(data$wind, number = 4, overlap = 0.5) 
+Temp = equal.count(data$temp, number = 4, overlap = 0.5)
+mypanel = function(x, y) {
+  panel.xyplot(x, y)
+  panel.grid()
+  panel.loess(x, y)
+}
+xyplot(I(ozone^(1/3)) ~ radiation | Temp * Wind, data = data,
+       panel = mypanel,
+       xlab = &quot;Solar Radiation (langleys)&quot;,
+       ylab = &quot;Cube Root Ozone (cube root ppb)&quot;)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre class="r"><code>coplot(I(ozone^(1/3)) ~ radiation | temperature * wind, data = data, 
+       number = 4, overlap = 0.5)</code></pre>
+<p><img src="lattice_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+</div>
+
+<p>Copyright &copy; 2016-2021 weiya</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
