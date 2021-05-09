@@ -12,3 +12,4 @@ Here are my rmarkdown notes:
 - [Tree-Based Methods](tree-based-methods.html)
 - [Resampling Methods](resampling-methods.html)
 - [Non-linear Modeling](non-linear-modeling.html)
+- [Reproduce Figures with Lattice](lattice.html)
