@@ -3372,7 +3372,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-11-05 21:29:05</td>
+<td>2021-07-09</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3396,13 +3396,22 @@
 <p>
 <script type="math/tex; mode=display">
 \begin{align*}
-\Pr(G=k\mid X=x)=\dfrac{\exp(\beta_{k0}+\beta_k^Tx)}{1+\sum\limits_{\ell=1}^{K-1}\exp(\beta_{\ell0}+\beta_\ell^Tx)}\; k=1,\ldots, K-1\\
-\Pr(G=K\mid X=x)=\dfrac{1}{1+\sum\limits_{\ell=1}^{K-1}\exp(\beta_{\ell0}+\beta_\ell^Tx)}
+\Pr(G=k\mid X=x)&=\frac{\exp(\beta_{k0}+\beta_k^Tx)}{1+\sum_{\ell=1}^{K-1}\exp(\beta_{\ell0}+\beta_\ell^Tx)}\qquad k=1,\ldots, K-1\\
+\Pr(G=K\mid X=x)&=\frac{1}{1+\sum_{\ell=1}^{K-1}\exp(\beta_{\ell0}+\beta_\ell^Tx)}
 \end{align*}
-\tag{4.18}
+\tag{4.18}\label{4.18}
 </script>
 </p>
 <p>显然它们相加等于 1．为了强调对参数集 $\theta=\{\beta_{10},\beta_1^T,\ldots,\beta_{(K-1)0},\beta_{K-1}^T\}$ 的依赖，我们将概率记为 $p_k(x,\theta)$．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注:</p>
+<p>与从 \eqref{4.17} 中的两两比较出发得到 \eqref{4.18} 式不同的是，PRML 中 4.3.4 节直接定义 $\Pr(G=k\mid X=x)$，
+<script type="math/tex; mode=display">
+\Pr(G=k\mid X=x) = \frac{\exp(\beta_k^Tx)}{\sum_\ell \exp(\beta_\ell^Tx)}\,,
+</script>
+这样会得到 $K$ 个系数向量，比 \eqref{4.18} 多一个。</p>
+<p>对于多类别 <code>multi_class = 'multinomial'</code>，<a href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"><code>sklearn.linear_model.LogisticRegression</code></a> 采用这种形式，因而其系数矩阵维度为 $K\times p$. 另外也可以采用 <code>One-vs-Rest</code> 的思路 <code>multi_class = 'ovr'</code>，即 $K$ 个二分类问题，依次将所考虑的类视为类别 1，而其余类为类别 0。</p>
+</div>
 <p>当 $K=2$ 时，模型非常简单，因为只有一个单线性函数．在生物统计应用中应用很广，因为经常会有二进制（两个类别）的响应变量．举个例子，病人获救或死亡，患心脏病和不患心脏病，或者某个条件存在与否．</p>
 <h2 id="_1">拟合逻辑斯蒂回归模型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>逻辑斯蒂回归经常通过极大似然法求解，采用在给定 $X$ 时 $G$ 的条件概率．因为 $\Pr(G\mid X)$ 完全明确了条件分布，选择 <strong>多项式分布 (multinomial)</strong> 是合适的．</p>
@@ -3740,7 +3749,7 @@ z_i=x_i^T\hat\beta+\dfrac{y_i-\hat p_i}{\hat p_i(1-\hat p_i)}\tag{4.29}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-06-20 15:15:41
+        Last Build Date UTC : 2021-07-09 15:06:38
       </div>
       
         
