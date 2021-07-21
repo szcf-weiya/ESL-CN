@@ -3244,7 +3244,7 @@
               
                 
                 
-                <h1 id="74-optimism">7.4 训练误差率的optimism<a class="headerlink" href="#74-optimism" title="Permanent link">&para;</a></h1>
+                <h1 id="74-optimism">7.4 训练误差率的 optimism<a class="headerlink" href="#74-optimism" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3263,7 +3263,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-07-27 12:07:49</td>
+<td>2021-07-21</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3271,13 +3271,13 @@
 </tr>
 </tbody>
 </table>
-<p>讨论误差率的估计可能令人困惑，因为我们必须弄清楚哪些量是固定的哪些量是随机的．在我们继续之前，我们需要一些定义，详细阐述第 <a href="../7.2-Bias-Variance-and-Model-Complexity/index.html">7.2 节</a>的内容．给出训练集 $\cal{T}=\{(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)\}$，模型 $\hat f$ 的泛化误差为</p>
+<p>讨论误差率的估计可能令人困惑，因为我们必须弄清楚哪些量是固定的哪些量是随机的．在我们继续之前，我们需要一些定义，详细阐述第 <a href="../7.2-Bias-Variance-and-Model-Complexity/index.html">7.2 节</a>的内容．给出训练集 $\cT=\{(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)\}$，模型 $\hat f$ 的 <strong>泛化误差 (generalization error)</strong> 为</p>
 <p>
 <script type="math/tex; mode=display">
 \Err_{\cal T} = \mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid {\cal T}]\tag{7.15}\label{7.15}
 </script>
 </p>
-<p>注意到在表达式 $\eqref{7.15}$ 中训练集 $\cal T$ 是固定的．点 $(X^0,Y^0)$ 是新的测试点，从数据的联合分布 $F$ 中取的．对数据集平均得到期望误差</p>
+<p>注意到在表达式 $\eqref{7.15}$ 中训练集 $\cal T$ 是固定的．点 $(X^0,Y^0)$ 是新的测试点，从数据的联合分布 $F$ 中取的．对数据集平均得到 <strong>期望误差 (expected error)</strong></p>
 <p>
 <script type="math/tex; mode=display">
 \mathrm{Err} = \mathrm E_{\cal T}\mathrm E_{X^0,Y^0}[L(Y^0,\hat f(X^0))\mid {\cal T}]\tag{7.16}\label{7.16}
@@ -3288,21 +3288,21 @@
 <p class="admonition-title">weiya 注：</p>
 <p>这里原文为 $\E_{\cal T}$，但结合上下文此处应为 $\Err_{\cal T}$.</p>
 </div>
-<p>现在一般地，训练误差</p>
+<p>现在一般地，<strong>训练误差 (training error)</strong></p>
 <p>
 <script type="math/tex; mode=display">
 \overline{\err} = \frac{1}{N}\sum\limits_{i=1}^NL(y_i,\hat f(x_i))\tag{7.17}\label{7.17}
 </script>
 </p>
-<p>会比真实误差 $\Err_{\cal T}$ 小，因为数据被同时用来拟合方法并且评估误差（见<a href="https://github.com/szcf-weiya/ESL-CN/issues/176">练习 2.9</a>）．拟合方法一般适应于训练数据，因此训练误差 $\overline{\err}$ 是对泛化误差 $\mathrm {Err}_{\cal T}$过度的乐观估计．</p>
+<p>会比真实误差 $\Err_{\cal T}$ 小，因为数据被同时用来拟合方法并且评估误差（见<a href="https://github.com/szcf-weiya/ESL-CN/issues/176">练习 2.9</a>）．拟合方法一般适应于训练数据，因此 <strong>表面误差 (apparent error)</strong> 或训练误差 $\overline{\err}$ 是对泛化误差 $\mathrm {Err}_{\cal T}$过度的乐观估计．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：Ex. 2.9</p>
 <p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/176">Issue 176: Ex. 2.9</a>.</p>
 </div>
-<p>部分差异是因为取值点的选取．值 $\Err_{\cal T}$ 可以看成是 <strong>样本外 (extra-sample)</strong> 误差，因为测试输入向量不需要与训练输入向量一致．当我们去关注 <strong>样本内 (in-sample)</strong> 误差，可以很简单地理解 $\overline{\err}$ 乐观估计的本质</p>
+<p>部分差异是因为取值点的选取．值 $\Err_{\cal T}$ 可以看成是 <strong>样本外误差 (extra-sample error)</strong>，因为测试输入向量不需要与训练输入向量一致．当我们去关注 <strong>样本内误差 (in-sample error)</strong>，可以很简单地理解 $\overline{\err}$ 乐观估计的本质</p>
 <p>
 <script type="math/tex; mode=display">
-\Err_{in}=\frac{1}{N}\sum\limits_{i=1}^N\mathrm E_{Y^0}[L(Y_i^0,\hat f(x_i))\mid {\cal T}]\tag{7.18}\label{7.18}
+\Err_{in}=\frac{1}{N}\sum_{i=1}^N\mathrm E_{Y^0}[L(Y_i^0,\hat f(x_i))\mid {\cal T}]\tag{7.18}\label{7.18}
 </script>
 </p>
 <p>$Y^0$ 表示我们在每个训练点 $x_i,i=1,2,\ldots,N$ 处观测 $N$ 个新响应变量的值．我们定义 $\Err_{in}$ 与训练误差 $\overline{\err}$ 的差为 <strong>乐观 (optimism)</strong>：</p>
@@ -3355,6 +3355,10 @@
 <p>估计预测误差的一种明显方法是先估计 optimism 然后加到训练误差 $\overline{\err}$ 上．下一节将要描述的方法—— $C_p$，AIC，BIC 以及其它方法——对于估计关于参数是线性的特殊估计类，都是通过这种方式实现．</p>
 <p>相反地，将在本章后面描述的交叉验证以及自助法是对 <strong>样本外 (extra-sample)</strong> 误差 $\Err$ 直接估计的方法．这些一般工具可以用于任意损失函数以及非线性自适应拟合技巧．</p>
 <p>样本内误差通常不是直接感兴趣的，因为特征的未来值不可能与它们训练集值一致．但是为了模型之间的比较，样本内误差是很方便的，并且经常能够有效地进行模型选择．原因在于误差的相对（而不是绝对）大小是我们所关心的．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：</p>
+<p>本节相似内容另见 Efron, B., &amp; Hastie, T. (2016). Computer Age Statistical Inference. Cambridge University Press, 493. 一书中第 12.3 节。</p>
+</div>
                 
                   
                 
@@ -3445,7 +3449,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-07-09 15:06:39
+        Last Build Date UTC : 2021-07-21 14:07:05
       </div>
       
         
