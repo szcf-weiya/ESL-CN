@@ -236,7 +236,7 @@ site_url: https://esl.hohoweiya.xyz
 
 repo_name: 'szcf-weiya/ESL-CN'
 repo_url: 'https://github.com/szcf-weiya/ESL-CN'
-edit_uri: ""
+edit_uri: edit/master/docs/
 #url_en: https://stats.hohoweiya.xyz
 
 #url_cn: https://blog.hohoweiya.xyz
