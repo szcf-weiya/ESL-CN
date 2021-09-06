@@ -3363,10 +3363,10 @@
 <p>主成分回归构造派生的输入列 $\mathbf z_m=\mathbf Xv_m$，然后在 $\mathbf z_1,\mathbf z_2,\ldots,\mathbf z_M,\; M\le p$ 上回归 $\mathbf y$．因为 $\mathbf z_m$ 是正交的，则这个回归只是单变量回归的和</p>
 <p>
 <script type="math/tex; mode=display">
-\hat{\mathbf y}^{pcr}_{(M)}=\bar y\mathbf 1+\sum\limits_{m=1}^M\hat{\theta}_m\mathbf z_m\tag{3.61}
+\hat{\mathbf y}^{pcr}_{(M)}=\bar y\mathbf 1+\sum\limits_{m=1}^M\hat{\theta}_m\mathbf z_m\tag{3.61}\label{3.61}
 </script>
 </p>
-<p>其中，$\hat\theta_m=\langle \mathbf z_m,\mathbf y\rangle/\langle\mathbf z_m,\mathbf z_m\rangle$．因为每个 $\mathbf z_m$ 是原输入变量 $\mathbf x_j$ 的线性组合，我们可以将解 (3.61) 表达成关于 $\mathbf x_j$ 的系数（<a href="https://github.com/szcf-weiya/ESL-CN/issues/102">练习 3.13</a>）:</p>
+<p>其中，$\hat\theta_m=\langle \mathbf z_m,\mathbf y\rangle/\langle\mathbf z_m,\mathbf z_m\rangle$．因为每个 $\mathbf z_m$ 是原输入变量 $\mathbf x_j$ 的线性组合，我们可以将解 \eqref{3.61} 表达成关于 $\mathbf x_j$ 的系数（<a href="https://github.com/szcf-weiya/ESL-CN/issues/102">练习 3.13</a>）:</p>
 <p>
 <script type="math/tex; mode=display">
 \hat\beta^{pcr}(M)=\sum\limits_{m=1}^M\hat\theta_mv_m\tag{3.62}
@@ -3543,7 +3543,7 @@ $\mathbf b$ 在 $\mathbf a$ 上的无截距的简单单变量回归，回归系�
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-09-02 14:33:10
+        Last Build Date UTC : 2021-09-06 14:38:53
       </div>
       
         
