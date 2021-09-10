@@ -3341,7 +3341,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-09-23 16:14:01</td>
+<td>2021-09-09</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3361,7 +3361,7 @@
 <p class="admonition-title">weiya 注：推导 \eqref{13.7}</p>
 <p>记 $X$ 为离原点的距离，根据点的均匀分布知
 <script type="math/tex; mode=display">
-F(X) = P(X<x)=v_pr^p
+F(X) = P(X<x)=v_px^p
 </script>
 考虑次序统计量 $X_{(1)}$，即原点与其 1 最近邻点的距离，则
 <script type="math/tex; mode=display">
@@ -3381,7 +3381,7 @@ F_1(\mathrm{median}(R))=\frac 12
 <p><img alt="" src="../../img/13/fig13.12.png" /></p>
 <p>这个问题我们可以怎么做呢？考虑图 13.13 的二分类的情形．</p>
 <p><img alt="" src="../../img/13/fig13.13.png" /></p>
-<p>图中有两个特征，并且用圆形区域画出了 <em>查询点 (query point)</em> 的最近邻．最近邻分类的隐含假设是类别概率在邻域内近似为常值，因此简单的平均会得到不错的估计．然而，在这个例子中，只有水平方向上的类别概率会变化．如果我们提前知道这一点，可以将邻居拉伸为长方形区域．这会降低估计的偏差，同时保持方差不变．</p>
+<p>图中有两个特征，并且用圆形区域画出了 <strong>查询点 (query point)</strong> 的最近邻．最近邻分类的隐含假设是类别概率在邻域内近似为常值，因此简单的平均会得到不错的估计．然而，在这个例子中，只有水平方向上的类别概率会变化．如果我们提前知道这一点，可以将邻居拉伸为长方形区域．这会降低估计的偏差，同时保持方差不变．</p>
 <p>一般地，这要求最近邻分类中采用自适应的度量，使得得到的邻域沿着类别不会改变太多的方向上拉伸．在高维特征空间中，类别概率可能仅仅只在一个低维的子空间中有所改变，因此自适应度量是很重要的优点．</p>
 <p>Friedman (1994a)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出通过逐步剔除包含训练数据的盒子的边来自动寻找长方形邻域．这里我们介绍  Hastie and Tibshirani (1996a)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> 提出的 <strong>判别自适应最近邻 (discriminant adaptive nearest-neighbor) (DANN)</strong>．更早的研究中，相关的方法有 Short and Fukunaga (1981)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 和 Myles and Hand (1990)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
 <p>在每个查询点，构造其大小为 50 个点的邻域，并且用这些点的类别分布来决定怎么对邻域进行变形——也就是，对度量进行更新．接着更新后的度量用在该查询点的最近邻规则中．因此每一个查询点都可能采用不同的度量．</p>
@@ -3390,9 +3390,9 @@ F_1(\mathrm{median}(R))=\frac 12
 <p class="admonition-title">Recall</p>
 <p><img alt="" src="../../img/04/fig4.9.png" /></p>
 </div>
-<div class="admonition question">
+<div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>这里有点困惑。文中首先说，“the direction in which the class probabilities change the least”，然后又说“this direction of maximum change”，一个“change the least”，一个“maximum change”，但按照上下文，指的应该是同一个方向？怀疑是否是作者的笔误，“maximum” 应为 “minimum”。</p>
+<p>类别概率变化最大的方向应该是指图 4.9 右边密度曲线的横轴方向，它不与类别重心连线垂直，而左图沿着垂直方向的密度曲线会矮很多，从而变化也没有右边的大。</p>
 </div>
 <p>假设一个局部判别模型，局部 <strong>类别内 (within-)</strong> 和 <strong>类别间 (between-)</strong> 协方差矩阵的信息就足以确定邻居的最优形状．</p>
 <p><strong>判别自适应最近邻 (DANN)</strong> 在查询点 $x_0$ 的度量定义为 </p>
@@ -3552,7 +3552,7 @@ D(x,x_0)=(x-x_0)^T\bSigma(x-x_0)\,,\tag{13.8}\label{13.8}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-09-06 14:38:59
+        Last Build Date UTC : 2021-09-10 00:27:12
       </div>
       
         
