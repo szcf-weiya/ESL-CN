@@ -3435,7 +3435,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2020-05-15 23:06:55</td>
+<td>2021-09-20</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3552,11 +3552,11 @@ p(x, y)=p_X(x)p_Y(y)\;\forall x,y
 <p>我们希望恢复 $X=\A S$ 中的混合矩阵 $\A$． 不失一般性, 我们假设 $X$ 已经 <strong>白化 (whitened)</strong> 使得 $\Cov(X)=\I$; 这一般可以通过前面描述的 SVD 实现．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：白化 (whitened)</p>
-<p>根据<a href="https://en.wikipedia.org/wiki/Whitening_transformation">维基百科</a>，因为白噪声的协方差矩阵为单位阵，所以称这一过程为白化。白化矩阵 $W$ 使得 $WX$ 协方差为单位阵，则 $W^TW = \Sigma^{-1}$. 根据求解 $W$ 的算法，可以分类为</p>
+<p>根据<a href="https://en.wikipedia.org/wiki/Whitening_transformation">维基百科</a>，因为白噪声的协方差矩阵为单位阵，所以称这一过程为白化。白化矩阵 $W$ 使得 $WX$ 协方差为单位阵（此处 $X$ 表示为随机向量，若作用在矩阵上，则右乘），则 $W^TW = \Sigma^{-1}$. 根据求解 $W$ 的算法，可以分类为</p>
 <ul>
-<li>$W = \Sigma^{-1/2}$: Mahalanobis or ZCA whitening</li>
-<li>$\Sigma^{-1/2}$ 的 Cholesky 分解：Cholesky whitening</li>
-<li>特征分解：PCA whitening</li>
+<li>Mahalanobis or ZCA whitening: $W = \Sigma^{-1/2}$</li>
+<li>Cholesky whitening: 取 Cholesky 分解 $\Sigma^{-1} = LL^T$ 中的 $L^T$，则 $\Sigma = (L^{T})^{-1}L^{-1}$，因而 $W\Sigma W^T=L^T (L^{T})^{-1}L^{-1} L = \I$.</li>
+<li>PCA whitening: 特征分解 </li>
 </ul>
 <p>而这里提到 SVD，大概是通过 
 <script type="math/tex; mode=display">
@@ -3975,7 +3975,7 @@ d(\A_0, \A)=\frac{1}{2p}\sum_{i=1}^p\Big(\frac{\sum_{j=1}^p\vert r_{ij}\vert}{\m
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-09-18 13:48:46
+        Last Build Date UTC : 2021-09-20 23:33:12
       </div>
       
         
