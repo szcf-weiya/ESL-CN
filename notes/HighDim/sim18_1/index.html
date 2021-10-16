@@ -2817,67 +2817,19 @@
           
           
 
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
-    
-    <label class="md-nav__link" for="nav-5-2">
-      习题解答
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-5-2">
-        习题解答
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../manual/index.html" title="索引" class="md-nav__link">
-      索引
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Graph/ex-17-7/index.html" title="习题 Ex. 17.7" class="md-nav__link">
-      习题 Ex. 17.7
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2" checked>
     
-    <label class="md-nav__link" for="nav-5-3">
-      模拟实验
+    <label class="md-nav__link" for="nav-5-2">
+      实验重现
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-5-3">
-        模拟实验
+      <label class="md-nav__title" for="nav-5-2">
+        实验重现
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -3101,30 +3053,6 @@
   </li>
 
         
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
-    
-    <label class="md-nav__link" for="nav-5-4">
-      算法实现
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-5-4">
-        算法实现
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
           
           
           
@@ -3149,13 +3077,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
     
-    <label class="md-nav__link" for="nav-5-5">
+    <label class="md-nav__link" for="nav-5-3">
       比较总结
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-5-5">
+      <label class="md-nav__title" for="nav-5-3">
         比较总结
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -3373,17 +3301,17 @@
 </tr>
 </tbody>
 </table>
-<p>本笔记是<a href="https://esl.hohoweiya.xyz/18%20High-Dimensional%20Problems/18.1%20When%20p%20is%20Much%20Bigger%20than%20N/index.html">ESL18.1节</a>例子的模拟。</p>
+<p>本笔记是<a href="../../../18-High-Dimensional-Problems/18.1-When-p-is-Much-Bigger-than-N/index.html">ESL18.1节</a>例子的模拟。</p>
 <h2 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>生成$N$个样本，每个样本都是$p$个成对相关系数为0.2的标准高斯特征$X$.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">genX</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="m">100</span><span class="p">){</span>
+<p>生成 $N$ 个样本，每个样本都是 $p$ 个成对相关系数为 0.2 的标准高斯特征 $X$.</p>
+<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>
+<span class="n">genX</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="m">100</span><span class="p">){</span>
   <span class="c1"># mu</span>
   <span class="n">mu</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
   <span class="c1"># due to var(x_j) = 1</span>
   <span class="c1"># covariance matrix equals to correlation matrix</span>
   <span class="n">Sigma</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
   <span class="nf">diag</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span> <span class="o">=</span> <span class="m">1</span>
-  <span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>
   <span class="n">X</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">)</span>
   <span class="nf">if </span><span class="p">(</span><span class="nf">is.null</span><span class="p">(</span><span class="nf">dim</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span>
     <span class="n">X</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">p</span><span class="p">)</span>
@@ -3589,7 +3517,7 @@ Y = \sum\limits_{j=1}^pX_j\beta_j+\sigma\varepsilon
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-09-21 14:01:25
+        Last Build Date UTC : 2021-10-16 16:28:47
       </div>
       
         
