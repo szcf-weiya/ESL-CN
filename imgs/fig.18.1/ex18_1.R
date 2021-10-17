@@ -6,6 +6,7 @@
 ## refer to https://esl.hohoweiya.xyz/notes/HighDim/sim18_1/index.html for more details
 ##
 ## ####################################################################################
+library(MASS)
 
 genX <- function(p, N = 100){
   # mu
@@ -14,7 +15,6 @@ genX <- function(p, N = 100){
   # covariance matrix equals to correlation matrix
   Sigma = matrix(0.2, nrow=p, ncol=p)
   diag(Sigma) = 1
-  library(MASS)
   X = mvrnorm(N, mu, Sigma)
   if (is.null(dim(X)))
     X = matrix(X, ncol = p)
@@ -31,9 +31,12 @@ genY <- function(X){
   epsi = rnorm(N, 0, sqrt(epsi.var))
   Y = fX + epsi
   res = list(Y=Y, epsi.var=epsi.var)
+  # if X is standardized, SNR should equal to ||beta||^2 / sigma2
+  # cat("||beta||^2 / sigma2 = ", sum(beta^2)/epsi.var, "\n")
   return(res)
 }
 
+# simple linear regression
 for (p in c(20, 100, 1000)) {
   X = genX(p)
   Y = genY(X)$Y
@@ -50,6 +53,7 @@ for (p in c(20, 100, 1000)) {
   cat("p = ", p, " sig.num = ", sig.num, "\n")
 }
 
+# single variable linear regression
 for (p in c(20, 100, 1000)){
   num = 0
   for (j in 1:100){
@@ -67,41 +71,40 @@ for (p in c(20, 100, 1000)){
   cat("p = ", p, " num of significant term: ", num ,"\n")
 }
 
-test.err.full = matrix(0, nrow=0, ncol=3)
-epsi.var.full = c()
-for (p in c(20, 100, 1000)){
-  X = genX(p)
-  Y.res = genY(X)
-  Y = Y.res$Y
-  epsi.var = Y.res$epsi.var
-  epsi.var.full = c(epsi.var.full, epsi.var)
-  model = lm.ridge(Y~X, lambda=c(0.001, 100, 1000))
-  # calculate test error
-  #X.test = genX(p)
-  #Y.test = genY(X.test)
-  #pred = cbind(1, X.test) %*% t(coef(model))
-  #test.err = numeric(3)
-  #for (i in 1:ncol(pred))
-  #{
-  #  test.err[i] = sum((Y.test - pred[,i])^2)/nrow(pred)
-  #}
-  #test.err.full = rbind(test.err.full, test.err)
+calc_df <- function(X, lambda) {
+  return(sum(diag(X %*% solve(t(X) %*% X + lambda * diag(ncol(X))) %*% t(X))))
+}
 
+test.err.full = matrix(0, nrow=0, ncol=3)
+dfs = matrix(0, nrow = 0, ncol = 3)
+for (p in c(20, 100, 1000)){
   for (j in 1:100){
-    x.test = genX(p, N=1)
-    y.test = sum(x.test * rnorm(p)) + rnorm(1, 0, sqrt(epsi.var))
-    pred = as.matrix(cbind(1, x.test)) %*% t(coef(model))
-    test.err = (pred - y.test)^2
+    # training set
+    Xall = genX(p, N = 200)
+    X = Xall[1:100,]
+    Y.res = genY(Xall)
+    Y = Y.res$Y[1:100]
+    epsi.var = Y.res$epsi.var
+    model = lm.ridge(Y~0+X, lambda=c(0.001, 100, 1000))
+    dfs = rbind(dfs, sapply(c(0.001, 100, 1000), function(lambda) calc_df(X, lambda)))
+    
+    X.test = Xall[101:200,]
+    Y.test = Y.res$Y[101:200]
+    # pred = as.matrix(cbind(1, X.test)) %*% t(coef(model))
+    pred = X.test %*% t(coef(model))
+    cat("p = ", p, ", ", epsi.var, " err = ", colMeans((pred - Y.test)^2), "\n")
+    test.err = colMeans((pred - Y.test)^2) / epsi.var
     test.err.full = rbind(test.err.full, test.err)
   }
 }
-t1 = test.err.full[1:100, ]
-t2 = test.err.full[101:200, ]
-t3 = test.err.full[201:300, ]
 
 
-
-boxplot(t1/epsi.var.full[1], main = "20 features", col = "green")
-boxplot(t2/epsi.var.full[2], main = "100 features", col = "green")
-boxplot(t3/epsi.var.full[3], main = "1000 features", col = "green")
-
+png("../ESL-CN/imgs/fig.18.1/p20.png")
+boxplot(test.err.full[1:100, ], main = "20 features", col = "green")
+dev.off()
+png("../ESL-CN/imgs/fig.18.1/p100.png")
+boxplot(test.err.full[101:200, ], main = "100 features", col = "green")
+dev.off()
+png("../ESL-CN/imgs/fig.18.1/p1000.png")
+boxplot(test.err.full[201:300, ], main = "1000 features", col = "green")
+dev.off()

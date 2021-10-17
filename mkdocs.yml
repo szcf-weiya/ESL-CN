@@ -203,7 +203,7 @@ pages:
       - 模拟 Fig. 7.9: 'notes/ModelSelection/sim7_9.md'
       - 模拟 Fig. 13.5: 'notes/Prototype/sim13_5.md'
       - 模拟 Fig. 14.42: 'notes/ICA/sim14_42.md'
-      - 模拟 Fig. 18.1: 'notes/HighDim/sim18_1.md'
+      # - 模拟 Fig. 18.1: 'notes/HighDim/sim18_1.md'
       - 模拟 Eq. 10.2: 'notes/boosting/sim-eq-10-2.md'
       - 模拟 Tab. 12.2: 'notes/SVM/skin-of-the-orange.md'
       - 模拟 Fig. 9.7: 'notes/tree/sim-9-7.md'
