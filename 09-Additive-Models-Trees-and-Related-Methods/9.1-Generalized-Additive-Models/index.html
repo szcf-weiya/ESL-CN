@@ -3297,7 +3297,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-08-19 09:10:05</td>
+<td>2021-11-22</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3378,6 +3378,10 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\tag{9.6}
 <p>进一步，有一个简单的迭代过程来寻找解．令 $\hat\alpha=\mathrm {ave}(y_i)$，而且保持不变．我们对关于 $x_{ij}$ 函数的目标$\{y_i-\hat\alpha-\sum_{k\neq j}\hat f_k(x_{ik})\}_1^N$ 应用三次光滑样条 $\cal S_j$ 得到新估计 $\hat{f_j}$．对每个预测变量轮流这样处理，当计算 $y_i-\hat\alpha-\sum_{k\neq j}\hat f_k(x_{ik})$ 时使用其它函数的当前估计 $\hat f_k$．重复这个过程直到估计值 $\hat{f_j}$ 稳定．这个过程被称作 “backfitting”（算法 9.1 中给出了详细细节），而且最后的拟合与线性模型的多项式回归是相似的．</p>
 <p><img alt="" src="../../img/09/alg9.1.png" /></p>
 <p>原则上，算法 9.1 中第 2(2) 步不是必需的，因为光滑样条对 0 均值响应变量拟合均值为 0（<a href="https://github.com/szcf-weiya/ESL-CN/issues/167">练习 9.1</a>）．实际中，机器舍入误差会导致下降，所以建议进行调整．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 9.1</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/167">Ex. 9.1</a>.</p>
+</div>
 <p>当确定了合适的光滑算子 $\cal S_j$，同样的算法可以用完全相同的方式适应其他的拟合方法：</p>
 <ul>
 <li>其它的单变量回归光滑器，比如局部多项式回归和核方法；</li>
@@ -3386,6 +3390,10 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\tag{9.6}
 </ul>
 <p>如果我们仅仅在训练集点上考虑光滑器算子 $\cal S_j$，则可以用 $N\times N$ 的算子矩阵 $\mathbf S_j$ 来表示（见<a href="../../05-Basis-Expansions-and-Regularization/5.4-Smoothing-Splines/index.html"> 5.4.1 节</a>）．则第 $j$ 项的自由度（近似）是 $\mathrm {df}_j=\mathrm{trace}[\mathbf S_j]-1$，这与第 5 和第 6 章中讨论的光滑器的自由度是类似的．</p>
 <p>对于一个大类别的线性光滑器 $\mathbf S_j$，backfitting 等价于求解确定线性系统的 Gauss-Seidel 算法．细节在<a href="https://github.com/szcf-weiya/ESL-CN/issues/68">练习 9.2</a>中给出．</p>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：Ex. 9.2</p>
+<p>已解决，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/68">Ex. 9.2</a>.</p>
+</div>
 <p>对于逻辑斯蒂回归和其他广义加性模型，合适的准则是带惩罚的对数似然．为了最大化它，backfitting 过程与概率最大化一起作用．在广义线性模型中最大化对数似然的 Newton-Raphson 方法可以重新改造成一个 IRLS（迭代重加权最小二乘）算法．这涉及在协变量上对工作中的响应变量重复进行加权线性回归；每个回归得到一个新的参数估计，反过来又给了新的工作相应变量和系数，而且这一过程迭代进行（见 <a href="../../04-Linear-Methods-for-Classification/4.4-Logistic-Regression/index.html">4.4.1 节</a>）．在广义加性模型中，加权线性回归可以简单地用加权 backfitting 算法来替换．我们将在下面讨论逻辑斯蒂回归时该算法的细节，更一般的讨论可以在 Hastie and Tibshirani(1990)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>的第 6 章中找到．</p>
 <h2 id="_2">例子：可加逻辑斯蒂回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在医学研究中应用最广的模型或许是对二值数据的逻辑斯蒂回归模型．在这个模型中，输出 $Y$ 可以编码成 0 或 1，其中 1 代表事件发生（比如死亡，疾病复发），0 代表没有事件发生．我们希望建立 $\Pr(Y=1\mid X)$ 的模型，其中 $\Pr(Y=1\mid X)$ 是给定预测因子 $X^T=(X_1,\ldots,X_p)$ 后事件发生的概率．目标通常是确定预测因子的作用，而不是对新个体进行分类．逻辑斯蒂回归也应用到当对估计类别比例感兴趣的情况下，比如 risk screening．除了医学上的应用，信用风险 screening 也是一个受欢迎的应用方面．</p>
@@ -3543,7 +3551,7 @@ Y=\alpha + \sum_{j=1}^pf_j(X_j)+\varepsilon\tag{9.6}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-11-21 16:46:19
+        Last Build Date UTC : 2021-11-23 00:51:39
       </div>
       
         
