@@ -60,8 +60,6 @@
     
     
       
-        <script src="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.js"></script>
-        <link rel="stylesheet" href="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.css">
       
     
     
@@ -3323,18 +3321,19 @@ f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
                   <h2 id="__comments">Comments</h2>
-                  <div id="comment"></div>
+                  <div id="disqus_thread"></div>
 <script>
-    var disq = new iDisqus('comment', {
-    forum: 'esl-hohoweiya-xyz',
-    api: 'https://api.hohoweiya.xyz/disqus-php-api/api/',
-    site: 'https://esl.hohoweiya.xyz',
-    mode: 1,
-    timeout: 3000,
-    init: true,
-    relatedType: "popular",
-    url: "/17-Undirected-Graphical-Models/17.2-Markov-Graphs-and-Their-Properties/index.html"
-});
+  var disqus_config = function () {
+    this.page.url = "https://esl.hohoweiya.xyz/17-Undirected-Graphical-Models/17.2-Markov-Graphs-and-Their-Properties/index.html";
+    this.page.identifier =
+      "/17-Undirected-Graphical-Models/17.2-Markov-Graphs-and-Their-Properties/index.html";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "//esl-hohoweiya-xyz.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 </script>
                 
               
@@ -3396,7 +3395,7 @@ f^{(3)}(x,y,z)&=\frac{1}{Z}\psi(x,y,z)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-11-23 00:51:42
+        Last Build Date UTC : 2021-12-21 16:23:13
       </div>
       
         

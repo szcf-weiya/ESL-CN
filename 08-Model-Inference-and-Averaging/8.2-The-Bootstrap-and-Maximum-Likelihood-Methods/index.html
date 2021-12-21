@@ -60,8 +60,6 @@
     
     
       
-        <script src="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.js"></script>
-        <link rel="stylesheet" href="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.css">
       
     
     
@@ -3513,18 +3511,19 @@ $\theta_j$ 的置信点可以通过 \eqref{8.17} 的任意一个近似得到．�
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
                   <h2 id="__comments">Comments</h2>
-                  <div id="comment"></div>
+                  <div id="disqus_thread"></div>
 <script>
-    var disq = new iDisqus('comment', {
-    forum: 'esl-hohoweiya-xyz',
-    api: 'https://api.hohoweiya.xyz/disqus-php-api/api/',
-    site: 'https://esl.hohoweiya.xyz',
-    mode: 1,
-    timeout: 3000,
-    init: true,
-    relatedType: "popular",
-    url: "/08-Model-Inference-and-Averaging/8.2-The-Bootstrap-and-Maximum-Likelihood-Methods/index.html"
-});
+  var disqus_config = function () {
+    this.page.url = "https://esl.hohoweiya.xyz/08-Model-Inference-and-Averaging/8.2-The-Bootstrap-and-Maximum-Likelihood-Methods/index.html";
+    this.page.identifier =
+      "/08-Model-Inference-and-Averaging/8.2-The-Bootstrap-and-Maximum-Likelihood-Methods/index.html";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "//esl-hohoweiya-xyz.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 </script>
                 
               
@@ -3586,7 +3585,7 @@ $\theta_j$ 的置信点可以通过 \eqref{8.17} 的任意一个近似得到．�
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-11-23 00:51:38
+        Last Build Date UTC : 2021-12-21 16:23:09
       </div>
       
         

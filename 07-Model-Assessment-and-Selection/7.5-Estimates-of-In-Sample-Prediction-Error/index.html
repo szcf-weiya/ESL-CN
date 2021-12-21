@@ -60,8 +60,6 @@
     
     
       
-        <script src="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.js"></script>
-        <link rel="stylesheet" href="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.css">
       
     
     
@@ -3280,18 +3278,19 @@ C_p=\overline{\err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon\tag{7.26}
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
                   <h2 id="__comments">Comments</h2>
-                  <div id="comment"></div>
+                  <div id="disqus_thread"></div>
 <script>
-    var disq = new iDisqus('comment', {
-    forum: 'esl-hohoweiya-xyz',
-    api: 'https://api.hohoweiya.xyz/disqus-php-api/api/',
-    site: 'https://esl.hohoweiya.xyz',
-    mode: 1,
-    timeout: 3000,
-    init: true,
-    relatedType: "popular",
-    url: "/07-Model-Assessment-and-Selection/7.5-Estimates-of-In-Sample-Prediction-Error/index.html"
-});
+  var disqus_config = function () {
+    this.page.url = "https://esl.hohoweiya.xyz/07-Model-Assessment-and-Selection/7.5-Estimates-of-In-Sample-Prediction-Error/index.html";
+    this.page.identifier =
+      "/07-Model-Assessment-and-Selection/7.5-Estimates-of-In-Sample-Prediction-Error/index.html";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "//esl-hohoweiya-xyz.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 </script>
                 
               
@@ -3353,7 +3352,7 @@ C_p=\overline{\err}+2\cdot\frac{d}{N}\hat \sigma^2_\varepsilon\tag{7.26}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-11-23 00:51:38
+        Last Build Date UTC : 2021-12-21 16:23:09
       </div>
       
         
