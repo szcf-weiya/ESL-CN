@@ -69,8 +69,6 @@
     {% endblock %}
     {% block disqus_js %}
       {% if config.extra.disqus and not page.is_homepage %}
-        <script src="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.js"></script>
-        <link rel="stylesheet" href="//api.hohoweiya.xyz/disqus-php-api/dist/iDisqus.min.css">
       {% endif %}
     {% endblock %}
     {% block fonts %}
@@ -206,7 +204,7 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
                   <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
-                  {% include "partials/integrations/disqus_free.html" %}
+                  {% include "partials/integrations/disqus.html" %}
                 {% endif %}
               {% endblock %}
             </article>
