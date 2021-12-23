@@ -3328,7 +3328,7 @@
 </li>
 </ul>
 <h2 id="_3">生成数据<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># generate dataset</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># generate dataset</span>
 <span class="n">genX</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">80</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">20</span><span class="p">){</span>
   <span class="n">X</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
   <span class="nf">return</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -3354,9 +3354,8 @@
 <span class="n">X.test</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">ntest</span><span class="p">)</span>
 <span class="n">Y.test</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X.test</span><span class="p">)</span>
 </code></pre></div>
-
 <h2 id="aicbicknn">AIC/BIC情形下的kNN分类和回归<a class="headerlink" href="#aicbicknn" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
+<p><div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
 <span class="c1"># for regression</span>
 <span class="n">err.aic</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 <span class="n">err.bic</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
@@ -3399,9 +3398,8 @@
   <span class="n">err.cl.bic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">epe.cl</span><span class="p">[</span><span class="nf">which.min</span><span class="p">(</span><span class="n">bic.cl</span><span class="p">)]</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">)</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">))</span>
 <span class="p">}</span>
 </code></pre></div>
-
-<p>作图</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## AIC plot</span>
+作图
+<div class="highlight"><pre><span></span><code><span class="c1">## AIC plot</span>
 <span class="c1">#png(&quot;boxplot-AIC-kNN.png&quot;)</span>
 <span class="n">df.aic</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">val</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">err.aic</span><span class="p">,</span> <span class="n">err.cl.aic</span><span class="p">),</span>
                     <span class="n">case</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;reg/kNN&quot;</span><span class="p">,</span> <span class="n">B</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;class/kNN&quot;</span><span class="p">,</span> <span class="n">B</span><span class="p">)),</span>
@@ -3417,8 +3415,7 @@
                                   <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;reg/kNN&quot;</span><span class="p">,</span> <span class="s">&quot;class/kNN&quot;</span><span class="p">))</span> <span class="p">)</span>
 <span class="nf">boxplot</span><span class="p">(</span><span class="n">val</span> <span class="o">~</span> <span class="n">case</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df.bic</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span>
 <span class="c1">#dev.off()</span>
-</code></pre></div>
-
+</code></pre></div></p>
 <p><img alt="" src="../boxplot-AIC-kNN.png" /></p>
 <p><img alt="" src="../boxplot-BIC-kNN.png" /></p>
 <h2 id="_4">其它情形<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -3514,7 +3511,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-12-23 15:28:54
+        Last Build Date UTC : 2021-12-23 16:37:06
       </div>
       
         

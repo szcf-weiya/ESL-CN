@@ -3335,9 +3335,8 @@ B_{i,m}(x)= \frac{x-\tau_i}{\tau_{i+m-1}-\tau_i}B_{i,m-1}(x)+\frac{\tau_{i+m}-x}
     \end{align*}
     $$
     for $i=0,\ldots,n-1$，在这种定义下，order 为 $k$ 的 $B$ 样条基函数个数为 $n = nbreak-k$，其中 $nbreak$ 是内结点个数，而 $nbreak=n+2$ 为所有结点个数，则样条基函数个数也可以表示为 $nbreak+k-2$，这也是 `gsl` 中
-    ```c
-    gsl_bspline_workspace* gsl_bspline_alloc (const size_t k , const size_t nbreak )
-    ```
+    <div class="highlight"><pre><span></span><code><span class="n">gsl_bspline_workspace</span><span class="o">*</span><span class="w"> </span><span class="n">gsl_bspline_alloc</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nbreak</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
     函数中参数的形式。 -->
 
 <p>这个递归可以继续，并且将会产生任意 order 样条的 $B$ 样条基．</p>
@@ -3515,7 +3514,7 @@ a_{i,j}=0\;if\;j < i-k_1\; or\; j > i + k_2;\; k_1,k_2\ge 0
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-12-23 15:28:48
+        Last Build Date UTC : 2021-12-23 16:36:59
       </div>
       
         

@@ -3282,7 +3282,7 @@
 <p>参数为$\theta = (\pi, \mu_1,\mu_2,\sigma_1,\sigma_2)$。至今，我了解到有三种方式来估计这五个参数。这三种方式分别为梯度下降法、EM算法和Gibbs采样，而且这三种算法并非毫不相关。EM算法其实是简化梯度下降法中对于对数似然的计算，而Gibbs采样跟EM算法区别在于前者采样后者求最大值。</p>
 <h2 id="_2">梯度下降法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>思想其实很简单，就是极大似然法，但是解析形式不好确定，好在我们可以通过梯度下降来实现，而且现在有很方便的深度学习框架（如tensorflow）可以实现梯度下降，从而估计参数。下面用一个实际的例子（取自<a href="https://cosx.org/2017/08/tensorflow-for-statisticians/">为什么统计学家也应该学学 TensorFlow</a>）来展示梯度下降这一过程</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
@@ -3348,12 +3348,11 @@
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Estimated values:&#39;</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">t_p1</span><span class="p">,</span> <span class="n">t_mu1</span><span class="p">,</span> <span class="n">t_mu2</span><span class="p">,</span> <span class="n">t_sigma1</span><span class="p">,</span> <span class="n">t_sigma2</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True values:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">])</span>
 </code></pre></div>
-
 <h2 id="em">EM算法<a class="headerlink" href="#em" title="Permanent link">&para;</a></h2>
 <p>这一部分在我的<a href="https://esl.hohoweiya.xyz/">ESL-CN翻译项目</a>的<a href="https://esl.hohoweiya.xyz/08%20Model%20Inference%20and%20Averaging/8.5%20The%20EM%20Algorithm/index.html">8.5 EM算法</a>一节中有详细介绍。具体算法如下：</p>
 <p><img alt="" src="http://images2017.cnblogs.com/blog/953584/201712/953584-20171227194006363-115445559.png" /></p>
 <p>R语言代码如下（也可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">ESL-CN项目</a>中找到）：</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## EM Algorithm for Two-component Gaussian Mixture</span>
+<div class="highlight"><pre><span></span><code><span class="c1">## EM Algorithm for Two-component Gaussian Mixture</span>
 <span class="c1">##</span>
 <span class="c1">## author: weiya</span>
 <span class="c1">## date: 2017-07-19</span>
@@ -3422,12 +3421,11 @@
 <span class="c1">## Figure 8.6</span>
 <span class="nf">plot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">ll</span><span class="p">),</span> <span class="n">ll</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#39;iterations&#39;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&#39;Log-likelihood&#39;</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">)</span>
 </code></pre></div>
-
 <h2 id="gibbs">Gibbs采样<a class="headerlink" href="#gibbs" title="Permanent link">&para;</a></h2>
 <p>这一部分在我的<a href="https://esl.hohoweiya.xyz/">ESL-CN翻译项目</a>的<a href="https://esl.hohoweiya.xyz/08%20Model%20Inference%20and%20Averaging/8.6%20MCMC%20for%20Sampling%20from%20the%20Posterior/index.html">8.6 MCMC向后采样</a>一节中有详细介绍。具体算法如下：</p>
 <p><img alt="" src="http://images2017.cnblogs.com/blog/953584/201712/953584-20171227194225300-1574126579.png" /></p>
 <p>R语言代码如下（也可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/Gibbs/gibbs.R">ESL-CN项目</a>中找到）：</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## Gibbs sampling for mixtures</span>
+<div class="highlight"><pre><span></span><code><span class="c1">## Gibbs sampling for mixtures</span>
 <span class="c1">## based on the algorithm 8.4 of ESL</span>
 <span class="c1">##</span>
 <span class="c1">## Author: weiya</span>
@@ -3573,7 +3571,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-12-23 15:28:55
+        Last Build Date UTC : 2021-12-23 16:37:06
       </div>
       
         

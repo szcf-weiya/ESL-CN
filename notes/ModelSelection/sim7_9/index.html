@@ -3286,7 +3286,7 @@
 <p>本笔记是 <a href="../../../07-Model-Assessment-and-Selection/7.10-Cross-Validation/index.html">ESL 7.10 交叉验证</a> 中图 7.9 的模拟，这也是 <a href="../sim7_3/index.html">模拟：Fig. 7.3</a> 的继续。</p>
 <h2 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>这部分代码与 <a href="../sim7_3/index.html">模拟：Fig. 7.3</a> 相同，但这里我们只考虑 case 2 的情形。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># generate dataset</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># generate dataset</span>
 <span class="n">genX</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">80</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">20</span><span class="p">){</span>
   <span class="n">X</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
   <span class="nf">return</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -3307,10 +3307,9 @@
 <span class="n">X</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">()</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
 </code></pre></div>
-
 <h2 id="_2">最优子集回归的预测<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>采用<code>leaps</code>包中的<code>regsubsets</code>函数进行最优子集回归，因为该类没有对应<code>predict</code>函数，于是编写自己的预测函数，这部分代码也与 <a href="../sim7_3/index.html">模拟：Fig. 7.3</a> 相同。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## use leaps package to do best subset selection</span>
+<div class="highlight"><pre><span></span><code><span class="c1">## use leaps package to do best subset selection</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">leaps</span><span class="p">)</span>
 <span class="c1">## predict test dataset by using the best subset model with size p</span>
 <span class="n">predict.regsub</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">X.test</span><span class="p">){</span>
@@ -3340,10 +3339,9 @@
   <span class="nf">return</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <h2 id="_3">交叉验证<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>根据单个训练集进行估计，</p>
-<div class="codehilite"><pre><span></span><code><span class="n">reg.pred</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X.test</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+<p>根据单个训练集进行估计，
+<div class="highlight"><pre><span></span><code><span class="n">reg.pred</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X.test</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
 <span class="c1"># divide into 10 fold randomly</span>
 <span class="n">parts</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">80</span><span class="p">,</span> <span class="m">80</span><span class="p">),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">8</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
 <span class="c1"># store prediction</span>
@@ -3370,11 +3368,10 @@
 <span class="n">cverr</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">cv.err</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
 <span class="n">sd2.err</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">cv.err</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
 <span class="n">se.err</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span> <span class="n">sd2.err</span> <span class="o">/</span> <span class="m">10</span> <span class="p">)</span>
-</code></pre></div>
-
+</code></pre></div></p>
 <h2 id="_4">画图<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>采用下面代码绘制不同 subset size 情形下交叉验证误差以及一个标准误差的变化范围，</p>
-<div class="codehilite"><pre><span></span><code><span class="nf">plot</span><span class="p">(</span><span class="n">cverr</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.6</span><span class="p">),</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Misclassification Error&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Subset Size p&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nf">plot</span><span class="p">(</span><span class="n">cverr</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.6</span><span class="p">),</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Misclassification Error&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Subset Size p&quot;</span><span class="p">)</span>
 <span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="n">cverr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">se.err</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cverr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">se.err</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
@@ -3382,7 +3379,6 @@
     <span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">i</span><span class="m">-0.2</span><span class="p">,</span> <span class="n">i</span><span class="m">+0.2</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="n">cverr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">se.err</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cverr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">se.err</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>另外加上 <a href="../sim7_3/index.html">模拟：Fig. 7.3</a> 中图四的预测误差的变化曲线（橙黄色），得到下面的图像，</p>
 <p><img alt="" src="../res7-9.png" /></p>
 <p>可以看出，此次模拟很好地重现了原书 Fig. 7.9 曲线的变化趋势。</p>
@@ -3477,7 +3473,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-12-23 15:28:55
+        Last Build Date UTC : 2021-12-23 16:37:06
       </div>
       
         

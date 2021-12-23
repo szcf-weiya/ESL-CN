@@ -3289,7 +3289,7 @@
 </table>
 <p>本笔记是<a href="https://esl.hohoweiya.xyz/07%20Model%20Assessment%20and%20Selection/7.3%20The%20Bias-Variance%20Decomposition/index.html">ESL7.3节</a>图7.3的模拟。</p>
 <h2 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># generate dataset</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># generate dataset</span>
 <span class="n">genX</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">80</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">20</span><span class="p">){</span>
   <span class="n">X</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
   <span class="nf">return</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -3311,11 +3311,10 @@
 <span class="n">percent</span> <span class="o">=</span> <span class="m">0.75</span>
 <span class="n">B</span> <span class="o">=</span> <span class="m">100</span> <span class="c1"># the number of repetition</span>
 </code></pre></div>
-
 <h2 id="knn">左图情形： kNN回归和分类<a class="headerlink" href="#knn" title="Permanent link">&para;</a></h2>
 <p>首先考虑左图的情形: 若$X_1\le 1/2$，$Y=0$，且若$X_1&gt;1/2$，$Y=1$，而且应用$k$-最近邻模型。</p>
 <p>设置随机种子，方便后面进行随机化。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># case 1</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># case 1</span>
 <span class="n">seed</span> <span class="o">=</span> <span class="m">123</span>
 <span class="nf">set.seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">()</span>
@@ -3323,9 +3322,8 @@
 <span class="n">X.test</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">1000</span><span class="p">)</span>
 <span class="n">Y.test</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X.test</span><span class="p">)</span>
 </code></pre></div>
-
 <p>下面编写主程序，变化$k$最近邻中的邻居数$k$，并重复建立$B$次模型用来估计测试集中的每个点，用来估计其偏差、方差及预测误差的期望。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## kNN</span>
+<div class="highlight"><pre><span></span><code><span class="c1">## kNN</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">class</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -3374,9 +3372,8 @@
   <span class="n">cl.epe.full</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">epe</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
-<p>下面类似书中的图7.3，作出如下图象</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## plot</span>
+<p>下面类似书中的图7.3，作出如下图象
+<div class="highlight"><pre><span></span><code><span class="c1">## plot</span>
 <span class="n">yrange</span> <span class="o">=</span> <span class="m">0.4</span>
 <span class="c1">## kNN regression</span>
 <span class="c1">#yrange = round(range(reg.epe.full)[2]+0.1, digits = 2)</span>
@@ -3401,13 +3398,12 @@
 <span class="nf">lines</span><span class="p">(</span><span class="m">50</span><span class="o">-</span><span class="n">kseq</span><span class="p">,</span> <span class="n">reg.variance.full</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">)</span>
 <span class="c1">#lines(50-kseq, cl.bias2.full, type = &quot;o&quot;, pch = 19, lwd = 2, col = &quot;green&quot;)</span>
 <span class="c1">#lines(50-kseq, cl.variance.full, type = &quot;o&quot;, lwd = 2, pch = 19, col = &quot;blue&quot;)</span>
-</code></pre></div>
-
+</code></pre></div></p>
 <p>对比原图，发现除了kNN分类的预测误差的估计随$k$的变化略有不同外（也仅仅在$k$比较大的情形），其余曲线都很好地重现了原图的特征。</p>
 <h2 id="_2">右图情形：最优子集回归<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>若$\sum_{j=1}^{10}X_j&gt;5$，$Y=1$，否则$Y=0$，且采用大小为$p$的最优子集回归。</p>
-<p>首先生成模拟数据</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## case 2</span>
+<p>首先生成模拟数据
+<div class="highlight"><pre><span></span><code><span class="c1">## case 2</span>
 <span class="n">seed</span> <span class="o">=</span> <span class="m">123</span>
 <span class="nf">set.seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">()</span>
@@ -3415,9 +3411,8 @@
 <span class="n">X.test</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">ntest</span><span class="p">)</span>
 <span class="n">Y.test</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X.test</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
 </code></pre></div>
-
-<p>采用<code>leaps</code>包中的<code>regsubsets</code>函数进行最优子集回归，因为该类没有对应<code>predict</code>函数，于是编写自己的预测函数。需要说明的是，下面程序前半段有考虑是否存在截距项，但后来发现其实截距项是默认存在的，所以后半段没有继续考虑，简化了程序。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## use leaps package to do best subset selection</span>
+采用<code>leaps</code>包中的<code>regsubsets</code>函数进行最优子集回归，因为该类没有对应<code>predict</code>函数，于是编写自己的预测函数。需要说明的是，下面程序前半段有考虑是否存在截距项，但后来发现其实截距项是默认存在的，所以后半段没有继续考虑，简化了程序。
+<div class="highlight"><pre><span></span><code><span class="c1">## use leaps package to do best subset selection</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">leaps</span><span class="p">)</span>
 <span class="c1">## predict test dataset by using the best subset model with size p</span>
 <span class="n">predict.regsub</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">X.test</span><span class="p">){</span>
@@ -3446,10 +3441,9 @@
   <span class="n">pred</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">X.test</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">coef.vec</span><span class="p">))</span>
   <span class="nf">return</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>接着在不同大小的子集模型下，重复建立模型对测试集进行预测，并存储预测值。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</code></pre></div></p>
+<p>接着在不同大小的子集模型下，重复建立模型对测试集进行预测，并存储预测值。
+<div class="highlight"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="c1">## store all prediction</span>
 <span class="n">reg.pred.full</span> <span class="o">=</span> <span class="nf">vector</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">,</span> <span class="m">20</span><span class="p">)</span>
 <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">){</span>
@@ -3465,10 +3459,9 @@
      <span class="n">reg.pred.full</span><span class="p">[[</span><span class="n">j</span><span class="p">]][,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">predict.regsub</span><span class="p">(</span><span class="n">reg.sub</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">X.test</span><span class="p">)</span>
    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>下面计算平方偏差、方差和预测误差，注意回归跟分类的差别仅在于预测误差。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## calculate bias2, variance, epe</span>
+</code></pre></div></p>
+<p>下面计算平方偏差、方差和预测误差，注意回归跟分类的差别仅在于预测误差。
+<div class="highlight"><pre><span></span><code><span class="c1">## calculate bias2, variance, epe</span>
 <span class="n">reg.bias2.full</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
 <span class="n">reg.variance.full</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
 <span class="n">reg.epe.full</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
@@ -3493,10 +3486,9 @@
   <span class="n">reg.epe.full</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">epe</span><span class="p">)</span>
   <span class="n">cl.epe.full</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>作出图象</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## plot</span>
+</code></pre></div></p>
+<p>作出图象
+<div class="highlight"><pre><span></span><code><span class="c1">## plot</span>
 <span class="n">yrange</span> <span class="o">=</span> <span class="m">0.4</span>
 <span class="c1">## best subset regression</span>
 <span class="c1">#png(paste0(&quot;sub-reg-&quot;, seed,&quot;.png&quot;))</span>
@@ -3524,8 +3516,7 @@
 <span class="nf">lines</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">,</span> <span class="n">reg.bias2.full</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">)</span>
 <span class="nf">lines</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">,</span> <span class="n">reg.variance.full</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">19</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">)</span>
 <span class="c1">#dev.off()</span>
-</code></pre></div>
-
+</code></pre></div></p>
 <h2 id="_3">总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>最后我们得到的图象如下图</p>
 <p><img alt="" src="../full-123.png" /></p>
@@ -3620,7 +3611,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-12-23 15:28:54
+        Last Build Date UTC : 2021-12-23 16:37:06
       </div>
       
         
