@@ -3255,7 +3255,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-09-09 22:07:46</td>
+<td>2021-12-23</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3410,7 +3410,7 @@ d_k(X)=\frac{(X-\xi_k)_+^3-(X-\xi_K)_+^3}{\xi_K-\xi_k}\tag{5.5}
 <p>只不过现在 $N\times N$ 的矩阵 $\N$ 用 $N\times(N+4)$ 的矩阵 $\B$ 来替换，类似地，$(N+4)\times (N+4)$ 的惩罚矩阵 $\oomega_B$ 替换 $N\times N$ 的矩阵 $\oomega_N$．看上去似乎没有边界微分的约束，事实上惩罚项通过对边界外的点的任意非零微分加上了充分大的权重自动加上了这些约束．实际中，$\hat\gamma$ 限制在惩罚总是有限的线性子空间中．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>实际中，自然样条基函数矩阵 $\N$ 可以由 $B$ 样条基函数矩阵 $\B$ 导出，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/235">Issue 235</a></p>
+<p>此处 $N+4$ 应当为 $N+2$，因为内结点个数应为 $N-2$，则基函数个数为 $N-2 + 4 = N+2$，另见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/235">Issue 235</a>（含模拟例子），其中也证明了自然样条基函数矩阵 $\N$ 可以由 $B$ 样条基函数矩阵 $\B$ 导出。</p>
 </div>
 <p>因为 $\B$ 的列是从左到右在已经排序的 $X$ 的值上进行赋值的 $B$ 样条，并且三次 $B$ 样条有局部支撑，$\B$ 是 lower 4-banded．</p>
 <div class="admonition note">
@@ -3505,7 +3505,7 @@ a_{i,j}=0\;if\;j < i-k_1\; or\; j > i + k_2;\; k_1,k_2\ge 0
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2016-2021 weiya <a href="//beian.miit.gov.cn/">浙ICP备17016863号</a>
+            Copyright &copy; 2016-2021 weiya
           </div>
         
         <!--
@@ -3515,7 +3515,7 @@ a_{i,j}=0\;if\;j < i-k_1\; or\; j > i + k_2;\; k_1,k_2\ge 0
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2021-12-21 16:23:08
+        Last Build Date UTC : 2021-12-23 15:28:48
       </div>
       
         
