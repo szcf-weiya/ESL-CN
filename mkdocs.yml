@@ -254,6 +254,7 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.emoji:
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.superfences
   - toc:
       permalink: true
 
