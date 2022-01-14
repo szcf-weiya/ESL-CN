@@ -17,7 +17,7 @@ rug(y)
 
 fnorm <- function(x, mu, sigma)
 {
-  return(1/(sqrt(2*pi)*sigma)*exp(-0.5*(x-mu)^2/sigma))
+  return(1 / (sqrt(2*pi)*sigma) * exp(-0.5 * (x-mu)^2/sigma^2))
 }
 
 IterEM <- function(mu1, mu2, sigma1, sigma2, pi0, eps)
@@ -31,10 +31,14 @@ IterEM <- function(mu1, mu2, sigma1, sigma2, pi0, eps)
     ## Expectation step: compute the responsibilities
     ## calculate the delta's expectation
     gamma = sapply(y, function(x) pi0*fnorm(x, mu2, sigma2)/((1-pi0)*fnorm(x, mu1, sigma1) + pi0*fnorm(x, mu2, sigma2)))
-    ll = c(ll, sum((1-gamma)*log(fnorm(y,mu1,sigma1))+gamma*log(fnorm(y, mu2, sigma2))+(1-gamma)*log(1-pi0)+gamma*log(pi0)))
+    ll = c(ll, sum(log((1 - pi0) * fnorm(y, mu1, sigma1) +
+                         pi0 * fnorm(y, mu2, sigma2)
+                       )
+                   )
+           )
     ## Maximization Step: compute the weighted means and variances
-    mu1.new = sum((1-gamma)*y)/sum(1-gamma)
-    mu2.new = sum(gamma*y)/sum(gamma)
+    mu1.new = sum((1-gamma)*y) / sum(1-gamma)
+    mu2.new = sum(gamma*y) / sum(gamma)
     sigma1.new = sqrt(sum((1-gamma)*(y-mu1.new)^2)/sum(1-gamma))
     sigma2.new = sqrt(sum((gamma)*(y-mu2.new)^2)/sum(gamma))
     pi0.new = sum(gamma)/length(y)
