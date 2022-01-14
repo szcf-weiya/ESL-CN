@@ -3269,7 +3269,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2022-01-08</td>
+<td>2022-01-14</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3376,8 +3376,8 @@ L(\theta,\mathbf{Z,\Delta}) = \prod\limits_{i\in \cal I} (1-\Delta_i)(1-\pi)\phi
 </script>
 图 8.5 的右图显示了从这个过程估计的混合高斯分布的密度（实心红色曲线），以及 responsibilities（绿色点曲线）．注意到混合在监督学习中也很有用；在 <a href="../../06-Kernel-Smoothing-Methods/6.8-Mixture-Models-for-Density-Estimation-and-Classification/index.html">6.7 节</a>我们显示了高斯混合模型怎样导出 radial 基函数的版本．</p>
 <div class="admonition note">
-<p class="admonition-title">weiya注<p>自己实现了上述的模拟过程，具体 R 代码在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">这里</a></p>
-</p>
+<p class="admonition-title">weiya 注: Fig. 8.6 + Tab. 8.2</p>
+<p>已重现，详见 <a href="https://github.com/szcf-weiya/ESL-CN/issues/249">Issue 249</a></p>
 </div>
 <h2 id="em">广义 EM 算法<a class="headerlink" href="#em" title="Permanent link">&para;</a></h2>
 <p>上面的过程是对于特定问题的类别下最大化概率的 EM（或者 Baum-Welch）算法．这些问题的概率最大化是困难的，但是通过运用潜在数据（未观测）增大样本会变得简单．这也称作数据增广．这里潜在数据是模型成员 $\Delta_i$．在其它问题中，潜在数据是理应被观测到的实际数据但是缺失了．</p>
@@ -3559,7 +3559,7 @@ F(\theta',\tilde P) = \E_{\tilde P}[\ell_0(\theta';\mathbf T)] - \E_{\tilde P}[\
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-01-08 15:54:38
+        Last Build Date UTC : 2022-01-14 14:06:07
       </div>
       
         
