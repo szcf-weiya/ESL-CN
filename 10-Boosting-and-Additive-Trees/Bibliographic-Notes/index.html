@@ -3188,7 +3188,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2022-01-14</td>
+<td>2022-06-28</td>
 </tr>
 </tbody>
 </table>
@@ -3199,9 +3199,9 @@
 <li>boosted 分类器则为 $G_B=majority\; vote(G_1,G_2,G_3)$.</li>
 </ul>
 <p>Schapire 的“Strength of Weak Learnability”定理证明了 $G_B$ 提高了 $G_1$ 的效果．</p>
-<p>Freund (1995)[^4 ]提出了“boost by majority”的变体，它同时结合了许多弱分类器并且提高了 Schapire 简单的 boosting 算法的效果．支持这些算法的理论要求弱分类器以固定误差率产生分类器．这导出了更自适应且更实际的 AdaBoost (Freund and Schapire, 1996a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>) 以及其衍生算法，在 AdaBoost 及其衍生算法中去掉了那条假设．</p>
+<p>Freund (1995)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>提出了“boost by majority”的变体，它同时结合了许多弱分类器并且提高了 Schapire 简单的 boosting 算法的效果．支持这些算法的理论要求弱分类器以固定误差率产生分类器．这导出了更自适应且更实际的 AdaBoost (Freund and Schapire, 1996a<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>) 以及其衍生算法，在 AdaBoost 及其衍生算法中去掉了那条假设．</p>
 <p>Freund and Schapire (1996a)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> 和 Schapire and Singer (1999)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> 提供了一些以泛化误差上界的形式的理论来支持他们的算法．这个理论已经在计算机学习领域中发展，起初基于 PAC 学习的概念．其它一些理论试图从博弈论解释 boosting (Freund and Schapire, 1996b<sup id="fnref2:6"><a class="footnote-ref" href="#fn:6">6</a></sup>; Breiman, 1999<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">8</a></sup>; Breiman, 1998<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">9</a></sup>)，以及从 VC 理论来解释 (Schapire et al., 1998<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">10</a></sup>)．与 AdaBoost 算法有关的理论和界都很有趣，但是往往界太松了，实际的重要性不是很大．实际中，boosting 达到了比这些界更深刻的结果．Schapire (2002)<sup id="fnref:12"><a class="footnote-ref" href="#fn:12">11</a></sup> 和 Meir and Rätsch (2003)<sup id="fnref:13"><a class="footnote-ref" href="#fn:13">12</a></sup> 给出了比本书第一版更新的结果的概述．</p>
-<p>Friedman et al. (2000)<sup id="fnref:16"><a class="footnote-ref" href="#fn:16">14</a></sup> 和 Friedman (2001)<sup id="fnref:15"><a class="footnote-ref" href="#fn:15">13</a></sup> 是本章的基础．Friedman et al. (2000)<sup id="fnref2:16"><a class="footnote-ref" href="#fn:16">14</a></sup> 在统计上分析了AdaBoost，导出了指数准则，并且证明了它估计了类别概率的对数几率．他们提出了可加树模型，right-sized 树以及 <a href="../10.11-Right-Sized-Trees-for-Boosting.md">10.11 节</a>的 ANOVA 表示，以及多类别逻辑斯蒂形式．Friedman (2001)<sup id="fnref:17"><a class="footnote-ref" href="#fn:17">15</a></sup> 发展了梯度 boosting，以及分类和回归的收缩，而 Friedman (1999)<sup id="fnref:18"><a class="footnote-ref" href="#fn:18">16</a></sup> 探索了 boosting 的随机变体．Mason et al. (2000)<sup id="fnref:19"><a class="footnote-ref" href="#fn:19">17</a></sup> 也包括boosting 的梯度形式．正如 Friedman et al. (2000)<sup id="fnref:20"><a class="footnote-ref" href="#fn:20">18</a></sup> 中发表的讨论中显示，关于 boosting 怎样以及为什么起作用仍存在争议．</p>
+<p>Friedman et al. (2000)<sup id="fnref:16"><a class="footnote-ref" href="#fn:16">14</a></sup> 和 Friedman (2001)<sup id="fnref:15"><a class="footnote-ref" href="#fn:15">13</a></sup> 是本章的基础．Friedman et al. (2000)<sup id="fnref2:16"><a class="footnote-ref" href="#fn:16">14</a></sup> 在统计上分析了AdaBoost，导出了指数准则，并且证明了它估计了类别概率的对数几率．他们提出了可加树模型，right-sized 树以及 <a href="../10.11-Right-Sized-Trees-for-Boosting/index.html">10.11 节</a>的 ANOVA 表示，以及多类别逻辑斯蒂形式．Friedman (2001)<sup id="fnref:17"><a class="footnote-ref" href="#fn:17">15</a></sup> 发展了梯度 boosting，以及分类和回归的收缩，而 Friedman (1999)<sup id="fnref:18"><a class="footnote-ref" href="#fn:18">16</a></sup> 探索了 boosting 的随机变体．Mason et al. (2000)<sup id="fnref:19"><a class="footnote-ref" href="#fn:19">17</a></sup> 也包括boosting 的梯度形式．正如 Friedman et al. (2000)<sup id="fnref:20"><a class="footnote-ref" href="#fn:20">18</a></sup> 中发表的讨论中显示，关于 boosting 怎样以及为什么起作用仍存在争议．</p>
 <p>因为在本书的第一版发表时，辩论仍然在进行，并且扩散到了统计邻域，有一系列的论文讨论 boosting 的一致性 (Jiang, 2004<sup id="fnref:21"><a class="footnote-ref" href="#fn:21">19</a></sup>; Lugosi and Vayatis, 2004<sup id="fnref:22"><a class="footnote-ref" href="#fn:22">20</a></sup>; Zhang and Yu, 2005<sup id="fnref:23"><a class="footnote-ref" href="#fn:23">21</a></sup>; Bartlett and Traskin, 2007<sup id="fnref:24"><a class="footnote-ref" href="#fn:24">22</a></sup>)．Mease and Wyner (2008)<sup id="fnref:25"><a class="footnote-ref" href="#fn:25">23</a></sup> 通过一系列的仿真例子来质疑我们关于 boosting 的解释；我们的回应 (Friedman et al., 2008a<sup id="fnref:26"><a class="footnote-ref" href="#fn:26">24</a></sup>) 解决了大部分的反对意见．最近 Bühlmann and Hothorn (2007)<sup id="fnref:27"><a class="footnote-ref" href="#fn:27">25</a></sup> 的概述支持我们 boosting 的方法．</p>
 <div class="footnote">
 <hr />
@@ -3377,7 +3377,7 @@ mation Processing Systems 19, MIT Press, Cambridge, MA, pp. 105–
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-01-14 14:06:09
+        Last Build Date UTC : 2022-06-28 14:15:45
       </div>
       
         

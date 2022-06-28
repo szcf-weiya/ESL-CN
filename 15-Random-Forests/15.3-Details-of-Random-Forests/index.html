@@ -3371,9 +3371,9 @@
 </script>
 可以用下面的 Julia 代码计算</p>
 </div>
-<div class="highlight"><pre><span></span><code><span class="n">f</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">round</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span><span class="p">)))</span> <span class="o">=</span> <span class="n">sum</span><span class="p">([</span><span class="n">binomial</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">binomial</span><span class="p">(</span><span class="n">n2</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="n">i</span> <span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">min</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">m</span><span class="p">)])</span> <span class="o">/</span> <span class="n">binomial</span><span class="p">(</span><span class="n">n1</span><span class="o">+</span><span class="n">n2</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
-<span class="n">f</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c">#0.4565650244108061</span>
-</code></pre></div>
+<p><code>julia
+f(n1, n2; m = round(Int, sqrt(n1 + n2))) = sum([binomial(n1, i) * binomial(n2,m-i ) for i=1:min(n1, m)]) / binomial(n1+n2, m)
+f(6, 100) #0.4565650244108061</code></p>
 <p>根据图 15.7，与 boosting 相比，这不会损害随机森林的表现．这种鲁棒性大部分是因为误分类代价相对于每棵树中概率估计的偏差和方差的不敏感性．我们在下一节考虑用于回归的随机森林．</p>
 <p>另外一个断言是随机森林不会过拟合数据．这显然是正确的，因为增大 $B$ 不会使得随机森林序列过拟合；像 bagging 一样，随机森林估计式 \eqref{15.2} 在 $\Theta$ 的 $B$ 个实现中取平均，这是对下面期望的近似</p>
 <p>
@@ -3483,7 +3483,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-01-14 14:06:11
+        Last Build Date UTC : 2022-06-28 14:15:48
       </div>
       
         

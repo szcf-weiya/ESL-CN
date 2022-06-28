@@ -3016,6 +3016,41 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#w11star-s12star-based-on-the-known-graph-structure" title="W11.star, s12.star based on the known graph structure" class="md-nav__link">
+    W11.star, s12.star based on the known graph structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-adjacency-matrix" title="use adjacency matrix" class="md-nav__link">
+    use adjacency matrix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solve-reduced-system-of-equations" title="solve reduced system of equations" class="md-nav__link">
+    solve reduced system of equations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update" title="update" class="md-nav__link">
+    update
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-cycle" title="final cycle" class="md-nav__link">
+    final cycle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" title="结果" class="md-nav__link">
     结果
   </a>
@@ -3207,6 +3242,41 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#w11star-s12star-based-on-the-known-graph-structure" title="W11.star, s12.star based on the known graph structure" class="md-nav__link">
+    W11.star, s12.star based on the known graph structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-adjacency-matrix" title="use adjacency matrix" class="md-nav__link">
+    use adjacency matrix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solve-reduced-system-of-equations" title="solve reduced system of equations" class="md-nav__link">
+    solve reduced system of equations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update" title="update" class="md-nav__link">
+    update
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-cycle" title="final cycle" class="md-nav__link">
+    final cycle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" title="结果" class="md-nav__link">
     结果
   </a>
@@ -3272,75 +3342,79 @@
 <p>对于书中给出的例子</p>
 <p><img alt="" src="../../../img/17/fig17.4.png" /></p>
 <p>根据具体缺失边的情况，分别给出 $\mathbf W^*_{11}$ 和 $s_{12}^*$：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">## W11.star, s12.star based on the known graph structure</span>
-<span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">1</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">W.11.star</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span>
-    <span class="n">s.12.star</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span> <span class="c1"># edge 1-3</span>
-<span class="p">}</span>
-<span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">2</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">W.11.star</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">)]</span>
-    <span class="n">s.12.star</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">)]</span> <span class="c1"># edge 2-4</span>
-<span class="p">}</span>
-<span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">3</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">W.11.star</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)]</span>
-    <span class="n">s.12.star</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="m">3</span><span class="p">,</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span> <span class="c1"># edge 3-1</span>
-<span class="p">}</span>
-<span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">4</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">W.11.star</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">)]</span>
-    <span class="n">s.12.star</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="m">4</span><span class="p">,</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">)]</span> <span class="c1"># edge 2-4</span>
-<span class="p">}</span>
-</code></pre></div>
+<p>```r</p>
+<h2 id="w11star-s12star-based-on-the-known-graph-structure">W11.star, s12.star based on the known graph structure<a class="headerlink" href="#w11star-s12star-based-on-the-known-graph-structure" title="Permanent link">&para;</a></h2>
+<p>if (j == 1)
+{
+    W.11.star = W[-c(1,3), -c(1,3)]
+    s.12.star = S[1, -c(1,3)] # edge 1-3
+}
+else if (j == 2)
+{
+    W.11.star = W[-c(2,4), -c(2,4)]
+    s.12.star = S[2, -c(2,4)] # edge 2-4
+}
+else if (j == 3)
+{
+    W.11.star = W[-c(3,1), -c(3,1)]
+    s.12.star = S[3, -c(1,3)] # edge 3-1
+}
+else if (j == 4)
+{
+    W.11.star = W[-c(2,4), -c(2,4)]
+    s.12.star = S[4, -c(2,4)] # edge 2-4
+}
+```</p>
 <p>为了让程序更有适用性，我们采用邻接矩阵来表示边的缺失，则上面代码可以简化为</p>
-<div class="highlight"><pre><span></span><code><span class="n">adj</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
-               <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span>
-               <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>
-               <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
-<span class="c1">## use adjacency matrix</span>
-<span class="n">edge.idx</span> <span class="o">=</span> <span class="nf">which</span><span class="p">(</span><span class="n">adj</span><span class="p">[</span><span class="n">j</span><span class="p">,]</span> <span class="o">!=</span> <span class="m">0</span><span class="p">)</span>
-<span class="n">W.11.star</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="n">edge.idx</span><span class="p">,</span> <span class="n">edge.idx</span><span class="p">]</span>
-<span class="n">s.12.star</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">edge.idx</span><span class="p">]</span>
-</code></pre></div>
+<p>```r
+adj = matrix(c(0, 1, 0, 1,
+               1, 0, 1, 0,
+               0, 1, 0, 1,
+               1, 0, 1, 0), ncol = 4)</p>
+<h2 id="use-adjacency-matrix">use adjacency matrix<a class="headerlink" href="#use-adjacency-matrix" title="Permanent link">&para;</a></h2>
+<p>edge.idx = which(adj[j,] != 0)
+W.11.star = W[edge.idx, edge.idx]
+s.12.star = S[j, edge.idx]
+```</p>
 <p>更新 $w_{12}$，</p>
-<div class="highlight"><pre><span></span><code><span class="c1">## solve reduced system of equations</span>
-<span class="n">beta.star</span> <span class="o">=</span> <span class="nf">solve</span><span class="p">(</span><span class="n">W.11.star</span><span class="p">,</span> <span class="n">s.12.star</span><span class="p">)</span>
-<span class="c1">## update</span>
-<span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">1</span> <span class="o">||</span> <span class="n">j</span> <span class="o">==</span> <span class="m">4</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">beta.hat</span><span class="p">[</span><span class="m">-2</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta.star</span>
-<span class="p">}</span>
-<span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">2</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">beta.hat</span><span class="p">[</span><span class="m">-3</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta.star</span>
-<span class="p">}</span>
-<span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="m">3</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">beta.hat</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta.star</span>
-<span class="p">}</span>
-<span class="n">W.reorder</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="o">-</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">W.11</span> <span class="o">%*%</span> <span class="n">beta.hat</span>
-<span class="n">W.reorder</span><span class="p">[</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">W.11</span> <span class="o">%*%</span> <span class="n">beta.hat</span>
-<span class="n">W.backup</span> <span class="o">=</span> <span class="n">W</span>
-<span class="n">W</span> <span class="o">=</span> <span class="n">W.reorder</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span> <span class="nf">order</span><span class="p">(</span><span class="n">idx</span><span class="p">)]</span>
-</code></pre></div>
+<p>```r</p>
+<h2 id="solve-reduced-system-of-equations">solve reduced system of equations<a class="headerlink" href="#solve-reduced-system-of-equations" title="Permanent link">&para;</a></h2>
+<p>beta.star = solve(W.11.star, s.12.star)</p>
+<h2 id="update">update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
+<p>if (j == 1 || j == 4)
+{
+    beta.hat[-2] = beta.star
+}
+else if (j == 2)
+{
+    beta.hat[-3] = beta.star
+}
+else if (j == 3)
+{
+    beta.hat[-1] = beta.star
+}
+W.reorder[p, -p] = W.11 %<em>% beta.hat
+W.reorder[-p, p] = W.11 %</em>% beta.hat
+W.backup = W
+W = W.reorder[order(idx), order(idx)]
+```</p>
 <p>采用邻接矩阵，计算 <code>beta.hat</code> 的代码可以简化为</p>
-<div class="highlight"><pre><span></span><code><span class="n">beta.hat.add.j</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">p</span><span class="p">),</span><span class="n">ncol</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
-<span class="n">beta.hat.add.j</span><span class="p">[</span><span class="n">edge.idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta.star</span>
-<span class="n">beta.hat</span> <span class="o">=</span> <span class="n">beta.hat.add.j</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="p">]</span>
-</code></pre></div>
+<p><code>r
+beta.hat.add.j = matrix(rep(0,p),ncol=1)
+beta.hat.add.j[edge.idx] = beta.star
+beta.hat = beta.hat.add.j[-j]</code></p>
 <p>当 $\mathbf W$ 收敛后，计算 $\hat{\mathbf\Sigma} ^{-1}$：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">## final cycle</span>
-<span class="nf">if </span><span class="p">(</span><span class="n">finalcycle</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">theta22</span> <span class="o">=</span> <span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">W.reorder</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="o">-</span><span class="n">p</span><span class="p">]</span><span class="o">*</span><span class="n">beta.hat</span><span class="p">))</span>
-    <span class="n">theta12</span> <span class="o">=</span> <span class="m">-1.0</span> <span class="o">*</span> <span class="n">beta.hat</span> <span class="o">*</span> <span class="n">theta22</span>
-    <span class="n">Omega</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta22</span>
-    <span class="n">Omega</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta12</span>
-    <span class="n">Omega</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta12</span>
-<span class="p">}</span>
-</code></pre></div>
+<p>```r</p>
+<h2 id="final-cycle">final cycle<a class="headerlink" href="#final-cycle" title="Permanent link">&para;</a></h2>
+<p>if (finalcycle)
+{
+    theta22 = 1/(S[j, j] - sum(W.reorder[p,-p]*beta.hat))
+    theta12 = -1.0 * beta.hat * theta22
+    Omega[j, j] = theta22
+    Omega[j, -j] = theta12
+    Omega[-j, j] = theta12
+}
+```</p>
 <p>个人感觉整个实现过程需要特别注意算法中 ２(b) 步的 “reduced system of equations”，我们是要删去还有缺失边的信息，因为根据式 (17.12) 缺失边会有额外的拉格朗日常数惩罚</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3444,7 +3518,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-01-14 14:06:14
+        Last Build Date UTC : 2022-06-28 14:15:51
       </div>
       
         
