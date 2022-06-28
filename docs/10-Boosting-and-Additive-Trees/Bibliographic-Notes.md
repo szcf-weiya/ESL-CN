@@ -14,11 +14,11 @@ Schapire (1990)[^1] 在 PAC 学习框架中 (Valiant, 1984[^2]; Kearns and Vazir
 
 Schapire 的“Strength of Weak Learnability”定理证明了 $G_B$ 提高了 $G_1$ 的效果．
 
-Freund (1995)[^4 ]提出了“boost by majority”的变体，它同时结合了许多弱分类器并且提高了 Schapire 简单的 boosting 算法的效果．支持这些算法的理论要求弱分类器以固定误差率产生分类器．这导出了更自适应且更实际的 AdaBoost (Freund and Schapire, 1996a[^5]) 以及其衍生算法，在 AdaBoost 及其衍生算法中去掉了那条假设．
+Freund (1995)[^4]提出了“boost by majority”的变体，它同时结合了许多弱分类器并且提高了 Schapire 简单的 boosting 算法的效果．支持这些算法的理论要求弱分类器以固定误差率产生分类器．这导出了更自适应且更实际的 AdaBoost (Freund and Schapire, 1996a[^5]) 以及其衍生算法，在 AdaBoost 及其衍生算法中去掉了那条假设．
 
 Freund and Schapire (1996a)[^6] 和 Schapire and Singer (1999)[^7] 提供了一些以泛化误差上界的形式的理论来支持他们的算法．这个理论已经在计算机学习领域中发展，起初基于 PAC 学习的概念．其它一些理论试图从博弈论解释 boosting (Freund and Schapire, 1996b[^6]; Breiman, 1999[^9]; Breiman, 1998[^10])，以及从 VC 理论来解释 (Schapire et al., 1998[^11])．与 AdaBoost 算法有关的理论和界都很有趣，但是往往界太松了，实际的重要性不是很大．实际中，boosting 达到了比这些界更深刻的结果．Schapire (2002)[^12] 和 Meir and Rätsch (2003)[^13] 给出了比本书第一版更新的结果的概述．
 
-Friedman et al. (2000)[^16] 和 Friedman (2001)[^15] 是本章的基础．Friedman et al. (2000)[^16] 在统计上分析了AdaBoost，导出了指数准则，并且证明了它估计了类别概率的对数几率．他们提出了可加树模型，right-sized 树以及 [10.11 节](../10.11-Right-Sized-Trees-for-Boosting.md)的 ANOVA 表示，以及多类别逻辑斯蒂形式．Friedman (2001)[^17] 发展了梯度 boosting，以及分类和回归的收缩，而 Friedman (1999)[^18] 探索了 boosting 的随机变体．Mason et al. (2000)[^19] 也包括boosting 的梯度形式．正如 Friedman et al. (2000)[^20] 中发表的讨论中显示，关于 boosting 怎样以及为什么起作用仍存在争议．
+Friedman et al. (2000)[^16] 和 Friedman (2001)[^15] 是本章的基础．Friedman et al. (2000)[^16] 在统计上分析了AdaBoost，导出了指数准则，并且证明了它估计了类别概率的对数几率．他们提出了可加树模型，right-sized 树以及 [10.11 节](10.11-Right-Sized-Trees-for-Boosting.md)的 ANOVA 表示，以及多类别逻辑斯蒂形式．Friedman (2001)[^17] 发展了梯度 boosting，以及分类和回归的收缩，而 Friedman (1999)[^18] 探索了 boosting 的随机变体．Mason et al. (2000)[^19] 也包括boosting 的梯度形式．正如 Friedman et al. (2000)[^20] 中发表的讨论中显示，关于 boosting 怎样以及为什么起作用仍存在争议．
 
 因为在本书的第一版发表时，辩论仍然在进行，并且扩散到了统计邻域，有一系列的论文讨论 boosting 的一致性 (Jiang, 2004[^21]; Lugosi and Vayatis, 2004[^22]; Zhang and Yu, 2005[^23]; Bartlett and Traskin, 2007[^24])．Mease and Wyner (2008)[^25] 通过一系列的仿真例子来质疑我们关于 boosting 的解释；我们的回应 (Friedman et al., 2008a[^26]) 解决了大部分的反对意见．最近 Bühlmann and Hothorn (2007)[^27] 的概述支持我们 boosting 的方法．
 

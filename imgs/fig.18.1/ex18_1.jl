@@ -8,9 +8,9 @@ lmridge(X, Y, λ) = inv(X' * X + λ * 1.0I) * X' * Y
 function run(;p = 20, N = 100, nrep = 100, λs = [0.001, 100, 1000], snr = 2)
     rel_errs = zeros(nrep, 3)
     dfs = zeros(nrep, 3)
+    Σ = ones(p, p) * 0.2 + 0.8I
+    dist = MvNormal(Σ)
     for i = 1:nrep
-        Σ = ones(p, p) * 0.2 + 0.8I
-        dist = MvNormal(Σ)
         X = rand(dist, N)'
         β = randn(p)
 
