@@ -3188,7 +3188,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-02-16 16:13:40</td>
+<td>2022-08-08</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3202,7 +3202,7 @@
 \begin{align*}
 \{\alpha_{0m},\alpha_m;m=1,2,\ldots,M\}\;&M(p+1)\text{ 个权重}\\
 \{\beta_{0k},\beta_k;k=1,2,\ldots,K\}\;&K(M+1)\text{ 个权重}
-\end{align*}                                  
+\end{align*}
 \tag{11.8}
 </script>
 </p>
@@ -3280,7 +3280,7 @@ $\delta_{ki}$ 和 $s_{mi}$ 的值分别为当前模型在输出和隐藏层单�
 <script type="math/tex; mode=display">
 s_{mi}=\sigma'(\alpha_m^Tx_i)\sum\limits_{k=1}^K\beta_{km}\delta_{ki}\tag{11.15}\label{11.15}
 </script>
-上式称为 <strong>向后传播等式 (back-propagation equations)</strong>．用这个等式，$\eqref{11.13}$ 的更新可以通过 two-pass 算法来实现．在 forward pass，固定当前权重，预测值 $\hat f_k(x_i)$ 通过 (11.5) 式计算．在 backward pass，计算当前误差 $\delta_{ki}$，接着向后传播通过 $\eqref{11.15}$ 式给出误差 $s_{mi}$．则两个误差都用来计算 $\eqref{11.13}$、$\eqref{11.14}$ 中更新的梯度．</p>
+上式称为 <strong>向后传播等式 (back-propagation equations)</strong>．用这个等式，$\eqref{11.13}$ 的更新可以通过 two-pass 算法来实现．在 forward pass，固定当前权重，预测值 $\hat f_k(x_i)$ 通过 \eqref{11.5} 式计算．在 backward pass，计算当前误差 $\delta_{ki}$，接着向后传播通过 $\eqref{11.15}$ 式给出误差 $s_{mi}$．则两个误差都用来计算 $\eqref{11.13}$、$\eqref{11.14}$ 中更新的梯度．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：向后传播的算法形式</p>
 <p>记
@@ -3294,11 +3294,11 @@ a^{(k)} &= g^{(k)}(z^{(k)})\,,
 <p><img alt="" src="../assets/bp_alg.png" /></p>
 <p>注意图中的符号含义与 ESL 中稍有不同．</p>
 </div>
-<p>这个 two-pass 过程称作向后传播．也被称为 delta rule (Widrow and Hoff, 1960<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)．交叉熵计算的组分与平方误差函数和有同样的形式，并且在<a href="">练习 11.3</a> 中被导出来．</p>
+<p>这个 two-pass 过程称作向后传播．也被称为 delta rule (Widrow and Hoff, 1960<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>)．交叉熵计算的组分与平方误差函数和有同样的形式，并且在<a href="https://github.com/szcf-weiya/ESL-CN/issues/128">练习 11.3</a> 中被导出来．</p>
 <p>向后传播的优点在于简单，局部自然．在向后传播算法中，每个隐藏层单元仅仅向（从）有其联系的单元传递（接收）信息．因此可以在并行架构的计算机上高效地实现．</p>
-<p>$\eqref{11.13}$ 式的更新是一种 batch learning，参数更新为所有训练情形的和．学习也可以 online 地进行——每次处理一个观测，每个训练情形过后更新梯度，然后对训练情形重复多次．在这种情形下，$\eqref{11.13}$ 式的和可以替换成单个被加数．训练时期 (training epoch) 指的是一次扫描整个训练集．在线 (online) 训练允许网络处理非常大的训练集，而且当新观测加入时更新权重．</p>
-<p>batch learning 的学习速率 $\gamma_r$ 经常取为常数，而且可以通过在每次更新时运用线搜索最小化误差函数来优化．online 学习中，当 $r\rightarrow \infty$ 时 $\gamma_r$ 应当下降减为 0．这个学习是 <strong>随机近似 (stochastic approximation)</strong> 的形式 (Robbins and Munro, 1951<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)；如果 $\gamma_r\rightarrow \infty,\sum_r\gamma_r=\infty$，且 $\sum_r\gamma_r^2&lt;\infty$，（举个例子，$\gamma_r=1/r$ 便满足条件）则在这个领域内的结果保证收敛．</p>
-<p>向后传播可以非常慢，而且因为这个原因经常不选择这个方法．像牛顿法的二阶技巧在这里不是很好，因为 $R$ 的二阶微分矩阵（Hessian 阵）可以变得非常大．更好的拟合方式包括共轭梯度法以及变量度量方法．它们避免直接计算二阶微分矩阵但仍能提供很快的收敛性．</p>
+<p>$\eqref{11.13}$ 式的更新是一种<strong>批量学习 (batch learning)</strong>，参数更新为所有训练情形的和．学习也可以 online 地进行——每次处理一个观测，每个训练情形过后更新梯度，然后对训练情形重复多次．在这种情形下，$\eqref{11.13}$ 式的和可以替换成单个被加数．一个 <strong>训练时期 (training epoch)</strong> 指的是一次扫描整个训练集．<strong>在线训练 (online training)</strong> 允许网络处理非常大的训练集，而且当新观测加入时更新权重．</p>
+<p>批量学习的学习速率 $\gamma_r$ 经常取为常数，而且可以通过在每次更新时运用线搜索最小化误差函数来优化．<strong>在线学习 (online training)</strong> 中，当 $r\rightarrow \infty$ 时 $\gamma_r$ 应当下降减为 0．这个学习是 <strong>随机近似 (stochastic approximation)</strong> 的形式 (Robbins and Munro, 1951<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)；如果 $\gamma_r\rightarrow \infty,\sum_r\gamma_r=\infty$，且 $\sum_r\gamma_r^2&lt;\infty$，（举个例子，$\gamma_r=1/r$ 便满足条件）则在这个 <strong>领域 (field)</strong> 内的结果保证收敛．</p>
+<p>向后传播会非常慢，而且因为这个原因经常不选择这个方法．像牛顿法的二阶技巧在这里不是很好，因为 $R$ 的二阶微分矩阵（Hessian 阵）可以变得非常大．更好的拟合方式包括共轭梯度法以及变量度量方法．它们避免直接计算二阶微分矩阵但仍能提供很快的收敛性．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3401,7 +3401,7 @@ a^{(k)} &= g^{(k)}(z^{(k)})\,,
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-06-28 14:15:45
+        Last Build Date UTC : 2022-08-08 08:48:21
       </div>
       
         
