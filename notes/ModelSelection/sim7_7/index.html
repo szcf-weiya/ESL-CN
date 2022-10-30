@@ -2945,6 +2945,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aicbicknn" title="AIC/BIC情形下的kNN分类和回归" class="md-nav__link">
+    AIC/BIC情形下的kNN分类和回归
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="其它情形" class="md-nav__link">
+    其它情形
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3227,6 +3241,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aicbicknn" title="AIC/BIC情形下的kNN分类和回归" class="md-nav__link">
+    AIC/BIC情形下的kNN分类和回归
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="其它情形" class="md-nav__link">
+    其它情形
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3300,92 +3328,94 @@
 </li>
 </ul>
 <h2 id="_3">生成数据<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>```R</p>
-<h1 id="generate-dataset">generate dataset<a class="headerlink" href="#generate-dataset" title="Permanent link">&para;</a></h1>
-<p>genX &lt;- function(n = 80, p = 20){
-  X = matrix(runif(n*p, 0, 1), ncol = p, nrow = n)
-  return(X)
-}</p>
-<h1 id="generate-response">generate response<a class="headerlink" href="#generate-response" title="Permanent link">&para;</a></h1>
-<p>genY &lt;- function(X, case = 1){
-  n = nrow(X)
-  Y = numeric(n)
-  if (case == 1){ # for the left panel of fig. 7.3
-    Y = sapply(X[, 1], function(x) ifelse(x &lt;= 0.5, 0, 1))
-  }
-  else {
-    Y = apply(X[, 1:10], 1, function(x) ifelse(sum(x) &gt; 5, 1, 0))
-  }
-  return(Y)
-}</p>
-<h2 id="global-parameters-setting">global parameters setting<a class="headerlink" href="#global-parameters-setting" title="Permanent link">&para;</a></h2>
-<p>ntest = 10000
-B = 100 # the number of repetition</p>
-<h2 id="generate-test-data">generate test data<a class="headerlink" href="#generate-test-data" title="Permanent link">&para;</a></h2>
-<p>X.test = genX(n = ntest)
-Y.test = genY(X.test)
-```</p>
+<div class="highlight"><pre><span></span><span class="c1"># generate dataset</span>
+<span class="n">genX</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">80</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="m">20</span><span class="p">){</span>
+  <span class="n">X</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1"># generate response</span>
+<span class="n">genY</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">case</span> <span class="o">=</span> <span class="m">1</span><span class="p">){</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+  <span class="n">Y</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="nf">if </span><span class="p">(</span><span class="n">case</span> <span class="o">==</span> <span class="m">1</span><span class="p">){</span> <span class="c1"># for the left panel of fig. 7.3</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">X[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+  <span class="p">}</span>
+  <span class="n">else</span> <span class="p">{</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">X[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+  <span class="p">}</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">## global parameters setting</span>
+<span class="n">ntest</span> <span class="o">=</span> <span class="m">10000</span>
+<span class="n">B</span> <span class="o">=</span> <span class="m">100</span> <span class="c1"># the number of repetition</span>
+
+<span class="c1">## generate test data</span>
+<span class="n">X.test</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">ntest</span><span class="p">)</span>
+<span class="n">Y.test</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X.test</span><span class="p">)</span>
+</pre></div>
 <h2 id="aicbicknn">AIC/BIC情形下的kNN分类和回归<a class="headerlink" href="#aicbicknn" title="Permanent link">&para;</a></h2>
-<p>```R
-library(caret)</p>
-<h1 id="for-regression">for regression<a class="headerlink" href="#for-regression" title="Permanent link">&para;</a></h1>
-<p>err.aic = numeric(B)
-err.bic = numeric(B)</p>
-<h1 id="for-classification">for classification<a class="headerlink" href="#for-classification" title="Permanent link">&para;</a></h1>
-<p>err.cl.aic = numeric(B)
-err.cl.bic = numeric(B)
-N = 80
-for (i in 1:B)
-{
-  X = genX(n = N)
-  Y = genY(X)
-  # vary the number of neighbor
-  epe = numeric(46)
-  epe.cl = numeric(46)
-  aic = numeric(46) # pay attention!! the effective number is N/k
-  bic = numeric(46)
-  aic.cl = numeric(46)
-  bic.cl = numeric(46)
-  for (k in 5:50)
-  {
-    model = knnreg(X, Y, k = k)
-    pred = predict(model, X.test)
-    # for classification
-    pred.cl = sapply(pred, function(x) ifelse(x &gt; 0.5, 1, 0))
-    epe[k-4] = mean((pred - Y.test)^2)
-    epe.cl[k-4] = mean(pred.cl!=Y.test)
-    # the training error
-    yhat = predict(model, X)
-    yhat.cl = sapply(yhat, function(x) ifelse(x &gt; 0.5, 1, 0))
-    err = yhat - Y
-    err.cl = (yhat.cl != Y)
-    aic[k-4] = mean(err^2)<em>(1 + 2/k * (N/(N-N/k)) )
-    bic[k-4] = mean(err^2)</em>(1 + log(nrow(X))/k * (N/(N-N/k)) )
-    aic.cl[k-4] = mean(err.cl)<em>(1 + 2/k * (N/(N-N/k)) )
-    bic.cl[k-4] = mean(err.cl)</em>(1 + log(N)/k * (N/(N-N/k)) )
-  }
-  err.aic[i] = (epe[which.min(aic)] - min(epe)) / (max(epe) - min(epe))
-  err.bic[i] = (epe[which.min(bic)] - min(epe)) / (max(epe) - min(epe))
-  err.cl.aic[i] = (epe.cl[which.min(aic.cl)] - min(epe.cl)) / (max(epe.cl) - min(epe.cl))
-  err.cl.bic[i] = (epe.cl[which.min(bic.cl)] - min(epe.cl)) / (max(epe.cl) - min(epe.cl))
-}
-<code>作图</code>R</p>
-<h2 id="aic-plot">AIC plot<a class="headerlink" href="#aic-plot" title="Permanent link">&para;</a></h2>
-<h1 id="pngboxplot-aic-knnpng">png(&ldquo;boxplot-AIC-kNN.png&rdquo;)<a class="headerlink" href="#pngboxplot-aic-knnpng" title="Permanent link">&para;</a></h1>
-<p>df.aic = data.frame(val = c(err.aic, err.cl.aic),
-                    case = factor(c(rep(&ldquo;reg/kNN&rdquo;, B), rep(&ldquo;class/kNN&rdquo;, B)),
-                                  levels = c(&ldquo;reg/kNN&rdquo;, &ldquo;class/kNN&rdquo;)) )
-boxplot(val ~ case, data = df.aic, col = &ldquo;green&rdquo;,
-        main = &ldquo;AIC&rdquo;, ylab = &ldquo;Increase over best&rdquo;)</p>
-<h1 id="devoff">dev.off()<a class="headerlink" href="#devoff" title="Permanent link">&para;</a></h1>
-<h2 id="bic-plot">BIC plot<a class="headerlink" href="#bic-plot" title="Permanent link">&para;</a></h2>
-<h1 id="pngboxplot-bic-knnpng">png(&ldquo;boxplot-BIC-kNN.png&rdquo;)<a class="headerlink" href="#pngboxplot-bic-knnpng" title="Permanent link">&para;</a></h1>
-<p>df.bic = data.frame(val = c(err.bic, err.cl.bic),
-                    case = factor(c(rep(&ldquo;reg/kNN&rdquo;, B), rep(&ldquo;class/kNN&rdquo;, B)),
-                                  levels = c(&ldquo;reg/kNN&rdquo;, &ldquo;class/kNN&rdquo;)) )
-boxplot(val ~ case, data = df.bic, col = &ldquo;green&rdquo;,</p>
-<h1 id="devoff_1">dev.off()<a class="headerlink" href="#devoff_1" title="Permanent link">&para;</a></h1>
-<p>```</p>
+<p><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
+<span class="c1"># for regression</span>
+<span class="n">err.aic</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">err.bic</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="c1"># for classification</span>
+<span class="n">err.cl.aic</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">err.cl.bic</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="m">80</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">B</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">X</span> <span class="o">=</span> <span class="nf">genX</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">N</span><span class="p">)</span>
+  <span class="n">Y</span> <span class="o">=</span> <span class="nf">genY</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+  <span class="c1"># vary the number of neighbor</span>
+  <span class="n">epe</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">46</span><span class="p">)</span>
+  <span class="n">epe.cl</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">46</span><span class="p">)</span>
+  <span class="n">aic</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">46</span><span class="p">)</span> <span class="c1"># pay attention!! the effective number is N/k</span>
+  <span class="n">bic</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">46</span><span class="p">)</span>
+  <span class="n">aic.cl</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">46</span><span class="p">)</span>
+  <span class="n">bic.cl</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="m">46</span><span class="p">)</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="m">5</span><span class="o">:</span><span class="m">50</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="nf">knnreg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X.test</span><span class="p">)</span>
+    <span class="c1"># for classification</span>
+    <span class="n">pred.cl</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+    <span class="n">epe[k</span><span class="m">-4</span><span class="n">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">((</span><span class="n">pred</span> <span class="o">-</span> <span class="n">Y.test</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span>
+    <span class="n">epe.cl[k</span><span class="m">-4</span><span class="n">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">pred.cl</span><span class="o">!=</span><span class="n">Y.test</span><span class="p">)</span>
+    <span class="c1"># the training error</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+    <span class="n">yhat.cl</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">yhat</span> <span class="o">-</span> <span class="n">Y</span>
+    <span class="n">err.cl</span> <span class="o">=</span> <span class="p">(</span><span class="n">yhat.cl</span> <span class="o">!=</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="n">aic[k</span><span class="m">-4</span><span class="n">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">err^2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="m">1</span> <span class="o">+</span> <span class="m">2</span><span class="o">/</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="n">k</span><span class="p">))</span> <span class="p">)</span>
+    <span class="n">bic[k</span><span class="m">-4</span><span class="n">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">err^2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="m">1</span> <span class="o">+</span> <span class="nf">log</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">/</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="n">k</span><span class="p">))</span> <span class="p">)</span>
+    <span class="n">aic.cl[k</span><span class="m">-4</span><span class="n">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">err.cl</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="m">1</span> <span class="o">+</span> <span class="m">2</span><span class="o">/</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="n">k</span><span class="p">))</span> <span class="p">)</span>
+    <span class="n">bic.cl[k</span><span class="m">-4</span><span class="n">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">err.cl</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="m">1</span> <span class="o">+</span> <span class="nf">log</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">/</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="n">k</span><span class="p">))</span> <span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">err.aic[i]</span> <span class="o">=</span> <span class="p">(</span><span class="n">epe</span><span class="nf">[which.min</span><span class="p">(</span><span class="n">aic</span><span class="p">)</span><span class="n">]</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">epe</span><span class="p">)</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe</span><span class="p">))</span>
+  <span class="n">err.bic[i]</span> <span class="o">=</span> <span class="p">(</span><span class="n">epe</span><span class="nf">[which.min</span><span class="p">(</span><span class="n">bic</span><span class="p">)</span><span class="n">]</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">epe</span><span class="p">)</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe</span><span class="p">))</span>
+  <span class="n">err.cl.aic[i]</span> <span class="o">=</span> <span class="p">(</span><span class="n">epe.cl</span><span class="nf">[which.min</span><span class="p">(</span><span class="n">aic.cl</span><span class="p">)</span><span class="n">]</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">)</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">))</span>
+  <span class="n">err.cl.bic[i]</span> <span class="o">=</span> <span class="p">(</span><span class="n">epe.cl</span><span class="nf">[which.min</span><span class="p">(</span><span class="n">bic.cl</span><span class="p">)</span><span class="n">]</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">)</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">epe.cl</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+作图
+<div class="highlight"><pre><span></span><span class="c1">## AIC plot</span>
+<span class="c1">#png(&quot;boxplot-AIC-kNN.png&quot;)</span>
+<span class="n">df.aic</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">val</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">err.aic</span><span class="p">,</span> <span class="n">err.cl.aic</span><span class="p">),</span>
+                    <span class="n">case</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;reg/kNN&quot;</span><span class="p">,</span> <span class="n">B</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;class/kNN&quot;</span><span class="p">,</span> <span class="n">B</span><span class="p">)),</span>
+                                  <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;reg/kNN&quot;</span><span class="p">,</span> <span class="s">&quot;class/kNN&quot;</span><span class="p">))</span> <span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">val</span> <span class="o">~</span> <span class="n">case</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df.aic</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;AIC&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Increase over best&quot;</span><span class="p">)</span>
+<span class="c1">#dev.off()</span>
+
+<span class="c1">## BIC plot</span>
+<span class="c1">#png(&quot;boxplot-BIC-kNN.png&quot;)</span>
+<span class="n">df.bic</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">val</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">err.bic</span><span class="p">,</span> <span class="n">err.cl.bic</span><span class="p">),</span>
+                    <span class="n">case</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;reg/kNN&quot;</span><span class="p">,</span> <span class="n">B</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;class/kNN&quot;</span><span class="p">,</span> <span class="n">B</span><span class="p">)),</span>
+                                  <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;reg/kNN&quot;</span><span class="p">,</span> <span class="s">&quot;class/kNN&quot;</span><span class="p">))</span> <span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">val</span> <span class="o">~</span> <span class="n">case</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df.bic</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span>
+<span class="c1">#dev.off()</span>
+</pre></div></p>
 <p><img alt="" src="../boxplot-AIC-kNN.png" /></p>
 <p><img alt="" src="../boxplot-BIC-kNN.png" /></p>
 <h2 id="_4">其它情形<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -3481,7 +3511,7 @@ boxplot(val ~ case, data = df.bic, col = &ldquo;green&rdquo;,</p>
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-10-20 16:41:43
+        Last Build Date UTC : 2022-10-30 01:20:02
       </div>
       
         

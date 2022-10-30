@@ -2910,49 +2910,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sample-mean" title="sample mean" class="md-nav__link">
-    sample mean
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sample-variance" title="sample variance" class="md-nav__link">
-    sample variance
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coef" title="coef:" class="md-nav__link">
-    coef:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-s-1mu1-mu2" title="a = S^{-1}(mu1-mu2)" class="md-nav__link">
-    a = S^{-1}(mu1-mu2)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#constant" title="constant" class="md-nav__link">
-    constant
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#05amu1mu2" title="0.5*a'(mu1+mu2)" class="md-nav__link">
-    0.5*a'(mu1+mu2)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" title="绘图" class="md-nav__link">
+  <a href="#_3" title="绘图" class="md-nav__link">
     绘图
   </a>
   
@@ -3284,49 +3242,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sample-mean" title="sample mean" class="md-nav__link">
-    sample mean
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sample-variance" title="sample variance" class="md-nav__link">
-    sample variance
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coef" title="coef:" class="md-nav__link">
-    coef:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-s-1mu1-mu2" title="a = S^{-1}(mu1-mu2)" class="md-nav__link">
-    a = S^{-1}(mu1-mu2)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#constant" title="constant" class="md-nav__link">
-    constant
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#05amu1mu2" title="0.5*a'(mu1+mu2)" class="md-nav__link">
-    0.5*a'(mu1+mu2)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" title="绘图" class="md-nav__link">
+  <a href="#_3" title="绘图" class="md-nav__link">
     绘图
   </a>
   
@@ -3411,21 +3327,19 @@ x^T\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1) > \frac 12(\hat\mu_1+\hat\m
 </p>
 <h2 id="lda">利用 <code>lda()</code> 的结果计算<a class="headerlink" href="#lda" title="Permanent link">&para;</a></h2>
 <p>关键点在于怎么根据 <code>R</code> 中 <code>lda()</code> 的返回结果写出判别边界，不然就得自己编写代码计算（下一节介绍）。所以我选择去阅读源代码，不过源代码中最后做预测时都是计算后验概率，似乎不能从中得到我们想要的有关判别边界的信息，但返回结果确实已经包含了判别边界的信息。摘录部分源代码</p>
-<p>```r
-predict.lda &lt;- function(object, newdata, prior = object$prior, dimen,
-            method = c(&ldquo;plug-in&rdquo;, &ldquo;predictive&rdquo;, &ldquo;debiased&rdquo;), &hellip;)
-{
-    &hellip;</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## remove overall means to keep distances small</span>
-<span class="n">means</span> <span class="o">&lt;-</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">prior</span><span class="o">*</span><span class="n">object</span><span class="o">$</span><span class="n">means</span><span class="p">)</span>
-<span class="n">scaling</span> <span class="o">&lt;-</span> <span class="n">object</span><span class="o">$</span><span class="n">scaling</span>
-<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="n">means</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">scaling</span>
+<div class="highlight"><pre><span></span><span class="n">predict.lda</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">newdata</span><span class="p">,</span> <span class="n">prior</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">prior</span><span class="p">,</span> <span class="n">dimen</span><span class="p">,</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;plug-in&quot;</span><span class="p">,</span> <span class="s">&quot;predictive&quot;</span><span class="p">,</span> <span class="s">&quot;debiased&quot;</span><span class="p">),</span> <span class="kc">...</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kc">...</span>
 
-<span class="kc">...</span>
-</code></pre></div>
+    <span class="c1">## remove overall means to keep distances small</span>
+    <span class="n">means</span> <span class="o">&lt;-</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">prior</span><span class="o">*</span><span class="n">object</span><span class="o">$</span><span class="n">means</span><span class="p">)</span>
+    <span class="n">scaling</span> <span class="o">&lt;-</span> <span class="n">object</span><span class="o">$</span><span class="n">scaling</span>
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="n">means</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">scaling</span>
 
-<p>}
-```</p>
+    <span class="kc">...</span>
+<span class="p">}</span>
+</pre></div>
 <p>我们主要关注预测部分的代码，注意到在预测时，其首先计算了混合密度，然后对 <code>x</code> 进行中心化，不难发现如下的对应关系</p>
 <ol>
 <li><code>object$scaling</code> 对应 $\hat{\boldsymbol\Sigma}^{-1}(\hat\mu_2-\hat\mu_1)$；</li>
@@ -3446,62 +3360,65 @@ y = -\frac{c_1}{c_2}x+\frac{1}{c_2}(c_1\mu_x+c_2\mu_y)
 </p>
 <p>其中 $\mu_x=\frac 12(\mu_{1x}+\mu_{2x})$，$\mu_y=\frac 12(\mu_{1y}+\mu_{2y})$</p>
 <p>所以可以用下面代码计算判别边界的截距和斜率</p>
-<p><code>r
-calcLD &lt;- function(object) {
-  mu = object$means
-  mu.pool = colSums(mu)/2 ## (mu1+mu2)/2
-  scaling = object$scaling
-  intercept = sum(scaling * mu.pool)/scaling[2]
-  slope = -1* scaling[1]/scaling[2]
-  return(c(intercept, slope))
-}</code> </p>
+<div class="highlight"><pre><span></span><span class="n">calcLD</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">mu</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">means</span>
+  <span class="n">mu.pool</span> <span class="o">=</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="m">2</span> <span class="c1">## (mu1+mu2)/2</span>
+  <span class="n">scaling</span> <span class="o">=</span> <span class="n">object</span><span class="o">$</span><span class="n">scaling</span>
+  <span class="n">intercept</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">scaling</span> <span class="o">*</span> <span class="n">mu.pool</span><span class="p">)</span><span class="o">/</span><span class="n">scaling[2]</span>
+  <span class="n">slope</span> <span class="o">=</span> <span class="m">-1</span><span class="o">*</span> <span class="n">scaling[1]</span><span class="o">/</span><span class="n">scaling[2]</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
 <h2 id="_2">直接计算判别边界<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>以第 1 类和第 2 类为例，按照上面推导的公式一步步计算，最后返回判别边界的截距和斜率</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
 <p>这部分参考了多元分析的<a href="../../../references/module7.pdf">课件</a>。</p>
 </div>
-<p>```r</p>
-<h2 id="sample-mean">sample mean<a class="headerlink" href="#sample-mean" title="Permanent link">&para;</a></h2>
-<p>zmu1 = colMeans(dm1)</p>
-<h2 id="sample-variance">sample variance<a class="headerlink" href="#sample-variance" title="Permanent link">&para;</a></h2>
-<p>zs1 = var(dm1)
-zs12 = (zs1+zs2)/2 ## ((n1-1)S1+(n2-1)S2)/(n1+n2-2)</p>
-<h2 id="_3"><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h2 id="coef">coef:<a class="headerlink" href="#coef" title="Permanent link">&para;</a></h2>
-<h2 id="a-s-1mu1-mu2">a = S^{-1}(mu1-mu2)<a class="headerlink" href="#a-s-1mu1-mu2" title="Permanent link">&para;</a></h2>
-<h2 id="_4"><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>za12 = solve(zs12) %*% (zmu1-zmu2)</p>
-<h2 id="_5"><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<h2 id="constant">constant<a class="headerlink" href="#constant" title="Permanent link">&para;</a></h2>
-<h2 id="05amu1mu2">0.5*a&rsquo;(mu1+mu2)<a class="headerlink" href="#05amu1mu2" title="Permanent link">&para;</a></h2>
-<h2 id="_6"><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>c12 = sum(za12 * (zmu1+zmu2)/2)</p>
-<p>calcLD2 &lt;- function(za, c) {return(c(c/za[2], -za[1]/za[2]))}
-calcLD2(za12, c12)
-```</p>
+<div class="highlight"><pre><span></span><span class="c1">## sample mean</span>
+<span class="n">zmu1</span> <span class="o">=</span> <span class="nf">colMeans</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+
+<span class="c1">## sample variance</span>
+<span class="n">zs1</span> <span class="o">=</span> <span class="nf">var</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+<span class="n">zs12</span> <span class="o">=</span> <span class="p">(</span><span class="n">zs1</span><span class="o">+</span><span class="n">zs2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span> <span class="c1">## ((n1-1)S1+(n2-1)S2)/(n1+n2-2)</span>
+
+<span class="c1">## #############################</span>
+<span class="c1">## coef:</span>
+<span class="c1">##   a = S^{-1}(mu1-mu2)</span>
+<span class="c1">## #############################</span>
+<span class="n">za12</span> <span class="o">=</span> <span class="nf">solve</span><span class="p">(</span><span class="n">zs12</span><span class="p">)</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">zmu1</span><span class="o">-</span><span class="n">zmu2</span><span class="p">)</span>
+
+<span class="c1">## ############################</span>
+<span class="c1">## constant</span>
+<span class="c1">##    0.5*a&#39;(mu1+mu2)</span>
+<span class="c1">## ############################</span>
+<span class="n">c12</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">za12</span> <span class="o">*</span> <span class="p">(</span><span class="n">zmu1</span><span class="o">+</span><span class="n">zmu2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+
+<span class="n">calcLD2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">za</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span><span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="n">za[2]</span><span class="p">,</span> <span class="o">-</span><span class="n">za[1]</span><span class="o">/</span><span class="n">za[2]</span><span class="p">))}</span>
+<span class="nf">calcLD2</span><span class="p">(</span><span class="n">za12</span><span class="p">,</span> <span class="n">c12</span><span class="p">)</span>
+</pre></div>
 <p>将直接计算的结果与上述通过 <code>lda()</code> 的返回结果计算得到的判别边界完全一致！！</p>
 <p><img alt="" src="../compare-lda-and-directly.png" /></p>
-<h2 id="_7">绘图<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_3">绘图<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>直接将上述计算得到的截距和斜率代入 <code>abline()</code> 函数中，便可以得到判别边界</p>
 <div class="admonition tip">
 <p class="admonition-title">weiya 注：绘图技巧</p>
 <p>直接用 <code>abline()</code> 绘图时，会充满整个区域，这与原书图 4.5 不符，可以在 <code>abline()</code> 前加上 <code>clip()</code> 来预先选定绘图区域。这个技巧参考<a href="https://stackoverflow.com/questions/26472563/how-to-define-graphical-bounds-of-abline-linear-regression-in-r">how-to-define-graphical-bounds-of-abline-linear-regression-in-r</a></p>
 </div>
 <p>图 4.5 的右图重现代码为</p>
-<p><code>r
-plot(dm1[, 1], dm1[, 2], col = "orange", pch="1", 
-     xlim = c(-5, 5), ylim = c(-5, 5), 
-     xaxt="n", yaxt="n", xlab = "", ylab = "")
-points(dm2[, 1], dm2[, 2], col = "blue", pch="2")
-points(dm3[, 1], dm3[, 2], col = "green", pch="3")
-points(rbind(mu1, mu2, mu3), pch="+", col="black")
-clip(-5,5,-5,0) 
-abline(calcLD(m12))
-clip(-5,0,-5,5)
-abline(calcLD(m13))
-clip(0,5,-5,5)
-abline(calcLD(m23))</code></p>
+<div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">dm1[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm1[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">,</span> 
+     <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> 
+     <span class="n">xaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">yaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">dm2[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm2[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">dm3[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">,</span> <span class="n">dm3[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="nf">rbind</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">mu3</span><span class="p">),</span> <span class="n">pch</span><span class="o">=</span><span class="s">&quot;+&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
+<span class="nf">clip</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">0</span><span class="p">)</span> 
+<span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m12</span><span class="p">))</span>
+<span class="nf">clip</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m13</span><span class="p">))</span>
+<span class="nf">clip</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="nf">calcLD</span><span class="p">(</span><span class="n">m23</span><span class="p">))</span>
+</pre></div>
 <p>即</p>
 <p><img alt="" src="../sim-fig-4-5-r-2.png" /></p>
 <h2 id="todo">TODO<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h2>
@@ -3601,7 +3518,7 @@ abline(calcLD(m23))</code></p>
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-10-20 16:41:43
+        Last Build Date UTC : 2022-10-30 01:20:02
       </div>
       
         

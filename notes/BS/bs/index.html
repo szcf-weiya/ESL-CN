@@ -3111,6 +3111,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#implement-in-python" title="Implement in Python" class="md-nav__link">
+    Implement in Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implement-in-c" title="Implement in C++" class="md-nav__link">
+    Implement in C++
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3199,6 +3213,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#implement-in-python" title="Implement in Python" class="md-nav__link">
+    Implement in Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implement-in-c" title="Implement in C++" class="md-nav__link">
+    Implement in C++
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3243,10 +3271,10 @@
 </table>
 <p>在 Functional Data Analysis (FDA) 中，很重要的一步便是对原始数据进行光滑化，其中经常用到 B spline，而 FDA 有个很强大的 R package <code>fda</code>，里面就包含 B 样条的实现方法。</p>
 <h2 id="implement-in-r">Implement in R<a class="headerlink" href="#implement-in-r" title="Permanent link">&para;</a></h2>
-<p><code>r
-create.bspline.basis(rangeval=NULL, nbasis=NULL, norder=4,
-      breaks=NULL, dropind=NULL, quadvals=NULL, values=NULL,
-      basisvalues=NULL, names="bspl")</code></p>
+<div class="highlight"><pre><span></span><span class="nf">create.bspline.basis</span><span class="p">(</span><span class="n">rangeval</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">nbasis</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">norder</span><span class="o">=</span><span class="m">4</span><span class="p">,</span>
+      <span class="n">breaks</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">dropind</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">quadvals</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span>
+      <span class="n">basisvalues</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s">&quot;bspl&quot;</span><span class="p">)</span>
+</pre></div>
 <p>其中</p>
 <ul>
 <li><code>rangeval</code> 为定义域，比如 <code>0:1</code> 即表示 <code>[0, 1]</code></li>
@@ -3265,54 +3293,51 @@ create.bspline.basis(rangeval=NULL, nbasis=NULL, norder=4,
 </script>
 </p>
 <p>因为 knots 编号为 $\xi_0,\xi_1,\ldots,\xi_K,\xi_{K+1}$，其中 $\xi_0$ 和 $\xi_{K+1}$ 是边界结点。</p>
-<p>```r
-bbasis = vector(&ldquo;list&rdquo;, 4)
-for (i in 1:4){
-    bbasis[[i]] = create.bspline.basis(0:1, nbasis = 11 + i - 2, norder = i)
-    # or
-    # bbasis[[i]] = create.bspline.basis(0:1, breaks = seq(0, 1, by = 0.1), norder = i)
-}</p>
-<h1 id="or-directly-use-the-plot-method">or directly use the plot method<a class="headerlink" href="#or-directly-use-the-plot-method" title="Permanent link">&para;</a></h1>
-<p>par(mfrow=c(4, 1), mar=c(2.1, 4.1, 2.1, 2.1))
-for (i in 1:4){
-    plot(bbasis[[i]], lwd = 2, cex.axis = 1.5)
-    title(paste(&ldquo;B-splines of Order&rdquo;, i))
-}
-```</p>
+<div class="highlight"><pre><span></span><span class="n">bbasis</span> <span class="o">=</span> <span class="nf">vector</span><span class="p">(</span><span class="s">&quot;list&quot;</span><span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">){</span>
+    <span class="n">bbasis[[i]]</span> <span class="o">=</span> <span class="nf">create.bspline.basis</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">1</span><span class="p">,</span> <span class="n">nbasis</span> <span class="o">=</span> <span class="m">11</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="m">2</span><span class="p">,</span> <span class="n">norder</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span>
+    <span class="c1"># or</span>
+    <span class="c1"># bbasis[[i]] = create.bspline.basis(0:1, breaks = seq(0, 1, by = 0.1), norder = i)</span>
+<span class="p">}</span>
+<span class="c1"># or directly use the plot method</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">2.1</span><span class="p">,</span> <span class="m">2.1</span><span class="p">))</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">){</span>
+    <span class="nf">plot</span><span class="p">(</span><span class="n">bbasis[[i]]</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">cex.axis</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+    <span class="nf">title</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;B-splines of Order&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
 <p><img alt="" src="../bsplines-default.png" /></p>
 <p>为了进一步理解样条函数，我们还可以自己对样条函数进行赋值，</p>
-<p>```r</p>
-<h1 id="reduce-space-gap-between-multiple-graphs-in-r">reduce space gap between multiple graphs in R<a class="headerlink" href="#reduce-space-gap-between-multiple-graphs-in-r" title="Permanent link">&para;</a></h1>
-<h1 id="httpsstackoverflowcomquestions15848942how-to-reduce-space-gap-between-multiple-graphs-in-r">https://stackoverflow.com/questions/15848942/how-to-reduce-space-gap-between-multiple-graphs-in-r<a class="headerlink" href="#httpsstackoverflowcomquestions15848942how-to-reduce-space-gap-between-multiple-graphs-in-r" title="Permanent link">&para;</a></h1>
-<p>par(mfrow=c(4, 1), mar=c(2.1, 4.1, 2.1, 2.1))
-for (i in 1:4){
-    bvals = eval.basis(0:1000<em>0.001, bbasis[[i]])
-    matplot(0:1000</em>0.001, bvals, type = &ldquo;l&rdquo;, lty = 1, lwd = 2, cex.axis = 1.5, xlab = &ldquo;&rdquo;, ylab = &ldquo;&rdquo;)
-    abline(v=0:10*0.1, lty=2, lwd=1, col = &ldquo;gray&rdquo;)
-    title(paste(&ldquo;B-splines of Order&rdquo;, i))
-}
-```</p>
+<div class="highlight"><pre><span></span><span class="c1"># reduce space gap between multiple graphs in R</span>
+<span class="c1"># https://stackoverflow.com/questions/15848942/how-to-reduce-space-gap-between-multiple-graphs-in-r</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">2.1</span><span class="p">,</span> <span class="m">2.1</span><span class="p">))</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">){</span>
+    <span class="n">bvals</span> <span class="o">=</span> <span class="nf">eval.basis</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">1000</span><span class="o">*</span><span class="m">0.001</span><span class="p">,</span> <span class="n">bbasis[[i]]</span><span class="p">)</span>
+    <span class="nf">matplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">1000</span><span class="o">*</span><span class="m">0.001</span><span class="p">,</span> <span class="n">bvals</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">cex.axis</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="o">*</span><span class="m">0.1</span><span class="p">,</span> <span class="n">lty</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="nf">title</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;B-splines of Order&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
 <p><img alt="" src="../bsplines.png" /></p>
 <p>如果不指定 <code>breaks</code>，只给出 <code>nbasis</code>，则结点是在定义域内均匀取点，但是有时候实际问题中可能想要在观测值多的地方多取点，而观测值少的地方少取点，这可以通过</p>
-<p><code>r
-create.bspline.irregular(argvals,
-      nbasis=max(norder, round(sqrt(length(argvals)))),
-      norder=4,
-      breaks=quantile(argvals, seq(0, 1, length.out=nbasis-norder+2)),
-      dropind=NULL, quadvals=NULL, values=NULL,
-      basisvalues=NULL, names="bspl", plot.=FALSE, ...)</code></p>
+<div class="highlight"><pre><span></span><span class="nf">create.bspline.irregular</span><span class="p">(</span><span class="n">argvals</span><span class="p">,</span>
+      <span class="n">nbasis</span><span class="o">=</span><span class="nf">max</span><span class="p">(</span><span class="n">norder</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">argvals</span><span class="p">)))),</span>
+      <span class="n">norder</span><span class="o">=</span><span class="m">4</span><span class="p">,</span>
+      <span class="n">breaks</span><span class="o">=</span><span class="nf">quantile</span><span class="p">(</span><span class="n">argvals</span><span class="p">,</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">length.out</span><span class="o">=</span><span class="n">nbasis</span><span class="o">-</span><span class="n">norder</span><span class="m">+2</span><span class="p">)),</span>
+      <span class="n">dropind</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">quadvals</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span>
+      <span class="n">basisvalues</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s">&quot;bspl&quot;</span><span class="p">,</span> <span class="n">plot.</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span>
+</pre></div>
 <p>实现，可以看到 <code>breaks</code> 是通过分位数来确定，所以满足刚刚提到的这种需求。当然，如果知道 <code>breaks</code>，完全可以直接用 <code>create.bspline.basis</code>，因为 <code>create.bspline.irregular</code> 最终也是要调用它的。</p>
 <p>另外，<code>splines</code> 包的 <code>bs()</code> 也会返回 B 样条基函数赋值矩阵，类似于 <code>eval.basis()</code>，但不同的是，<code>bs()</code> 中的结点为内结点，而边界结点默认为赋值区域的两端，而且其有 <code>intercept</code> 参数，默认为 FALSE，表示将每个基函数的常数部分提出来然后合并在一起，如果是 TRUE，则每个基函数保留各自的常数部分，列数即等于 $K+M$，但是当把常数都提出后，自由度少一，即 FALSE 情况下列数少一列。如果将其结果用于线性回归，则</p>
-<p>```R
-lm(y ~ 0 + bs(x, intercept=TRUE))</p>
-<h1 id="or">or<a class="headerlink" href="#or" title="Permanent link">&para;</a></h1>
-<p>lm(y ~ bs(x, intercept=FALSE))
-```</p>
+<div class="highlight"><pre><span></span><span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="m">0</span> <span class="o">+</span> <span class="nf">bs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="c1"># or</span>
+<span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="nf">bs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">))</span>
+</pre></div>
 <p>默认为 FALSE 时，常数项被放到 <code>y ~ x</code> 中的截距项中去了，而 TRUE 时已经保留了常数项，则没必要再要求截距项，否则后面估计可能出现问题，比如出现 <code>NA</code>。</p>
 <h2 id="implement-in-python">Implement in Python<a class="headerlink" href="#implement-in-python" title="Permanent link">&para;</a></h2>
 <p>Python 中的 <code>scipy</code> 库也可以实现 B spline，具体函数为</p>
-<p><code>python
-scipy.interpolate.BSpline(t, c, k, extrapolate=True, axis=0)</code></p>
+<div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">BSpline</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">extrapolate</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
 <p>其中，</p>
 <ul>
 <li><code>k</code>: degree，则 $M$ = <code>k</code> + 1</li>
@@ -3326,8 +3351,8 @@ S(x) = \sum_{j=0}^{n-1}c_jB_{j,k;t}(x)\,.
 </p>
 <p>从上面公式可以看出，这个函数并不像 R 里面的 <code>create.bspline.basis</code> 得到各个基函数，而是直接得到 B 样条的一个加权和，当然可以通过取 <code>c = [1, 0, 0, .., 0], [0, 1, 0, .., 0]</code> 这种特殊值来得到每个基函数。</p>
 <p>不过，还是有函数可以自己返回单个基函数</p>
-<p><code>python
-scipy.interpolate.BSpline.basis_element(t, extrapolate=True)</code></p>
+<div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">BSpline</span><span class="o">.</span><span class="n">basis_element</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">extrapolate</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
 <p>其中 <code>t</code> 是结点序列，长度为 <code>k+2</code>, 注意这里的结点序列只包含 support 的结点，回忆结论，</p>
 <p>
 <script type="math/tex; mode=display">
@@ -3335,31 +3360,31 @@ x\not\in [\tau_i, \tau_{i+M}], B_{i,M} = 0\,,
 </script>
 </p>
 <p>也就是说这里的 <code>t</code> 为 $\tau_{i}, \ldots,\tau_{i+M}$。注意到，这里每个基函数结点序列不一样，只包含各自不为零的结点序列，所以直接采用第一个函数得到全局的基函数会更方便。</p>
-<p>```python
-from scipy.interpolate import BSpline
-import matplotlib.pyplot as plt
-import numpy as np
-fig, axes = plt.subplots(4, 1, figsize = (10, 8), sharex=True)
-xx = np.arange(1001) * 0.001</p>
-<h1 id="number-of-inner-knots">number of inner knots<a class="headerlink" href="#number-of-inner-knots" title="Permanent link">&para;</a></h1>
-<p>K = 11 - 2
-for degree in range(4):
-    order = degree + 1
-    n = order + K
-    t = np.zeros(n + degree + 1)
-    t[:order] = 0
-    t[-order:] = 1
-    # here if use degree, then need to discuss the case of degree = 0
-    t[order:-order] = np.arange(1, K+1) * 0.1
-    for i in range(0, n):
-        c = np.zeros(n)
-        c[i] = 1
-        spl = BSpline(t, c, degree)
-        axes[degree].plot(xx, spl(xx))
-    axes[degree].title.set_text(f&rdquo;B-splines of Order {order}&rdquo;)</p>
-<p>plt.tight_layout(pad = 3.0)
-plt.show()
-```</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">BSpline</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1001</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.001</span>
+<span class="c1"># number of inner knots</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">11</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="k">for</span> <span class="n">degree</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">order</span> <span class="o">+</span> <span class="n">K</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">t</span><span class="p">[:</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="n">order</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1"># here if use degree, then need to discuss the case of degree = 0</span>
+    <span class="n">t</span><span class="p">[</span><span class="n">order</span><span class="p">:</span><span class="o">-</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">spl</span> <span class="o">=</span> <span class="n">BSpline</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">degree</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">spl</span><span class="p">(</span><span class="n">xx</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">degree</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;B-splines of Order {order}&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
 <p><img alt="" src="../bsplines-py.png" /></p>
 <h2 id="implement-in-c">Implement in C++<a class="headerlink" href="#implement-in-c" title="Permanent link">&para;</a></h2>
 <p>C++ 中的<a href="https://www.gnu.org/software/gsl/doc/html/bspline.html">科学计算库 GSL</a> 也提供了 B 样条的实现方法。定义结点序列为</p>
@@ -3376,81 +3401,80 @@ t = \{t_0, t_1,\ldots, t_{n+k-1}\}\,,
 </ul>
 <p>这类似 Python 文档中的表述，但要注意这里 $k$ 是 order，而不是 degree。很直接的判断方法是看 B spline 的递推式，在 Python 中，递推式从 $B_{i,0}(x)$ 到 $B_{i,k}(x)$，而 GSL 的文档中从 $B_{i,1}(x)$ 到 $B_{i,k}(x)$，这与 ESL 中一致，所以从第二个脚标，可以发现 python 中 <code>k</code> 代表 degree，而 GSL 中代表 order.</p>
 <p>拟合 B spline 的函数为</p>
-<p>```cpp</p>
-<h1 id="init">init<a class="headerlink" href="#init" title="Permanent link">&para;</a></h1>
-<p>gsl_bspline_workspace * gsl_bspline_alloc(const size_t k, const size_t nbreak)</p>
-<h1 id="construct-knots">construct knots<a class="headerlink" href="#construct-knots" title="Permanent link">&para;</a></h1>
-<p>int gsl_bspline_knots(const gsl_vector * breakpts, gsl_bspline_workspace * w)
-int gsl_bspline_knots_uniform(const double a, const double b, gsl_bspline_workspace * w)</p>
-<h1 id="evaluation">evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h1>
-<p>int gsl_bspline_eval(const double x, gsl_vector * B, gsl_bspline_workspace * w)
-int gsl_bspline_eval_nonzero(const double x, gsl_vector * Bk, size_t * istart, size_t * iend, gsl_bspline_workspace * w)</p>
-<h1 id="free">free<a class="headerlink" href="#free" title="Permanent link">&para;</a></h1>
-<p>gsl_bspline_free(gsl_bspline_workspace * w)
-```</p>
+<div class="highlight"><pre><span></span><span class="cp"># init</span>
+<span class="n">gsl_bspline_workspace</span> <span class="o">*</span> <span class="n">gsl_bspline_alloc</span><span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="n">k</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">nbreak</span><span class="p">)</span>
+<span class="cp"># construct knots</span>
+<span class="kt">int</span> <span class="n">gsl_bspline_knots</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">breakpts</span><span class="p">,</span> <span class="n">gsl_bspline_workspace</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">gsl_bspline_knots_uniform</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="n">gsl_bspline_workspace</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
+<span class="cp"># evaluation</span>
+<span class="kt">int</span> <span class="n">gsl_bspline_eval</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">B</span><span class="p">,</span> <span class="n">gsl_bspline_workspace</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">gsl_bspline_eval_nonzero</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">Bk</span><span class="p">,</span> <span class="kt">size_t</span> <span class="o">*</span> <span class="n">istart</span><span class="p">,</span> <span class="kt">size_t</span> <span class="o">*</span> <span class="n">iend</span><span class="p">,</span> <span class="n">gsl_bspline_workspace</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
+<span class="cp"># free</span>
+<span class="n">gsl_bspline_free</span><span class="p">(</span><span class="n">gsl_bspline_workspace</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
+</pre></div>
 <p>实现代码为，</p>
-<p>```cpp</p>
-<h1 id="include">include <iostream><a class="headerlink" href="#include" title="Permanent link">&para;</a></h1>
-<h1 id="include_1">include <cstdlib><a class="headerlink" href="#include_1" title="Permanent link">&para;</a></h1>
-<h1 id="include_2">include <gsl/gsl_bspline.h><a class="headerlink" href="#include_2" title="Permanent link">&para;</a></h1>
-<p>using namespace std;</p>
-<p>int main(int argc, char <em>argv[])
-{ <br />
-    size_t order = atoi(argv[1]);
-    size_t nbreaks = 11;
-    // number of data points
-    size_t n = 1000;
-    size_t ncoeffs = nbreaks + order - 2;
-    gsl_bspline_workspace </em>bw;
-    gsl_matrix <em>X;
-    gsl_vector </em>B;
-    size_t i, j;
-    // alloc a order-k bspline workspace
-    bw = gsl_bspline_alloc(order, nbreaks);
-    X = gsl_matrix_alloc(n, ncoeffs);
-    B = gsl_vector_alloc(ncoeffs);
-    // use uniform breakpoints
-    gsl_bspline_knots_uniform(0.0, 1.0, bw);
-    for (i = 0; i &lt; n; i++)
-    {
-        double xi = 1.0 * (i + 1) / n;
-        // compute B_j(x_i) for all j
-        gsl_bspline_eval(xi, B, bw);
-        // fill in row i of X
-        for (j = 0; j &lt; ncoeffs; j++)
-        {
-            double Bj = gsl_vector_get(B, j);
-            if (j != ncoeffs - 1)
-                cout &lt;&lt; Bj &lt;&lt; &ldquo;\t&rdquo;;
-            else
-                cout &lt;&lt; Bj &lt;&lt; endl;
-            gsl_matrix_set(X, i, j, Bj);
-        }
-    }
-    gsl_vector_free(B);
-    gsl_matrix_free(X);
-    gsl_bspline_free(bw);
-    return 0;
-}
-```</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;gsl/gsl_bspline.h&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>   
+    <span class="kt">size_t</span> <span class="n">order</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="kt">size_t</span> <span class="n">nbreaks</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="c1">// number of data points</span>
+    <span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">ncoeffs</span> <span class="o">=</span> <span class="n">nbreaks</span> <span class="o">+</span> <span class="n">order</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">gsl_bspline_workspace</span> <span class="o">*</span><span class="n">bw</span><span class="p">;</span>
+    <span class="n">gsl_matrix</span> <span class="o">*</span><span class="n">X</span><span class="p">;</span>
+    <span class="n">gsl_vector</span> <span class="o">*</span><span class="n">B</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+    <span class="c1">// alloc a order-k bspline workspace</span>
+    <span class="n">bw</span> <span class="o">=</span> <span class="n">gsl_bspline_alloc</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">nbreaks</span><span class="p">);</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">gsl_matrix_alloc</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ncoeffs</span><span class="p">);</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">gsl_vector_alloc</span><span class="p">(</span><span class="n">ncoeffs</span><span class="p">);</span>
+    <span class="c1">// use uniform breakpoints</span>
+    <span class="n">gsl_bspline_knots_uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bw</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">xi</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
+        <span class="c1">// compute B_j(x_i) for all j</span>
+        <span class="n">gsl_bspline_eval</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">bw</span><span class="p">);</span>
+        <span class="c1">// fill in row i of X</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">ncoeffs</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">double</span> <span class="n">Bj</span> <span class="o">=</span> <span class="n">gsl_vector_get</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">!=</span> <span class="n">ncoeffs</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Bj</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Bj</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+            <span class="n">gsl_matrix_set</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">Bj</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">gsl_vector_free</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+    <span class="n">gsl_matrix_free</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+    <span class="n">gsl_bspline_free</span><span class="p">(</span><span class="n">bw</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 <p>画图一开始试了下 <code>gnuplot</code>，但是不是很熟悉，只是简单地得到了下图，</p>
-<p><code>bash
-gnuplot -e "set term png; set output 'bsplines4.png'; set title 'B-splines of Order 4'; plot for [col=1:13] 'res.txt' using 0:col with lines notitle"</code></p>
+<div class="highlight"><pre><span></span>gnuplot -e <span class="s2">&quot;set term png; set output &#39;bsplines4.png&#39;; set title &#39;B-splines of Order 4&#39;; plot for [col=1:13] &#39;res.txt&#39; using 0:col with lines notitle&quot;</span>
+</pre></div>
 <p><img alt="" src="../bsplines4.png" /></p>
 <p>后来还是<a href="https://darrenjw.wordpress.com/2010/12/30/calling-c-code-from-r/">采用 R 来调用 C++ 程序</a>，进而画图，</p>
-<p>```r
-bspline &lt;- function (order = 4, tmpfile = tempfile(), exec = file.path(&ldquo;.&rdquo;, &ldquo;bspline&rdquo;)){
-    command = paste(exec, order, &ldquo;&gt;&rdquo;, tmpfile)
-    system(command)
-    read.table(tmpfile)
-}</p>
-<p>par(mfrow = c(4, 1), mar=c(2.1, 4.1, 2.1, 2.1))
-for (order in 1:4) {
-    data = bspline(order)
-    matplot(1:1000*0.001, data, xlab = &ldquo;&rdquo;, ylab = &ldquo;&rdquo;, type = &ldquo;l&rdquo;, lwd = 2)
-    title(paste(&ldquo;B-splies of Order&rdquo;, order))
-}
-```</p>
+<div class="highlight"><pre><span></span><span class="n">bspline</span> <span class="o">&lt;-</span> <span class="nf">function </span><span class="p">(</span><span class="n">order</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">tmpfile</span> <span class="o">=</span> <span class="nf">tempfile</span><span class="p">(),</span> <span class="n">exec</span> <span class="o">=</span> <span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="s">&quot;bspline&quot;</span><span class="p">)){</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="n">exec</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="s">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">tmpfile</span><span class="p">)</span>
+    <span class="nf">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+    <span class="nf">read.table</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">2.1</span><span class="p">,</span> <span class="m">2.1</span><span class="p">))</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">order</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nf">bspline</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+    <span class="nf">matplot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">1000</span><span class="o">*</span><span class="m">0.001</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+    <span class="nf">title</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;B-splies of Order&quot;</span><span class="p">,</span> <span class="n">order</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
 <p><img alt="" src="../bspline-cpp.png" /></p>
                 
                   
@@ -3543,7 +3567,7 @@ for (order in 1:4) {
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-10-20 16:41:44
+        Last Build Date UTC : 2022-10-30 01:20:03
       </div>
       
         

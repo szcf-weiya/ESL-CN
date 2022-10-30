@@ -3269,7 +3269,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2022-10-20</td>
+<td>2022-10-29</td>
 </tr>
 </tbody>
 </table>
@@ -3344,21 +3344,19 @@ M(K+1)-(M-1)K=K+M
 </script>
 左边第一项表示 $K+1$ 个区域中每个区域需要 $M$ 个参数，而第二项表明 $K$ 个结点中需要 $M-1$ 个限制．比如，对于三次样条，$M=4$，则自由度为 $K+4$．
 <code>bs()</code> 默认参数 <code>intercept = FALSE</code>, 它会忽略基函数中的常数项，从而 <code>bs(x, df=7)</code>返回在 4 个内结点处取值的三次样条基函数，如果不去掉常数项，则 4 个内结点的三次样条基函数应该有 8 个。具体地，</p>
-<p>```</p>
-<blockquote>
-<p>x = runif(10)
-attr(bs(x, df = 7), &ldquo;knots&rdquo;)
+<div class="highlight"><pre><span></span>&gt; x = runif(10)
+&gt; attr(bs(x, df = 7), &quot;knots&quot;)
     20%       40%       60%       80% 
 0.1976368 0.3924345 0.5557125 0.7541854 
-ncol(bs(x, knots = attr(bs(x, df = 7), &ldquo;knots&rdquo;), intercept = TRUE))
+&gt; ncol(bs(x, knots = attr(bs(x, df = 7), &quot;knots&quot;), intercept = TRUE))
 [1] 8
-```</p>
-</blockquote>
+</pre></div>
 <p>在回归样条中，如果去掉基函数里的常数项，则回归应写成 </p>
-<p><code>lm(y ~ bs(x, intercept=FALSE))</code></p>
+<div class="highlight"><pre><span></span>lm(y ~ bs(x, intercept=FALSE))
+</pre></div>
 <p>而如果保留基函数里的常数项，则回归中就无需截距，即</p>
-<p><code>r
-lm(y ~ 0 + bs(x, intercept=TRUE))</code></p>
+<div class="highlight"><pre><span></span><span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="m">0</span> <span class="o">+</span> <span class="nf">bs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">intercept</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
 </div>
 <p>然而，也可以更明确地指出，<code>bs(x, degree=1, knots=c(0.2,0.4,0.6))</code> 产生有三个内结点的线性样条的基，并且返回一个 $N\times 4$ 的矩阵．</p>
 <p>因为特定 order 以及结点序列的样条函数的空间是向量空间，所以表示它们会有许多等价的基底（就像普通多项式一样．）尽管截断幂基在概念上很简单，但是数值计算时不是很吸引人：较大的幂次会导致非常严重的舍入问题．在本章附录中描述的 B 样条基即使在结点数 $K$ 很大时也有很高的计算效率．</p>
@@ -3585,7 +3583,7 @@ f''(\xi_0) = 0\,,
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-10-20 16:41:36
+        Last Build Date UTC : 2022-10-30 01:19:55
       </div>
       
         

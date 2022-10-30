@@ -3004,22 +3004,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#generate-data" title="generate data" class="md-nav__link">
-    generate data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_2" title="作图函数" class="md-nav__link">
     作图函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plot-box" title="plot box" class="md-nav__link">
-    plot box
   </a>
   
 </li>
@@ -3034,20 +3020,6 @@
         <li class="md-nav__item">
   <a href="#_3" title="结果" class="md-nav__link">
     结果
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run-code" title="run code" class="md-nav__link">
-    run code
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plot-the-mean-profile" title="plot the mean profile" class="md-nav__link">
-    plot the mean profile
   </a>
   
 </li>
@@ -3249,22 +3221,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#generate-data" title="generate data" class="md-nav__link">
-    generate data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_2" title="作图函数" class="md-nav__link">
     作图函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plot-box" title="plot box" class="md-nav__link">
-    plot box
   </a>
   
 </li>
@@ -3279,20 +3237,6 @@
         <li class="md-nav__item">
   <a href="#_3" title="结果" class="md-nav__link">
     结果
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run-code" title="run code" class="md-nav__link">
-    run code
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plot-the-mean-profile" title="plot the mean profile" class="md-nav__link">
-    plot the mean profile
   </a>
   
 </li>
@@ -3341,89 +3285,85 @@
 </table>
 <h2 id="_1">生成数据<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>首先生成在单位方格中均匀分布的点，</p>
-<p>```r</p>
-<h2 id="generate-data">generate data<a class="headerlink" href="#generate-data" title="Permanent link">&para;</a></h2>
-<p>N = 200
-set.seed(123)
-x1 = runif(N, 0, 1)
-x2 = runif(N, 0, 1)
-cl = ifelse(x1&lt;0.8 &amp; x1&gt;0.5 &amp; x2&gt;0.4 &amp; x2 &lt; 0.6, 1, 0)
-df = data.frame(x1, x2, cl)
-```</p>
+<div class="highlight"><pre><span></span><span class="c1">## generate data</span>
+<span class="n">N</span> <span class="o">=</span> <span class="m">200</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x1</span><span class="o">&lt;</span><span class="m">0.8</span> <span class="o">&amp;</span> <span class="n">x1</span><span class="o">&gt;</span><span class="m">0.5</span> <span class="o">&amp;</span> <span class="n">x2</span><span class="o">&gt;</span><span class="m">0.4</span> <span class="o">&amp;</span> <span class="n">x2</span> <span class="o">&lt;</span> <span class="m">0.6</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">cl</span><span class="p">)</span>
+</pre></div>
 <h2 id="_2">作图函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>为了作出类似图 9.3 的图，自定义如下绘图函数</p>
-<p>```r</p>
-<h2 id="plot-box">plot box<a class="headerlink" href="#plot-box" title="Permanent link">&para;</a></h2>
-<p>plot.box &lt;- function(df, id, fcut){
-  plot(0:1, 0:1, type = &ldquo;n&rdquo;, 
-       xaxt=&rdquo;n&rdquo;, yaxt=&rdquo;n&rdquo;, 
-       xlab = &ldquo;&rdquo;, ylab = &ldquo;&rdquo;,
-       main = paste(&ldquo;Step &ldquo;, id))
-  df1 = df[df$cl==1, ]
-  df0 = df[df$cl==0, ]
-  points(df0$x1, df0$x2, col=&rdquo;blue&rdquo;)
-  points(df1$x1, df1$x2, col=&rdquo;red&rdquo;)
-  ## face 1 &amp; 3
-  clip(0, 1, fcut[4], fcut[2])
-  abline(v = c(fcut[1], fcut[3]), lwd=2)
-  ## face 2 &amp; 4
-  clip(fcut[3], fcut[1], 0, 1)
-  abline(h = c(fcut[2], fcut[4]), lwd=2)
-}
-```</p>
+<div class="highlight"><pre><span></span><span class="c1">## plot box</span>
+<span class="n">plot.box</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">fcut</span><span class="p">){</span>
+  <span class="nf">plot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="o">:</span><span class="m">1</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> 
+       <span class="n">xaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">yaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span> 
+       <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+       <span class="n">main</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Step &quot;</span><span class="p">,</span> <span class="n">id</span><span class="p">))</span>
+  <span class="n">df1</span> <span class="o">=</span> <span class="n">df[df</span><span class="o">$</span><span class="n">cl</span><span class="o">==</span><span class="m">1</span><span class="p">,</span> <span class="n">]</span>
+  <span class="n">df0</span> <span class="o">=</span> <span class="n">df[df</span><span class="o">$</span><span class="n">cl</span><span class="o">==</span><span class="m">0</span><span class="p">,</span> <span class="n">]</span>
+  <span class="nf">points</span><span class="p">(</span><span class="n">df0</span><span class="o">$</span><span class="n">x1</span><span class="p">,</span> <span class="n">df0</span><span class="o">$</span><span class="n">x2</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+  <span class="nf">points</span><span class="p">(</span><span class="n">df1</span><span class="o">$</span><span class="n">x1</span><span class="p">,</span> <span class="n">df1</span><span class="o">$</span><span class="n">x2</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+  <span class="c1">## face 1 &amp; 3</span>
+  <span class="nf">clip</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">fcut[4]</span><span class="p">,</span> <span class="n">fcut[2]</span><span class="p">)</span>
+  <span class="nf">abline</span><span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">fcut[1]</span><span class="p">,</span> <span class="n">fcut[3]</span><span class="p">),</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+  <span class="c1">## face 2 &amp; 4</span>
+  <span class="nf">clip</span><span class="p">(</span><span class="n">fcut[3]</span><span class="p">,</span> <span class="n">fcut[1]</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+  <span class="nf">abline</span><span class="p">(</span><span class="n">h</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">fcut[2]</span><span class="p">,</span> <span class="n">fcut[4]</span><span class="p">),</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 <h2 id="prim">主函数 PRIM<a class="headerlink" href="#prim" title="Permanent link">&para;</a></h2>
 <p>这里例子中没有体现出 PRIM 的 “pasting” 特点，只需要不断进行 “peeled”。</p>
-<p>```r
-simplePRIM &lt;- function(df, alpha=0.1, n1=5, n2=5){
-  par(mfrow=c(n1, n2), mar=c(1,1,1,1))
-  nstep = 0
-  box = df
-  fcut = c(1, 1, 0, 0)
-  fmu = numeric(n1<em>n2)
-  fn = numeric(n1</em>n2)
-  for (nstep in 0:(n1*n2-1)){
-    fn[nstep+1] = nrow(box)
-    fmu[nstep+1] = mean(box$cl)
-    cat(&ldquo;step&rdquo;, nstep, &rdquo; current mean = &ldquo;, fmu[nstep], &ldquo;\n&rdquo;)
-    plot.box(df, nstep, fcut)
-    ## face 1
-    f1.cut = quantile(box$x1, 1-alpha)
-    f1.box = box[box$x1 &lt; f1.cut, ]
-    f1.mu = mean(f1.box$cl)
-    ## face 2
-    f2.cut = quantile(box$x2, 1-alpha)
-    f2.box = box[box$x2 &lt; f2.cut, ]
-    f2.mu = mean(f2.box$cl)
-    ## face 3
-    f3.cut = quantile(box$x1, alpha)
-    f3.box = box[box$x1 &gt; f3.cut, ]
-    f3.mu = mean(f3.box$cl)
-    ## face 4
-    f4.cut = quantile(box$x2, alpha)
-    f4.box = box[box$x2 &gt; f4.cut, ]
-    f4.mu = mean(f4.box$cl)</p>
-<div class="codehilite"><pre><span></span><code><span class="err">##</span><span class="w"> </span><span class="nf">choose</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">max</span><span class="w"> </span><span class="n">one</span><span class="w"></span>
-<span class="n">ind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">which</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="n">f1</span><span class="p">.</span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span><span class="p">.</span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">f3</span><span class="p">.</span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">f4</span><span class="p">.</span><span class="n">mu</span><span class="p">))</span><span class="w"></span>
-<span class="n">box</span><span class="p">.</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="n">f1</span><span class="p">.</span><span class="n">box</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span><span class="p">.</span><span class="n">box</span><span class="p">,</span><span class="w"> </span><span class="n">f3</span><span class="p">.</span><span class="n">box</span><span class="p">,</span><span class="w"> </span><span class="n">f4</span><span class="p">.</span><span class="n">box</span><span class="p">)</span><span class="w"></span>
-<span class="n">cut</span><span class="p">.</span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="n">f1</span><span class="p">.</span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span><span class="p">.</span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">f3</span><span class="p">.</span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">f4</span><span class="p">.</span><span class="n">cut</span><span class="p">)</span><span class="w"></span>
-<span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">box</span><span class="p">.</span><span class="n">list</span><span class="o">[</span><span class="n">[ind</span><span class="o">]</span><span class="err">]</span><span class="w"></span>
-<span class="n">fcut</span><span class="o">[</span><span class="n">ind</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cut</span><span class="p">.</span><span class="n">vec</span><span class="o">[</span><span class="n">ind</span><span class="o">]</span><span class="w"></span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="n">simplePRIM</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">n1</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">n2</span><span class="o">=</span><span class="m">5</span><span class="p">){</span>
+  <span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">),</span> <span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+  <span class="n">nstep</span> <span class="o">=</span> <span class="m">0</span>
+  <span class="n">box</span> <span class="o">=</span> <span class="n">df</span>
+  <span class="n">fcut</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+  <span class="n">fmu</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">n1</span><span class="o">*</span><span class="n">n2</span><span class="p">)</span>
+  <span class="n">fn</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">n1</span><span class="o">*</span><span class="n">n2</span><span class="p">)</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">nstep</span> <span class="n">in</span> <span class="m">0</span><span class="o">:</span><span class="p">(</span><span class="n">n1</span><span class="o">*</span><span class="n">n2</span><span class="m">-1</span><span class="p">)){</span>
+    <span class="n">fn[nstep</span><span class="m">+1</span><span class="n">]</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+    <span class="n">fmu[nstep</span><span class="m">+1</span><span class="n">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
+    <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;step&quot;</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="s">&quot; current mean = &quot;</span><span class="p">,</span> <span class="n">fmu[nstep]</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+    <span class="nf">plot.box</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nstep</span><span class="p">,</span> <span class="n">fcut</span><span class="p">)</span>
+    <span class="c1">## face 1</span>
+    <span class="n">f1.cut</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">x1</span><span class="p">,</span> <span class="m">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">f1.box</span> <span class="o">=</span> <span class="n">box[box</span><span class="o">$</span><span class="n">x1</span> <span class="o">&lt;</span> <span class="n">f1.cut</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">f1.mu</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">f1.box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
+    <span class="c1">## face 2</span>
+    <span class="n">f2.cut</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">x2</span><span class="p">,</span> <span class="m">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">f2.box</span> <span class="o">=</span> <span class="n">box[box</span><span class="o">$</span><span class="n">x2</span> <span class="o">&lt;</span> <span class="n">f2.cut</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">f2.mu</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">f2.box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
+    <span class="c1">## face 3</span>
+    <span class="n">f3.cut</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">x1</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">f3.box</span> <span class="o">=</span> <span class="n">box[box</span><span class="o">$</span><span class="n">x1</span> <span class="o">&gt;</span> <span class="n">f3.cut</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">f3.mu</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">f3.box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
+    <span class="c1">## face 4</span>
+    <span class="n">f4.cut</span> <span class="o">=</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">box</span><span class="o">$</span><span class="n">x2</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">f4.box</span> <span class="o">=</span> <span class="n">box[box</span><span class="o">$</span><span class="n">x2</span> <span class="o">&gt;</span> <span class="n">f4.cut</span><span class="p">,</span> <span class="n">]</span>
+    <span class="n">f4.mu</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">f4.box</span><span class="o">$</span><span class="n">cl</span><span class="p">)</span>
 
-<p>}
-  return(list(means=fmu, cutpoint = fcut, final.box=box, n=fn))
-}
-```</p>
+    <span class="c1">## choose the max one</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="nf">which.max</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">f1.mu</span><span class="p">,</span> <span class="n">f2.mu</span><span class="p">,</span> <span class="n">f3.mu</span><span class="p">,</span> <span class="n">f4.mu</span><span class="p">))</span>
+    <span class="n">box.list</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">f1.box</span><span class="p">,</span> <span class="n">f2.box</span><span class="p">,</span> <span class="n">f3.box</span><span class="p">,</span> <span class="n">f4.box</span><span class="p">)</span>
+    <span class="n">cut.vec</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">f1.cut</span><span class="p">,</span> <span class="n">f2.cut</span><span class="p">,</span> <span class="n">f3.cut</span><span class="p">,</span> <span class="n">f4.cut</span><span class="p">)</span>
+    <span class="n">box</span> <span class="o">=</span> <span class="n">box.list[[ind]]</span>
+    <span class="n">fcut[ind]</span> <span class="o">=</span> <span class="n">cut.vec[ind]</span>
+  <span class="p">}</span>
+  <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">means</span><span class="o">=</span><span class="n">fmu</span><span class="p">,</span> <span class="n">cutpoint</span> <span class="o">=</span> <span class="n">fcut</span><span class="p">,</span> <span class="n">final.box</span><span class="o">=</span><span class="n">box</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">fn</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
 <h2 id="_3">结果<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>运行下面代码，完美重现了图 9.7 和 图 9.8 的结果</p>
-<p>```r</p>
-<h2 id="run-code">run code<a class="headerlink" href="#run-code" title="Permanent link">&para;</a></h2>
-<p>res = simplePRIM(df)</p>
-<h2 id="plot-the-mean-profile">plot the mean profile<a class="headerlink" href="#plot-the-mean-profile" title="Permanent link">&para;</a></h2>
-<p>plot(res$n, res$means, col=&rdquo;orange&rdquo;, pch=16, cex=2,
-     xlab=&rdquo;Number of Observations in Box&rdquo;,
-     ylab=&rdquo;Box Mean&rdquo;)
-```</p>
+<div class="highlight"><pre><span></span><span class="c1">## run code</span>
+<span class="n">res</span> <span class="o">=</span> <span class="nf">simplePRIM</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1">## plot the mean profile</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">res</span><span class="o">$</span><span class="n">means</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span> <span class="n">cex</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+     <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Number of Observations in Box&quot;</span><span class="p">,</span>
+     <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Box Mean&quot;</span><span class="p">)</span>
+</pre></div>
 <p><img alt="" src="../res-of-sim-9-7.png" /></p>
 <p><img alt="" src="../box-mean-profile.png" /></p>
                 
@@ -3517,7 +3457,7 @@ simplePRIM &lt;- function(df, alpha=0.1, n1=5, n2=5){
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-10-20 16:41:44
+        Last Build Date UTC : 2022-10-30 01:20:03
       </div>
       
         

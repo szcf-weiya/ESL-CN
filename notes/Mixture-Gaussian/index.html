@@ -3051,6 +3051,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#em" title="EM算法" class="md-nav__link">
+    EM算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gibbs" title="Gibbs采样" class="md-nav__link">
+    Gibbs采样
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3199,6 +3213,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#em" title="EM算法" class="md-nav__link">
+    EM算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gibbs" title="Gibbs采样" class="md-nav__link">
+    Gibbs采样
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -3254,185 +3282,204 @@
 <p>参数为$\theta = (\pi, \mu_1,\mu_2,\sigma_1,\sigma_2)$。至今，我了解到有三种方式来估计这五个参数。这三种方式分别为梯度下降法、EM算法和Gibbs采样，而且这三种算法并非毫不相关。EM算法其实是简化梯度下降法中对于对数似然的计算，而Gibbs采样跟EM算法区别在于前者采样后者求最大值。</p>
 <h2 id="_2">梯度下降法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>思想其实很简单，就是极大似然法，但是解析形式不好确定，好在我们可以通过梯度下降来实现，而且现在有很方便的深度学习框架（如tensorflow）可以实现梯度下降，从而估计参数。下面用一个实际的例子（取自<a href="https://cosx.org/2017/08/tensorflow-for-statisticians/">为什么统计学家也应该学学 TensorFlow</a>）来展示梯度下降这一过程</p>
-<p>```python
-import numpy as np
-import matplotlib.pyplot as plt</p>
-<p>np.random.seed(123)</p>
-<h1 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h1>
-<p>p1 = 0.3
-p2 = 0.7
-mu1 = 0.0
-mu2 = 5.0
-sigma1 = 1.0
-sigma2 = 1.5</p>
-<h1 id="simulate-data">Simulate data<a class="headerlink" href="#simulate-data" title="Permanent link">&para;</a></h1>
-<p>N = 1000
-x = np.zeros(N)
-ind = np.random.binomial(1, p1, N).astype(&lsquo;bool_&rsquo;)
-n1 = ind.sum()
-x[ind] = np.random.normal(mu1, sigma1, n1)
-x[np.logical_not(ind)] = np.random.normal(mu2, sigma2, N - n1)</p>
-<h1 id="histogram">Histogram<a class="headerlink" href="#histogram" title="Permanent link">&para;</a></h1>
-<h1 id="plthistx-bins30">plt.hist(x, bins=30)<a class="headerlink" href="#plthistx-bins30" title="Permanent link">&para;</a></h1>
-<h1 id="pltshow">plt.show()<a class="headerlink" href="#pltshow" title="Permanent link">&para;</a></h1>
-<h1 id="_3"><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
-<p>import tensorflow as tf
-import tensorflow.contrib.distributions as ds</p>
-<h1 id="define-data">Define data<a class="headerlink" href="#define-data" title="Permanent link">&para;</a></h1>
-<p>t_x = tf.placeholder(tf.float32)</p>
-<h1 id="define-parameters">Define parameters<a class="headerlink" href="#define-parameters" title="Permanent link">&para;</a></h1>
-<p>t_p1_ = tf.Variable(0.0, dtype=tf.float32)
-t_p1 = tf.nn.softplus(t_p1_)
-t_mu1 = tf.Variable(0.0, dtype=tf.float32)
-t_mu2 = tf.Variable(1.0, dtype=tf.float32)
-t_sigma1_ = tf.Variable(1.0, dtype=tf.float32)
-t_sigma1 = tf.nn.softplus(t_sigma1_)
-t_sigma2_ = tf.Variable(1.0, dtype=tf.float32)
-t_sigma2 = tf.nn.softplus(t_sigma2_)</p>
-<h1 id="define-model-and-objective-function">Define model and objective function<a class="headerlink" href="#define-model-and-objective-function" title="Permanent link">&para;</a></h1>
-<p>t_gm = ds.Mixture(
-    cat=ds.Categorical(probs=[t_p1, 1.0 - t_p1]),
-    components=[
-        ds.Normal(t_mu1, t_sigma1),
-        ds.Normal(t_mu2, t_sigma2),
-    ]
-)
-t_ll = tf.reduce_mean(t_gm.log_prob(t_x))</p>
-<h1 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">&para;</a></h1>
-<p>optimizer = tf.train.GradientDescentOptimizer(0.5)
-train = optimizer.minimize(-t_ll)</p>
-<h1 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h1>
-<p>sess = tf.Session()
-init = tf.global_variables_initializer()
-sess.run(init)
-for _ in range(500):
-    sess.run(train, {t_x: x})</p>
-<p>print(&lsquo;Estimated values:&rsquo;, sess.run([t_p1, t_mu1, t_mu2, t_sigma1, t_sigma2]))
-print(&lsquo;True values:&rsquo;, [p1, mu1, mu2, sigma1, sigma2])
-```</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="c1"># Parameters</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">mu2</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">sigma2</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="c1"># Simulate data</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;bool_&#39;</span><span class="p">)</span>
+<span class="n">n1</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">n1</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">ind</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu2</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="n">n1</span><span class="p">)</span>
+
+<span class="c1"># Histogram</span>
+<span class="c1">#plt.hist(x, bins=30)</span>
+<span class="c1">#plt.show()</span>
+
+<span class="c1"># #############</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.contrib.distributions</span> <span class="kn">as</span> <span class="nn">ds</span>
+
+<span class="c1"># Define data</span>
+<span class="n">t_x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Define parameters</span>
+<span class="n">t_p1_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">t_p1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">t_p1_</span><span class="p">)</span>
+<span class="n">t_mu1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">t_mu2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">t_sigma1_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">t_sigma1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">t_sigma1_</span><span class="p">)</span>
+<span class="n">t_sigma2_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">t_sigma2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">t_sigma2_</span><span class="p">)</span>
+
+<span class="c1"># Define model and objective function</span>
+<span class="n">t_gm</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Mixture</span><span class="p">(</span>
+    <span class="n">cat</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">probs</span><span class="o">=</span><span class="p">[</span><span class="n">t_p1</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">t_p1</span><span class="p">]),</span>
+    <span class="n">components</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">ds</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">t_mu1</span><span class="p">,</span> <span class="n">t_sigma1</span><span class="p">),</span>
+        <span class="n">ds</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">t_mu2</span><span class="p">,</span> <span class="n">t_sigma2</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">t_ll</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">t_gm</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">t_x</span><span class="p">))</span>
+
+<span class="c1"># Optimization</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="o">-</span><span class="n">t_ll</span><span class="p">)</span>
+
+<span class="c1"># Run</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="p">{</span><span class="n">t_x</span><span class="p">:</span> <span class="n">x</span><span class="p">})</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Estimated values:&#39;</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">t_p1</span><span class="p">,</span> <span class="n">t_mu1</span><span class="p">,</span> <span class="n">t_mu2</span><span class="p">,</span> <span class="n">t_sigma1</span><span class="p">,</span> <span class="n">t_sigma2</span><span class="p">]))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;True values:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">])</span>
+</pre></div>
 <h2 id="em">EM算法<a class="headerlink" href="#em" title="Permanent link">&para;</a></h2>
 <p>这一部分在我的<a href="https://esl.hohoweiya.xyz/">ESL-CN翻译项目</a>的<a href="https://esl.hohoweiya.xyz/08%20Model%20Inference%20and%20Averaging/8.5%20The%20EM%20Algorithm/index.html">8.5 EM算法</a>一节中有详细介绍。具体算法如下：</p>
 <p><img alt="" src="http://images2017.cnblogs.com/blog/953584/201712/953584-20171227194006363-115445559.png" /></p>
 <p>R语言代码如下（也可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/EM/em.R">ESL-CN项目</a>中找到）：</p>
-<p>```R</p>
-<h2 id="em-algorithm-for-two-component-gaussian-mixture">EM Algorithm for Two-component Gaussian Mixture<a class="headerlink" href="#em-algorithm-for-two-component-gaussian-mixture" title="Permanent link">&para;</a></h2>
-<h2 id="_4"><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h2 id="author-weiya">author: weiya<a class="headerlink" href="#author-weiya" title="Permanent link">&para;</a></h2>
-<h2 id="date-2017-07-19">date: 2017-07-19<a class="headerlink" href="#date-2017-07-19" title="Permanent link">&para;</a></h2>
-<h2 id="construct-the-data-in-figure-85">construct the data in figure 8.5<a class="headerlink" href="#construct-the-data-in-figure-85" title="Permanent link">&para;</a></h2>
-<p>y = c(-0.39, 0.12, 0.94, 1.67, 1.76, 2.44, 3.72, 4.28, 4.92, 5.53,
-      0.06, 0.48, 1.01, 1.68, 1.80, 3.25, 4.12, 4.60, 5.28, 6.22)</p>
-<h2 id="left-panel-of-figure-85">left panel of figure 8.5<a class="headerlink" href="#left-panel-of-figure-85" title="Permanent link">&para;</a></h2>
-<p>hist(y, breaks = 12, freq = FALSE, col = &ldquo;red&rdquo;, ylim = c(0, 1))</p>
-<h2 id="right-panel-of-figure-85">right panel of figure 8.5<a class="headerlink" href="#right-panel-of-figure-85" title="Permanent link">&para;</a></h2>
-<p>plot(density(y), ylim = c(0, 1), col = &ldquo;red&rdquo;)
-rug(y)</p>
-<p>fnorm &lt;- function(x, mu, sigma)
-{
-  return(1/(sqrt(2<em>pi)</em>sigma)<em>exp(-0.5</em>(x-mu)^2/sigma))
-}</p>
-<p>IterEM &lt;- function(mu1, mu2, sigma1, sigma2, pi0, eps)
-{
-  cat(&lsquo;Start EM&hellip;\n&rsquo;)
-  cat(paste0(&lsquo;pi = &lsquo;, pi0, &lsquo;\n&rsquo;))
-  iters = 0
-  ll = c()
-  while(TRUE)
-  {
-    ## Expectation step: compute the responsibilities
-    ## calculate the delta&rsquo;s expectation
-    gamma = sapply(y, function(x) pi0<em>fnorm(x, mu2, sigma2)/((1-pi0)</em>fnorm(x, mu1, sigma1) + pi0<em>fnorm(x, mu2, sigma2)))
-    ll = c(ll, sum((1-gamma)</em>log(fnorm(y,mu1,sigma1))+gamma<em>log(fnorm(y, mu2, sigma2))+(1-gamma)</em>log(1-pi0)+gamma<em>log(pi0)))
-    ## Maximization Step: compute the weighted means and variances
-    mu1.new = sum((1-gamma)</em>y)/sum(1-gamma)
-    mu2.new = sum(gamma<em>y)/sum(gamma)
-    sigma1.new = sqrt(sum((1-gamma)</em>(y-mu1.new)^2)/sum(1-gamma))
-    sigma2.new = sqrt(sum((gamma)*(y-mu2.new)^2)/sum(gamma))
-    pi0.new = sum(gamma)/length(y)
-    cat(paste0(&lsquo;pi = &lsquo;, pi0.new, &lsquo;\n&rsquo;))
-    if (abs(pi0.new-pi)&lt; eps || iters &gt; 50)
-    {
-      cat(&lsquo;Finish!\n&rsquo;)
-      cat(paste0(&lsquo;mu1 = &lsquo;, mu1.new, &lsquo;\n&rsquo;,
-                 &lsquo;mu2 = &lsquo;, mu2.new, &lsquo;\n&rsquo;,
-                 &lsquo;sigma1^2 = &lsquo;, sigma1.new^2, &lsquo;\n&rsquo;,
-                 &lsquo;sigma2^2 = &lsquo;, sigma2.new^2))
-      break
-    }
-    mu1 = mu1.new
-    mu2 = mu2.new
-    sigma1 = sigma1.new
-    sigma2 = sigma2.new
-    pi0 = pi0.new
-    iters = iters + 1
-  }
-  return(ll)
-}</p>
-<h2 id="take-initial-guesses-for-the-parameters">take initial guesses for the parameters<a class="headerlink" href="#take-initial-guesses-for-the-parameters" title="Permanent link">&para;</a></h2>
-<p>mu1 = 4.5; sigma1 = 1
-mu2 = 1; sigma2 = 1
-pi0 = 0.1
-eps = 0.01
-ll = IterEM(mu1, mu2, sigma1, sigma2, pi0, eps)</p>
-<h2 id="figure-86">Figure 8.6<a class="headerlink" href="#figure-86" title="Permanent link">&para;</a></h2>
-<p>plot(1:length(ll), ll, xlab = &lsquo;iterations&rsquo;, ylab = &lsquo;Log-likelihood&rsquo;, &lsquo;o&rsquo;)
-```</p>
+<div class="highlight"><pre><span></span><span class="c1">## EM Algorithm for Two-component Gaussian Mixture</span>
+<span class="c1">##</span>
+<span class="c1">## author: weiya</span>
+<span class="c1">## date: 2017-07-19</span>
+
+<span class="c1">## construct the data in figure 8.5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.39</span><span class="p">,</span> <span class="m">0.12</span><span class="p">,</span> <span class="m">0.94</span><span class="p">,</span> <span class="m">1.67</span><span class="p">,</span> <span class="m">1.76</span><span class="p">,</span> <span class="m">2.44</span><span class="p">,</span> <span class="m">3.72</span><span class="p">,</span> <span class="m">4.28</span><span class="p">,</span> <span class="m">4.92</span><span class="p">,</span> <span class="m">5.53</span><span class="p">,</span>
+      <span class="m">0.06</span><span class="p">,</span> <span class="m">0.48</span><span class="p">,</span> <span class="m">1.01</span><span class="p">,</span> <span class="m">1.68</span><span class="p">,</span> <span class="m">1.80</span><span class="p">,</span> <span class="m">3.25</span><span class="p">,</span> <span class="m">4.12</span><span class="p">,</span> <span class="m">4.60</span><span class="p">,</span> <span class="m">5.28</span><span class="p">,</span> <span class="m">6.22</span><span class="p">)</span>
+
+<span class="c1">## left panel of figure 8.5</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">breaks</span> <span class="o">=</span> <span class="m">12</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+
+<span class="c1">## right panel of figure 8.5</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">rug</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+
+<span class="n">fnorm</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="nf">return</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="kc">pi</span><span class="p">)</span><span class="o">*</span><span class="n">sigma</span><span class="p">)</span><span class="o">*</span><span class="nf">exp</span><span class="p">(</span><span class="m">-0.5</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="n">^2</span><span class="o">/</span><span class="n">sigma</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="n">IterEM</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">pi0</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="nf">cat</span><span class="p">(</span><span class="s">&#39;Start EM...\n&#39;</span><span class="p">)</span>
+  <span class="nf">cat</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;pi = &#39;</span><span class="p">,</span> <span class="n">pi0</span><span class="p">,</span> <span class="s">&#39;\n&#39;</span><span class="p">))</span>
+  <span class="n">iters</span> <span class="o">=</span> <span class="m">0</span>
+  <span class="n">ll</span> <span class="o">=</span> <span class="nf">c</span><span class="p">()</span>
+  <span class="nf">while</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">## Expectation step: compute the responsibilities</span>
+    <span class="c1">## calculate the delta&#39;s expectation</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">pi0</span><span class="o">*</span><span class="nf">fnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">pi0</span><span class="p">)</span><span class="o">*</span><span class="nf">fnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu1</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">)</span> <span class="o">+</span> <span class="n">pi0</span><span class="o">*</span><span class="nf">fnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">)))</span>
+    <span class="n">ll</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">ll</span><span class="p">,</span> <span class="nf">sum</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">gamma</span><span class="p">)</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="nf">fnorm</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">mu1</span><span class="p">,</span><span class="n">sigma1</span><span class="p">))</span><span class="o">+</span><span class="n">gamma</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="nf">fnorm</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">gamma</span><span class="p">)</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">pi0</span><span class="p">)</span><span class="o">+</span><span class="n">gamma</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="n">pi0</span><span class="p">)))</span>
+    <span class="c1">## Maximization Step: compute the weighted means and variances</span>
+    <span class="n">mu1.new</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">gamma</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">gamma</span><span class="p">)</span>
+    <span class="n">mu2.new</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
+    <span class="n">sigma1.new</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">gamma</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">mu1.new</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">gamma</span><span class="p">))</span>
+    <span class="n">sigma2.new</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">((</span><span class="n">gamma</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">mu2.new</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">gamma</span><span class="p">))</span>
+    <span class="n">pi0.new</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="nf">cat</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;pi = &#39;</span><span class="p">,</span> <span class="n">pi0.new</span><span class="p">,</span> <span class="s">&#39;\n&#39;</span><span class="p">))</span>
+    <span class="nf">if </span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">pi0.new</span><span class="o">-</span><span class="kc">pi</span><span class="p">)</span><span class="o">&lt;</span> <span class="n">eps</span> <span class="o">||</span> <span class="n">iters</span> <span class="o">&gt;</span> <span class="m">50</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="nf">cat</span><span class="p">(</span><span class="s">&#39;Finish!\n&#39;</span><span class="p">)</span>
+      <span class="nf">cat</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;mu1 = &#39;</span><span class="p">,</span> <span class="n">mu1.new</span><span class="p">,</span> <span class="s">&#39;\n&#39;</span><span class="p">,</span>
+                 <span class="s">&#39;mu2 = &#39;</span><span class="p">,</span> <span class="n">mu2.new</span><span class="p">,</span> <span class="s">&#39;\n&#39;</span><span class="p">,</span>
+                 <span class="s">&#39;sigma1^2 = &#39;</span><span class="p">,</span> <span class="n">sigma1.new^2</span><span class="p">,</span> <span class="s">&#39;\n&#39;</span><span class="p">,</span>
+                 <span class="s">&#39;sigma2^2 = &#39;</span><span class="p">,</span> <span class="n">sigma2.new^2</span><span class="p">))</span>
+      <span class="n">break</span>
+    <span class="p">}</span>
+    <span class="n">mu1</span> <span class="o">=</span> <span class="n">mu1.new</span>
+    <span class="n">mu2</span> <span class="o">=</span> <span class="n">mu2.new</span>
+    <span class="n">sigma1</span> <span class="o">=</span> <span class="n">sigma1.new</span>
+    <span class="n">sigma2</span> <span class="o">=</span> <span class="n">sigma2.new</span>
+    <span class="n">pi0</span> <span class="o">=</span> <span class="n">pi0.new</span>
+    <span class="n">iters</span> <span class="o">=</span> <span class="n">iters</span> <span class="o">+</span> <span class="m">1</span>
+  <span class="p">}</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">ll</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">## take initial guesses for the parameters</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="m">4.5</span><span class="p">;</span> <span class="n">sigma1</span> <span class="o">=</span> <span class="m">1</span>
+<span class="n">mu2</span> <span class="o">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">sigma2</span> <span class="o">=</span> <span class="m">1</span>
+<span class="n">pi0</span> <span class="o">=</span> <span class="m">0.1</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="m">0.01</span>
+<span class="n">ll</span> <span class="o">=</span> <span class="nf">IterEM</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">pi0</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+
+<span class="c1">## Figure 8.6</span>
+<span class="nf">plot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">ll</span><span class="p">),</span> <span class="n">ll</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#39;iterations&#39;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&#39;Log-likelihood&#39;</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">)</span>
+</pre></div>
 <h2 id="gibbs">Gibbs采样<a class="headerlink" href="#gibbs" title="Permanent link">&para;</a></h2>
 <p>这一部分在我的<a href="https://esl.hohoweiya.xyz/">ESL-CN翻译项目</a>的<a href="https://esl.hohoweiya.xyz/08%20Model%20Inference%20and%20Averaging/8.6%20MCMC%20for%20Sampling%20from%20the%20Posterior/index.html">8.6 MCMC向后采样</a>一节中有详细介绍。具体算法如下：</p>
 <p><img alt="" src="http://images2017.cnblogs.com/blog/953584/201712/953584-20171227194225300-1574126579.png" /></p>
 <p>R语言代码如下（也可以在<a href="https://github.com/szcf-weiya/ESL-CN/blob/master/code/Gibbs/gibbs.R">ESL-CN项目</a>中找到）：</p>
-<p>```R</p>
-<h2 id="gibbs-sampling-for-mixtures">Gibbs sampling for mixtures<a class="headerlink" href="#gibbs-sampling-for-mixtures" title="Permanent link">&para;</a></h2>
-<h2 id="based-on-the-algorithm-84-of-esl">based on the algorithm 8.4 of ESL<a class="headerlink" href="#based-on-the-algorithm-84-of-esl" title="Permanent link">&para;</a></h2>
-<h2 id="_5"><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<h2 id="author-weiya_1">Author: weiya<a class="headerlink" href="#author-weiya_1" title="Permanent link">&para;</a></h2>
-<h2 id="date-20170912">Date: 2017.09.12<a class="headerlink" href="#date-20170912" title="Permanent link">&para;</a></h2>
-<h2 id="data-in-figure-85">data in figure 8.5<a class="headerlink" href="#data-in-figure-85" title="Permanent link">&para;</a></h2>
-<p>y = c(-0.39, 0.12, 0.94, 1.67, 1.76, 2.44, 3.72, 4.28, 4.92, 5.53,
-      0.06, 0.48, 1.01, 1.68, 1.80, 3.25, 4.12, 4.60, 5.28, 6.22)</p>
-<h2 id="initial-values">initial values<a class="headerlink" href="#initial-values" title="Permanent link">&para;</a></h2>
-<p>mu1 = 4
-mu2 = 1
-sigma1 = 0.93
-sigma2 = 0.88
-N = length(y)
-t = 0
-mu1.h = mu1
-mu2.h = mu2
-Delta = rep(c(0, 1), each = N/2)
-pi0 = sum(Delta)/N
-pi0.h = pi0
-while(TRUE)
-{
-  t = t + 1
-  gamma = sapply(1:N, function(i) pi0<em>dnorm(y[i], mu2, sigma2)/((1-pi0)</em>dnorm(y[i], mu1, sigma1)+pi0<em>dnorm(y[i], mu2, sigma2)))
-  ## sample Delta
-  r = runif(N)
-  Delta[gamma &lt; r] = 0
-  Delta[gamma &gt;= r] = 1
-  pi0 = sum(Delta)/N
-  ## re-calculate mu1 and mu2
-  mu1 = sum((1-Delta)</em>y)/(sum(1-Delta)+1e-10)
-  mu2 = sum(Delta*y)/(sum(Delta)+1e-10)
-  ## print info
-  cat(&ldquo;t = &ldquo;, t, &ldquo;\n&rdquo;)
-  for (i in 1:N)
-    cat(Delta[i], &rdquo; &ldquo;)
-  cat(&ldquo;\n&rdquo;)
-  cat(&ldquo;mu1 = &ldquo;, mu1, &rdquo; mu2 = &ldquo;, mu2, &ldquo;pi0 = &ldquo;,pi0, &ldquo;\n&rdquo;)</p>
-<p>## generate mu1 and mu2
-  mu1 = rnorm(1, mu1, sigma1)
-  mu2 = rnorm(1, mu2, sigma2)
-  mu1.h = c(mu1.h, mu1)
-  mu2.h = c(mu2.h, mu2)
-  pi0.h = c(pi0.h, pi0)
-  if (t &gt; 200)
-    break
-}</p>
-<h2 id="res">res<a class="headerlink" href="#res" title="Permanent link">&para;</a></h2>
-<h2 id="sometimes-good-while-sometimes-bad">sometimes good, while sometimes bad.<a class="headerlink" href="#sometimes-good-while-sometimes-bad" title="Permanent link">&para;</a></h2>
-<h2 id="in-addition-sometimes-mu1-and-mu2-are-inverted">In addition, sometimes mu1 and mu2 are inverted.<a class="headerlink" href="#in-addition-sometimes-mu1-and-mu2-are-inverted" title="Permanent link">&para;</a></h2>
-<p>```</p>
+<div class="highlight"><pre><span></span><span class="c1">## Gibbs sampling for mixtures</span>
+<span class="c1">## based on the algorithm 8.4 of ESL</span>
+<span class="c1">##</span>
+<span class="c1">## Author: weiya</span>
+<span class="c1">## Date: 2017.09.12</span>
+
+<span class="c1">## data in figure 8.5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.39</span><span class="p">,</span> <span class="m">0.12</span><span class="p">,</span> <span class="m">0.94</span><span class="p">,</span> <span class="m">1.67</span><span class="p">,</span> <span class="m">1.76</span><span class="p">,</span> <span class="m">2.44</span><span class="p">,</span> <span class="m">3.72</span><span class="p">,</span> <span class="m">4.28</span><span class="p">,</span> <span class="m">4.92</span><span class="p">,</span> <span class="m">5.53</span><span class="p">,</span>
+      <span class="m">0.06</span><span class="p">,</span> <span class="m">0.48</span><span class="p">,</span> <span class="m">1.01</span><span class="p">,</span> <span class="m">1.68</span><span class="p">,</span> <span class="m">1.80</span><span class="p">,</span> <span class="m">3.25</span><span class="p">,</span> <span class="m">4.12</span><span class="p">,</span> <span class="m">4.60</span><span class="p">,</span> <span class="m">5.28</span><span class="p">,</span> <span class="m">6.22</span><span class="p">)</span>
+
+<span class="c1">## initial values</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="m">4</span>
+<span class="n">mu2</span> <span class="o">=</span> <span class="m">1</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="m">0.93</span>
+<span class="n">sigma2</span> <span class="o">=</span> <span class="m">0.88</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="m">0</span>
+<span class="n">mu1.h</span> <span class="o">=</span> <span class="n">mu1</span>
+<span class="n">mu2.h</span> <span class="o">=</span> <span class="n">mu2</span>
+<span class="n">Delta</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">each</span> <span class="o">=</span> <span class="n">N</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+<span class="n">pi0</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Delta</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+<span class="n">pi0.h</span> <span class="o">=</span> <span class="n">pi0</span>
+<span class="nf">while</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="m">1</span>
+  <span class="n">gamma</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">pi0</span><span class="o">*</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">y[i]</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">pi0</span><span class="p">)</span><span class="o">*</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">y[i]</span><span class="p">,</span> <span class="n">mu1</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">)</span><span class="o">+</span><span class="n">pi0</span><span class="o">*</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">y[i]</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">)))</span>
+  <span class="c1">## sample Delta</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+  <span class="n">Delta[gamma</span> <span class="o">&lt;</span> <span class="n">r]</span> <span class="o">=</span> <span class="m">0</span>
+  <span class="n">Delta[gamma</span> <span class="o">&gt;=</span> <span class="n">r]</span> <span class="o">=</span> <span class="m">1</span>
+  <span class="n">pi0</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Delta</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+  <span class="c1">## re-calculate mu1 and mu2</span>
+  <span class="n">mu1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">Delta</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">Delta</span><span class="p">)</span><span class="m">+1e-10</span><span class="p">)</span>
+  <span class="n">mu2</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Delta</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">Delta</span><span class="p">)</span><span class="m">+1e-10</span><span class="p">)</span>
+  <span class="c1">## print info</span>
+  <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;t = &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">N</span><span class="p">)</span>
+    <span class="nf">cat</span><span class="p">(</span><span class="n">Delta[i]</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
+  <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+  <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;mu1 = &quot;</span><span class="p">,</span> <span class="n">mu1</span><span class="p">,</span> <span class="s">&quot; mu2 = &quot;</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="s">&quot;pi0 = &quot;</span><span class="p">,</span><span class="n">pi0</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+  <span class="c1">## generate mu1 and mu2</span>
+  <span class="n">mu1</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">mu1</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">)</span>
+  <span class="n">mu2</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">)</span>
+  <span class="n">mu1.h</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">mu1.h</span><span class="p">,</span> <span class="n">mu1</span><span class="p">)</span>
+  <span class="n">mu2.h</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">mu2.h</span><span class="p">,</span> <span class="n">mu2</span><span class="p">)</span>
+  <span class="n">pi0.h</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">pi0.h</span><span class="p">,</span> <span class="n">pi0</span><span class="p">)</span>
+  <span class="nf">if </span><span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="m">200</span><span class="p">)</span>
+    <span class="n">break</span>
+<span class="p">}</span>
+
+<span class="c1">## res</span>
+<span class="c1">## sometimes good, while sometimes bad.</span>
+<span class="c1">## In addition, sometimes mu1 and mu2 are inverted.</span>
+</pre></div>
                 
                   
                 
@@ -3524,7 +3571,7 @@ while(TRUE)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2022-10-20 16:41:44
+        Last Build Date UTC : 2022-10-30 01:20:03
       </div>
       
         
