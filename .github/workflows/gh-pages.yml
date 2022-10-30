@@ -17,7 +17,8 @@ jobs:
           pip install mkdocs==0.17.2
           pip install mkdocs-material==2.5.2
           pip install python-markdown-math
-          pip install pymdown-extensions
+          pip install pygments==2.3.1
+          pip install pymdown-extensions==9.1
           pip install git+https://github.com/szcf-weiya/mkdocs-git-revision-date-plugin.git
       
       - name: Build

@@ -10,7 +10,8 @@
 
 ## 问题
 
-特征$X_1,\ldots,X_{10}$是标准独立高斯分布，目标$Y$定义如下
+特征 $X_1,\ldots,X_{10}$ 是标准独立高斯分布，目标$Y$定义如下
+
 $$
 Y=
 \left\{
@@ -22,13 +23,13 @@ Y=
 \qquad (10.2)
 $$
 
-考虑2000个训练情形，每个类别大概有1000个情形，以及10000个测试观测值。若分类器选为“stump”（含两个终止结点的分类树）。
+考虑 2000 个训练情形，每个类别大概有 1000 个情形，以及 10000 个测试观测值。若分类器选为“stump”（含两个终止结点的分类树）。
 
 ## Julia实现
 
 Julia的具体细节参见[官方manual](https://docs.julialang.org/en/stable/manual/)。
 
-首先我们定义模型的结构，我们需要两个参数，弱分类器的个数`n_clf`和存储`n_clf`个弱分类器的`n_clf`$\times 4$的矩阵。因为对于每个弱分类器——两个终止结点的stump，我们需要三个参数确定，分割变量的编号`idx`，该分割变量对应的cutpoint值`val`，以及分类的方向`flag`（当`flag`取1时则所有比cutpoint大的观测值分到树的右结点，而`flag`取0时分到左结点），另外算法中需要确定的`alpha`参数，所以一个stump需要四个参数。下面代码默认弱分类器个数为10。
+首先我们定义模型的结构，我们需要两个参数，弱分类器的个数 `n_clf` 和存储 `n_clf` 个弱分类器的 `n_clf`$\times 4$ 的矩阵。因为对于每个弱分类器——两个终止结点的stump，我们需要三个参数确定，分割变量的编号`idx`，该分割变量对应的cutpoint值`val`，以及分类的方向`flag`（当`flag` 取 1 时则所有比 cutpoint 大的观测值分到树的右结点，而 `flag` 取 0 时分到左结点），另外算法中需要确定的 `alpha` 参数，所以一个 stump 需要四个参数。下面代码默认弱分类器个数为 10。
 
 ```julia
 struct Adaboost
@@ -43,6 +44,7 @@ end
 ```
 
 训练模型
+
 ```julia
 function train!(model::Adaboost, X::Matrix, y::Vector)
     n_sample, n_feature = size(X)
