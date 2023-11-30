@@ -3188,7 +3188,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-10-24 18:09:35</td>
+<td>2023-11-30</td>
 </tr>
 <tr>
 <td>状态</td>
@@ -3215,13 +3215,13 @@ f(x) &= \sum\limits_{j=1}^MK_{\lambda_j}(\xi_j,x)\beta_j\notag\\
 <ul>
 <li>优化关于所有参数的平方和
 <script type="math/tex; mode=display">
-\underset{\{\lambda_j,\xi_j,\beta_j\}_1^M}{\min}\sum\limits_{i=1}^M\left(y_i-\beta_0-\sum\limits_{j=1}^M\beta_j\exp\left\{-\frac{(x_i-\xi_j)^T(x_i-\xi_j)}{\lambda_j^2}\right\}\right)^2\tag{6.29}
+\underset{\{\lambda_j,\xi_j,\beta_j\}_1^M}{\min}\sum\limits_{i=1}^N\left(y_i-\beta_0-\sum\limits_{j=1}^M\beta_j\exp\left\{-\frac{(x_i-\xi_j)^T(x_i-\xi_j)}{\lambda_j^2}\right\}\right)^2\tag{6.29}
 </script>
 </li>
 </ul>
 <p>​这个模型一般称为 RBF 网络，这是 S 型神经网络的替代选择，将在 <a href="../../11-Neural-Networks/11.1-Introduction/index.html">第 11 章</a> 讨论；$\xi_j$ 和 $\lambda_j$ 在参数中有重要作用．这个准则是有着多重局部最小点的非凸函数，并且优化的算法类似神经网络中的算法．</p>
 <ul>
-<li>分开估计 $\{\lambda_j,\xi_j\}$ 和 $\beta_j$．给定前者，后者的估计是简单的最小二乘问题．通常单独用 $X$ 的分布，以非监督的方式选择核参数 $\lambda_j$ 和 $\xi_j$．其中一种方式是在给定中心 $\xi_j$ 和缩放 $\lambda_j$ 时，对训练 $x_i$ 拟合高斯混合密度模型．一种特别的方式是使用聚类方法来确定原型 $\xi_j$，并且将 $\lambda_j=\lambda$ 看成是超参数．这些方式的显然缺点是条件分布 $\Pr(Y\mid X)$ 以及 $\E(Y\mid X)$ 是不起作用的．不过它们的优点是，可以更简单地实现．</li>
+<li>分开估计 $\{\lambda_j,\xi_j\}$ 和 $\beta_j$．给定前者，后者的估计是简单的最小二乘问题．通常单独用 $X$ 的分布，以非监督的方式选择核参数 $\lambda_j$ 和 $\xi_j$．其中一种方式是在给定中心 $\xi_j$ 和缩放 $\lambda_j$ 时，对训练 $x_i$ 拟合高斯混合密度模型．一种特别的方式是使用聚类方法来确定原型 $\xi_j$，并且将 $\lambda_j=\lambda$ 看成是超参数．这些方式的显然缺点是条件分布 $\Pr(Y\mid X)$ 以及 $\E(Y\mid X)$ 对于 where the action is concentrated 是不起作用的．不过它们的优点是，可以更简单地实现．</li>
 </ul>
 <div class="admonition question">
 <p class="admonition-title">weiya 注：翻译相关</p>
@@ -3353,7 +3353,7 @@ f(x)=\sum\limits_{i=1}^N\alpha_i K(x, x_i)\tag{5.50}\label{5.50}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2023-10-10 14:41:05
+        Last Build Date UTC : 2023-11-30 17:16:49
       </div>
       
         
