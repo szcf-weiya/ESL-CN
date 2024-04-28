@@ -1,3 +1,10 @@
+The data is also accessible at <https://archive.ics.uci.edu/dataset/94/spambase>
+
+The following information is copied from the ESL site: <https://hastie.su.domains/ElemStatLearn/> 
+
+=========================
+
+```
 1. Title:  SPAM E-mail Database
 
 2. Sources:
@@ -140,3 +147,4 @@ Attribute Statistics:
 
 This file: 'spambase.DOCUMENTATION' at the UCI Machine Learning Repository
 http://www.ics.uci.edu/~mlearn/MLRepository.html
+```
