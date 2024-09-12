@@ -241,7 +241,7 @@ edit_uri: edit/master/docs/
 
 #website_cn: 随笔
 
-copyright: 'Copyright &copy; 2016-2022 weiya'
+copyright: 'Copyright &copy; 2016-2024 weiya'
 
 markdown_extensions:
   - admonition
