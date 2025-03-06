@@ -60,6 +60,24 @@
     
     
       
+      <!--rm disqus ad refer to https://www.javaer101.com/article/25891160.html-->
+      <script src="../../assets/javascripts/jquery-latest.min.js"></script>
+      <script>
+        (function($){
+          setInterval(() => {
+              $.each($('iframe'), (arr,x) => {
+                  let src = $(x).attr('src');
+                  if (src && src.match(/(ads-iframe)|(disqusads)/gi)) {
+                      $(x).remove();
+                  }
+                  let title = $(x).attr('title');
+                  if (!src && title == "Disqus") {
+                    $(x).remove();
+                  }
+              });
+          }, 300);
+      })(jQuery);
+      </script>
       
     
     
@@ -3285,28 +3303,13 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
                   <h2 id="__comments">Comments</h2>
-                  <div id="disqus_thread"></div>
-<script>
-  var disqus_config = function () {
-    this.page.url = "https://esl.hohoweiya.xyz/02-Overview-of-Supervised-Learning/2.7-Structured-Regression-Models/index.html";
-    this.page.identifier =
-      "/02-Overview-of-Supervised-Learning/2.7-Structured-Regression-Models/index.html";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "//esl-hohoweiya-xyz.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-
-<script src="https://giscus.app/client.js"
+                  <script src="https://giscus.app/client.js"
         data-repo="szcf-weiya/ESL-CN"
         data-repo-id="MDEwOlJlcG9zaXRvcnk2OTYyNTgzOA=="
         data-category="评论区"
         data-category-id="DIC_kwDOBCZn7s4ChHU6"
         data-mapping="pathname"
-        data-strict="0"
+        data-strict="1"
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
@@ -3315,6 +3318,28 @@
         crossorigin="anonymous"
         async>
 </script>
+
+
+<div id="disqus_thread"></div>
+<script>
+  if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+    var disqus_config = function () {
+      this.page.url = "https://esl.hohoweiya.xyz/02-Overview-of-Supervised-Learning/2.7-Structured-Regression-Models/index.html";
+      this.page.identifier =
+        "/02-Overview-of-Supervised-Learning/2.7-Structured-Regression-Models/index.html";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "//esl-hohoweiya-xyz.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  } else {
+    console.log("Disqus is disabled on localhost.");
+  }
+</script>
+
+
                 
               
             </article>
@@ -3365,7 +3390,7 @@
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2016-2024 weiya
+            Copyright &copy; 2016-2025 weiya
           </div>
         
         <!--
@@ -3375,7 +3400,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2024-09-12 05:34:52
+        Last Build Date UTC : 2025-03-06 21:35:35
       </div>
       
         
