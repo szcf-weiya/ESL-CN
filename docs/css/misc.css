@@ -80,3 +80,14 @@ label.md-nav__title {
 .mjx-mtd:target {
   scroll-margin-top: 5rem!important;
 }
+
+/* 强制表格宽度为100% */
+.md-typeset table {
+  width: 100%;
+  display: table !important;
+}
+/* 覆盖可能限制宽度的默认样式 */
+.md-typeset table:not([class]) {
+  max-width: none !important;
+  table-layout: auto !important;
+}
