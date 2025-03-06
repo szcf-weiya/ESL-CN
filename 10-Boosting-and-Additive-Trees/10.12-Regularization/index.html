@@ -3277,7 +3277,7 @@
 <p>控制 $M$ 的值并不是唯一正则化的策略．与岭回归和神经网络一样，也可以应用收缩策略（见 <a href="../../03-Linear-Methods-for-Regression/3.4-Shrinkage-Methods/index.html">3.4.1 节</a>和 <a href="../../11-Neural-Networks/11.5-Some-Issues-in-Training-Neural-Networks/index.html">11.5 节</a>）．Boosting 中收缩最简单的实现方式是使用因子 $0 &lt; \nu &lt; 1$ 来收缩每棵树的贡献．也就是，算法 10.3 的第 2(d) 行用下式代替</p>
 <p>
 <script type="math/tex; mode=display">
-f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\tag{10.41}
+f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\tag{10.41}\label{10.41}
 </script>
 </p>
 <p>参数 $\nu$ 可以看成是控制 boosting 过程的学习速率．较小的 $\nu$（更多的收缩）会导致同样大小的迭代次数 $M$ 下更大的训练风险．因此，$\nu$ 和 $M$ 都控制了训练数据的预测风险．然而，这些参数并不单独作用．对于同样的训练风险较小的 $\nu$ 会导致较大的 $M$，所以它们之间存在权衡．</p>
@@ -3448,7 +3448,7 @@ Y=
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2025-03-06 22:14:49
+        Last Build Date UTC : 2025-03-06 23:15:05
       </div>
       
         

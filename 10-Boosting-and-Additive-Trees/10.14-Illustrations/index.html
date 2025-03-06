@@ -3277,47 +3277,85 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2018-12-30</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
+<td>2025-03-06</td>
 </tr>
 </tbody>
 </table>
-<p>这一节我们在几个大型数据集上采用合适的损失函数应用 Gradient Boosting 方法．</p>
+<p>这一节我们在几个大型数据集上应用 <strong>梯度提升 (Gradient Boosting)</strong> 方法, 并根据需要选择了不同的损失函数．</p>
 <h2 id="_1">加利福利亚住宅<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>数据集 (Pace and Barry, 1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 可以在 CMU StatLib 仓库中找到．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>原书作者脚注给出的链接是 <a href="http://lib.stat.cmu.edu">http://lib.stat.cmu.edu</a>，但无法访问，应该是 <a href="http://lib.stat.cmu.edu/datasets/">http://lib.stat.cmu.edu/datasets/ </a>．</p>
+<p>原书作者脚注给出的链接是 <a href="http://lib.stat.cmu.edu">http://lib.stat.cmu.edu</a>，但现已无法访问，应该是 <a href="http://lib.stat.cmu.edu/datasets/">http://lib.stat.cmu.edu/datasets/ </a>．</p>
+<p>另外，本仓库也对此数据进行了备份，详见 <a href="https://github.com/szcf-weiya/ESL-CN/tree/master/data/Housing">ESL-CN/data/Housing</a>.</p>
 </div>
-<p>数据中包含加利福利亚 20460 个小区（1990 年人口普查块群）的 <strong>聚合数据 (aggregated data)</strong>．响应变量 $Y$ 是每个小区的房子价值的中位数（单位为 $100,000）．预测变量是 <strong>人口统计数据 (demographics)</strong>，比如收入的中位数 <code>MedInc</code>，用房子个数 <code>House</code> 表征的房屋密度，以及每个房子平均占用面积 <code>AveOccup</code>．另外还有的预测变量是每个校区的位置（经度 <code>longitude</code> 和纬度 <code>latitude</code>），以及一些反映小区中房子特点的量：房间个数的平均值 <code>AveRooms</code> 以及卧室个数的平均值 <code>AveBedrms</code>．因此总共有 8 个预测变量，都是数值型的．</p>
+<p>数据中包含加利福利亚 20460 个小区（1990 年人口普查块群）的 <strong>聚合数据 (aggregated data)</strong>．响应变量 $Y$ 是每个小区的房子价值的中位数 <code>median house value</code>（单位为 $100,000）．预测变量是 <strong>人口统计数据 (demographics)</strong>，比如收入的中位数 <code>MedInc</code>，用房子个数 <code>House</code> 表征的房屋密度，以及每个房子平均占用率 <code>AveOccup</code>．另外还有的预测变量是每个小区的位置（经度 <code>longitude</code> 和纬度 <code>latitude</code>），以及一些反映小区中房子特点的量：房间个数的平均值 <code>AveRooms</code> 以及卧室个数的平均值 <code>AveBedrms</code>．因此总共有 8 个预测变量，都是数值型的．</p>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：</p>
-<p>这里书中列出的其实只有 7 个，查阅原数据集，发现漏掉的一个是 <code>housing median age</code>．当然，其实原数据集本来是有 9 个预测变量，另外一个是 <code>population</code>，而且给出了 <code>total rooms</code>, <code>total bedrooms</code>，但没有 <code>AveRooms</code> 和 <code>AveBedrms</code>，所以这里作者大概是直接取平均数省掉了一个变量 <code>population</code>．</p>
+<p>原数据集的 8 个预测变量为：<code>median income</code>, <code>housing median age</code>, <code>total rooms</code>, <code>total bedrooms</code>, <code>population</code>, <code>households</code>, <code>latitude</code>, and <code>longitude</code>. 
+这里作者应当是定义了</p>
+<ul>
+<li><code>House</code> &lt;- <code>households</code></li>
+<li><code>AveOccup</code> &lt;- <code>population/households</code></li>
+<li><code>AveRooms</code> &lt;- <code>total rooms/population</code></li>
+<li><code>AveBedrms</code> &lt;- <code>total bedrooms/population</code></li>
+</ul>
 </div>
-<p>我们采用 MART 过程来拟合 Gradient Boosting 模型，其中有 $J=6$ 个终止结点，学习速率 (10.41) 取 $\nu=0.1$，并且采用 Huber 损失来预测数值型响应变量．我们随机将数据集分成训练集 (80%) 和测试集 (20%)．</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
+<script type="math/tex; mode=display">
+f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\tag{10.41}\label{10.41}
+</script>
+</p>
+</div>
+<p>我们采用 MART 过程来拟合 Gradient Boosting 模型，其中有 $J=6$ 个终止结点，学习速率 \eqref{10.41} 取 $\nu=0.1$，并且采用 Huber 损失来预测数值型响应变量．我们随机将数据集分成训练集 (80%) 和测试集 (20%)．</p>
 <p><img alt="" src="../../img/10/fig10.13.png" /></p>
-<p>图 10.13 展示了作为在训练数据和测试数据上迭代次数 $M$ 的函数的平均绝对误差</p>
+<p>图 10.13 展示了作为在训练数据和测试数据上迭代次数 $M$ 的函数的<strong>平均绝对误差 (average absolute error)</strong></p>
 <p>
 <script type="math/tex; mode=display">
 \mathrm{AAE} = \E\vert y-\hat f_M(x)\vert \tag{10.53}
 </script>
 </p>
-<p>测试误差看起来随着 $M$ 的增大单调降低，并且在早期迅速下降然后随着迭代增加渐渐变成常值．因此，$M$ 的具体选择不重要，只要它不要太小．在许多应用中都趋向于是这种形式．收缩策略 (10.41) 趋向于消除过拟合的问题，特别是对于较大的数据集．</p>
-<p>800 次迭代之后的 AAE 为 0.31．这个可以跟最优常值预测变量的中值 ${y_i}$ （0.89）进行比较．用更熟悉的相似性的量，这个模型的多相关系数的平方是 $R^2=0.84$．Pace and Barry (1997)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 采用一个很复杂巧妙的空间自回归过程，其中每个小区的预测是基于周围小区的 <strong>房子价值的中位数 (median house values)</strong>，并将其他预测变量看成协变量得到的．变换后预测 $\log Y$ 时他们达到 $R^2=0.85$．将 $\log Y$ 看成响应变量，gradient boosting 对应的值为 $R^2=0.86$．</p>
+<p>测试误差看起来随着 $M$ 的增大单调降低，并且在早期迅速下降然后随着迭代增加渐渐变成常值．因此，$M$ 的具体选择不重要，只要它不要太小．在许多应用中都趋向于是这种形式．收缩策略 \eqref{10.41} 趋向于消除过拟合的问题，特别是对于较大的数据集．</p>
+<p>800 次迭代之后的 AAE 为 0.31．这个可以跟最优常值预测变量的中值 $\text{median}\{y_i\}$ (0.89) 进行比较．用更熟悉的相似性的量，这个模型的多相关系数的平方是 $R^2=0.84$．Pace and Barry (1997)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 采用一个很复杂巧妙的空间自回归过程，其中每个小区的预测是基于周围小区的房子价值的中位数 <code>median house values</code>，并将其他预测变量看成协变量得到的．变换后预测 $\log Y$ 时他们达到 $R^2=0.85$．将 $\log Y$ 看成响应变量，gradient boosting 对应的值为 $R^2=0.86$．</p>
 <p><img alt="" src="../../img/10/fig10.14.png" /></p>
-<p>图 10.14 展示了每个预测变量的相对变量重要度．意料之中，小区中收入的中位数 (median income) 是最相关的预测变量．经度 (longitude)， 纬度 (latitude)，以及平均占用面积 (occupancy) 大致都有收入一半的重要度，而剩下的则没多大影响了．</p>
+<p>图 10.14 展示了每个预测变量的相对变量重要度．意料之中，小区中收入的中位数 <code>MedInc</code> 是最相关的预测变量．经度 <code>latitude</code>， 纬度 <code>longitude</code>，以及平均占用率 <code>AveOccup</code> 大致都有收入 <code>MedInc</code> 一半的重要度，而剩下的则没多大影响了．</p>
 <p><img alt="" src="../../img/10/fig10.15.png" /></p>
-<p>图 10.15 展示了单变量在最相关的非位置预测变量上的偏相依性图．注意到这些图并不是严格的光滑．这是采用基于树模型的后果．决策树产生了不连续的分段线性模型 (10.25)．多棵树的和 (10.28) 也继承了这个特点，而且自然地有更多的分段．与本书中讨论的其他方法不一样，这里的结果没有任何光滑约束．任意尖锐 (sharp) 的不连续都可以被建模．这些曲线一般呈现出光滑趋势的事实是因为这估计问题中的响应变量的最好的估计值．通常是这种情形．</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
+<script type="math/tex; mode=display">
+T(x;\Theta)=\sum\limits_{j=1}^J\gamma_jI(x\in R_j)\tag{10.25}\label{10.25}
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+f_M(x)=\sum\limits_{m=1}^MT(x;\Theta_m)\tag{10.28}\label{10.28}
+</script>
+</p>
+</div>
+<p>图 10.15 展示了单变量在最相关的非位置预测变量上的偏相依性图．注意到这些图并不是严格的光滑．这是采用基于树模型的后果．决策树产生了不连续的分段线性模型 \eqref{10.25}．多棵树的和 \eqref{10.28} 也继承了这个特点，而且自然地有更多的分段．与本书中讨论的其他方法不一样，这里的结果没有任何光滑约束．任意尖锐 (sharp) 的不连续都可以被建模．这些曲线通常呈现出平滑的趋势，这是因为它们被估计为最能预测该问题响应变量的结果．通常是这种情形．</p>
 <p>每幅图中很轴上的短竖线标记了对应变量分布的 <strong>十分位数 (deciles)</strong>．注意到数据的密度在边处较低，特别是对于较大的值．这导致在这些区域曲线不能很好地确定出来．这些图的竖轴尺度是一样的，因此可以直观地比较不同变量的相对重要度．</p>
-<p>房屋价值的中位数在收入的中位数上的偏相依性是单调递增的，在整个数据取值范围内几乎成一条直线．房屋价值大体上随着平均占用面积的增长而单调下降，除了当平均占用率小于 1 的情形．房屋价值的中位数对平均房间数不是单调的．近似在 3 个房间数时有个最小值，并且对于较大和较小的房间数都会增大．</p>
-<p>房屋价值的中位数看起来对房屋年龄有很弱的偏相依性，但这个与其重要度排名（图 10.14）不一致．这表明这个弱影响可能掩盖掉了与其他变量间更强的交叉影响．</p>
+<p>房屋价值的中位数 <code>median house value</code> 在收入的中位数 <code>MedInc</code> 上的偏相依性是单调递增的，在整个数据取值范围内几乎成一条直线．房屋价值大体上随着平均占用率 <code>AveOccup</code> 的增长而单调下降，除了当平均占用率 <code>AveOccup</code> 小于 1 的情形．房屋价值的中位数 <code>median house value</code> 对平均房间数 <code>AveRooms</code> 不是单调的．近似在 3 个房间数时有个最小值，并且对于较大和较小的房间数都会增大．</p>
+<p>房屋价值的中位数 <code>median house value</code> 看起来对房屋年龄 <code>HouseAge</code> 有很弱的偏相依性，但这个与其重要度排名（图 10.14）不一致．这表明这个弱<strong>主影响 (main effect)</strong> 可能掩盖掉了它与其他变量间更强的<strong>交叉影响 (interaction effect)</strong>．</p>
 <p><img alt="" src="../../img/10/fig10.16.png" /></p>
-<p>图 10.16 展示了房屋价值在房屋年龄中位数和平均占有率的联合偏相依性．对于平均占有率大于 2 的小区，房屋价值近似与房屋年龄独立，然而对于占有率小于 2 的值，对年龄有很强的相依性．</p>
+<p>图 10.16 展示了房屋价值在房屋年龄中位数 <code>HouseAge</code> 和平均占有率 <code>AveOccup</code> 的联合偏相依性．对于平均占有率大于 2 的小区，房屋价值近似与房屋年龄独立，然而对于占有率小于 2 的值，对年龄有很强的相依性．</p>
 <p><img alt="" src="../../img/10/fig10.17.png" /></p>
-<p>图 10.17 用带阴影的等高图展示了拟合模型在经度和纬度上的联合偏相依性．很显然在加利福利亚，房屋价值中位数对小区的位置有很强的相依性．注意到图 10.17 不是房屋价值在忽略其他预测变量影响后对位置的影响 (10.49)．和所有偏相依性图一样，它表示了在考虑完其他小区和房屋特征后位置的影响 (10.47)．这可以看成需要对位置支付额外的费用．这个额外的费用在 <strong>太平洋沿岸 (Pacific coast)</strong> 会相对更大，特别是在 <strong>海湾地区 (Bay Area)</strong> 以及 <strong>洛杉矶 - 圣地亚哥 (Los Angeles–San Diego)</strong> ．在加利福利亚的北方，中央山谷，以及东南沙漠地区，位置费用相当地少．</p>
+<div class="admonition note">
+<p class="admonition-title">Recall</p>
+<p>
+<script type="math/tex; mode=display">
+f_S(X_S)=\E_{X_{\cal C}}f(X_{\cal S}, X_{\cal C})\tag{10.47}\label{10.47}
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+\tilde f_\calS(X_\calS) = \E(f(X_\calS, X_\calC)\mid X_\calS)\tag{10.49}\label{10.49}
+</script>
+</p>
+</div>
+<p>图 10.17 用带阴影的等高图展示了拟合模型在经度 <code>latitude</code> 和纬度 <code>longitude</code> 上的联合偏相依性．很显然在加利福利亚，房屋价值中位数 <code>median house value</code> 对小区的位置有很强的相依性．注意到图 10.17 不是房屋价值在忽略其他预测变量影响后对位置的影响 \eqref{10.49}．和所有偏相依性图一样，它表示了在考虑完其他小区和房屋的特征后位置的影响 \eqref{10.47}．这可以看成需要对位置支付额外的费用．这个额外的费用在 <strong>太平洋沿岸 (Pacific coast)</strong> 会相对更大，特别是在 <strong>海湾地区 (Bay Area)</strong> 以及 <strong>洛杉矶 - 圣地亚哥 (Los Angeles–San Diego)</strong> ．在加利福利亚的北方，中央山谷，以及东南沙漠地区，位置费用相当地少．</p>
 <h2 id="_2">新西兰鱼<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>植物和动物生态学家采用关于环境变量的回归模型来预测物种是否存在，以及 <strong>多度 (abundance)</strong> 和 <strong>丰度 (richness)</strong>．</p>
 <div class="admonition note">
@@ -3504,7 +3542,7 @@ y\sim \pi I(y=0) + (1-\pi)\mathrm{NB}(y; r, p)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2025-03-06 22:14:49
+        Last Build Date UTC : 2025-03-06 23:15:05
       </div>
       
         
