@@ -69,6 +69,24 @@
     {% endblock %}
     {% block disqus_js %}
       {% if config.extra.disqus and not page.is_homepage %}
+      <!--rm disqus ad refer to https://www.javaer101.com/article/25891160.html-->
+      <script src="{{ base_url }}/assets/javascripts/jquery-latest.min.js"></script>
+      <script>
+        (function($){
+          setInterval(() => {
+              $.each($('iframe'), (arr,x) => {
+                  let src = $(x).attr('src');
+                  if (src && src.match(/(ads-iframe)|(disqusads)/gi)) {
+                      $(x).remove();
+                  }
+                  let title = $(x).attr('title');
+                  if (!src && title == "Disqus") {
+                    $(x).remove();
+                  }
+              });
+          }, 300);
+      })(jQuery);
+      </script>
       {% endif %}
     {% endblock %}
     {% block fonts %}
