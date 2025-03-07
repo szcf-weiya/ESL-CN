@@ -3281,11 +3281,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2020-01-14 18:22:34</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
+<td>2025-03-06</td>
 </tr>
 </tbody>
 </table>
@@ -3335,13 +3331,13 @@ f_k(x)=\sum_{m=1}^MT_{km}(x)\tag{10.44}\label{10.44}
 </p>
 <p>图 10.23 和 10.24 图示了这些平均的以及单独的相关重要度的用法．</p>
 <h2 id="_2">偏相依性图<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>当确定出最相关的变量，下一步则是理解 $f(X)$ 在他们联合值上近似时依赖性的本质．作为其参数的函数 $f(X)$ 的图象提供了其对输入变量的联合值的依赖性的全面总结．</p>
-<p>不幸的是，任何可视化都会受到低维视角的限制．我们可以简单地通过各种不同的方式呈现出函数的一个或两个参数，无论是连续还是离散（又或者混合的）；这本书充满了这样的图象．维度稍微高点的函数可以通过给定除一个或两个参数以外的参数值，画出 <strong>网格 (trellis)</strong> 图 (Becker et al., 1996<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>).</p>
+<p>在确定出最相关的变量后，下一步是尝试理解近似函数 $f(X)$ 对它们联合值的依赖关系．作为其参数的函数， $f(X)$ 的图象提供了其对输入变量的联合值依赖性的全面总结．</p>
+<p>不幸的是，这种可视化仅限于低维视角．我们可以通过各种不同的方式轻松展示出一个或两个参数的函数，无论是连续还是离散（又或者混合的）；这本书充满了这样的图象．维度稍微高点的函数可以通过给定除一个或两个参数以外的参数值，画出 <strong>网格 (trellis)</strong> 图 (Becker et al., 1996<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>).</p>
 <div class="admonition note">
 <p class="admonition-title">原书脚注：trellis of plots</p>
 <p>R 中的 <code>lattice</code>.</p>
 </div>
-<p>对于超过两个或三个变量，可视化对应高维度参数的函数变得更困难了．有时采用的一个有用的替代方法是用一系列图，每张图展示了近似的 $f(X)$ 在所选的小的输入变量集上的 <strong>偏相依性 (partial dependence)</strong>．尽管这样一系列的图很少对这个近似进行全面的描述，但是它经常能够给出有用的线索，特别是当 $f(x)$ 被低阶的交叉项 \eqref{10.40} 控制时．</p>
+<p>对于超过两个或三个变量，可视化对应高维度参数的函数变得更困难了．有时采用的一个有用的替代方法是用一系列图，每张图展示了近似的 $f(X)$ 在所选的小的输入变量集上的 <strong>偏相依性 (partial dependence)</strong>．尽管这样一系列的图很少能全面描述这个近似，但它们经常能提供有用的线索，特别是当 $f(x)$ 被低阶的交叉项 \eqref{10.40} 控制时．</p>
 <div class="admonition note">
 <p class="admonition-title">Recall:</p>
 <p>
@@ -3360,17 +3356,17 @@ f_S(X_S)=\E_{X_{\cal C}}f(X_{\cal S}, X_{\cal C})\tag{10.47}\label{10.47}
 <p>偏相依函数可以用来解释任何“黑箱”学习方法的结果．它们可以通过下式估计，</p>
 <p>
 <script type="math/tex; mode=display">
-\bar f_{\cal S}(X_{\cal S}) = \frac 1N\sum_{i=1}^Nf(X_{\cal S},x_{iC})\tag{10.48}\label{10.48}
+\bar{f_{\calS}}(X_{\calS}) = \frac 1N\sum_{i=1}^Nf(X_{\calS},x_{iC})\tag{10.48}\label{10.48}
 </script>
 </p>
-<p>其中 $\{x_{1\calC}, x_{2\calC},\ldots,x_{N\calC}\}$ 是 $X_{\calC}$ 出现在训练数据中的值．对于每个联合值 $X_{\calS}$，当需要计算 $\bar f_{\calS}(X_{\calS})$ 时，要求一次数据传递．即使对于中等大小的数据集，这可以变成计算密集型．幸运的是，对于决策树，可以不引用数据而快速的计算 $\bar f_\calS(X_\calS)$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/168">练习 10.11</a>）．</p>
-<p>一个很重要需要注意的点是，\eqref{10.47} 的偏相依性函数是考虑完其他变量 $X_{\calC}$ 在 $f(X)$ 上的（平均）影响之后 $X_\calS$ 再在 $f(X)$ 上的影响．它们 <strong>不是</strong> $X_{\cal S}$ 忽略掉 $X_\calC$ 的影响后直接对 $f(X)$ 的影响．后者由条件期望给出</p>
+<p>其中 $\{x_{1\calC}, x_{2\calC},\ldots,x_{N\calC}\}$ 是 $X_{\calC}$ 出现在训练数据中的值．对于每个联合值 $X_{\calS}$，当需要计算 $\bar f_{\calS}(X_{\calS})$ 时，要求一次数据传递．即使对于中等大小的数据集，这可以变成计算密集型．幸运的是，对于决策树，可以不引用数据而根据树本身快速地计算 $\bar f_\calS(X_\calS)$（<a href="https://github.com/szcf-weiya/ESL-CN/issues/168">练习 10.11</a>）．</p>
+<p>一个很重要需要注意的点是，\eqref{10.47} 的偏相依性函数是考虑完其他变量 $X_{\calC}$ 在 $f(X)$ 上的（平均）影响之后 $X_\calS$ 再在 $f(X)$ 上的影响．它们 <strong>不是</strong> $X_{\calS}$ 忽略掉 $X_\calC$ 的影响后直接对 $f(X)$ 的影响．后者由条件期望给出</p>
 <p>
 <script type="math/tex; mode=display">
-\tilde f_\calS(X_\calS) = \E(f(X_\calS, X_\calC)\mid X_\calS)\tag{10.49}\label{10.49}
+\tilde{f_\calS}(X_\calS) = \E(f(X_\calS, X_\calC)\mid X_\calS)\tag{10.49}\label{10.49}
 </script>
 </p>
-<p>并且这是仅用关于 $X_\calS$ 的函数得到的对 $f(X)$ 的最优最小二乘近似．$\tilde f_\calS(X_\calS)$ 和 $\bar f_\calS(X_\calS)$ 仅仅当 $X_\calS$ 和 $X_\calC$ 独立时才相等，但这种情形是非常不可能的．举个例子，如果所选变量子集的影响恰好是 <strong>纯可加的 (purely additive)</strong>，</p>
+<p>并且这是仅用关于 $X_\calS$ 的函数得到的对 $f(X)$ 的最优最小二乘近似．$\tilde {f_\calS}(X_\calS)$ 和 $\bar {f_\calS}(X_\calS)$ 仅仅当 $X_\calS$ 和 $X_\calC$ 独立时才相等，但这种情形是非常不可能的．举个例子，如果所选变量子集的影响恰好是 <strong>纯可加的 (purely additive)</strong>，</p>
 <p>
 <script type="math/tex; mode=display">
 f(X)=h_1(X_\calS) + h_2(X_\calC)\tag{10.50}\label{10.50}
@@ -3382,7 +3378,24 @@ f(X)=h_1(X_\calS) + h_2(X_\calC)\tag{10.50}\label{10.50}
 f(X)=h_1(X_\calS)\cdot h_2(X_\calC)\tag{10.51}\label{10.51}
 </script>
 </p>
-<p>则 \eqref{10.47} 在忽略一个可乘常因子意义下，能得到 $h_1(X_\calS)$．另一方面，两种情形下 \eqref{10.49} 都不会得到 $h_1(X_\calS)$．事实上，当 $f(X)$ 根本没有依赖性时，\eqref{10.49} 可以在变量子集上产生强影响．</p>
+<p>则 \eqref{10.47} 在忽略一个可乘常因子意义下，能得到 $h_1(X_\calS)$．另一方面，两种情形下 \eqref{10.49} 都不会得到 $h_1(X_\calS)$．事实上，当 $f(X)$ 根本没有依赖性时，\eqref{10.49} 仍可以在变量子集上产生强影响．</p>
+<div class="admonition note">
+<p class="admonition-title">weiya 注: \eqref{10.47} vs \eqref{10.49}</p>
+<p>前者是对 $X_2\mid X_1$ 的条件分布求期望，
+<script type="math/tex; mode=display">
+\E[f(X_1, X_2)\mid X_1] = \int f(X_1, x_2)p(x_2\mid X_1)dx_2
+</script>
+而后者则是对 $X_2$ 的边缘分布求期望，
+<script type="math/tex; mode=display">
+\E_{X_2}[f(X_1, X_2)] = \int f(X_1, x_2)p(x_2)dx_2
+</script>
+对于 $f(X_1, X_2) = X_1 + X_2$, 则</p>
+<ul>
+<li>$\E[X_1+X_2\mid X_1] = X_1 + \E[X_2\mid X_1]$</li>
+<li>$\E_{X_2}[X_1+X_2]=X_1+\E[X_2]$</li>
+</ul>
+<p>如果 $f(X_1, X_2) = h_2(X_2)$ 对 $X_1$ 没有依赖性时，但是 $X_1$ 与 $X_2$ 强相关，则 $\E[f(X_1, X_2)\mid X_1]$ 仍会表现出与 $X_1$ 间的依赖性。另一方面，$\E_{X_2}[f(X_1, X_2)]$ 则只是常数，不会表现出与 $X_1$ 之间的关系。</p>
+</div>
 <p>查看 boosted-tree \eqref{10.28} 在所选变量子集上的偏相依性的图可以帮助提供它性质的一个定性描述．例子在 <a href="../10.8-Spam-Data/index.html">10.8 节</a>和 <a href="../10.14-Illustrations/index.html">10.14 节</a>中有呈现．由于计算机图象以及人类感知的限制，子集 $X_\calS$ 的大小必须很小（$\ell\approx 1,2,3$）．显然这里有许多这样的子集，但是只有那些从很少的强相关性变量中选出的子集才是更有信息量的．另外，那些在 $f(X)$ 上的影响近似是可加的 \eqref{10.50} 或可乘的 \eqref{10.51} 会变得更有启示作用．</p>
 <p>对于 $K$ 分类，有 $K$ 个单独的模型 \eqref{10.44}，每个类别对应一个．每个模型通过</p>
 <p>
@@ -3515,7 +3528,7 @@ p_k(x) = \frac{e^{f_k(x)}}{\sum_{\ell=1}^Ke^{f_\ell(x)}}\tag{10.21}\label{10.21}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2025-03-07 00:25:12
+        Last Build Date UTC : 2025-03-07 01:30:17
       </div>
       
         
