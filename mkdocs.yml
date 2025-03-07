@@ -319,7 +319,7 @@ google_analytics:
 
 use_directory_urls: false
 
-# enable_search: true
+enable_search: true
 
 plugins: 
   - git-revision-date

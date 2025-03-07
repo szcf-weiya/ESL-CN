@@ -17,7 +17,7 @@
 
 <div id="disqus_thread"></div>
 <script>
-  // if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+  if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
     var disqus_config = function () {
       this.page.url = "{{ page.canonical_url }}";
       this.page.identifier =
@@ -29,9 +29,9 @@
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();
-  // } else {
-  //   console.log("Disqus is disabled on localhost.");
-  // }
+  } else {
+    console.log("Disqus is disabled on localhost.");
+  }
 </script>
 
 
