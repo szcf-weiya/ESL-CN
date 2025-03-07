@@ -1820,8 +1820,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../10.10-Numerical-Optimization-via-Gradient-Boosting/index.html" title="10.10 Gradient Boosting 的数值优化" class="md-nav__link">
-      10.10 Gradient Boosting 的数值优化
+    <a href="../10.10-Numerical-Optimization-via-Gradient-Boosting/index.html" title="10.10 基于梯度提升的数值优化" class="md-nav__link">
+      10.10 基于梯度提升的数值优化
     </a>
   </li>
 
@@ -2392,8 +2392,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
-      14.5 主成分，主曲线以及主曲面
+    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分、主曲线与主曲面" class="md-nav__link">
+      14.5 主成分、主曲线与主曲面
     </a>
   </li>
 
@@ -3295,7 +3295,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2025-03-06</td>
+<td>2025-03-07</td>
 </tr>
 </tbody>
 </table>
@@ -3303,9 +3303,13 @@
 <h2 id="_1">加利福利亚住宅<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>数据集 (Pace and Barry, 1997)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 可以在 CMU StatLib 仓库中找到．</p>
 <div class="admonition note">
-<p class="admonition-title">weiya 注：</p>
-<p>原书作者脚注给出的链接是 <a href="http://lib.stat.cmu.edu">http://lib.stat.cmu.edu</a>，但现已无法访问，应该是 <a href="http://lib.stat.cmu.edu/datasets/">http://lib.stat.cmu.edu/datasets/ </a>．</p>
+<p class="admonition-title">weiya 注：数据链接</p>
+<p>原书作者脚注给出的链接是 <a href="http://lib.stat.cmu.edu">http://lib.stat.cmu.edu</a>，具体为 <a href="http://lib.stat.cmu.edu/datasets/">http://lib.stat.cmu.edu/datasets/ </a>．</p>
 <p>另外，本仓库也对此数据进行了备份，详见 <a href="https://github.com/szcf-weiya/ESL-CN/tree/master/data/Housing">ESL-CN/data/Housing</a>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：benchmarking</p>
+<p>在可复现性驱动的回归算法评估项目 <a href="https://hohoweiya.xyz/benchmark.tree.regressions/">szcf-weiya/benchmark.tree.regressions</a> 中，我们基于 ShinyApp + Shinylive 构建了交互式对比平台，支持对 BART, MARS, RandomForest, XGBoost 等多种主流树模型在各种模拟数据集以及实际数据集上表现的可视化比较，现已加入这个 <code>California Housing</code> 数据集的比较。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">weiya 注：20460 -&gt; 20640？</p>
@@ -3336,7 +3340,7 @@ f_m(x)=f_{m-1}(x)+\nu\cdot \sum\limits_{j=1}^J\gamma_{jm}I(x\in R_{jm})\tag{10.4
 <p>图 10.13 展示了作为在训练数据和测试数据上迭代次数 $M$ 的函数的<strong>平均绝对误差 (average absolute error)</strong></p>
 <p>
 <script type="math/tex; mode=display">
-\mathrm{AAE} = \E\vert y-\hat f_M(x)\vert \tag{10.53}
+\mathrm{AAE} = \E\vert y-\hat{f_M}(x)\vert \tag{10.53}
 </script>
 </p>
 <p>测试误差看起来随着 $M$ 的增大单调降低，并且在早期迅速下降然后随着迭代增加渐渐变成常值．因此，$M$ 的具体选择不重要，只要它不要太小．在许多应用中都趋向于是这种形式．收缩策略 \eqref{10.41} 趋向于消除过拟合的问题，特别是对于较大的数据集．</p>
@@ -3554,7 +3558,7 @@ y\sim \pi I(y=0) + (1-\pi)\mathrm{NB}(y; r, p)
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2025-03-07 02:44:18
+        Last Build Date UTC : 2025-03-07 18:08:18
       </div>
       
         

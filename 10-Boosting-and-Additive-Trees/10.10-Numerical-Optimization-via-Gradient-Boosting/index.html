@@ -46,7 +46,7 @@
     
     
       
-        <title>10.10 Gradient Boosting 的数值优化 - ESL CN</title>
+        <title>10.10 基于梯度提升的数值优化 - ESL CN</title>
       
     
     
@@ -137,7 +137,7 @@
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
     
-      <a href="#1010-gradient-boosting" tabindex="1" class="md-skip">
+      <a href="#1010" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -163,7 +163,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                10.10 Gradient Boosting 的数值优化
+                10.10 基于梯度提升的数值优化
               </span>
             
           
@@ -1829,11 +1829,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        10.10 Gradient Boosting 的数值优化
+        10.10 基于梯度提升的数值优化
       </label>
     
-    <a href="index.html" title="10.10 Gradient Boosting 的数值优化" class="md-nav__link md-nav__link--active">
-      10.10 Gradient Boosting 的数值优化
+    <a href="index.html" title="10.10 基于梯度提升的数值优化" class="md-nav__link md-nav__link--active">
+      10.10 基于梯度提升的数值优化
     </a>
     
       
@@ -2392,8 +2392,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
-      14.5 主成分，主曲线以及主曲面
+    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分、主曲线与主曲面" class="md-nav__link">
+      14.5 主成分、主曲线与主曲面
     </a>
   </li>
 
@@ -3276,7 +3276,7 @@
                   <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="1010-gradient-boosting">10.10 Gradient Boosting的数值优化<a class="headerlink" href="#1010-gradient-boosting" title="Permanent link">&para;</a></h1>
+                <h1 id="1010">10.10 基于梯度提升的数值优化<a class="headerlink" href="#1010" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3295,14 +3295,14 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2020-01-13 14:57:32</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
+<td>2025-03-07</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：benchmarking</p>
+<p>在可复现性驱动的回归算法评估项目 <a href="https://hohoweiya.xyz/benchmark.tree.regressions/">szcf-weiya/benchmark.tree.regressions</a> 中，我们基于 ShinyApp + Shinylive 构建了交互式对比平台，支持对 BART, MARS, RandomForest, XGBoost 等多种主流树模型在各种模拟数据集以及实际数据集上表现的可视化比较。</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Recall</p>
 <p>
@@ -3367,7 +3367,7 @@ g_{im}=\Big[\frac{\partial L(y_i, f(x_i))}{\partial f(x_i)} \Big]_{f(x_i)=f_{m-1
 \mathbf f_m = \mathbf f_{m-1}-\rho_m\mathbf g_m
 </script>
 </p>
-<p>这个过程一直重复直到下一次迭代．最速下降可以看成是非常贪婪的策略，因为 $-\mathbf g_m$ 是 $\IR^N$ 空间中 $L(\mathbf f)$ 在 $\mathbf f= \mathbf f_{m-1}$ 处最速下降的局部方向．</p>
+<p>这个过程一直重复直到下一次迭代．最速下降可以看成是非常贪婪的策略，因为 $-\mathbf g_m$ 是 $\IR^N$ 空间中 $L(\mathbf f)$ 在 $\mathbf f= \mathbf f_{m-1}$ 处下降最快的局部方向．</p>
 <h2 id="gradient-boosting">Gradient Boosting<a class="headerlink" href="#gradient-boosting" title="Permanent link">&para;</a></h2>
 <p><strong>Forward stagewise boosting</strong>（算法 10.2）也是非常贪婪的策略．每一步中，在给定当前模型 $f_{m-1}$ 以及其拟合值 $f_{m-1}(x_i)$ 下，得到的解是在最大程度上降低 \eqref{10.29} 的树．</p>
 <p>因此，树的预测值 $T(x_i;\Theta_m)$ 与负梯度 \eqref{10.35} 的组分类似．本质区别在于树的组分 $\mathbf t_m=\{T(x_1;\Theta_m),\ldots,T(x_N;\Theta_m)\}$ 不是独立的．它们限定为终止结点个数为 $J_m$ 的树的预测值，然而负梯度是没有任何限制的最速下降方向．</p>
@@ -3402,7 +3402,7 @@ L(y,p(x))&=-\sum\limits_{k=1}^KI(y=\cal G_k)\log p_k(x)\\
 </script>
 </p>
 </div>
-<p>并且在每次迭代过程中构造 $K$ 棵最小二乘树．每棵树 $T_{km}$ 是对各自负梯度向量 $g_{km}$ 的拟合，</p>
+<p>并且在每次迭代过程中构造 $K$ 棵最小二乘树．每棵树 $T_{km}$ 是对各自负梯度向量 ${\mathbf g}_{km}$ 的拟合，</p>
 <p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -3451,7 +3451,7 @@ Logit 损失函数的负梯度为
 
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>笔记<a href="../../notes/boosting/summary-loss-function/index.html">损失函数的梯度总结及Julia实现</a>用Julia表达了表10.2中的各个损失函数及其梯度．</p>
+<p>笔记<a href="../../notes/boosting/summary-loss-function/index.html">损失函数的梯度总结及 Julia 实现</a>用 Julia 表达了表 10.2 中的各个损失函数及其梯度．</p>
 </div>
 <h2 id="gradient-boosting_1">Gradient Boosting 的实现<a class="headerlink" href="#gradient-boosting_1" title="Permanent link">&para;</a></h2>
 <p><img alt="" src="../../img/10/alg10.3.png" /></p>
@@ -3466,7 +3466,7 @@ G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\el
 </p>
 </div>
 <p>细节在<a href="https://github.com/szcf-weiya/ESL-CN/issues/76">练习 10.9</a>中给出，两个基本的调整参数为迭代次数 $M$ 和每个组分树的大小 $J_m,m=1,2\ldots,M$.</p>
-<p>这个算法原始实现称为 MART，指的是“<strong>多重可加回归树(multiple additive regression trees)</strong>”．这章中很多图是用 MART 得到的．这里描述的<strong>gradient boosting</strong> 在 <code>R</code> 语言的 <code>gbm</code> 包中有实现(Ridgeway, 1999<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, “Gradient Boosted Models”)，可以免费使用．<a href="../10.14-Illustrations/index.html">10.14.2 节</a>中用了 <code>gbm</code> 包，在<a href="../16.1-Introduction/index.html">第 16 章</a>和<a href="../15.1-Introduction/index.html">第 15 章</a>有详细介绍．另外，还有个 boosting 算法的 <code>R</code> 语言实现是 <code>mboost</code>(Hothorn and Bühlmann, 2006<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)．有个 gradient boosting/MART 的商业实现称为 TreeNet (Salford Systems, Inc.)</p>
+<p>这个算法原始实现称为 MART，指的是“<strong>多重可加回归树(multiple additive regression trees)</strong>”．这章中很多图是用 MART 得到的．这里描述的 <strong>梯度提升 (Gradient Boosting)</strong> 在 <code>R</code> 语言的 <code>gbm</code> 包中有实现 (Ridgeway, 1999<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, “Gradient Boosted Models”)，可以免费使用．<a href="../10.14-Illustrations/index.html">10.14.2 节</a>中用了 <code>gbm</code> 包，在<a href="../16.1-Introduction/index.html">第 16 章</a>和<a href="../15.1-Introduction/index.html">第 15 章</a>有详细介绍．另外，还有个 boosting 算法的 <code>R</code> 语言实现是 <code>mboost</code>(Hothorn and Bühlmann, 2006<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>)．有个梯度提升/MART 的商业实现称为 TreeNet® (Salford Systems, Inc.)</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3582,7 +3582,7 @@ G(x)={\cal G_k}\;\text{where }k=\mathrm{arg}\;\underset{\ell}{\mathrm{max}}p_\el
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2025-03-07 02:44:17
+        Last Build Date UTC : 2025-03-07 18:08:18
       </div>
       
         

@@ -1930,8 +1930,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting/index.html" title="10.10 Gradient Boosting 的数值优化" class="md-nav__link">
-      10.10 Gradient Boosting 的数值优化
+    <a href="../../10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting/index.html" title="10.10 基于梯度提升的数值优化" class="md-nav__link">
+      10.10 基于梯度提升的数值优化
     </a>
   </li>
 
@@ -2446,8 +2446,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
-      14.5 主成分，主曲线以及主曲面
+    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分、主曲线与主曲面" class="md-nav__link">
+      14.5 主成分、主曲线与主曲面
     </a>
   </li>
 
@@ -3403,11 +3403,7 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2019-05-10 23:14:29</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
+<td>2025-03-07</td>
 </tr>
 </tbody>
 </table>
@@ -3418,6 +3414,10 @@
 <p>第三次是在处理 soda 项目的时候，用到 MARS，以及与其它方法的对比，跟 Professor Liu 的 soda 还真是有异曲同工之妙．</p>
 <p>今天更新 MARS 这一章节算是第四次与 MARS 的正式重逢吧．@2017.08.25</p>
 </blockquote>
+<div class="admonition info">
+<p class="admonition-title">weiya 注：benchmarking</p>
+<p>在可复现性驱动的回归算法评估项目 <a href="https://hohoweiya.xyz/benchmark.tree.regressions/">szcf-weiya/benchmark.tree.regressions</a> 中，我们基于 ShinyApp + Shinylive 构建了交互式对比平台，支持对 BART, MARS, RandomForest, XGBoost 等多种主流树模型在各种模拟数据集以及实际数据集上表现的可视化比较。</p>
+</div>
 <p><strong>多变量自适应回归样条 (Multivariate Adaptive Regression Splines, MARS)</strong> 是回归的自适应过程，非常适合高维问题（即，存在大量的输入）．可以从两个角度来理解它，首先，它可以看成是逐步线性回归的推广，其次，也可以看成是为了提高 CART 在回归中的效果而进行的改进．我们从第一种观点引入 MARS，接着与 CART 联系起来．</p>
 <p>MARS 采用形式为 $(x-t)_+, (t-x)_+$ 的分段线性基函数的展开．“+”表示正的部分，所以</p>
 <p>
@@ -3718,7 +3718,7 @@ R^2=\frac{\MSE_0-\MSE}{\MSE_0}\tag{9.24}
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2025-03-07 02:44:17
+        Last Build Date UTC : 2025-03-07 18:08:17
       </div>
       
         

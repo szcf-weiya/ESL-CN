@@ -1816,8 +1816,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting/index.html" title="10.10 Gradient Boosting 的数值优化" class="md-nav__link">
-      10.10 Gradient Boosting 的数值优化
+    <a href="../../10-Boosting-and-Additive-Trees/10.10-Numerical-Optimization-via-Gradient-Boosting/index.html" title="10.10 基于梯度提升的数值优化" class="md-nav__link">
+      10.10 基于梯度提升的数值优化
     </a>
   </li>
 
@@ -2334,8 +2334,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分，主曲线以及主曲面" class="md-nav__link">
-      14.5 主成分，主曲线以及主曲面
+    <a href="../../14-Unsupervised-Learning/14.5-Principal-Components-Curves-and-Surfaces/index.html" title="14.5 主成分、主曲线与主曲面" class="md-nav__link">
+      14.5 主成分、主曲线与主曲面
     </a>
   </li>
 
@@ -3212,10 +3212,14 @@
 <td>发布</td>
 <td>2017-09-04</td>
 </tr>
+<tr>
+<td>更新</td>
+<td>2025-03-07</td>
+</tr>
 </tbody>
 </table>
-<p>这里讨论的随机森林是Breiman(2001)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>提出来的，经很多想法很早一前就以不同的形式出现了．值得一提的是，Ho(1995)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>提出“random forest”的概念，并且用了在随机的特征子空间中增长树．采用随机排列和平均来避免过拟合是由Kleinberg (1990)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>提出来的，最后出现在Kleinberg (1996)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>中．Amit and Geman (1997)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>采用在图象特征中增长随机树来处理图象分类问题．Breiman (1996a)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>引出了bagging，这是他的随机森林的先驱．Dietterich (2000b)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>也提出采用额外的随机化来提高bagging的性能．他的方法是在每个结点出对前20个候选分离排序，接着随机从中选择．他通过仿真和实际例子展示了额外的随机化能够提高bagging的性能．Friedman and Hall (2007)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>证明了子采样（不放回）是bagging的一个有效的替代方案．他们证明在大小为$N/2$的样本上生长和平均树是近似等于bagging（考虑偏差及方差），而采用更少的样本则会降低更大的方差（通过去相关处理）．</p>
-<p>有许多免费的软件实现随机森林．这章中，书中采用R中的randomForest包，由Andy Liaw维护，可以在<code>CRAN</code>网站上得到．这同时允许分割变量选择，以及子采样．Adele Cutler维护一个随机森林的网站<code>http://www.math.usu.edu/∼adele/forests/</code>，其中由Leo Breiman和Adele Cutler编写的软件是免费的．他们的代码，以及名字“random forests”，是专门授权Salford Systems进行商业发行的．新西兰的Waikato大学的<code>Weka</code>机器学习文件<code>http://www.cs.waikato.ac.nz/ml/weka/</code>提供了随机森林JAVA实现的免费版本．</p>
+<p>这里讨论的随机森林是 Breiman(2001)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 提出来的，经很多想法很早一前就以不同的形式出现了．值得一提的是，Ho(1995)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>提出“random forest”的概念，并且用了在随机的特征子空间中增长树．采用随机排列和平均来避免过拟合是由 Kleinberg (1990)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> 提出来的，最后出现在 Kleinberg (1996)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> 中．Amit and Geman (1997)<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> 采用在图象特征中增长随机树来处理图象分类问题．Breiman (1996a)<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>引出了bagging，这是他的随机森林的先驱．Dietterich (2000b)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>也提出采用额外的随机化来提高bagging的性能．他的方法是在每个结点出对前20个候选分离排序，接着随机从中选择．他通过仿真和实际例子展示了额外的随机化能够提高 bagging 的性能．Friedman and Hall (2007)<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup> 证明了子采样（不放回）是 bagging 的一个有效的替代方案．他们证明在大小为 $N/2$ 的样本上生长和平均树是近似等于 bagging（考虑偏差及方差），而采用更少的样本则会降低更大的方差（通过去相关处理）．</p>
+<p>有许多免费的软件实现随机森林．这章中，书中采用 <code>R</code> 中的 <code>randomForest</code> 包，由 Andy Liaw 维护，可以在 <code>CRAN</code> 网站上得到．这同时允许分割变量选择，以及子采样．Adele Cutler 维护一个随机森林的网站<code>http://www.math.usu.edu/∼adele/forests/</code>，其中由 Leo Breiman 和 Adele Cutler 编写的软件是免费的．他们的代码，以及名字“random forests”，是专门授权 Salford Systems 进行商业发行的．新西兰的 Waikato 大学的<code>Weka</code>机器学习存档<code>http://www.cs.waikato.ac.nz/ml/weka/</code>提供了随机森林 <code>java</code> 实现的免费版本．</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -3349,7 +3353,7 @@
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2025-03-07 02:44:19
+        Last Build Date UTC : 2025-03-07 18:08:20
       </div>
       
         
