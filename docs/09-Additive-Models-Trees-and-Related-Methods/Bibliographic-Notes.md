@@ -1,6 +1,6 @@
 # 9.8 文献笔记
 
-| 原文   | [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print12.pdf) |
+| 原文   | [The Elements of Statistical Learning](https://esl.hohoweiya.xyz/book/The%20Elements%20of%20Statistical%20Learning.pdf) |
 | ---- | ---------------------------------------- |
 | 翻译   | szcf-weiya                               |
 | 发布 | 2017-03-14 |
