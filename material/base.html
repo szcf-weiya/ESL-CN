@@ -67,26 +67,28 @@
     {% block libs %}
       <script src="{{ base_url }}/assets/javascripts/modernizr.js"></script>
     {% endblock %}
+    {% block disqus_ads %}
+          <!--rm disqus ad refer to https://www.javaer101.com/article/25891160.html-->
+          <script src="{{ base_url }}/assets/javascripts/jquery-latest.min.js"></script>
+          <script>
+            (function($){
+              setInterval(() => {
+                  $.each($('iframe'), (arr,x) => {
+                      let src = $(x).attr('src');
+                      if (src && src.match(/(ads-iframe)|(disqusads)/gi)) {
+                          $(x).remove();
+                      }
+                      let title = $(x).attr('title');
+                      if (!src && title == "Disqus") {
+                        $(x).remove();
+                      }
+                  });
+              }, 300);
+          })(jQuery);
+          </script>   
+    {% endblock %}
     {% block disqus_js %}
       {% if config.extra.disqus and not page.is_homepage %}
-      <!--rm disqus ad refer to https://www.javaer101.com/article/25891160.html-->
-      <script src="{{ base_url }}/assets/javascripts/jquery-latest.min.js"></script>
-      <script>
-        (function($){
-          setInterval(() => {
-              $.each($('iframe'), (arr,x) => {
-                  let src = $(x).attr('src');
-                  if (src && src.match(/(ads-iframe)|(disqusads)/gi)) {
-                      $(x).remove();
-                  }
-                  let title = $(x).attr('title');
-                  if (!src && title == "Disqus") {
-                    $(x).remove();
-                  }
-              });
-          }, 300);
-      })(jQuery);
-      </script>
       {% endif %}
     {% endblock %}
     {% block fonts %}
@@ -217,16 +219,6 @@
               {% endblock %}
               {% block disqus_free %}
                 {% if config.extra.disqus and not page.is_homepage %}
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3680148472128768"
-     data-ad-slot="6465742678"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
                   <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
                   {% include "partials/integrations/disqus.html" %}
                 {% endif %}
@@ -280,5 +272,43 @@
         {% include "partials/integrations/analytics.html" %}
       {% endif %}
     {% endblock %}
+    <!--adjust disqus recommendation width (possibly occupied by ads)-->
+    <script>
+// 确保在 DOM 完全加载后执行
+document.addEventListener('DOMContentLoaded', function() {
+    // 定义修复宽度的函数
+    function fixDisqusWidth() {
+        const iframe = document.querySelector('#disqus_recommendations iframe');
+        if (iframe) {
+            iframe.style.cssText += 'width: 100% !important; max-width: 100% !important;';
+        }
+    }
+
+    // 初次尝试修复
+    fixDisqusWidth();
+
+    // 监听 Disqus 容器的动态加载
+    const observer = new MutationObserver(function(mutations) {
+        fixDisqusWidth();
+    });
+
+    // 获取 Disqus 容器
+    const targetNode = document.getElementById('disqus_recommendations');
+    if (targetNode) {
+        // 如果容器已存在，直接监听
+        observer.observe(targetNode, { childList: true, subtree: true });
+    } else {
+        // 如果容器未加载，监听整个文档直到其出现
+        const docObserver = new MutationObserver(function(mutations) {
+            const lateTarget = document.getElementById('disqus_recommendations');
+            if (lateTarget) {
+                observer.observe(lateTarget, { childList: true, subtree: true });
+                docObserver.disconnect();
+            }
+        });
+        docObserver.observe(document.body, { childList: true, subtree: true });
+    }
+});
+    </script>
   </body>
 </html>

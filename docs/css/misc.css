@@ -91,3 +91,19 @@ label.md-nav__title {
   max-width: none !important;
   table-layout: auto !important;
 }
+
+/* 强制推荐模块宽度为100% */
+#disqus_recommendations iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+}
+
+/* 确保父容器不受限制 */
+#disqus_recommendations {
+  width: 100% !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
