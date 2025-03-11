@@ -46,7 +46,7 @@
     
     
       
-        <title>12.5 FDA - ESL CN</title>
+        <title>12.5 灵活判别分析 - ESL CN</title>
       
     
     
@@ -163,7 +163,7 @@
                 ESL CN
               </span>
               <span class="md-header-nav__topic">
-                12.5 FDA
+                12.5 灵活判别分析
               </span>
             
           
@@ -2093,11 +2093,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        12.5 FDA
+        12.5 灵活判别分析
       </label>
     
-    <a href="index.html" title="12.5 FDA" class="md-nav__link md-nav__link--active">
-      12.5 FDA
+    <a href="index.html" title="12.5 灵活判别分析" class="md-nav__link md-nav__link--active">
+      12.5 灵活判别分析
     </a>
     
       
@@ -2138,8 +2138,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../12.6-Penalized-Discriminant-Analysis/index.html" title="12.6 PDA" class="md-nav__link">
-      12.6 PDA
+    <a href="../12.6-Penalized-Discriminant-Analysis/index.html" title="12.6 惩罚判别分析" class="md-nav__link">
+      12.6 惩罚判别分析
     </a>
   </li>
 
@@ -3248,7 +3248,7 @@
                   <a href="https://github.com/szcf-weiya/ESL-CN/edit/master/docs/12-Support-Vector-Machines-and-Flexible-Discriminants/12.5-Flexible-Disciminant-Analysis.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="125-fda">12.5 FDA<a class="headerlink" href="#125-fda" title="Permanent link">&para;</a></h1>
+                <h1 id="125-fda">12.5 灵活判别分析 (FDA)<a class="headerlink" href="#125-fda" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -3267,15 +3267,11 @@
 </tr>
 <tr>
 <td>更新</td>
-<td>2020-05-26 17:46:15</td>
-</tr>
-<tr>
-<td>状态</td>
-<td>Done</td>
+<td>2025-03-11</td>
 </tr>
 </tbody>
 </table>
-<p>在这一节我们描述一种在导出的响应变量上使用线性回归的 LDA 方法．这相应地导出非参的以及更灵活的替换 LDA 的方法．如<a href="../04-Linear-Methods-for-Classification/4.1-Introduction/index.html">第 4 章</a>一样，我们假设我们有定量变量 $G$，它落入 $K$ 个类别 ${\cal G} = \{1,\ldots,K\}$ 中的其中一个类别，每个都有测量特征 $X$．假设 $\theta: \cal G\mapsto\IR^1$ 是对类别打分的函数，使得转换后的类别标签通过 $X$ 上的线性回归来最优预测：如果我们的训练样本形式为 $(g_i,x_i),i=1,2,\ldots,N$，则我们求解带关于 $\theta$ 约束的下式来避免平凡解（在训练数据上均值为零单位方差）</p>
+<p>在这一节我们描述一种在导出的响应变量上使用线性回归的线性判别 (LDA) 方法．这相应地导出非参的以及更灵活的替换 LDA 的方法．如<a href="../04-Linear-Methods-for-Classification/4.1-Introduction/index.html">第 4 章</a>一样，我们假设我们有定量变量 $G$，它落入 $K$ 个类别 ${\cal G} = \{1,\ldots,K\}$ 中的其中一个类别，每个都有测量特征 $X$．假设 $\theta: \cal G\mapsto\IR^1$ 是对类别打分的函数，使得转换后的类别标签通过 $X$ 上的线性回归来最优预测：如果我们的训练样本形式为 $(g_i,x_i),i=1,2,\ldots,N$，则我们求解带关于 $\theta$ 约束的下式来避免平凡解（在训练数据上均值为零且方差为 1）</p>
 <p>
 <script type="math/tex; mode=display">
 \underset{\beta,\theta}{\min}\sum\limits_{i=1}^N(\theta(g_i)-x_i^T\beta)^2\tag{12.52}
@@ -3301,7 +3297,7 @@ ASR=\frac 1N\sum\limits_{\ell=1}^L[\sum\limits_{i=1}^N(\theta_\ell(g_i)-x_i^T\be
 w_\ell = \frac{1}{r_\ell^2(1-r_\ell^2)}\tag{12.55}
 </script>
 </p>
-<p>在 <a href="../../04-Linear-Methods-for-Classification/4.3-Linear-Discriminant-Analysis/index.html#lda">4.3.2 节</a>中，我们看到典则距离是高斯情形下分类所需要的全部条件，并且每个类别间有相等的协方差．总结下，就是：</p>
+<p>在 <a href="../../04-Linear-Methods-for-Classification/4.3-Linear-Discriminant-Analysis/index.html#lda">4.3.2 节</a>中，我们看到典则距离是在高斯（且每个类别间有相等的协方差）设定中分类所需要的全部条件．总结下，就是：</p>
 <blockquote>
 <p>LDA 可以通过一系列的线性回归来实现，将测试点划分到拟合空间中距离最近的那个类别重心的类中．这类似可以应用到降维后的版本，或者当 $L=K-1$ 时的全秩版本．</p>
 </blockquote>
@@ -3331,7 +3327,7 @@ ASR(\{\theta_\ell,\eta_\ell\}_{\ell=1}^L)=\frac 1N\sum\limits_{\ell=1}^L[\sum\li
 <p>计算步骤如下：</p>
 <ol>
 <li><strong>多元非参回归 (Multivariate nonparametric regression)</strong>．在 $\mathbf X$ 上拟合 $\mathbf Y$ 的多响应、自适应的非参回归，得到拟合值 $\hat{\mathbf Y}$．令 $\mathbf S_\lambda$ 为拟合最终选择的模型的线性算子，并且 $\eta^*(x)$ 为拟合的回归函数的向量．</li>
-<li><strong>最优得分 (Optimal scores)</strong>．计算 $\mathbf Y^T\hat{\mathbf Y}=\mathbf Y^T\mathbf S_\lambda\mathbf Y$ 的特征值分解，其中特征向量 $\mathbf \Theta$ 是标准化的：$\mathbf \Theta^T\mathbf D_\pi\mathbf \Theta = \mathbf I$．这里 $\mathbf D_\pi = \mathbf Y^T\mathbf Y/N$ 是类别先验概率的对角阵．</li>
+<li><strong>最优得分 (Optimal scores)</strong>．计算 $\mathbf Y^T\hat{\mathbf Y}=\mathbf Y^T\mathbf S_\lambda\mathbf Y$ 的特征值分解，其中特征向量 $\mathbf \Theta$ 是标准化的：$\mathbf \Theta^T\mathbf D_\pi\mathbf \Theta = \mathbf I$．这里 $\mathbf D_\pi = \mathbf Y^T\mathbf Y/N$ 是估计的类别先验概率的对角阵．</li>
 <li><strong>更新 (Update)</strong>．采用最优得分 $\eta(x)=\mathbf\Theta^T\eta^*(x)$ 从第一步更新模型．</li>
 </ol>
 <p>$\eta(x)$ 中 $K$ 个函数的第一个函数是常值函数——平凡解；剩下的 $K-1$ 个函数是判别函数．常值函数以及标准化使得所有剩下的函数都进行了中心化．</p>
@@ -3413,13 +3409,13 @@ ASR(\{\theta_\ell,\eta_\ell\}_{\ell=1}^L)=\frac 1N\sum\limits_{\ell=1}^L[\sum\li
           </a>
         
         
-          <a href="../12.6-Penalized-Discriminant-Analysis/index.html" title="12.6 PDA" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../12.6-Penalized-Discriminant-Analysis/index.html" title="12.6 惩罚判别分析" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                12.6 PDA
+                12.6 惩罚判别分析
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -3445,7 +3441,7 @@ ASR(\{\theta_\ell,\eta_\ell\}_{\ell=1}^L)=\frac 1N\sum\limits_{\ell=1}^L[\sum\li
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
         -->
-        Last Build Date UTC : 2025-03-07 18:08:18
+        Last Build Date UTC : 2025-03-11 16:09:33
       </div>
       
         
